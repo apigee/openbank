@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="Populate-Nonce-Information">
+    <DisplayName>Populate Cache: Nonce Information</DisplayName>
+    <Properties/>
+    <CacheResource>nonce-cache</CacheResource>
+    <Source>nonce</Source>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="client_id"/>
+    	<KeyFragment ref="nonce"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec>2000</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

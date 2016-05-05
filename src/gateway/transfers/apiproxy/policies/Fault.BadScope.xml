@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Fault.BadScope">
+    <DisplayName>Fault.BadScope</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers>
+                <Header name="Access-Control-Allow-Origin">{request.header.origin}</Header>
+                <Header name="Access-Control-Allow-Credentials">true</Header>
+                <Header name="Access-Control-Allow-Methods">OPTIONS,GET,POST,PUT,DELETE,HEAD</Header>
+                <Header name="Access-Control-Allow-Headers">Authorization,Content-Type,Accept,Origin,X-Requested-With,X-CSDKVersion</Header>
+                <Header name="Access-Control-Max-Age">86400</Header>
+            </Headers>
+            <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+                {
+                "errorCode": "%error_type#",
+                "error": "%error_variable#"
+                }
+            </Payload>
+            <StatusCode>{status_code}</StatusCode>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

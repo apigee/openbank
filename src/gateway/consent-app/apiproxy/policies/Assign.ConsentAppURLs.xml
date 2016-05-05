@@ -1,0 +1,16 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign.ConsentAppURLs">
+    <AssignTo createNew="false" transport="http" type="request"/>
+    <AssignVariable>
+        <Name>x-apikey</Name>
+        <Value>grOmvYAei8aBARzEVIYhGtpvztofAAjz</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>config.environmentSet</Name>
+        <Value>test</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>config.protocolSet</Name>
+        <Value>https</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

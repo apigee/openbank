@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <PreFlow name="PreFlow">
+        <Request>
+        </Request>
+        <Response>
+            <Step>
+                <Name>Extract-Transaction-Id</Name>
+            </Step>
+            <Step>
+                <Name>Assign-Message-Replace-result</Name>
+            </Step>
+            <Step>
+                <Name>OAuth-v20-1-Invalidate-Access-Token</Name>
+            </Step>
+            <Step>
+                <Name>Callout-Add-transaction-to-account</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <Flows>
+        <Flow name="doTransfer">
+            <Condition>(request.verb = "POST") and (proxy.pathsuffix MatchesPath "/{transfer_reference}</Condition>
+            <Step>
+                <Name>Extract.TransferReference</Name>
+            </Step>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/internal/connector/v1/transfers</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

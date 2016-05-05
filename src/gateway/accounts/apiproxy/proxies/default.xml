@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+    </FaultRules>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>OAuth.VerifyAccessToken</Name>
+            </Step>
+            <Step>
+                <Name>Fault.InvalidTransaction</Name>
+                <Condition>(accesstoken.account_number = "") or (accesstoken.account_number = null) or (accesstoken.customer_number = "") or (accesstoken.customer_number = null)
+                </Condition>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="accountInfo">
+            <Condition>((proxy.pathsuffix MatchesPath "/{account_id}") or (proxy.pathsuffix MatchesPath "/{account_id}/info")) and (request.verb = "GET")
+            </Condition>
+            <Request/>
+            <Response/>
+        </Flow>
+        <Flow name="accountBalance">
+            <Condition>(proxy.pathsuffix MatchesPath "/{account_id}/balance") and (request.verb = "GET")</Condition>
+            <Request/>
+            <Response/>
+        </Flow>
+        <Flow name="accountTransactions">
+            <Condition>((proxy.pathsuffix MatchesPath "/{account_id}/transactions") or (proxy.pathsuffix MatchesPath "/{account_id}/transactions/{transaction_id}")) and (request.verb = "GET")
+            </Condition>
+            <Request>
+                <Step>
+                    <Name>Extract.TransactionId</Name>
+                    <Condition>(proxy.pathsuffix MatchesPath "/{account_id}/transactions/{transaction_id}")</Condition>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+
+    <HTTPProxyConnection>
+        <BasePath>/apis/v1/accounts</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>
