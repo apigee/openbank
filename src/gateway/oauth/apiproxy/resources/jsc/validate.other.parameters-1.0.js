@@ -233,7 +233,7 @@ function validateJWTPayload(parsedPayload) {
             context.setVariable("error_variable", "This value must match the acr_values in request parameter");
         }
         else if (jwt.hasOwnProperty('claims') && jwt.claims.hasOwnProperty('paymentinfo')) {
-            if (jwt.claims.paymentinfo.to.account_id == null || jwt.claims.paymentinfo.to.account_id == "") {
+            if (jwt.claims.paymentinfo.to.account_number == null || jwt.claims.paymentinfo.to.account_number == "") {
                 context.setVariable("error_type", "invalid_request");
                 context.setVariable("error_variable", "The request is missing a required parameter: to account number");
                 context.setVariable("status_code", "400");
@@ -261,7 +261,7 @@ function validateJWTPayload(parsedPayload) {
             else {
                 print("1 " + jwt.claims.paymentinfo.to);
                 print("1 " + jwt.claims.paymentinfo.amount);
-                context.setVariable("jwt.claims.paymentinfo.to.account_id", jwt.claims.paymentinfo.to.account_id);
+                context.setVariable("jwt.claims.paymentinfo.to.account_number", jwt.claims.paymentinfo.to.account_number);
                 context.setVariable("jwt.claims.paymentinfo.value.amount", jwt.claims.paymentinfo.value.amount);
                 context.setVariable("jwt.claims.paymentinfo.to.sort_code", jwt.claims.paymentinfo.to.sort_code);
                 context.setVariable("jwt.claims.paymentinfo.value.currency", jwt.claims.paymentinfo.value.currency);

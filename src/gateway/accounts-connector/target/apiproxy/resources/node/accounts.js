@@ -5,10 +5,10 @@ var config = require("./config.js");
 var basePath = config.host + '/' + config.org + '/' + config.app;
 
 function getAccountDetails(req, callback) {
-    var accountId = req.params.accountId;
+    var accountNumber = req.params.accountNumber;
 
     var options = {
-        url: basePath + "/accounts/" + accountId,
+        url: basePath + "/accounts/" + accountNumber,
         json: true
     };
 
@@ -54,6 +54,7 @@ exports.getAccountsOfCustomer = function (req, res) {
     }
 
     var customerId = req.query.customerId;
+    console.log(customerId);
 
     var options = {
         url: basePath + "/accounts",
@@ -68,27 +69,14 @@ exports.getAccountsOfCustomer = function (req, res) {
             var accounts = [];
 
             for (var i = 0; i < body.entities.length; i++) {
-                var accountDetails = body.entities[i];
+                var accountDetails = {};
 
-                accountDetails.id = accountDetails.name;
-                accountDetails.created_at = accountDetails.created;
-                accountDetails.updated_at = accountDetails.modified;
-
-                delete accountDetails.name;
-                delete accountDetails.created;
-                delete accountDetails.modified;
-
-                delete accountDetails.uuid;
-                delete accountDetails.type;
-                delete accountDetails.metadata;
-
-                delete accountDetails.balanceAmount;
-                delete accountDetails.clearingAmount;
-
-                delete accountDetails.balance;
-                delete accountDetails.balance_available;
-                delete accountDetails.cash_flow_per_year;
-                delete accountDetails.preauth_amount;
+                accountDetails.id = body.entities[i].name;
+                accountDetails.account_number = body.entities[i].account_number;
+                accountDetails.label = body.entities[i].label;
+                accountDetails.currency = body.entities[i].currency;
+                accountDetails.balance = body.entities[i].balance;
+                accountDetails.balance_available = body.entities[i].balance_available;
 
                 accounts.push(accountDetails);
             }
@@ -121,11 +109,11 @@ exports.getAccountBalance = function (req, res) {
 };
 
 exports.getAccountTransaction = function (req, res) {
-    var accountId = req.params.accountId;
+    var accountNumber = req.params.accountNumber;
     var transactionId = req.params.transactionId;
 
     var options = {
-        url: basePath + "/accounts/" + accountId + "/transactions",
+        url: basePath + "/accounts/" + accountNumber + "/transactions",
         qs: {
             ql: "order by created desc",
             limit: 1000
@@ -142,7 +130,7 @@ exports.getAccountTransaction = function (req, res) {
         if (!error && response.statusCode == 200 && body.entities) {
             var transactions = [];
             for (var i = 0; i < body.entities.length; i++) {
-                if (!body.entities[i].hasOwnProperty('account_id')) {
+                if (!body.entities[i].hasOwnProperty('account_number')) {
                     transactions.push({
                         transactionId: body.entities[i].uuid,
                         amount: body.entities[i].amount,

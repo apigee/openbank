@@ -72,7 +72,7 @@ consent.doConsent = function (req, res, next) {
             // send it to the access token endpoint.
             console.log("1");
             var authenticationTransaction = req.session.authenticationTransaction;
-            authenticationTransaction.accountNumber = req.body.account_number;
+            authenticationTransaction.account_number = req.body.account_number;
             console.log(authenticationTransaction.user);
             console.log(authenticationTransaction);
 
@@ -80,7 +80,7 @@ consent.doConsent = function (req, res, next) {
                 console.log("3");
                 var formData = authenticationTransaction;
                 // invoke the call to get the access token.
-                consent.getAccessToken(req, res, next, formData);
+                consent.executeTransfer(req, res, next, formData);
             }
         }
         else if (typeof req.session.authenticationTransaction === 'undefined' && typeof req.session.msisdn !== 'undefined') {
@@ -90,7 +90,7 @@ consent.doConsent = function (req, res, next) {
             var formData = {
                 "msisdn": req.session.msisdn
             };
-            consent.getAccessToken(req, res, next, formData);
+            consent.executeTransfer(req, res, next, formData);
         }
     }
     else {
@@ -103,16 +103,16 @@ consent.doConsent = function (req, res, next) {
         res.redirect(redirect_uri);
     }
 
-}
+};
 
-consent.getAccessToken = function (req, res, next, formData) {
+consent.executeTransfer = function (req, res, next, formData) {
     var config = req.app.get('config');
 
     // call the authentication endpoint to validate the user credentials
     var options = {
-        'url': config.accessTokenTransaction.transactionEndpoint + req.session.sessionid,
-        'method': config.accessTokenTransaction.method,
-        'headers': config.accessTokenTransaction.headers,
+        'url': config.transferTransaction.transactionEndpoint + req.session.sessionid,
+        'method': config.transferTransaction.method,
+        'headers': config.transferTransaction.headers,
         'body': formData,
         "json": true
     };
@@ -122,7 +122,7 @@ consent.getAccessToken = function (req, res, next, formData) {
             var redirect_uri = body.application_tx_response;
             console.log('redirect = ' + redirect_uri);
 
-            var parsedURL = url.parse(redirect_uri, true);
+            /*var parsedURL = url.parse(redirect_uri, true);
             var queryParams = parsedURL.query;
             var token = queryParams.access_token;
             console.log("token = " + token);
@@ -136,11 +136,12 @@ consent.getAccessToken = function (req, res, next, formData) {
                 "json": true
             };
 
-            options.headers.Authorization += token;
+            options.headers.Authorization += token;*/
 
             req.session.destroy();
-            //   res.redirect(redirect_uri);
-            var uri = "";
+            res.redirect(redirect_uri);
+
+            /*var uri = "";
             uri += parsedURL.protocol;
             if (parsedURL.slashes) {
                 uri += '://'
@@ -158,7 +159,8 @@ consent.getAccessToken = function (req, res, next, formData) {
                 res.json(body);
                 var transactionId = body.transfer.transaction_id;
                 uri += '?transaction_id=' + transactionId;
-            });
+                console.log(uri);
+            });*/
         }
         else {
             var err = {
@@ -168,8 +170,10 @@ consent.getAccessToken = function (req, res, next, formData) {
             stepsProcess.sendError(err, req, res, next);
         }
     });
-}
+};
+
 consent.getCustomerAccounts = function (customerNumber) {
 
-}
+};
+
 module.exports = consent;

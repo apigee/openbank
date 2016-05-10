@@ -14,7 +14,7 @@
         </Request>
         <Response/>
     </PostFlow>
-    <LocalTargetConnection>
-        <Path>/internal/connector/v1/transfers/{transfer_reference}</Path>
-    </LocalTargetConnection>
+    <HTTPTargetConnection>
+        <URL>https://api.usergrid.com/psubrahmanyam/apisbank/transactions</URL>
+    </HTTPTargetConnection>
 </TargetEndpoint>

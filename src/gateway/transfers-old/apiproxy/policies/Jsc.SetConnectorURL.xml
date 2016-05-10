@@ -1,0 +1,4 @@
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Jsc.SetConnectorURL">
+    <DisplayName>Jsc.SetConnectorURL</DisplayName>
+    <ResourceURL>jsc://SetConnectorURL.js</ResourceURL>
+</Javascript>

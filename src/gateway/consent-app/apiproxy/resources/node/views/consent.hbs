@@ -25,7 +25,7 @@
             <select class="dropbdown" id="account-selector" required name="account_number">
                 <option selected="selected" disabled="disabled">--Select an Account--</option>
                 {{#each accounts}}
-                    <option value="{{this.id}}">{{this.id}}</option>
+                    <option value="{{this.account_number}}">{{this.account_number}}</option>
                 {{/each}}
             </select>
             <span id="amount-balance"></span>

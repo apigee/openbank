@@ -3,16 +3,21 @@
     <DisplayName>Assign.TransferDetails</DisplayName>
     <Properties/>
     <Set>
-        <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
             {
-                "amount": "%accesstoken.amount#",
-                "currency": "%accesstoken.currency#",
-                "payeeAccount": "%accesstoken.to#",
-                "payeeSortCode": "%accesstoken.sort_code#",
-                "payeeIBAN": "%accesstoken.IBAN#",
-                "description": "e.g. Amazon payment",
-                "transactionType": "tpp",
-                "transactionCategory": "PISP"
+                "account_number": @account_number#,
+                "amount": @amount#,
+                "booking_code": "@booking_code#",
+                "booking_date": "@booking_date#",
+                "currency": "@currency#",
+                "subject": "@subject#",
+                "transaction_type": "@type#",
+                "transaction_type_details": {
+                    "remote_bic": "@remote_bic#",
+                    "remote_iban": "@remote_IBAN#",
+                    "remote_name": "@remote_name#"
+                },
+                "value_date": "@value_date#"
             }
        </Payload>
     </Set>

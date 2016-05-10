@@ -19,14 +19,14 @@
     }
   },
   "accessTokenTransaction": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/bank/v2/transfers/authorized/transactions/",
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/apis/v1/transfers/authorized/transactions/",
     "method": "POST",
     "headers": {
       "x-apikey": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
     }
   },
   "transferTransaction": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/bank/v1/transfers",
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/apis/v1/transfers/complete/",
     "method": "POST",
     "headers": {
       "Authorization": "Bearer "

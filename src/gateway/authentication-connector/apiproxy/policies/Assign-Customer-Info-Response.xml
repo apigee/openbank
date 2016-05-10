@@ -3,13 +3,13 @@
     <DisplayName>Assign: Customer Info Response</DisplayName>
     <Properties/>
     <Set>
-        <Payload contentType="application/json" variablePrefix="$" variableSuffix="%">{
-        "fullName":"$fullName%",
-        "mobileNumber":"$mobileNumber%",
-        "customerId":"$customerId%",
-        "user":"$customerId%"
-        }
-		</Payload>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{
+            "full_name":"@full_name#",
+            "phone_number":"@phone_number#",
+            "customer_id":"@customer_id#",
+            "user":"@customer_id#"
+            }
+        </Payload>
         <StatusCode>200</StatusCode>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

@@ -22,23 +22,23 @@
     </PostFlow>
     <Flows>
         <Flow name="accountInfo">
-            <Condition>((proxy.pathsuffix MatchesPath "/{account_id}") or (proxy.pathsuffix MatchesPath "/{account_id}/info")) and (request.verb = "GET")
+            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}") or (proxy.pathsuffix MatchesPath "/{account_number}/info")) and (request.verb = "GET")
             </Condition>
             <Request/>
             <Response/>
         </Flow>
         <Flow name="accountBalance">
-            <Condition>(proxy.pathsuffix MatchesPath "/{account_id}/balance") and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/{account_number}/balance") and (request.verb = "GET")</Condition>
             <Request/>
             <Response/>
         </Flow>
         <Flow name="accountTransactions">
-            <Condition>((proxy.pathsuffix MatchesPath "/{account_id}/transactions") or (proxy.pathsuffix MatchesPath "/{account_id}/transactions/{transaction_id}")) and (request.verb = "GET")
+            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}/transactions") or (proxy.pathsuffix MatchesPath "/{account_number}/transactions/{transaction_id}")) and (request.verb = "GET")
             </Condition>
             <Request>
                 <Step>
                     <Name>Extract.TransactionId</Name>
-                    <Condition>(proxy.pathsuffix MatchesPath "/{account_id}/transactions/{transaction_id}")</Condition>
+                    <Condition>(proxy.pathsuffix MatchesPath "/{account_number}/transactions/{transaction_id}")</Condition>
                 </Step>
             </Request>
             <Response/>

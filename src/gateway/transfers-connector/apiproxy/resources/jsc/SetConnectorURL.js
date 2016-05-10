@@ -8,7 +8,7 @@ var pathSuffix = '/info';
  * eg: /acr:token/balance
  * Path tokens
  * [0] -> null
- * [1] -> acr:token | account_id
+ * [1] -> acr:token | account_number
  * [2] -> null | info | balance | transactions
  * [3] -> [2] == transactions ? transaction_id : null
  * */

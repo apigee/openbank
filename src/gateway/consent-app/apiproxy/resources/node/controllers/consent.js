@@ -62,6 +62,7 @@ consent.doConsent = function (req, res, next) {
     // needs to be sent
 
     console.log('body = ' + JSON.stringify(req.body));
+    var formData;
 
     // If the user allowed his consent the call the access token endpoint.
     if (req.body.allow == 'allow') {
@@ -77,7 +78,7 @@ consent.doConsent = function (req, res, next) {
 
             if (typeof authenticationTransaction.user !== 'undefined') {
                 console.log("3");
-                var formData = authenticationTransaction;
+                formData = authenticationTransaction;
                 // invoke the call to get the access token.
                 consent.getAccessToken(req, res, next, formData);
             }
@@ -86,7 +87,7 @@ consent.doConsent = function (req, res, next) {
             // If userinfo is not present in the session and the msisdn is present
             // then we send the msisdn to the access token endpoint.
             console.log("3");
-            var formData = {
+            formData = {
                 "msisdn": req.session.msisdn
             };
             consent.getAccessToken(req, res, next, formData);
@@ -102,7 +103,7 @@ consent.doConsent = function (req, res, next) {
         res.redirect(redirect_uri);
     }
 
-}
+};
 
 consent.getAccessToken = function (req, res, next, formData) {
     var config = req.app.get('config');
@@ -130,8 +131,10 @@ consent.getAccessToken = function (req, res, next, formData) {
             stepsProcess.sendError(err, req, res, next);
         }
     });
-}
+};
+
 consent.getCustomerAccounts = function (customerNumber) {
 
-}
+};
+
 module.exports = consent;

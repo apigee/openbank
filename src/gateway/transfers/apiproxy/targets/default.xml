@@ -4,7 +4,7 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>Assign.TransferDetails</Name>
+                <Name>Jsc.SetConnectorURL</Name>
             </Step>
         </Request>
         <Response/>
@@ -14,7 +14,7 @@
         <Request/>
         <Response/>
     </PostFlow>
-    <HTTPTargetConnection>
-        <URL>https://api.usergrid.com/psubrahmanyam/apisbank/transactions</URL>
-    </HTTPTargetConnection>
+    <LocalTargetConnection>
+        <Path>/internal/connector/v1/transfers</Path>
+    </LocalTargetConnection>
 </TargetEndpoint>

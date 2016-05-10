@@ -1,0 +1,4 @@
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Jsc.AssignTransferStatus">
+    <DisplayName>Jsc.AssignTransferStatus</DisplayName>
+    <ResourceURL>jsc://AssignTransferStatus.js</ResourceURL>
+</Javascript>
