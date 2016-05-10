@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="transfers">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1459754928934</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>transfers</Description>
+    <DisplayName>transfers</DisplayName>
+    <LastModifiedAt>1459848061299</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <Policies>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://verify-scope.js</Resource>
+    </Resources>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>

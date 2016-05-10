@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Ext-Construct-Response">
+    <DisplayName>Ext: Construct Response</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://construct.response-1.0.js</ResourceURL>
+</Javascript>

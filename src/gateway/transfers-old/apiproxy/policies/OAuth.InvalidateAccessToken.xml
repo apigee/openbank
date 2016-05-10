@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="OAuth.InvalidateAccessToken">
+    <DisplayName>OAuth.InvalidateAccessToken</DisplayName>
+    <Properties/>
+    <Attributes/>
+    <Tokens>
+        <Token type="accesstoken" cascade="false">access_token</Token>
+    </Tokens>
+    <Operation>InvalidateToken</Operation>
+</OAuthV2>
