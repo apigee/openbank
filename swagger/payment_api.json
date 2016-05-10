@@ -1,0 +1,151 @@
+{
+  "swagger": "2.0",
+  "host": "apis-bank-dev.apigee.net",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "info": {
+    "description": "Payment Transfer API",
+    "title": "Payment Transfer",
+    "version": "0.0.1",
+    "termsOfService": "http://example.com/about/terms",
+    "contact": {
+      "name": "API Docs",
+      "url": "http://example.com/contact",
+      "email": "apis-eng@apigee.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://example.com"
+    }
+  },
+  "basePath": "/apis/v1/transfers",
+  "paths": {
+    "/initiate": {
+      "get": {
+        "description": "<p><b>POST Payment Transfer</b></p><p>Transfers will not use OAuth access tokens. However while initiating a transfer the user will have to authenticate using 2-factor authentication following which the transfer will be initiated.&nbsp;</p><p>A nonce will be used to prevent replay attacks and inadvertent duplicate transfers.</p><p>The payee information is provided to the API as a JWT token with the below set of payment claims. The JWT token is signed with the client secret of the registered app to ensure that it is not tampered with.</p><p><a href='http://dev-dbank.devportal.apigee.com/jwt-token' style='font-family: Arial; font-size: 14.6667px; white-space: pre-wrap;'>Lean more about the JWT Token</a><span style='font-family: Arial; font-size: 14.6667px; white-space: pre-wrap;'>.</span></p></p>",
+        "summary": "Payment Transfer",
+        "operationId": "Payment Transfer",        
+        "tags": [
+          "PaymentTransfer"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TransferStatus"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "pisp_auth": ["openid", "payment"]
+        }],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "client_id",
+            "description": "Client ID of the registered App.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "redirect_uri",
+            "description": "Redirect URI defined with your registered App.",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "pd2app://localhost/"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "scope",
+            "description": "Scope of the Access Token requested.",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "openid",
+              "accounts",
+              "payment"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "ui-locales",
+            "description": "Locale to be used.",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "en"
+            ],
+            "default": "en"
+          },
+          {
+            "in": "query",
+            "name": "state",
+            "description": "unique ID to maintain state between asynchronous requests.",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "af0ifjsldkj"
+            ],
+            "default": "af0ifjsldkj"
+          },
+          {
+            "in": "query",
+            "name": "acr_values",
+            "description": "Determines the level of security for authentication.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "request",
+            "description": "The JWT token with all the relevant payment claims.",
+            "type": "string",
+            "required": true
+          }
+          ]
+      }
+    }
+  },
+  "securityDefinitions": {
+   "pisp_auth" : {
+     "type": "oauth2",
+     "authorizationUrl": "https://apis-bank-dev.apigee.net/apis/v1/oauth/authorize?client_id=grOmvYAei8aBARzEVIYhGtpvztofAAjz&redirect_uri=https://api.enterprise.apigee.com/v1/o/apis-bank/apimodels/transfers/templateauths/pisp_auth/callback&response_type=code&state=af0ifjsldkj&scope=openid accounts payment&ui-locales=en&acr_values=3&request=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FjY2VudHVyZS5jby51ayIsImF1ZCI6Imh0dHBzOi8vYXBpcy1iYW5rLWRldi5hcGlnZWUubmV0IiwicmVzcG9uc2VfdHlwZSI6ImNvZGUiLCJjbGllbnRfaWQiOiJnck9tdllBZWk4YUJBUnpFVklZaEd0cHZ6dG9mQUFqeiIsInJlZGlyZWN0X3VyaSI6Imh0dHA6Ly9sb2NhbGhvc3QvIiwic2NvcGUiOiJvcGVuaWQgYWNjb3VudHMgcGF5bWVudCIsInN0YXRlIjoiYWYwaWZqc2xka2oiLCJhY3JfdmFsdWVzIjoiMyIsImNsYWltcyI6eyJwYXltZW50aW5mbyI6eyJ0byI6eyJhY2NvdW50X2lkIjoiNjIxMzYwMDAiLCJzb3J0X2NvZGUiOiI0MC00OC0wMCIsIklCQU4iOiJHQjMyRVNTRTQwNDg2NTYyMTM2MDE2IiwibWVyY2hhbnRfbmFtZSI6IkJpZ1ogb25saW5lIHN0b3JlIn0sInZhbHVlIjp7ImN1cnJlbmN5IjoiR0JQIiwiYW1vdW50IjoiNzcifSwiZGVzY3JpcHRpb24iOiJUaGUgc2VuZGVyJ3MgZGVzY3JpcHRpb24gb2YgdGhlIHRyYW5zYWN0aW9uIChlLmcuIEFtYXpvbiBwYXltZW50KSIsImNoYWxsZW5nZV90eXBlIjoiU0FOREJPWF9UQU4ifX0sImlhdCI6MTQ1OTg1Nzk0NX0.XktPgV-gKTxMlCx6wIoronJ_ZY5DA5_uT-HCCqCATNc",
+     "tokenUrl": "https://apis-bank-dev.apigee.net/apis/v1/oauth/token",
+     "flow": "accessCode",
+     "scopes": {
+       "openid": "openID",
+       "payment": "payment transfer"
+     }
+   }
+  },
+  "definitions": {
+    "TransferStatus": {
+      "description": "Payment Transfer Response",
+      "type": "object",
+      "properties": {
+        "transaction_id": {
+          "type": "string",
+          "description": "unique reference transaction id generated for this transaction."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the transaction."
+        }
+      },
+      "xml": {
+        "name": "TransferStatus"
+      }
+    }
+    }
+  }

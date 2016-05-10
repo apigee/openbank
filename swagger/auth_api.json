@@ -1,0 +1,208 @@
+{
+  "swagger": "2.0",
+  "host": "apis-bank-dev.apigee.net",
+  "schemes": [
+    "https"
+  ],
+  "info": {
+    "description": "OAuth Access Token generation",
+    "title": "Generate Access Token",
+    "version": "0.0.1"    
+  },
+  "basePath": "/apis/v1/oauth",
+  "paths": {
+    "/authorize": {
+      "get": {
+        "description": "Generate Access Token or Authrorization code depending on response_type. <p>GET /authorize is redirected to Consent Application with session and redirected back to registered redirect_uri with access_token in Query param.</p>",
+        "summary": "Generates Access Token to initiate AISP/PISP.",        
+        "operationId": "authorize",
+        "tags": [
+          "OAuth"          
+        ],
+        "produces": [
+          "text/html; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "client_id",
+            "description": "Client ID of the registered App.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "client_secret",
+            "description": "Client Secret of the registered App.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "redirect_uri",
+            "description": "Redirect URI defined with your registered App.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "response_type",
+            "description": "The value MUST be one of 'code' for requesting an authorization code or 'token' for requesting an access token (implicit grant). The redirect url is passed with query params state and code.",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "token",
+              "code"
+            ],
+            "default": "token"
+          },
+          {
+            "in": "query",
+            "name": "state",
+            "description": "unique ID to maintain state between asynchronous requests.",
+            "type": "string",
+            "required": true,
+            "default": "af0ifjsldkj"
+          },
+          {
+            "in": "query",
+            "name": "scope",
+            "description": "Scope of the Access Token requested.",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "openid",
+              "accounts",
+              "payment"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "ui-locales",
+            "description": "Locale to be used.",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "en"
+            ],
+            "default": "en"
+          },
+          {
+            "in": "query",
+            "name": "acr_values",
+            "description": "Determines the level of security for authentication. A value of 2 will require only Customer Id and Password. A value of 3 will request for OTP",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "2",
+              "3"
+            ],
+            "default": "3"
+          }
+         ]
+      }
+    },
+      "/token": {
+      "get": {
+        "description": "<p>Returns the access token that can be used for Account Access API calls. Before this call is made a call to authorize needs to be made that provides the authorization code. Authorization is used to obtain tokens needed to make Account Access APIs.</p>",
+        "summary": "Generates Access Token to initiate Account Access methods.",        
+        "operationId": "token",
+        "tags": [
+          "OAuth"          
+        ],
+        "produces": [
+          "text/html; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TokenResponse"
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "client_id",
+            "description": "Client ID of the registered App.",
+            "type": "string",
+            "required": true,
+            "default": "yQgJ1ecs8FNdNWY3YqYWKf8W3f6gZOs6"
+          },
+          {
+            "in": "query",
+            "name": "redirect_uri",
+            "description": "Redirect URI defined with your registered App. This is verified against the redirect uri that is registered when the App is created. If found to be different this call fails to return the access token.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "grant_type",
+            "description": "always 'authorization_code'.",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "token"
+            ],
+            "default": "token"
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "description": "Code returned from the authorize call.",
+            "type": "string",
+            "required": true,
+            "default": "code"
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Base 64 encoded string with client_id:client_secret.",
+            "type": "string",
+            "required": true
+          }]
+      }
+    }
+  },
+  "definitions": {
+    "TokenResponse": {
+      "description": "Response from the Token method",
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string",
+          "description": "Access Token, this needs to be presented for Account Access APIs."
+        },
+        "token_type": {
+          "type": "string",
+          "description": "Bearer"
+        },
+        "refresh_token": {
+          "type": "string",
+          "description": "Refresh token. Used to get fresh access token when it expires."
+        },
+        "expires_in": {
+          "type": "integer",
+          "description": "Duration for which the token is valid, represented in seconds."
+        },
+        "id_token": {
+          "type": "string",
+          "description": "JWT Token that a bank returns that can have optional customer inforamtion."
+        }
+      },
+      "xml": {
+        "name": "TokenResponse"
+      }
+    }
+  }
+}
+
