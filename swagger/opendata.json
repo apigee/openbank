@@ -24,7 +24,7 @@
   "paths": {
     "/atms": {
       "get": {
-        "description": "Returns a list of ATMs with Address, Latitude and Longitude",
+        "description": "<p>Returns a list of ATMs with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitide, zipcode and radius of search.</p>",
         "summary": "List of atms",
         "operationId": "atms",        
         "tags": [
@@ -44,14 +44,55 @@
             "description": "Bad Request"
           }
         },
-        "security": []
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lat",
+            "description": "Latitude of the place around which you want to find ATMs. If latitude is provided, longitude must also be provided.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "long",
+            "description": "Lontitude of the place around which you want to find ATMs. If lontitude is provided, latitude must also be provided.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "zipcode",
+            "description": "Zipcode of the place around which you want to find ATMs.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "distance_unit",
+            "description": "Indicates the unit for the radius, as well as the units of the distance of each location from the basepoint in the response.",
+            "type": "string",
+            "required": false,
+            "enum": [
+              "mile",
+              "kilometer"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "radius",
+            "description": "This is the radius from the search point in the distance unit you set.",
+            "type": "string",
+            "required": false
+          }
+          ]
       }
     },
     "/branches": {
       "get": {
-        "description": "Returns a list of Branches with Address, Latitude and Longitude",
+        "description": "<p>Returns a list of Branches with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitide, zipcode and radius of search.</p>",
         "summary": "List of Branches",
-        "operationId": "Branches",        
+        "operationId": "branches",        
         "tags": [
           "opendata"
         ],
@@ -69,7 +110,48 @@
             "description": "Bad Request"
           }
         },
-        "security": []
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lat",
+            "description": "Latitude of the place around which you want to find ATMs. If latitude is provided, longitude must also be provided.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "long",
+            "description": "Lontitude of the place around which you want to find ATMs. If lontitude is provided, latitude must also be provided.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "zipcode",
+            "description": "Zipcode of the place around which you want to find ATMs.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "distance_unit",
+            "description": "Indicates the unit for the radius, as well as the units of the distance of each location from the basepoint in the response.",
+            "type": "string",
+            "required": false,
+            "enum": [
+              "mile",
+              "kilometer"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "radius",
+            "description": "This is the radius from the search point in the distance unit you set.",
+            "type": "string",
+            "required": false
+          }
+          ]
       }
     }
   },
@@ -80,15 +162,19 @@
       "properties": {
         "address": {
           "type": "string",
-          "description": "Visinity of the ATM Location"
+          "description": "Visinity of the ATM Location."
+        },
+        "zipcode": {
+          "type": "string",
+          "description": "Zipcode of the location."
         },
         "lat": {
           "type": "string",
-          "description": "Latitude expressed in decimal format"
+          "description": "Latitude expressed in decimal format."
         },
         "long": {
           "type": "string",
-          "description": "Longitude expressed in decimal format"
+          "description": "Longitude expressed in decimal format."
         }
       },
       "xml": {
@@ -101,15 +187,19 @@
       "properties": {
         "address": {
           "type": "string",
-          "description": "Visinity of the Branch Location"
+          "description": "Visinity of the Branch Location."
+        },
+        "zipcode": {
+          "type": "string",
+          "description": "Zipcode of the location."
         },
         "lat": {
           "type": "string",
-          "description": "Latitude expressed in decimal format"
+          "description": "Latitude expressed in decimal format."
         },
         "long": {
           "type": "string",
-          "description": "Longitude expressed in decimal format"
+          "description": "Longitude expressed in decimal format."
         }
       },
       "xml": {

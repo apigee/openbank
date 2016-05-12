@@ -13,7 +13,7 @@
   "paths": {
     "/authorize": {
       "get": {
-        "description": "Generate Access Token or Authrorization code depending on response_type. <p>GET /authorize is redirected to Consent Application with session and redirected back to registered redirect_uri with access_token in Query param.</p>",
+        "description": "<p>Generates Access Token or Authrorization code depending on response_type.</p><p>&nbsp;</p><p>GET  /authorize is redirected to Consent Application where a two-factor authentication is initiated. Upon successful authentication access_token or authorization code is returned as query parameters passed to the redirect uri.</p>",
         "summary": "Generates Access Token to initiate AISP/PISP.",        
         "operationId": "authorize",
         "tags": [
@@ -53,7 +53,7 @@
           {
             "in": "query",
             "name": "response_type",
-            "description": "The value MUST be one of 'code' for requesting an authorization code or 'token' for requesting an access token (implicit grant). The redirect url is passed with query params state and code.",
+            "description": "The value must be one of 'code' for requesting an authorization code or 'token' for requesting an access token (implicit grant). The redirect url is passed with query params state and code.",
             "type": "string",
             "required": true,
             "enum": [
@@ -65,7 +65,7 @@
           {
             "in": "query",
             "name": "state",
-            "description": "unique ID to maintain state between asynchronous requests.",
+            "description": "Unique id to maintain state between asynchronous requests.",
             "type": "string",
             "required": true,
             "default": "af0ifjsldkj"
@@ -73,7 +73,7 @@
           {
             "in": "query",
             "name": "scope",
-            "description": "Scope of the Access Token requested.",
+            "description": "Scope of the access token requested.",
             "type": "string",
             "required": true,
             "enum": [
@@ -96,7 +96,7 @@
           {
             "in": "query",
             "name": "acr_values",
-            "description": "Determines the level of security for authentication. A value of 2 will require only Customer Id and Password. A value of 3 will request for OTP",
+            "description": "Determines the level of security for authentication. A value of 2 will require only Customer Id and Password. A value of 3 will request for OTP.",
             "type": "string",
             "required": true,
             "enum": [
@@ -110,7 +110,7 @@
     },
       "/token": {
       "get": {
-        "description": "<p>Returns the access token that can be used for Account Access API calls. Before this call is made a call to authorize needs to be made that provides the authorization code. Authorization is used to obtain tokens needed to make Account Access APIs.</p>",
+        "description": "<p>Returns the access token that needs be presented for Account Access API calls. This call follows a call to GET /authorization which returns an authorization code after successful two-factor authentication.</p>",
         "summary": "Generates Access Token to initiate Account Access methods.",        
         "operationId": "token",
         "tags": [
@@ -196,7 +196,7 @@
         },
         "id_token": {
           "type": "string",
-          "description": "JWT Token that a bank returns that can have optional customer inforamtion."
+          "description": "JWT Token that a bank returns that can have optional customer information."
         }
       },
       "xml": {

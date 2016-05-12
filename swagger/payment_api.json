@@ -24,7 +24,7 @@
   "paths": {
     "/initiate": {
       "get": {
-        "description": "<p><b>POST Payment Transfer</b></p><p>Transfers will not use OAuth access tokens. However while initiating a transfer the user will have to authenticate using 2-factor authentication following which the transfer will be initiated.&nbsp;</p><p>A nonce will be used to prevent replay attacks and inadvertent duplicate transfers.</p><p>The payee information is provided to the API as a JWT token with the below set of payment claims. The JWT token is signed with the client secret of the registered app to ensure that it is not tampered with.</p><p><a href='http://dev-dbank.devportal.apigee.com/jwt-token' style='font-family: Arial; font-size: 14.6667px; white-space: pre-wrap;'>Lean more about the JWT Token</a><span style='font-family: Arial; font-size: 14.6667px; white-space: pre-wrap;'>.</span></p></p>",
+        "description": "<p>Transfers funds from the consumers account to a recipient account.</p><p>&nbsp;</p><p>This API will initiate a authentication and consent flow using 2-factor authentication following which it will initiate funds transfer. <p>&nbsp;</p><p>A nonce will be used to prevent replay attacks and inadvertent duplicate transfers.</p><p>&nbsp;</p><p>The payee information is provided to the API as a JWT token with the below set of payment claims. The JWT token is signed with the client secret of the registered app to ensure that it is not tampered with. Refer <a href='/oauth2'>Authentication, Authorization and Consent</a> for more details. </p><p>&nbsp;</p><p>This method redirects to the redirect_url provided as part of the inputs. It will return transaction_id and status.</p><p>&nbsp;</p><p>To try this API you will need to perform two steps. When you make this call using the Send button you will see a HTTP 302 reponse. Copy the value of 'Location' as part of the response and paste it into a browser. This will trigger the Authetication flow. Now complete the consent flow using sample data provided in <a href='/sandbox'>sandbox</a>. When the consent flow is completed you will see browser taken to the redirect uri with transaction id and status as query parameters.</p>",
         "summary": "Payment Transfer",
         "operationId": "Payment Transfer",        
         "tags": [
@@ -44,16 +44,14 @@
             "description": "Bad Request"
           }
         },
-        "security": [{
-          "pisp_auth": ["openid", "payment"]
-        }],
         "parameters": [
           {
             "in": "query",
             "name": "client_id",
             "description": "Client ID of the registered App.",
             "type": "string",
-            "required": true
+            "required": true,
+            "default": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
           },
           {
             "in": "query",
@@ -61,9 +59,7 @@
             "description": "Redirect URI defined with your registered App.",
             "type": "string",
             "required": true,
-            "enum": [
-              "pd2app://localhost/"
-            ]
+            "default": "http://localhost/"
           },
           {
             "in": "query",
@@ -71,11 +67,7 @@
             "description": "Scope of the Access Token requested.",
             "type": "string",
             "required": true,
-            "enum": [
-              "openid",
-              "accounts",
-              "payment"
-            ]
+            "default" : "openid accounts payment"
           },
           {
             "in": "query",
@@ -94,9 +86,6 @@
             "description": "unique ID to maintain state between asynchronous requests.",
             "type": "string",
             "required": true,
-            "enum": [
-              "af0ifjsldkj"
-            ],
             "default": "af0ifjsldkj"
           },
           {
@@ -104,30 +93,21 @@
             "name": "acr_values",
             "description": "Determines the level of security for authentication.",
             "type": "string",
-            "required": true
+            "required": true,
+            "default" : "3"
+
           },
           {
             "in": "query",
             "name": "request",
             "description": "The JWT token with all the relevant payment claims.",
             "type": "string",
-            "required": true
+            "required": true,
+            "default" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY2VudHVyZS5jby51ayIsImF1ZCI6Imh0dHBzOi8vYXBpcy1iYW5rLWRldi5hcGlnZWUubmV0IiwicmVzcG9uc2VfdHlwZSI6ImNvZGUiLCJjbGllbnRfaWQiOiJnck9tdllBZWk4YUJBUnpFVklZaEd0cHZ6dG9mQUFqeiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vYXBpLmVudGVycHJpc2UuYXBpZ2VlLmNvbS92MS9vL2FwaXMtYmFuay9hcGltb2RlbHMvcGF5bWVudC10cmFuc2ZlcnMvdGVtcGxhdGVhdXRocy9waXNwX2F1dGgvY2FsbGJhY2siLCJzY29wZSI6Im9wZW5pZCBhY2NvdW50cyBwYXltZW50Iiwic3RhdGUiOiJhZjBpZmpzbGRraiIsImFjcl92YWx1ZXMiOiIzIiwiY2xhaW1zIjp7InBheW1lbnRpbmZvIjp7InR5cGUiOiJzZXBhX2NyZWRpdF90cmFuc2ZlciIsInRvIjp7ImFjY291bnRfbnVtYmVyIjoiNjIxMzYwMDAiLCJyZW1vdGVfYmljIjoiUkJPU0dCMjEwOUgiLCJyZW1vdGVfSUJBTiI6IkdCMzJFU1NFNDA0ODY1NjIxMzYwMTYiLCJyZW1vdGVfbmFtZSI6IkJpZ1ogb25saW5lIHN0b3JlIn0sInZhbHVlIjp7ImN1cnJlbmN5IjoiR0JQIiwiYW1vdW50IjoiMjAwIn0sImFkZGl0aW9uYWwiOnsic3ViamVjdCI6Ik9ubGluZSBQdXJjaGFzZSIsImJvb2tpbmdfY29kZSI6IjJTRkJKMjg1NTMiLCJib29raW5nX2RhdGUiOiIxNDYyNTE3NjQ1ODA5IiwidmFsdWVfZGF0ZSI6IjE0NjI1MTc2NDU4MDkifSwiY2hhbGxlbmdlX3R5cGUiOiJTQU5EQk9YX1RBTiJ9fSwiaWF0IjoxNDYyOTQ4ODM3fQ.0WknH_zuGR_BJdUxjdDfLsDycZstH-0DRPA6xjzhu-k"
           }
           ]
       }
     }
-  },
-  "securityDefinitions": {
-   "pisp_auth" : {
-     "type": "oauth2",
-     "authorizationUrl": "https://apis-bank-dev.apigee.net/apis/v1/oauth/authorize?client_id=grOmvYAei8aBARzEVIYhGtpvztofAAjz&redirect_uri=https://api.enterprise.apigee.com/v1/o/apis-bank/apimodels/transfers/templateauths/pisp_auth/callback&response_type=code&state=af0ifjsldkj&scope=openid accounts payment&ui-locales=en&acr_values=3&request=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FjY2VudHVyZS5jby51ayIsImF1ZCI6Imh0dHBzOi8vYXBpcy1iYW5rLWRldi5hcGlnZWUubmV0IiwicmVzcG9uc2VfdHlwZSI6ImNvZGUiLCJjbGllbnRfaWQiOiJnck9tdllBZWk4YUJBUnpFVklZaEd0cHZ6dG9mQUFqeiIsInJlZGlyZWN0X3VyaSI6Imh0dHA6Ly9sb2NhbGhvc3QvIiwic2NvcGUiOiJvcGVuaWQgYWNjb3VudHMgcGF5bWVudCIsInN0YXRlIjoiYWYwaWZqc2xka2oiLCJhY3JfdmFsdWVzIjoiMyIsImNsYWltcyI6eyJwYXltZW50aW5mbyI6eyJ0byI6eyJhY2NvdW50X2lkIjoiNjIxMzYwMDAiLCJzb3J0X2NvZGUiOiI0MC00OC0wMCIsIklCQU4iOiJHQjMyRVNTRTQwNDg2NTYyMTM2MDE2IiwibWVyY2hhbnRfbmFtZSI6IkJpZ1ogb25saW5lIHN0b3JlIn0sInZhbHVlIjp7ImN1cnJlbmN5IjoiR0JQIiwiYW1vdW50IjoiNzcifSwiZGVzY3JpcHRpb24iOiJUaGUgc2VuZGVyJ3MgZGVzY3JpcHRpb24gb2YgdGhlIHRyYW5zYWN0aW9uIChlLmcuIEFtYXpvbiBwYXltZW50KSIsImNoYWxsZW5nZV90eXBlIjoiU0FOREJPWF9UQU4ifX0sImlhdCI6MTQ1OTg1Nzk0NX0.XktPgV-gKTxMlCx6wIoronJ_ZY5DA5_uT-HCCqCATNc",
-     "tokenUrl": "https://apis-bank-dev.apigee.net/apis/v1/oauth/token",
-     "flow": "accessCode",
-     "scopes": {
-       "openid": "openID",
-       "payment": "payment transfer"
-     }
-   }
   },
   "definitions": {
     "TransferStatus": {
