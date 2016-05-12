@@ -24,7 +24,7 @@
   "paths": {
     "/acr:token/info": {
       "get": {
-        "description": "<p>This will return various details such as currency, IBAN and features about account.</p><p>&nbsp;</p><p>Since this API is called by an app on behalf of a pre-authenticated account of a user then the phrase <u>acr:token</u> should be used in lieu of the account number which indicates that the account number shall be extracted from the OAuth Access Token.</p><p>&nbsp;</p><p><a href='/oauth2'>Authentication</a> is based on OpedID Connect and oAuth 2.0.</p><p>&nbsp;</p><p>The user will have to authenticate with the Bank using a two-factor authentication, which will then provide the client application with a unique and time-bound access token. The client can then use this unique token to make calls to the bank on the behalf of the user.</p>",
+        "description": "<p>This will return various details such as currency, IBAN and features about account.</p><p>&nbsp;</p><p>Since this API is called by an app on behalf of a pre-authenticated account of a user the phrase <u>acr:token</u> should be used in lieu of the account number which indicates that the account number shall be extracted from the OAuth Access Token.</p><p>&nbsp;</p><p><a href='/oauth2'>Authentication</a> is based on OpedID Connect and oAuth 2.0.</p><p>&nbsp;</p><p>The user will have to authenticate with the Bank using a two-factor authentication, which will then provide the client application with a unique and time-bound access token. The client can then use this unique token to make calls to the bank on the behalf of the user.</p>",
         "summary": "Account Information Summary",
         "operationId": "Account Information",
         "tags": [
@@ -57,7 +57,7 @@
     },
     "/acr:token/balance": {
       "get": {
-        "description": "<p>This will return the account balance.</p><p>&nbsp;</p><p>Since this API is called by an app on behalf of a pre-authenticated account of a user then the phrase <u>acr:token</u> should be used in lieu of the account number which indicates that the account number shall be extracted from the OAuth Access Token.</p><p>&nbsp;</p><p><a href='/oauth2'>Authentication</a> is based on OpedID Connect and oAuth 2.0.</p><p>&nbsp;</p><p>The user will have to authenticate with the Bank using a two-factor authentication, which will then provide the client application with a unique and time-bound access token. The client can then use this unique token to make calls to the bank on the behalf of the user.</p>",
+        "description": "<p>This will return the account balance.</p><p>&nbsp;</p><p>Since this API is called by an app on behalf of a pre-authenticated account of a user the phrase <u>acr:token</u> should be used in lieu of the account number which indicates that the account number shall be extracted from the OAuth Access Token.</p><p>&nbsp;</p><p><a href='/oauth2'>Authentication</a> is based on OpedID Connect and oAuth 2.0.</p><p>&nbsp;</p><p>The user will have to authenticate with the Bank using a two-factor authentication, which will then provide the client application with a unique and time-bound access token. The client can then use this unique token to make calls to the bank on the behalf of the user.</p>",
         "summary": "GET Account Balance",
         "operationId": "Account Balance",
         "tags": [
@@ -90,7 +90,7 @@
     },
     "/acr:token/transactions": {
       "get": {
-        "description": "<p>This will return latest transactions posted to the account and related details.</p><p>&nbsp;</p><p>Since this API is called by an app on behalf of a pre-authenticated account of a user then the phrase <u>acr:token</u> should be used in lieu of the account number which indicates that the account ID shall be extracted from the OAuth Access Token.</p><p>&nbsp;</p><p><a href='/oauth2'>Authentication</a> is based on OpedID Connect and oAuth 2.0.</p><p>&nbsp;</p><p>The user will have to authenticate with the Bank using a two-factor authentication, which will then provide the client application with a unique and time-bound access token. The client can then use this unique token to make calls to the bank on the behalf of the user.</p>",
+        "description": "<p>This will return latest transactions posted to the account and related details.</p><p>&nbsp;</p><p>Since this API is called by an app on behalf of a pre-authenticated account of a user the phrase <u>acr:token</u> should be used in lieu of the account number which indicates that the account ID shall be extracted from the OAuth Access Token.</p><p>&nbsp;</p><p><a href='/oauth2'>Authentication</a> is based on OpedID Connect and oAuth 2.0.</p><p>&nbsp;</p><p>The user will have to authenticate with the Bank using a two-factor authentication, which will then provide the client application with a unique and time-bound access token. The client can then use this unique token to make calls to the bank on the behalf of the user.</p>",
         "summary": "GET Account Transaction History",
         "operationId": "Account Transactions",
         "tags": [
