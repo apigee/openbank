@@ -14,7 +14,14 @@
         <Request/>
         <Response/>
     </PostFlow>
-    <Flows/>
+    <Flows>
+        <Flow name="atms">
+            <Condition>proxy.pathsuffix MatchesPath "/atms" and request.verb = "GET"</Condition>
+        </Flow>
+        <Flow name="branches">
+            <Condition>proxy.pathsuffix MatchesPath "/branches" and request.verb = "GET"</Condition>
+        </Flow>
+    </Flows>
     <HTTPProxyConnection>
         <BasePath>/apis/v1/opendata/locations</BasePath>
         <Properties/>

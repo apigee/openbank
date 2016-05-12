@@ -40,10 +40,10 @@
         <main.basedir>${project.basedir}</main.basedir>
     </properties>
 
-    <!--<modules>-->
-        <!--<module>../accounts</module>-->
-        <!--<module>../accounts-connector</module>-->
-    <!--</modules>-->
+    <modules>
+        <module>../accounts</module>
+        <module>../accounts-connector</module>
+    </modules>
 
     <build>
         <plugins>

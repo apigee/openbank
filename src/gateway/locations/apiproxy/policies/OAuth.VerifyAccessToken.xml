@@ -7,9 +7,6 @@
     <Operation>VerifyAccessToken</Operation>
     <AccessToken>request.header.Authorization</AccessToken>
     <AccessTokenPrefix>Bearer</AccessTokenPrefix>
-    <SupportedGrantTypes>
-        <GrantType>client_credentials</GrantType>
-    </SupportedGrantTypes>
     <GenerateResponse enabled="true"/>
     <Tokens/>
 </OAuthV2>

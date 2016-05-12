@@ -12,6 +12,6 @@
     </PostFlow>
     <Flows/>
     <LocalTargetConnection>
-        <Path>/internal/connector/v1/atms</Path>
+        <Path>/internal/connector/v1/opendata/locations</Path>
     </LocalTargetConnection>
 </TargetEndpoint>
