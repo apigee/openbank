@@ -164,7 +164,7 @@ SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/develo
 echo "${SETUP_RESULT}"
 echo ""
 
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/apiproducts" -H "Content-Type: application/json" -d '{"approvalType":"auto", "displayName":"Identity App Product","name":"identityproduct","environments":["test","prod"],"scopes" : [ "openid", "profile", "email" ]}' 1>&2`
+SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/apiproducts" -H "Content-Type: application/json" -d '{"approvalType":"auto", "displayName":"Identity App Product","name":"identityproduct","environments":["test","prod"],"scopes" : [ "openid", "accounts"]}' 1>&2`
 echo "${SETUP_RESULT}"
 echo ""
 

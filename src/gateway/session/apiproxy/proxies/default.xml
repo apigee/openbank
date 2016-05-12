@@ -7,9 +7,9 @@
                 <Condition>request.verb = "OPTIONS"</Condition>
                 <Name>Cors-preflighted</Name>
             </Step>
-            <Step>
-                <Name>Security-Verify-API-Key</Name>
-            </Step>
+            <!--<Step>-->
+                <!--<Name>Security-Verify-API-Key</Name>-->
+            <!--</Step>-->
         </Request>
         <Response/>
     </PreFlow>
