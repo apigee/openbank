@@ -5,7 +5,7 @@ var otp = {};
 otp.showMsisdnForm = function(req, res, next) {
   var msisdn = req.session.authenticationTransaction.phone_number;
   console.log('phone = ' + msisdn);
-  if (msisdn === null || typeof msisdn === 'undefined')
+  if (msisdn === null || typeof msisdn === 'undefined' || msisdn === '')
     res.render('otp');
   else
     otp.generateOtp(req, res);

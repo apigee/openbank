@@ -84,33 +84,37 @@
             <Description/>
             <Request>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code"</Condition>
-                    <Name>Security-Generate-Access-Token</Name>
+                    <Condition>request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials"</Condition>
+                    <Name>OAuth.GenerateAccessToken</Name>
                 </Step>
                 <Step>
-                    <Name>Security-Refresh-token</Name>
+                    <Name>OAuth.RefreshAccessToken</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>
+                    <Condition>(request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials") and oauthV2.failed = false</Condition>
                     <Name>Extract-Token-Response</Name>
                 </Step>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>
+                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
                     <Name>Get-Application-Attributes</Name>
                 </Step>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>
+                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
                     <Name>Assign-ID-Token-Payload-authorization_code-flow</Name>
                 </Step>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>
+                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
                     <Name>Generate-ID-Token</Name>
                 </Step>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>
-                    <Name>Assign-Token-Response</Name>
+                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
+                    <Name>Assign.TokenResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>request.formparam.grant_type = "client_credentials" and oauthV2.failed = false</Condition>
+                    <Name>Assign.TokenResponseCC</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
