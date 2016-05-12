@@ -20,7 +20,7 @@
       "url": "http://example.com"
     }
   },
-  "basePath": "/opendata",
+  "basePath": "/apis/v1/opendata/locations",
   "paths": {
     "/atms": {
       "get": {
