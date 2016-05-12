@@ -1,0 +1,210 @@
+{
+  "swagger": "2.0",
+  "host": "apis-bank-dev.apigee.net",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "info": {
+    "description": "Branch API",
+    "title": "List of Branch Locations",
+    "version": "0.0.1",
+    "termsOfService": "http://example.com/about/terms",
+    "contact": {
+      "name": "API Docs",
+      "url": "http://example.com/contact",
+      "email": "apis-eng@apigee.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://example.com"
+    }
+  },
+  "basePath": "/opendata",
+  "paths": {
+    "/atms": {
+      "get": {
+        "description": "<p>Returns a list of ATMs with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitide, zipcode and radius of search.</p>",
+        "summary": "List of atms",
+        "operationId": "atms",        
+        "tags": [
+          "opendata"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AtmsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lat",
+            "description": "Latitude of the place around which you want to find ATMs. If latitude is provided, longitude must also be provided.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "long",
+            "description": "Lontitude of the place around which you want to find ATMs. If lontitude is provided, latitude must also be provided.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "zipcode",
+            "description": "Zipcode of the place around which you want to find ATMs.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "distance_unit",
+            "description": "Indicates the unit for the radius, as well as the units of the distance of each location from the basepoint in the response.",
+            "type": "string",
+            "required": false,
+            "enum": [
+              "mile",
+              "kilometer"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "radius",
+            "description": "This is the radius from the search point in the distance unit you set.",
+            "type": "string",
+            "required": false
+          }
+          ]
+      }
+    },
+    "/branches": {
+      "get": {
+        "description": "<p>Returns a list of Branches with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitide, zipcode and radius of search.</p>",
+        "summary": "List of Branches",
+        "operationId": "branches",        
+        "tags": [
+          "opendata"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BranchesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lat",
+            "description": "Latitude of the place around which you want to find ATMs. If latitude is provided, longitude must also be provided.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "long",
+            "description": "Lontitude of the place around which you want to find ATMs. If lontitude is provided, latitude must also be provided.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "zipcode",
+            "description": "Zipcode of the place around which you want to find ATMs.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "distance_unit",
+            "description": "Indicates the unit for the radius, as well as the units of the distance of each location from the basepoint in the response.",
+            "type": "string",
+            "required": false,
+            "enum": [
+              "mile",
+              "kilometer"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "radius",
+            "description": "This is the radius from the search point in the distance unit you set.",
+            "type": "string",
+            "required": false
+          }
+          ]
+      }
+    }
+  },
+  "definitions": {
+    "AtmsResponse": {
+      "description": "List of ATM Locations",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Visinity of the ATM Location."
+        },
+        "zipcode": {
+          "type": "string",
+          "description": "Zipcode of the location."
+        },
+        "lat": {
+          "type": "string",
+          "description": "Latitude expressed in decimal format."
+        },
+        "long": {
+          "type": "string",
+          "description": "Longitude expressed in decimal format."
+        }
+      },
+      "xml": {
+        "name": "AtmsResponse"
+      }
+    },
+    "BranchesResponse": {
+      "description": "List of Branch Locations",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Visinity of the Branch Location."
+        },
+        "zipcode": {
+          "type": "string",
+          "description": "Zipcode of the location."
+        },
+        "lat": {
+          "type": "string",
+          "description": "Latitude expressed in decimal format."
+        },
+        "long": {
+          "type": "string",
+          "description": "Longitude expressed in decimal format."
+        }
+      },
+      "xml": {
+        "name": "BranchesResponse"
+      }
+    }
+  }
+}
