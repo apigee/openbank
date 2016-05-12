@@ -3,7 +3,11 @@
     <Description/>
     <FaultRules/>
     <PreFlow name="PreFlow">
-        <Request/>
+        <Request>
+            <Step>
+                <Name>OAuth.VerifyAccessToken</Name>
+            </Step>
+        </Request>
         <Response/>
     </PreFlow>
     <PostFlow name="PostFlow">
@@ -12,7 +16,7 @@
     </PostFlow>
     <Flows/>
     <HTTPProxyConnection>
-        <BasePath>/internal/connector/v1/branches</BasePath>
+        <BasePath>/apis/v1/opendata/locations</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>

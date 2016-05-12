@@ -26,8 +26,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>apigee</groupId>
-    <artifactId>atms</artifactId>
+    <artifactId>locations-connector</artifactId>
     <version>1.0</version>
-    <name>atms</name>
+    <name>locations-connector</name>
     <packaging>pom</packaging>
 </project>

@@ -26,8 +26,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>apigee</groupId>
-    <artifactId>branches</artifactId>
+    <artifactId>locations</artifactId>
     <version>1.0</version>
-    <name>branches</name>
+    <name>locations</name>
     <packaging>pom</packaging>
 </project>
