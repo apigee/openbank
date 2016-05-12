@@ -2,24 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="156ff6bb-745b-4568-9c3d-1724e810d200" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector/config.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms/apiproxy/policies/OAuth.VerifyAccessToken.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms/config.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector/config.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches/apiproxy/policies/OAuth.VerifyAccessToken.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches/config.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Assign.TokenResponseCC.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Assign-Token-Response.xml" afterPath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Assign.TokenResponse.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Security-Generate-Access-Token.xml" afterPath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/OAuth.GenerateAccessToken.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Security-Refresh-token.xml" afterPath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/OAuth.RefreshAccessToken.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/atms_rev1_2016_05_11.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/branches_rev1_2016_05_11.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector/apiproxy/resources/node/node_modules.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector_rev1_2016_05_11.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms_rev1_2016_05_11.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector/apiproxy/resources/node/node_modules.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector_rev1_2016_05_11.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches_rev1_2016_05_11.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector/apiproxy/atms-connector.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector/apiproxy/proxies/default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector/apiproxy/resources/node/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector/apiproxy/resources/node/atms.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector/apiproxy/resources/node/config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector/apiproxy/resources/node/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms-connector/apiproxy/targets/default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms/apiproxy/atms.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms/apiproxy/proxies/default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/atms/apiproxy/targets/default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector/apiproxy/branches-connector.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector/apiproxy/proxies/default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector/apiproxy/resources/node/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector/apiproxy/resources/node/branches.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector/apiproxy/resources/node/config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector/apiproxy/resources/node/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches-connector/apiproxy/targets/default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches/apiproxy/branches.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches/apiproxy/proxies/default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/branches/apiproxy/targets/default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts/apiproxy/policies/OAuth.VerifyAccessToken.xml" afterPath="$PROJECT_DIR$/src/gateway/accounts/apiproxy/policies/OAuth.VerifyAccessToken.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/controllers/otp.js" afterPath="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/controllers/otp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/proxies/default.xml" afterPath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/proxies/default.xml" />
     </list>
     <ignored path="Banking.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -438,7 +449,7 @@
       <workItem from="1462333074068" duration="36504000" />
       <workItem from="1462773782255" duration="168000" />
       <workItem from="1462809609051" duration="8923000" />
-      <workItem from="1462905696216" duration="5609000" />
+      <workItem from="1462905696216" duration="5642000" />
     </task>
     <task id="LOCAL-00001" summary="don't use older baas data for account and customer info">
       <created>1462905894948</created>
@@ -461,11 +472,18 @@
       <option name="project" value="LOCAL" />
       <updated>1462906664634</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="atms and branches">
+      <created>1463032874248</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1463032874249</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53275000" />
+    <option name="totallyTimeSpent" value="53308000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="804" extended-state="6" />
@@ -502,7 +520,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="don't use older baas data for account and customer info" />
-    <option name="LAST_COMMIT_MESSAGE" value="don't use older baas data for account and customer info" />
+    <MESSAGE value="atms and branches" />
+    <option name="LAST_COMMIT_MESSAGE" value="atms and branches" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

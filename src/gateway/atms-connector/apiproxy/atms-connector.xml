@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="atms-connector">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1462448387352</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>atms-connector</Description>
+    <DisplayName>atms-connector</DisplayName>
+    <LastModifiedAt>1462874466848</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <Policies/>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>node://app.js</Resource>
+        <Resource>node://atms.js</Resource>
+        <Resource>node://config.js</Resource>
+        <Resource>node://node_modules.zip</Resource>
+        <Resource>node://package.json</Resource>
+    </Resources>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>
