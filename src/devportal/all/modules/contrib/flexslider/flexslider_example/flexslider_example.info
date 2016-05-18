@@ -1,0 +1,39 @@
+name = FlexSlider Example
+description = Sample implementation of FlexSlider
+core = 7.x
+package = FlexSlider
+php = 5.2.4
+dependencies[] = context
+dependencies[] = features
+dependencies[] = flexslider
+dependencies[] = flexslider_fields
+dependencies[] = flexslider_views
+dependencies[] = image
+dependencies[] = menu
+dependencies[] = strongarm
+dependencies[] = views
+features[context][] = flexslider_example_thumbnail
+features[ctools][] = context:context:3
+features[ctools][] = flexslider:flexslider_default_preset:1
+features[ctools][] = strongarm:strongarm:1
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:1
+features[field][] = node-flexslider_example-field_flexslider_example_image
+features[field][] = node-flexslider_example-field_flexslider_example_slidesh
+features[flexslider_optionset][] = flexslider_carousel_with_min_and_max_ranges
+features[flexslider_optionset][] = flexslider_default_basic_carousel
+features[flexslider_optionset][] = flexslider_default_slider_thumbnail_controlnav
+features[flexslider_optionset][] = flexslider_default_slider_w_thumbnail_slider
+features[flexslider_optionset][] = flexslider_default_thumbnail_captions
+features[flexslider_optionset][] = flexslider_default_thumbnail_slider
+features[menu_custom][] = menu-flexslider-example
+features[node][] = flexslider_example
+features[variable][] = field_bundle_settings_node__flexslider_example
+features[views_view][] = flexslider_views_example
+
+; Information added by Drupal.org packaging script on 2015-07-30
+version = "7.x-2.0-rc1"
+core = "7.x"
+project = "flexslider"
+datestamp = "1438285141"
+

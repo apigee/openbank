@@ -1,0 +1,299 @@
+{
+  "swagger": "2.0",
+  "host": "apis-bank-dev.apigee.net",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "info": {
+    "description": "Customer Bank Account Information",
+    "title": "Account Information",
+    "version": "0.0.1",
+    "termsOfService": "http://example.com/about/terms",
+    "contact": {
+      "name": "API Docs",
+      "url": "http://example.com/contact",
+      "email": "apis-eng@apigee.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://example.com"
+    }
+  },
+  "basePath": "/apis/v1/accounts",
+  "paths": {
+    "/acr:token/info": {
+      "get": {
+        "description": "<p>This will return various details such as currency, IBAN and features about account.</p><p>&nbsp;</p><p>Since this API is called by an app on behalf of a pre-authenticated account of a user the phrase <u>acr:token</u> should be used in lieu of the account number which indicates that the account number shall be extracted from the OAuth Access Token.</p><p>&nbsp;</p><p><a href='/oauth2'>Authentication</a> is based on OpedID Connect and oAuth 2.0.</p><p>&nbsp;</p><p>The user will have to authenticate with the Bank using a two-factor authentication, which will then provide the client application with a unique and time-bound access token. The client can then use this unique token to make calls to the bank on the behalf of the user.</p>",
+        "summary": "Account Information Summary",
+        "operationId": "Account Information",
+        "tags": [
+          "AccountInfo"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountInfo"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["openid", "accounts"]
+        }],
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "Authorization Bearer Token",
+          "type": "string"
+        }]
+      }
+    },
+    "/acr:token/balance": {
+      "get": {
+        "description": "<p>This will return the account balance.</p><p>&nbsp;</p><p>Since this API is called by an app on behalf of a pre-authenticated account of a user the phrase <u>acr:token</u> should be used in lieu of the account number which indicates that the account number shall be extracted from the OAuth Access Token.</p><p>&nbsp;</p><p><a href='/oauth2'>Authentication</a> is based on OpedID Connect and oAuth 2.0.</p><p>&nbsp;</p><p>The user will have to authenticate with the Bank using a two-factor authentication, which will then provide the client application with a unique and time-bound access token. The client can then use this unique token to make calls to the bank on the behalf of the user.</p>",
+        "summary": "GET Account Balance",
+        "operationId": "Account Balance",
+        "tags": [
+          "AccountBalance"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountBalance"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["openid", "accounts"]
+        }],
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "Authorization Bearer Token",
+          "type": "string"
+        }]
+      }
+    },
+    "/acr:token/transactions": {
+      "get": {
+        "description": "<p>This will return latest transactions posted to the account and related details.</p><p>&nbsp;</p><p>Since this API is called by an app on behalf of a pre-authenticated account of a user the phrase <u>acr:token</u> should be used in lieu of the account number which indicates that the account ID shall be extracted from the OAuth Access Token.</p><p>&nbsp;</p><p><a href='/oauth2'>Authentication</a> is based on OpedID Connect and oAuth 2.0.</p><p>&nbsp;</p><p>The user will have to authenticate with the Bank using a two-factor authentication, which will then provide the client application with a unique and time-bound access token. The client can then use this unique token to make calls to the bank on the behalf of the user.</p>",
+        "summary": "GET Account Transaction History",
+        "operationId": "Account Transactions",
+        "tags": [
+          "AccountTransactions"
+        ],
+        "produces": [
+          "application/json;"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountTransactions"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["openid", "accounts"]
+        }],
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "Authorization Bearer Token",
+          "type": "string"
+        }]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "aisp_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://apis-bank-dev.apigee.net/apis/v1/oauth/authorize?client_id=grOmvYAei8aBARzEVIYhGtpvztofAAjz&redirect_uri=https://api.enterprise.apigee.com/v1/o/apis-bank/apimodels/accounts/templateauths/aisp_auth/callback&response_type=code&state=af0ifjsldkj&scope=openid accounts&ui-locales=en&acr_values=3",
+      "tokenUrl": "https://apis-bank-dev.apigee.net/apis/v1/oauth/token",
+      "flow": "accessCode",
+      "scopes": {
+        "openid": "openID",
+        "accounts": "AISP apis"
+      }
+    }
+  },
+  "definitions": {
+    "AccountInfo": {
+      "description": "Account Information Object",
+      "type": "object",
+      "properties": {
+        "account_number": {
+          "type": "string",
+          "description": "Account number to be used for the purposes of display. It does not give the complete account number but an obfuscated version only showing last 4 digits. Leading digits are replaced by ‘X’."
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency of the account e.g EUR."
+        },
+        "customers": {
+          "type": "string",
+          "description": "Customer ID or IDs associated."
+        },
+        "IBAN": {
+          "type": "string",
+          "description": "IBAN Number - International Bank Account Number."
+        },
+        "is_debit_note_enabled": {
+          "type": "boolean",
+          "description": "Boolean value to identify if Debit note enabled."
+        },
+        "is_locked": {
+          "type": "boolean",
+          "description": "Boolean value to identify if Account is locked."
+        },
+        "label": {
+          "type": "string",
+          "description": "Main savings."
+        },
+        "overdraft": {
+          "type": "boolean",
+          "description": "Overdraft available or not."
+        },
+        "id": {
+          "type": "string",
+          "description": "Internal id"
+        },
+        "created_at": {
+          "type": "integer",
+          "description": "Account creation date and time in epoch."
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "Account update date and time in epoch."
+        }
+      },
+      "xml": {
+        "name": "AccountInfo"
+      }
+    },
+    "AccountBalance": {
+      "description": "Account Balance Object",
+      "type": "object",
+      "properties": {
+        "balance": {
+          "type": "string",
+          "description": "Sum of money currently present in the account."
+        },
+        "balance_available": {
+          "type": "string",
+          "description": "Sum of money that is currently available for use."
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency of the account e.g EUR"
+        },
+        "preauth_amount": {
+          "type": "string",
+          "description": "Amount available for pre-authorization."
+        }
+      },
+      "xml": {
+        "name": "AccountBalance"
+      }
+    },
+    "AccountTransactions": {
+      "description": "Account Information Object",
+      "type": "array",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "description": "Account number to be used for the purposes of display. It does not give the complete account number but an obfuscated version only showing last 4 digits. Leading digits are replaced by ‘X’."
+        },
+        "amount": {
+          "type": "string",
+          "description": "Amount involved in the transaction."
+        },
+        "booking_code": {
+          "type": "string",
+          "description": "Booking code in the core banking system."
+        },
+        "booking_date": {
+          "type": "string",
+          "description": "Date the transaction was booked."
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency of the account e.g EUR."
+        },
+        "subject": {
+          "type": "string",
+          "description": "Transfer subject expressed in short text."
+        },
+        "transaction_type": {
+          "type": "string",
+          "description": "Transaction type."
+        },
+        "transaction_type_details": {
+          "type": "object",
+          "description": "Transaction Type Details.",
+          "$ref": "#/definitions/TransactionTypeDetails"
+        },
+        "value_date": {
+          "type": "boolean",
+          "description": "Date the transaction was effective."
+        },
+        "id": {
+          "type": "string",
+          "description": "Internal Id."
+        },
+        "created_at": {
+          "type": "integer",
+          "description": "Account creation date and time in epoch."
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "Account updation date and time in epoch."
+        }
+      },
+      "xml": {
+        "name": "AccountTransactions"
+      }
+    },
+    "TransactionTypeDetails": {
+      "description": "Transaction Type Details",
+      "type": "object",
+      "properties": {
+        "remote_bic": {
+          "type": "string",
+          "description": "BIC of the recipient’s bank account."
+        },
+        "remote_iban": {
+          "type": "string",
+          "description": "IBAN of the recipient's bank account."
+        },
+        "remote_name": {
+          "type": "string",
+          "description": "Name of the Recipient."
+        }
+      },
+      "xml": {
+        "name": "TransactionTypeDetails"
+      }
+    }
+  }
+}

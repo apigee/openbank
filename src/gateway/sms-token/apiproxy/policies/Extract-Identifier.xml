@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Identifier">
+    <DisplayName>Extract: Identifier</DisplayName>
+    <Properties/>
+    <Variable name="proxy.pathsuffix">
+    	<Pattern>/sms/{identifier}</Pattern>
+    </Variable>
+    <Variable name="proxy.pathsuffix">
+      <Pattern>/sms/{identifier}/{token}</Pattern>
+    </Variable>
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

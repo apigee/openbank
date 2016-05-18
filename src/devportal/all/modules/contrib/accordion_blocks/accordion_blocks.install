@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall functions for the accordion blocks module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function accordion_blocks_install() {
+  $t = get_t();
+  drupal_set_message($t('Accordion Blocks module is successfully installed. Create accordion widgets through <a href="@url">Structure > Accordion Blocks</a> .', array('@url' => url('admin/structure/accordion_blocks'))));
+}
+
+/**
+ * Implements hook_schema().
+ */
+function accordion_blocks_schema() {
+  $schema['accordion_blocks'] = array(
+    'fields' => array(
+      'id' => array(
+        'description' => 'id of the accordion widget',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'title' => array(
+        'description' => 'Title of the accordion widget',
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'content' => array(
+        'description' => 'serailized content used in the accordion widget',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => FALSE,
+        'serialize' => TRUE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+
+  return $schema;
+}

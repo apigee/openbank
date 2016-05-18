@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract.TransactionDetails">
+    <DisplayName>Extract.TransactionDetails</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="uuid">
+            <JSONPath>$.entities[0].uuid</JSONPath>
+        </Variable>
+        <Variable name="status">
+            <JSONPath>$.entities[0].status</JSONPath>
+        </Variable>
+        <Variable name="account_number">
+            <JSONPath>$.entities[0].account_number</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+</ExtractVariables>

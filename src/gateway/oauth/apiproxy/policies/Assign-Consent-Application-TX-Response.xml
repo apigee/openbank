@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Consent-Application-TX-Response">
+    <DisplayName>Assign: Consent Application TX Response</DisplayName>
+    <Properties/>
+   	<Set> 
+		<Headers> 
+			<Header name="Cache-Control">no-store</Header> 
+			<Header name="Pragma">no-cache</Header>
+			 <Header name="Access-Control-Allow-Origin">*</Header>
+          	 <Header name='Access-Control-Allow-Methods'>POST, GET, OPTIONS</Header>
+             <Header name='Access-Control-Allow-Headers'>Accept, Content-Type, connection, content-length, Authorization, Location</Header>
+             <Header name='Access-Control-Allow-Credentials'>true</Header> 
+		</Headers>
+		<Payload contentType="application/json" variablePrefix="$" variableSuffix="%">
+			{
+              "application_tx_response": "$application_uri%"
+  			}
+		</Payload> 
+		<StatusCode>200</StatusCode>
+	</Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="response"/>
+</AssignMessage>

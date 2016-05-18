@@ -1,0 +1,4 @@
+# Can ignore specific files
+.DS_Store
+setup/config.sh
+setup/usergrid.sh

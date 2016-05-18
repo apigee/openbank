@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign.TokenResponseCC">
+    <DisplayName>Assign.TokenResponseCC</DisplayName>
+   <Properties/>
+   	<Set> 
+		<Headers> 
+			<Header name="Cache-Control">no-store</Header> 
+			<Header name="Pragma">no-cache</Header>
+		</Headers>
+		<Payload contentType="application/json" variablePrefix="$" variableSuffix="%">
+			{
+              "access_token": "$apigee.access_token%",
+              "token_type": "Bearer",
+              "expires_in": $expires_in%
+  			}
+		</Payload> 
+		<StatusCode>200</StatusCode>
+	</Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="response"/>
+</AssignMessage>

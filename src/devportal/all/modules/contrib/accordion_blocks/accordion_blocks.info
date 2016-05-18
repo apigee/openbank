@@ -1,0 +1,11 @@
+name = Blocks in accordion
+description = Displays blocks in jquery accordion widget
+core = 7.x
+configure = admin/config/user-interface/accordion-blocks
+
+; Information added by drupal.org packaging script on 2012-09-16
+version = "7.x-3.2"
+core = "7.x"
+project = "accordion_blocks"
+datestamp = "1347822077"
+

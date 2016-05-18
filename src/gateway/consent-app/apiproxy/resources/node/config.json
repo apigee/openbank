@@ -1,0 +1,83 @@
+{
+  "base_path": "/internal/consent",
+  "logo_uri": "http://dev-dbank.devportal.apigee.com/sites/default/files/logo4.png",
+  "styles": {
+    "header_background_color": "#FFF"
+  },
+  "consentTransaction": {
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/session/transactions/",
+    "method": "GET",
+    "headers": {
+      "x-apikey": "__API_KEY_CONSENT__"
+    }
+  },
+  "authenticationTransaction": {
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/connector/v1/authenticate",
+    "method": "POST",
+    "headers": {
+      "x-apikey": "__API_KEY_CONSENT__"
+    }
+  },
+  "accessTokenTransaction": {
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/apis/v1/oauth/authorized/transactions/",
+    "method": "POST",
+    "headers": {
+      "x-apikey": "__API_KEY_CONSENT__"
+    }
+  },
+  "generateOtp": {
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/otp/sms/",
+    "method": "POST",
+    "headers": {
+      "x-apikey": "__API_KEY_CONSENT__"
+    }
+  },
+  "validateOtp": {
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/otp/sms/",
+    "method": "POST",
+    "headers": {
+      "x-apikey": "__API_KEY_CONSENT__"
+    }
+  },
+  "getAccounts": {
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/connector/v1/accounts",
+    "method": "GET",
+    "headers": null
+  },
+  "errors": {
+    "user_cancel": {
+      "code": "Consent_Rejected",
+      "description": "User rejected consent"
+    }
+  },
+  "loa": {
+    "1": {
+      "steps": [
+        {
+          "name": "OTP",
+          "weight": 0
+        }
+      ]
+    },
+    "2": {
+      "steps": [
+        {
+          "name": "UID_PWD",
+          "weight": 0
+        }
+      ]
+    },
+    "3": {
+      "steps": [
+        {
+          "name": "UID_PWD",
+          "weight": 0
+        },
+        {
+          "name": "OTP",
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

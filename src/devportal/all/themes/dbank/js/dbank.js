@@ -1,0 +1,3 @@
+/*
+  This is the javascript file that will contain all the custom javascript code that you will be writing to customize the interactivity of the Apigee developer portal.
+*/

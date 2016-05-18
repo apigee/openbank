@@ -1,0 +1,8 @@
+/* Same style on links and non-links. */
+.ui-accordion-icons .ui-accordion-header span.accordion-link {
+  padding-left: 2.2em;
+}
+.ui-accordion .ui-accordion-header span.accordion-link {
+  display: block;
+  font-size: 1em;
+}

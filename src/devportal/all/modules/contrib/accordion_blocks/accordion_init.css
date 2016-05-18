@@ -1,0 +1,28 @@
+.ui-accordion li {
+  display:list-item;
+}
+.accordion_blocks_container .block-title {
+  font-size: 1em;
+  padding: 10px 0 4px 30px;
+}
+.accordion_blocks_container .block {
+  margin-bottom: 0px;
+}
+.ui-accordion .ui-accordion-content {
+  padding: 0.5em 0.2em 0.5em 0;
+}
+.ui-widget {
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+}
+.ui-widget-content {
+  color: inherit;
+}
+.ui-widget-content a {
+  color: inherit;
+}
+
+.ui-accordion-header {
+  margin-bottom: 0px;
+}

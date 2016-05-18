@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="Security-Generate-Access-Token-Implicit">
+    <DisplayName>Security: Generate Access Token Implicit</DisplayName>
+    <Properties/>
+    <Attributes/>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <Operation>GenerateAccessTokenImplicitGrant</Operation>
+    <SupportedGrantTypes/>
+    <Scope>scope</Scope>
+    <ClientId>client_id</ClientId>
+    <ResponseType>token</ResponseType>
+    <ExpiresIn ref="token_timeout">2592000000</ExpiresIn>
+    <Attributes>
+        <Attribute name="sessionid" ref="sessionid" display="false"/>
+        <Attribute name="scope" ref="scope" display="false"/>
+        <Attribute name="sub" ref="sub" display="false"/>
+        <Attribute name="acr_values" ref="acr_values" display="false"/>
+        <Attribute name="amr" ref="amr" display="false"/>
+        <Attribute name="azp" ref="azp" display="false"/>
+        <Attribute name="auth_time" ref="auth_time" display="false"/>
+        <Attribute name="customer_number" ref="customerId" display="false"/>
+        <Attribute name="account_number" ref="accountNumber" display="false"/>
+        <Attribute name="full_name" ref="fullName" display="false"/>
+        <!-- Attributes for payment API -->
+        <Attribute name="to" ref="to" display="false"/>
+        <Attribute name="sort_code" ref="sort_code" display="false"/>
+        <Attribute name="IBAN" ref="IBAN" display="false"/>
+        <Attribute name="currency" ref="currency" display="false"/>
+        <Attribute name="amount" ref="amount" display="false"/>
+    </Attributes>
+    <AppEndUser>customer_number</AppEndUser>
+    <UserName>customer_number</UserName>
+</OAuthV2>

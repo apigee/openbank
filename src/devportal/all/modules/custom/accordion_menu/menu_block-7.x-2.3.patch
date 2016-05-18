@@ -1,0 +1,59 @@
+diff --git a/menu_block.module b/menu_block.module
+index 83cf0c9..1308a30 100644
+--- a/menu_block.module
++++ b/menu_block.module
+@@ -118,7 +118,8 @@ function menu_block_help($path, $arg) {
+  */
+ function menu_block_block_view($delta = '') {
+   $config = menu_block_get_config($delta);
+-  $data = menu_tree_build($config);
++  $tree = menu_tree_build($config);
++  $data = menu_tree_render($tree, $config);
+   // Add contextual links for this block.
+   if (!empty($data['content'])) {
+     if (in_array($config['menu_name'], array_keys(menu_get_menus()))) {
+@@ -245,11 +246,9 @@ function menu_block_get_config($delta = NULL) {
+  *   - expanded: (boolean) Specifies if the entire tree be expanded or not.
+  *   - sort: (boolean) Specifies if the tree should be sorted with the active
+  *     trail at the top of the tree.
++ *
+  * @return
+- *   array An associative array containing several pieces of data.
+- *   - content: The tree as a renderable array.
+- *   - subject: The title rendered as HTML.
+- *   - subject_array: The title as a renderable array.
++ *   array Menu tree after applying configuration options.
+  */
+ function menu_tree_build($config) {
+   // Retrieve the active menu item from the database.
+@@ -353,6 +352,27 @@ function menu_tree_build($config) {
+     menu_tree_sort_active_path($tree);
+   }
+ 
++  return $tree;
++}
++
++/**
++ * Renders a menu tree based on the provided configuration.
++ *
++ * @param $tree
++ *   array Menu tree after applying configuration options.
++ * @param $config
++ *   array An array of configuration options that specifies how to build the
++ *   menu tree and its title.
++ *
++ * @return
++ *   array An associative array containing several pieces of data.
++ *   - content: The tree as a renderable array.
++ *   - subject: The title rendered as HTML.
++ *   - subject_array: The title as a renderable array.
++ *
++ * @see menu_tree_build()
++ */
++function menu_tree_render($tree, $config) {
+   // Render the tree.
+   $data = array();
+   $title = menu_block_get_title($config['title_link'], $config);
+-- 
+1.7.4.2
+

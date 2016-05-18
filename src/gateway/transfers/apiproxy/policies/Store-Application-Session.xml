@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="Store-Application-Session">
+    <DisplayName>Populate Cache: Application Session</DisplayName>
+    <Properties/>
+    <CacheResource>application-session-cache</CacheResource>
+    <Source>session.request.content</Source>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="messageid"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec>1200</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

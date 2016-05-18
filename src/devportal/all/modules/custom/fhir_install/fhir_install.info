@@ -1,0 +1,5 @@
+name = FHIR Install
+description = Performs installation related tasks for FHIR customizations
+core = 7.x
+version = 7.x-1.0
+packge = FHIR Custom
