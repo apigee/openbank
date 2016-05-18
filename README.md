@@ -4,7 +4,7 @@
 Digital Services in Banking Space
 -------------
 
-Before we delve into the specifics of the Solution it may worthwhile to note the transformation happening currently in the banking space. Digital is positing itself in many facets of interactions that a Consumer has with the Bank.
+Before we delve into the specifics of the Solution it may be worthwhile to note the transformation happening currently in the banking space. Digital is positing itself in many facets and interactions that a consumer has with the Bank.
 
 ![enter image description here](http://openbank.apigee.com/sites/default/files/openbanking_position.png)
 
@@ -31,6 +31,7 @@ This repository contains the necessary artifacts that will allow one to pull up 
 ## Prerequisite
 + Apigee API Management Developer Account
 + Apigee API BaaS Account
++ Apigee Developer Portal
 
 ## Setup
 To deploy the APIs and its dependencies on your own org please run the following script
