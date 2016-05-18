@@ -1,6 +1,4 @@
-<p align="left"><a href="http://apigee.com/"><img src="http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png"/></a></p>
-
-OpenBank
+<a href="http://apigee.com/"><img src="http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png"/></a> OpenBank
 ===================
 
 Digital Services in Banking Space
