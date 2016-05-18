@@ -6,12 +6,7 @@
     <ExternalAuthorization>false</ExternalAuthorization>
     <Operation>VerifyAccessToken</Operation>
     <AccessToken>request.header.Authorization</AccessToken>
-    <AccessTokenPrefix>Bearer</AccessTokenPrefix>
-    <SupportedGrantTypes>
-        <GrantType>authorization_code</GrantType>
-        <GrantType>client_credentials</GrantType>
-        <GrantType>implicit</GrantType>
-    </SupportedGrantTypes>
+    <AccessTokenPrefix>Bearer</AccessTokenPrefix>    
     <GenerateResponse enabled="true"/>
     <Tokens/>
 </OAuthV2>

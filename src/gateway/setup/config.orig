@@ -9,13 +9,18 @@ appsecret=__UGSECRET__
 apporg=__UGORG__
 appapp=__UGAPP__
 
-#accounts config.json
-#sed -i "" "s/__APIKEY__/$apikey/g" ../accounts/config.json
-#sed -i "" "s/__AUTH__/$auth/g" ../accounts/config.json
-#sed -i "" "s/__HOST__/$host/g" ../accounts/config.json
+#accounts-connector config.js
+cp ../accounts-connector/apiproxy/resources/node/config.js.orig ../accounts-connector/apiproxy/resources/node/config.js
+sed -i "" "s/__APPORG__/$apporg/g" ../accounts-connector/apiproxy/resources/node/config.js
+sed -i "" "s/__APPAPP__/$appapp/g" ../accounts-connector/apiproxy/resources/node/config.js
 
-#accounts-connector config.json
-#sed -i "" "s/__APPKEY__/$appkey/g" ../iaccounts-connector/config.json
-#sed -i "" "s/__APPSECRET__/$appsecret/g" ../accounts-connector/config.json
-#sed -i "" "s/__APPORG__/$apporg/g" ../accounts-connector/config.json
-#sed -i "" "s/__APPAPP__/$appapp/g" ../accounts-connector/config.json
+#authentication-connector default.xml
+cp ../authentication-connector/apiproxy/targets/default.xml.orig ../authentication-connector/apiproxy/targets/default.xml
+sed -i "" "s/__APPORG__/$apporg/g" ../authentication-connector/apiproxy/targets/default.xml
+sed -i "" "s/__APPAPP__/$appapp/g" ../authentication-connector/apiproxy/targets/default.xml
+
+#transfers-connector default.xml
+cp ../transfers-connector/apiproxy/targets/default.xml.orig ../transfers-connector/apiproxy/targets/default.xml
+sed -i "" "s/__APPORG__/$apporg/g" ../transfers-connector/apiproxy/targets/default.xml
+sed -i "" "s/__APPAPP__/$appapp/g" ../transfers-connector/apiproxy/targets/default.xml
+
