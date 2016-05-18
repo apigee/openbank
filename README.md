@@ -10,6 +10,8 @@ Before we delve into the specifics of the Solution it may worthwhile to note the
 
 ![enter image description here](http://openbank.apigee.com/sites/default/files/openbanking_position.png)
 
+Overview
+-------------
 
 Apigee OpenBank Solution enables banks to accelerate  development of digital services. OpenBank is built on Apigee Edge API Management Platform, and features:
 
@@ -19,6 +21,11 @@ Apigee OpenBank Solution enables banks to accelerate  development of digital ser
 > - OAuth APIs
 
 It also provides an implementation of OpenID and oAuth based authentication, consent and two-factor authentication using SMS.
+
+These APIs play a critical role in the digital transformation of banking services as represented below:
+
+![enter image description here](http://openbank.apigee.com/sites/default/files/openbank_architecture.png)
+
 
 ## Repository Overview
 This repository contains the necessary artifacts that will allow one to pull up a complete set of **Banking APIs** that comply with _Openbanking_ and _PSD2_ regulations. In addition this will also allow one to build a _sandbox_ complete with a **Developer Portal**, mock backend and a sample app.
