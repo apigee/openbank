@@ -1,0 +1,117 @@
+<?php
+/**
+ * @file
+ * Code for the default custom blocks for the developer portal
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function openbank_blocks_block_info(){
+  $blocks = array();
+
+  $blocks['openbank_get_started'] = array(
+    'info' => t('Open Bank Get Started'),
+  );
+  $blocks['openbank_apis_sandox'] = array(
+    'info' => t('Open Bank Apis and Sandbox'),
+  );
+  $blocks['openbank_app_gallery'] = array(
+    'info' => t('Open Bank App Gallery'),
+  );
+  $blocks['openbank_copyright'] = array(
+    'info' => t('Open Bank Copyright'),
+  );
+  $blocks['openbank_social_bottom'] = array(
+    'info' => t('Open Bank Social Bottom'),
+  );
+  $blocks['openbank_logo_caption'] = array(
+    'info' => t('Open Bank Logo Caption'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function openbank_blocks_block_view($delta = ''){
+  $block = array();
+  switch ($delta) {
+    case 'openbank_get_started':
+      $block['subject'] = NULL;
+      $block['content'] = array(
+        '#markup' => theme('openbank_get_started'),
+      );
+      break;
+
+    case 'openbank_apis_sandox':
+      $block['subject'] = NULL;
+      $block['content'] = array(
+        '#markup' => theme('openbank_apis_sandox'),
+      );
+      break;
+
+    case 'openbank_app_gallery':
+      $block['subject'] = NULL;
+      $block['content'] = array(
+        '#markup' => theme('openbank_app_gallery'),
+      );
+      break;
+
+    case 'openbank_copyright':
+      $block['subject'] = NULL;
+      $block['content'] = array(
+        '#markup' => theme('openbank_copyright'),
+      );
+      break;
+
+    case 'openbank_social_bottom':
+      $block['subject'] = NULL;
+      $block['content'] = array(
+        '#markup' => theme('openbank_social_bottom'),
+      );
+      break;
+
+    case 'openbank_logo_caption':
+      $block['subject'] = NULL;
+      $block['content'] = array(
+        '#markup' => theme('openbank_logo_caption'),
+      );
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function openbank_blocks_theme($existing, $type, $theme, $path){
+  $template_path = drupal_get_path('module', 'openbank_blocks') . '/templates';
+  $items = array();
+  $items['openbank_get_started'] = array(
+    'template' => 'openbank_get_started',
+    'path' => $template_path,
+  );
+  $items['openbank_apis_sandox'] = array(
+    'template' => 'openbank_apis_sandox',
+    'path' => $template_path,
+  );
+  $items['openbank_app_gallery'] = array(
+    'template' => 'openbank_app_gallery',
+    'path' => $template_path,
+  );
+  $items['openbank_copyright'] = array(
+    'template' => 'openbank_copyright',
+    'path' => $template_path,
+  );
+  $items['openbank_social_bottom'] = array(
+    'template' => 'openbank_social_bottom',
+    'path' => $template_path,
+  );
+  $items['openbank_logo_caption'] = array(
+    'template' => 'openbank_logo_caption',
+    'path' => $template_path,
+  );
+  return $items;
+}

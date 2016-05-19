@@ -108,7 +108,7 @@ global $user;
           <ul class="menu nav navbar-nav pull-right account-menu">
             <?php if (user_is_anonymous()) { ?>
               <li class="<?php echo (($current_path == "user/register") ? "active":""); ?>"><?php echo l(t("Register"), "user/register",array('attributes' => array('class' => array('sign-up')))); ?></li>
-              <li class="<?php echo (($current_path == "user/login") ? "active":""); ?> sign-in"><?php echo l(t("Sign In"), "user/login",array('attributes' => array('class' => array('sign-in')))); ?></li>
+              <li class="<?php echo (($current_path == "user/login") ? "active":""); ?> sign-in"><?php echo l(t("Log In"), "user/login",array('attributes' => array('class' => array('sign-in')))); ?></li>
             <?php } else {
               $user_url =  'user/' . $user->uid; ?>
               <li class="first expanded dropdown">

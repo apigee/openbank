@@ -1,5 +1,0 @@
-name = FHIR Blocks
-description = Provides default blocks for the FHIR developer portal
-core = 7.x
-package = FHIR Custom
-version = 1.x-1.0

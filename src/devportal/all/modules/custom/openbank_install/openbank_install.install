@@ -1,6 +1,6 @@
 <?php
 
-function fhir_install_enable(){
+function openbank_install_enable(){
 
   // Disable the default Apigee contexts.
   $contexts = variable_get('context_status', array());
@@ -12,7 +12,7 @@ function fhir_install_enable(){
 }
 
 
-function fhir_install_install() {
+function openbank_install_install() {
   $query = db_select('node', 'n');
   $query->condition('title', 'Events');
   $query->condition('type', 'page');

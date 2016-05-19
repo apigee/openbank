@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Fhir Custom feature.
- */
-
-include_once 'fhir_custom.features.inc';

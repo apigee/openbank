@@ -34,4 +34,8 @@ function dbank_preprocess_page(&$variables) {
     if (!empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
         $variables['content_column_class'] = ' class="col-sm-8"';
     }
+
+    if($variables['current_path'] == 'forum') {
+        drupal_set_title(t('Get answers, ideas, and support from the Community'));
+    }
 }

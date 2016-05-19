@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * @file
+ * Custom install tasks after enabling the Open Bank features
+ */
+
+function openbank_install_block_view_views_slideshow_block_alter(&$data, $block) {
+//  drupal_set_message("<pre>" . print_r($data, 1));
+  $data['subject'] = NULL;
+}

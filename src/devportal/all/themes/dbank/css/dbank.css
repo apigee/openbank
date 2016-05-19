@@ -31,7 +31,6 @@ h1, h2, h3, h4, h5, h6 {
 #navbar{
     margin-bottom: 0;
     height: 65px;
-    opacity: 0.95;
     box-shadow: 0 3px 3px rgba(0,0,0,0.3);
 }
 
@@ -111,7 +110,7 @@ body.front #flexslider_views_slideshow_main_slideshow-block .flex-direction-nav 
     float: left;
 }
 body.admin-menu .region-logo-right { line-height: 76px; }
-.fhir-shortcodes-box.box-center:not(.box-none) .box-icon {
+.openbank-shortcodes-box.box-center:not(.box-none) .box-icon {
     width: 100px;
     height: 100px;
     font-size: 40px;
@@ -119,16 +118,16 @@ body.admin-menu .region-logo-right { line-height: 76px; }
     margin: 0 auto;
 }
 
-.fhir-shortcodes-box.box-circle .box-icon {
+.openbank-shortcodes-box.box-circle .box-icon {
     border-radius: 50%;
     border: 1px #4661A2 solid;
 }
 
-.fhir-shortcodes-box:not(.box-background) .box-icon {
+.openbank-shortcodes-box:not(.box-background) .box-icon {
     color: #4661A2;
 }
 
-.fhir-shortcodes-box .box-icon {
+.openbank-shortcodes-box .box-icon {
     text-align: center;
     -webkit-transform: rotate(0deg) scale(1) skew(0) translate(0);
     -moz-transform: rotate(0deg) scale(1) skew(0) translate(0);
@@ -142,12 +141,12 @@ body.admin-menu .region-logo-right { line-height: 76px; }
     transition: all .3s ease-out;
 }
 
-.fhir-shortcodes-box.box-center:not(.box-none):hover .box-icon {
+.openbank-shortcodes-box.box-center:not(.box-none):hover .box-icon {
     background: #4661A2;
     color: #fff;
 }
 
-.fhir-shortcodes-box.box-center:hover .box-icon {
+.openbank-shortcodes-box.box-center:hover .box-icon {
   -webkit-transform: rotate(360deg) scale(1.1) skew(0) translate(0);
   -moz-transform: rotate(360deg) scale(1.1) skew(0) translate(0);
   -o-transform: rotate(360deg) scale(1.1) skew(0) translate(0);
@@ -175,16 +174,16 @@ body.admin-menu .region-logo-right { line-height: 76px; }
     list-style: none;
 }
 
-.fhir-shortcodes-box.box-center:not(.box-none) h3.box-title {
+.openbank-shortcodes-box.box-center:not(.box-none) h3.box-title {
     letter-spacing: -0.5px;
 }
 
-.fhir-shortcodes-box.box-center .box-title {
+.openbank-shortcodes-box.box-center .box-title {
     text-align: center;
     margin: 30px 30px 0;
 }
 
-.fhir-shortcodes-box.box-center .box-content {
+.openbank-shortcodes-box.box-center .box-content {
     text-align: center;
     margin: 10px 30px;
 }
@@ -224,12 +223,12 @@ body.admin-menu .region-logo-right { line-height: 76px; }
     width: 147px;
     height: 32px;
 }
-#block-fhir-blocks-fhir-copyright{
+#block-openbank-blocks-openbank-copyright{
     float: left;
     width: 66.66666667%;
 }
 
-#block-fhir-blocks-fhir-social-bottom{
+#block-openbank-blocks-openbank-social-bottom{
     float: left;
     width: 33.33333333%;
 }
@@ -243,7 +242,7 @@ body.admin-menu .region-logo-right { line-height: 76px; }
     font-family: Roboto;
 }
 
-#block-fhir-blocks-fhir-social-bottom ul:not(.contextual-links) li {
+#block-openbank-blocks-openbank-social-bottom ul:not(.contextual-links) li {
     font-size: 12px;
     height: 20px;
     margin: 0;
@@ -253,7 +252,7 @@ body.admin-menu .region-logo-right { line-height: 76px; }
     margin-right: 4px;
 }
 
-#block-fhir-blocks-fhir-social-bottom ul:not(.contextual-links) li a {
+#block-openbank-blocks-openbank-social-bottom ul:not(.contextual-links) li a {
     color: #888888;
     font-family: Roboto;
     width: 20px;
@@ -324,7 +323,7 @@ body.admin-menu  header.navbar .nav > li > a { line-height: 48px; }
 .navbar-nav > li > span,body header.navbar .nav > li > a {
     text-transform: uppercase;
 }
-body .fa { color: #ff4300;}
+body .fa { color: #d3d3d3;}
 body .btn {
     background-color: transparent;
     border: 1px solid #ff4300;
@@ -385,6 +384,13 @@ body.navbar-is-fixed-top #breadcrumb-navbar { margin-top: 66px }
 body.admin-menu.navbar-is-fixed-top #breadcrumb-navbar { margin-top: 0px }
 aside .block {
     margin-bottom: 25px;
+}
+div#forum-tools {
+    display: none;
+}
+body.page-blogs li { list-style: none; }
+body.page-forum hr {
+    display: none;
 }
 body header.navbar .nav.account-menu > li > a.sign-up {
     color: #fff !important;
