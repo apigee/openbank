@@ -220,7 +220,7 @@
       "description": "Account Information Object",
       "type": "array",
       "properties": {
-        "account_id": {
+        "account_number": {
           "type": "string",
           "description": "Account number to be used for the purposes of display. It does not give the complete account number but an obfuscated version only showing last 4 digits. Leading digits are replaced by ‘X’."
         },
