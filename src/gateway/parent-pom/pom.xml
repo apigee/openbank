@@ -43,6 +43,16 @@
     <modules>
         <module>../accounts</module>
         <module>../accounts-connector</module>
+        <module>../transfers</module>
+        <module>../transfers-connector</module>        
+        <module>../authentication-connector</module>
+        <module>../consent-app</module>
+        <module>../consent-app-transfers</module>
+        <module>../locations</module>
+        <module>../locations-connector</module>
+        <module>../sms-token</module>
+        <module>../session</module>
+        <module>../oauth</module>
     </modules>
 
     <build>
@@ -72,27 +82,6 @@
                                 </resource>
                             </resources>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>io.apigee.build-tools.enterprise4g</groupId>
-                <artifactId>apigee-edge-maven-plugin</artifactId>
-                <version>1.0.2</version>
-                <executions>
-                    <execution>
-                        <id>configure-bundle-step</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>configure</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>deploy-bundle</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>

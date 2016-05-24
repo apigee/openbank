@@ -1,6 +1,6 @@
 module.exports = {
 	"host": "https://api.usergrid.com",
 	"org": "psubrahmanyam",
-	"app": "apisbank",
+	"app": "everydaybank1",
 	"bank": "ebank"
 };
