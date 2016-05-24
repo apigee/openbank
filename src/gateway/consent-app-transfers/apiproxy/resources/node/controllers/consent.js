@@ -18,6 +18,7 @@ consent.showConsent = function (req, res, next) {
     var scopes = consentTransaction.scope.split(" ");
     var to = consentTransaction.to;
     var amount = consentTransaction.amount;
+    var currency = consentTransaction.currency;
 
     // Remove openid from scopes as it is implicit and need not be shown to the
     // users.
@@ -28,6 +29,7 @@ consent.showConsent = function (req, res, next) {
     consentData.scopes = scopes;
     consentData.to = to;
     consentData.amount = amount;
+    consentData.currency = currency;
     consentData.tnc = consentTransaction.tandcs;
 
     var authenticationTransaction = req.session.authenticationTransaction;
@@ -108,7 +110,6 @@ consent.doConsent = function (req, res, next) {
 consent.executeTransfer = function (req, res, next, formData) {
     var config = req.app.get('config');
 
-    // call the authentication endpoint to validate the user credentials
     var options = {
         'url': config.transferTransaction.transactionEndpoint + req.session.sessionid,
         'method': config.transferTransaction.method,
@@ -122,45 +123,34 @@ consent.executeTransfer = function (req, res, next, formData) {
             var redirect_uri = body.application_tx_response;
             console.log('redirect = ' + redirect_uri);
 
-            /*var parsedURL = url.parse(redirect_uri, true);
-            var queryParams = parsedURL.query;
-            var token = queryParams.access_token;
-            console.log("token = " + token);
-            console.log(JSON.stringify(queryParams, null, 2));
+            var config = req.app.get('config');
 
+            var msisdn = req.session.msisdn || req.session.authenticationTransaction.phone_number;
+            console.log('sending SMS confirmation to ' + msisdn);
 
-            var options = {
-                'url': config.transferTransaction.transactionEndpoint,
-                'method': config.transferTransaction.method,
-                'headers': config.transferTransaction.headers,
-                "json": true
-            };
+            var consentTransaction = req.session.consentTransaction;
+            console.log('consent txn = ', JSON.stringify(consentTransaction));
+            var transfer_reference = url.parse(redirect_uri, true).query.transaction_id;
 
-            options.headers.Authorization += token;*/
+            if (msisdn && transfer_reference) {
+                var options = {
+                    'url': config.sendConfirmationSMS.transactionEndpoint + msisdn,
+                    'method': config.sendConfirmationSMS.method,
+                    'headers': config.sendConfirmationSMS.headers,
+                    "json": {
+                        account_to: consentTransaction.to,
+                        amount: consentTransaction.amount,
+                        currency: consentTransaction.currency,
+                        transfer_reference: transfer_reference
+                    }
+                };
+
+                request(options, function () {
+                });
+            }
 
             req.session.destroy();
             res.redirect(redirect_uri);
-
-            /*var uri = "";
-            uri += parsedURL.protocol;
-            if (parsedURL.slashes) {
-                uri += '://'
-            } else {
-                uri += ':'
-            }
-            if (parsedURL.port) {
-                uri += ':' + parsedURL.port
-            }
-
-            console.log('url = ' + uri);
-
-            console.log(JSON.stringify(options, null, 2));
-            request(options, function (error, response, body) {
-                res.json(body);
-                var transactionId = body.transfer.transaction_id;
-                uri += '?transaction_id=' + transactionId;
-                console.log(uri);
-            });*/
         }
         else {
             var err = {

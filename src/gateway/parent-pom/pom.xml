@@ -81,7 +81,7 @@
                 <version>1.0.2</version>
                 <executions>
                     <execution>
-                        <id>configure-bundle</id>
+                        <id>configure-bundle-step</id>
                         <phase>package</phase>
                         <goals>
                             <goal>configure</goal>

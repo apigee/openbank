@@ -3,10 +3,13 @@
     <DisplayName>Extract: Identifier</DisplayName>
     <Properties/>
     <Variable name="proxy.pathsuffix">
-    	<Pattern>/sms/{identifier}</Pattern>
+    	<Pattern>/otp/{identifier}</Pattern>
     </Variable>
     <Variable name="proxy.pathsuffix">
-      <Pattern>/sms/{identifier}/{token}</Pattern>
+      <Pattern>/otp/{identifier}/{token}</Pattern>
+    </Variable>
+    <Variable name="proxy.pathsuffix">
+        <Pattern>/confirmation/{identifier}</Pattern>
     </Variable>
 	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </ExtractVariables>

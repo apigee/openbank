@@ -1,0 +1,19 @@
+TItle API Interaction Diagram - OAuth
+
+user -> client-app: open app
+client-app -> oauth: get access token
+oauth -> session: create session
+session --> oauth: redirect to consent
+oauth --> client-app: redirect to consent
+client-app --> user: login page
+user -> consent-app: username + password
+consent-app -> authentication-connector: validate user
+user -> consent-app: start otp flow
+consent-app -> sms-api: send otp
+user -> consent-app: enter otp
+consent-app -> sms-api: validate otp
+consent-app -> accounts-connector: get accounts
+user -> consent-app: consent to accounts-connector
+consent-app -> oauth: user authenticated
+oauth -> oauth: destroy session
+oauth -> client: generate access token

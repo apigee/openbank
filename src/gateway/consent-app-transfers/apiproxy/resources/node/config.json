@@ -33,14 +33,21 @@
     }
   },
   "generateOtp": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/otp/sms/",
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
       "x-apikey": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
     }
   },
   "validateOtp": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/otp/sms/",
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/sms/otp/",
+    "method": "POST",
+    "headers": {
+      "x-apikey": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
+    }
+  },
+  "sendConfirmationSMS": {
+    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/sms/confirmation/",
     "method": "POST",
     "headers": {
       "x-apikey": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
