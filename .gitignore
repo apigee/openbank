@@ -2,6 +2,7 @@
 config.json
 edge.sh
 usergrid.sh
+.idea/
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
