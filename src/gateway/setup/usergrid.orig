@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ### usergrid.sh
 
 URI="https://api.usergrid.com"
@@ -29,17 +31,17 @@ echo "Client ID: ${c_id}"
 echo "Client Secret: ${sec}"
 
 echo "Creating Collections"
-resp=`curl -X POST ${URI}/${ORG}/${APP_NAME}/banks?access_token="${token}"`
+resp=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST ${URI}/${ORG}/${APP_NAME}/banks?access_token="${token}"`
 echo "Status: Creating Banks Collection: ${resp}"
 
-resp=`curl -X POST ${URI}/${ORG}/${APP_NAME}/accounts?access_token="${token}"`
+resp=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST ${URI}/${ORG}/${APP_NAME}/accounts?access_token="${token}" -T ./data/accounts.json -H "Content-Type: application/json" -H "Accept: application/json"`
 echo "Status: Creating Accounts Collection:${resp}"
 
-resp=`curl -X POST ${URI}/${ORG}/${APP_NAME}/customers?access_token="${token}"`
+resp=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST ${URI}/${ORG}/${APP_NAME}/customers?access_token="${token}" -T ./data/customers.json -H "Content-Type: application/json" -H "Accept: application/json"`
 echo "Status: Creating Customers Collection:${resp}"
 
-resp=`curl -X POST ${URI}/${ORG}/${APP_NAME}/transactions?access_token="${token}"`
 echo "Status: Creating Transactions Collection:${resp}"
+resp=`curl -X POST ${URI}/${ORG}/${APP_NAME}/transactions?access_token="${token}"`
 
 sed -i "" "s/__UGKEY__/$c_id/g" ./config.sh
 sed -i "" "s/__UGSECRET__/$sec/g" ./config.sh

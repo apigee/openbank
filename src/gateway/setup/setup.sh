@@ -1,9 +1,10 @@
+#!/usr/bin/env bash
 
 # Revert to original, if we have ever changed these files ...
 cp ../accounts/config.orig ../accounts/config.json
 cp ../accounts-connector/config.orig ../accounts-connector/config.json
 
-cp ./config.orig ./config.sh
+cp ./edge.orig ./edge.sh
 cp ./usergrid.orig ./usergrid.sh
 
 ### setup.sh
@@ -185,10 +186,10 @@ ckey=`echo ${apikey} | tr -d '"'`
 SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/developers/user@identity.com/apps/IdentityApp/keys/${ckey}" -H "Content-Type: application/xml" -d '<CredentialRequest><ApiProducts><ApiProduct>identityproduct</ApiProduct></ApiProducts></CredentialRequest>' `
 echo "${SETUP_RESULT}"
 
-sed -i "" "s/__KEY__/$apikey/g" ./config.sh
-sed -i "" "s/__SECRET__/$apisecret/g" ./config.sh
-sed -i "" "s/__ORG__/$ORG/g" ./config.sh
-sed -i "" "s/__ENV__/$ENV/g" ./config.sh
+sed -i "" "s/__KEY__/$apikey/g" ./edge.sh
+sed -i "" "s/__SECRET__/$apisecret/g" ./edge.sh
+sed -i "" "s/__ORG__/$ORG/g" ./edge.sh
+sed -i "" "s/__ENV__/$ENV/g" ./edge.sh
 sed -i "" "s/__ADMINEMAIL__/$ADMIN_EMAIL/g" ./usergrid.sh
 sed -i "" "s/__APW__/$APW/g" ./usergrid.sh
 
@@ -209,7 +210,7 @@ echo "Finally, this setup is complete. Have fun by visiting: http://${ORG}-${ENV
 cp ../accounts/config.orig ../accounts/config.json
 cp ../accounts-connector/config.orig ../accounts-connector/config.json
 
-cp ./config.orig ./config.sh
+cp ./edge.orig ./edge.sh
 cp ./usergrid.orig ./usergrid.sh
 
 

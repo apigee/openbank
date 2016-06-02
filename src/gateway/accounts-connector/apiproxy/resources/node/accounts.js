@@ -1,11 +1,10 @@
 var request = require('request');
 var apigee = require('apigee-access');
-var config = require("./config.js");
-
-var basePath = config.host + '/' + config.org + '/' + config.app;
 
 function getAccountDetails(req, callback) {
     var accountNumber = req.params.accountNumber;
+
+    var basePath = apigee.getVariable(req, 'appBasePath');
 
     var options = {
         url: basePath + "/accounts/" + accountNumber,
@@ -55,6 +54,8 @@ exports.getAccountsOfCustomer = function (req, res) {
 
     var customerId = req.query.customerId;
     console.log(customerId);
+
+    var basePath = apigee.getVariable(req, 'appBasePath');
 
     var options = {
         url: basePath + "/accounts",
@@ -107,6 +108,8 @@ exports.getAccountBalance = function (req, res) {
 exports.getAccountTransaction = function (req, res) {
     var accountNumber = req.params.accountNumber;
     var transactionId = req.params.transactionId;
+
+    var basePath = apigee.getVariable(req, 'appBasePath');
 
     var options = {
         url: basePath + "/accounts/" + accountNumber + "/transactions",

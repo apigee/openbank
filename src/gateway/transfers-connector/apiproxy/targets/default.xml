@@ -15,6 +15,6 @@
         <Response/>
     </PostFlow>
     <HTTPTargetConnection>
-        <URL>https://api.usergrid.com/psubrahmanyam/everydaybank1/transactions</URL>
+        <URL>https://api.usergrid.com/__APPORG__/__APPAPP__/transactions</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

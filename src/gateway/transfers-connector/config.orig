@@ -10,7 +10,7 @@
                     "tokens": [
                         {
                             "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/psubrahmanyam/apisbank/transactions"
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
                         }
                     ]
                 }
@@ -26,7 +26,7 @@
                     "tokens": [
                         {
                             "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/psubrahmanyam/apisbank/transactions"
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
                         }
                     ]
                 }
@@ -42,7 +42,7 @@
                     "tokens": [
                         {
                             "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/psubrahmanyam/apisbank/transactions"
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
                         }
                     ]
                 }

@@ -2,35 +2,92 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="156ff6bb-745b-4568-9c3d-1724e810d200" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/config.js.orig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/authentication-connector/apiproxy/targets/default.xml.orig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/targets/default.xml.orig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/policies/Assign.TargetURL.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/config.orig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/policies/Assign.TargetURL.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/locations.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/locations-connector/config.orig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/locations/apiproxy/policies/Extract.RequestLocationParams.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/locations/apiproxy/policies/Fault.InvalidQueryParams.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/oauth/config.orig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/setup/data/accounts.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/setup/data/customers.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/setup/data/locations.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/transfers-connector/config.orig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gateway/transfers/config.orig" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/config.js.orig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/resources/node/config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/atms-connector_rev1_2016_05_11.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/atms_rev1_2016_05_11.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/authentication-connector/apiproxy/targets/default.xml.orig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/bank-accounts_rev6_2016_04_29.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/bank-transfer-consent-app_rev1_2016_04_29.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/bank-transfers-initiate_rev1_2016_04_29.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/bank-transfers_rev1_2016_04_29.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/branches-connector_rev1_2016_05_11.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/branches_rev1_2016_05_11.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/atms.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/oauth/config.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/oidc-auth-api_rev1_2016_04_29.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/oidc-authentication-api_rev1_2016_04_29.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/oidc-consent-app_rev2_2016_04_29.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/oidc-txsession_rev1_2016_04_29.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/targets/default.xml.orig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-connector/config.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Assign-JWT-Payload.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Assign-Message-Replace-result.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Assign.TransferDetails.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Callout-Add-transaction-to-account.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Error-Response-Invalid-Session.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Extract-Application-Session-information.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Extract-Transaction-Id.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Extract-Transaction-session-id.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Fault.BadScope.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Get-Application-Attributes.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Get-Application-Session.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Jsc.VerifyScope.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/OAuth.InvalidateAccessToken.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/OAuth.VerifyAccessToken.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/proxies/default.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/resources/jsc/extract.application.session.data-1.0.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/resources/jsc/verify-scope.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/targets/default.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/transfers.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/transfers/config.json" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gateway/setup/config.orig" afterPath="$PROJECT_DIR$/src/gateway/setup/edge.orig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gateway/setup/config.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/edge.sh" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/policies/Jsc.SetConnectorURL.xml" afterPath="$PROJECT_DIR$/src/gateway/locations/apiproxy/policies/Jsc.SetConnectorURL.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/apiproxy/resources/jsc/SetConnectorURL.js" afterPath="$PROJECT_DIR$/src/gateway/locations/apiproxy/resources/jsc/SetConnectorURL.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gateway/transfers-old/config.json" afterPath="$PROJECT_DIR$/src/gateway/authentication-connector/config.orig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/resources/node/node_modules.zip" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/resources/node/node_modules.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/config.js" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/resources/node/config.js" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/resources/node/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts/apiproxy/policies/OAuth.VerifyAccessToken.xml" afterPath="$PROJECT_DIR$/src/gateway/accounts/apiproxy/policies/OAuth.VerifyAccessToken.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/accounts/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/proxies/default.xml" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/proxies/default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/accounts.js" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/accounts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/config.json" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/config.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/proxies/default.xml" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/proxies/default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/resources/node/accounts.js" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/resources/node/accounts.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/authentication-connector/apiproxy/targets/default.xml" afterPath="$PROJECT_DIR$/src/gateway/authentication-connector/apiproxy/targets/default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/authentication-connector/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/authentication-connector/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/views/layout.hbs" afterPath="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/views/layout.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/consent-app-transfers/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/consent-app-transfers/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/views/layout.hbs" afterPath="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/views/layout.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/consent-app/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/consent-app/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/config.js" afterPath="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/locations-connector/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/locations-connector/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/locations/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/locations/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/oauth/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/oauth/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/authentication-connector/config.json" afterPath="$PROJECT_DIR$/src/gateway/authentication-connector/config.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/deploy.sh" afterPath="$PROJECT_DIR$/src/gateway/deploy.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/proxies/default.xml" afterPath="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/proxies/default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/app.js" afterPath="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/locations-connector/config.json" afterPath="$PROJECT_DIR$/src/gateway/locations-connector/config.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/locations/apiproxy/proxies/default.xml" afterPath="$PROJECT_DIR$/src/gateway/locations/apiproxy/proxies/default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/locations/apiproxy/targets/default.xml" afterPath="$PROJECT_DIR$/src/gateway/locations/apiproxy/targets/default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Assign.RedirectConsentApp.xml" afterPath="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Assign.RedirectConsentApp.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/parent-pom/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/parent-pom/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/session/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/session/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/config.orig" afterPath="$PROJECT_DIR$/src/gateway/setup/config.orig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/config.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/config.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/usergrid.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/usergrid.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/sms-token/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/sms-token/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/setup.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/setup.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" afterPath="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/targets/confirmation.xml" afterPath="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/targets/confirmation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/targets/default.xml" afterPath="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/targets/default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/sms-token/config.json" afterPath="$PROJECT_DIR$/src/gateway/sms-token/config.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/targets/default.xml" afterPath="$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/targets/default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/transfers-connector/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/transfers-connector/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/transfers/pom.xml" afterPath="$PROJECT_DIR$/src/gateway/transfers/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/transfers/apiproxy/policies/Assign.RedirectConsentApp.xml" afterPath="$PROJECT_DIR$/src/gateway/transfers/apiproxy/policies/Assign.RedirectConsentApp.xml" />
     </list>
     <ignored path="Banking.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,50 +107,7 @@
     <favorites_list name="Banking" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="construct.response-1.0.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/resources/jsc/construct.response-1.0.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="generate.jws-1.0.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/resources/jsc/generate.jws-1.0.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="92" column="54" selection-start-line="92" selection-start-column="54" selection-end-line="92" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OAuth.VerifyAccessToken.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gateway/accounts/apiproxy/policies/OAuth.VerifyAccessToken.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/gateway/parent-pom/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="94" column="36" selection-start-line="94" selection-start-column="36" selection-end-line="94" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -108,43 +122,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/controllers/stepsProcess.js" />
-        <option value="$PROJECT_DIR$/src/gateway/authentication-connector/apiproxy/policies/Assign-Customer-Info-Response.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/views/consent.hbs" />
-        <option value="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/views/verify_otp.hbs" />
-        <option value="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/views/verify_otp.hbs" />
-        <option value="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/controllers/consent.js" />
-        <option value="$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/policies/Jsc.AssignTransferStatus.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/authentication-connector/apiproxy/policies/Extract-Customer-Response.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/accounts.js" />
-        <option value="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/controllers/otp.js" />
-        <option value="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Security-Generate-Access-Token.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/OAuth.GenerateAccessTokenCC.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/OAuth.GenerateAccessTokenCode.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Security-Refresh-token.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Assign.TokenResponseCC.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Assign.TokenResponse.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/oauth/apiproxy/proxies/default.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/controllers/otp.js" />
-        <option value="$PROJECT_DIR$/src/gateway/atms/pom.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/branches/pom.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/branches-connector/pom.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/atms-connector/pom.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/atms/apiproxy/policies/OAuth.VerifyAccessToken.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/atms/apiproxy/proxies/default.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/branches/apiproxy/proxies/default.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/atms/apiproxy/targets/default.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/branches/apiproxy/targets/default.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/locations/pom.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/locations-connector/pom.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/proxies/default.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/setup/setup.sh" />
-        <option value="$PROJECT_DIR$/src/gateway/session/apiproxy/proxies/default.xml" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/gateway/locations/apiproxy/proxies/default.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/deploy.sh" />
-        <option value="$PROJECT_DIR$/src/gateway/locations/apiproxy/targets/default.xml" />
-        <option value="$PROJECT_DIR$/src/gateway/locations/apiproxy/policies/OAuth.VerifyAccessToken.xml" />
         <option value="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Extract.TransactionConfirmation.xml" />
         <option value="$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/policies/Extract.TransactionDetails.xml" />
         <option value="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Extract.TransactionDetails.xml" />
@@ -152,15 +129,56 @@
         <option value="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/config.json" />
         <option value="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/config.json" />
         <option value="$PROJECT_DIR$/src/gateway/session/apiproxy/resources/jsc/extract.application.session.data-1.0.js" />
-        <option value="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/targets/confirmation.xml" />
         <option value="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/proxies/default.xml" />
         <option value="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Assign.TransferConfirmationPayload.xml" />
         <option value="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/views/consent.hbs" />
         <option value="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/controllers/consent.js" />
         <option value="$PROJECT_DIR$/src/gateway/accounts/apiproxy/policies/OAuth.VerifyAccessToken.xml" />
         <option value="$PROJECT_DIR$/src/gateway/parent-pom/pom.xml" />
+        <option value="$PROJECT_DIR$/src/utils/package.json" />
+        <option value="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/atms.js" />
+        <option value="$PROJECT_DIR$/src/utils/cleanup_locations.js" />
+        <option value="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/config.js" />
+        <option value="$PROJECT_DIR$/src/gateway/locations/apiproxy/policies/Extract.RequestLocationParams.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/locations/apiproxy/policies/Fault.InvalidQueryParams.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/locations/apiproxy/resources/jsc/SetConnectorURL.js" />
+        <option value="$PROJECT_DIR$/src/gateway/locations/apiproxy/proxies/default.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/locations/apiproxy/targets/default.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/setup/data/customers.json" />
+        <option value="$PROJECT_DIR$/src/gateway/setup/data/accounts.json" />
+        <option value="$PROJECT_DIR$/src/gateway/setup/data/locations.json" />
+        <option value="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/config.js" />
+        <option value="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/proxies/default.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/accounts-connector/config.json" />
+        <option value="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/accounts.js" />
+        <option value="$PROJECT_DIR$/src/gateway/authentication-connector/config.json" />
+        <option value="$PROJECT_DIR$/src/gateway/authentication-connector/config.orig" />
+        <option value="$PROJECT_DIR$/src/gateway/authentication-connector/apiproxy/targets/default.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/proxies/default.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/app.js" />
+        <option value="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/locations.js" />
+        <option value="$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Assign.RedirectConsentApp.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/policies/Assign.TargetURL.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/transfers/apiproxy/policies/Assign.RedirectConsentApp.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/oauth/config.json" />
+        <option value="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/targets/default.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/targets/confirmation.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/sms-token/config.json" />
+        <option value="$PROJECT_DIR$/src/gateway/transfers/config.json" />
+        <option value="$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/targets/default.xml" />
+        <option value="$PROJECT_DIR$/src/gateway/transfers-connector/config.json" />
+        <option value="$PROJECT_DIR$/src/gateway/deploy.sh" />
+        <option value="$PROJECT_DIR$/src/gateway/setup/edge.sh" />
+        <option value="$PROJECT_DIR$/src/gateway/setup/edge.orig" />
+        <option value="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" />
+        <option value="$PROJECT_DIR$/src/gateway/setup/setup.sh" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
+  </component>
+  <component name="JsBowerSettings">
+    <exe-path>$USER_HOME$/.nvm/versions/node/v5.4.0/bin/bower</exe-path>
+    <config-path />
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
   <component name="JsBuildToolPackageJson" detection-done="true" />
@@ -171,6 +189,37 @@
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="804" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>DOM issuesJavaScript</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>Node.jsJavaScript</id>
+          </State>
+          <State>
+            <id>XPath</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -197,8 +246,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -217,33 +264,204 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transfers-connector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transfers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transfers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apiproxy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="setup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oauth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.XML" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v5.4.0/bin/node" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v5.4.0/bin/node" />
+    <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v6.2.0/bin/node" />
+    <property name="javascript.nodejs.core.library.configured.version" value="6.2.0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="134" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="151" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="155" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="949" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="146" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="147" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="151" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="945" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/gateway/locations-connector" />
+      <recent name="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy" />
+      <recent name="$PROJECT_DIR$/src/gateway/authentication-connector" />
+      <recent name="$PROJECT_DIR$/src/gateway/accounts-connector" />
+      <recent name="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/resources/jsc" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies" />
-      <recent name="$PROJECT_DIR$/src/gateway/sms-token/apiproxy/targets" />
-      <recent name="$PROJECT_DIR$/src/gateway/branches/apiproxy" />
-      <recent name="$PROJECT_DIR$/src/gateway/atms/apiproxy/policies" />
-      <recent name="$PROJECT_DIR$/src/gateway/branches-connector" />
-    </key>
   </component>
-  <component name="RunManager" selected="Node.js.app.js">
+  <component name="RunManager" selected="Node.js.app.js (1)">
     <configuration default="false" name="app.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="app.js" working-dir="$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node">
+      <method />
+    </configuration>
+    <configuration default="false" name="cleanup_locations.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="cleanup_locations.js" working-dir="$PROJECT_DIR$/src/utils">
+      <method />
+    </configuration>
+    <configuration default="false" name="app.js (1)" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="app.js" working-dir="$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node">
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -304,12 +522,16 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <list size="1">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Node.js.app.js" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.cleanup_locations.js" />
+      <item index="2" class="java.lang.String" itemvalue="Node.js.app.js (1)" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.app.js" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.app.js (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.cleanup_locations.js" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.app.js" />
       </list>
     </recent_temporary>
   </component>
@@ -330,7 +552,8 @@
       <workItem from="1462905696216" duration="18709000" />
       <workItem from="1463590627252" duration="643000" />
       <workItem from="1463993973072" duration="1217000" />
-      <workItem from="1464069570289" duration="187000" />
+      <workItem from="1464069570289" duration="2244000" />
+      <workItem from="1464237367980" duration="22354000" />
     </task>
     <task id="LOCAL-00001" summary="don't use older baas data for account and customer info">
       <created>1462905894948</created>
@@ -392,28 +615,28 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68422000" />
+    <option name="totallyTimeSpent" value="92833000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="804" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25440452" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3300562" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286517" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3300562" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286517" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286517" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3988764" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959327" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913166" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3988764" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -435,204 +658,260 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/utils/cleanup_locations.js</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gateway/setup/setup.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="203" column="7" selection-start-line="203" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/deploy.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.orig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/sms-token.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/controllers/consent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="113" column="37" selection-start-line="113" selection-start-column="37" selection-end-line="113" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/policies/Extract.TransactionDetails.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="59" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/routes/consent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Assign-SMS-Token-validation-response.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Assign-Twilio-SMS-Payload.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Error-Invalid-identifier.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Error-Invalid-SMS-OTP.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Ext-Generate-Token.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Extract.TransactionDetails.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Extract-Identifier.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Lookup-Cache-SMS-OTP-Cache.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/set-success-token-response.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Populate-Cache-SMS-OTP-Cache.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/verify-api-key.xml">
+    <entry file="file://$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/config.orig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/resources/jsc/generate.token.js">
+    <entry file="file://$PROJECT_DIR$/src/gateway/authentication-connector/apiproxy/targets/default.xml.orig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/resources/jsc/token.js">
+    <entry file="file://$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/accounts-connector/config.orig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/resources/jsc/generate.jws-1.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/setup/resources/application-session-cache.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/authentication-connector/apiproxy/authentication-connector.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/accounts/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/authentication-connector/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/locations/apiproxy/targets/default.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/proxies/default.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="9" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/accounts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/proxies/default.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/config.json">
+    <entry file="file://$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/policies/Assign.TargetURL.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="41" column="18" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/controllers/otp.js">
+    <entry file="file://$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/targets/default.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        <state relative-caret-position="272">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/transfers/apiproxy/policies/Assign.RedirectConsentApp.xml">
+    <entry file="file://$PROJECT_DIR$/src/gateway/locations-connector/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/accounts-connector/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-124">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/locations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Assign.TokenResponse.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/policies/Assign.TargetURL.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/policies/Assign.RedirectConsentApp.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/transfers/apiproxy/proxies/default.xml">
+    <entry file="file://$PROJECT_DIR$/src/gateway/session/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/proxies/default.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        <state relative-caret-position="357">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gateway/session/apiproxy/policies/Assign-TransactionInfo-response.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="72" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="72" />
+        <state relative-caret-position="187">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/session/apiproxy/policies/Extract-Transaction-session-id.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/session/apiproxy/resources/jsc/extract.application.session.data-1.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/proxies/default.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/targets/default.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        <state relative-caret-position="187">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -640,165 +919,166 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/config.json">
+    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/sms-token.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="38" column="37" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+        <state relative-caret-position="374">
+          <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/controllers/index.js">
+    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+        <state relative-caret-position="-328">
+          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/src/gateway/oauth/config.orig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        <state relative-caret-position="29">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-591">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/controllers/consent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="162" column="2" selection-start-line="162" selection-start-column="2" selection-end-line="162" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/views/consent.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="37" column="128" selection-start-line="37" selection-start-column="128" selection-end-line="37" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/session/apiproxy/proxies/default.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/session/apiproxy/resources/jsc/extract.application.session.data-1.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/proxies/default.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/sms-token/apiproxy/policies/Assign.TransferConfirmationPayload.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/resources/jsc/validate.request-1.0.js">
+    <entry file="file://$PROJECT_DIR$/src/gateway/transfers/apiproxy/transfers.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
-          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/resources/jsc/validate.other.parameters-1.0.js">
+    <entry file="file://$PROJECT_DIR$/src/gateway/transfers/config.orig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
+        <state relative-caret-position="454">
+          <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/resources/jsc/jws.initialization-1.0.js">
+    <entry file="file://$PROJECT_DIR$/src/gateway/transfers/apiproxy/policies/Assign.RedirectConsentApp.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        <state relative-caret-position="323">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/resources/jsc/jsrsasign-4.8.0-all-min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="83" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/accounts-connector/apiproxy/resources/node/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/locations-connector/apiproxy/resources/node/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/resources/jsc/construct.response-1.0.js">
+    <entry file="file://$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/targets/default.xml.orig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/oauth/apiproxy/resources/jsc/generate.jws-1.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="92" column="54" selection-start-line="92" selection-start-column="54" selection-end-line="92" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/accounts/apiproxy/policies/OAuth.VerifyAccessToken.xml">
+    <entry file="file://$PROJECT_DIR$/src/gateway/transfers-connector/config.orig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/authentication-connector/config.orig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="32" selection-start-line="0" selection-start-column="0" selection-end-line="51" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/authentication-connector/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/parent-pom/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/gateway/authentication-connector/apiproxy/targets/default.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="94" column="36" selection-start-line="94" selection-start-column="36" selection-end-line="94" selection-end-column="36" />
+        <state relative-caret-position="238">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/transfers-connector/apiproxy/targets/default.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="72" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/deploy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/setup/setup.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.orig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/setup/edge.orig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/setup/edge.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/transfers-connector/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
           <folding />
         </state>
       </provider>

@@ -1,0 +1,399 @@
+[
+  {
+    "name": "1",
+    "address": "185 Baker Street, London",
+    "location": {
+      "latitude": "51.5222966",
+      "longitude": "-0.157872"
+    },
+    "resources": {
+      "atm": false,
+      "branch": true
+    }
+  },
+  {
+    "name": "2",
+    "address": "125 Camden High Street, London",
+    "location": {
+      "latitude": "51.5374316",
+      "longitude": "-0.1416069"
+    },
+    "resources": {
+      "atm": false,
+      "branch": true
+    }
+  },
+  {
+    "name": "3",
+    "address": "3-5 Whitechapel Road, London",
+    "location": {
+      "latitude": "51.51630919999999",
+      "longitude": "-0.0694683"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "64c895fa-1211-11e6-aa03-8579dbe7f2a8",
+    "type": "location",
+    "name": "4",
+    "created": 1462377659599,
+    "modified": 1464670795081,
+    "address": "464, 504 Old Kent Road, London",
+    "location": {
+      "latitude": "51.4847033",
+      "longitude": "-0.0699537"
+    },
+    "metadata": {
+      "path": "/locations/64c895fa-1211-11e6-aa03-8579dbe7f2a8"
+    },
+    "resources": {
+      "atm": false,
+      "branch": true
+    }
+  },
+  {
+    "uuid": "8802fcea-1211-11e6-b740-bb80704396e2",
+    "type": "location",
+    "name": "5",
+    "created": 1462377718702,
+    "modified": 1464670795111,
+    "address": "289 High Holborn, Chancery Lane, London",
+    "location": {
+      "latitude": "51.5180117",
+      "longitude": "-0.1151668"
+    },
+    "metadata": {
+      "path": "/locations/8802fcea-1211-11e6-b740-bb80704396e2"
+    },
+    "resources": {
+      "atm": false,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "a887448a-1211-11e6-af15-9b2b6cad7e36",
+    "type": "location",
+    "name": "6",
+    "created": 1462377773256,
+    "modified": 1464670795110,
+    "address": "60 Fenchurch Street, London",
+    "location": {
+      "latitude": "51.51216580000001",
+      "longitude": "-0.079607"
+    },
+    "metadata": {
+      "path": "/locations/a887448a-1211-11e6-af15-9b2b6cad7e36"
+    },
+    "resources": {
+      "atm": false,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "c49630aa-1211-11e6-a6e8-eb0733f586d5",
+    "type": "location",
+    "name": "7",
+    "created": 1462377820330,
+    "modified": 1464670795099,
+    "address": "440 Strand, London",
+    "location": {
+      "latitude": "51.508996",
+      "longitude": "-0.125162"
+    },
+    "metadata": {
+      "path": "/locations/c49630aa-1211-11e6-a6e8-eb0733f586d5"
+    },
+    "resources": {
+      "atm": true,
+      "branch": true
+    }
+  },
+  {
+    "uuid": "df50fe7a-1211-11e6-a4a7-e7d5c3545751",
+    "type": "location",
+    "name": "8",
+    "created": 1462377865175,
+    "modified": 1464670795107,
+    "address": "32 City Road, London",
+    "location": {
+      "latitude": "51.52270559999999",
+      "longitude": "-0.08743909999999998"
+    },
+    "metadata": {
+      "path": "/locations/df50fe7a-1211-11e6-a4a7-e7d5c3545751"
+    },
+    "resources": {
+      "atm": true,
+      "branch": true
+    }
+  },
+  {
+    "uuid": "5ae335da-1212-11e6-9c2d-316b14ce546c",
+    "type": "location",
+    "name": "9",
+    "created": 1462378072493,
+    "modified": 1464670795083,
+    "address": "100 Liverpool Street, London",
+    "location": {
+      "latitude": "51.5177707",
+      "longitude": "-0.08743909999999998"
+    },
+    "metadata": {
+      "path": "/locations/5ae335da-1212-11e6-9c2d-316b14ce546c"
+    },
+    "resources": {
+      "atm": false,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "bd662c8a-1212-11e6-ac03-2f818c6d236e",
+    "type": "location",
+    "name": "10",
+    "created": 1462378237768,
+    "modified": 1464670795108,
+    "address": "32 City Road, London",
+    "location": {
+      "latitude": "51.52270559999999",
+      "longitude": "-0.08743909999999998"
+    },
+    "metadata": {
+      "path": "/locations/bd662c8a-1212-11e6-ac03-2f818c6d236e"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "da25cb0a-1212-11e6-a67c-99e5a9534c5a",
+    "type": "location",
+    "name": "11",
+    "created": 1462378286000,
+    "modified": 1464670795081,
+    "address": "Victoria House, Southampton Row, London",
+    "location": {
+      "latitude": "51.518999",
+      "longitude": "-0.1214489"
+    },
+    "metadata": {
+      "path": "/locations/da25cb0a-1212-11e6-a67c-99e5a9534c5a"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "f72383fa-1212-11e6-876d-87f3c8be01d8",
+    "type": "location",
+    "name": "12",
+    "created": 1462378334639,
+    "modified": 1464670795093,
+    "address": "Yorkshire House, 200 Strand, London",
+    "location": {
+      "latitude": "51.51292590000001",
+      "longitude": "-0.1133644"
+    },
+    "metadata": {
+      "path": "/locations/f72383fa-1212-11e6-876d-87f3c8be01d8"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "0f7d304a-1213-11e6-861b-b93304e8c456",
+    "type": "location",
+    "name": "13",
+    "created": 1462378375492,
+    "modified": 1464670795072,
+    "address": "32 Cornmarket Street, Oxford",
+    "location": {
+      "latitude": "51.75388359999999",
+      "longitude": "-1.2589411"
+    },
+    "metadata": {
+      "path": "/locations/0f7d304a-1213-11e6-861b-b93304e8c456"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "261863c4-1213-11e6-a4e0-091665256311",
+    "type": "location",
+    "name": "14",
+    "created": 1462378413419,
+    "modified": 1464670795086,
+    "address": "87 London Road, Oxford",
+    "location": {
+      "latitude": "51.7600296",
+      "longitude": "-1.2123181"
+    },
+    "metadata": {
+      "path": "/locations/261863c4-1213-11e6-a4e0-091665256311"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "4021bbda-1213-11e6-acfa-2776fe07298a",
+    "type": "location",
+    "name": "15",
+    "created": 1462378457101,
+    "modified": 1464670795129,
+    "address": "105 London Road, Oxford",
+    "location": {
+      "latitude": "51.7602856",
+      "longitude": "-1.2112659"
+    },
+    "metadata": {
+      "path": "/locations/4021bbda-1213-11e6-acfa-2776fe07298a"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "5b1b6774-1213-11e6-b927-21baa9c26283",
+    "type": "location",
+    "name": "16",
+    "created": 1462378502358,
+    "modified": 1464670795103,
+    "address": "54 Cornmarket Street, Oxford",
+    "location": {
+      "latitude": "51.7525987",
+      "longitude": "-1.2583034"
+    },
+    "metadata": {
+      "path": "/locations/5b1b6774-1213-11e6-b927-21baa9c26283"
+    },
+    "resources": {
+      "atm": true,
+      "branch": true
+    }
+  },
+  {
+    "uuid": "748e24e4-1213-11e6-baec-0f368c96e4e6",
+    "type": "location",
+    "name": "17",
+    "created": 1462378545053,
+    "modified": 1464670795083,
+    "address": "65 Cornmarket Street, Oxford",
+    "location": {
+      "latitude": "51.752057",
+      "longitude": "-1.2579831"
+    },
+    "metadata": {
+      "path": "/locations/748e24e4-1213-11e6-baec-0f368c96e4e6"
+    },
+    "resources": {
+      "atm": false,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "8e34c38a-1213-11e6-8bfc-dfe9513fc2be",
+    "type": "location",
+    "name": "18",
+    "created": 1462378588088,
+    "modified": 1464670795095,
+    "address": "108 London Road, Oxford",
+    "location": {
+      "latitude": "51.7597298",
+      "longitude": "-1.2119392"
+    },
+    "metadata": {
+      "path": "/locations/8e34c38a-1213-11e6-8bfc-dfe9513fc2be"
+    },
+    "resources": {
+      "atm": true,
+      "branch": true
+    }
+  },
+  {
+    "uuid": "ab51762a-1213-11e6-8794-5d0748b9361f",
+    "type": "location",
+    "name": "19",
+    "created": 1462378636930,
+    "modified": 1464670795103,
+    "address": "1-5 High Street, Oxford",
+    "location": {
+      "latitude": "51.75210009999999",
+      "longitude": "-1.2576476"
+    },
+    "metadata": {
+      "path": "/locations/ab51762a-1213-11e6-8794-5d0748b9361f"
+    },
+    "resources": {
+      "atm": false,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "c2fe67ba-1213-11e6-a812-0f02cd1462e8",
+    "type": "location",
+    "name": "20",
+    "created": 1462378676651,
+    "modified": 1464670795120,
+    "address": "121 High Street, Oxford",
+    "location": {
+      "latitude": "51.7520044",
+      "longitude": "-1.2556831"
+    },
+    "metadata": {
+      "path": "/locations/c2fe67ba-1213-11e6-a812-0f02cd1462e8"
+    },
+    "resources": {
+      "atm": true,
+      "branch": true
+    }
+  },
+  {
+    "uuid": "db3a79ea-1213-11e6-b378-4b4d397de72a",
+    "type": "location",
+    "name": "21",
+    "created": 1462378717310,
+    "modified": 1464670795086,
+    "address": "Prama House, 267 Banbury Road, Oxford",
+    "location": {
+      "latitude": "51.7789454",
+      "longitude": "-1.2657953"
+    },
+    "metadata": {
+      "path": "/locations/db3a79ea-1213-11e6-b378-4b4d397de72a"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    }
+  },
+  {
+    "uuid": "f1426e0a-1213-11e6-a5e2-fb2da15efdcd",
+    "type": "location",
+    "name": "22",
+    "created": 1462378754272,
+    "modified": 1464670795091,
+    "address": "Templars Square, 4 Pound Way, Oxford",
+    "location": {
+      "latitude": "51.7321912",
+      "longitude": "-1.2180381"
+    },
+    "metadata": {
+      "path": "/locations/f1426e0a-1213-11e6-a5e2-fb2da15efdcd"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    }
+  }
+]

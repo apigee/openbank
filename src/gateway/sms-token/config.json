@@ -1,22 +1,79 @@
 {
-    "configurations": [
+  "configurations": [
+    {
+      "name": "dev",
+      "policies": [],
+      "proxies": [],
+      "targets": [
         {
-            "name": "dev",
-            "policies": [],
-            "proxies": [],
-            "targets": []
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "https://rest.nexmo.com/sms/json"
+            }
+          ]
         },
         {
-            "name": "test",
-            "policies": [],
-            "proxies": [],
-            "targets": []
-        },
-        {
-            "name": "prod",
-            "policies": [],
-            "proxies": [],
-            "targets": []
+          "name": "confirmation.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "https://rest.nexmo.com/sms/json"
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "name": "test",
+      "policies": [],
+      "proxies": [],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "https://rest.nexmo.com/sms/json"
+            }
+          ]
+        },
+        {
+          "name": "confirmation.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "https://rest.nexmo.com/sms/json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "prod",
+      "policies": [],
+      "proxies": [],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "https://rest.nexmo.com/sms/json"
+            }
+          ]
+        },
+        {
+          "name": "confirmation.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "https://rest.nexmo.com/sms/json"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

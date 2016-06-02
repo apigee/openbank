@@ -1,4 +1,7 @@
 /src/gateway/*.zip
+config.json
+edge.sh
+usergrid.sh
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template

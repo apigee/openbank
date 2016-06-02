@@ -9,7 +9,7 @@
         <Response/>
     </PreFlow>
     <HTTPTargetConnection>
-        <URL>https://rest.nexmo.com/sms/json</URL>
+        <URL>https://[to_be_replaced]</URL>
     </HTTPTargetConnection>
     <PostFlow name="PostFlow">
         <Request/>
