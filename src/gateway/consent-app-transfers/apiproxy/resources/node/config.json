@@ -5,56 +5,56 @@
     "header_background_color": "#FFF"
   },
   "consentTransaction": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/session/transactions/",
+    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/session/transactions/",
     "method": "GET",
     "headers": {
-      "x-apikey": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
+      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
     }
   },
   "authenticationTransaction": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/connector/v1/authenticate",
+    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/connector/v1/authenticate",
     "method": "POST",
     "headers": {
-      "x-apikey": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
+      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
     }
   },
   "accessTokenTransaction": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/apis/v1/transfers/authorized/transactions/",
+    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/apis/v1/transfers/authorized/transactions/",
     "method": "POST",
     "headers": {
-      "x-apikey": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
+      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
     }
   },
   "transferTransaction": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/apis/v1/transfers/complete/",
+    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/apis/v1/transfers/complete/",
     "method": "POST",
     "headers": {
       "Authorization": "Bearer "
     }
   },
   "generateOtp": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
+      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
     }
   },
   "validateOtp": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
+      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
     }
   },
   "sendConfirmationSMS": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/apis/v1/sms/confirmation/",
+    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/sms/confirmation/",
     "method": "POST",
     "headers": {
-      "x-apikey": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
+      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
     }
   },
   "getAccounts": {
-    "transactionEndpoint": "https://apis-bank-dev.apigee.net/internal/connector/v1/accounts",
+    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/connector/v1/accounts",
     "method": "GET",
     "headers": null
   },

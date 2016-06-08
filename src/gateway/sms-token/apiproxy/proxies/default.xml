@@ -4,7 +4,7 @@
         <Request>
             <Step>
                 <FaultRules/>
-                <Name>verify-api-key</Name>
+                <Name>Verify.ConsentAppAPIKey</Name>
             </Step>
         </Request>
         <Response/>

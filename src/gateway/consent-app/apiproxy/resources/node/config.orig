@@ -5,42 +5,42 @@
     "header_background_color": "#FFF"
   },
   "consentTransaction": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/session/transactions/",
+    "transactionEndpoint": "https://__HOST__/internal/apis/v1/session/transactions/",
     "method": "GET",
     "headers": {
-      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
+      "x-apikey": "__APIINTKEY__"
     }
   },
   "authenticationTransaction": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/connector/v1/authenticate",
+    "transactionEndpoint": "https://__HOST__/internal/connector/v1/authenticate",
     "method": "POST",
     "headers": {
-      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
+      "x-apikey": "__APIINTKEY__"
     }
   },
   "accessTokenTransaction": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/apis/v1/oauth/authorized/transactions/",
+    "transactionEndpoint": "https://__HOST__/apis/v1/oauth/authorized/transactions/",
     "method": "POST",
     "headers": {
-      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
+      "x-apikey": "__APIINTKEY__"
     }
   },
-  "generateOtp": {w
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/sms/otp/",
+  "generateOtp": {
+    "transactionEndpoint": "https://__HOST__/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
+      "x-apikey": "__APIINTKEY__"
     }
   },
   "validateOtp": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "https://__HOST__/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": ""7NTWW9ZfjliSrHjLEyq4Uit8zDG7h0LG""
+      "x-apikey": "__APIINTKEY__"
     }
   },
   "getAccounts": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/connector/v1/accounts",
+    "transactionEndpoint": "https://__HOST__/internal/connector/v1/accounts",
     "method": "GET",
     "headers": null
   },

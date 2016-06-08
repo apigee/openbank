@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
 # Revert to original, if we have ever changed these files ...
-cp ../accounts/config.orig ../accounts/config.json
-cp ../accounts-connector/config.orig ../accounts-connector/config.json
-
 cp ./edge.orig ./edge.sh
 cp ./usergrid.orig ./usergrid.sh
 
@@ -91,125 +88,37 @@ if [ -z "${APW}" ]; then
     read -s -r APW
 fi
 
+echo "Enter Apigee App services org, followed by [ENTER]:"
+read UGORG
+
+echo "Enter Application Name , followed by [ENTER]:"
+read UGAPP
+
+echo ""
 HOST=$ORG-$ENV.apigee.net
 echo $HOST
 
-### Delete Resources First ###
 
-echo `date`": Deleting Cache Resources, Please hang On !!"
-echo ""
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/environments/${ENV}/caches/consent-session-cache" 1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/environments/${ENV}/caches/application-session-cache" 1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/environments/${ENV}/caches/nonce-cache" 1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/environments/${ENV}/caches/sms-token-cache" 1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-### End - Delete Resources ###
+### Create pre-requisite resources ###
+. ./cache.sh
+. ./usergrid.sh
+. ./resources.sh
 
 
-### Create Cache Resources Now ###
-
-echo `date`": Creating Cache Resources, Please hang On !!"
-echo ""
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T ./resources/consent-session-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T ./resources/application-session-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T ./resources/nonce-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T ./resources/sms-token-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-### End - Create Cache Resources ###
-
-
-### Delete App Resources ###
-
-echo `date`": Deleting Developer, Product, App ; Please hang On !!"
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/developers/user@identity.com"  1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/apiproducts/identityproduct"  1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/developers/user@identity.com/apps/IdentityApp"  1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-### End - Delete App Resources ###
-
-
-### Create App Resources Now ###
-echo `date`": Creating Developer, Product, App ; Please hang On !!"
-
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/developers" -H "Content-Type: application/json" -d '{"email":"user@identity.com", "firstName":"Identity","lastName":"User","userName":"iuser"}' 1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/apiproducts" -H "Content-Type: application/json" -d '{"approvalType":"auto", "displayName":"Identity App Product","name":"identityproduct","environments":["test","prod"],"scopes" : [ "openid", "accounts"]}' 1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-callback_url=http://$HOST/identity_app/callback
-app_data="{\"name\":\"IdentityApp\", \"callbackUrl\":\"${callback_url}\"}"
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/developers/user@identity.com/apps" -H "Content-Type: application/json" -d "$app_data" `
-echo "${SETUP_RESULT}"
-
-apikey=${SETUP_RESULT#*consumerKey*:}
-apikey=`echo ${apikey%,*consumerSecret*} | tr -d ' '`
-apisecret=${SETUP_RESULT#*consumerSecret*:}
-apisecret=`echo ${apisecret%,*expiresAt*} | tr -d ' '`
-echo "Generated API Key: ${apikey}"
-echo "Generated API Secret: ${apisecret}"
-echo ""
-
-ckey=`echo ${apikey} | tr -d '"'`
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/developers/user@identity.com/apps/IdentityApp/keys/${ckey}" -H "Content-Type: application/xml" -d '<CredentialRequest><ApiProducts><ApiProduct>identityproduct</ApiProduct></ApiProducts></CredentialRequest>' `
-echo "${SETUP_RESULT}"
-
-sed -i "" "s/__KEY__/$apikey/g" ./edge.sh
-sed -i "" "s/__SECRET__/$apisecret/g" ./edge.sh
-sed -i "" "s/__ORG__/$ORG/g" ./edge.sh
-sed -i "" "s/__ENV__/$ENV/g" ./edge.sh
-sed -i "" "s/__ADMINEMAIL__/$ADMIN_EMAIL/g" ./usergrid.sh
-sed -i "" "s/__APW__/$APW/g" ./usergrid.sh
-
-### End - Create App Resources ###
-
-echo "Calling usergrid.sh ==> for Usergrid dependencies. Hold tight, for some more time."
-echo
-echo "I promise, we'll have a gala time together ..."
-
-sh ./usergrid.sh
+### Deploy APIs
+sed -i "" "s/__UGORG__/$ORG/g" ./edge.sh
+. ./edge.sh
 
 cd ../parent-pom/
 mvn clean install -Dusername=${ADMIN_EMAIL} -Dpassword=${APW} -Dorg=${ORG} -P${ENV}
 
-echo "Finally, this setup is complete. Have fun by visiting: http://${ORG}-${ENV}.apigee.net/identity_app/index"
+### Create post-deployment resources ###
+cd setup
+. ./products.sh
+
+echo "Finally, the setup is complete. Have fun using the APIs"
 
 # Revert to original, if we have ever changed these files ...
-cp ../accounts/config.orig ../accounts/config.json
-cp ../accounts-connector/config.orig ../accounts-connector/config.json
-
 cp ./edge.orig ./edge.sh
 cp ./usergrid.orig ./usergrid.sh
 

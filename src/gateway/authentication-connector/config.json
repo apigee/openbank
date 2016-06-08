@@ -10,7 +10,7 @@
           "tokens": [
             {
               "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
-              "value": "https://api.usergrid.com/psubrahmanyam/apisbank/customers/{customerNumber}"
+              "value": "https://api.usergrid.com/apisdeploytest/apisbank3/customers/{customerNumber}"
             }
           ]
         }
@@ -20,13 +20,33 @@
       "name": "test",
       "policies": [],
       "proxies": [],
-      "targets": []
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "https://api.usergrid.com/apisdeploytest/apisbank3/customers/{customerNumber}"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "prod",
       "policies": [],
       "proxies": [],
-      "targets": []
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "https://api.usergrid.com/apisdeploytest/apisbank3/customers/{customerNumber}"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

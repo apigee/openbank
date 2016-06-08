@@ -123,6 +123,9 @@
             <Description/>
             <Request>
                 <Step>
+                    <Name>Verify.ConsentAppAPIKey</Name>
+                </Step>
+                <Step>
                     <Name>Extract-Transaction-session-id</Name>
                 </Step>
                 <Step>
@@ -169,6 +172,9 @@
         <Flow name="authorized">
             <Description/>
             <Request>
+                <Step>
+                    <Name>Verify.ConsentAppAPIKey</Name>
+                </Step>
                 <Step>
                     <Name>Extract-Transaction-session-id</Name>
                 </Step>
