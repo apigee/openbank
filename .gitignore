@@ -1,5 +1,4 @@
 /src/gateway/*.zip
-/.idea
 config.json
 edge.sh
 usergrid.sh
