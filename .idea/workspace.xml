@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="156ff6bb-745b-4568-9c3d-1724e810d200" name="Default" comment="deploy script&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/resources/node/node_modules.zip" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/target/apiproxy/resources/node/node_modules.zip" />
+    <list default="true" id="156ff6bb-745b-4568-9c3d-1724e810d200" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/accounts-connector/config.json" afterPath="$PROJECT_DIR$/src/gateway/accounts-connector/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/authentication-connector/config.json" afterPath="$PROJECT_DIR$/src/gateway/authentication-connector/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/config.json" afterPath="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/config.json" afterPath="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/locations-connector/config.json" afterPath="$PROJECT_DIR$/src/gateway/locations-connector/config.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/edge.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/edge.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" afterPath="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/transfers-connector/config.json" afterPath="$PROJECT_DIR$/src/gateway/transfers-connector/config.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/products.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/products.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/usergrid.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/usergrid.sh" />
     </list>
     <ignored path="Banking.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="usergrid.orig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="usergrid.orig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.orig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+            <state relative-caret-position="306">
+              <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -82,10 +76,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="products.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="products.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gateway/setup/products.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="347">
               <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
@@ -155,9 +149,9 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/gateway/setup/cache.sh" />
         <option value="$PROJECT_DIR$/src/gateway/setup/setup.sh" />
-        <option value="$PROJECT_DIR$/src/gateway/setup/products.sh" />
         <option value="$PROJECT_DIR$/src/gateway/setup/usergrid.sh" />
         <option value="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" />
+        <option value="$PROJECT_DIR$/src/gateway/setup/products.sh" />
       </list>
     </option>
   </component>
@@ -470,7 +464,7 @@
       <workItem from="1464069570289" duration="2244000" />
       <workItem from="1464237367980" duration="38304000" />
       <workItem from="1465445654677" duration="2267000" />
-      <workItem from="1465451039806" duration="370000" />
+      <workItem from="1465451039806" duration="871000" />
     </task>
     <task id="LOCAL-00001" summary="don't use older baas data for account and customer info">
       <created>1462905894948</created>
@@ -563,11 +557,18 @@
       <option name="project" value="LOCAL" />
       <updated>1465365097736</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="deploy script&#10;">
+      <created>1465451535010</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1465451535010</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111420000" />
+    <option name="totallyTimeSpent" value="111921000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="804" extended-state="6" />
@@ -576,7 +577,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25440452" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3300562" sideWeight="0.5024665" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32913166" sideWeight="0.49753347" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3300562" sideWeight="0.49753347" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286517" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -943,14 +944,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/setup/products.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -961,8 +954,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.orig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+        <state relative-caret-position="306">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/setup/products.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
