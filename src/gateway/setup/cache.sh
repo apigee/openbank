@@ -2,7 +2,7 @@
 
 ### Delete Resources First ###
 
-echo curl -u \"${ADMIN_EMAIL}:${APW}\" -X DELETE \"${URI}/v1/o/${ORG}/environments/${ENV}/caches/consent-session-cache\"
+#echo curl -u \"${ADMIN_EMAIL}:${APW}\" -X DELETE \"${URI}/v1/o/${ORG}/environments/${ENV}/caches/consent-session-cache\"
 
 echo `date`": Deleting Cache Resources, Please hang On !!"
 echo ""

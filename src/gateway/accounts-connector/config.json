@@ -8,7 +8,7 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/AssignVariable/Value",
-                            "value": "https://api.usergrid.com/apisdeploytest/apisbank3"
+                            "value": "https://api.usergrid.com/apisdeploytest/apisbank2"
                         }
                     ]
                 }
@@ -24,7 +24,7 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/AssignVariable/Value",
-                            "value": "https://api.usergrid.com/apisdeploytest/apisbank3"
+                            "value": "https://api.usergrid.com/apisdeploytest/apisbank2"
                         }
                     ]
                 }
@@ -40,7 +40,7 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/AssignVariable/Value",
-                            "value": "https://api.usergrid.com/apisdeploytest/apisbank3"
+                            "value": "https://api.usergrid.com/apisdeploytest/apisbank2"
                         }
                     ]
                 }

@@ -10,7 +10,7 @@
           "tokens": [
             {
               "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
-              "value": "https://api.usergrid.com/apisdeploytest/apisbank3/customers/{customerNumber}"
+              "value": "https://api.usergrid.com/apisdeploytest/apisbank2/customers/{customerNumber}"
             }
           ]
         }
@@ -26,7 +26,7 @@
           "tokens": [
             {
               "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
-              "value": "https://api.usergrid.com/apisdeploytest/apisbank3/customers/{customerNumber}"
+              "value": "https://api.usergrid.com/apisdeploytest/apisbank2/customers/{customerNumber}"
             }
           ]
         }
@@ -42,7 +42,7 @@
           "tokens": [
             {
               "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
-              "value": "https://api.usergrid.com/apisdeploytest/apisbank3/customers/{customerNumber}"
+              "value": "https://api.usergrid.com/apisdeploytest/apisbank2/customers/{customerNumber}"
             }
           ]
         }

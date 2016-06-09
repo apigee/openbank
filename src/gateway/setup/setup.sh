@@ -94,6 +94,12 @@ read UGORG
 echo "Enter Application Name , followed by [ENTER]:"
 read UGAPP
 
+echo "Enter Org Client ID, followed by [ENTER]:"
+read UGCLIENTID
+
+echo "Enter Org Client Secret, followed by [ENTER]:"
+read UGCLIENTSECRET
+
 echo ""
 HOST=$ORG-$ENV.apigee.net
 echo $HOST
@@ -113,7 +119,7 @@ cd ../parent-pom/
 mvn clean install -Dusername=${ADMIN_EMAIL} -Dpassword=${APW} -Dorg=${ORG} -P${ENV}
 
 ### Create post-deployment resources ###
-cd setup
+cd ../setup
 . ./products.sh
 
 echo "Finally, the setup is complete. Have fun using the APIs"

@@ -6,7 +6,7 @@ auth=`echo ${apikey}:${apisecret} | base64`
 host=$ORG-$ENV.apigee.net
 #appkey=__UGKEY__
 #appsecret=__UGSECRET__
-#apporg=apisdeploytest
+#apporg=__UGORG__
 #appapp=__UGAPP__
 #apiintkey=__INTKEY__
 
