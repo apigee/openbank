@@ -13,7 +13,7 @@ echo "Fetching App Services Token, to login ..."
 token=`curl -X POST ${UGURI}/management/token  -d '{"grant_type":"client_credentials", "client_id": "'${UGCLIENTID}'", "client_secret": "'${UGCLIENTSECRET}'"}' | sed 's/.*access_token\"\:\"\(.*\)\"\,\"expires_in.*/\1/'`
 
 echo "Create App Services Application: ${UGAPP}, with Token: ${token}"
-`curl -X POST ${UGURI}/management/orgs/${UGORG}/apps?access_token=${token} -d '{"name":"'${UGAPP}'"}'`
+curl -X POST ${UGURI}/management/orgs/${UGORG}/apps?access_token=${token} -d '{"name":"'${UGAPP}'"}'
 
 creds=`curl -X POST ${UGURI}/management/orgs/${UGORG}/apps/${UGAPP}/credentials?access_token="${token}" | sed 's/}//'`
 echo "Got App Services Credentials for the App, that was created above: ${creds}"

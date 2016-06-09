@@ -8,21 +8,21 @@
     "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/session/transactions/",
     "method": "GET",
     "headers": {
-      "x-apikey": "ZoGASisKLlGT759UkUFP2MMyTVvftrO1"
+      "x-apikey": "Uze5QYJrndot9bZx5kGuqLAeg4oza8hO"
     }
   },
   "authenticationTransaction": {
     "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/connector/v1/authenticate",
     "method": "POST",
     "headers": {
-      "x-apikey": "ZoGASisKLlGT759UkUFP2MMyTVvftrO1"
+      "x-apikey": "Uze5QYJrndot9bZx5kGuqLAeg4oza8hO"
     }
   },
   "accessTokenTransaction": {
     "transactionEndpoint": "https://apisdeploytest-test.apigee.net/apis/v1/transfers/authorized/transactions/",
     "method": "POST",
     "headers": {
-      "x-apikey": "ZoGASisKLlGT759UkUFP2MMyTVvftrO1"
+      "x-apikey": "Uze5QYJrndot9bZx5kGuqLAeg4oza8hO"
     }
   },
   "transferTransaction": {
@@ -36,21 +36,21 @@
     "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": "ZoGASisKLlGT759UkUFP2MMyTVvftrO1"
+      "x-apikey": "Uze5QYJrndot9bZx5kGuqLAeg4oza8hO"
     }
   },
   "validateOtp": {
     "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": "ZoGASisKLlGT759UkUFP2MMyTVvftrO1"
+      "x-apikey": "Uze5QYJrndot9bZx5kGuqLAeg4oza8hO"
     }
   },
   "sendConfirmationSMS": {
     "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/sms/confirmation/",
     "method": "POST",
     "headers": {
-      "x-apikey": "ZoGASisKLlGT759UkUFP2MMyTVvftrO1"
+      "x-apikey": "Uze5QYJrndot9bZx5kGuqLAeg4oza8hO"
     }
   },
   "getAccounts": {

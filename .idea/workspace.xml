@@ -9,12 +9,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/config.json" afterPath="$PROJECT_DIR$/src/gateway/consent-app-transfers/apiproxy/resources/node/config.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/config.json" afterPath="$PROJECT_DIR$/src/gateway/consent-app/apiproxy/resources/node/config.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/locations-connector/config.json" afterPath="$PROJECT_DIR$/src/gateway/locations-connector/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/cache.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/cache.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/edge.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/edge.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/products.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/products.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/setup.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/setup.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" afterPath="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/usergrid.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/usergrid.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/transfers-connector/config.json" afterPath="$PROJECT_DIR$/src/gateway/transfers-connector/config.json" />
     </list>
     <ignored path="Banking.iws" />
@@ -39,8 +35,8 @@
       <file leaf-file-name="usergrid.orig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.orig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+            <state relative-caret-position="442">
+              <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -474,7 +470,7 @@
       <workItem from="1464069570289" duration="2244000" />
       <workItem from="1464237367980" duration="38304000" />
       <workItem from="1465445654677" duration="2267000" />
-      <workItem from="1465451039806" duration="4000" />
+      <workItem from="1465451039806" duration="370000" />
     </task>
     <task id="LOCAL-00001" summary="don't use older baas data for account and customer info">
       <created>1462905894948</created>
@@ -571,16 +567,16 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111054000" />
+    <option name="totallyTimeSpent" value="111420000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="804" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25440452" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25440452" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3300562" sideWeight="0.5024665" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913166" sideWeight="0.49753347" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32913166" sideWeight="0.49753347" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286517" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -965,8 +961,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.orig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+        <state relative-caret-position="442">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
           <folding />
         </state>
       </provider>
