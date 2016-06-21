@@ -5,9 +5,6 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>OAuth.VerifyAccessToken</Name>
-            </Step>
-            <Step>
                 <Name>Extract.RequestLocationParams</Name>
             </Step>
             <Step>
