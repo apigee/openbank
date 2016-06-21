@@ -87,9 +87,14 @@ function getLocations(token, cursor, locations) {
                 delete location.type;
                 delete location.uuid;
 
-                location.resources = {
-                    atm: (Math.random() * 10) > 4,
-                    branch: (Math.random() * 10) < 4
+                location.access = {
+                    wheelchair: (Math.random() * 10) > 3
+                };
+
+                location.currency = ['EUR', 'GBP'][Math.random() * 10 > 5 ? 0 : 1];
+                location.timings = {
+                    opensAt: Math.floor(Math.random() * 4 + 06) * 100 + Math.floor(Math.random() * 10 > 5 ? 0 : 30),
+                    closesAt: Math.floor(Math.random() * 6 + 17) * 100 + Math.floor(Math.random() * 10 > 5 ? 0 : 30)
                 };
 
                 locations.push(location);

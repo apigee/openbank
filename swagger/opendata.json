@@ -24,7 +24,7 @@
   "paths": {
     "/atms": {
       "get": {
-        "description": "<p>Returns a list of ATMs with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitide, zipcode and radius of search.</p>",
+        "description": "<p>Returns a list of ATMs with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitide and radius of search.</p>",
         "summary": "List of atms",
         "operationId": "atms",        
         "tags": [
@@ -48,7 +48,7 @@
         "parameters": [
           {
             "in": "query",
-            "name": "lat",
+            "name": "latitude",
             "description": "Latitude of the place around which you want to find ATMs. If latitude is provided, longitude must also be provided.",
             "type": "string",
             "required": false

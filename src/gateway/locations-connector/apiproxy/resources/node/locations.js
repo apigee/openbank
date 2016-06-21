@@ -35,15 +35,33 @@ function getLocations(resType, req, callback) {
 
     console.log(options.qs.ql);
 
+    if (req.query.wheelchair) {
+        options.qs.ql += ' and access.wheelchair = true'
+    }
+
+    if (req.query.currency) {
+        options.qs.ql += " and currency = '" + req.query.currency + "'";
+    }
+
+    if (req.query.openAt) {
+        options.qs.ql += " and timings.opensAt <= " + req.query.openAt
+            + " timings.closesAt >= " + req.query.openAt;
+    }
+
     request(options, function (err, resp, body) {
         var data = [];
 
         if (!err && resp.statusCode == 200 && body.entities) {
             for (var i = 0; i < body.entities.length; i++) {
-                data.push({
-                    address: body.entities[i].address,
-                    location: body.entities[i].location
-                });
+                var entity = body.entities[i];
+
+                delete entity.uuid;
+                delete entity.type;
+                delete entity.metadata;
+                delete entity.created;
+                delete entity.modified;
+
+                data.push(entity);
             }
         }
 
