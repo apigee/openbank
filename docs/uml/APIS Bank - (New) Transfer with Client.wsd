@@ -1,0 +1,65 @@
+Title APIS Bank - (New) Transfer with Client
+
+note over User,User Agent,Merchant,PISP,Bank (Consent App),Bank (Edge),Bank (Core Banking): Initialize all actors
+
+User->Merchant: Add product to Cart
+User->+Merchant: Checkout and Select PISP + Bank
+Merchant->+PISP: Initiate Payment API Call (txn details in JWT)
+note right of Merchant
+    + how is the transfer detail coming from Merchant to PISP?
+    + what are the security aspects and will our solution be invovled here?
+end note
+PISP->Bank (Edge): authenticate Client (2-way SSL + client_creds + txn JWT)
+Bank (Edge)->Bank (Edge): validate client + JWT
+Bank (Edge)->+Bank (Edge): Create Session (txn details)
+Bank (Edge)->Bank (Edge): generate transfer_reference
+Bank (Edge)-->PISP: redirect (Bank (Consent App) + transfer_reference)
+PISP-->User Agent: redirect (Bank (Consent App) + transfer_reference)
+User Agent->Bank (Consent App): Open consent app (transfer_reference)
+Bank (Consent App)->+Bank (Consent App): New Session (transfer_reference)
+Bank (Consent App)-->User Agent: login page
+User-->User Agent: Authenticate (username + password)
+User Agent->Bank (Consent App): Authenticate
+Bank (Consent App)->Bank (Core Banking): Authenticate
+Bank (Core Banking)-->Bank (Consent App): <success>
+Bank (Consent App)-->User Agent: require 2-factor Auth
+User-->User Agent: 2-factor Auth (mobile number)
+User-->User Agent: 2-factor Auth (OTP)
+User Agent->Bank (Consent App): complete 2-factor Auth
+Bank (Consent App)->Bank (Core Banking): Get Accounts
+opt
+    Bank (Core Banking)->Bank (Core Banking): get account balance
+end
+Bank (Core Banking)-->Bank (Consent App): account details
+Bank (Consent App)-->User Agent: accounts + consent page
+User-->User Agent: Provide consent on account
+User Agent->Bank (Consent App): Consent + Account
+Bank (Consent App)->-Bank (Consent App): Destroy session
+Bank (Consent App)->Bank (Edge): Do Transaction (transfer_reference)
+note left of Bank (Edge)
+    + should the Bank (Consent App) post the transaction?
+    + maybe a strong authentication is needed to post transaction
+    + a hacker that gets the transfer_reference can post transaction even if user did not provide consent
+    + do transaction API is internal and whitelist protected
+end note
+opt
+    Bank (Edge)->Bank (Core Banking): Sufficient Balance?
+    Bank (Core Banking)-->Bank (Edge): <success>
+end
+Bank (Edge)->Bank (Edge): retrieve txn details
+Bank (Edge)->Bank (Core Banking): Do Transaction
+Bank (Core Banking)->Bank (Core Banking): Balance Check etc.
+Bank (Core Banking)-->Bank (Edge): [transaction_ids]
+Bank (Edge)->-Bank (Edge): Destroy Session
+Bank (Edge)-->PISP: transfer_reference + status
+PISP-->-Merchant: <payment confirmation>
+Merchant-->-User: <purchase confirmation>
+
+alt View Transaction Status post Transfer
+    User->PISP: View Transaction status
+    PISP->Bank (Edge): GET Details (transfer_reference)
+    Bank (Edge)->Bank (Core Banking): GET Details (transaction_id)
+    Bank (Core Banking)-->Bank (Edge): <response>
+    Bank (Edge)-->PISP: <response>
+    PISP-->User: <transaction details>
+end

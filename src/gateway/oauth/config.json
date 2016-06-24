@@ -8,7 +8,7 @@
           "tokens": [
             {
               "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
-              "value": "https://apis-bank-dev.apigee.net/internal/consent?sessionid={messageid}"
+              "value": "https://apisdeploytest-test.apigee.net/internal/consent?sessionid={messageid}"
             }
           ]
         }
@@ -18,13 +18,33 @@
     },
     {
       "name": "test",
-      "policies": [],
+      "policies": [
+        {
+          "name": "Assign.RedirectConsentApp.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+              "value": "https://apisdeploytest-test.apigee.net/internal/consent?sessionid={messageid}"
+            }
+          ]
+        }
+      ],
       "proxies": [],
       "targets": []
     },
     {
       "name": "prod",
-      "policies": [],
+      "policies": [
+        {
+          "name": "Assign.RedirectConsentApp.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+              "value": "https://apisdeploytest-test.apigee.net/internal/consent?sessionid={messageid}"
+            }
+          ]
+        }
+      ],
       "proxies": [],
       "targets": []
     }

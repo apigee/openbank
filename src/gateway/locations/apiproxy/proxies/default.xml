@@ -5,7 +5,11 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>OAuth.VerifyAccessToken</Name>
+                <Name>Extract.RequestLocationParams</Name>
+            </Step>
+            <Step>
+                <Name>Fault.InvalidQueryParams</Name>
+                <Condition>(latitude != null and longitude == null) or (latitude == null and longitude != null) or (latitude == null and longitude == null and radius != null)</Condition>
             </Step>
         </Request>
         <Response/>

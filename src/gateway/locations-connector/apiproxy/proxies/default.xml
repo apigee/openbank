@@ -3,7 +3,11 @@
     <Description/>
     <FaultRules/>
     <PreFlow name="PreFlow">
-        <Request/>
+        <Request>
+            <Step>
+                <Name>Assign.TargetURL</Name>
+            </Step>
+        </Request>
         <Response/>
     </PreFlow>
     <PostFlow name="PostFlow">

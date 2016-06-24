@@ -1,0 +1,52 @@
+{
+    "configurations": [
+        {
+            "name": "dev",
+            "policies": [],
+            "proxies": [],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "test",
+            "policies": [],
+            "proxies": [],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "prod",
+            "policies": [],
+            "proxies": [],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

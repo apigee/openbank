@@ -13,6 +13,9 @@
         <Variable name="account_number">
             <JSONPath>$.entities[0].account_number</JSONPath>
         </Variable>
+        <Variable name="transfer_reference">
+            <JSONPath>$.entities[0].transfer_reference</JSONPath>
+        </Variable>
     </JSONPayload>
     <Source clearPayload="false">response</Source>
 </ExtractVariables>

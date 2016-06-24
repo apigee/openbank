@@ -11,6 +11,6 @@
         <Response/>
     </PostFlow>
     <HTTPTargetConnection>
-        <URL>https://api.usergrid.com/psubrahmanyam/everydaybank1/customers/{customerNumber}</URL>
+        <URL>https://[to_be_replaced]</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

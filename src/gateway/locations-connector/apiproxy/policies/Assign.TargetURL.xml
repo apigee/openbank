@@ -1,0 +1,8 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign.TargetURL">
+    <AssignTo createNew="false" transport="http" type="request"/>
+    <AssignVariable>
+        <Name>appBasePath</Name>
+        <Value>[to_be_replaced]</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

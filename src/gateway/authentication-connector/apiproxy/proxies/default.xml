@@ -4,7 +4,7 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>Security-Verify-API-Key</Name>
+                <Name>Verify.ConsentAppAPIKey</Name>
             </Step>
             <Step>
                 <Name>Extract-Username</Name>

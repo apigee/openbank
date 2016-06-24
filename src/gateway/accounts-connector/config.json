@@ -2,19 +2,49 @@
     "configurations": [
         {
             "name": "dev",
-            "policies": [],
+            "policies": [
+                {
+                    "name": "Assign.TargetURL.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable/Value",
+                            "value": "https://api.usergrid.com/apisdeploytest/apisbank22"
+                        }
+                    ]
+                }
+            ],
             "proxies": [],
             "targets": []
         },
         {
             "name": "test",
-            "policies": [],
+            "policies": [
+                {
+                    "name": "Assign.TargetURL.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable/Value",
+                            "value": "https://api.usergrid.com/apisdeploytest/apisbank22"
+                        }
+                    ]
+                }
+            ],
             "proxies": [],
             "targets": []
         },
         {
             "name": "prod",
-            "policies": [],
+            "policies": [
+                {
+                    "name": "Assign.TargetURL.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable/Value",
+                            "value": "https://api.usergrid.com/apisdeploytest/apisbank22"
+                        }
+                    ]
+                }
+            ],
             "proxies": [],
             "targets": []
         }

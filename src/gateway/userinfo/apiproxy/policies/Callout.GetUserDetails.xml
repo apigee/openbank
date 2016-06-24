@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="Callout.GetUserDetails">
+    <DisplayName>Callout.GetUserDetails</DisplayName>
+    <Properties/>
+    <Request clearPayload="true">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>getUserDetailsResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://api.usergrid.com/psubrahmanyam/apisbank/customers/{accesstoken.sub}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

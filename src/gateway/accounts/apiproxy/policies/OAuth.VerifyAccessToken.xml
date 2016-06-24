@@ -6,7 +6,7 @@
     <ExternalAuthorization>false</ExternalAuthorization>
     <Operation>VerifyAccessToken</Operation>
     <AccessToken>request.header.Authorization</AccessToken>
-    <AccessTokenPrefix>Bearer</AccessTokenPrefix>    
+    <AccessTokenPrefix>Bearer</AccessTokenPrefix>
     <GenerateResponse enabled="true"/>
     <Tokens/>
 </OAuthV2>

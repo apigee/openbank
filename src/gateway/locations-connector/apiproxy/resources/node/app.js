@@ -1,13 +1,12 @@
 var express = require('express');
 var app = express();
 
-var atms = require("./atms.js");
+var locations = require('./locations.js');
 
-
-app.get('/atms', atms.getAtms);
-app.get('/branches', atms.getAtms);
+app.get('/atms', locations.getAtms);
+app.get('/branches', locations.getBranches);
 
 
 app.listen(3000, function () {
-  console.log('App listening on port 3000!');
+    console.log('App listening on port 3000!');
 });

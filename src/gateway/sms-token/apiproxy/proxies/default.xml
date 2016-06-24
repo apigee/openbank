@@ -4,7 +4,7 @@
         <Request>
             <Step>
                 <FaultRules/>
-                <Name>verify-api-key</Name>
+                <Name>Verify.ConsentAppAPIKey</Name>
             </Step>
         </Request>
         <Response/>
@@ -31,7 +31,7 @@
                     <Name>set-success-token-response</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/sms/{identifier}") and (request.verb = "POST")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/otp/{identifier}") and (request.verb = "POST")</Condition>
         </Flow>
         <Flow name="Verify SMS Token">
             <Description/>
@@ -52,15 +52,39 @@
                     <Name>Assign-SMS-Token-validation-response</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/sms/{identifier}/{token}") and (request.verb = "POST")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/otp/{identifier}/{token}") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Confirm Transaction">
+            <Request>
+                <Step>
+                    <Name>Extract-Identifier</Name>
+                </Step>
+                <Step>
+                    <Condition>identifier = "undefined" or identifier = null or identifier = ""</Condition>
+                    <Name>Error-Invalid-identifier</Name>
+                </Step>
+                <Step>
+                    <Name>Extract.TransactionDetails</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>set-success-token-response</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/confirmation/{identifier}") and (request.verb = "POST")</Condition>
         </Flow>
     </Flows>
     <HTTPProxyConnection>
-        <BasePath>/internal/apis/v1/otp</BasePath>
+        <BasePath>/internal/apis/v1/sms</BasePath>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
+    <RouteRule name="confirmation">
+        <Condition>(proxy.pathsuffix MatchesPath "/confirmation/{identifier}") and (request.verb = "POST")</Condition>
+        <TargetEndpoint>confirmation</TargetEndpoint>
+    </RouteRule>
     <RouteRule name="default">
-        <Condition>token = "undefined" or token = null or token = ""</Condition>
+        <Condition>(proxy.pathsuffix MatchesPath "/otp/{identifier}") and (request.verb = "POST")</Condition>
         <TargetEndpoint>default</TargetEndpoint>
     </RouteRule>
     <RouteRule name="nullTarget"/>

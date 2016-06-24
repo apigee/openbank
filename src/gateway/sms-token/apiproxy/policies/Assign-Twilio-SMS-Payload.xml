@@ -5,8 +5,8 @@
     <Set>
         <Headers/>
         <QueryParams>
-            <QueryParam name="api_key">xxxxxx</QueryParam>
-            <QueryParam name="api_secret">xxxxxx</QueryParam>
+            <QueryParam name="api_key">e13274cf</QueryParam>
+            <QueryParam name="api_secret">16a9fca3</QueryParam>
             <QueryParam name="to">{identifier}</QueryParam>
             <QueryParam name="text">Your Apigee Digital Bank code:{token_challenge}. Valid for 5 minutes.</QueryParam>
             <QueryParam name="from">Apigee</QueryParam>

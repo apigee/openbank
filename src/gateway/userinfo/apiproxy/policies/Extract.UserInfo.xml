@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract.UserInfo">
+    <DisplayName>Extract.UserInfo</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+     <JSONPayload>
+        <Variable name="uuid">
+            <JSONPath>$.entities[0].uuid</JSONPath>
+        </Variable>
+      	<Variable name="given_name">
+            <JSONPath>$.entities[0].given_name</JSONPath>
+        </Variable>
+      	<Variable name="middle_name">
+            <JSONPath>$.entities[0].middle_name</JSONPath>
+        </Variable>
+      	<Variable name="family_name">
+            <JSONPath>$.entities[0].family_name</JSONPath>
+        </Variable>
+      	<Variable name="phone_number">
+            <JSONPath>$.entities[0].phone</JSONPath>
+        </Variable>
+      	<Variable name="formatted">
+            <JSONPath>$.entities[0].formatted</JSONPath>
+        </Variable>
+      	<Variable name="street_address">
+            <JSONPath>$.entities[0].street_address</JSONPath>
+        </Variable>
+      	<Variable name="locality">
+            <JSONPath>$.entities[0].locality</JSONPath>
+        </Variable>
+      	<Variable name="postal_code">
+            <JSONPath>$.entities[0].postal_code</JSONPath>
+        </Variable>
+      	<Variable name="direct_marketing">
+            <JSONPath>$.entities[0].direct_marketing</JSONPath>
+        </Variable>
+        <Variable name="gender">
+            <JSONPath>$.entities[0].gender</JSONPath>
+        </Variable>
+      	<Variable name="birthdate">
+            <JSONPath>$.entities[0].birthdate</JSONPath>
+        </Variable>
+      	<Variable name="email">
+            <JSONPath>$.entities[0].gender</JSONPath>
+        </Variable>
+      	<Variable name="customer_number">
+            <JSONPath>$.entities[0].customer_number</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">getUserDetailsResponse</Source>
+</ExtractVariables>

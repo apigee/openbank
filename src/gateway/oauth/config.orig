@@ -1,0 +1,52 @@
+{
+  "configurations": [
+    {
+      "name": "dev",
+      "policies": [
+        {
+          "name": "Assign.RedirectConsentApp.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+              "value": "https://__HOST__/internal/consent?sessionid={messageid}"
+            }
+          ]
+        }
+      ],
+      "proxies": [],
+      "targets": []
+    },
+    {
+      "name": "test",
+      "policies": [],
+      "proxies": [
+        {
+          "name": "Assign.RedirectConsentApp.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+              "value": "https://__HOST__/internal/consent?sessionid={messageid}"
+            }
+          ]
+        }
+      ],
+      "targets": []
+    },
+    {
+      "name": "prod",
+      "policies": [],
+      "proxies": [
+        {
+          "name": "Assign.RedirectConsentApp.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+              "value": "https://__HOST__/internal/consent?sessionid={messageid}"
+            }
+          ]
+        }
+      ],
+      "targets": []
+    }
+  ]
+}
