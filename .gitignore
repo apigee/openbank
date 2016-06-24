@@ -42,3 +42,8 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 /src/utils/
+/src/gateway/deploy.sh
+src/analytics/
+src/gateway/sms-token/tests/
+src/java/
+src/portal/
