@@ -49,6 +49,12 @@ resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/customers/46582398/accounts/accoun
 resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/transactions?access_token="${token}"`
 echo "Status: Creating Transactions Collection:${resp}"
 
+resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/locations?access_token="${token}" -T ./data/locations.json -H "Content-Type: application/json" -H "Accept: application/json"`
+echo "Status: Creating Locations Collection:${resp}"
+
+resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/roles/guest/permissions?access_token="${token}" -H "Content-Type: application/json" -H "Accept: application/json" -d '{"permission":"post:/**","permission":"get:/**","permission":"put:/**","permission":"delete:/**"}'`
+echo "Status: Updating Roles:${resp}"
+
 #sed -i "" "s/__UGKEY__/$c_id/g" ./edge.sh
 #sed -i "" "s/__UGSECRET__/$sec/g" ./edge.sh
 #sed -i "" "s/__UGAPP__/$UGAPP/g" ./edge.sh

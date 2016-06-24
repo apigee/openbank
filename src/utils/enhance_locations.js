@@ -69,13 +69,13 @@ function getLocations(token, cursor, locations) {
                 var location = body.entities[i];
 
                 /*
-                if (!location.hasOwnProperty('lat') || !location.hasOwnProperty('long'))
-                    continue;
+                 if (!location.hasOwnProperty('lat') || !location.hasOwnProperty('long'))
+                 continue;
 
-                location.location = {
-                    latitude: location.lat,
-                    longitude: location.long
-                };
+                 location.location = {
+                 latitude: location.lat,
+                 longitude: location.long
+                 };
 
                  location.lat = null;
                  location.long = null;
@@ -85,17 +85,49 @@ function getLocations(token, cursor, locations) {
                 delete location.modified;
                 delete location.metadata;
                 delete location.type;
-                delete location.uuid;
+                // delete location.uuid;
 
-                location.access = {
-                    wheelchair: (Math.random() * 10) > 3
-                };
+                /*location.resources = {
+                    atm: (Math.random() * 10) > 4,
+                    branch: (Math.random() * 10) < 4
+                };*/
 
-                location.currency = ['EUR', 'GBP'][Math.random() * 10 > 5 ? 0 : 1];
-                location.timings = {
-                    opensAt: Math.floor(Math.random() * 4 + 06) * 100 + Math.floor(Math.random() * 10 > 5 ? 0 : 30),
-                    closesAt: Math.floor(Math.random() * 6 + 17) * 100 + Math.floor(Math.random() * 10 > 5 ? 0 : 30)
-                };
+
+                /*location.access = {
+                 wheelchair: (Math.random() * 10) > 3
+                 };
+
+                 location.currency = ['EUR', 'GBP'][Math.random() * 10 > 5 ? 0 : 1];
+                 location.timings = {
+                 opensAt: Math.floor(Math.random() * 4 + 06) * 100 + Math.floor(Math.random() * 10 > 5 ? 0 : 30),
+                 closesAt: Math.floor(Math.random() * 6 + 17) * 100 + Math.floor(Math.random() * 10 > 5 ? 0 : 30)
+                 };
+
+                 if (Math.random() * 10 >= 5 ) {
+                 location.timings = {
+                 opensAt: 0,
+                 closesAt: 2400
+                 }
+                 }*/
+
+                location.isWithdrawalCharged = Math.random() * 10 >= 7;
+                location.status = Math.random() * 10 >= 7 ? 'Offline' : 'Online';
+                location.statusMessage = location.status === 'Offline' ?
+                    ['out-of-service', 'out-of-money'][Math.random() * 10 > 5 ? 0 : 1] : "";
+
+                if (!isNaN(parseInt(location.name))) {
+                    var address = location.address.split(' ');
+                    if (isNaN(parseInt(address[0]))) {
+                        location.name = address[0];
+
+                        if (['Cornmarket', 'London', 'City'].indexOf(location.name) !== -1) {
+                            location.name += Math.floor(Math.random() * 999 + 1);
+                        }
+                    } else {
+                        location.name = address[1];
+                    }
+                }
+
 
                 locations.push(location);
             }
@@ -134,8 +166,8 @@ function saveLocations(data) {
         }
 
         Promise.map(locations, function (location) {
-                return updateLocation(token, location);
-            })
+            return updateLocation(token, location);
+        })
             .finally(function () {
                 resolve();
             });
@@ -147,7 +179,7 @@ function updateLocation(token, location) {
         console.log('saving locations ' + location.name);
 
         var options = {
-            uri: baasUrl + '/locations/' + location.name,
+            uri: baasUrl + '/locations/' + location.uuid,
             method: 'PUT',
             headers: {
                 'Authorization': 'Bearer ' + token

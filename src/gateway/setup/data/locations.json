@@ -1,399 +1,938 @@
 [
   {
-    "name": "1",
-    "address": "185 Baker Street, London",
-    "location": {
-      "latitude": "51.5222966",
-      "longitude": "-0.157872"
+    "uuid": "c7b5f2e0-378f-11e6-8a0c-af1a40afe802",
+    "type": "location",
+    "name": "Santander",
+    "created": 1466500135181,
+    "modified": 1466518436197,
+    "access": {
+      "wheelchair": true
     },
-    "resources": {
-      "atm": false,
-      "branch": true
-    }
-  },
-  {
-    "name": "2",
-    "address": "125 Camden High Street, London",
+    "address": "52-54 Gracechurch St, London EC3V 0EH",
+    "currency": "EUR",
+    "isWithdrawalCharged": false,
     "location": {
-      "latitude": "51.5374316",
-      "longitude": "-0.1416069"
+      "latitude": "51.5110743",
+      "longitude": "-0.0852906"
     },
-    "resources": {
-      "atm": false,
-      "branch": true
-    }
-  },
-  {
-    "name": "3",
-    "address": "3-5 Whitechapel Road, London",
-    "location": {
-      "latitude": "51.51630919999999",
-      "longitude": "-0.0694683"
+    "metadata": {
+      "path": "/locations/c7b5f2e0-378f-11e6-8a0c-af1a40afe802"
     },
     "resources": {
       "atm": true,
       "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 930,
+      "closesAt": 1930
     }
   },
   {
-    "uuid": "64c895fa-1211-11e6-aa03-8579dbe7f2a8",
+    "uuid": "c7b99c6a-378f-11e6-a13d-ff13c76eaede",
     "type": "location",
-    "name": "4",
-    "created": 1462377659599,
-    "modified": 1464670795081,
+    "name": "Halifax",
+    "created": 1466500135206,
+    "modified": 1466518436232,
+    "access": {
+      "wheelchair": false
+    },
+    "address": "50 Fenchurch St, London EC3M 3JY",
+    "currency": "EUR",
+    "isWithdrawalCharged": true,
+    "location": {
+      "latitude": "51.5117214",
+      "longitude": "-0.0808679"
+    },
+    "metadata": {
+      "path": "/locations/c7b99c6a-378f-11e6-a13d-ff13c76eaede"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
+    }
+  },
+  {
+    "uuid": "c7bd45ea-378f-11e6-b14b-13c61beab46c",
+    "type": "location",
+    "name": "ATM",
+    "created": 1466500135230,
+    "modified": 1466518436204,
+    "access": {
+      "wheelchair": true
+    },
+    "address": "39-41 Crutched Friars, London EC3N 2AE",
+    "currency": "GBP",
+    "isWithdrawalCharged": true,
+    "location": {
+      "latitude": "51.5113096",
+      "longitude": "-0.0787811"
+    },
+    "metadata": {
+      "path": "/locations/c7bd45ea-378f-11e6-b14b-13c61beab46c"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 700,
+      "closesAt": 2130
+    }
+  },
+  {
+    "uuid": "c7c0a14a-378f-11e6-ab17-47b91d04f59c",
+    "type": "location",
+    "name": "Barclays",
+    "created": 1466500135252,
+    "modified": 1466518436226,
+    "access": {
+      "wheelchair": false
+    },
+    "address": "114 Fenchurch St, London EC3M 5JT",
+    "currency": "EUR",
+    "isWithdrawalCharged": false,
+    "location": {
+      "latitude": "51.5123872",
+      "longitude": "-0.0797878"
+    },
+    "metadata": {
+      "path": "/locations/c7c0a14a-378f-11e6-ab17-47b91d04f59c"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 800,
+      "closesAt": 1800
+    }
+  },
+  {
+    "uuid": "c7c3fcaa-378f-11e6-af32-a3b481b0626f",
+    "type": "location",
+    "name": "Free Cash Machine Service",
+    "created": 1466500135274,
+    "modified": 1466518436198,
+    "access": {
+      "wheelchair": false
+    },
+    "address": "Berwin Leighton, Adelaide House, London, London Bridge EC4R 9HA",
+    "currency": "EUR",
+    "isWithdrawalCharged": false,
+    "location": {
+      "latitude": "51.5091936",
+      "longitude": "-0.0868681"
+    },
+    "metadata": {
+      "path": "/locations/c7c3fcaa-378f-11e6-af32-a3b481b0626f"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
+    }
+  },
+  {
+    "uuid": "c7c77f1a-378f-11e6-a599-81874de5d4fe",
+    "type": "location",
+    "name": "Sainsbury's",
+    "created": 1466500135297,
+    "modified": 1466518436201,
+    "access": {
+      "wheelchair": true
+    },
+    "address": "10-15 Lombard St, London EC3V 9AN",
+    "currency": "GBP",
+    "isWithdrawalCharged": false,
+    "location": {
+      "latitude": "51.5125435",
+      "longitude": "-0.0877078"
+    },
+    "metadata": {
+      "path": "/locations/c7c77f1a-378f-11e6-a599-81874de5d4fe"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
+    }
+  },
+  {
+    "uuid": "c7cb018a-378f-11e6-b6e4-d7651863e47e",
+    "type": "location",
+    "name": "Cashline",
+    "created": 1466500135320,
+    "modified": 1466518436204,
+    "access": {
+      "wheelchair": true
+    },
+    "address": "5/10 Great Tower St, London EC3R 5DJ",
+    "currency": "GBP",
+    "isWithdrawalCharged": false,
+    "location": {
+      "latitude": "51.5099815",
+      "longitude": "-0.0822524"
+    },
+    "metadata": {
+      "path": "/locations/c7cb018a-378f-11e6-b6e4-d7651863e47e"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    },
+    "status": "Offline",
+    "statusMessage": "out-of-money",
+    "timings": {
+      "opensAt": 700,
+      "closesAt": 1800
+    }
+  },
+  {
+    "uuid": "c7cde7ba-378f-11e6-9a7e-43cc29a2cc29",
+    "type": "location",
+    "name": "Nationwide Building Society",
+    "created": 1466500135339,
+    "modified": 1466518436262,
+    "access": {
+      "wheelchair": true
+    },
+    "address": "135 Fenchurch Street, EC3M 5DJ",
+    "currency": "GBP",
+    "isWithdrawalCharged": false,
+    "location": {
+      "latitude": "51.5121167",
+      "longitude": "-0.0819466"
+    },
+    "metadata": {
+      "path": "/locations/c7cde7ba-378f-11e6-9a7e-43cc29a2cc29"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    },
+    "status": "Offline",
+    "statusMessage": "out-of-service",
+    "timings": {
+      "opensAt": 900,
+      "closesAt": 1900
+    }
+  },
+  {
+    "uuid": "c7d1431a-378f-11e6-a05c-f71c92815339",
+    "type": "location",
+    "name": "M&S",
+    "created": 1466500135361,
+    "modified": 1466518436226,
+    "access": {
+      "wheelchair": true
+    },
+    "address": "168 Fenchurch Street, London EC3M 6DE",
+    "currency": "GBP",
+    "isWithdrawalCharged": false,
+    "location": {
+      "latitude": "51.5118479",
+      "longitude": "-0.0842061"
+    },
+    "metadata": {
+      "path": "/locations/c7d1431a-378f-11e6-a05c-f71c92815339"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    },
+    "status": "Offline",
+    "statusMessage": "out-of-money",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
+    }
+  },
+  {
+    "uuid": "c7d42954-378f-11e6-80aa-8d143f8ede5e",
+    "type": "location",
+    "name": "BBVA",
+    "created": 1466500135380,
+    "modified": 1466518436199,
+    "access": {
+      "wheelchair": true
+    },
+    "address": "30-40 Eastcheap, London EC3M 1HD",
+    "currency": "GBP",
+    "isWithdrawalCharged": true,
+    "location": {
+      "latitude": "51.5103719",
+      "longitude": "-0.0830286"
+    },
+    "metadata": {
+      "path": "/locations/c7d42954-378f-11e6-80aa-8d143f8ede5e"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 700,
+      "closesAt": 1900
+    }
+  },
+  {
+    "uuid": "ac9050ea-3835-11e6-aaf1-09be55daeabc",
+    "type": "location",
+    "name": "Baker Street",
+    "created": 1466571386094,
+    "modified": 1466571386094,
+    "access": {
+      "wheelchair": true
+    },
+    "address": "185 Baker Street, London",
+    "currency": "GBP",
+    "isWithdrawalCharged": true,
+    "location": {
+      "latitude": "51.5222966",
+      "longitude": "-0.157872"
+    },
+    "metadata": {
+      "path": "/locations/ac9050ea-3835-11e6-aaf1-09be55daeabc"
+    },
+    "resources": {
+      "atm": false,
+      "branch": true
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
+    }
+  },
+  {
+    "uuid": "ac9532ea-3835-11e6-97e1-8902ef85de35",
+    "type": "location",
+    "name": "Camden",
+    "created": 1466571386126,
+    "modified": 1466571386126,
+    "access": {
+      "wheelchair": false
+    },
+    "address": "125 Camden High Street, London",
+    "currency": "GBP",
+    "isWithdrawalCharged": true,
+    "location": {
+      "latitude": "51.5374316",
+      "longitude": "-0.1416069"
+    },
+    "metadata": {
+      "path": "/locations/ac9532ea-3835-11e6-97e1-8902ef85de35"
+    },
+    "resources": {
+      "atm": false,
+      "branch": true
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
+    }
+  },
+  {
+    "uuid": "ac99edda-3835-11e6-9af4-9979dcd3de38",
+    "type": "location",
+    "name": "Whitechapel",
+    "created": 1466571386157,
+    "modified": 1466571386157,
+    "access": {
+      "wheelchair": true
+    },
+    "address": "3-5 Whitechapel Road, London",
+    "currency": "EUR",
+    "isWithdrawalCharged": false,
+    "location": {
+      "latitude": "51.51630919999999",
+      "longitude": "-0.0694683"
+    },
+    "metadata": {
+      "path": "/locations/ac99edda-3835-11e6-9af4-9979dcd3de38"
+    },
+    "resources": {
+      "atm": true,
+      "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
+    }
+  },
+  {
+    "uuid": "ac9e5aaa-3835-11e6-a000-1fd61f06c282",
+    "type": "location",
+    "name": "Old Kent",
+    "created": 1466571386186,
+    "modified": 1466571386186,
+    "access": {
+      "wheelchair": true
+    },
     "address": "464, 504 Old Kent Road, London",
+    "currency": "EUR",
+    "isWithdrawalCharged": false,
     "location": {
       "latitude": "51.4847033",
       "longitude": "-0.0699537"
     },
     "metadata": {
-      "path": "/locations/64c895fa-1211-11e6-aa03-8579dbe7f2a8"
+      "path": "/locations/ac9e5aaa-3835-11e6-a000-1fd61f06c282"
     },
     "resources": {
       "atm": false,
       "branch": true
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 630,
+      "closesAt": 2100
     }
   },
   {
-    "uuid": "8802fcea-1211-11e6-b740-bb80704396e2",
+    "uuid": "aca363ba-3835-11e6-b11a-877c6a3feefc",
     "type": "location",
-    "name": "5",
-    "created": 1462377718702,
-    "modified": 1464670795111,
+    "name": "High Holborn",
+    "created": 1466571386219,
+    "modified": 1466571386219,
+    "access": {
+      "wheelchair": true
+    },
     "address": "289 High Holborn, Chancery Lane, London",
+    "currency": "EUR",
+    "isWithdrawalCharged": false,
     "location": {
       "latitude": "51.5180117",
       "longitude": "-0.1151668"
     },
     "metadata": {
-      "path": "/locations/8802fcea-1211-11e6-b740-bb80704396e2"
+      "path": "/locations/aca363ba-3835-11e6-b11a-877c6a3feefc"
     },
     "resources": {
       "atm": false,
       "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
     }
   },
   {
-    "uuid": "a887448a-1211-11e6-af15-9b2b6cad7e36",
+    "uuid": "aca7f79a-3835-11e6-9a77-f35fbe19cfa8",
     "type": "location",
-    "name": "6",
-    "created": 1462377773256,
-    "modified": 1464670795110,
+    "name": "Fenchurch",
+    "created": 1466571386249,
+    "modified": 1466571386249,
+    "access": {
+      "wheelchair": true
+    },
     "address": "60 Fenchurch Street, London",
+    "currency": "GBP",
+    "isWithdrawalCharged": false,
     "location": {
       "latitude": "51.51216580000001",
       "longitude": "-0.079607"
     },
     "metadata": {
-      "path": "/locations/a887448a-1211-11e6-af15-9b2b6cad7e36"
+      "path": "/locations/aca7f79a-3835-11e6-9a77-f35fbe19cfa8"
     },
     "resources": {
       "atm": false,
       "branch": false
+    },
+    "status": "Offline",
+    "statusMessage": "out-of-money",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
     }
   },
   {
-    "uuid": "c49630aa-1211-11e6-a6e8-eb0733f586d5",
+    "uuid": "acac646a-3835-11e6-979e-b399b1dc5196",
     "type": "location",
-    "name": "7",
-    "created": 1462377820330,
-    "modified": 1464670795099,
+    "name": "Strand",
+    "created": 1466571386278,
+    "modified": 1466571386278,
+    "access": {
+      "wheelchair": true
+    },
     "address": "440 Strand, London",
+    "currency": "GBP",
+    "isWithdrawalCharged": false,
     "location": {
       "latitude": "51.508996",
       "longitude": "-0.125162"
     },
     "metadata": {
-      "path": "/locations/c49630aa-1211-11e6-a6e8-eb0733f586d5"
+      "path": "/locations/acac646a-3835-11e6-979e-b399b1dc5196"
     },
     "resources": {
       "atm": true,
       "branch": true
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
     }
   },
   {
-    "uuid": "df50fe7a-1211-11e6-a4a7-e7d5c3545751",
+    "uuid": "acb0831a-3835-11e6-9b56-8f702b03aeb7",
     "type": "location",
-    "name": "8",
-    "created": 1462377865175,
-    "modified": 1464670795107,
+    "name": "City Road 2",
+    "created": 1466571386305,
+    "modified": 1466571386305,
+    "access": {
+      "wheelchair": false
+    },
     "address": "32 City Road, London",
+    "currency": "GBP",
+    "isWithdrawalCharged": false,
     "location": {
       "latitude": "51.52270559999999",
       "longitude": "-0.08743909999999998"
     },
     "metadata": {
-      "path": "/locations/df50fe7a-1211-11e6-a4a7-e7d5c3545751"
+      "path": "/locations/acb0831a-3835-11e6-9b56-8f702b03aeb7"
     },
     "resources": {
       "atm": true,
       "branch": true
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 730,
+      "closesAt": 1830
     }
   },
   {
-    "uuid": "5ae335da-1212-11e6-9c2d-316b14ce546c",
+    "uuid": "acb53e0a-3835-11e6-b01c-2d19f10de557",
     "type": "location",
-    "name": "9",
-    "created": 1462378072493,
-    "modified": 1464670795083,
+    "name": "Liverpool",
+    "created": 1466571386336,
+    "modified": 1466571386336,
+    "access": {
+      "wheelchair": false
+    },
     "address": "100 Liverpool Street, London",
+    "currency": "GBP",
+    "isWithdrawalCharged": true,
     "location": {
       "latitude": "51.5177707",
       "longitude": "-0.08743909999999998"
     },
     "metadata": {
-      "path": "/locations/5ae335da-1212-11e6-9c2d-316b14ce546c"
+      "path": "/locations/acb53e0a-3835-11e6-b01c-2d19f10de557"
     },
     "resources": {
       "atm": false,
       "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 900,
+      "closesAt": 2000
     }
   },
   {
-    "uuid": "bd662c8a-1212-11e6-ac03-2f818c6d236e",
+    "uuid": "acb9aada-3835-11e6-8357-e51337aa7a3f",
     "type": "location",
-    "name": "10",
-    "created": 1462378237768,
-    "modified": 1464670795108,
+    "name": "City Road 1",
+    "created": 1466571386365,
+    "modified": 1466571386365,
+    "access": {
+      "wheelchair": true
+    },
     "address": "32 City Road, London",
+    "currency": "EUR",
+    "isWithdrawalCharged": true,
     "location": {
       "latitude": "51.52270559999999",
       "longitude": "-0.08743909999999998"
     },
     "metadata": {
-      "path": "/locations/bd662c8a-1212-11e6-ac03-2f818c6d236e"
+      "path": "/locations/acb9aada-3835-11e6-8357-e51337aa7a3f"
     },
     "resources": {
       "atm": true,
       "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 900,
+      "closesAt": 1800
     }
   },
   {
-    "uuid": "da25cb0a-1212-11e6-a67c-99e5a9534c5a",
+    "uuid": "acbdf09a-3835-11e6-a309-7fae726f2d80",
     "type": "location",
-    "name": "11",
-    "created": 1462378286000,
-    "modified": 1464670795081,
+    "name": "Victoria House",
+    "created": 1466571386393,
+    "modified": 1466571386393,
+    "access": {
+      "wheelchair": true
+    },
     "address": "Victoria House, Southampton Row, London",
+    "currency": "GBP",
+    "isWithdrawalCharged": false,
     "location": {
       "latitude": "51.518999",
       "longitude": "-0.1214489"
     },
     "metadata": {
-      "path": "/locations/da25cb0a-1212-11e6-a67c-99e5a9534c5a"
+      "path": "/locations/acbdf09a-3835-11e6-a309-7fae726f2d80"
     },
     "resources": {
       "atm": true,
       "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 930,
+      "closesAt": 2130
     }
   },
   {
-    "uuid": "f72383fa-1212-11e6-876d-87f3c8be01d8",
+    "uuid": "acc20f4a-3835-11e6-b0dd-d1e8b31585ea",
     "type": "location",
-    "name": "12",
-    "created": 1462378334639,
-    "modified": 1464670795093,
+    "name": "Yorkshire",
+    "created": 1466571386420,
+    "modified": 1466571386420,
+    "access": {
+      "wheelchair": true
+    },
     "address": "Yorkshire House, 200 Strand, London",
+    "currency": "GBP",
+    "isWithdrawalCharged": false,
     "location": {
       "latitude": "51.51292590000001",
       "longitude": "-0.1133644"
     },
     "metadata": {
-      "path": "/locations/f72383fa-1212-11e6-876d-87f3c8be01d8"
+      "path": "/locations/acc20f4a-3835-11e6-b0dd-d1e8b31585ea"
     },
     "resources": {
       "atm": true,
       "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 930,
+      "closesAt": 2100
     }
   },
   {
-    "uuid": "0f7d304a-1213-11e6-861b-b93304e8c456",
+    "uuid": "acc6ca3a-3835-11e6-9738-fb166c6243ee",
     "type": "location",
-    "name": "13",
-    "created": 1462378375492,
-    "modified": 1464670795072,
+    "name": "Cornmarket 3",
+    "created": 1466571386451,
+    "modified": 1466571386451,
+    "access": {
+      "wheelchair": true
+    },
     "address": "32 Cornmarket Street, Oxford",
+    "currency": "GBP",
+    "isWithdrawalCharged": false,
     "location": {
       "latitude": "51.75388359999999",
       "longitude": "-1.2589411"
     },
     "metadata": {
-      "path": "/locations/0f7d304a-1213-11e6-861b-b93304e8c456"
+      "path": "/locations/acc6ca3a-3835-11e6-9738-fb166c6243ee"
     },
     "resources": {
       "atm": true,
       "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
     }
   },
   {
-    "uuid": "261863c4-1213-11e6-a4e0-091665256311",
+    "uuid": "accb370a-3835-11e6-aa58-fb76c84269a8",
     "type": "location",
-    "name": "14",
-    "created": 1462378413419,
-    "modified": 1464670795086,
+    "name": "London Road 3",
+    "created": 1466571386480,
+    "modified": 1466571386480,
+    "access": {
+      "wheelchair": true
+    },
     "address": "87 London Road, Oxford",
+    "currency": "GBP",
+    "isWithdrawalCharged": true,
     "location": {
       "latitude": "51.7600296",
       "longitude": "-1.2123181"
     },
     "metadata": {
-      "path": "/locations/261863c4-1213-11e6-a4e0-091665256311"
+      "path": "/locations/accb370a-3835-11e6-aa58-fb76c84269a8"
     },
     "resources": {
       "atm": true,
       "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
     }
   },
   {
-    "uuid": "4021bbda-1213-11e6-acfa-2776fe07298a",
+    "uuid": "acd0190a-3835-11e6-b740-d3905524443e",
     "type": "location",
-    "name": "15",
-    "created": 1462378457101,
-    "modified": 1464670795129,
+    "name": "London Road 2",
+    "created": 1466571386512,
+    "modified": 1466571386512,
+    "access": {
+      "wheelchair": false
+    },
     "address": "105 London Road, Oxford",
+    "currency": "EUR",
+    "isWithdrawalCharged": true,
     "location": {
       "latitude": "51.7602856",
       "longitude": "-1.2112659"
     },
     "metadata": {
-      "path": "/locations/4021bbda-1213-11e6-acfa-2776fe07298a"
+      "path": "/locations/acd0190a-3835-11e6-b740-d3905524443e"
     },
     "resources": {
       "atm": true,
       "branch": false
+    },
+    "status": "Offline",
+    "statusMessage": "out-of-service",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
     }
   },
   {
-    "uuid": "5b1b6774-1213-11e6-b927-21baa9c26283",
+    "uuid": "acd437ba-3835-11e6-b95d-099689e61a8a",
     "type": "location",
-    "name": "16",
-    "created": 1462378502358,
-    "modified": 1464670795103,
+    "name": "Cornmarket 2",
+    "created": 1466571386539,
+    "modified": 1466571386539,
+    "access": {
+      "wheelchair": true
+    },
     "address": "54 Cornmarket Street, Oxford",
+    "currency": "EUR",
+    "isWithdrawalCharged": true,
     "location": {
       "latitude": "51.7525987",
       "longitude": "-1.2583034"
     },
     "metadata": {
-      "path": "/locations/5b1b6774-1213-11e6-b927-21baa9c26283"
+      "path": "/locations/acd437ba-3835-11e6-b95d-099689e61a8a"
     },
     "resources": {
       "atm": true,
       "branch": true
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 830,
+      "closesAt": 1930
     }
   },
   {
-    "uuid": "748e24e4-1213-11e6-baec-0f368c96e4e6",
+    "uuid": "acd8cb9a-3835-11e6-9fbd-a149cb199e5f",
     "type": "location",
-    "name": "17",
-    "created": 1462378545053,
-    "modified": 1464670795083,
+    "name": "Cornmarket 1",
+    "created": 1466571386569,
+    "modified": 1466571386569,
+    "access": {
+      "wheelchair": true
+    },
     "address": "65 Cornmarket Street, Oxford",
+    "currency": "EUR",
+    "isWithdrawalCharged": true,
     "location": {
       "latitude": "51.752057",
       "longitude": "-1.2579831"
     },
     "metadata": {
-      "path": "/locations/748e24e4-1213-11e6-baec-0f368c96e4e6"
+      "path": "/locations/acd8cb9a-3835-11e6-9fbd-a149cb199e5f"
     },
     "resources": {
       "atm": false,
       "branch": false
+    },
+    "status": "Offline",
+    "statusMessage": "out-of-service",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
     }
   },
   {
-    "uuid": "8e34c38a-1213-11e6-8bfc-dfe9513fc2be",
+    "uuid": "acdcea4a-3835-11e6-9f7c-b390f1ff9109",
     "type": "location",
-    "name": "18",
-    "created": 1462378588088,
-    "modified": 1464670795095,
+    "name": "London Road 1",
+    "created": 1466571386596,
+    "modified": 1466571386596,
+    "access": {
+      "wheelchair": true
+    },
     "address": "108 London Road, Oxford",
+    "currency": "EUR",
+    "isWithdrawalCharged": true,
     "location": {
       "latitude": "51.7597298",
       "longitude": "-1.2119392"
     },
     "metadata": {
-      "path": "/locations/8e34c38a-1213-11e6-8bfc-dfe9513fc2be"
+      "path": "/locations/acdcea4a-3835-11e6-9f7c-b390f1ff9109"
     },
     "resources": {
       "atm": true,
       "branch": true
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 900,
+      "closesAt": 1800
     }
   },
   {
-    "uuid": "ab51762a-1213-11e6-8794-5d0748b9361f",
+    "uuid": "ace1a53a-3835-11e6-8654-6d02a3a84c7d",
     "type": "location",
-    "name": "19",
-    "created": 1462378636930,
-    "modified": 1464670795103,
+    "name": "High Street 2",
+    "created": 1466571386627,
+    "modified": 1466571386627,
+    "access": {
+      "wheelchair": true
+    },
     "address": "1-5 High Street, Oxford",
+    "currency": "EUR",
+    "isWithdrawalCharged": true,
     "location": {
       "latitude": "51.75210009999999",
       "longitude": "-1.2576476"
     },
     "metadata": {
-      "path": "/locations/ab51762a-1213-11e6-8794-5d0748b9361f"
+      "path": "/locations/ace1a53a-3835-11e6-8654-6d02a3a84c7d"
     },
     "resources": {
       "atm": false,
       "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 900,
+      "closesAt": 1730
     }
   },
   {
-    "uuid": "c2fe67ba-1213-11e6-a812-0f02cd1462e8",
+    "uuid": "ace527aa-3835-11e6-9a62-ef4347a4b342",
     "type": "location",
-    "name": "20",
-    "created": 1462378676651,
-    "modified": 1464670795120,
+    "name": "High Street 1",
+    "created": 1466571386650,
+    "modified": 1466571386650,
+    "access": {
+      "wheelchair": true
+    },
     "address": "121 High Street, Oxford",
+    "currency": "EUR",
+    "isWithdrawalCharged": false,
     "location": {
       "latitude": "51.7520044",
       "longitude": "-1.2556831"
     },
     "metadata": {
-      "path": "/locations/c2fe67ba-1213-11e6-a812-0f02cd1462e8"
+      "path": "/locations/ace527aa-3835-11e6-9a62-ef4347a4b342"
     },
     "resources": {
       "atm": true,
       "branch": true
+    },
+    "status": "Offline",
+    "statusMessage": "out-of-money",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
     }
   },
   {
-    "uuid": "db3a79ea-1213-11e6-b378-4b4d397de72a",
+    "uuid": "ace8830a-3835-11e6-a275-2d3823d0ac3a",
     "type": "location",
-    "name": "21",
-    "created": 1462378717310,
-    "modified": 1464670795086,
+    "name": "Prama House",
+    "created": 1466571386672,
+    "modified": 1466571386672,
+    "access": {
+      "wheelchair": true
+    },
     "address": "Prama House, 267 Banbury Road, Oxford",
+    "currency": "GBP",
+    "isWithdrawalCharged": true,
     "location": {
       "latitude": "51.7789454",
       "longitude": "-1.2657953"
     },
     "metadata": {
-      "path": "/locations/db3a79ea-1213-11e6-b378-4b4d397de72a"
+      "path": "/locations/ace8830a-3835-11e6-a275-2d3823d0ac3a"
     },
     "resources": {
       "atm": true,
       "branch": false
+    },
+    "status": "Offline",
+    "statusMessage": "out-of-money",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
     }
   },
   {
-    "uuid": "f1426e0a-1213-11e6-a5e2-fb2da15efdcd",
+    "uuid": "acebde6a-3835-11e6-8559-958e757dde53",
     "type": "location",
-    "name": "22",
-    "created": 1462378754272,
-    "modified": 1464670795091,
+    "name": "Templars Square",
+    "created": 1466571386694,
+    "modified": 1466571386694,
+    "access": {
+      "wheelchair": true
+    },
     "address": "Templars Square, 4 Pound Way, Oxford",
+    "currency": "EUR",
+    "isWithdrawalCharged": false,
     "location": {
       "latitude": "51.7321912",
       "longitude": "-1.2180381"
     },
     "metadata": {
-      "path": "/locations/f1426e0a-1213-11e6-a5e2-fb2da15efdcd"
+      "path": "/locations/acebde6a-3835-11e6-8559-958e757dde53"
     },
     "resources": {
       "atm": true,
       "branch": false
+    },
+    "status": "Online",
+    "timings": {
+      "opensAt": 0,
+      "closesAt": 2400
     }
   }
 ]

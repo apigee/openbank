@@ -7,8 +7,13 @@ exports.getAtms = function (req, res) {
     });
 };
 
-exports.getBranches = function(req, res) {
+exports.getBranches = function (req, res) {
     getLocations('branch', req, function (data) {
+        delete data.isWithdrawalCharged;
+        delete data.status;
+        delete data.statusMessage;
+        delete data.currency;
+
         res.json(data);
     });
 };
@@ -33,20 +38,28 @@ function getLocations(resType, req, callback) {
         options.qs.ql += ' and location within ' + radius + ' of ' + lat + ', ' + long;
     }
 
-    console.log(options.qs.ql);
-
-    if (req.query.wheelchair) {
-        options.qs.ql += ' and access.wheelchair = true'
+    if (req.query.hasOwnProperty('wheelchair')) {
+        options.qs.ql += " and access.wheelchair = " + (req.query.wheelchair === 'true');
     }
 
-    if (req.query.currency) {
+    if (resType === 'atm' && req.query.currency) {
         options.qs.ql += " and currency = '" + req.query.currency + "'";
+    }
+
+    if (resType === 'atm' && req.query.hasOwnProperty('isWithdrawalCharged')) {
+        options.qs.ql += " and isWithdrawalCharged = " + (req.query.isWithdrawalCharged === 'true');
+    }
+
+    if (resType === 'atm' && req.query.hasOwnProperty('status')) {
+        options.qs.ql += " and status = '" + req.query.status + "'";
     }
 
     if (req.query.openAt) {
         options.qs.ql += " and timings.opensAt <= " + req.query.openAt
-            + " timings.closesAt >= " + req.query.openAt;
+            + " and timings.closesAt >= " + req.query.openAt;
     }
+
+    console.log(options.qs.ql);
 
     request(options, function (err, resp, body) {
         var data = [];
@@ -60,6 +73,7 @@ function getLocations(resType, req, callback) {
                 delete entity.metadata;
                 delete entity.created;
                 delete entity.modified;
+                delete entity.resources;
 
                 data.push(entity);
             }
