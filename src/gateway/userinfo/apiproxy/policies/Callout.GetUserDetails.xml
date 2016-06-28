@@ -8,6 +8,6 @@
     <Response>getUserDetailsResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://api.usergrid.com/psubrahmanyam/apisbank/customers/{accesstoken.sub}</URL>
+        <URL>[to_be_replaced]</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

@@ -46,7 +46,7 @@
             <JSONPath>$.gender</JSONPath>
         </Variable>
         <Variable name="customer_number">
-            <JSONPath>$.customer_number</JSONPath>
+            <JSONPath>$.customer_id</JSONPath>
         </Variable>
     </JSONPayload>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

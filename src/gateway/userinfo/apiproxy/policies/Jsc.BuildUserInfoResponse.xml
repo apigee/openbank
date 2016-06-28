@@ -2,5 +2,5 @@
 <Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Jsc.BuildUserInfoResponse">
     <DisplayName>Jsc.BuildUserInfoResponse</DisplayName>
     <Properties/>
-    <ResourceURL>jsc://create.userinfo.response-1.0.js</ResourceURL>
+    <ResourceURL>jsc://BuildUserInfoResponse.js</ResourceURL>
 </Javascript>

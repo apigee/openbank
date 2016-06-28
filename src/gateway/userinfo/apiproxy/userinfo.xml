@@ -8,17 +8,11 @@
     <LastModifiedAt>1459851372709</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
     <Policies>
-        <Policy>Assign-UserInfo-Response</Policy>
-        <Policy>Ext-Build-UserInfo-Response</Policy>
-        <Policy>Ext-Get-User-Details</Policy>
-        <Policy>Extract-User-Info</Policy>
-        <Policy>Security-Verify-Access-Token</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
-        <Resource>jsc://create.userinfo.response-1.0.js</Resource>
     </Resources>
     <TargetServers/>
     <TargetEndpoints/>

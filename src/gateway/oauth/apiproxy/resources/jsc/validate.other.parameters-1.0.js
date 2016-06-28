@@ -28,7 +28,6 @@ var state = null;
 var nonce = null;
 var display = null;
 var login_hint = null;
-var display = null;
 var prompt = null;
 var offline = null;
 var id_token_hint = null;
@@ -157,8 +156,7 @@ function validateScopes(scopesXML, applicationScope) {
     if (scopesXML == null) {
         return false;
 
-    }
-    else {
+    } else {
 
         // Workaround for e4x
         scopesXML = scopesXML.replace(/^<\?xml\s+version\s*=\s*(["'])[^\1]+\1[^?]*\?>/, "");
