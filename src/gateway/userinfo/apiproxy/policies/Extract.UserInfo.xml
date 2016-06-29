@@ -62,8 +62,11 @@
         <Variable name="formatted">
             <JSONPath>$.entities[0].formatted</JSONPath>
         </Variable>
-        <Variable name="street_address">
-            <JSONPath>$.entities[0].street_address</JSONPath>
+        <Variable name="house_name">
+            <JSONPath>$.entities[0].house_name</JSONPath>
+        </Variable>
+        <Variable name="street">
+            <JSONPath>$.entities[0].street</JSONPath>
         </Variable>
         <Variable name="locality">
             <JSONPath>$.entities[0].locality</JSONPath>

@@ -31,7 +31,8 @@ var phone_number = context.getVariable("phone_number");
 var phone_number_verified = context.getVariable("phone_number_verified");
 
 var formatted = context.getVariable("formatted") || "";
-var street_address = context.getVariable("street_address") || "";
+var house_name = context.getVariable("house_name") || "";
+var street = context.getVariable("street") || "";
 var locality = context.getVariable("locality") || "";
 var region = context.getVariable("region") || "";
 var postal_code = context.getVariable("postal_code") || "";
@@ -75,7 +76,8 @@ if (scope != null) {
     if (scopes.indexOf("address") !== -1 || scopes.indexOf("accounts") !== -1) {
         userInfo.address = {};
         buildAddressObject("formatted", formatted);
-        buildAddressObject("street_address", street_address);
+        buildAddressObject("house_name", house_name);
+        buildAddressObject("street", street);
         buildAddressObject("locality", locality);
         buildAddressObject("region", region);
         buildAddressObject("postal_code", postal_code);
@@ -86,14 +88,14 @@ if (scope != null) {
 context.setVariable("userInfoResponse", JSON.stringify(userInfo));
 
 function buildUserInfoObject(attribute, claim) {
-    if (claim != null && claim != "") {
+    // if (claim != null && claim != "") {
         userInfo[attribute] = claim;
-    }
+    // }
 }
 
 function buildAddressObject(attribute, claim) {
-    if (claim != null && claim != "") {
+    // if (claim != null && claim != "") {
         userInfo.address[attribute] = claim;
         print(userInfo.address[attribute]);
-    }
+    // }
 } 
