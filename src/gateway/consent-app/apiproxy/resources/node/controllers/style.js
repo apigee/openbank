@@ -1,6 +1,6 @@
 var hbs = require('hbs');
 var appStyles = {};
-var config = require('../config.orig');
+var config = require('../config.json');
 appStyles.setBasicStyles = function () {
   // Handlebars helper for logo
 
