@@ -2,13 +2,6 @@
 
 ### Delete App Resources ###
 
-### delete existing APIs
-echo `date`": Deleting oauth API !!"
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/apis/oauth"  1>&2`
-echo "${SETUP_RESULT}"
-echo ""
-
-
 ### developer
 echo `date`": Deleting Developer, Product, App ; Please hang On !!"
 SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/developers/openbank@apigee.net"  1>&2`

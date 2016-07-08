@@ -1,0 +1,88 @@
+/*
+This is the css file that will contain all the custom css styles that you will be writing to customize the look of the Apigee developer portal 
+*/
+
+#method_container {
+    font-family: 'simple_sansregular', sans-serif; }
+#method_container .table > tbody > tr > td,
+#method_container .table > thead > tr > th {
+    height: auto;
+    padding: 10px;
+    font-family: 'simple_sansregular', sans-serif;
+    max-width: 330px;
+}
+#method_container .tab-content.resourceRep .table > tbody > tr > td,
+#method_container .tab-content.resourceRep .table > thead > tr > th {
+    font-size: 12px; }
+#method_container #method_content .operation_container {
+    margin: 20px 0;
+    height: 60px;
+    position: relative; }
+#method_content a.link_reset_default {
+    margin-top: 0px;
+}
+#method_container #method_content .operation_container .action {
+    margin-top: 10px;
+}
+#method_content .operation_container .authentication { min-width: auto !important;}
+
+#method_container #method_content .method_table .method_details .description, #method_container #method_content .method_table .method_title .description {
+    width: 40%; }
+#method_container #method_content .method_table .method_details .value input, #method_container #index_content .method_table .method_details .value input {
+    width: 100%;
+    padding: 20px;
+    height: auto;
+    border-color: #cccccc; }
+#method_container .resource_description {
+    margin: 20px 0; }
+#method_container .description_container br {
+    display: none; }
+#method_container #method_content, #method_container a.link_reset_default {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0; }
+#method_container .panel-heading {
+    padding: 0; }
+#method_container .panel-heading h4 {
+    display: block; }
+#method_container .panel-heading a {
+    padding: 15px;
+    display: block; }
+
+body #method_content h1, body #method_content h2, body #method_content h3, body #method_content h4, body #method_content h5, body #method_content h6, body #method_content p, body #method_content a, body #method_content span, body #method_content td, body #method_content tr, body #method_content th, body #method_content .resource_description, #method_content .operation_container .authentication .title, #method_content button#send_request, #method_content .request_response_tabs a.selected {
+    font-family: 'simple_sansbold', sans-serif; }
+
+#method_container .content {
+    width: 970px;
+    margin: 0 auto;
+}
+
+.featurette-heading {
+    font-size: 16px;
+    text-align: center;
+    margin: 40px auto; }
+
+.tabs--primary.nav.nav-pills {
+    margin-top: 20px; }
+
+.table-condensed thead > tr > th,
+.table-condensed tbody > tr > td,
+.table-condensed span {
+    word-wrap: break-word; }
+
+.col-sm-5 {
+    width: 50%; }
+
+.col-sm-7 {
+    width: 50%; }
+
+#method_content .method_table .value, #index_content .method_table .value {
+    width: 40% !important; }
+
+#method_container #method_content .method_table .method_details .description, #method_container #method_content .method_table .method_title .description {
+    width: 30%; }
+.ui-widget { font-family: 'Muli', sans-serif; }
+.ui-widget-content a {
+    color: #557799;
+}

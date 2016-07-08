@@ -41,18 +41,18 @@
     </properties>
 
     <modules>
-        <module>../accounts</module>
-        <module>../accounts-connector</module>
-        <module>../transfers</module>
-        <module>../transfers-connector</module>        
-        <module>../authentication-connector</module>
-        <module>../consent-app</module>
-        <module>../consent-app-transfers</module>
-        <module>../locations</module>
-        <module>../locations-connector</module>
         <module>../sms-token</module>
         <module>../session</module>
         <module>../oauth</module>
+
+        <module>../authentication-connector</module>
+        <module>../accounts-connector</module>
+        <module>../transfers-connector</module>
+        <module>../locations-connector</module>
+
+        <module>../accounts</module>
+        <module>../transfers</module>
+        <module>../locations</module>
     </modules>
 
     <build>

@@ -18,7 +18,7 @@
         <Attribute name="amr" ref="amr" display="false"/>
         <Attribute name="azp" ref="azp" display="false"/>
         <Attribute name="auth_time" ref="auth_time" display="false"/>
-        <Attribute name="customer_number" ref="customerId" display="false"/>
+        <Attribute name="customer_number" ref="customer_id" display="false"/>
         <Attribute name="account_number" ref="accountNumber" display="false"/>
         <Attribute name="full_name" ref="fullName" display="false"/>
         <!-- Attributes for payment API -->

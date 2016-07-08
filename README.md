@@ -1,9 +1,37 @@
-## Overview
+<a href="http://apigee.com/"><img src="http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png"/></a> OpenBank
+===================
+
+Digital Services in Banking Space
+-------------
+
+Before we delve into the specifics of the Solution it may be worthwhile to note the transformation happening currently in the banking space. Digital is positing itself in many facets and interactions that a consumer has with the Bank.
+
+![enter image description here](http://openbank.apigee.com/sites/default/files/openbanking_position.png)
+
+Overview
+-------------
+
+Apigee OpenBank Solution enables banks to accelerate  development of digital services. OpenBank is built on Apigee Edge API Management Platform, and features:
+
+> - Account Information Access APIs.
+> - Payment Transfer APIs
+> - Open Data APIs
+> - OAuth APIs
+
+It also provides an implementation of OpenID and oAuth based authentication, consent and two-factor authentication using SMS.
+
+These APIs play a critical role in the digital transformation of banking services as represented below:
+
+![enter image description here](http://openbank.apigee.com/sites/default/files/openbank_architecture.png)
+
+
+## Repository Overview
 This repository contains the necessary artifacts that will allow one to pull up a complete set of **Banking APIs** that comply with _Openbanking_ and _PSD2_ regulations. In addition this will also allow one to build a _sandbox_ complete with a **Developer Portal**, mock backend and a sample app.
 
 ## Prerequisite
 + Apigee API Management Developer Account
 + Apigee API BaaS Account
++ Apigee Developer Portal
 
 ## Setup
 To deploy the APIs and its dependencies on your own org please run the following script
@@ -54,22 +82,20 @@ The consent app has a _config.json_ file available in the `src/gateway/consent-a
 ### APIs
 
 #### External APIs
-###### accounts
-###### transfers
-###### locations
+##### Accounts API
+##### Transfers API
+##### Locations API
 
 #### Supporting APIs
-###### sms-token
-###### session
+##### SMS Token API
+##### Session API
 
-#### Consent Apps
-###### consent-app
-###### consent-app-transfers
+#### Internal APIs
+##### Accounts Connector
+##### Transfer Connector
+##### Authentication Connector
+##### Locations Connector
 
 
-#### Connecting APIs
-###### accounts-connector
-###### transfer-connector
-###### authentication-connector
-###### locations-connector
+
 

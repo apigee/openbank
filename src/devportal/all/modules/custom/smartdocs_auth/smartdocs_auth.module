@@ -1,0 +1,6 @@
+<?php
+
+function smartdocs_auth_form_smartdocs_model_security_scheme_alter(&$form, &$form_state, $form_id) {
+    $form['auth_fields']['authorizationUrl']['#type'] = 'textarea';
+    $form['auth_fields']['advanced_settings']['in']['#default_value'] = 'HEADER';
+}

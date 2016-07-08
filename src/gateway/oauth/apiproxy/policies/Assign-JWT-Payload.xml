@@ -40,7 +40,11 @@
     </AssignVariable>
     <AssignVariable>
         <Name>sub</Name>
-        <Ref>customerId</Ref>
+        <Ref>customer_number</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>customer_id</Name>
+        <Ref>customer_number</Ref>
     </AssignVariable>
     <AssignVariable>
         <Name>account</Name>

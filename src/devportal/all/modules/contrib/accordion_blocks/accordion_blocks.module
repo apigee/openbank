@@ -1,0 +1,409 @@
+<?php
+/*
+ *@file 
+ * This module privide the accordion widget for the blocks on left and right side
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function accordion_blocks_permission() {
+  return array(
+    'administer accordion blocks configuration' => array(
+      'title' => t('Administer accordion blocks'),
+      'description' => t('Administer accordion blocks configurations.'),
+    ),
+  );
+}
+ 
+/*
+ * Implements hook_init()
+ */
+function accordion_blocks_init() {
+  // including accordion related javascript and css files
+  drupal_add_library('system', 'ui.accordion');
+  drupal_add_js(drupal_get_path('module', 'accordion_blocks') .'/accordion_init.js');
+  drupal_add_css(drupal_get_path('module', 'accordion_blocks') .'/accordion_init.css');
+}
+
+/**
+ * Implements hook_menu()
+ */ 
+function accordion_blocks_menu() {
+  //settings page
+  $items['admin/structure/accordion_block'] = array(
+    'title' => 'Accordion Blocks',
+    'description' => 'Create blocks of accordion content.',
+    'page callback' => 'accordion_block_list',
+    'access arguments' => array('administer accordion blocks configuration'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'accordion_blocks.admin.inc',
+    'weight' => -10,
+  );
+
+  $items['admin/structure/accordion_block/list'] = array(
+    'title' => 'List Accordion Blocks',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+
+  $items['admin/structure/accordion_block/add'] = array(
+    'title' => 'Add Accordion Block',
+    'description' => 'Configuring the Accordion Block Settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('accordion_block_config_settings', 'add'),
+    'access arguments' => array('administer accordion block configuration'),
+    'type' => MENU_LOCAL_ACTION,
+    'weight' => 1,
+  );
+
+  $items['admin/structure/accordion_block/manage/%accordion_block'] = array(
+    'title' => 'Edit Accordion Block',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('accordion_block_config_settings', 'edit', 4),
+    'access arguments' => array('administer accordion block configuration'),
+    );
+
+  $items['admin/structure/accordion_block/manage/%accordion_block/edit'] = array(
+    'title' => 'Edit Accordion Block',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+
+  $items['admin/structure/accordion_block/manage/%accordion_block/delete'] = array(
+    'title' => 'Delete accordion block',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('accordion_block_delete', 4),
+    'access arguments' => array('administer accordion block configuration'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'accordion_blocks.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Load the accordion block data.
+ *
+ * @param integer $id
+ *   Integer id of the accordion block.
+ *
+ * @returns
+ *   array of the block content,
+ *   skin and title of the accordion block.
+ */
+function accordion_block_load($id) {
+  $content = array();
+
+  $query = db_select('accordion_blocks', 'sd')
+    ->fields('sd', array('title', 'content'))
+    ->condition('sd.id', $id, '=');
+
+  $accordion_block = $query->execute()->fetchAssoc();
+
+  if (!$accordion_block) {
+    return FALSE;
+  }
+  $accordion_block['id'] = $id;
+  return $accordion_block;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function accordion_blocks_block_info() {
+  $blocks = array();
+  $query = db_select("accordion_blocks", 'sd')
+    ->fields('sd', array('id', 'title'))
+    ->execute();
+
+  foreach ($query as $accordion_block) {
+    $blocks[$accordion_block->title . "_" . $accordion_block->id] = array('info' => t($accordion_block->title));
+  }
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function accordion_blocks_block_view($delta = '') {
+  $block = array();
+  $block_title_info = explode('_', $delta);
+  $id = array_pop($block_title_info);
+  $title = implode("_", $block_title_info);
+  $scripts = array();
+  $style = array();
+
+  $accordion_block_data = accordion_block_load($id);
+
+  // Building the content for the accordion block.
+  $content = accordion_block_content($delta, $id);
+
+  $block['subject'] = t($title);
+  $block['content']['#markup'] = theme("accordion_block", $content);
+  
+  return $block;
+}
+
+/**
+ * accordion block data
+ *
+ * @returns
+ *   the block content for the accordion block.
+ */
+function accordion_block_content($delta, $id) {
+  $accordion_data = accordion_block_load($id);
+  if ($delta == $accordion_data['title'] . "_" . $accordion_data['id']) {
+    $data = unserialize($accordion_data['content']);
+    $blocks_content = array();
+    if (isset($data)) {
+      foreach ($data as $key => $block) {
+        if (!empty($block)) {
+          $blocks_info = explode('_delta_', $block);
+          $block_data = block_load($blocks_info[0], $blocks_info[1]);
+          $blocks_content[$key] = new stdClass();
+          $block_content = module_invoke($blocks_info[0], "block_view", $blocks_info[1]);
+          if (isset($block_content['content'])) {
+            $blocks_content[$key]->content =  $block_content['content'];
+          }
+          else {
+              $blocks_content[$key]->content =  NULL;
+          }
+          if ($block_data->title) {
+            $blocks_content[$key]->title = $block_data->title;
+          }
+          elseif (isset($block_content['subject'])) {
+            $blocks_content[$key]->title = $block_content['subject'];
+          }
+          else {
+            $blocks_content[$key]->title = '';
+          }
+        }
+      }
+    }
+    $accordion_block_content = array('content' => $blocks_content);
+    return $accordion_block_content;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function accordion_blocks_theme() {
+  return array(
+    'accordion_block' => array(
+      'variables' => array('content' => NULL,),
+      'template' => 'accordion_block',
+      ),
+  );
+}
+
+/**
+ * Implements menu callback for the
+ * admin settings form for accordion_block
+ */
+function accordion_block_config_settings($form, &$form_state, $formtype, $accordion_block = NULL) {
+  $default_values = $accordion_block;
+  $form = array();
+
+  if ($formtype == 'edit') {
+    $form['id'] = array(
+      '#type' => 'value',
+      '#value' => isset($accordion_block['id']) ? $accordion_block['id'] : 0,
+    );
+  }
+
+  $form['accordion_block_title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#default_value' => $default_values['title'],
+    '#description' => t('Title of the accordion block.'),
+    '#required' => TRUE,
+    );
+
+  $data = unserialize($default_values['content']);
+  $form['accordion_block_content'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Accordion Block Content'),
+    '#prefix' => '<div id="accordion_block_wrapper">',
+    '#suffix' => '</div>',
+  );
+
+  $blocks = accordion_block_get_all_blocks();
+
+  if (empty($form_state['accordion_blocks'])) {
+    $form_state['accordion_blocks'] = count($data);
+  }
+  for ($block_count = 0; $block_count < $form_state['accordion_blocks']; $block_count++) {
+    $form['accordion_block_content']['type']["block_" . $block_count] = array(
+      '#type' => 'select',
+      '#title' => t('Block content'),
+      '#default_value' => $data["block_" . $block_count],
+      '#description' => t('Add type of accordion block content.'),
+      '#options' => $blocks,
+      );
+  }
+
+  $form['accordion_block_content']['add_name'] = array(
+    '#type' => 'submit',
+    '#value' => t('Add one more'),
+    '#submit' => array('accordion_block_add_more_blocks'),
+    '#ajax' => array(
+      'callback' => 'accordion_block_add_more_blocks_callback',
+      'wrapper' => 'accordion_block_wrapper',
+    ),
+  );
+  if ($form_state['accordion_blocks'] > 1) {
+    $form['accordion_block_content']['remove_name'] = array(
+      '#type' => 'submit',
+      '#value' => t('Remove one'),
+      '#submit' => array('accordion_block_add_more_remove_one'),
+      '#ajax' => array(
+        'callback' => 'accordion_block_add_more_blocks_callback',
+        'wrapper' => 'accordion_block_wrapper',
+      ),
+    );
+  }
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Accordion Block Submit'),
+  );
+  $form['#validate'][] = 'accordion_block_validate';
+
+  return $form;
+}
+
+/**
+ * Form validate handler for the accordion_block_config_settings().
+ *
+ * @params $form
+ *   form varibale of drupal.
+ * @params $form_state
+ *   form state values.
+ */
+function accordion_block_validate(&$form, &$form_state) {
+  $pattern = '/^[a-zA-Z0-9_ ]+$/';
+  if (!preg_match($pattern, $form['accordion_block_title']['#value'])) {
+    form_set_error('accordion_block_title', 'Title Should contain only letters,numbers and underscores');
+  }
+}
+
+/**
+ * From submit handler for accordion_block_config_settings().
+ */
+function accordion_block_config_settings_submit($form, $form_state) {
+  $values = $form_state['values'];
+  $block_values = array();
+  $count = 0;
+
+  foreach ($values as $key => $form_value) {
+    if ($key == 'block_' . $count) {
+      $block_values['block_' . $count] = $form_value;
+      $count++;
+    }
+  }
+  $content = serialize($block_values);
+  $title = $values['accordion_block_title'];
+  
+  $id = '';
+  if (array_key_exists('id', $values)) {
+    $id = $values['id'];
+  }
+
+  if (!$id) {
+    $insert = db_insert('accordion_blocks')
+      ->fields(array('title', 'content'))
+      ->values(array(
+        'title' => $title,
+        'content' => $content,
+        ))
+      ->execute();
+
+    if ($insert) {
+      drupal_set_message(t("Added accordion block sucessfully"));
+      drupal_goto('admin/structure/accordion_block');
+    }
+  }
+  else {
+    $update = db_update('accordion_blocks')
+      ->fields(array(
+        'title' => $title,
+        'content' => $content,
+        ))
+      ->condition('id', $id, '=')
+      ->execute();
+
+    if ($update) {
+      drupal_set_message(t("Updated accordion block sucessfully"));
+      drupal_goto('admin/structure/accordion_block');
+    }
+  }
+}
+
+/**
+ * Ajax callback for adding more blocks to the accordion block content.
+ */
+function accordion_block_add_more_blocks_callback($form, &$form_state) {
+  return $form['accordion_block_content'];
+}
+
+/**
+ * Submit handler for the "Add One More" button of a field form.
+ *
+ * This handler makes changes to the form state.
+ * If the button was clicked with JS disabled, then
+ * the page is reloaded with the complete rebuilt form. If the button was
+ * clicked with JS enabled, then ajax_form_callback(),
+ * accordion_block_add_more_blocks_callback()
+ * to return just the changed part of the form.
+ */
+function accordion_block_add_more_blocks($form, &$form_state) {
+  $form_state['accordion_blocks']++;
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Submit handler for the "Remove One" button of a accordion block settings form.
+ * This handler removes the last block added to the settings form.
+ */
+function accordion_block_add_more_remove_one($form, &$form_state) {
+  if ($form_state['accordion_blocks'] > 1) {
+    $form_state['accordion_blocks']--;
+  }
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Retriving all system blocks
+ *
+ * @returns
+ *   array of all blocks created data.
+ */
+function accordion_block_get_all_blocks() {
+  module_load_include('inc', 'block', 'block.admin');
+  static $blocksarray;
+  static $theme;
+
+  if (empty($blocksarray)) {
+    global $theme_key;
+    drupal_theme_initialize();
+
+    if (!isset($theme)) {
+      // If theme is not specifically set, rehash for the current theme.
+      $theme = $theme_key;
+    }
+    // Fetch and sort blocks.
+    $blocks = _block_rehash($theme);
+    $compare_theme = &drupal_static('_block_compare:theme');
+    $compare_theme = $theme;
+    usort($blocks, '_block_compare');
+    $blocksarray = array();
+    foreach ($blocks as $id => $block) {
+      if ($block['module'] != 'accordion_blocks') {
+        $key = $block['module'] . '_delta_' . $block['delta'];
+        $blocksarray[$key] = $block['info'];
+      }
+    }
+  }
+
+  return $blocksarray;
+}

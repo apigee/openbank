@@ -16,7 +16,7 @@ var otp = require('./routes/otp');
 var consent = require('./routes/consent');
 
 // Configuration
-var config = require('./config.orig');
+var config = require('./config.json');
 
 var app = express();
 

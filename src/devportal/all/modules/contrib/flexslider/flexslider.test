@@ -1,0 +1,195 @@
+<?php
+
+/**
+ * @file
+ * Test cases for FlexSlider
+ *
+ * @author Mathew Winstone <mwinstone@coldfrontlabs.ca>
+ */
+
+
+class FlexsliderTestCase extends DrupalWebTestCase {
+  protected $admin_user;
+  protected $any_user;
+
+  public static function getInfo() {
+    return array(
+      'name' => t('FlexSlider tests'),
+      'description' => t('Test the FlexSlider presets, configuration options and permission controls.'),
+      'group' => t('FlexSlider'),
+    );
+  }
+
+  function setUp() {
+    parent::setUp('libraries', 'ctools', 'flexslider');
+
+    // Create users
+    $this->admin_user = $this->drupalCreateUser(array('administer flexslider'));
+    $this->any_user = $this->drupalCreateuser(array('access administration pages'));
+  }
+
+  function testAdminAccess() {
+
+    // Login as the admin user
+    $this->drupalLogin($this->admin_user);
+
+    // Load admin page
+    $this->drupalGet('admin/config/media/flexslider');
+    $this->assertResponse(200, t('Administrative permission allows access to administration page.'));
+
+    // Logout as admin user
+    $this->drupalLogout();
+
+    // Login as any user
+    $this->drupalLogin($this->any_user);
+
+    // Attempt to load admin page
+    $this->drupalGet('admin/config/media/flexslider');
+    $this->assertResponse(403, t('Regular users do not have access to administrative pages.'));
+  }
+
+  function testOptionSetCrud() {
+    // Login as the admin user
+    $this->drupalLogin($this->admin_user);
+    $testsets  = array('testset', 'testset2');
+
+    foreach ($testsets as $name) {
+      // Create a new optionset with default settings
+      $optionset = flexslider_optionset_create(array('name' => $name));
+      $this->assertTrue($optionset->name == $name, t('Optionset object created: @name', array('@name' => $optionset->name)));
+      $this->assertFalse(empty($optionset->options), t('Create optionset works.'));
+
+      // Save the optionset to the database
+      $optionset = flexslider_optionset_save($optionset, TRUE);
+      $this->assertFalse(FALSE === $optionset, t('Optionset saved to database.'));
+
+      // Read the values from the database
+      $optionset = flexslider_optionset_load($name);
+
+      $this->assertTrue(is_object($optionset), t('Loaded option set.'));
+      $this->assertEqual($name, $optionset->name, t('Loaded name matches: @name', array('@name' => $optionset->name)));
+
+      $default_optionset = flexslider_optionset_create();
+      foreach ($default_optionset->options as $key => $value) {
+        $this->assertEqual($value, $optionset->options[$key], t('Option @option matches saved value.', array('@option' => $key)));
+      }
+
+    }
+
+    // Load all optionsets
+    $optionsets = flexslider_optionset_load_all();
+    $this->assertTrue(is_array($optionsets), t('Array of optionsets loaded'));
+    $this->assertTrue(count($optionsets) == 3, t('Proper number of optionsets loaded (two created, one default): 3'));
+
+    // Ensure they all loaded correctly
+    foreach ($optionsets as $optionset) {
+      $this->assertTrue(isset($optionset->name), t('Loaded optionsets have a defined machine name'));
+      $this->assertTrue(isset($optionset->title), t('Loaded optionsets have a defined human readable name (title)'));
+      $this->assertTrue(isset($optionset->options), t('Loaded optionsets have a defined array of options'));
+    }
+
+    // Update the optionset
+    $test_options = _flexslider_test_options();
+    $test_options = $test_options['valid'];
+
+    // Load one of the test option sets
+    $optionset = flexslider_optionset_load($testsets[0]);
+
+    // Change the settings
+    $optionset->options += $test_options['set2'];
+
+    // Save the updated values
+    $optionset = flexslider_optionset_save($optionset);
+    $this->assertFalse(FALSE == $optionset, t('Saved updates to optionset to database.'));
+
+    // Load the values from the database again
+    $optionset = flexslider_optionset_load($testsets[0]);
+
+    // Compare settings to the test options
+    foreach ($test_options['set2'] as $key => $value) {
+      $this->assertEqual($optionset->options[$key], $value, t('Saved value matches set value: @key', array('@key' => $key)));
+    }
+
+    // Delete the optionset
+    $this->assertTrue(flexslider_optionset_exists($optionset->name), t('Optionset exists and is ready to be deleted.'));
+    flexslider_optionset_delete($optionset->name);
+
+    // Ensure the delete is successfull
+    $this->assertFalse(flexslider_optionset_exists($optionset->name), t('Optionset successfully deleted: @name', array('@name' => $optionset->name)));
+  }
+
+  function testOptionSetForm() {
+
+    // Login with admin user
+    $this->drupalLogin($this->admin_user);
+
+    // ------------ Test Option Set Add ------------ //
+    // Load create form
+    $this->drupalGet('admin/config/media/flexslider/add');
+    $this->assertResponse(200, t('Administrative user can reach the "Add" form.'));
+
+    // Save new optionset
+    $optionset = array();
+    $optionset['title'] = 'testset';
+    $optionset['name'] = 'testset';
+    $this->drupalPost('admin/config/media/flexslider/add', $optionset, t('Save'));
+    $this->assertResponse(200);
+    $this->assertText('testset has been created.', t('Successfully saved the new optionset "testset"'));
+
+    // Attempt to save option set of the same name again
+    $this->drupalPost('admin/config/media/flexslider/add', $optionset, t('Save'));
+    $this->assertResponse(200);
+    $this->assertText("The machine-readable name is already in use. It must be unique.", t("Blocked the creation of duplicate named optionset."));
+
+    // ------------ Test Option Set Edit ------------ //
+    // Attempt to save each option value
+    $options = _flexslider_test_options();
+
+    foreach ($options['valid'] as $testset) {
+      $this->drupalPost('admin/config/media/flexslider/list/default/edit', $testset, t('Save'));
+      $this->assertResponse(200);
+
+      // Test saved values loaded into form
+      $this->drupalGet('admin/config/media/flexslider/list/default/edit');
+      $this->assertResponse(200, t('Default optionset reloaded.'));
+      foreach ($testset as $key => $option) {
+        $this->assertFieldByName($key, $option, t('Value for @key appears in form correctly.', array('@key' => $key)));
+      }
+    }
+
+    // ------------ Test Option Set Delete ------------ //
+    $testset = flexslider_optionset_load('testset');
+
+    // Test the delete workflow
+    $this->drupalGet("admin/config/media/flexslider/list/$testset->name/delete");
+    $this->assertResponse(200);
+    $this->assertText("Are you sure you want to delete $testset->name?", t('Delete confirmation form loaded.'));
+    $this->drupalPost("admin/config/media/flexslider/list/$testset->name/delete", '', 'Delete');
+    $this->assertResponse(200);
+    $this->assertText("The item has been deleted.", t('Deleted test set using form.'));
+  }
+
+}
+
+/**
+ * Test configuration options
+ *
+ * @return array
+ *  Returns an array of options to test saving.
+ */
+function _flexslider_test_options() {
+  // Valid option set data
+  $valid = array(
+    'set1' => _flexslider_optionset_defaults(),
+    'set2' => array(
+      'animation' => 'slide',
+      'startAt' => 4,
+      // @todo add more option tests
+    ),
+  );
+
+  // Invalid edge cases
+  $error = array();
+
+  return array('valid' => $valid, 'error' => $error);
+}

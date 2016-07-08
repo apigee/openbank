@@ -1,0 +1,65 @@
+<?php
+
+function openbank_install_enable(){
+
+  // Disable the default Apigee contexts.
+  $contexts = variable_get('context_status', array());
+  $contexts['apigee_base_theme_blocks'] = TRUE;
+  $contexts['blog'] = TRUE;
+  $contexts['home'] = TRUE;
+  $contexts['sitewide'] = TRUE;
+  variable_set('context_status', $contexts);
+}
+
+
+function openbank_install_install() {
+  $query = db_select('node', 'n');
+  $query->condition('title', 'Events');
+  $query->condition('type', 'page');
+  $query->fields('n', array('nid'));
+  $events_nid = $query->execute()->fetchField();
+  $path = array('source' => "node/$events_nid", 'alias' => 'events');
+  path_save($path);
+
+  $query = db_select('node', 'n');
+  $query->condition('title', 'Community');
+  $query->condition('type', 'page');
+  $query->fields('n', array('nid'));
+  $community_nid = $query->execute()->fetchField();
+  $path = array('source' => "node/$community_nid", 'alias' => 'apix-community');
+  path_save($path);
+
+  // Disable the default apigee menu items and enable the custom ones.
+  $community_menu = array(
+    'link_path' => 'node/' . $community_nid,
+    'link_title' => "Community",
+    'router_path' => 'node/%',
+    'menu_name' => 'main-menu',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Community',
+      ),
+    ),
+  );
+  menu_link_save($community_menu);
+  $events_menu = array(
+    'link_path' => 'node/' . $events_nid,
+    'link_title' => "Events",
+    'router_path' => 'node/%',
+    'menu_name' => 'main-menu',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Events',
+      ),
+    ),
+  );
+  menu_link_save($events_menu);
+
+  $links = menu_load_links('main-menu');
+  foreach ($links as $item) {
+    if ($item['link_path'] == 'blog' || $item['link_path'] == 'apis' || $item['link_path'] == 'forum' || $item['link_path'] == 'user/me/apps' || $item['link_path'] == 'faq-page') {
+      $item['hidden'] = 1;
+      menu_link_save($item);
+    }
+  }
+}

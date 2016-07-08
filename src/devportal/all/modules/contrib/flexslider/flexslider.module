@@ -1,0 +1,601 @@
+<?php
+/**
+ * @file
+ * A light-weight, customizable image gallery plugin for Drupal based on jQuery
+ */
+
+define("FLEXSLIDER_VERSION", variable_get('flexslider_version', '2.0'));
+define("FLEXSLIDER_DEBUG", variable_get('flexslider_debug', FALSE));
+
+/**
+ * Implements hook_libraries_info().
+ */
+function flexslider_libraries_info() {
+  $libraries['flexslider'] = array(
+    'name' => 'FlexSlider',
+    'vendor url' => 'http://www.woothemes.com/flexslider/',
+    'download url' => 'https://github.com/woothemes/FlexSlider',
+    'version arguments' => array(
+      'file' => 'jquery.flexslider-min.js',
+      // jQuery FlexSlider v2.1
+      'pattern' => '/jQuery FlexSlider v(\d+\.+\d+)/',
+      'lines' => 2,
+    ),
+    'files' => array(
+      'js' => array(
+        'jquery.flexslider-min.js',
+      ),
+      'css' => array(
+        'flexslider.css',
+      ),
+    ),
+    'integration files' => array(
+      'flexslider' => array(
+        'css' => array('assets/css/flexslider_img.css'),
+      ),
+    ),
+  );
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_libraries_info_alter().
+ */
+function flexslider_libraries_info_alter(&$libraries) {
+  $debug = variable_get('flexslider_debug', FALSE);
+  if ($debug) {
+    // Switch to the unminified version of the library
+    if (isset($libraries['flexslider'])) {
+      $libraries['flexslider']['files']['js'] = array(
+        'jquery.flexslider.js',
+      );
+    }
+  }
+
+  // Add support for jQuery Easing module
+  if (module_exists('jqeasing')) {
+    $libraries['flexslider']['dependencies'][] = 'easing (>=1.3)';
+  }
+}
+
+/**
+ * Implements hook_library().
+ *
+ * We also define FlexSlider through the core library callbacks
+ */
+function flexslider_library() {
+  $module_path = drupal_get_path('module', 'flexslider');
+  $library_path = libraries_get_path('flexslider');
+  
+  $libraries['flexslider'] = array(
+    'title' => 'FlexSlider',
+    'website' => 'http://flexslider.woothemes.com',
+    'version' => FLEXSLIDER_VERSION,
+    'js' => array(
+      $library_path . '/jquery.flexslider-min.js' => array(
+        'scope' => 'footer',
+      ),
+    ),
+    'css' => array(
+      $library_path . '/flexslider.css' => array(
+        'type' => 'file',
+        'media' => 'screen',
+      ),
+      $module_path . '/assets/css/flexslider_img.css' => array(
+        'type' => 'file',
+        'media' => 'screen',
+      ),
+    ),
+  );
+  return $libraries;
+}
+
+/**
+ * Implements hook_library_alter().
+ */
+function flexslider_library_alter(&$libraries, $module) {
+  // Enable debug mode
+  if (FLEXSLIDER_DEBUG) {
+    if ($module == 'flexslider' and isset($libraries['flexslider'])) {
+      $libraries['flexslider']['js'] = array(
+        libraries_get_path() . '/jquery.flexslider.js' => array(
+          'scope' => 'footer',
+        ),
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function flexslider_permission() {
+  return array(
+    'administer flexslider' =>  array(
+      'title' => t('Administer the FlexSlider module'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function flexslider_menu() {
+  $items = array();
+
+  $items['admin/config/media/flexslider/advanced'] = array(
+    'title' => 'Advanced settings',
+    'description' => 'Configure the advanced flexslider module settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('flexslider_form_settings'),
+    'access arguments' => array('administer flexslider'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 2,
+    'file' => 'flexslider.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_help().
+ */
+function flexslider_help($path, $arg) {
+  switch ($path) {
+    case 'admin/config/media/flexslider/edit/%':
+      return
+          '<p>'
+        . t('An <em>option set</em> defines exactly how a flexslider image gallery looks like on your site. '
+          . 'It is s a combination of <a href="@styles">image styles</a> for the various image sizes and FlexSlider library options.', array('@styles' => url('admin/config/media/image-styles'))) . '<br />'
+        . t('For a full documentation of all options, refer to the official @docs.', array('@docs' => l(t('FlexSlider documentation'), 'http://www.woothemes.com/flexslider/')))
+        . '</p>';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function flexslider_theme() {
+  return array(
+    // Flexslider container
+    'flexslider' => array(
+      'variables' => array('items' => array(), 'settings' => array()),
+      'template' => 'theme/flexslider',
+      'file' => 'theme/flexslider.theme.inc',
+    ),
+    
+    // Slide container
+    'flexslider_list' => array(
+      'variables' => array('items' => array(), 'settings' => array()),
+      'file' => 'theme/flexslider.theme.inc',
+    ),
+    
+    // Slide item
+    'flexslider_list_item' => array(
+      'variables' => array('item' => array(), 'settings' => array(), 'caption' => ''),
+      'file' => 'theme/flexslider.theme.inc',
+    ),
+  );
+}
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function flexslider_image_default_styles() {
+  $styles = array();
+
+  // Default image preset for FlexSlider
+  $styles['flexslider_full'] = array(
+    'effects' => array(
+      array(
+        'name' => 'image_scale_and_crop',
+        'data' => array('width' => 800, 'height' => 500),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Default image preset for FlexSlider thumbnails
+  $styles['flexslider_thumbnail'] = array(
+    'effects' => array(
+      array(
+        'name' => 'image_scale_and_crop',
+        'data' => array('width' => 160, 'height' => 100),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function flexslider_ctools_plugin_api($owner, $api) {
+  if ($owner == 'flexslider' && $api == 'flexslider_default_preset') {
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function flexslider_ctools_plugin_directory($module, $type) {
+  if ($type == 'export_ui') {
+    return 'plugins/export_ui';
+  }
+}
+
+/**
+ * Create a new optionset object
+ *
+ * Note that this function does not save the optionset to the database.
+ * @see flexslider_optionset_save()
+ */
+function flexslider_optionset_create($values = array()) {
+  ctools_include('export');
+  $optionset = ctools_export_crud_new('flexslider_optionset');
+
+  // Set the options to an array
+  $optionset->options = array();
+
+  // Assign specified values
+  if (isset($values['name'])) {
+    $optionset->name = $values['name'];
+  }
+  if (isset($values['title'])) {
+    $optionset->title = $values['title'];
+  }
+  if (isset($values['options']) and is_array($values['options'])) {
+    $optionset->options = $values['options'];
+  }
+
+  // Merge default settings with any given settings
+  $optionset_defaults = _flexslider_optionset_defaults();
+  $optionset->options = $optionset_defaults += $optionset->options;
+
+  return $optionset;
+}
+
+/**
+ * Fetches all option sets from the database and returns them as an associative array.
+ */
+function flexslider_optionset_load_all() {
+  ctools_include('export');
+  $optionsets = ctools_export_crud_load_all('flexslider_optionset');
+  foreach ($optionsets as $optionset) {
+    // Ensure the optionset is typecast after being loaded from DB
+    _flexslider_typecast_optionset($optionset->options);
+  }
+  return $optionsets;
+}
+
+/**
+ * Fetches the given option set and returns it as an object or NULL, if no set could be found.
+ */
+function flexslider_optionset_load($optionset_name) {
+  ctools_include('export');
+  $optionset = ctools_export_crud_load('flexslider_optionset', $optionset_name);
+    // Ensure the optionset is typecast after being loaded from DB
+  _flexslider_typecast_optionset($optionset->options);
+  return $optionset;
+}
+
+/**
+ * Checks whether an option set with the given name already exists.
+ */
+function flexslider_optionset_exists($optionset_name) {
+  ctools_include('export');
+  $optionset = ctools_export_crud_load('flexslider_optionset', $optionset_name);
+  return isset($optionset->name);
+}
+
+/**
+ * Saves the given option set to the database.
+ * Set the $new flag if this set has not been written before.
+ *
+ * @return object|boolean
+ *  Returns the newly saved object, FALSE otherwise.
+ */
+function flexslider_optionset_save($optionset, $new = FALSE) {
+  // If the machine name is missing or already in use, return an error.
+  if (empty($optionset->name) or (FALSE != flexslider_optionset_exists($optionset->name) and $new)) {
+    return FALSE;
+  }
+
+  // Check for an invalid list of options
+  if (isset($optionset->options) and !is_array($optionset->options)) {
+    return FALSE;
+  }
+
+
+  // If the title is missing, default to the name
+  if (empty($optionset->title)) {
+    $optionset->title = $optionset->name;
+  }
+
+  // Merge default settings with any given settings
+  $optionset_defaults = _flexslider_optionset_defaults();
+  $optionset->options = $optionset_defaults += $optionset->options;
+
+  // Prepare the database values.
+  $db_values = array(
+    'name' => $optionset->name,
+    'title' => $optionset->title,
+    'options' => _flexslider_typecast_optionset($optionset->options),
+  );
+
+  if ($new) {
+    $result = drupal_write_record('flexslider_optionset', $db_values);
+  }
+  else {
+    $result = drupal_write_record('flexslider_optionset', $db_values, 'name');
+  }
+
+  // Return the object if the values were saved successfully.
+  if (($new and SAVED_NEW == $result) or (!$new and SAVED_UPDATED == $result)) {
+    return $optionset;
+  }
+
+  // Otherwise, an error occured
+  return FALSE;
+}
+
+/**
+ * Deletes the given option set from the database.
+ *
+ * @param object|string $optionset
+ *  Optionset object or machine name
+ */
+function flexslider_optionset_delete($optionset) {
+  if (isset($optionset->name)) {
+    $name = $optionset->name;
+  }
+  else {
+    $name = $optionset;
+  }
+  db_delete('flexslider_optionset')->condition('name', $name)->execute();
+}
+
+/*
+ * This function loads the required JavaScripts and settings for a flexslider
+ * instance.
+ *
+ * @param string $id [optional]
+ *  ID Attribute for FlexSlider container
+ * @param object|strong $optionset [optional]
+ *  Option set to load or the machine name of an existing optionset
+ */
+function flexslider_add($id = NULL, $optionset = NULL) {
+  // Check optionset value
+  if (is_string($optionset)) {
+    $name = $optionset;
+    $optionset = flexslider_optionset_load($name);
+    if (empty($optionset)) {
+      watchdog('flexslider', 'Invalid optionset name supplied to flexslider_add: @name', array('@name' => $name), WATCHDOG_WARNING);
+      return;
+    }
+  }
+
+  // Static array to remember which scripts are already attached.
+  // @todo not currently in use
+  $cache = &drupal_static(__FUNCTION__, array());
+
+  // @todo investigate the best way to cache data loaded from libraries_load()
+  libraries_load('flexslider');
+
+  // If the ID or optionset aren't set, it is assumed the settings will be set
+  // manually via the calling module/theme
+  if (!empty($optionset) && !in_array($optionset->name, $cache)) {
+    $cache[] = $optionset->name;
+    $js_setting['optionsets'] = array(
+      $optionset->name => $optionset->options,
+    );
+    drupal_add_js(array('flexslider' => $js_setting), 'setting');
+  }
+  
+  if (!empty($id)) {
+    // JavaScript settings
+    $js_settings = array(
+      'instances' => array(
+        $id => $optionset->name,
+      ),
+    );
+    // @todo add alter hook for optionset
+    drupal_add_js(array('flexslider' => $js_settings), 'setting');
+  }
+  // Loader JavaScript
+  drupal_add_js(drupal_get_path('module', 'flexslider') . '/assets/js/flexslider.load.js', array('type' => 'file', 'scope' => 'footer'));
+}
+
+/**
+ * Default settings for a newly created option set
+ *
+ * @param string $key [optional]
+ *  Get specific default value
+ *
+ * @see https://github.com/woothemes/FlexSlider/blob/master/README.mdown
+ * @see https://github.com/woothemes/FlexSlider/wiki/FlexSlider-Properties
+ */
+function _flexslider_optionset_defaults($key = NULL) {
+
+  // We add typecasts to ensure the variables get json encoded properly
+
+  $defaults = array(
+    // v2.x options
+    'namespace' => 'flex-',
+    'selector' => '.slides > li',
+    'easing' => 'swing',
+    'direction' => 'horizontal',
+    'reverse' => FALSE,  // @todo verify data value
+    'smoothHeight' => FALSE, // @todo verify data value
+    'startAt' => 0,
+    'animationSpeed' => 600,
+    'initDelay' => 0,
+    'useCSS' => TRUE,
+    'touch' => TRUE,
+    'video' => FALSE,
+    'keyboard' => TRUE,
+    'multipleKeyboard' => FALSE,
+    'mousewheel' => FALSE, // requires https://github.com/brandonaaron/jquery-mousewheel @todo add to make file
+    'controlsContainer' => '.flex-control-nav-container',
+    'sync' => '',
+    'asNavFor' => '',
+    'itemWidth' => 0,
+    'itemMargin' => 0,
+    'minItems' => 0,
+    'maxItems' => 0,
+    'move' => 0,
+    //'start' => '',
+    //'before' => '',
+    //'after' => '',
+    //'end' => '',
+    //'added' => '',
+    //'removed' => '',
+
+    // @todo verify the 1.x options are still valid
+    // v1.x options
+    'animation' => 'fade',
+    //'animationDuration' => 6000, -- replaced by 'animationSpeed'
+    //'slidedirection' => 'horizontal', -- replaced by "direction"
+    'slideshow' => TRUE,
+    'slideshowSpeed' => 7000,
+    'directionNav' => TRUE,
+    'controlNav' => TRUE,
+    //'keyboardnav' => TRUE, --  replaced by 'keyboard'
+    //'mousewheel' => FALSE,
+    'prevText' => t('Previous'),
+    'nextText' => t('Next'),
+    'pausePlay' => FALSE,
+    'pauseText' => t('Pause'),
+    'playText' => t('Play'),
+    'randomize' => FALSE,
+    'thumbCaptions' => FALSE,
+    'thumbCaptionsBoth' => FALSE,
+    //'slidetostart' => 0, // integer value, not boolean --  replace by "startAt"
+    'animationLoop' => TRUE,
+    'pauseOnAction' => TRUE,
+    'pauseOnHover' => FALSE,
+    //'controlscontainer' => '.flex-nav-container', -- updated in v2
+    'manualControls' => '',
+    //'startCallback' => 'function() {}', -- replace by 'start'
+    //'beforeCallback' => 'function() {}', -- replaced by 'before'
+    //'afterCallback' => 'function() {}', -- replaced by 'after'
+    //'endCallback' => 'function() {}', -- replaced by 'end'
+  );
+
+  // Typecast the values
+  _flexslider_typecast_optionset($defaults);
+
+  // Return the specific item
+  if (isset($key) and array_key_exists($key, $defaults)) {
+    return $defaults[$key];
+  }
+
+  // Return all items
+  return $defaults;
+}
+
+/**
+ * Adds the typecasting to the values so that the generated
+ * json array keeps the right values
+ */
+function _flexslider_typecast_optionset(&$options) {
+  if (isset($options) && !empty($options)) {
+    foreach ($options as $key => $value) {
+      switch ($key) {
+        case 'namespace':
+        case 'selector':
+        case 'easing':
+        case 'direction':
+        case 'controlsContainer':
+        case 'sync':
+        case 'asNavFor':
+        case 'fade':
+        case 'prevText':
+        case 'nextText':
+        case 'pauseText':
+        case 'playText':
+        case 'manualControls':
+          $options[$key] = (string)$value;
+          break;
+        case 'startAt':
+        case 'animationSpeed':
+        case 'initDelay':
+        case 'itemWidth':
+        case 'itemMargin':
+        case 'minItems':
+        case 'maxItems':
+        case 'move':
+          $options[$key] = (int)$value;
+          break;
+        case 'controlNav':
+          if ($value == 'thumbnails') {
+            $options[$key] = (string)$value;
+            break;
+          }
+        case 'reverse':
+        case 'smoothHeight':
+        case 'useCSS':
+        case 'touch':
+        case 'video':
+        case 'keyboard':
+        case 'multipleKeyboard':
+        case 'mouseWheel':
+        case 'slideshow':
+        case 'directionNav':
+        case 'pausePlay':
+        case 'randomize':
+        case 'thumbCaptions':
+        case 'thumbCaptionsBoth':
+        case 'animationLoop':
+        case 'pauseOnAction':
+        case 'pauseOnHover':
+          $options[$key] = (boolean)$value;
+          break;
+      }
+    }
+  }
+}
+
+/**
+ * List of all easing methods available from jQuery Easing v1.3
+ */
+function _flexslider_jqeasing_options() {
+  return array(
+    "jswing" => "jswing",
+    "def" => "def",
+    "easeInQuad" => "easeInQuad",
+    "easeOutQuad" => "easeOutQuad",
+    "easeInOutQuad" => "easeInOutQuad",
+    "easeInCubic" => "easeInCubic",
+    "easeOutCubic" => "easeOutCubic",
+    "easeInOutCubic" => "easeInOutCubic",
+    "easeInQuart" => "easeInQuart",
+    "easeOutQuart" => "easeOutQuart",
+    "easeInOutQuart" => "easeInOutQuart",
+    "easeInQuint" => "easeInQuint",
+    "easeOutQuint" => "easeOutQuint",
+    "easeInOutQuint" => "easeInOutQuint",
+    "easeInSine" => "easeInSine",
+    "easeOutSine" => "easeOutSine",
+    "easeInOutSine" => "easeInOutSine",
+    "easeInExpo" => "easeInExpo",
+    "easeOutExpo" => "easeOutExpo",
+    "easeInOutExpo" => "easeInOutExpo",
+    "easeInCirc" => "easeInCirc",
+    "easeOutCirc" => "easeOutCirc",
+    "easeInOutCirc" => "easeInOutCirc",
+    "easeInElastic" => "easeInElastic",
+    "easeOutElastic" => "easeOutElastic",
+    "easeInOutElastic" => "easeInOutElastic",
+    "easeInBack" => "easeInBack",
+    "easeOutBack" => "easeOutBack",
+    "easeInOutBack" => "easeInOutBack",
+    "easeInBounce" => "easeInBounce",
+    "easeOutBounce" => "easeOutBounce",
+    "easeInOutBounce" => "easeInOutBounce",
+  );
+}

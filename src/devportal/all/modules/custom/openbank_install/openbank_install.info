@@ -1,0 +1,5 @@
+name = Open Bank Install
+description = Performs installation related tasks for customizations
+core = 7.x
+version = 7.x-1.0
+packge = Open Bank

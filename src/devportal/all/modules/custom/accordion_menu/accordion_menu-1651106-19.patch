@@ -1,0 +1,406 @@
+From 0d4312cf3fe5ad6e3e1009f92c478596e0a5d669 Mon Sep 17 00:00:00 2001
+From: Nikro <nikro.md@gmail.com>
+Date: Mon, 11 Feb 2013 17:59:03 +0200
+Subject: [PATCH] Issue #1651106 by Nikro, DumitruGrosul: Solved the
+ multi-level accordion with correct active trail
+
+---
+ accordion_menu.module  |   30 +++++++++++++++
+ includes/configure.inc |   39 +++++++++++++++++++-
+ includes/view.inc      |   96 ++++++++++++++++++++++++------------------------
+ js/accordion-menu.js   |   64 ++++++++++++++++++++++++++++++++
+ 4 files changed, 178 insertions(+), 51 deletions(-)
+ create mode 100644 js/accordion-menu.js
+
+diff --git a/accordion_menu.module b/accordion_menu.module
+index 64d8347..ddaa366 100644
+--- a/accordion_menu.module
++++ b/accordion_menu.module
+@@ -104,6 +104,7 @@ function accordion_menu_config($delta = NULL) {
+     // Our settings.
+     'menu_name' => 'Menu ' . $delta,
+     'menu_source' => 'navigation',
++    'menu_depth' => 'none',
+     'block_source' => '',
+     'script_scope' => 'footer',
+     'header_link' => FALSE,
+@@ -149,3 +150,32 @@ function accordion_menu_config($delta = NULL) {
+ 
+   return $config;
+ }
++
++/**
++ * Helper function that gets an option array of possible depths,
++ * for a specific selected menu.
++ */
++function _accordion_menu_form_menu_depth_options($form, $form_state) {
++  // Get rid of the messages.
++  drupal_get_messages(NULL, TRUE);
++  // Return our menu depth form element.
++  return $form['settings']['tabs']['basic']['accordion_menu_menu_depth'];
++}
++
++/**
++ * Helper function that returns the maximum depth of a menu.
++ *
++ * @param string $menu_name
++ *   Menu name.
++ *
++ * @return int
++ *   Menu max depth.
++ */
++function _accordion_menu_get_max_depth($menu_name) {
++  $query = db_select('menu_links', 'ml')
++           ->condition('menu_name', $menu_name, '=');
++  $query->addExpression('max(depth)', 'maxdepth');
++  $max_depth = $query->execute()->fetchAssoc();
++
++  return isset($max_depth['maxdepth']) ? $max_depth['maxdepth'] : 0;
++}
+diff --git a/includes/configure.inc b/includes/configure.inc
+index ff52cdc..aacfeff 100644
+--- a/includes/configure.inc
++++ b/includes/configure.inc
+@@ -25,6 +25,21 @@ function _accordion_menu_block_configure($delta) {
+     drupal_set_message(t('If you enable the !module module, then you may display menu blocks with an accordion effect.', array('!module' => l('Menu Block', 'https://drupal.org/project/menu_block'))), 'warning');
+   }
+ 
++  // We use $_POST as here we don't have access to $form_state.
++  if (!empty($_POST) && isset($_POST['accordion_menu_menu_source']) && $_POST['accordion_menu_menu_source'] != '') {
++    $menu_name = $_POST['accordion_menu_menu_source'];
++    $max_depth = _accordion_menu_get_max_depth($menu_name);
++    $options_depth = drupal_map_assoc(range(1, $max_depth));
++  }
++  elseif (!empty($config['menu_source'])) {
++    $menu_name = $config['menu_source'];
++    $max_depth = _accordion_menu_get_max_depth($menu_name);
++    $options_depth = drupal_map_assoc(range(1, $max_depth));
++  }
++  else {
++    $options_depth = array('none' => t('- Select a Menu Source -'));
++  }
++
+   // Build form.
+   $fs1['basic_options'] = array(
+     '#type' => 'fieldset',
+@@ -43,6 +58,20 @@ function _accordion_menu_block_configure($delta) {
+     '#description' => t('Select the menu to display as an accordion.'),
+     '#default_value' => $config['menu_source'],
+     '#options' => $options,
++    '#ajax' => array(
++      'callback' => '_accordion_menu_form_menu_depth_options',
++      'wrapper' => 'accordion-menu-depth',
++      'replace' => 'replace',
++    ),
++  );
++  $form1['accordion_menu_menu_depth'] = array(
++    '#type' => 'select',
++    '#title' => t('Accordion depth'),
++    '#description' => t('Select the depth to which the accordion must propagate.'),
++    '#default_value' => $config['menu_depth'],
++    '#options' => $options_depth,
++    '#prefix' => '<div id="accordion-menu-depth">',
++    '#suffix' => '</div>',
+   );
+   if (module_exists('menu_block')) {
+     $form1['accordion_menu_block_source'] = array(
+@@ -206,8 +235,10 @@ function _accordion_menu_block_validate($form, &$form_state) {
+   $key1 = 'menu_source';
+   $value1 = $form_state['values']['accordion_menu_' . $key1];
+   $key2 = 'block_source';
+-  $value2 = $form_state['values']['accordion_menu_' . $key2];
+-  if (isset($value2)) {
++  $value2 = isset($form_state['values']['accordion_menu_' . $key2]) ? $form_state['values']['accordion_menu_' . $key2] : NULL;
++  $key3 = 'menu_depth';
++  $value3 = $form_state['values']['accordion_menu_' . $key3];
++  if ($value2) {
+     if (empty($value1) && empty($value2)) {
+       form_set_error('accordion_menu_' . $key1, t('Select either a menu source or a menu block source. (' . $key1 . ')'));
+       form_set_error('accordion_menu_' . $key2, t('Select either a menu source or a menu block source. (' . $key2 . ')'));
+@@ -216,6 +247,10 @@ function _accordion_menu_block_validate($form, &$form_state) {
+   elseif (empty($value1)) {
+     form_set_error('accordion_menu_' . $key1, t('Select a menu source. (' . $key1 . ')'));
+   }
++  // In any case, we DO need the depth.
++  if (empty($value3) || $value3 == 'none') {
++    form_set_error('accordion_menu_' . $key3, t('Select a depth of the menu for accordion.'));
++  }
+ }
+ 
+ /**
+diff --git a/includes/view.inc b/includes/view.inc
+index 2bc58fe..ca7eabb 100644
+--- a/includes/view.inc
++++ b/includes/view.inc
+@@ -35,9 +35,10 @@ function _accordion_menu_block_view($delta) {
+ 
+   $active_menu = '';
+   $content = accordion_menu_output($tree, $config, $active_menu);
++
+   // Set active menu to false and collapsible: true.
+   if ($active_menu === '' || !$config['menu_expanded']) {
+-    $active_menu = 'false';
++    $active_menu = FALSE;
+   }
+ 
+   // For jQuery 1.6 options, see http://jqueryui.com/demos/accordion/.
+@@ -47,36 +48,20 @@ function _accordion_menu_block_view($delta) {
+       // Example: change auto_height to $autoHeight.
+       $key = $parts[0] . ucfirst($parts[1]);
+     }
+-    if ($key != 'icons' && $value != 'true' && $value != 'false') {
+-      $value = "'$value'";
+-    }
+-    $options[] = "$key: $value";
++    $options[$key] = $value;
+   }
+-  $options[] = "cookie: { path: '/' }"; // @todo Is this a valid option?
+-  $options[] = "active: " . $active_menu;
++  $options['cookie'] = array("path" => '/'); // @todo Is this a valid option?
++  $options['active'] = $active_menu;
+ 
+   // Other settings tried before settling on this code:
+   // - collapsible: false
+   // - event: 'click'
+   // - navigation: true
+-  $js = "jQuery(function() {\n";
+-
+-  // Add accordion options.
+-  $js .= "  jQuery('.accordion-menu-" . $delta . "').accordion({ " . implode(', ', $options) . " });\n";
+-
+-  // Unbind the accordion effect for "empty" headers.
+-  $js .= "  jQuery('.accordion-menu-" . $delta . " .accordion-header.no-children').each(function(index, element) {
+-    jQuery(this)
+-      .unbind('.accordion')
+-      .children('.ui-icon')
+-      .removeClass('{$config['header_icon']}')
+-      .addClass('{$config['empty_icon']}');
+-  });\n";
+-
+-  $js .= "});";
+-
+   drupal_add_library('system', 'ui.accordion');
+-  drupal_add_js($js, array('type' => 'inline', 'scope' => $config['script_scope'], 'group' => JS_DEFAULT));
++  // Add accordion options via Drupal.settings.accordion_menu.
++  drupal_add_js(array('accordion_menu' => array('delta-' . $delta => $options)), 'setting');
++  drupal_add_js(array('accordion_menu_active_trail' => array('delta-' . $delta => _accordion_menu_active_trail())), 'setting');
++  drupal_add_js(drupal_get_path('module', 'accordion_menu') . '/js/accordion-menu.js', array('scope' => $config['script_scope'], 'group' => JS_DEFAULT));
+ 
+   // Assemble the render arrays for the menu tree.
+   $data = array();
+@@ -99,6 +84,19 @@ function _accordion_menu_block_view($delta) {
+ }
+ 
+ /**
++ * Helper function that returns flat menu trail.
++ */
++function _accordion_menu_active_trail() {
++  $active_trail = menu_get_active_trail();
++  $active_trail_mlids = array();
++  foreach ($active_trail as $active_trail_item) {
++    $active_trail_mlids[] = isset($active_trail_item['mlid']) ? $active_trail_item['mlid'] : 0;
++  }
++
++  return $active_trail_mlids;
++}
++
++/**
+  * Implements hook_block().
+  */
+ function accordion_menu_block_OLD($op = 'list', $delta = 0, $edit = array()) { }
+@@ -106,13 +104,11 @@ function accordion_menu_block_OLD($op = 'list', $delta = 0, $edit = array()) { }
+ /**
+  * Returns jQuery UI accordion settings.
+  *
+- * @todo String input needs to be passed through check_plain().
+- *
+  * @param string $delta
+  *   The delta that uniquely identifies the block in the block system.
+  *
+  * @return array
+- *   An associative array of JS settings with booleans converted to strings.
++ *   An associative array of JS settings.
+  */
+ function accordion_menu_js_settings($delta, $config) {
+   $config_nojs = array(
+@@ -127,17 +123,19 @@ function accordion_menu_js_settings($delta, $config) {
+ 
+   $config = array_diff_key($config, $config_nojs);
+   foreach (array('auto_height', 'clear_style', 'collapsible', 'fill_space', 'navigation') as $key) {
+-    $config[$key] = accordion_menu_boolean_option($config[$key]);
++    $config[$key] = ($config[$key] == 0) ? FALSE : TRUE;
+   }
+ 
+   $key = 'icons';
+   if (!$config[$key]) {
+-    $config[$key] = accordion_menu_boolean_option($config[$key]);
++    $config[$key] = ($config[$key] == 0) ? FALSE : TRUE;
+   }
+   else {
+-    $value1 = $config['header_icon'];
+-    $value2 = $config['selected_icon'];
+-    $config[$key] = "{ 'header': '$value1', 'headerSelected': '$value2' }";
++    $config[$key] = array(
++      'header' => $config['header_icon'],
++      'headerSelected' => $config['selected_icon'],
++      'empty' => $config['empty_icon'],
++    );
+   }
+   unset($config['header_icon']);
+   unset($config['selected_icon']);
+@@ -147,19 +145,6 @@ function accordion_menu_js_settings($delta, $config) {
+ }
+ 
+ /**
+- * Returns string representation of boolean option.
+- *
+- * @param string $boolean
+- *   A boolean value.
+- *
+- * @return string
+- *   A string representation of the boolean value.
+- */
+-function accordion_menu_boolean_option($boolean) {
+-  return $boolean ? 'true' : 'false';
+-}
+-
+-/**
+  * Returns a render array of the accordion menu tree.
+  *
+  * @param array $tree
+@@ -189,8 +174,15 @@ function accordion_menu_output($tree, $config, &$active_menu = '') {
+   $flip = array('even' => 'odd', 'odd' => 'even');
+   $zebra = 'even';
+   foreach ($items as $i => $data) {
+-    $subtree = _accordion_menu_subtree($data['link']);
+-    $subtree = menu_tree_output($subtree);
++    if ($data['link']['depth'] >= $config['menu_depth']) {
++      $subtree = _accordion_menu_subtree($data['link']);
++      $subtree = menu_tree_output($subtree);
++    }
++    else {
++      $subtree = _accordion_menu_subtree($data['link']);
++      $subtree = accordion_menu_output($subtree, $config);
++    }
++
+ 
+     // Add CSS classes.
+     $class = array();
+@@ -207,6 +199,10 @@ function accordion_menu_output($tree, $config, &$active_menu = '') {
+     else {
+       $class[] = 'no-children';
+     }
++
++    // Add depth of the item.
++    $class[] = 'item-depth-' . $data['link']['depth'];
++
+     if ($data['link']['in_active_trail']) {
+       $class[] = 'active-trail';
+       $data['link']['localized_options']['attributes']['class'][] = 'active-trail';
+@@ -234,6 +230,7 @@ function accordion_menu_output($tree, $config, &$active_menu = '') {
+     $element['#bid'] = array('module' => 'accordion_menu', 'delta' => $config['delta']);
+     $element['#config'] = $config;
+     $element['#count'] = $i + 1;
++    $element['#depth'] = $data['link']['depth'];
+ 
+     // Index using the link's unique mlid.
+     $build[$data['link']['mlid']] = $element;
+@@ -275,6 +272,7 @@ function _accordion_menu_subtree($item) {
+     $index += _accordion_menu_index($tree);
+     $indexed[$item['menu_name']] = TRUE;
+   }
++
+   // Traverse the tree.
+   foreach ($index[$item['mlid']]['parents'] as $mlid) {
+     $key = $index[$mlid]['key'];
+@@ -340,7 +338,7 @@ function theme_accordion_menu_header(array $variables) {
+     // Merge in defaults.
+     $options = $element['#localized_options'];
+     $options += array(
+-      'attributes' => array(), 
++      'attributes' => array(),
+       'html' => FALSE,
+     );
+     $tag = 'span';
+@@ -354,7 +352,7 @@ function theme_accordion_menu_header(array $variables) {
+   // For the accordion effect to work, the sub_menu must be wrapped in a "div"
+   // following the header element.
+   $output = '<' . $header . drupal_attributes($element['#attributes']) . '>' . $link . '</' . $header . '>' . "\n";
+-  return $output . '<div class="accordion-content-' . $element['#count'] . '">' . $sub_menu . '</div>' . "\n";
++  return $output . '<div class="accordion-content-' . $element['#count'] . ' accordion-content-depth-' . $element['#depth'] .'">' . $sub_menu . '</div>' . "\n";
+ }
+ 
+ /**
+diff --git a/js/accordion-menu.js b/js/accordion-menu.js
+new file mode 100644
+index 0000000..c3b7c93
+--- /dev/null
++++ b/js/accordion-menu.js
+@@ -0,0 +1,64 @@
++/**
++ * All accordion menu init and logic is here.
++ */
++ (function($) {
++   Drupal.behaviors.accordion_menu = {
++    attach: function(context, settings) {
++      // Rewrote the old way to the new way.
++      if (settings.accordion_menu) {
++        // For each accordion menu instance.
++        for (i in settings.accordion_menu) {
++          var activeOriginal = settings.accordion_menu[i].active;
++          var deltas = i.match(/\d+/g);
++
++          if (deltas == null) continue;
++
++          var delta = deltas[0];
++          var headerOriginal = settings.accordion_menu[i].header;
++          var $menuInstance = $('.accordion-menu-' + delta, context);
++
++          // We override headers so only 1st level headers will transform to accordion.
++          settings.accordion_menu[i].header = headerOriginal + '.item-depth-1';
++          $menuInstance.accordion(settings.accordion_menu[i]);
++
++          // For each accordion menu level of the instance.
++          for (var level = 1; level < settings.accordion_menu[i].menuDepth; level++) {
++            settings.accordion_menu[i].header = headerOriginal + '.item-depth-' + (level + 1);
++            if (activeOriginal === false) {
++              settings.accordion_menu[i].active = -1;
++              $('.accordion-content-depth-' + level, $menuInstance).accordion(settings.accordion_menu[i]);
++              continue;
++            }
++
++            var mlid = 0;
++            if (settings.accordion_menu_active_trail[i][level + 1]) {
++              mlid = settings.accordion_menu_active_trail[i][level + 1];
++            }
++
++            if (mlid == 0) {
++              settings.accordion_menu[i].active = -1;
++              $('.accordion-content-depth-' + level, $menuInstance).accordion(settings.accordion_menu[i]);
++              continue;
++            };
++
++            $('.accordion-content-depth-' + level, $menuInstance).each(function(index,e) {
++              settings.accordion_menu[i].active = $(e).find(settings.accordion_menu[i].header).index($('.menu-mlid-' + mlid, $(e)));
++              $(e).accordion(settings.accordion_menu[i]);
++            })
++          }
++
++          // Unbind the accordion effect for "empty" headers.
++          $('.accordion-header.no-children', $menuInstance)
++            .unbind('.accordion')
++            .children('.ui-icon')
++            .removeClass(settings.accordion_menu[i].icons.header)
++            .addClass(settings.accordion_menu[i].icons.empty);
++        }
++      }
++    },
++
++    detach: function(context, settings) {
++
++    }
++  };
++}(jQuery));
+-- 
+1.7.9.5
+

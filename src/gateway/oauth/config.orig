@@ -18,8 +18,7 @@
     },
     {
       "name": "test",
-      "policies": [],
-      "proxies": [
+      "policies": [
         {
           "name": "Assign.RedirectConsentApp.xml",
           "tokens": [
@@ -30,12 +29,12 @@
           ]
         }
       ],
+      "proxies": [],
       "targets": []
     },
     {
       "name": "prod",
-      "policies": [],
-      "proxies": [
+      "policies": [
         {
           "name": "Assign.RedirectConsentApp.xml",
           "tokens": [
@@ -46,6 +45,7 @@
           ]
         }
       ],
+      "proxies": [],
       "targets": []
     }
   ]

@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Describe the file
+ *
+ * @author Mathew Winstone <mwinstone@coldfrontlabs.ca>
+ */
+
+@include 'flexslider_example.features.inc';
+
+/**
+ * Generate the sample content
+ */
+function flexslider_example_generate_content() {
+  $images = array(
+    'flexslider-sample-1.jpg',
+    'flexslider-sample-2.jpg',
+    'flexslider-sample-3.jpg',
+    'flexslider-sample-4.jpg',
+  );
+  
+  foreach ($images as $image) {
+    // Add the images using the Drupal File API
+    $path = drupal_get_path('module', 'flexslider') . '/assets/images/' . $image;
+    $filetitle = $image;
+    $filename = $image;
+    
+    $file_temp = file_get_contents($path);
+    $file_temp - file_save_data($file_temp, 'public://' . $filename, FILE_EXISTS_RENAME);
+
+    $node = new stdClass();
+    
+    $node->title = $image;
+    $node->type = 'flexslider_example';
+    
+    node_object_prepare($node);
+    $node->uid = 1;
+    $node->status = 1;
+    $node->promote = 0;
+    $node->comment = 0;
+    
+    $node->field_flexslider_example_image[LANGUAGE_NONE][] = array(
+      'fid' => $file_temp->fid,
+      'filename' => $file_temp->filename,
+      'filemime' => $file_temp->filemime,
+      'uid' => 1,
+      'uri' => $file_temp->uri,
+      'status' => 1,
+      'display' => 1,
+    );
+    
+    node_save($node);
+  }
+}
