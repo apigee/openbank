@@ -1,7 +1,5 @@
 /src/gateway/*.zip
 config.json
-edge.sh
-usergrid.sh
 .idea/
 
 # Created by .ignore support plugin (hsz.mobi)
@@ -28,7 +26,6 @@ coverage
 # node-waf configuration
 .lock-wscript
 
-/src/gateway/*/target
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
@@ -43,7 +40,5 @@ jspm_packages
 .node_repl_history
 /src/utils/
 /src/gateway/deploy.sh
-src/analytics/
-src/gateway/sms-token/tests/
-src/java/
-src/portal/
+/src/target
+/src/gateway/*/target/
