@@ -19,7 +19,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>apigee</groupId>
-    <artifactId>parent-pom</artifactId>
+    <artifactId>parent-pom-apps</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
     <pluginRepositories>
@@ -41,18 +41,8 @@
     </properties>
 
     <modules>
-        <module>../sms-token</module>
-        <module>../session</module>
-        <module>../oauth</module>
-
-        <module>../authentication-connector</module>
-        <module>../accounts-connector</module>
-        <module>../transfers-connector</module>
-        <module>../locations-connector</module>
-
-        <module>../accounts</module>
-        <module>../transfers</module>
-        <module>../locations</module>
+        <module>../consent-app</module>
+        <module>../consent-app-transfers</module>
     </modules>
 
     <build>

@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 # Revert to original, if we have ever changed these files ...
-cp ./edge.orig ./edge.sh
-cp ./usergrid.orig ./usergrid.sh
+#cp ./edge.orig ./edge.sh
+#cp ./usergrid.orig ./usergrid.sh
 
 ### setup.sh
 
 URI="https://api.enterprise.apigee.com"
+UGURI="https://api.usergrid.com"
 
 usage() {
   echo "Usage: $(basename $0) [-o <org name>] [-e <env name>] [-u <admin email>] [-p <admin password>]"
@@ -88,44 +89,56 @@ if [ -z "${APW}" ]; then
     read -s -r APW
 fi
 
-echo "Enter Apigee App services org, followed by [ENTER]:"
-read UGORG
+if [ -z "${UGORG}" ]; then
+    echo "Enter Apigee App services org, followed by [ENTER]:"
+    read UGORG
+fi
 
-echo "Enter Application Name , followed by [ENTER]:"
-read UGAPP
+if [ -z "${UGAPP}" ]; then
+    echo "Enter Application Name , followed by [ENTER]:"
+    read UGAPP
+fi
 
-echo "Enter Org Client ID, followed by [ENTER]:"
-read UGCLIENTID
+if [ -z "${UGCLIENTID}" ]; then
+    echo "Enter Org Client ID, followed by [ENTER]:"
+    read UGCLIENTID
+fi
 
-echo "Enter Org Client Secret, followed by [ENTER]:"
-read UGCLIENTSECRET
+if [ -z "${UGCLIENTSECRET}" ]; then
+    echo "Enter Org Client Secret, followed by [ENTER]:"
+    read UGCLIENTSECRET
+fi
 
 echo ""
 HOST=$ORG-$ENV.apigee.net
 echo $HOST
 
 
-### Create pre-requisite resources ###
+### Create edge and baas resources ###
 . ./cache.sh
 . ./usergrid.sh
-. ./resources.sh
+. ./apis.sh
+. ./api-products.sh
+. ./app-products.sh
+. ./apps.sh
+
+#. ./resources.sh
 
 
 ### Deploy APIs
-sed -i "" "s/__UGORG__/$ORG/g" ./edge.sh
-. ./edge.sh
+#sed -i "" "s/__UGORG__/$ORG/g" ./edge.sh
+#. ./edge.sh
 
-cd ../parent-pom/
-mvn clean install -Dusername=${ADMIN_EMAIL} -Dpassword=${APW} -Dorg=${ORG} -P${ENV}
+
 
 ### Create post-deployment resources ###
-cd ../setup
-. ./products.sh
+#cd ../setup
+#. ./products.sh
 
 echo "Finally, the setup is complete. Have fun using the APIs"
 
 # Revert to original, if we have ever changed these files ...
-cp ./edge.orig ./edge.sh
-cp ./usergrid.orig ./usergrid.sh
+#cp ./edge.orig ./edge.sh
+#cp ./usergrid.orig ./usergrid.sh
 
 
