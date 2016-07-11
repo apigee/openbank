@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="156ff6bb-745b-4568-9c3d-1724e810d200" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/setup/edge.orig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/setup/edge.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/setup/products.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/setup/resources.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" afterPath="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/setup/usergrid.sh" afterPath="$PROJECT_DIR$/src/gateway/setup/usergrid.sh" />
     </list>
     <ignored path="Banking.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,21 +29,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="usergrid.orig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.orig">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="59" column="43" selection-start-line="0" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usergrid.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="usergrid.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state relative-caret-position="229">
+              <caret line="54" column="148" selection-start-line="54" selection-start-column="148" selection-end-line="54" selection-end-column="148" />
               <folding />
             </state>
           </provider>
@@ -104,13 +108,13 @@
         <option value="$PROJECT_DIR$/src/gateway/userinfo/apiproxy/policies/Assign-UserInfo-Response.xml" />
         <option value="$PROJECT_DIR$/src/gateway/userinfo/apiproxy/proxies/default.xml" />
         <option value="$PROJECT_DIR$/src/gateway/userinfo/config.orig" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/gateway/deploy.sh" />
         <option value="$PROJECT_DIR$/src/gateway/setup/api-products.sh" />
         <option value="$PROJECT_DIR$/src/gateway/setup/app-products.sh" />
         <option value="$PROJECT_DIR$/src/gateway/setup/setup.sh" />
         <option value="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" />
         <option value="$PROJECT_DIR$/src/gateway/setup/usergrid.sh" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -502,7 +506,7 @@
       <workItem from="1466400146995" duration="14998000" />
       <workItem from="1466758327573" duration="23000" />
       <workItem from="1467959901994" duration="2007000" />
-      <workItem from="1468218427710" duration="66000" />
+      <workItem from="1468218427710" duration="511000" />
     </task>
     <task id="LOCAL-00001" summary="don't use older baas data for account and customer info">
       <created>1462905894948</created>
@@ -634,16 +638,16 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129671000" />
+    <option name="totallyTimeSpent" value="130116000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="804" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25440452" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3300562" sideWeight="0.5024665" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3286517" sideWeight="0.49753347" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3286517" sideWeight="0.49753347" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286517" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -994,14 +998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/cleanup_locations.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1068,8 +1064,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gateway/setup/usergrid.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        <state relative-caret-position="229">
+          <caret line="54" column="148" selection-start-line="54" selection-start-column="148" selection-end-line="54" selection-end-column="148" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
           <folding />
         </state>
       </provider>

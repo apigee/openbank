@@ -1,6 +1,5 @@
 /src/gateway/*.zip
 config.json
-.idea/
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
@@ -42,3 +41,8 @@ jspm_packages
 /src/gateway/deploy.sh
 /src/target
 /src/gateway/*/target/
+/.idea/
+src/analytics/
+src/gateway/sms-token/tests/
+src/java/
+src/portal/
