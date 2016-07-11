@@ -5,42 +5,42 @@
     "header_background_color": "#FFF"
   },
   "consentTransaction": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/session/transactions/",
+    "transactionEndpoint": "https://demo38-test.apigee.net/internal/apis/v1/session/transactions/",
     "method": "GET",
     "headers": {
-      "x-apikey": "nmf5Hv93r1y94W5hVO6eTQuoBE7WjNh2"
+      "x-apikey": "g7yC0VcJUJLg0U3X7eTItwbOFlVIUtBc"
     }
   },
   "authenticationTransaction": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/connector/v1/authenticate",
+    "transactionEndpoint": "https://demo38-test.apigee.net/internal/connector/v1/authenticate",
     "method": "POST",
     "headers": {
-      "x-apikey": "nmf5Hv93r1y94W5hVO6eTQuoBE7WjNh2"
+      "x-apikey": "g7yC0VcJUJLg0U3X7eTItwbOFlVIUtBc"
     }
   },
   "accessTokenTransaction": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/apis/v1/oauth/authorized/transactions/",
+    "transactionEndpoint": "https://demo38-test.apigee.net/apis/v1/oauth/authorized/transactions/",
     "method": "POST",
     "headers": {
-      "x-apikey": "nmf5Hv93r1y94W5hVO6eTQuoBE7WjNh2"
+      "x-apikey": "g7yC0VcJUJLg0U3X7eTItwbOFlVIUtBc"
     }
   },
   "generateOtp": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "https://demo38-test.apigee.net/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": "nmf5Hv93r1y94W5hVO6eTQuoBE7WjNh2"
+      "x-apikey": "g7yC0VcJUJLg0U3X7eTItwbOFlVIUtBc"
     }
   },
   "validateOtp": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "https://demo38-test.apigee.net/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": "nmf5Hv93r1y94W5hVO6eTQuoBE7WjNh2"
+      "x-apikey": "g7yC0VcJUJLg0U3X7eTItwbOFlVIUtBc"
     }
   },
   "getAccounts": {
-    "transactionEndpoint": "https://apisdeploytest-test.apigee.net/internal/connector/v1/accounts",
+    "transactionEndpoint": "https://demo38-test.apigee.net/internal/connector/v1/accounts",
     "method": "GET",
     "headers": null
   },

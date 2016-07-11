@@ -2,13 +2,13 @@
 
 ### Delete App Resources ###
 
-### products
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/apiproducts/internal_consent_app"  1>&2`
+### apps
+SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/developers/openbank@apigee.net/apps/Consent_App"  1>&2`
 echo "${SETUP_RESULT}"
 echo ""
 
-### apps
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/developers/openbank@apigee.net/apps/Consent_App"  1>&2`
+### products
+SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X DELETE "${URI}/v1/o/${ORG}/apiproducts/internal_consent_app"  1>&2`
 echo "${SETUP_RESULT}"
 echo ""
 
@@ -18,7 +18,7 @@ echo ""
 ### Create App Resources Now ###
 
 ### products
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X PUT "${URI}/v1/o/${ORG}/apiproducts/internal_consent_apis" -H "Content-Type: application/json" -d '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_consent_apis","environments":["test","prod"],"scopes":[], "proxies":["session", "sms-token", "authentication-connector", "oauth"]}' 1>&2`
+SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/apiproducts" -H "Content-Type: application/json" -d '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_consent_apis","environments":["test","prod"],"scopes":[], "proxies":["session", "sms-token", "authentication-connector", "oauth"]}' 1>&2`
 echo "${SETUP_RESULT}"
 echo ""
 
