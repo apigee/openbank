@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="156ff6bb-745b-4568-9c3d-1724e810d200" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/setup/edge.orig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/setup/edge.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/setup/products.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/setup/resources.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gateway/setup/usergrid.orig" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Banking.iws" />
@@ -506,7 +500,7 @@
       <workItem from="1466400146995" duration="14998000" />
       <workItem from="1466758327573" duration="23000" />
       <workItem from="1467959901994" duration="2007000" />
-      <workItem from="1468218427710" duration="511000" />
+      <workItem from="1468218427710" duration="527000" />
     </task>
     <task id="LOCAL-00001" summary="don't use older baas data for account and customer info">
       <created>1462905894948</created>
@@ -634,11 +628,18 @@
       <option name="project" value="LOCAL" />
       <updated>1467960268439</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="removed old deploy script files">
+      <created>1468225252602</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1468225252602</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130116000" />
+    <option name="totallyTimeSpent" value="130132000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="804" extended-state="6" />
@@ -681,7 +682,8 @@
     <MESSAGE value="util scripts" />
     <MESSAGE value="deploy script&#10;" />
     <MESSAGE value="locations updated&#10;oauth config updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="locations updated&#10;oauth config updated" />
+    <MESSAGE value="removed old deploy script files" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed old deploy script files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
