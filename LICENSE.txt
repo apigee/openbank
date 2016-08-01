@@ -1,28 +1,13 @@
 
-NOTE: This project is multi licensed. All folders are licensed under text below except those folders that has additional LICENSE.txt file.
-====
+NOTE: This project is multi licensed.  
 
+* Content and Source code under /devportal are GPL 2 licensed. Please refer LICENSE.TXT under /devportal folder
+
+* Rest of the content and source code in other folders are Apache 2.0 licensed. Please refer LICENSE.TXT below.
+
+================
     Copyright 2016 Apigee Corporation
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to
-    deal in the Software without restriction, including without limitation the
-    rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-    sell copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-    IN THE SOFTWARE.
-
-====
+=================
 
                                  Apache License
                            Version 2.0, January 2004
