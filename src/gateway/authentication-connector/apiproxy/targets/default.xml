@@ -11,6 +11,6 @@
         <Response/>
     </PostFlow>
     <HTTPTargetConnection>
-        <URL>https://[to_be_replaced]</URL>
+        <URL>{{authentication_connector_target_url}}</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

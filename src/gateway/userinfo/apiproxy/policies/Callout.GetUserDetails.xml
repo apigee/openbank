@@ -8,6 +8,6 @@
     <Response>getUserDetailsResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>[to_be_replaced]</URL>
+        <URL>{{userinfo_getuser_url}}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
