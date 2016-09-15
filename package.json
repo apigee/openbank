@@ -11,6 +11,8 @@
     "chai":"*",
     "async": "*",
     "gulp-build":"*",
+    "q": "*",
+    "gulp-batch-replace": "*",
     "through2": "*",
     "apigeetool" : "mukundha/apigeetool-node",
     "seed-sdk" : "mukundha/seed-sdk"
