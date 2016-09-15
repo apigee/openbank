@@ -8,7 +8,7 @@ var seedsdk = require('seed-sdk')
 var async = require('async')
 var edge = require('./lib/edge.js')
 var replace = require('gulp-batch-replace');
-
+var rename = require("gulp-rename");
 
 var PROXY_NAME = "apigee-openbank"
 var SAMPLE_NAME = "apigee-openbank"
@@ -23,21 +23,22 @@ var cacheResources = [ { name: 'consent-session-cache'},
 
 var developers = [ {"email":"openbank@apigee.net", "firstName":"OpenBank","lastName":"Developer","userName":"openbank"}]
 
-var apiproducts = [ {"approvalType":"auto", "displayName":"Open Data APIs","name":"open_data_apis","environments":["test","prod"],"scopes":["openid", "atms", "branches"], "proxies":["oauth", "locations"]},
+var apiProducts = [ {"approvalType":"auto", "displayName":"Open Data APIs","name":"open_data_apis","environments":["test","prod"],"scopes":["openid", "atms", "branches"], "proxies":["oauth", "locations"]},
                     {"approvalType":"auto", "displayName":"Payment Transfer APIs","name":"payment_transfer_apis","environments":["test","prod"],"scopes":["openid", "accounts", "transfer", "payment"], "proxies":["oauth", "transfers", "accounts"]},
                     {"approvalType":"auto", "displayName":"Account Access APIs","name":"account_access_apis","environments":["test","prod"],"scopes":["openid", "accounts", "accounts-info", "accounts-balance", "accounts-transactions"], "proxies":["oauth", "accounts"]},
+                    {"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_consent_apis","environments":["test","prod"],"scopes":[], "proxies":["session", "sms-token", "authentication-connector", "oauth"]}
                     ]
-var consent_app = {"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_consent_apis","environments":["test","prod"],"scopes":[], "proxies":["session", "sms-token", "authentication-connector", "oauth"]}
+
 
 var apps = [ {name:"AISP_App",callback:'http://apigee.com/about',email:'openbank@apigee.net',apiProducts:'account_access_apis'},
              {name:"PISP_App",callback:'http://apigee.com/about',email:'openbank@apigee.net',apiProducts:'payment_transfer_apis'},
-             {name:"Opendata_App",callback:'http://apigee.com/about',email:'openbank@apigee.net',apiProducts:'open_data_apis'},
-             {name:"internal_consent_app",callback:'http://apigee.com/about',email:'openbank@apigee.net',apiProducts:'internal_consent_apis'}
+             {name:"Opendata_App",callback:'http://apigee.com/about',email:'openbank@apigee.net',apiProducts:'open_data_apis'}             
              ]                    
-
+var consent_app = {name:"internal_consent_app",callback:'http://apigee.com/about',email:'openbank@apigee.net',apiProducts:'internal_consent_apis'}
 var apilist = [
     { dir: 'build/gateway/accounts', proxy: 'accounts'},
     { dir: 'build/gateway/accounts-connector', proxy: 'accounts-connector'},    
+    { dir: 'build/gateway/authentication-connector', proxy: 'authentication-connector'},    
     { dir: 'build/gateway/locations', proxy: 'locations'},
     { dir: 'build/gateway/locations-connector', proxy: 'locations-connector'},
     { dir: 'build/gateway/oauth', proxy: 'oauth'},
@@ -55,6 +56,7 @@ var consentapis = [
 var gopts = baseopts()
 var ugbase = 'https://api.usergrid.com/' + gopts.usergrid_org +'/' +  gopts.usergrid_app
 var proxybase = 'https://' + gopts.organization + '-' + gopts.environment + '.apigee.net'
+var proxyhost = gopts.organization + '-' + gopts.environment + '.apigee.net'
 
 gulp.task('build',function(){    
     var opts = baseopts()
@@ -81,36 +83,51 @@ gulp.task('build',function(){
 
 gulp.task('deploy', ['build'], function(){	    
     return edge.run(cacheResources, edge.createCaches)
-    .then( function(){ return edge.run(apilist, edge.deployApis)})
-    .then(function(){ return edge.run(developers, edge.createDevelopers)})
-    .then(function(){ return edge.run(apiProducts,edge.createProducts)})
-    .then(function(){ return edge.run(apps,edge.createApps)}) 
-    .then(function() {return edge.createApp(consent_app) })
-    .then(function(consent_appresponse){ 
-        var replacestuff = [
-         ['__APIINTKEY__','consent_appresponse.credentials[0].consumerKey'],
-         ['__HOST__',proxybase]
-         ]
-        return new Promise(function(resolve,reject){
-            gulp.src('src/gateway/consent-app/apiproxy/resources/node/config.orig')
-            .pipe(replace(replacestuff))
-            .gulp.dest('build/gateway/consent-app/apiproxy/resources/node/config.json')    
-            .on('end',resolve)
-        })        
-    })
+    .then( function(){ return edge.run(apilist, edge.deployApis)}, 
+           function(){ console.log('cache creation failed, continue'); 
+                        return edge.run(apilist, edge.deployApis) 
+                    })
+    .then(function(){ return edge.run(developers, edge.createDevelopers)},
+        function(){ console.log('api deploy failed'); return edge.run(developers, edge.createDevelopers) })
+    .then(function(){ return edge.run(apiProducts,edge.createProducts)}
+        ,function(){ console.log('developer might already exist'); return edge.run(apiProducts,edge.createProducts)})
+    .then(function(){ return edge.run(apps,edge.createApps)})     
+    .then(function(){ return edge.createApp (consent_app)})
+    .then(function(app){replaceStuffForConsent(app)})
     .then(function(){ return edge.run(consentapis,edge.deployApis)})
+    .then(function(){console.log('all done')},function(err){console.log(err)})
 
 })
 
 gulp.task('clean',function(){    
-    return edge.run(apps,edge.deleteApps) 
-    .then([consent_app], edge.deleteApps)
-    .then(function(){return edge.run(developers, edge.deleteDevelopers)})
-    .then(function(){ return edge.run(apiProducts, edge.deleteProducts)})
-    .then(function(){ return edge.run(apilist, edge.deleteApis)})
-    .then(function(){ return edge.run(consentapis, edge.deleteApis)})
-    .then(function(){ return edge.run(cacheResources,edge.deleteCaches)})   
+    return edge.run(apps,edge.deleteApps)     
+    .then(function(){ return edge.run(developers, edge.deleteDevelopers)},
+        function(){ console.log('app delete failed');return edge.run(developers, edge.deleteDevelopers) })
+    .then(function(){ return edge.run(apiProducts, edge.deleteProducts)},
+        function(){console.log('developer delete failed');return edge.run(apiProducts, edge.deleteProducts)})
+    .then(function(){ return edge.run(apilist, edge.deleteApis)},
+        function(){ console.log('product delete failed');return edge.run(apilist, edge.deleteApis)})
+    .then(function(){ return edge.run(consentapis, edge.deleteApis)},
+        function(){ console.log('api delete failed'); return edge.run(consentapis, edge.deleteApis)})
+    .then(function(){ return edge.run(cacheResources,edge.deleteCaches)},
+        function(){console.log('consent api delete failed');return edge.run(cacheResources,edge.deleteCaches)}) 
+    .then(function(){console.log('cache deleted success')},
+        function(){console.log('cache delete failed')})          
 })
+
+function replaceStuffForConsent(consent_appresponse){ 
+        var replacestuff = [
+         ['__APIINTKEY__',consent_appresponse.credentials[0].consumerKey],
+         ['__HOST__',proxyhost]
+         ]
+        return new Promise(function(resolve,reject){
+            gulp.src('src/gateway/consent-app/apiproxy/resources/node/config.orig')
+            .pipe(replace(replacestuff))
+            .pipe(rename('config.json'))
+            .pipe(gulp.dest('build/gateway/consent-app/apiproxy/resources/node/'))
+            .on('end',resolve)
+        })        
+}
 
 function baseopts () {
     var opts = {

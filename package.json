@@ -14,6 +14,7 @@
     "q": "*",
     "gulp-batch-replace": "*",
     "through2": "*",
+    "gulp-rename":"*",
     "apigeetool" : "mukundha/apigeetool-node",
     "seed-sdk" : "mukundha/seed-sdk"
   },
