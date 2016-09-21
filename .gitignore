@@ -39,6 +39,7 @@ jspm_packages
 .node_repl_history
 /src/utils/
 /src/gateway/deploy.sh
+/src/gateway/*/deploy.sh
 /src/target
 /src/gateway/*/target/
 /.idea/
