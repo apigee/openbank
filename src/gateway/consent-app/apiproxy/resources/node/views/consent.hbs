@@ -8,7 +8,7 @@
         <div class="consent-content">
         <form role="form" action="{{{basePath}}}/consent" method="post">
           <p>Application
-            <strong>Accenture PISP</strong> is requesting your permission to share the following details</p>
+            <strong>{{application}}</strong> is requesting your permission to share the following details</p>
           {{#if scopes}}
             <!--<ul class="list-group">
               {{#each scopes}}
@@ -35,14 +35,14 @@
           {{#if to}}
           <div class="panel panel-default">
             <div class="panel-body">
-              <div>I agree to transfer <strong>{{amount}} GBP</strong> to account number: <strong>{{to}}</strong></div>
+              <div>I agree to transfer <strong>{{currency}} {{amount}}</strong> to account number: <strong>{{to}}</strong></div>
             </div>
           </div>
           {{/if}}
           {{#if tnc}}
            <p>I agree to the <a href="{{tnc}}" class="tnc-link" target="_blank">Terms and conditions</a></p>
           {{/if}}
-          <p>By clicking <strong>Allow</strong>, you allow this <strong>Accenture PISP</strong> and <strong>dBank</strong> to use your information in accordance with their respective terms of service and privacy policies
+          <p>By clicking <strong>Allow</strong>, you allow this TPP / Bank to use your information in accordance with their respective terms of service and privacy policies
           </p>
           <div class="consent-button">
               <button type="submit" name="allow" value="allow" class="btn btn-primary grass-btn">Allow</button>
