@@ -15,19 +15,24 @@ function getAccountDetails(req, callback) {
         if (!error && response.statusCode == 200) {
             var accountDetails = body.entities[0];
 
-            accountDetails.id = accountDetails.name;
-            accountDetails.created_at = accountDetails.created;
-            accountDetails.updated_at = accountDetails.modified;
+            try {
+                accountDetails.id = accountDetails.name;
+                accountDetails.created_at = accountDetails.created;
+                accountDetails.updated_at = accountDetails.modified;
 
-            delete accountDetails.name;
-            delete accountDetails.created;
-            delete accountDetails.modified;
+                delete accountDetails.name;
+                delete accountDetails.created;
+                delete accountDetails.modified;
 
-            delete accountDetails.uuid;
-            delete accountDetails.type;
-            delete accountDetails.metadata;
+                delete accountDetails.uuid;
+                delete accountDetails.type;
+                delete accountDetails.metadata;
 
-            callback(accountDetails);
+                callback(accountDetails);
+
+            } catch (err) {
+                callback(null);
+            }
         } else {
             callback(null);
         }
@@ -36,13 +41,15 @@ function getAccountDetails(req, callback) {
 
 exports.getAccountInfo = function (req, res) {
     getAccountDetails(req, function (details) {
-        delete details.balanceAmount;
-        delete details.clearingAmount;
+        if (details) {
+            delete details.balanceAmount;
+            delete details.clearingAmount;
 
-        delete details.balance;
-        delete details.balance_available;
-        delete details.cash_flow_per_year;
-        delete details.preauth_amount;
+            delete details.balance;
+            delete details.balance_available;
+            delete details.cash_flow_per_year;
+            delete details.preauth_amount;
+        }
         res.json(details);
     });
 };
@@ -93,14 +100,15 @@ exports.getAccountsOfCustomer = function (req, res) {
 exports.getAccountBalance = function (req, res) {
     getAccountDetails(req, function (details) {
         var balance = {};
-        balance.account_number = details.account_number;
-        balance.label = details.label;
-        balance.balance = details.balance;
-        balance.balance_available = details.balance_available;
-        balance.cash_flow_per_year = details.cash_flow_per_year;
-        balance.currency = details.currency;
-        balance.preauth_amount = details.preauth_amount;
-
+        if (details) {
+            balance.account_number = details.account_number;
+            balance.label = details.label;
+            balance.balance = details.balance;
+            balance.balance_available = details.balance_available;
+            balance.cash_flow_per_year = details.cash_flow_per_year;
+            balance.currency = details.currency;
+            balance.preauth_amount = details.preauth_amount;
+        }
         res.json(balance);
     });
 };
@@ -147,4 +155,8 @@ exports.getAccountTransaction = function (req, res) {
             res.json(transactions);
         }
     });
+};
+
+exports.validate = function(req, res) {
+
 };

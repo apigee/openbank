@@ -1,0 +1,8 @@
+<ExtractVariables name="Extract.CustomerNumber">
+    <DisplayName>Extract.CustomerNumber</DisplayName>
+    <Source>request</Source>
+    <URIPath>
+        <Pattern ignoreCase="true">/{customer_number}</Pattern>
+    </URIPath>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

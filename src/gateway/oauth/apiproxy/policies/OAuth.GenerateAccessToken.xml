@@ -9,5 +9,6 @@
         <GrantType>authorization_code</GrantType>
         <GrantType>client_credentials</GrantType>
     </SupportedGrantTypes>
+    <ExpiresIn ref="token_timeout">2592000000</ExpiresIn>
     <GenerateResponse/>
 </OAuthV2>

@@ -2,7 +2,17 @@
     "configurations": [
         {
             "name": "dev",
-            "policies": [],
+            "policies": [
+                {
+                    "name": "Callout.AddTransactionToAccount.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
+                        }
+                    ]
+                }
+            ],
             "proxies": [],
             "targets": [
                 {
@@ -18,7 +28,17 @@
         },
         {
             "name": "test",
-            "policies": [],
+            "policies": [
+                {
+                    "name": "Callout.AddTransactionToAccount.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
+                        }
+                    ]
+                }
+            ],
             "proxies": [],
             "targets": [
                 {
@@ -34,7 +54,17 @@
         },
         {
             "name": "prod",
-            "policies": [],
+            "policies": [
+                {
+                    "name": "Callout.AddTransactionToAccount.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
+                        }
+                    ]
+                }
+            ],
             "proxies": [],
             "targets": [
                 {

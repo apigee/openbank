@@ -27,7 +27,7 @@ try {
         pathSuffix += '/' + pathTokens[3];
     }
 } catch (err) {
-    console.log('Error occurred : ' + JSON.stringify(err));
+    print('Error occurred : ' + JSON.stringify(err));
 } finally {
     context.setVariable('pathSuffix', pathSuffix);
 }*/

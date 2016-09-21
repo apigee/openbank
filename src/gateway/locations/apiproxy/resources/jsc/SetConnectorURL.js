@@ -16,7 +16,7 @@ try {
         pathSuffix += '&radius=' + radius;
     }
 } catch (err) {
-    console.log('Error occurred : ' + JSON.stringify(err));
+    print('Error occurred : ' + JSON.stringify(err));
 } finally {
     context.setVariable('pathSuffix', pathSuffix);
 }

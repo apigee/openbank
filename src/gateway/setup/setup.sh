@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Revert to original, if we have ever changed these files ...
-#cp ./edge.orig ./edge.sh
-#cp ./usergrid.orig ./usergrid.sh
-
 ### setup.sh
 
 URI="https://api.enterprise.apigee.com"
@@ -122,23 +118,4 @@ echo $HOST
 . ./app-products.sh
 . ./apps.sh
 
-#. ./resources.sh
-
-
-### Deploy APIs
-#sed -i "" "s/__UGORG__/$ORG/g" ./edge.sh
-#. ./edge.sh
-
-
-
-### Create post-deployment resources ###
-#cd ../setup
-#. ./products.sh
-
 echo "Finally, the setup is complete. Have fun using the APIs"
-
-# Revert to original, if we have ever changed these files ...
-#cp ./edge.orig ./edge.sh
-#cp ./usergrid.orig ./usergrid.sh
-
-

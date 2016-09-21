@@ -3,13 +3,10 @@
 ### usergrid.sh
 
 UGURI="https://api.usergrid.com"
-#ADMIN_EMAIL=__ADMINEMAIL__
-#APW=__APW__
 
 #echo curl -X POST ${UGURI}/${UGORG}/${UGAPP}/token  -d '{"grant_type":"password", "username": "'${ADMIN_EMAIL}'", "password": "'${APW}'"}'
 
 echo "Fetching App Services Token, to login ..."
-#token=`curl -X POST ${UGURI}/management/token  -d '{"grant_type":"password", "username": "'${ADMIN_EMAIL}'", "password": "'${APW}'"}' | sed 's/.*access_token\"\:\"\(.*\)\"\,\"expires_in.*/\1/'`
 token=`curl -X POST ${UGURI}/management/token  -d '{"grant_type":"client_credentials", "client_id": "'${UGCLIENTID}'", "client_secret": "'${UGCLIENTSECRET}'"}' | sed 's/.*access_token\"\:\"\(.*\)\"\,\"expires_in.*/\1/'`
 
 echo "Create App Services Application: ${UGAPP}, with Token: ${token}"
@@ -52,10 +49,6 @@ echo "Status: Creating Transactions Collection:${resp}"
 resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/locations?access_token="${token}" -T ./data/locations.json -H "Content-Type: application/json" -H "Accept: application/json"`
 echo "Status: Creating Locations Collection:${resp}"
 
-resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/roles/guest/permissions?access_token="${token}" -H "Content-Type: application/json" -H "Accept: application/json" -d '{"permission":"get,post,put,delete:/**"}'`
-echo "Status: Updating Roles:${resp}"
 
-#sed -i "" "s/__UGKEY__/$c_id/g" ./edge.sh
-#sed -i "" "s/__UGSECRET__/$sec/g" ./edge.sh
-#sed -i "" "s/__UGAPP__/$UGAPP/g" ./edge.sh
-### End - Create Application ###
+resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/roles/guest/permissions?access_token="${token}" -H "Content-Type: application/json" -H "Accept: application/json" -d '{"permission":"get,put,post,delete:/**"}'`
+echo "Status: Updating Roles:${resp}"

@@ -11,6 +11,6 @@
     <Response>AddTransactionToAccountResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://api.usergrid.com/psubrahmanyam/apisbank/accounts/{account_number}/transactions/{uuid}</URL>
+        <URL>https://api.usergrid.com/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

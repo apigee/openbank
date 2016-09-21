@@ -2,6 +2,13 @@
 <ProxyEndpoint name="default">
     <Description/>
     <FaultRules>
+        <FaultRule name="InvalidAccessToken">
+            <Condition>(fault.name = "FailedToResolveAccessToken") or (fault.name = "InvalidTokenType") or (fault.name = "InvalidAccessToken") or (fault.name = "invalid_access_token") or (fault.name = "InvalidAPICallAsNoApiProductMatchFound") or (fault.name = "access_token_expired")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>Fault.InvalidAccessToken</Name>
+            </Step>
+        </FaultRule>
     </FaultRules>
     <PreFlow name="PreFlow">
         <Request>
@@ -9,9 +16,16 @@
                 <Name>OAuth.VerifyAccessToken</Name>
             </Step>
             <Step>
+                <Name>Assign.AccountNumber</Name>
+                <Condition>grant_type != "client_credentials"</Condition>
+            </Step>
+            <Step>
                 <Name>Fault.InvalidTransaction</Name>
-                <Condition>(accesstoken.account_number = "") or (accesstoken.account_number = null) or (accesstoken.customer_number = "") or (accesstoken.customer_number = null)
-                </Condition>
+                <Condition>grant_type != "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
+            </Step>
+            <Step>
+                <Name>Extract.AccountNumber</Name>
+                <Condition>grant_type = "client_credentials"</Condition>
             </Step>
         </Request>
         <Response/>
@@ -22,14 +36,23 @@
     </PostFlow>
     <Flows>
         <Flow name="accountInfo">
-            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}") or (proxy.pathsuffix MatchesPath "/{account_number}/info")) and (request.verb = "GET")
-            </Condition>
-            <Request/>
+            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}") or (proxy.pathsuffix MatchesPath "/{account_number}/info")) and (request.verb = "GET")</Condition>
+            <Request>
+                <Step>
+                    <Name>Fault.InvalidAccount</Name>
+                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
+                </Step>
+            </Request>
             <Response/>
         </Flow>
         <Flow name="accountBalance">
             <Condition>(proxy.pathsuffix MatchesPath "/{account_number}/balance") and (request.verb = "GET")</Condition>
-            <Request/>
+            <Request>
+                <Step>
+                    <Name>Fault.InvalidAccount</Name>
+                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
+                </Step>
+            </Request>
             <Response/>
         </Flow>
         <Flow name="accountTransactions">
@@ -37,8 +60,29 @@
             </Condition>
             <Request>
                 <Step>
+                    <Name>Fault.InvalidAccount</Name>
+                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
+                </Step>
+                <Step>
                     <Name>Extract.TransactionId</Name>
                     <Condition>(proxy.pathsuffix MatchesPath "/{account_number}/transactions/{transaction_id}")</Condition>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+        <Flow name="accountValidate">
+            <Condition>(proxy.pathsuffix MatchesPath "/validate") and (request.verb = "POST")</Condition>
+            <Request>
+                <Step>
+                    <Name>Fault.InvalidCCToken</Name>
+                    <Condition>grant_type != "client_credentials"</Condition>
+                </Step>
+                <Step>
+                    <Name>Extract.AccountValidateParams</Name>
+                </Step>
+                <Step>
+                    <Name>Fault.BadRequest</Name>
+                    <Condition>account_number == null or account_name == null or sort_code == null</Condition>
                 </Step>
             </Request>
             <Response/>
@@ -46,7 +90,7 @@
     </Flows>
 
     <HTTPProxyConnection>
-        <BasePath>/apis/v1/accounts</BasePath>
+        <BasePath>/apis/v1/accoaccountsunts</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>

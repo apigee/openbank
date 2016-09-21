@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault async="false" continueOnError="false" enabled="true" name="Fault.InvalidTransaction">
-    <DisplayName>Fault.InvalidTransaction</DisplayName>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Fault.InvalidAccount">
+    <DisplayName>Fault.InvalidAccount</DisplayName>
     <Properties/>
     <FaultResponse>
         <Set>
@@ -8,11 +8,11 @@
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
                 {
                     "error": "Unauthorized Transaction",
-                    "description": "Access Token does not contain an Account Number reference"
+                    "description": "Invalid Account Number reference"
                 }
             </Payload>
-            <StatusCode>401</StatusCode>
-            <ReasonPhrase>Unauthorized</ReasonPhrase>
+            <StatusCode>403</StatusCode>
+            <ReasonPhrase>Resource Not Found</ReasonPhrase>
         </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

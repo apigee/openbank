@@ -119,7 +119,7 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
         </Flow>
-        <Flow name="authorized">
+        <Flow name="authorized-transaction">
             <Description/>
             <Request>
                 <Step>
@@ -169,7 +169,7 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/authorized/transactions/*") and (request.verb = "POST")</Condition>
         </Flow>
-        <Flow name="authorized">
+        <Flow name="authorized-transactions-all">
             <Description/>
             <Request>
                 <Step>

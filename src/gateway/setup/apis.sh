@@ -29,6 +29,9 @@ sed -i "" "s/__HOST__/$host/g" ../oauth/config.json
 #transfers
 cp ../transfers/config.orig ../transfers/config.json
 sed -i "" "s/__HOST__/$host/g" ../transfers/config.json
+# ticket: APIS-126 
+sed -i "" "s/__APPORG__/$UGORG/g" ../transfers-connector/apiproxy/policies/Callout.AddTransactionToAccount.xml
+sed -i "" "s/__APPAPP__/$UGAPP/g" ../transfers-connector/apiproxy/policies/Callout.AddTransactionToAccount.xml
 
 ### delete default oauth API
 echo `date`": Deleting oauth API !!"

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault async="false" continueOnError="false" enabled="true" name="Fault.InvalidTransaction">
-    <DisplayName>Fault.InvalidTransaction</DisplayName>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Fault.InvalidCCToken">
+    <DisplayName>Fault.InvalidCCToken</DisplayName>
+    <FaultRules/>
     <Properties/>
     <FaultResponse>
         <Set>
-            <Headers/>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
                 {
-                    "error": "Unauthorized Transaction",
-                    "description": "Access Token does not contain an Account Number reference"
+                "status": "error",
+                "message": "Invalid Client Credentials Token"
                 }
             </Payload>
             <StatusCode>401</StatusCode>
