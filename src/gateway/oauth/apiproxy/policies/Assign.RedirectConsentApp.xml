@@ -8,7 +8,7 @@
     <Set>
         <StatusCode>302</StatusCode>
         <Headers>
-            <Header name="Location">[to_be_replaced]</Header>
+            <Header name="Location">{oauth_consent_app_redirect}</Header>
             <Header name="Access-Control-Allow-Origin">*</Header>
             <Header name="Access-Control-Allow-Methods">POST, GET, OPTIONS</Header>
             <Header name="Access-Control-Allow-Headers">Accept, Content-Type, connection, content-length, Authorization, Location</Header>

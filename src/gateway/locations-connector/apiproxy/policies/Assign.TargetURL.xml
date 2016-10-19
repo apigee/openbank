@@ -2,7 +2,7 @@
     <AssignTo createNew="false" transport="http" type="request"/>
     <AssignVariable>
         <Name>appBasePath</Name>
-        <Value>[to_be_replaced]</Value>
+        <Value>{{location_connector_appBasePath}}</Value>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </AssignMessage>

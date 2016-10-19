@@ -1,0 +1,23 @@
+{
+  "name": "apigee-openbank",
+  "version": "0.0.1",
+  "description": "openbanking solution in Apigee",  
+  "directories": {
+    "test": "test"
+  },
+  "dependencies":{
+    "gulp":"*",
+    "gulp-util": "*",
+    "chai":"*",
+    "async": "*",
+    "gulp-build":"*",
+    "q": "*",
+    "gulp-batch-replace": "*",
+    "through2": "*",
+    "gulp-rename":"*",
+    "apigeetool" : "mukundha/apigeetool-node",
+    "seed-sdk" : "mukundha/seed-sdk"
+  },
+   "author": "mukundha@apigee.com",
+  "license": "Apache-2.0"
+}
