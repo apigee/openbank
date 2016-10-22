@@ -29,8 +29,10 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules/
+node_modules
 jspm_packages
+node_modules.zip
+*.zip
 
 # Optional npm cache directory
 .npm

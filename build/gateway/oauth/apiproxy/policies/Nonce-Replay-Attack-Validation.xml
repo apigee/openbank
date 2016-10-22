@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="Nonce-Replay-Attack-Validation">
+    <DisplayName>Lookup Cache: Nonce Replay Attack</DisplayName>
+    <Properties/>
+    <CacheResource>nonce-cache</CacheResource>
+    <AssignTo>nonce_cache_value</AssignTo>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="client_id"/>
+    	<KeyFragment ref="nonce"/>
+    </CacheKey>
+</LookupCache>

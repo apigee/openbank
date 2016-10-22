@@ -1,0 +1,56 @@
+<div class="consent-page-wrapper">
+  <div class="consent-page">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Access authorization</h2>
+      </div>
+      <div class="panel-body">
+        <div class="consent-content">
+        <form role="form" action="{{{basePath}}}/consent" method="post">
+          <p>Application
+            <strong>{{application}}</strong> is requesting your permission to share the following details</p>
+          {{#if scopes}}
+            <!--<ul class="list-group">
+              {{#each scopes}}
+                <li class="list-group-item">{{this}}</li>
+              {{/each}}
+            </ul>-->
+            <script type="text/javascript">
+                $('#account-selector').change(function(){ 
+                  console.log(this.value);
+                  //console.log(accounts[this.value].amount);
+                })
+            </script>
+            <label class="account-select">Please select an account</label>
+            <select class="dropbdown" id="account-selector" required name="account_number">
+                <option selected="selected" disabled="disabled">--Select an Account--</option>
+                {{#each accounts}}
+                    <option value="{{this.account_number}}">{{this.account_number}}</option>
+                {{/each}}
+            </select>
+            <span id="amount-balance"></span>
+          {{else}}
+            <h3>The application does not require any permissions.</h3>
+          {{/if}}
+          {{#if to}}
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div>I agree to transfer <strong>{{currency}} {{amount}}</strong> to account number: <strong>{{to}}</strong></div>
+            </div>
+          </div>
+          {{/if}}
+          {{#if tnc}}
+           <p>I agree to the <a href="{{tnc}}" class="tnc-link" target="_blank">Terms and conditions</a></p>
+          {{/if}}
+          <p>By clicking <strong>Allow</strong>, you allow this TPP / Bank to use your information in accordance with their respective terms of service and privacy policies
+          </p>
+          <div class="consent-button">
+              <button type="submit" name="allow" value="allow" class="btn btn-primary grass-btn">Allow</button>
+              <button type="submit" name="deny" value="deny" class="btn btn-primary grass-btn">Cancel</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

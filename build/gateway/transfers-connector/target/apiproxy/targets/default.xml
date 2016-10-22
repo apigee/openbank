@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><TargetEndpoint name="default">
+    <Description/>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response/>
+    </PreFlow>
+    <Flows/>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>Jsc.SetConnectorURL</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PostFlow>
+    <HTTPTargetConnection>
+        <URL>https://api.usergrid.com/apisdeploytest/apisbank5/transactions</URL>
+    </HTTPTargetConnection>
+</TargetEndpoint>

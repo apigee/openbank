@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-ID-Token-Payload-authorization_code-flow">
+    <DisplayName>Assign: ID Token Payload: authorization_code flow</DisplayName>
+    <Properties/>
+    <Properties/>
+    <AssignVariable>
+        <Name>iss</Name>
+        <Value>http://demo38-prod.apigee.net</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>aud</Name>
+        <Ref>apigee.client_id</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>iat</Name>
+        <Ref>issued_at</Ref>
+    </AssignVariable>
+      	<AssignVariable>
+        <Name>exp</Name>
+        <Ref>expires_in</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>secret</Name>
+        <Ref>oauthv2client.Get-Application-Attributes.client_secret</Ref>
+    </AssignVariable>
+     <AssignVariable>
+        <Name>grant_type</Name>
+        <Ref>request.formparam.grant_type</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

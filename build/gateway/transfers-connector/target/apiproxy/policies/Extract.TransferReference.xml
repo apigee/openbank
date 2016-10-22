@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract.TransferReference">
+    <DisplayName>Extract.TransferReference</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <URIPath>
+        <Pattern ignoreCase="true">/{transfer_reference}</Pattern>
+    </URIPath>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

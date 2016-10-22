@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><APIProxy name="transfers-connector" revision="1">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1459754928934</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>prashanth git: f8c98a5b retina-koo-3.local</Description>
+    <DisplayName>transfers-connector</DisplayName>
+    <LastModifiedAt>1459848061299</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <Policies>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://verify-scope.js</Resource>
+    </Resources>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>

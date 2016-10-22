@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract.UserInfo">
+    <DisplayName>Extract.UserInfo</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="uuid">
+            <JSONPath>$.entities[0].uuid</JSONPath>
+        </Variable>
+        <Variable name="full_name">
+            <JSONPath>$.entities[0].full_name</JSONPath>
+        </Variable>
+        <Variable name="given_name">
+            <JSONPath>$.entities[0].given_name</JSONPath>
+        </Variable>
+        <Variable name="middle_name">
+            <JSONPath>$.entities[0].middle_name</JSONPath>
+        </Variable>
+        <Variable name="family_name">
+            <JSONPath>$.entities[0].family_name</JSONPath>
+        </Variable>
+        <Variable name="nickname">
+            <JSONPath>$.entities[0].nickname</JSONPath>
+        </Variable>
+        <Variable name="preferred_username">
+            <JSONPath>$.entities[0].preferred_username</JSONPath>
+        </Variable>
+        <Variable name="profile">
+            <JSONPath>$.entities[0].profile</JSONPath>
+        </Variable>
+        <Variable name="picture">
+            <JSONPath>$.entities[0].picture</JSONPath>
+        </Variable>
+        <Variable name="website">
+            <JSONPath>$.entities[0].website</JSONPath>
+        </Variable>
+        <Variable name="email">
+            <JSONPath>$.entities[0].email</JSONPath>
+        </Variable>
+        <Variable name="email_verified">
+            <JSONPath>$.entities[0].email_verified</JSONPath>
+        </Variable>
+        <Variable name="gender">
+            <JSONPath>$.entities[0].gender</JSONPath>
+        </Variable>
+        <Variable name="birthdate">
+            <JSONPath>$.entities[0].birthdate</JSONPath>
+        </Variable>
+        <Variable name="zoneinfo">
+            <JSONPath>$.entities[0].zoneinfo</JSONPath>
+        </Variable>
+        <Variable name="locale">
+            <JSONPath>$.entities[0].locale</JSONPath>
+        </Variable>
+        <Variable name="phone_number">
+            <JSONPath>$.entities[0].phone_number</JSONPath>
+        </Variable>
+        <Variable name="phone_number_verified">
+            <JSONPath>$.entities[0].phone_number_verified</JSONPath>
+        </Variable>
+        <Variable name="formatted">
+            <JSONPath>$.entities[0].formatted</JSONPath>
+        </Variable>
+        <Variable name="house_name">
+            <JSONPath>$.entities[0].house_name</JSONPath>
+        </Variable>
+        <Variable name="street">
+            <JSONPath>$.entities[0].street</JSONPath>
+        </Variable>
+        <Variable name="locality">
+            <JSONPath>$.entities[0].locality</JSONPath>
+        </Variable>
+        <Variable name="region">
+            <JSONPath>$.entities[0].region</JSONPath>
+        </Variable>
+        <Variable name="postal_code">
+            <JSONPath>$.entities[0].postal_code</JSONPath>
+        </Variable>
+        <Variable name="country">
+            <JSONPath>$.entities[0].country</JSONPath>
+        </Variable>
+        <Variable name="customer_id">
+            <JSONPath>$.entities[0].name</JSONPath>
+        </Variable>
+        <Variable name="updated_at">
+            <JSONPath>$.entities[0].modified</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">getUserDetailsResponse</Source>
+</ExtractVariables>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><APIProxy name="accounts" revision="6">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1461136905205</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>accounts</Description>
+    <DisplayName>accounts</DisplayName>
+    <LastModifiedAt>1461152748709</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <Policies>
+        <Policy>Raise-Fault-Invalid-Transaction</Policy>
+        <Policy>Verify-ACR-Token</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>node://accounts.js</Resource>
+        <Resource>node://app.js</Resource>
+        <Resource>node://config.js</Resource>
+        <Resource>node://node_modules.zip</Resource>
+        <Resource>node://package.json</Resource>
+    </Resources>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign.TransferDetails">
+    <DisplayName>Assign.TransferDetails</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+            {
+                "amount": "%accesstoken.amount#",
+                "currency": "%accesstoken.currency#",
+                "payeeAccount": "%accesstoken.to#",
+                "payeeSortCode": "%accesstoken.sort_code#",
+                "payeeIBAN": "%accesstoken.IBAN#",
+                "description": "e.g. Amazon payment",
+                "transactionType": "tpp",
+                "transactionCategory": "PISP"
+            }
+       </Payload>
+    </Set>
+    <Remove>
+        <Headers>
+            <Header name="Authorization"/>
+        </Headers>
+    </Remove>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

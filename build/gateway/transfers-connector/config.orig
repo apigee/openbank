@@ -1,0 +1,82 @@
+{
+    "configurations": [
+        {
+            "name": "dev",
+            "policies": [
+                {
+                    "name": "Callout.AddTransactionToAccount.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
+                        }
+                    ]
+                }
+            ],
+            "proxies": [],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "test",
+            "policies": [
+                {
+                    "name": "Callout.AddTransactionToAccount.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
+                        }
+                    ]
+                }
+            ],
+            "proxies": [],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "prod",
+            "policies": [
+                {
+                    "name": "Callout.AddTransactionToAccount.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
+                        }
+                    ]
+                }
+            ],
+            "proxies": [],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Customer-Response">
+    <DisplayName>Extract: Customer Response</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="customer_id">
+            <JSONPath>$.entities[0].name</JSONPath>
+        </Variable>
+        <Variable name="full_name">
+            <JSONPath>$.entities[0].full_name</JSONPath>
+        </Variable>
+        <Variable name="phone_number">
+            <JSONPath>$.entities[0].phone_number</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+</ExtractVariables>

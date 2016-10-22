@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="Populate-Cache-SMS-OTP-Cache">
+    <DisplayName>Populate Cache: SMS OTP Cache</DisplayName>
+    <Properties/>
+    <CacheResource>sms-token-cache</CacheResource>
+    <Source>identifier</Source>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="identifier"/>
+      	<KeyFragment ref="token_challenge"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec>300</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

@@ -1,0 +1,19 @@
+<ExtractVariables name="Extract.AccountValidateParams">
+    <DisplayName>Extract.AccountValidateParams</DisplayName>
+    <Source>request</Source>
+    <JSONPayload>
+        <Variable name="sort_code">
+            <JSONPath>$.sort-code</JSONPath>
+        </Variable>
+        <Variable name="account_number">
+            <JSONPath>$.account-number</JSONPath>
+        </Variable>
+        <Variable name="account_name">
+            <JSONPath>$.account-name</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Header name="x-oba-tpp-correlation-key">
+        <Pattern ignoreCase="true">{correlation_key}</Pattern>
+    </Header>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

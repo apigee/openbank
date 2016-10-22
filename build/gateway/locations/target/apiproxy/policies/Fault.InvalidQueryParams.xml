@@ -1,0 +1,15 @@
+<RaiseFault name="Fault.InvalidQueryParams">
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <FaultResponse>
+        <Set>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+                {
+                    "error": "Bad Request",
+                    "description": "Invalid combination of parameters for location-aware search"
+                }
+            </Payload>
+        </Set>
+    </FaultResponse>
+</RaiseFault>

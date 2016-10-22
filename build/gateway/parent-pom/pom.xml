@@ -1,0 +1,136 @@
+<!--
+
+    Copyright (C) 2014 Apigee Corporation
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>apigee</groupId>
+    <artifactId>parent-pom</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Maven Plugin Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+    <properties>
+        <main.basedir>${project.basedir}</main.basedir>
+    </properties>
+
+    <modules>
+        <module>../sms-token</module>
+        <module>../session</module>
+        <module>../oauth</module>
+
+        <module>../authentication-connector</module>
+        <module>../accounts-connector</module>
+        <module>../transfers-connector</module>
+        <module>../locations-connector</module>
+
+        <module>../accounts</module>
+        <module>../transfers</module>
+        <module>../locations</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <overwrite>true</overwrite>
+                            <encoding>UTF-8</encoding>
+                            <echo message="basedir parent : ${basedir}"/>
+                            <outputDirectory>${basedir}/target/apiproxy</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>apiproxy</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- This is where you add the environment specific properties under various profile names -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <options>validate</options>
+                <apigee.profile>dev</apigee.profile>
+                <apigee.env>dev</apigee.env>
+                <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+                <apigee.apiversion>v1</apigee.apiversion>
+                <apigee.org>${org}</apigee.org>
+                <apigee.username>${username}</apigee.username>
+                <apigee.password>${password}</apigee.password>
+                <apigee.options>${options}</apigee.options>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <options>validate</options>
+                <apigee.profile>test</apigee.profile>
+                <apigee.env>test</apigee.env>
+                <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+                <apigee.apiversion>v1</apigee.apiversion>
+                <apigee.org>${org}</apigee.org>
+                <apigee.username>${username}</apigee.username>
+                <apigee.password>${password}</apigee.password>
+                <apigee.options>${options}</apigee.options>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <options>validate</options>
+                <apigee.profile>prod</apigee.profile>
+                <apigee.env>prod</apigee.env>
+                <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+                <apigee.apiversion>v1</apigee.apiversion>
+                <apigee.org>${org}</apigee.org>
+                <apigee.username>${username}</apigee.username>
+                <apigee.password>${password}</apigee.password>
+                <apigee.options>${options}</apigee.options>
+            </properties>
+        </profile>
+    </profiles>
+</project>

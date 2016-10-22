@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><AssignMessage async="false" continueOnError="false" enabled="true" name="Assign.TargetURL">
+    <AssignTo createNew="false" transport="http" type="request"/>
+    <AssignVariable>
+        <Name>appBasePath</Name>
+        <Value>https://api.usergrid.com/apisdeploytest/apisbank5</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

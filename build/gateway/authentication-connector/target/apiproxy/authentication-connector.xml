@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><APIProxy name="oidc-authentication-api" revision="1">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1459146997257</CreatedAt>
+    <CreatedBy>noreply_admin@apigee.com</CreatedBy>
+    <Description>prashanth git: f8c98a5b retina-koo-3.local</Description>
+    <DisplayName>openid-connect-authentication-api</DisplayName>
+    <LastModifiedAt>1461136302575</LastModifiedAt>
+    <LastModifiedBy>noreply_admin@apigee.com</LastModifiedBy>
+    <Policies>
+        <Policy>Assign-Customer-Info-Response</Policy>
+        <Policy>Assign-Get-Method</Policy>
+        <Policy>Extract-Customer-Response</Policy>
+        <Policy>Extract-Nationwide-Token</Policy>
+        <Policy>Extract-Username</Policy>
+        <Policy>Security-Verify-API-Key</Policy>
+        <Policy>Service-Callout-Get-Customer-Info</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>

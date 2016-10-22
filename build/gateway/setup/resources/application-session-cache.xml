@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Cache name="application-session-cache">
+    <ExpirySettings>
+        <TimeoutInSec>3600</TimeoutInSec>
+    </ExpirySettings>
+    <Compression>
+        <MinimumSizeInKB>1024</MinimumSizeInKB>
+    </Compression>
+    <Description>session management for authenticated user</Description>
+    <DiskSizeInMB>0</DiskSizeInMB>
+    <InMemorySizeInKB>8000</InMemorySizeInKB>
+    <MaxElementsInMemory>3000000</MaxElementsInMemory>
+    <MaxElementsOnDisk>1000</MaxElementsOnDisk>
+    <OverflowToDisk>true</OverflowToDisk>
+    <Persistent>false</Persistent>
+</Cache>
