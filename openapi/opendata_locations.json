@@ -2,12 +2,11 @@
   "swagger": "2.0",
   "host": "apis-bank-dev.apigee.net",
   "schemes": [
-    "https",
-    "http"
+    "https"
   ],
   "info": {
-    "description": "Branch API",
-    "title": "List of Branch Locations",
+    "description": "Locations API",
+    "title": "List of Branch and ATM Locations",
     "version": "0.0.1",
     "termsOfService": "http://example.com/about/terms",
     "contact": {
@@ -20,7 +19,7 @@
       "url": "http://example.com"
     }
   },
-  "basePath": "/apis/v1/opendata/locations",
+  "basePath": "/apis/v1/locations",
   "paths": {
     "/atms": {
       "get": {

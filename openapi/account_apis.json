@@ -2,8 +2,7 @@
   "swagger": "2.0",
   "host": "apis-bank-dev.apigee.net",
   "schemes": [
-    "https",
-    "http"
+    "https"
   ],
   "info": {
     "description": "Customer Bank Account Information",
