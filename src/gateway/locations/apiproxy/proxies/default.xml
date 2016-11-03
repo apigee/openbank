@@ -35,7 +35,7 @@
         </Flow>
     </Flows>
     <HTTPProxyConnection>
-        <BasePath>/apis/v1/opendata/locations</BasePath>
+        <BasePath>/apis/v1/locations</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>

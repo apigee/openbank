@@ -79,23 +79,38 @@ In order to customize the consent app, or in case one or more components deliver
 
 The consent app has a _config.json_ file available in the `src/gateway/consent-app/apiproxy/resources/node/` folder. This json file has to be customized so that the right API endpoints are provided to the consent app.
 
-### APIs
+## APIs
 
-#### External APIs
-##### Accounts API
-##### Transfers API
-##### Locations API
+The following API proxies will be deployed as part of this solution
 
-#### Supporting APIs
-##### SMS Token API
-##### Session API
+#### accounts
+#### accounts-connector
+#### authentication-connector
+#### consent-app
+#### consent-app-transfers
+#### locations
+#### locations-connector
+#### oauth
 
-#### Internal APIs
-##### Accounts Connector
-##### Transfer Connector
-##### Authentication Connector
-##### Locations Connector
+#### transfers
+#### transfers-connector
+#### Locations API
 
+#### SMS Token API
+#### Session API
+#### Accounts Connector
+#### Transfer Connector
+#### Authentication Connector
+#### Locations Connector
 
+### Consent Apps
+
+## Changelog
+
+#### 2016/11/03
+* Added Products API
+* Changed URL of OpenData APIs (/atms and /branches)
+  * /apis/v1/opendata/locations/atms -> /apis/v1/locations/atms
+  * /apis/v1/opendata/locations/branches -> /apis/v1/locations/branches
 
 

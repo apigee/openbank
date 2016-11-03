@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="1" name="atms">
+<APIProxy revision="1" name="locations">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1462448524004</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
-    <Description>Northbound for atms API</Description>
-    <DisplayName>atms</DisplayName>
+    <Description>Northbound for locations API</Description>
+    <DisplayName>locations</DisplayName>
     <LastModifiedAt>1462874313890</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
     <Policies/>

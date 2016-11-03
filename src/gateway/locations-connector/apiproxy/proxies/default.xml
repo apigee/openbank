@@ -16,7 +16,7 @@
     </PostFlow>
     <Flows/>
     <HTTPProxyConnection>
-        <BasePath>/internal/connector/v1/opendata/locations</BasePath>
+        <BasePath>/internal/connector/v1/locations</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>

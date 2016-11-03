@@ -13,6 +13,6 @@
     </PostFlow>
     <Flows/>
     <LocalTargetConnection>
-        <Path>/internal/connector/v1/opendata/locations</Path>
+        <Path>/internal/connector/v1/locations</Path>
     </LocalTargetConnection>
 </TargetEndpoint>
