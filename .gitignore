@@ -33,6 +33,7 @@ node_modules
 jspm_packages
 node_modules.zip
 *.zip
+yarn.lock
 
 # Optional npm cache directory
 .npm
@@ -49,3 +50,4 @@ src/analytics/
 src/gateway/sms-token/tests/
 src/java/
 src/portal/
+build/

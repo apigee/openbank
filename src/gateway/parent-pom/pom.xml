@@ -49,10 +49,12 @@
         <module>../accounts-connector</module>
         <module>../transfers-connector</module>
         <module>../locations-connector</module>
+        <module>../products-connector</module>
 
         <module>../accounts</module>
         <module>../transfers</module>
         <module>../locations</module>
+        <module>../products</module>
     </modules>
 
     <build>
