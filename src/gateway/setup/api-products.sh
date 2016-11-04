@@ -61,7 +61,7 @@ echo ""
 ### apps
 
 #### aisp app
-callback_url=http://apigee.com/about
+callback_url=http://apigee.com/about,psd2app://app.com
 app_data="{\"name\":\"AISP_App\", \"callbackUrl\":\"${callback_url}\"}"
 SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/developers/openbank@apigee.net/apps" -H "Content-Type: application/json" -d "$app_data" `
 echo "${SETUP_RESULT}"
@@ -80,7 +80,7 @@ echo "${SETUP_RESULT}"
 
 
 #### pisp app
-callback_url=http://apigee.com/about
+callback_url=http://apigee.com/about,psd2app://app.com
 app_data="{\"name\":\"PISP_App\", \"callbackUrl\":\"${callback_url}\"}"
 SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/developers/openbank@apigee.net/apps" -H "Content-Type: application/json" -d "$app_data" `
 echo "${SETUP_RESULT}"
