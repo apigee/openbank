@@ -12,6 +12,11 @@ cp ../authentication-connector/config.orig ../authentication-connector/config.js
 sed -i "" "s/__APPORG__/$UGORG/g" ../authentication-connector/config.json
 sed -i "" "s/__APPAPP__/$UGAPP/g" ../authentication-connector/config.json
 
+#userinfo
+cp ../userinfo/config.orig ../userinfo/config.json
+sed -i "" "s/__APPORG__/$UGORG/g" ../userinfo/config.json
+sed -i "" "s/__APPAPP__/$UGAPP/g" ../userinfo/config.json
+
 #locations-connector
 cp ../locations-connector/config.orig ../locations-connector/config.json
 sed -i "" "s/__APPORG__/$UGORG/g" ../locations-connector/config.json

@@ -90,7 +90,7 @@
     </Flows>
 
     <HTTPProxyConnection>
-        <BasePath>/apis/v1/accoaccountsunts</BasePath>
+        <BasePath>/apis/v1/accounts</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>

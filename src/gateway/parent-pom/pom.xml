@@ -53,6 +53,7 @@
 
         <module>../accounts</module>
         <module>../transfers</module>
+        <module>../userinfo</module>
         <module>../locations</module>
         <module>../products</module>
     </modules>

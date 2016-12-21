@@ -37,9 +37,11 @@ This repository contains the necessary artifacts that will allow one to pull up 
 To deploy the APIs and its dependencies on your own org please run the following script
 
 ```bash
-$ cd src/gateway
-$ sh setup/setup.sh
+$ cd src/gateway/setup
+$ sh ./setup.sh
 ```
+
+**Note:** Remember to run the setup script from **inside** the setup folder mentioned above!
 
 This will interactively prompt you for your Edge and BaaS credentials, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
 
