@@ -111,11 +111,11 @@ echo $HOST
 
 
 ### Create edge and baas resources ###
-. ./cache.sh
-. ./usergrid.sh
-. ./apis.sh
-. ./api-products.sh
-. ./app-products.sh
-. ./apps.sh
+. cache.sh
+. usergrid.sh
+. apis.sh
+. api-products.sh
+. app-products.sh
+. apps.sh
 
 echo "Finally, the setup is complete. Have fun using the APIs"

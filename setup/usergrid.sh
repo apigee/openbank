@@ -2,8 +2,7 @@
 
 ### usergrid.sh
 
-UGURI="https://api.usergrid.com"
-
+#UGURI="https://api.usergrid.com"
 #echo curl -X POST ${UGURI}/${UGORG}/${UGAPP}/token  -d '{"grant_type":"password", "username": "'${ADMIN_EMAIL}'", "password": "'${APW}'"}'
 
 echo "Fetching App Services Token, to login ..."
@@ -49,6 +48,8 @@ echo "Status: Creating Transactions Collection:${resp}"
 resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/locations?access_token="${token}" -T ./data/locations.json -H "Content-Type: application/json" -H "Accept: application/json"`
 echo "Status: Creating Locations Collection:${resp}"
 
+resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/products?access_token="${token}" -T ./data/products.json -H "Content-Type: application/json" -H "Accept: application/json"`
+echo "Status: Creating Products Collection:${resp}"
 
 resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/roles/guest/permissions?access_token="${token}" -H "Content-Type: application/json" -H "Accept: application/json" -d '{"permission":"get,put,post,delete:/**"}'`
 echo "Status: Updating Roles:${resp}"
