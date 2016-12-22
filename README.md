@@ -37,7 +37,7 @@ This repository contains the necessary artifacts that will allow one to pull up 
 To deploy the APIs and its dependencies on your own org please run the following script
 
 ```bash
-$ cd src/gateway/setup
+$ cd setup
 $ sh ./setup.sh
 ```
 
