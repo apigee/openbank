@@ -15,6 +15,6 @@
         <Response/>
     </PostFlow>
     <HTTPTargetConnection>
-        <URL>{{transfers_connector_targeturl}}</URL>
+        <URL>https://api.usergrid.com/{{ baas_org }}/{{ baas_app }}/transactions</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

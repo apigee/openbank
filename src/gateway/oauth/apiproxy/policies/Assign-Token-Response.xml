@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign.TokenResponse">
-    <DisplayName>Assign.TokenResponse</DisplayName>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Token-Response">
+    <DisplayName>Assign: Token Response</DisplayName>
    <Properties/>
    	<Set> 
 		<Headers> 

@@ -4,7 +4,7 @@
     <Properties/>
     <AssignVariable>
         <Name>iss</Name>
-        <Value>https://apis-bank-dev.apigee.net</Value>
+        <Value>https://{{ org }}-{{ env }}</Value>
     </AssignVariable>
     <AssignVariable>
         <Name>aud</Name>
@@ -19,10 +19,6 @@
         <Ref>client_id</Ref>
     </AssignVariable>
     <AssignVariable>
-        <Name>sub</Name>
-        <Ref>sub</Ref>
-    </AssignVariable>
-    <AssignVariable>
         <Name>auth_time</Name>
         <Ref>system.timestamp</Ref>
     </AssignVariable>
@@ -32,39 +28,15 @@
     </AssignVariable>
     <AssignVariable>
         <Name>exp</Name>
-        <Value>86400</Value>
+        <Value>566</Value>
     </AssignVariable>
     <AssignVariable>
         <Name>nonce</Name>
         <Ref>nonce</Ref>
     </AssignVariable>
     <AssignVariable>
-        <Name>sub</Name>
-        <Ref>customer_number</Ref>
-    </AssignVariable>
-    <AssignVariable>
-        <Name>customer_id</Name>
-        <Ref>customer_number</Ref>
-    </AssignVariable>
-    <AssignVariable>
-        <Name>account</Name>
-        <Ref>accountNumber</Ref>
-    </AssignVariable>
-    <AssignVariable>
-        <Name>fullName</Name>
-        <Ref>fullName</Ref>
-    </AssignVariable>
-    <AssignVariable>
-        <Name>grant_type</Name>
-        <Ref>grant_type</Ref>
-    </AssignVariable>
-    <AssignVariable>
         <Name>token_type</Name>
         <Value>Bearer</Value>
-    </AssignVariable>
-    <AssignVariable>
-        <Name>scope</Name>
-        <Ref>scope</Ref>
     </AssignVariable>
     <AssignVariable>
         <Name>sessionid</Name>
@@ -73,6 +45,10 @@
     <AssignVariable>
         <Name>secret</Name>
         <Ref>oauthv2client.Get-Application-Attributes.client_secret</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>baas_access_token</Name>
+        <Ref>request.formparam.baas_access_token</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>

@@ -9,25 +9,14 @@
     <Scope>scope</Scope>
     <ClientId>client_id</ClientId>
     <ResponseType>token</ResponseType>
-    <ExpiresIn ref="token_timeout">2592000000</ExpiresIn>
-    <Attributes>
-        <Attribute name="sessionid" ref="sessionid" display="false"/>
-        <Attribute name="scope" ref="scope" display="false"/>
-        <Attribute name="sub" ref="sub" display="false"/>
-        <Attribute name="acr_values" ref="acr_values" display="false"/>
-        <Attribute name="amr" ref="amr" display="false"/>
-        <Attribute name="azp" ref="azp" display="false"/>
-        <Attribute name="auth_time" ref="auth_time" display="false"/>
-        <Attribute name="customer_number" ref="customer_id" display="false"/>
-        <Attribute name="account_number" ref="accountNumber" display="false"/>
-        <Attribute name="full_name" ref="fullName" display="false"/>
-        <!-- Attributes for payment API -->
-        <Attribute name="to" ref="to" display="false"/>
-        <Attribute name="sort_code" ref="sort_code" display="false"/>
-        <Attribute name="IBAN" ref="IBAN" display="false"/>
-        <Attribute name="currency" ref="currency" display="false"/>
-        <Attribute name="amount" ref="amount" display="false"/>
-    </Attributes>
-    <AppEndUser>customer_number</AppEndUser>
-    <UserName>customer_number</UserName>
+    <ExpiresIn>2592000000</ExpiresIn>
+     <Attributes>
+  		<Attribute name="sessionid" ref="sessionid" display="true"/>
+  		<Attribute name="scope" ref="scope" display="true"/>      	
+        <Attribute name="sub" ref="sub" display="true"/>
+        <Attribute name="username" ref="username" display="true"/>
+        <Attribute name="baas_access_token" ref="baas_access_token" display="true"/>
+       	<Attribute name="acr_values" ref="acr_values" display="true"/>
+ 	</Attributes>
+    <UserName>sub</UserName>
 </OAuthV2>

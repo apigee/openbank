@@ -7,46 +7,40 @@
     </URIPath>
     <JSONPayload>
         <Variable name="sub">
-            <JSONPath>$.uuid</JSONPath>
+            <JSONPath>$.user.uuid</JSONPath>
         </Variable>
-      	<Variable name="given_name">
-            <JSONPath>$.given_name</JSONPath>
+        <Variable name="username">
+            <JSONPath>$.user.username</JSONPath>
+        </Variable>
+      	<Variable name="preferred_username">
+            <JSONPath>$.preferred_username</JSONPath>
+        </Variable>
+        <Variable name="picture">
+            <JSONPath>$.user.picture</JSONPath>
+        </Variable>
+        <Variable name="name">
+            <JSONPath>$.user.full_name</JSONPath>
+        </Variable>
+        <Variable name="given_name">
+            <JSONPath>$.user.given_name</JSONPath>
         </Variable>
       	<Variable name="middle_name">
-            <JSONPath>$.middle_name</JSONPath>
+            <JSONPath>$.user.middle_name</JSONPath>
         </Variable>
       	<Variable name="family_name">
-            <JSONPath>$.family_name</JSONPath>
+            <JSONPath>$.user.family_name</JSONPath>
         </Variable>
       	<Variable name="phone_number">
-            <JSONPath>$.phone_number</JSONPath>
-        </Variable>
-      	<Variable name="formatted">
-            <JSONPath>$.formatted</JSONPath>
-        </Variable>
-      	<Variable name="street_address">
-            <JSONPath>$.street_address</JSONPath>
-        </Variable>
-      	<Variable name="locality">
-            <JSONPath>$.locality</JSONPath>
-        </Variable>
-      	<Variable name="postal_code">
-            <JSONPath>$.postal_code</JSONPath>
+            <JSONPath>$.user.phone_number</JSONPath>
         </Variable>
       	<Variable name="baas_access_token">
-            <JSONPath>$.baas_access_token</JSONPath>
+            <JSONPath>$.access_token</JSONPath>
         </Variable>
-      	<Variable name="birthdate">
-            <JSONPath>$.birthdate</JSONPath>
+        <Variable name="scope">
+            <JSONPath>$.scope</JSONPath>
         </Variable>
-      	<Variable name="email">
-            <JSONPath>$.email</JSONPath>
-        </Variable>      
         <Variable name="gender">
-            <JSONPath>$.gender</JSONPath>
-        </Variable>
-        <Variable name="customer_number">
-            <JSONPath>$.customer_id</JSONPath>
+            <JSONPath>$.user.gender</JSONPath>
         </Variable>
     </JSONPayload>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

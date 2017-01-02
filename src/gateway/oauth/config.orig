@@ -4,11 +4,29 @@
       "name": "dev",
       "policies": [
         {
-          "name": "Assign.RedirectConsentApp.xml",
+          "name": "Redirect-Login-Application.xml",
           "tokens": [
             {
               "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
               "value": "https://__HOST__/internal/consent?sessionid={messageid}"
+            }
+          ]
+        },
+        {
+          "name": "Assign-ID-Token-Payload-authorization_code-flow.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable[1]/Value",
+              "value": "https://__HOST__"
+            }
+          ]
+        },
+        {
+          "name": "Assign-JWT-Payload.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable[1]/Value",
+              "value": "https://__HOST__"
             }
           ]
         }
@@ -20,11 +38,29 @@
       "name": "test",
       "policies": [
         {
-          "name": "Assign.RedirectConsentApp.xml",
+          "name": "Redirect-Login-Application.xml",
           "tokens": [
             {
               "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
               "value": "https://__HOST__/internal/consent?sessionid={messageid}"
+            }
+          ]
+        },
+        {
+          "name": "Assign-ID-Token-Payload-authorization_code-flow.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable[1]/Value",
+              "value": "https://__HOST__"
+            }
+          ]
+        },
+        {
+          "name": "Assign-JWT-Payload.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable[1]/Value",
+              "value": "https://__HOST__"
             }
           ]
         }
@@ -36,11 +72,29 @@
       "name": "prod",
       "policies": [
         {
-          "name": "Assign.RedirectConsentApp.xml",
+          "name": "Redirect-Login-Application.xml",
           "tokens": [
             {
               "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
               "value": "https://__HOST__/internal/consent?sessionid={messageid}"
+            }
+          ]
+        },
+        {
+          "name": "Assign-ID-Token-Payload-authorization_code-flow.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable[1]/Value",
+              "value": "https://__HOST__"
+            }
+          ]
+        },
+        {
+          "name": "Assign-JWT-Payload.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable[1]/Value",
+              "value": "https://__HOST__"
             }
           ]
         }
