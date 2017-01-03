@@ -37,6 +37,9 @@
                     <Name>Get-API-Product-Scopes</Name>
                 </Step>
                 <Step>
+                    <Name>Security-AuthorizeGet-Client-Attributes</Name>
+                </Step>
+                <Step>
                     <Name>Ext-Validate-request-parameters</Name>
                 </Step>
                 <Step>
@@ -72,49 +75,56 @@
             </Request>
             <Response>
                 <Step>
-                    <Name>Redirect-Login-Application</Name>
+                    <Name>Assign.RedirectConsentApp</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath &quot;/authorize&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/authorize")</Condition>
         </Flow>
         <Flow name="token">
             <Description/>
             <Request>
                 <Step>
                     <Condition>request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials"</Condition>
-                    <Name>Security-Generate-Access-Token</Name>
+                    <Name>OAuth.GenerateAccessToken</Name>
                 </Step>
                 <Step>
-                    <Name>Security-Refresh-token</Name>
+                    <Name>OAuth.RefreshAccessToken</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
-                    <Condition>(request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials") And oauthV2.failed = false</Condition>
+                    <Condition>(request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials") and oauthV2.failed = false</Condition>
                     <Name>Extract-Token-Response</Name>
                 </Step>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>
+                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
                     <Name>Get-Application-Attributes</Name>
                 </Step>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>
+                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
                     <Name>Assign-ID-Token-Payload-authorization_code-flow</Name>
                 </Step>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>
+                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
                     <Name>Generate-ID-Token</Name>
                 </Step>
                 <Step>
-                    <Condition>(request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials") And oauthV2.failed = false</Condition>
-                    <Name>Assign-Token-Response</Name>
+                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
+                    <Name>Assign.TokenResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>request.formparam.grant_type = "client_credentials" and oauthV2.failed = false</Condition>
+                    <Name>Assign.TokenResponseCC</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath &quot;/token&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
         </Flow>
-        <Flow name="authorized">
+        <Flow name="authorized-transaction">
             <Description/>
             <Request>
+                <Step>
+                    <Name>Verify.ConsentAppAPIKey</Name>
+                </Step>
                 <Step>
                     <Name>Extract-Transaction-session-id</Name>
                 </Step>
@@ -157,11 +167,14 @@
                     <Name>Assign-Consent-Application-TX-Response</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath &quot;/authorized/transactions/*&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/authorized/transactions/*") and (request.verb = "POST")</Condition>
         </Flow>
-        <Flow name="authorized">
+        <Flow name="authorized-transactions-all">
             <Description/>
             <Request>
+                <Step>
+                    <Name>Verify.ConsentAppAPIKey</Name>
+                </Step>
                 <Step>
                     <Name>Extract-Transaction-session-id</Name>
                 </Step>
@@ -204,7 +217,7 @@
                     <Name>Assign-Consent-Application-TX-Response</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath &quot;/authorized/transactions&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/authorized/transactions") and (request.verb = "POST")</Condition>
         </Flow>
         <Flow name="DefaultFlow">
             <Description/>

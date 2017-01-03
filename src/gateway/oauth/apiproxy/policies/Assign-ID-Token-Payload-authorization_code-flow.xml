@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true"
-               name="Assign-ID-Token-Payload-authorization_code-flow">
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-ID-Token-Payload-authorization_code-flow">
     <DisplayName>Assign: ID Token Payload: authorization_code flow</DisplayName>
+    <Properties/>
     <Properties/>
     <AssignVariable>
         <Name>iss</Name>
-        <Value>https://{{ org }}-{{ env }}</Value>
+        <Value>http://demo38-prod.apigee.net</Value>
     </AssignVariable>
     <AssignVariable>
         <Name>aud</Name>
@@ -15,7 +15,7 @@
         <Name>iat</Name>
         <Ref>issued_at</Ref>
     </AssignVariable>
-    <AssignVariable>
+      	<AssignVariable>
         <Name>exp</Name>
         <Ref>expires_in</Ref>
     </AssignVariable>
@@ -23,7 +23,7 @@
         <Name>secret</Name>
         <Ref>oauthv2client.Get-Application-Attributes.client_secret</Ref>
     </AssignVariable>
-    <AssignVariable>
+     <AssignVariable>
         <Name>grant_type</Name>
         <Ref>request.formparam.grant_type</Ref>
     </AssignVariable>
