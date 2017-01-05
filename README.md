@@ -1,3 +1,5 @@
+# Deploy script is currently failing. Will be fixed by end of CW1
+
 <a href="http://apigee.com/"><img src="http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png"/></a> OpenBank
 ===================
 
