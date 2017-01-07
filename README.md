@@ -45,14 +45,15 @@ with a **Developer Portal**, mock backend and a sample app.
 ## Setup
 
 To deploy the APIs and its dependencies on your own org please run the following
-script
+script from the root folder of the cloned repo.
 
 ```bash
 $ sh setup/setup.sh
 ```
 
-**Note:** Remember to run the setup script from **inside** the setup folder
-mentioned above!
+**Note:** Updated run instructions: The setup script has to be run from the root
+folder of the cloned repository. Only then will all the relative paths work
+correctly
 
 This will interactively prompt you for your Edge and BaaS credentials, and will
 then create / deploy all relevants bundles and artifacts and will provision the
