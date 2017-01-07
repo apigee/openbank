@@ -27,6 +27,11 @@ cp src/gateway/transfers-connector/config.orig src/gateway/transfers-connector/c
 sed -i "s/__APPORG__/$UGORG/g" src/gateway/transfers-connector/config.json
 sed -i "s/__APPAPP__/$UGAPP/g" src/gateway/transfers-connector/config.json
 
+#products-connector
+cp src/gateway/products-connector/config.orig src/gateway/products-connector/config.json
+sed -i "s/__APPORG__/$UGORG/g" src/gateway/products-connector/config.json
+sed -i "s/__APPAPP__/$UGAPP/g" src/gateway/products-connector/config.json
+
 #oauth
 cp src/gateway/oauth/config.orig src/gateway/oauth/config.json
 sed -i "s/__HOST__/$host/g" src/gateway/oauth/config.json
