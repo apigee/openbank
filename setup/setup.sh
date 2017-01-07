@@ -1,9 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 ### setup.sh
 
 URI="https://api.enterprise.apigee.com"
-UGURI="https://api.usergrid.com"
+UGURI="https://apibaas-trial.apigee.net"
+LOGFILE="deploy.log"
+
+if [ -f "setup/config.sh" ];
+then
+  . setup/config.sh
+fi
 
 usage() {
   echo "Usage: $(basename $0) [-o <org name>] [-e <env name>] [-u <admin email>] [-p <admin password>]"
@@ -12,6 +18,10 @@ usage() {
   echo "  -e | --env <envname> :               Environment Name"
   echo "  -u | --username <adminusername> :    Admin Email"
   echo "  -p | --password <password> :         Admin Password"
+  echo "  -b | --baas <baasorg> :              BaaS Organisation"
+  echo "  -a | --app <baasapp> :               BaaS Application"
+  echo "  -c | --clientid <clientid> :         BaaS Org Client Id"
+  echo "  -s | --clientsecret <clientsecret> : BaaS Org Client Secret"
   exit 0
 }
 
@@ -57,6 +67,42 @@ while [ $# -gt 0 ]; do
         usage
       fi
     ;;
+  -b|--baas)
+    if [ -n "$2" ]; then
+      UGORG=$2
+      shift
+      shift
+    else
+      usage
+    fi
+    ;;
+  -a|--app)
+    if [ -n "$2" ]; then
+      UGAPP=$2
+      shift
+      shift
+    else
+      usage
+    fi
+    ;;
+  -c|--clientid)
+    if [ -n "$2" ]; then
+      UGCLIENTID=$2
+      shift
+      shift
+    else
+      usage
+    fi
+    ;;
+  -s|--clientsecret)
+    if [ -n "$2" ]; then
+      UGCLIENTSECRET=$2
+      shift
+      shift
+    else
+      usage
+    fi
+    ;;
     -h|--help)
       usage
     ;;
@@ -86,12 +132,12 @@ if [ -z "${APW}" ]; then
 fi
 
 if [ -z "${UGORG}" ]; then
-    echo "Enter Apigee App services org, followed by [ENTER]:"
+    echo "Enter Apigee BaaS Org, followed by [ENTER]:"
     read UGORG
 fi
 
 if [ -z "${UGAPP}" ]; then
-    echo "Enter Application Name , followed by [ENTER]:"
+    echo "Enter BaaS Application Name, followed by [ENTER]:"
     read UGAPP
 fi
 
@@ -111,11 +157,11 @@ echo $HOST
 
 
 ### Create edge and baas resources ###
-. cache.sh
-. usergrid.sh
-. apis.sh
-. api-products.sh
-. app-products.sh
-. apps.sh
+. setup/cache.sh
+. setup/usergrid.sh
+. setup/apis.sh
+. setup/api-products.sh
+. setup/app-products.sh
+. setup/apps.sh
 
 echo "Finally, the setup is complete. Have fun using the APIs"

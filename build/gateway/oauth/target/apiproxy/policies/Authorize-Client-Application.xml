@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<VerifyAPIKey async="false" continueOnError="false" enabled="true" name="Authorize-Client-Application">
-    <DisplayName>Security: Authorize Client Application</DisplayName>
-    <Properties/>
-    <APIKey ref="client_id"/>
-</VerifyAPIKey>

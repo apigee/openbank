@@ -2,9 +2,6 @@
 
 ### usergrid.sh
 
-#UGURI="https://api.usergrid.com"
-#echo curl -X POST ${UGURI}/${UGORG}/${UGAPP}/token  -d '{"grant_type":"password", "username": "'${ADMIN_EMAIL}'", "password": "'${APW}'"}'
-
 echo "Fetching App Services Token, to login ..."
 token=`curl -X POST ${UGURI}/management/token  -d '{"grant_type":"client_credentials", "client_id": "'${UGCLIENTID}'", "client_secret": "'${UGCLIENTSECRET}'"}' | sed 's/.*access_token\"\:\"\(.*\)\"\,\"expires_in.*/\1/'`
 
@@ -27,11 +24,11 @@ echo "Creating Collections"
 resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/banks?access_token="${token}"`
 echo "Status: Creating Banks Collection: ${resp}"
 
-resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/accounts?access_token="${token}" -T ./data/accounts.json -H "Content-Type: application/json" -H "Accept: application/json"`
+resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/accounts?access_token="${token}" -T setup/data/accounts.json -H "Content-Type: application/json" -H "Accept: application/json"`
 echo "Status: Creating Accounts Collection:${resp}"
 
 #-u "${ADMIN_EMAIL}:${APW}"
-resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/customers?access_token="${token}" -T ./data/customers.json -H "Content-Type: application/json" -H "Accept: application/json"`
+resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/customers?access_token="${token}" -T setup/data/customers.json -H "Content-Type: application/json" -H "Accept: application/json"`
 echo "Status: Creating Customers Collection:${resp}"
 
 echo "Status: Creating Connections"
@@ -45,10 +42,10 @@ resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/customers/46582398/accounts/accoun
 resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/transactions?access_token="${token}"`
 echo "Status: Creating Transactions Collection:${resp}"
 
-resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/locations?access_token="${token}" -T ./data/locations.json -H "Content-Type: application/json" -H "Accept: application/json"`
+resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/locations?access_token="${token}" -T setup/data/locations.json -H "Content-Type: application/json" -H "Accept: application/json"`
 echo "Status: Creating Locations Collection:${resp}"
 
-resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/products?access_token="${token}" -T ./data/products.json -H "Content-Type: application/json" -H "Accept: application/json"`
+resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/products?access_token="${token}" -T setup/data/products.json -H "Content-Type: application/json" -H "Accept: application/json"`
 echo "Status: Creating Products Collection:${resp}"
 
 resp=`curl -X POST ${UGURI}/${UGORG}/${UGAPP}/roles/guest/permissions?access_token="${token}" -H "Content-Type: application/json" -H "Accept: application/json" -d '{"permission":"get,put,post,delete:/**"}'`

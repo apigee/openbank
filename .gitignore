@@ -51,3 +51,5 @@ src/gateway/sms-token/tests/
 src/java/
 src/portal/
 build/
+setup/config.sh
+

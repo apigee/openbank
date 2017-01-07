@@ -66,6 +66,7 @@ app_data="{\"name\":\"AISP_App\", \"callbackUrl\":\"${callback_url}\"}"
 SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/developers/openbank@apigee.net/apps" -H "Content-Type: application/json" -d "$app_data" `
 echo "${SETUP_RESULT}"
 
+
 apikey=${SETUP_RESULT#*consumerKey*:}
 apikey=`echo ${apikey%,*consumerSecret*} | tr -d ' '`
 apisecret=${SETUP_RESULT#*consumerSecret*:}

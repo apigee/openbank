@@ -29,19 +29,19 @@ echo ""
 
 echo `date`": Creating Cache Resources, Please hang On !!"
 echo ""
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T ./resources/consent-session-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
+SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T setup/resources/consent-session-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
 echo "${SETUP_RESULT}"
 echo ""
 
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T ./resources/application-session-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
+SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T setup/resources/application-session-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
 echo "${SETUP_RESULT}"
 echo ""
 
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T ./resources/nonce-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
+SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T setup/resources/nonce-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
 echo "${SETUP_RESULT}"
 echo ""
 
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T ./resources/sms-token-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
+SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/environments/${ENV}/caches" -T setup/resources/sms-token-cache.xml -H "Content-Type: application/xml" -H "Accept: application/xml" 1>&2`
 echo "${SETUP_RESULT}"
 echo ""
 
