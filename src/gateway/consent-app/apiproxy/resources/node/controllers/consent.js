@@ -4,7 +4,6 @@
  * This file contains the code for all the consent operations.
  */
 
-var stepsProcess = require('./stepsProcess');
 var request = require('request');
 
 var consentModule = require('common-consent-controller');
