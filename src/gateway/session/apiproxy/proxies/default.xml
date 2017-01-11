@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Condition>request.verb = "OPTIONS"</Condition>
+                <Name>Cors-preflighted</Name>
+            </Step>
+            <Step>
+                <Name>Verify.ConsentAppAPIKey</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="get application tx session">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Extract-Transaction-session-id</Name>
+                </Step>
+                <Step>
+                    <Name>Lookup-Cache-Application-authorization-transaction-session</Name>
+                </Step>
+                <Step>
+                    <Condition>(auth.transaction.session.id = null or auth.transaction.session.id = "") or (transaction.session.Payload = null) or (transaction.session.Payload = "")</Condition>
+                    <Name>Error-Invalid-authorization-transaction-session</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Ext-Extract-Application-Session</Name>
+                </Step>
+                <Step>
+                    <Name>Assign-TransactionInfo-response</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath &quot;/transactions/{auth.transaction.session.id}&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/internal/apis/v1/session</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>
