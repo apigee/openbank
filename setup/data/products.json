@@ -46,7 +46,7 @@
     "name": "CC1",
     "text": "Platinum Credit Card",
     "landing-page": "http://bank.com/cards",
-    "category": "Credit Cards"
+    "category": "Credit Cards",
     "more-info": {
       "withdrawal-limits": 5000,
       "rewards": true,
