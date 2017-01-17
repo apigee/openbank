@@ -54,7 +54,7 @@ var consentapis = [
     { dir: 'build/gateway/consent-app-transfers', proxy: 'consent-app-transfers'}
 ]
 var gopts = baseopts()
-var ugbase = 'https://api.usergrid.com/' + gopts.usergrid_org +'/' +  gopts.usergrid_app
+var ugbase = 'https://apibaas-trial.apigee.net/' + gopts.usergrid_org +'/' +  gopts.usergrid_app
 var proxybase = 'https://' + gopts.organization + '-' + gopts.environment + '.apigee.net'
 var proxyhost = gopts.organization + '-' + gopts.environment + '.apigee.net'
 
