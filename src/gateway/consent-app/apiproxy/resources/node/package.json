@@ -19,5 +19,4 @@
     "uuid": "*",
     "consent-controllers": "git+https://revision.aeip.apigee.net/solution-commons/consent-controller.git#v1.0.0"
   }
-
 }

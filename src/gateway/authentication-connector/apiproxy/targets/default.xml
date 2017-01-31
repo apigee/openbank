@@ -11,6 +11,6 @@
         <Response/>
     </PostFlow>
     <HTTPTargetConnection>
-        <URL>https://api.usergrid.com/{{ baas_org }}/{{ baas_app }}/customers/{customerNumber}</URL>
+        <URL>{{ baasBasePath }}/customers/{customerNumber}</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

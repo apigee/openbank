@@ -2,7 +2,7 @@
     <AssignTo createNew="false" transport="http" type="request"/>
     <AssignVariable>
         <Name>appBasePath</Name>
-        <Value>https://api.usergrid.com/{{ baas_org }}/{{ baas_app }}</Value>
+        <Value>{{ baasBasePath }}</Value>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </AssignMessage>

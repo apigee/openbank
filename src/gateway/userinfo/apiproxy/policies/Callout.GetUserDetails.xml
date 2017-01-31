@@ -8,6 +8,6 @@
     <Response>getUserDetailsResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://api.usergrid.com/{{ baas_org }}/{{ baas_app }}/customers/{customer_number}</URL>
+        <URL>{{ baasBasePath }}/customers/{customer_number}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

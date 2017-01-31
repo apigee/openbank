@@ -11,6 +11,6 @@
     <Response>AddTransactionToAccountResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://api.usergrid.com/{{ baas_org }}/{{ baas_app }}/accounts/{account_number}/transactions/{uuid}</URL>
+        <URL>{{ baasBasePath }}/accounts/{account_number}/transactions/{uuid}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
