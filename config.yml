@@ -5,6 +5,10 @@ resources:
     inputs:
     - name: org
       prompt: Edge Org name
+    - name: username
+      prompt: username
+    - name: password
+      prompt: password
     - name: env
       prompt: Edge Org Environment
     - name: usergrid_org
@@ -19,10 +23,6 @@ resources:
     - env: test
       baas_host: https://apibaas-trial.apigee.net
       edge_host: https://api.enterprise.apigee.com
-      usergrid_client_id: b3U6Pte_P9fOEeanNBIuBzeXfQ
-      usergrid_secret: b3U6X9ueGzIAOUaTxQbEMqGZPECsSmY
-      usergrid_org: camaro
-      usergrid_app: open_bank
     - env : prod
       baas_host: https://apibaas-trial.apigee.net
       edge_host: https://api.enterprise.apigee.com
