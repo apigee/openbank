@@ -7,8 +7,10 @@ resources:
       prompt: Edge Org name
     - name: username
       prompt: username
+      ifNotPresent: token
     - name: password
       prompt: password
+      ifNotPresent: token
     - name: env
       prompt: Edge Org Environment
     - name: usergrid_org
