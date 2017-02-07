@@ -36,10 +36,23 @@ This repository contains the necessary artifacts that will allow one to pull up 
 ## Setup
 To deploy the APIs and its dependencies on your own org please run the following script
 
-```bash
-$ cd src/gateway
-$ sh setup/setup.sh
+### Pre-requisites
+node.js 
+npm
+
+### Run following commands
+Install gulp 
+```npm install --global gulp-cli
 ```
+
+Pull node modules
+```npm install
+```
+
+Run the deploy command
+```gulp deploy
+```
+
 
 This will interactively prompt you for your Edge and BaaS credentials, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
 
