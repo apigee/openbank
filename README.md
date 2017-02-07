@@ -54,7 +54,7 @@ npm install
 
 #### Run the deploy command
 ```
-gulp deploy
+gulp deploy --resource openbank_apis
 ```
 
 
