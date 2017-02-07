@@ -37,19 +37,20 @@ This repository contains the necessary artifacts that will allow one to pull up 
 To deploy the APIs and its dependencies on your own org please run the following script
 
 ### Pre-requisites
-node.js 
-npm
++ node.js 
++ npm
 
 ### Run following commands
-Install gulp 
+#### Install gulp 
+
 ```npm install --global gulp-cli
 ```
 
-Pull node modules
+#### Pull node modules
 ```npm install
 ```
 
-Run the deploy command
+#### Run the deploy command
 ```gulp deploy
 ```
 
