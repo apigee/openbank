@@ -43,15 +43,18 @@ To deploy the APIs and its dependencies on your own org please run the following
 ### Run following commands
 #### Install gulp 
 
-```npm install --global gulp-cli
+```
+npm install --global gulp-cli 
 ```
 
 #### Pull node modules
-```npm install
+```
+npm install
 ```
 
 #### Run the deploy command
-```gulp deploy
+```
+gulp deploy
 ```
 
 
