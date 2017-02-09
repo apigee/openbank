@@ -63,7 +63,7 @@ This will interactively prompt you for following details, and will then create /
 + Edge Org name
 + Edge Username
 + Edge Password
-+ Edge Env for deployemnt
++ Edge Env for deployment
 + Usergrid(BaaS) Org Name
 + Usergrid(BaaS) App Name
 + Usergrid(BaaS) App Client Id
