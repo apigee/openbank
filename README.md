@@ -58,7 +58,17 @@ gulp deploy --resource openbank_apis
 ```
 
 
-This will interactively prompt you for your Edge and BaaS credentials, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
+This will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
+
++ Edge Org name
++ Edge Username
++ Edge Password
++ Edge Env for deployemnt
++ Usergrid(BaaS) Org Name
++ Usergrid(BaaS) App Name
++ Usergrid(BaaS) App Client Id
++ Usergrid(BaaS) App Client Secret 
+
 
 ## Design
 The APIs provided are configurable to connect to your own Banking backend and / or provide your own consent apps. The following sections will help you understand this solution so that you can go about this on your own.
