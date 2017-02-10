@@ -15,7 +15,7 @@
     "gulp-prompt": "^0.2.0",
     "gulp-rename": "*",
     "gulp-util": "*",
-    "launchpad": "git+https://revision.aeip.apigee.net/solution-commons/launchpad.git#master",
+    "launchpad": "file:./src/common/deploy/launchpad",
     "q": "*",
     "seed-sdk": "mukundha/seed-sdk",
     "through2": "*",
