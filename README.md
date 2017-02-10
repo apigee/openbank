@@ -36,12 +36,39 @@ This repository contains the necessary artifacts that will allow one to pull up 
 ## Setup
 To deploy the APIs and its dependencies on your own org please run the following script
 
-```bash
-$ cd src/gateway
-$ sh setup/setup.sh
+### Pre-requisites
++ node.js 
++ npm
+
+### Run following commands
+#### Install gulp 
+
+```
+npm install --global gulp-cli 
 ```
 
-This will interactively prompt you for your Edge and BaaS credentials, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
+#### Pull node modules
+```
+npm install
+```
+
+#### Run the deploy command
+```
+gulp deploy --resource openbank_apis
+```
+
+
+This will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
+
++ Edge Org name
++ Edge Username
++ Edge Password
++ Edge Env for deployment
++ Usergrid(BaaS) Org Name
++ Usergrid(BaaS) App Name
++ Usergrid(BaaS) App Client Id
++ Usergrid(BaaS) App Client Secret 
+
 
 ## Design
 The APIs provided are configurable to connect to your own Banking backend and / or provide your own consent apps. The following sections will help you understand this solution so that you can go about this on your own.
