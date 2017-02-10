@@ -72,10 +72,26 @@
                 <Step>
                     <Name>Store-Application-Session</Name>
                 </Step>
+                <Step>
+                    <Name>Ext-Request-Headers</Name>
+                </Step>
             </Request>
             <Response>
                 <Step>
+                    <Condition>requestGrantType != "client_credentials"</Condition>
                     <Name>Assign.RedirectConsentApp</Name>
+                </Step>
+                <Step>
+                    <Condition>requestGrantType = "client_credentials"</Condition>
+                    <Name>Callout-Complete-Transfer</Name>
+                </Step>
+                <Step>
+                    <Condition>requestGrantType = "client_credentials"</Condition>
+                    <Name>Ext-Fetch-Transfer-Response</Name>
+                </Step>
+                <Step>
+                    <Condition>requestGrantType = "client_credentials"</Condition>
+                    <Name>Fault-Send-Response</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/initiate")</Condition>
