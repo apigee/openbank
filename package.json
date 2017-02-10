@@ -21,6 +21,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "chai": "^3.5.0",
+    "jsonwebtoken": "^7.2.1",
     "mocha": "^3.2.0",
     "mocha-phantomjs": "^4.1.0"
   }
