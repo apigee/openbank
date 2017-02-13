@@ -1,23 +1,29 @@
 {
   "name": "apigee-openbank",
   "version": "0.0.1",
-  "description": "openbanking solution in Apigee",  
-  "directories": {
-    "test": "test"
+  "description": "openbanking solution in Apigee",
+  "scripts": {
+    "start": "npm install && ./setup/setup.sh",
+    "test": "./node_modules/mocha/bin/mocha"
   },
-  "dependencies":{
-    "gulp":"*",
-    "gulp-util": "*",
-    "chai":"*",
+  "dependencies": {
     "async": "*",
-    "gulp-build":"*",
-    "q": "*",
+    "gulp": "*",
     "gulp-batch-replace": "*",
+    "gulp-build": "*",
+    "gulp-prompt": "^0.2.0",
+    "gulp-rename": "*",
+    "gulp-util": "*",
+    "q": "*",
     "through2": "*",
-    "gulp-rename":"*",
-    "apigeetool" : "mukundha/apigeetool-node",
-    "seed-sdk" : "mukundha/seed-sdk"
+    "zip-dir": "^1.0.2"
   },
-   "author": "mukundha@apigee.com",
-  "license": "Apache-2.0"
+  "author": "mukundha@apigee.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "jsonwebtoken": "^7.2.1",
+    "mocha": "^3.2.0",
+    "mocha-phantomjs": "^4.1.0"
+  }
 }
