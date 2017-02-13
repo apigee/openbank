@@ -2,8 +2,9 @@
   "name": "apigee-openbank",
   "version": "0.0.1",
   "description": "openbanking solution in Apigee",
-  "directories": {
-    "test": "test"
+  "scripts": {
+    "start": "npm install && ./setup/setup.sh",
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "dependencies": {
     "async": "*",
