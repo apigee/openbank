@@ -17,6 +17,9 @@ var redirect_uri = null;
 var acr_values = null;
 var request_jws = null;
 
+var account_number = null;
+var customer_id = null;
+
 if (verb == "POST") {
     response_type = context.getVariable("request.formparam.response_type");
     scope = context.getVariable("request.formparam.scope");
@@ -25,6 +28,8 @@ if (verb == "POST") {
     acr_values = context.getVariable("request.formparam.acr_values");
     request_jws = context.getVariable("request.formparam.request");
 
+    account_number = contenxt.getVariable("request.formparam.account_number");
+    customer_id = contenxt.getVariable("request.formparam.customer_id");
 }
 
 if (verb == "GET") {
@@ -34,6 +39,9 @@ if (verb == "GET") {
     redirect_uri = context.getVariable("request.queryparam.redirect_uri");
     acr_values = context.getVariable("request.queryparam.acr_values");
     request_jws = context.getVariable("request.queryparam.request");
+
+    account_number = contenxt.getVariable("request.queryparam.account_number");
+    customer_id = contenxt.getVariable("request.queryparam.customer_id");    
 }
 
 if (isEmptyOrNull(client_id)) {

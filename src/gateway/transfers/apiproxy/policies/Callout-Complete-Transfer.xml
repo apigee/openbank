@@ -7,11 +7,9 @@
         <Set>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
                 {
-    
-    "name":"dnhcustomer",
-    "account_number": "@requestAccNum#"
-    
-}
+                    "customerId":"@customer_id#",
+                    "account_number": "@account_number#"
+                }
             </Payload>
             <Verb>POST</Verb>
         </Set>

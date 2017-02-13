@@ -27,6 +27,10 @@
                     <Name>Validate-Request</Name>
                 </Step>
                 <Step>
+                    <Name>OAuth.VerifyAccessToken</Name>
+                    <Condition>request.header.Authorization Matches "Bearer"</Condition>
+                </Step>
+                <Step>
                     <Condition>(error_type != null And error_type != "")</Condition>
                     <Name>Error-Invalid-request</Name>
                 </Step>
@@ -72,27 +76,24 @@
                 <Step>
                     <Name>Store-Application-Session</Name>
                 </Step>
-                <Step>
-                    <Name>Ext-Request-Headers</Name>
-                </Step>
             </Request>
             <Response>
                 <Step>
-                    <Condition>requestGrantType != "client_credentials"</Condition>
+                    <Condition>grant_type != "client_credentials"</Condition>
                     <Name>Assign.RedirectConsentApp</Name>
                 </Step>
                 <Step>
-                    <Condition>requestGrantType = "client_credentials"</Condition>
+                    <Condition>grant_type = "client_credentials"</Condition>
                     <Name>Callout-Complete-Transfer</Name>
                 </Step>
-                <Step>
-                    <Condition>requestGrantType = "client_credentials"</Condition>
+                <!--<Step>
+                    <Condition>grant_type = "client_credentials"</Condition>
                     <Name>Ext-Fetch-Transfer-Response</Name>
                 </Step>
                 <Step>
-                    <Condition>requestGrantType = "client_credentials"</Condition>
+                    <Condition>grant_type = "client_credentials"</Condition>
                     <Name>Fault-Send-Response</Name>
-                </Step>
+                </Step>-->
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/initiate")</Condition>
         </Flow>
@@ -136,135 +137,6 @@
                 </Step>
             </Response>
         </Flow>
-        <!--<Flow name="token">-->
-        <!--<Description/>-->
-        <!--<Request>-->
-        <!--<Step>-->
-        <!--<Condition>request.formparam.grant_type = "authorization_code"</Condition>-->
-        <!--<Name>Security-Generate-Access-Token</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Name>Security-Refresh-token</Name>-->
-        <!--</Step>-->
-        <!--</Request>-->
-        <!--<Response>-->
-        <!--<Step>-->
-        <!--<Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>-->
-        <!--<Name>Extract-Token-Response</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>-->
-        <!--<Name>Get-Application-Attributes</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>-->
-        <!--<Name>Assign-ID-Token-Payload-authorization_code-flow</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>-->
-        <!--<Name>Generate-ID-Token</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>request.formparam.grant_type = "authorization_code" And oauthV2.failed = false</Condition>-->
-        <!--<Name>Assign-Token-Response</Name>-->
-        <!--</Step>-->
-        <!--</Response>-->
-        <!--<Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>-->
-        <!--</Flow>-->
-        <!--<Flow name="authorized">-->
-        <!--<Description/>-->
-        <!--<Request>-->
-        <!--<Step>-->
-        <!--<Name>Extract-Transaction-session-id</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>auth.transaction.session.id != null and auth.transaction.session.id != ""</Condition>-->
-        <!--<Name>Get-Application-Session</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>(auth.transaction.session.id = null or rauth.transaction.session.id = "") or (session.Payload = null) or (session.Payload = "")</Condition>-->
-        <!--<Name>Error-Response-Invalid-Session</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Name>Extract-Application-Session-information</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>response_type_id_token = true</Condition>-->
-        <!--<Name>Get-Application-Attributes</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Name>Assign-JWT-Payload</Name>-->
-        <!--</Step>-->
-        <!--</Request>-->
-        <!--<Response>-->
-        <!--<Step>-->
-        <!--<Condition>response_type_code = true</Condition>-->
-        <!--<Name>Generate-Authorization-Code</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>response_type_token = true</Condition>-->
-        <!--<Name>Security-Generate-Access-Token-Implicit</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>response_type_id_token = true</Condition>-->
-        <!--<Name>Generate-ID-Token</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Name>Ext-Construct-Response</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Name>Assign-Consent-Application-TX-Response</Name>-->
-        <!--</Step>-->
-        <!--</Response>-->
-        <!--<Condition>(proxy.pathsuffix MatchesPath "/authorized/transactions/*") and (request.verb = "POST")</Condition>-->
-        <!--</Flow>-->
-        <!--<Flow name="authorized">-->
-        <!--<Description/>-->
-        <!--<Request>-->
-        <!--<Step>-->
-        <!--<Name>Extract-Transaction-session-id</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>auth.transaction.session.id != null and auth.transaction.session.id != ""</Condition>-->
-        <!--<Name>Get-Application-Session</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>(auth.transaction.session.id = null or request.formparam.sessionid = "") or (session.Payload = null) or (session.Payload = "")</Condition>-->
-        <!--<Name>Error-Response-Invalid-Session</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Name>Extract-Application-Session-information</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>response_type_id_token = true</Condition>-->
-        <!--<Name>Get-Application-Attributes</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Name>Assign-JWT-Payload</Name>-->
-        <!--</Step>-->
-        <!--</Request>-->
-        <!--<Response>-->
-        <!--<Step>-->
-        <!--<Condition>response_type_code = true</Condition>-->
-        <!--<Name>Generate-Authorization-Code</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>response_type_token = true</Condition>-->
-        <!--<Name>Security-Generate-Access-Token-Implicit</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Condition>response_type_id_token = true</Condition>-->
-        <!--<Name>Generate-ID-Token</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Name>Ext-Construct-Response</Name>-->
-        <!--</Step>-->
-        <!--<Step>-->
-        <!--<Name>Assign-Consent-Application-TX-Response</Name>-->
-        <!--</Step>-->
-        <!--</Response>-->
-        <!--<Condition>(proxy.pathsuffix MatchesPath "/authorized/transactions") and (request.verb = "POST")</Condition>-->
-        <!--</Flow>-->
         <Flow name="DefaultFlow">
             <Description/>
             <Request>

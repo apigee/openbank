@@ -11,6 +11,15 @@
               "value": "https://__HOST__/internal/transfer-consent?sessionid={messageid}"
             }
           ]
+        },
+        {
+          "name": "Callout-Complete-Transfer.xml",
+          "tokens": [
+            {
+              "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+              "value": "https://__HOST__/apis/v1/transfers/complete/{messageid}"
+            }
+          ]
         }
       ],
       "proxies": [],
@@ -27,6 +36,15 @@
               "value": "https://__HOST__/internal/transfer-consent?sessionid={messageid}"
             }
           ]
+        },
+        {
+          "name": "Callout-Complete-Transfer.xml",
+          "tokens": [
+            {
+              "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+              "value": "https://__HOST__/apis/v1/transfers/complete/{messageid}"
+            }
+          ]
         }
       ],
       "proxies": [],
@@ -41,6 +59,15 @@
             {
               "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
               "value": "https://__HOST__/internal/transfer-consent?sessionid={messageid}"
+            }
+          ]
+        },
+        {
+          "name": "Callout-Complete-Transfer.xml",
+          "tokens": [
+            {
+              "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+              "value": "https://__HOST__/apis/v1/transfers/complete/{messageid}"
             }
           ]
         }
