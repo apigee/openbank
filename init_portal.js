@@ -5,11 +5,14 @@ var jwt             = require('jsonwebtoken');
 var prompt_lib		= require('prompt');
 
 /*
- files_list : include files that need variable replacement
- inject_object : add variables that need to be replaced
+ What does this script do ?
+    Reads all files in the 'files_list' variable and does 'find and replace' of variables passed in the object 'inject_object'
 
- how to run ?
- node install_tmp.js
+ files_list     : include files that need variable replacement
+ inject_object  : add variables that need to be replaced
+
+ How to run ?
+    node install_tmp.js
 */
 
 var files_list = ['openapi/account_apis.json.template','openapi/auth_api.json.template','openapi/userinfo_api.json.template','openapi/opendata_locations.json.template','openapi/payment_api.json.template']
