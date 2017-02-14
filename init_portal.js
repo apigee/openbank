@@ -87,8 +87,8 @@ function post_prompt(err, results) {
     }
 
     var token_payment = jwt.sign({
-        "iss": "https://www.bankofireland.com",
-        "aud": "https://hulk-prod.apigee.net",
+        "iss": "https://www.openbank.apigee.com",
+        "aud": "https://apis-bank-dev.apigee.net",
         "response_type": "token",
         "client_id": results["client_id"],
         "redirect_uri": results["redirect_uri"],
