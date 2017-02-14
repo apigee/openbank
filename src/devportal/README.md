@@ -74,8 +74,9 @@ The **/devportal/all/modules/custom/openbank_swagger** directory contains the OP
  - create the App, and provide its credentials.
 execute the following command to update the swagger files:
 
+```bash
  $ node init_portal.js
-
+```
 Enter the required parameters for updating the swagger files. eg: Client Id of the registered app, client secret of the registered app etc.
 
 **3.2.5 push the changes back to the portal git repository**
