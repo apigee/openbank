@@ -47,6 +47,7 @@ You will find the default developer code at /var/www/html/sites.
 **3.2.2 Backup of default developer portal**
 
 A backup of default portal’s code is recommended before importing custom changes.
+
 **For In-Cloud instance,**
 Login Pantheon -> goto your portal site -> Backups -> and create a new backup.
 
