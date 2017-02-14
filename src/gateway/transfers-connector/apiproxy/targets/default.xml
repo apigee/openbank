@@ -15,6 +15,6 @@
         <Response/>
     </PostFlow>
     <HTTPTargetConnection>
-        <URL>{{transfers_connector_targeturl}}</URL>
+        <URL>{{ baasBasePath }}/transactions</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

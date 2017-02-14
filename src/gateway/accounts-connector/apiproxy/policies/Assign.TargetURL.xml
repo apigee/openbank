@@ -2,7 +2,8 @@
     <AssignTo createNew="false" transport="http" type="request"/>
     <AssignVariable>
         <Name>appBasePath</Name>
-        <Value>{{accounts_connector_appBasePath}}</Value>
+        <Value>{{ baasBasePath }}</Value>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </AssignMessage>
+
