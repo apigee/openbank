@@ -107,13 +107,14 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
  - Select Content > SmartDocs.
  - For the API model which needs to be configured(**accountapis** and **userinfoapis**), select **settings** from Operations drop-down.
  - Select "**security settings**" hyperlink from the Template authentication schemes section.
- <img src="../../readme-images/devportal/smartdocsecuritysettings" width="700px" height="350px"/> 
+ <img src="../../readme-images/devportal/smartdocsecuritysettings.png" width="700px" height="350px"/> 
  
  - Select Edit for **aisp_auth** security scheme.
  - Select **Authorisation code** for Grant type.
+<img src="../../readme-images/devportal/smartdocsgranttype.png" width="700px" height="350px"/>
 
  - In Advanced Settings section set Authorization Request Method to **Header**.
- <img src="../../readme-images/devportal/smartdocsadvancedsettings" width="700px" height="350px"/>
+ <img src="../../readme-images/devportal/smartdocsadvancedsettings.png" width="700px" height="350px"/>
  
  - Select Submit.
 
@@ -139,15 +140,15 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
  - Goto admin menu -> structure -> context.
  - Select Edit for "**custom_home**".
  - Select "**Blocks**" from the Reactions section.
- <img src="../../readme-images/devportal/contextBlocks" width="700px" height="350px"/>
+ <img src="../../readme-images/devportal/contextBlocks.png" width="700px" height="350px"/>
  
  - Select block drop down, and select **Home Page blocks, API CATALOGUE desc and Reference Apps**.
- <img src="../../readme-images/devportal/contextBlocksblock" width="700px" height="350px"/>
+ <img src="../../readme-images/devportal/contextBlocksblock.png" width="700px" height="350px"/>
  - Select **+Add** tab for contet section and select "**show row weights**".
- <img src="../../readme-images/devportal/contextBlocksadd" width="700px" height="350px"/>
+ <img src="../../readme-images/devportal/contextBlocksadd.png" width="700px" height="350px"/>
  
  - Assign row weights to the blocks.
-  <img src="../../readme-images/devportal/contextBlocksrow" width="700px" height="350px"/>
+  <img src="../../readme-images/devportal/contextBlocksrow.png" width="700px" height="350px"/>
   
  - Click on save.
     
