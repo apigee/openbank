@@ -70,7 +70,10 @@ The **/devportal/all/modules/custom/openbank_swagger** directory contains the OP
  - One can create an app by logging in and  **{your_portal_site}/user/me/apps**.
  - create the App, and provide its credentials.
 
+> node init_portal.js
+
 Enter the required parameters for updating the swagger files. eg: Client Id of the registered app, client secret of the registered app etc.
+
 **3.2.5 push the changes back to the portal git repository**
 **Note**: you will need to push the custom changes back to git, for In-Cloud instance only. 
 
