@@ -1,14 +1,13 @@
 const mocha = require('mocha');
-const assert = require('chai').assert;
 const expect = require('chai').expect;
 const request = require('request');
 
 const config = require('./config.js')
 
-    var access_token;
+var access_token;
 
-describe('Bank API Tests', function() {
-  before('should get a client credentials token', function(done) {
+describe('Bank API Tests', function () {
+  before('should get a client credentials token', function (done) {
     var options = {
       uri: config.hostUrl + '/apis/v1/oauth/token',
       auth: {user: config.clientId, pass: config.clientSecret},
@@ -16,12 +15,10 @@ describe('Bank API Tests', function() {
       json: true
     };
 
-    console.log(JSON.stringify(options, null, 2));
-
-    request.post(options, function(err, res, body) {
-      if (err) console.log(err);
-      if (res) console.log(res.statusCode);
-      if (body) console.log(body);
+    request.post(options, function (err, res, body) {
+      // if (err) console.log(err);
+      // if (res) console.log(res.statusCode);
+      // if (body) console.log(body);
 
       expect(err).to.not.exist;
       expect(body).to.exist;
@@ -32,17 +29,17 @@ describe('Bank API Tests', function() {
     });
   });
 
-  it('should get account information', function(done) {
+  it('should get account information', function (done) {
     var options = {
       uri: config.hostUrl + '/apis/v1/accounts/' + config.accountId + '/info',
       auth: {bearer: access_token},
       json: true
     };
 
-    request(options, function(err, res, body) {
-      if (err) console.log(err);
-      if (res) console.log(res.statusCode);
-      if (body) console.log(body);
+    request(options, function (err, res, body) {
+      // if (err) console.log(err);
+      // if (res) console.log(res.statusCode);
+      // if (body) console.log(body);
 
       expect(err).to.not.exist;
       expect(body).to.exist;
@@ -54,18 +51,17 @@ describe('Bank API Tests', function() {
     });
   });
 
-  it('should get account balance', function(done) {
+  it('should get account balance', function (done) {
     var options = {
-      uri:
-          config.hostUrl + '/apis/v1/accounts/' + config.accountId + '/balance',
+      uri: config.hostUrl + '/apis/v1/accounts/' + config.accountId + '/balance',
       auth: {bearer: access_token},
       json: true
     };
 
-    request(options, function(err, res, body) {
-      if (err) console.log(err);
-      if (res) console.log(res.statusCode);
-      if (body) console.log(body);
+    request(options, function (err, res, body) {
+      // if (err) console.log(err);
+      // if (res) console.log(res.statusCode);
+      // if (body) console.log(body);
 
       expect(err).to.not.exist;
       expect(body).to.exist;
@@ -77,7 +73,7 @@ describe('Bank API Tests', function() {
     });
   });
 
-  it.only('should make a payment', function(done) {
+  it('should make a payment', function (done) {
     this.timeout(10000);
 
     const jwt = require('jsonwebtoken');
@@ -132,14 +128,17 @@ describe('Bank API Tests', function() {
       json: true
     };
 
-    request(options, function(err, res, body) {
-      if (err) console.log(err);
-      if (res) console.log(res.statusCode);
-      if (body) console.log(body);
+    request(options, function (err, res, body) {
+      // if (err) console.log(err);
+      // if (res) console.log(res.statusCode);
+      // if (body) console.log(body);
 
       expect(err).to.not.exist;
       expect(body).to.exist;
-      expect(body).to.have.property('application_tx_response')
+      expect(body).to.have.property('application_tx_response');
+      expect(body.application_tx_response).to.have.string('INITIATED');
+
+      done();
     });
   });
 });
