@@ -57,15 +57,22 @@ Take a backup of /var/www/html/sites directory.
 
 The all folder from default portal code now has to be replaced with the all folder from the openbank source code. Replace(Overwrite) /sites/all directory with git **/openbnk/src/developerportal/all** directory.
 
+**Note**: We further need to do few **manual configurations**.
+Access the developer portal website and **login** with admin credentials.
+
+
 **3.2.4 update the Open APIs**
 
-The **/devportal/all/modules/custom/openbank_swagger** directory contains the OPEN API json files for the Openbank APIs. In order to update the parameters such as host, client ID, client secret, execute the script.
+The **/devportal/all/modules/custom/openbank_swagger** directory contains the OPEN API json files for the Openbank APIs.
 
+ - In order to update the parameters such as host, client ID, client secret, we need to execute the **/openbank/init_portal.js** script.
+ - Give the client Id and client secret of your apps either from APIGEE edge default aisp and pisp apps created, or the one created by yourself.
+ - One can create an app by logging in and  **{your_portal_site}/user/me/apps**.
+ - create the App, and provide its credentials.
+
+Enter the required parameters for updating the swagger files. eg: Client Id of the registered app, client secret of the registered app etc.
 **3.2.5 push the changes back to the portal git repository**
 **Note**: you will need to push the custom changes back to git, for In-Cloud instance only. 
-
-We further need to do few **manual configurations**.
-Access the developer portal website and login with admin credentials.
 
 **4. Further Configurations**
 
@@ -162,10 +169,20 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
   <img src="../../readme-images/devportal/contextBlocksrow.png" width="700px" height="350px"/>
   
  - Click on save.
-    
-The portal setup is complete. Now, we can visit the portal, go through the documentation, create Apps and explore the APIS.
+   
+**4.5 Create your own developer App**
+one can go and create own developer app and register it. In order to accomplish this:
+
+ - Goto MY ACCOUNT -> My Apps.
+ - Click on Add a new App and specify the following values.
+ - Specify any Name.
+ - Select a product type from the list of products depending on the requirement of the app.
+
+**The portal setup is complete**. Now, we can visit the portal, go through the documentation, create Apps and explore the APIS.
+
 **Note**:
 
+ - In order to Get started, click on **getting-started** on the main page.
+ - For exploring and trying the APIs click on the **APIs** on the main menu, select from the list of APIs available, and get started.
  - In order to create new smartdocs for the portal, one can go to admin -> content -> smartdocs, create new model, import respective open api files and render.
- - To make the new smartdocs available for the API explorer quicktab, select edit quicktab and add similar tabs.
  - To manage user registration, goto admin menu -> configuration -> people -> account settings and make respective changes.
