@@ -34,6 +34,7 @@ If you have In-Cloud Instance:
 **3.2 Customize default developer portal**
 
 **3.2.1 Get default developer portal source**
+
 The default portal code to be modified is in sites folder.
 **In-Cloud instance:**
 Get the default site’s code from git via pantheon service.
@@ -44,6 +45,7 @@ You will find the default developer code at /var/www/html/sites.
 
 
 **3.2.2 Backup of default developer portal**
+
 A backup of default portal’s code is recommended before importing custom changes.
 **For In-Cloud instance,**
 Login Pantheon -> goto your portal site -> Backups -> and create a new backup.
@@ -52,9 +54,11 @@ Login Pantheon -> goto your portal site -> Backups -> and create a new backup.
 Take a backup of /var/www/html/sites directory.
 
 **3.2.3 Replace all folder of default code with all folder from openbank repo.**
+
 The all folder from default portal code now has to be replaced with the all folder from the openbank source code. Replace(Overwrite) /sites/all directory with git **/openbnk/src/developerportal/all** directory.
 
 **3.2.4 update the Open APIs**
+
 The **/devportal/all/modules/custom/openbank_swagger** directory contains the OPEN API json files for the Openbank APIs. In order to update the parameters such as host, client ID, client secret, execute the script.
 
 **3.2.5 push the changes back to the portal git repository**
@@ -67,12 +71,14 @@ Access the developer portal website and login with admin credentials.
 
 ----------
 **4.1 Enable the dbank responsive theme**
+
 This theme contains all openbank related customisation for the portal, and hence needs to be enabled and set as default.
 
  - Goto {your_portal_site}**/admin/appearance**.
  - Choose **dbank responsive theme**, enable it and set it as default.
 
 **4.2 Import the image archive**
+
 All the required images are present in openbank.zip. In order to make the images appear on the portal, we need to import the images. Follow the steps below:
 
  - Goto **{your_portal_site}/file/add/upload/archive**.
@@ -81,14 +87,17 @@ All the required images are present in openbank.zip. In order to make the images
 All the required files will be automatically available, and can be found in admin -> content -> Files
 
 **4.3 Smartdocs import and rendering**
+
 Smartdocs methods provide a template for configuring and making API calls through the portal. Hence each API needs a samrtdoc method associated with it. In order to create smartdocs for the APIS, one needs to import respective Open API json files which will get converted to smartdocs method internally. In order to do so, we need to follow the steps below:
 
 **4.3.1 Enable the openbank swagger module**
+
 To enable openbank swagger or any other module, we can go to admin -> modules and enable them
 
  - Select **openbank_swagger** module from the list of modules, enable it, and save the configuration.
     
 **4.3.2 Create models and import all openbank API’s swagger files**
+
 Import of all openbank API’s swagger files need to be done for creation of the respective smartdocs. In order to do so, 
 
  - Goto address bar > enter **{your_portal_site}/swagger/import**.
@@ -101,7 +110,9 @@ Import of all openbank API’s swagger files need to be done for creation of the
  - You’ll find list of all openbank APIs models, rendered and published.
 
 **4.3.4 Configure OAuth 2.0 authentication**
+
 This section is applicable to accounts and userinfo openbank resources only i.e. should not be applied to OAuth and Basepath API documentation. OAuth 2.0 authentication can be used to secure the access to the API. Following steps need to be done to accomplish this.
+
 **4.3.4.1 Update Security Scheme**
 
  - Select Content > SmartDocs.
