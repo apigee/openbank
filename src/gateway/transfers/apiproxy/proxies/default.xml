@@ -28,7 +28,7 @@
                 </Step>
                 <Step>
                     <Name>OAuth.VerifyAccessToken</Name>
-                    <Condition>request.header.Authorization Matches "Bearer"</Condition>
+                    <Condition>request.header.Authorization Matches "Bearer*"</Condition>
                 </Step>
                 <Step>
                     <Condition>(error_type != null And error_type != "")</Condition>
@@ -86,14 +86,14 @@
                     <Condition>grant_type = "client_credentials"</Condition>
                     <Name>Callout-Complete-Transfer</Name>
                 </Step>
-                <!--<Step>
+                <Step>
                     <Condition>grant_type = "client_credentials"</Condition>
                     <Name>Ext-Fetch-Transfer-Response</Name>
                 </Step>
                 <Step>
                     <Condition>grant_type = "client_credentials"</Condition>
-                    <Name>Fault-Send-Response</Name>
-                </Step>-->
+                    <Name>Assign_Transfer_Response</Name>
+                </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/initiate")</Condition>
         </Flow>

@@ -19,6 +19,7 @@ var request_jws = null;
 
 var account_number = null;
 var customer_id = null;
+var requestHeadersAccept = null;
 
 if (verb == "POST") {
     response_type = context.getVariable("request.formparam.response_type");
@@ -28,8 +29,8 @@ if (verb == "POST") {
     acr_values = context.getVariable("request.formparam.acr_values");
     request_jws = context.getVariable("request.formparam.request");
 
-    account_number = contenxt.getVariable("request.formparam.account_number");
-    customer_id = contenxt.getVariable("request.formparam.customer_id");
+    account_number = context.getVariable("request.formparam.account_number");
+    customer_id = context.getVariable("request.formparam.customer_id");
 }
 
 if (verb == "GET") {
@@ -40,9 +41,15 @@ if (verb == "GET") {
     acr_values = context.getVariable("request.queryparam.acr_values");
     request_jws = context.getVariable("request.queryparam.request");
 
-    account_number = contenxt.getVariable("request.queryparam.account_number");
-    customer_id = contenxt.getVariable("request.queryparam.customer_id");    
+    account_number = context.getVariable("request.queryparam.account_number");
+    customer_id = context.getVariable("request.queryparam.customer_id");       
 }
+
+requestHeadersAccept = context.getVariable("request.header.Accept");
+context.setVariable("requestHeaderAccept",requestHeadersAccept); 
+
+if (account_number) context.setVariable('account_number', account_number);
+if (customer_id) context.setVariable('customer_id', customer_id);
 
 if (isEmptyOrNull(client_id)) {
     context.setVariable("error_type", "invalid_client");

@@ -126,8 +126,8 @@ describe('Bank API Tests', function() {
         state: 'af0ifjsldkj',
         acr_values: 2,
         request: jwt_token,
-        grant_type: 'client_credentials',
-        account_from: config.accountId
+        account_number: config.accountId,
+        customer_id: config.customerId
       },
       json: true
     };
@@ -135,12 +135,11 @@ describe('Bank API Tests', function() {
     request(options, function(err, res, body) {
       if (err) console.log(err);
       if (res) console.log(res.statusCode);
-      if (res) console.log(res.headers.location);
       if (body) console.log(body);
 
       expect(err).to.not.exist;
       expect(body).to.exist;
+      expect(body).to.have.property('application_tx_response')
     });
   });
-
 });
