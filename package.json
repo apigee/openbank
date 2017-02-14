@@ -1,23 +1,27 @@
 {
   "name": "apigee-openbank",
   "version": "0.0.1",
-  "description": "openbanking solution in Apigee",  
+  "description": "openbanking solution in Apigee",
   "directories": {
     "test": "test"
   },
-  "dependencies":{
-    "gulp":"*",
-    "gulp-util": "*",
-    "chai":"*",
+  "dependencies": {
+    "apigeetool": "mukundha/apigeetool-node",
     "async": "*",
-    "gulp-build":"*",
-    "q": "*",
+    "chai": "*",
+    "fs-extra": "^2.0.0",
+    "gulp": "*",
     "gulp-batch-replace": "*",
-    "through2": "*",
-    "gulp-rename":"*",
-    "apigeetool" : "mukundha/apigeetool-node",
-    "seed-sdk" : "mukundha/seed-sdk"
+    "gulp-build": "*",
+    "gulp-rename": "*",
+    "gulp-util": "*",
+    "jsonwebtoken": "^7.3.0",
+    "mustache": "^2.3.0",
+    "prompt": "^1.0.0",
+    "q": "*",
+    "seed-sdk": "mukundha/seed-sdk",
+    "through2": "*"
   },
-   "author": "mukundha@apigee.com",
+  "author": "mukundha@apigee.com",
   "license": "Apache-2.0"
 }

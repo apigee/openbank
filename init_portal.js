@@ -1,6 +1,6 @@
-var mustache 		= require('mustache')
-var path 			= require('path')
-var fs				= require('fs-extra')
+var mustache 		= require('mustache');
+var path 			= require('path');
+var fs				= require('fs-extra');
 var jwt             = require('jsonwebtoken');
 var prompt_lib		= require('prompt');
 
