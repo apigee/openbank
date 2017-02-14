@@ -72,8 +72,9 @@ The **/devportal/all/modules/custom/openbank_swagger** directory contains the OP
  - Give the client Id and client secret of your apps either from APIGEE edge default aisp and pisp apps created, or the one created by yourself.
  - One can create an app by logging in and  **{your_portal_site}/user/me/apps**.
  - create the App, and provide its credentials.
+execute the following command to update the swagger files:
 
-> node init_portal.js
+ $ node init_portal.js
 
 Enter the required parameters for updating the swagger files. eg: Client Id of the registered app, client secret of the registered app etc.
 
