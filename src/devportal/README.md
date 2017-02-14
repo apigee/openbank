@@ -36,10 +36,12 @@ If you have In-Cloud Instance:
 **3.2.1 Get default developer portal source**
 
 The default portal code to be modified is in sites folder.
+
 **In-Cloud instance:**
 Get the default site’s code from git via pantheon service.
 Note: Here, you can get clone of site’s code by using “git clone ” command followed by pantheon service credentials.
-The code will be downloaded on your local system at .
+The code will be downloaded on your local system.
+
 **On-prem instance:**
 You will find the default developer code at /var/www/html/sites.
 
