@@ -1,14 +1,6 @@
 var request = require('request');
 var stepsProcess = {};
 
-stepsProcess.getStepPath = function (name) {
-  // define all the system paths for each of the steps as an array.
-  // Keys are the step names that will be given in config.json.
-  var stepPaths = [];
-  stepPaths['OTP'] = '/otp';
-  stepPaths['UID_PWD'] = '/login';
-  return stepPaths[name];
-}
 
 stepsProcess.loadStep = function (req, res, next) {
   var config = req.app.get('config');
@@ -26,21 +18,15 @@ stepsProcess.loadStep = function (req, res, next) {
   var numSteps = req.session.loaNumSteps;
   var sessionid = req.session.sessionid;
   var currentStepItem = loaActiveSteps[currentStep];
-  
-  console.log('loaActiveSteps = ' + JSON.stringify(loaActiveSteps, null, 2));
-  console.log('numSteps = ' + numSteps);
-  console.log('currentStepItem = ' + JSON.stringify(currentStepItem, null, 2));
-  console.log('sessionid = ' + sessionid);
 
   // Increment the step value and store it in the session to be used by the next
   // call of loadStep().
   if (currentStep < numSteps) {
     // Get the redirect path for the current step and set the redirect.
-    var redirectPath = config.base_path+stepsProcess.getStepPath(currentStepItem.name)
+    var redirectPath = config.base_path + currentStepItem.path;
 
     req.session.loaCurrentStep = currentStep+1;
     // Issue a redirect to the appropriate steps.
-    console.log('redirectPath = ' + redirectPath);
     res.redirect(redirectPath+'?sessionid='+sessionid);
   }
   else {

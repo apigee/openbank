@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="Callout-Complete-Transfer">
+    <DisplayName>Callout: Complete Transfer</DisplayName>
+    <Properties/>
+    <Request clearPayload="false" variable="FetchTransferRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+                {
+                    "customerId":"@customer_id#",
+                    "account_number": "@account_number#"
+                }
+            </Payload>
+            <Verb>POST</Verb>
+        </Set>
+    </Request>
+    <Response>CompleteTransferResponse</Response>
+    <HTTPTargetConnection>
+        <Properties>
+            <Property name="success.codes">2xx,4xx,5xx</Property>
+        </Properties>
+        <URL>{{ edgeBasePath }}/apis/v1/transfers/complete/{messageid}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

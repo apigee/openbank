@@ -25,13 +25,10 @@ login.doLogin = function(req, res, next) {
     "json": true
   };
 
-  console.log('auth options : ', JSON.stringify(options));
-
   request(options, function(error, response, body) {
     if (!error && response.statusCode == 200) {
       try {
         var authenticationTransaction = body;
-        console.log(body);
         req.session.authenticationTransaction = body;
         stepsProcess.loadStep(req, res, next);
       } catch (ex) {

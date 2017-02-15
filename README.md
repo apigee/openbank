@@ -47,17 +47,38 @@ with a **Developer Portal**, mock backend and a sample app.
 To deploy the APIs and its dependencies on your own org please run the following
 script from the root folder of the cloned repo.
 
-```bash
-$ sh setup/setup.sh
+### Pre-requisites
++ node.js 
++ npm
+
+### Run following commands
+Install gulp 
+```
+npm install --global gulp-cli
 ```
 
-**Note:** Updated run instructions: The setup script has to be run from the root
-folder of the cloned repository. Only then will all the relative paths work
-correctly
+Pull node modules
+```
+npm install
+```
 
-This will interactively prompt you for your Edge and BaaS credentials, and will
-then create / deploy all relevants bundles and artifacts and will provision the
-**OpenBank Sandbox** on your own Org.
+#### Run the deploy command
+```
+gulp deploy --resource openbank_apis
+```
+
+
+This will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
+
++ Edge Org name
++ Edge Username
++ Edge Password
++ Edge Env for deployment
++ Usergrid(BaaS) Org Name
++ Usergrid(BaaS) App Name
++ Usergrid(BaaS) App Client Id
++ Usergrid(BaaS) App Client Secret 
+
 
 ## Design
 

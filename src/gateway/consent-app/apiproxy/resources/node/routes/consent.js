@@ -6,13 +6,15 @@ var express = require('express');
 var router = express.Router();
 var consent = require('../controllers/consent');
 
-
-
 /* GET Consent page. */
-router.get('/', consent.showConsent);
+router.get('/', function(req, res, next){
+	consent.showConsent(req, res, next);
+});
 
 /* POST Consent page. */
-router.post('/', consent.doConsent);
+router.post('/', function(req, res, next){
+	consent.doConsent(req, res, next);
+});
 
 
 

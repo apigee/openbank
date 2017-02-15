@@ -3,19 +3,13 @@ var request = require('request');
 var otp = {};
 
 otp.showMsisdnForm = function(req, res, next) {
-  var msisdn = req.session.authenticationTransaction.phone_number;
-  console.log('phone = ' + msisdn);
-  if (msisdn === null || typeof msisdn === 'undefined' || msisdn === '')
-    res.render('otp');
-  else
-    otp.generateOtp(req, res);
-};
+  res.render('otp');
+}
 
 otp.generateOtp = function(req, res, next) {
   var config = req.app.get('config');
 
-  var msisdn = req.body.msisdn || req.session.authenticationTransaction.phone_number;
-  console.log('sending OTP to ' + msisdn);
+  var msisdn = req.body.msisdn;
 
   // call the authentication endpoint to validate the user credentials
   var options = {
@@ -31,16 +25,11 @@ otp.generateOtp = function(req, res, next) {
       res.redirect(config.base_path+'/otp/validate');
     }
   });
-};
+}
 
 otp.showOtpForm = function(req, res, next) {
-  var msisdn = req.body.msisdn || req.session.authenticationTransaction.phone_number;
-  msisdn = msisdn.toString().slice(-4);
-  var otpData = {};
-  otpData.msisdn = msisdn;
-
-  res.render('verify_otp', otpData);
-};
+  res.render('verify_otp');
+}
 
 otp.validateOtp = function(req, res, next) {
   var otp = req.body.otp;

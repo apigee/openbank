@@ -150,14 +150,15 @@ function isEmptyOrNull(element) {
  * @return boolean
  */
 function validateScopes(scopesXML, applicationScope) {
+    if (context.getVariable('grant_type') === 'client_credentials')
+        return true;
+
     // Convert the scope from application request to Array
     var receivedScopes = applicationScope.split(" ");
 
     if (scopesXML == null) {
         return false;
-
-    }
-    else {
+    } else {
 
         // Workaround for e4x
         scopesXML = scopesXML.replace(/^<\?xml\s+version\s*=\s*(["'])[^\1]+\1[^?]*\?>/, "");
@@ -196,7 +197,11 @@ function validateJWTPayload(parsedPayload) {
         var jwt = JSON.parse(parsedPayload);
         var client_id = context.getVariable("client_id");
         var state = context.getVariable("req_state");
+        
         var scope = context.getVariable("scope");
+        if (context.getVariable('grant_type') === 'client_credentials')
+            scope = jwt.scope;
+
         // var response_type=context.getVariable("response_type");
         var nonce = context.getVariable("nonce");
         var acr_values = context.getVariable("acr_values");
