@@ -16,7 +16,7 @@ var request         = require('request');
     node install_tmp.js
 */
 
-var files_list = ['openapi/account_apis.json.template','openapi/auth_api.json.template','openapi/userinfo_api.json.template','openapi/opendata_locations.json.template','openapi/payment_api.json.template']
+var files_list = ['src/devportal/all/modules/custom/openbank_swagger/swaggers/account_apis.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/auth_api.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/userinfo_api.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/opendata_locations.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/payment_api.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/opendata_products.json.template']
 
 var inject_object = {}
 
