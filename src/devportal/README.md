@@ -26,15 +26,15 @@ If you have In-Cloud Instance:
 ##**3. Getting Started**
 
 ----------
-**3.1 Get code with customized changes**
+###**3.1 Get code with customized changes**
 
  - Clone the openbank git repo.
  - Go to /openbank/src/developerportal – This contains custom portal source code.
 
-**3.2 Customize default developer portal**
+###**3.2 Customize default developer portal**
 
 
-**3.2.1 Get default developer portal source**
+####**3.2.1 Get default developer portal source**
 The default portal code to be modified is in sites folder.
 
 **In-Cloud instance:**
@@ -47,7 +47,7 @@ You will find the default developer code at /var/www/html/sites.
 
 
 
-**3.2.2 Backup of default developer portal**
+####**3.2.2 Backup of default developer portal**
 A backup of default portal’s code is recommended before importing custom changes.
 
 **For In-Cloud instance,**
@@ -58,14 +58,14 @@ Take a backup of /var/www/html/sites directory.
 
 
 
-**3.2.3 Replace all folder of default code with all folder from openbank repo.**
+####**3.2.3 Replace all folder of default code with all folder from openbank repo.**
 The all folder from default portal code now has to be replaced with the all folder from the openbank source code. Replace(Overwrite) /sites/all directory with git **/openbnk/src/developerportal/all** directory.
 **Note**: We further need to do few **manual configurations**.
 Access the developer portal website and **login** with admin credentials.
 
 
 
-**3.2.4 update the Open APIs**
+####**3.2.4 update the Open APIs**
 
 The **/devportal/all/modules/custom/openbank_swagger** directory contains the OPEN API json files for the Openbank APIs.
  - In order to update the parameters such as host, client ID, client secret, we need to execute the **/openbank/init_portal.js** script.
@@ -79,7 +79,7 @@ execute the following command to update the swagger files:
 ```
 Enter the required parameters for updating the swagger files. eg: Client Id of the registered app, client secret of the registered app etc.
 
-**3.2.5 push the changes back to the portal git repository**
+####**3.2.5 push the changes back to the portal git repository**
 **Note**: you will need to push the custom changes back to git, for In-Cloud instance only. 
 
 ##**4. Further Configurations**
