@@ -36,29 +36,24 @@ If you have In-Cloud Instance:
 
 **3.2.1 Get default developer portal source**
 The default portal code to be modified is in sites folder.
-
 **In-Cloud instance:**
 Get the default site’s code from git via pantheon service.
 Note: Here, you can get clone of site’s code by using “git clone ” command followed by pantheon service credentials.
 The code will be downloaded on your local system.
-
 **On-prem instance:**
 You will find the default developer code at /var/www/html/sites.
 
 
 **3.2.2 Backup of default developer portal**
 A backup of default portal’s code is recommended before importing custom changes.
-
 **For In-Cloud instance,**
 Login Pantheon -> goto your portal site -> Backups -> and create a new backup.
-
 **For On-prem instance,**
 Take a backup of /var/www/html/sites directory.
 
 
 **3.2.3 Replace all folder of default code with all folder from openbank repo.**
 The all folder from default portal code now has to be replaced with the all folder from the openbank source code. Replace(Overwrite) /sites/all directory with git **/openbnk/src/developerportal/all** directory.
-
 **Note**: We further need to do few **manual configurations**.
 Access the developer portal website and **login** with admin credentials.
 
@@ -66,7 +61,6 @@ Access the developer portal website and **login** with admin credentials.
 **3.2.4 update the Open APIs**
 
 The **/devportal/all/modules/custom/openbank_swagger** directory contains the OPEN API json files for the Openbank APIs.
-
  - In order to update the parameters such as host, client ID, client secret, we need to execute the **/openbank/init_portal.js** script.
  - Give the client Id and client secret of your apps either from APIGEE edge default aisp and pisp apps created, or the one created by yourself.
  - One can create an app by logging in and  **{your_portal_site}/user/me/apps**.
