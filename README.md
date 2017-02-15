@@ -150,6 +150,7 @@ Account information APIs provide information for a single account held by the co
  - Information
  - Balance
  - Transactions  
+
 An API end point is provided for each type of information.
 These Account Information APIs are secured with **oAuth 2.0** and need a **valid Access token** for making API calls. 
 Banking APIs provide developers with the information needed to create innovative fintech apps for consumers.There are a few obvious use cases worth mentioning:
