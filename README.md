@@ -115,43 +115,71 @@ be customized so that the right API endpoints are provided to the consent app.
 
 ## APIs
 
-The following API proxies will be deployed as part of this solution
+The following categories of API proxies will be deployed as part of this solution
 
-#### accounts
+###Security 
+These set of proxies enable securing the APIs when they are exposed.
 
-#### accounts-connector
+<img src="readme-images/security.png">
 
-#### authentication-connector
+**1. Oauth**
+Oauth is commonly used as a way for Internet users to authorize websites or applications to access their information on other websites but without giving them the passwords. OAuth 2.0 provides a way for apps to gain limited access to a user's protected resources. This oauth proxy has APIs exposed which helps in generating access token for client Apps which can be further used for making authorized API calls through oauth flow.
 
-#### consent-app
+**2. Authentication Connector**
+This proxy exposes APIs to authenticate the user based on the username and password provided by the user. It communicates with the backend service of the bank to authenticate the user.
 
-#### consent-app-transfers
+**3. Consent-app**
+This is used for managing user consent for sharing his/her account information.
 
-#### locations
+**4. Consent-app-transfers**
+This is used for managing user consent for initiating secure transactions
 
-#### locations-connector
 
-#### oauth
+###Account 
+These proxies will expose all account access APIs eg: GET account balance, GET account transactions etc.
 
-#### transfers
+**1. accounts**
+Accounts proxy is the northbound proxy which will expose the set of accounts related APIs of a bank securely. Secured with Oauth for authorized API calls.
 
-#### transfers-connector
+**2. accounts-connector**
+This is the southbound proxy which will communicate with bank's backend service and fetch the required accounts data.
 
-#### Locations API
+###Transfer 
+These proxies will expose APIs for secure initiation of Payments. It Initiates transfer of funds from the consumers account to a recipient account.
 
-#### SMS Token API
+**1. transfers**
+This is the northbound proxy which will expose the set of APIs securely for initiating secure payments. It is Secured with Oauth for authorised API calls. This will initiate an authentication and consent flow using 2-factor authentication following which it will initiate funds transfer. The payee information is provided to the API as a JWT token. The JWT token is signed with the client secret of the registered app to ensure that it is not tampered with.
 
-#### Session API
+**2. transfers-connector**
+This is the southbound proxy which connects to the bank backend service for payment initiation.
 
-#### Accounts Connector
 
-#### Transfer Connector
+###OpenData 
+These proxies will expose a set of APIs which are open to all, and does not require any level of security for accessing the data. eg: ATM locations data is open to all, and should be made open to all.
 
-#### Authentication Connector
+**1. locations**
+This is the northbound proxy which provides a fixed set of interfaces for locating bank branches and atms that can be relyed on by the external consumers.
 
-#### Locations Connector
+**2. locations-connector**
+this is the southbound proxy for locations,which connects to the actual backend of the bank (or the mock backend) and provides the data(atms and branch locations) that is exposed by locations. 
 
-### Consent Apps
+**3. products**
+This northbound proxy provides APIs for fetching products offered by the bank. Eg: credit cards, loan schemes etc.
+
+**4. products-connector**
+It is a southbound proxy which returns the list of product offerings which the bank has.
+
+
+###Others
+These are the proxies which will expose APIs which are internal APIs. They wont be exposed on the developer portal, but will be deployed as part of the openbank solution.
+
+**1. SMS Token** 
+sms token proxy exposes APIs to send sms token to users. A simple use case would be, sending otp to the account holder in case of payment initiation when two-factor authentication is enabled.
+
+**2. Session** 
+This proxy exposes internally used API for generation and management of user sessions.
+
+
 
 ## Changelog
 
