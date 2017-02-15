@@ -11,6 +11,6 @@
         <Response/>
     </PostFlow>
     <HTTPTargetConnection>
-        <URL>{{authentication_connector_target_url}}</URL>
+        <URL>{{ baasBasePath }}/customers/{customerNumber}</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

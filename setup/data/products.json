@@ -46,7 +46,7 @@
     "name": "CC1",
     "text": "Platinum Credit Card",
     "landing-page": "http://bank.com/cards",
-    "category": "Credit Cards"
+    "category": "Credit Cards",
     "more-info": {
       "withdrawal-limits": 5000,
       "rewards": true,
@@ -93,25 +93,25 @@
     "more-info": {
       "interest-slabs": [
         {
-          "min-period": "0",
-          "max-period": "3",
+          "min-period": 0,
+          "max-period": 3,
           "rate-of-interest": 7,
           "text": "0 to 3 months"
         },
         {
-          "min-period": "3",
-          "max-period": "6",
+          "min-period": 3,
+          "max-period": 6,
           "rate-of-interest": 7.5,
           "text": "3 to 6 months"
         },
         {
-          "min-period": "6",
-          "max-period": "12",
+          "min-period": 6,
+          "max-period": 12,
           "rate-of-interest": 8,
           "text": "6 to 12 months"
         },
         {
-          "min-period": "12",
+          "min-period": 12,
           "rate-of-interest": 7.5,
           "text": "> 1 year"
         }

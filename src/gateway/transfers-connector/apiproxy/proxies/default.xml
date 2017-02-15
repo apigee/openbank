@@ -6,6 +6,9 @@
             <!--<Step>-->
                 <!--<Name>Jsc.AssignTransferStatus</Name>-->
             <!--</Step>-->
+            <Step>
+              <Name>Extract.PaymentRequestDetails</Name>
+            </Step>
         </Request>
         <Response>
             <Step>

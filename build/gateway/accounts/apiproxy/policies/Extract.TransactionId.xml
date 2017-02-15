@@ -1,8 +1,0 @@
-<ExtractVariables name="Extract.TransactionId">
-    <DisplayName>Extract.TransactionId</DisplayName>
-    <Source>request</Source>
-    <URIPath>
-        <Pattern ignoreCase="true">/{account_number}/transactions/{transaction_id}</Pattern>
-    </URIPath>
-    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-</ExtractVariables>
