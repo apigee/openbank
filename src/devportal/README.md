@@ -85,14 +85,14 @@ Enter the required parameters for updating the swagger files. eg: Client Id of t
 ##**4. Further Configurations**
 
 ----------
-**4.1 Enable the dbank responsive theme**
+###**4.1 Enable the dbank responsive theme**
 
 This theme contains all openbank related customisation for the portal, and hence needs to be enabled and set as default.
 
  - Goto {your_portal_site}**/admin/appearance**.
  - Choose **dbank responsive theme**, enable it and set it as default.
 
-**4.2 Import the image archive**
+###**4.2 Import the image archive**
 All the required images are present in openbank.zip. In order to make the images appear on the portal, we need to import the images. Follow the steps below:
 
  - Goto **{your_portal_site}/file/add/upload/archive**.
@@ -100,7 +100,7 @@ All the required images are present in openbank.zip. In order to make the images
  - Click submit.
 All the required files will be automatically available, and can be found in admin -> content -> Files
 
-**4.3 Smartdocs import and rendering**
+###**4.3 Smartdocs import and rendering**
 Smartdocs methods provide a template for configuring and making API calls through the portal. Hence each API needs a samrtdoc method associated with it. In order to create smartdocs for the APIS, one needs to import respective Open API json files which will get converted to smartdocs method internally. In order to do so, we need to follow the steps below:
 
 **4.3.1 Enable the openbank swagger module**
@@ -143,7 +143,7 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
  - In Template authentication schemes, set **Client Id & Client Secret** to the previously created App’s Consumer key and Secret respectively.**Use an App which request for Account Access APIs.**
  - Click the "Save template authentication schemes" button.
 
-**4.4 Enable other required modules**
+###**4.4 Enable other required modules**
  - Goto **{your_portal_site}/admin/modules**.
  - Enable **home_page_blocks**.
  - Click Save Configuration.
@@ -152,7 +152,7 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
  - Goto admin-> configuration -> Development -> performance.
  - Click "clear all caches"
 
-**4.5 Assign blocks to context**
+###**4.5 Assign blocks to context**
  - Goto admin menu -> structure -> context.
  - Select Edit for "**custom_home**".
  - Select "**Blocks**" from the Reactions section.
@@ -168,7 +168,7 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
   
  - Click on save.
    
-**4.5 Create your own developer App**
+###**4.5 Create your own developer App**
 one can go and create own developer app and register it. In order to accomplish this:
  - Goto MY ACCOUNT -> My Apps.
  - Click on Add a new App and specify the following values.
