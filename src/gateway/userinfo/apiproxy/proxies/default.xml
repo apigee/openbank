@@ -39,7 +39,7 @@
                     </Condition>
                 </Step>
             </Request>
-            <Condition>(proxy.pathsuffix MatchesPath "" or proxy.pathsuffix MatchesPath "/") and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "" or proxy.pathsuffix MatchesPath "/" or proxy.pathsuffix MatchesPath "/acr:token") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="getCustomerById">
             <Request>

@@ -8,7 +8,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
+                            "value": "https://apibaas-trial.apigee.net/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
                         }
                     ]
                 }
@@ -20,7 +20,7 @@
                     "tokens": [
                         {
                             "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
+                            "value": "https://apibaas-trial.apigee.net/__APPORG__/__APPAPP__/transactions"
                         }
                     ]
                 }
@@ -34,7 +34,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
+                            "value": "https://apibaas-trial.apigee.net/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
                         }
                     ]
                 }
@@ -46,7 +46,7 @@
                     "tokens": [
                         {
                             "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
+                            "value": "https://apibaas-trial.apigee.net/__APPORG__/__APPAPP__/transactions"
                         }
                     ]
                 }
@@ -60,7 +60,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
+                            "value": "https://apibaas-trial.apigee.net/__APPORG__/__APPAPP__/accounts/{account_number}/transactions/{uuid}"
                         }
                     ]
                 }
@@ -72,7 +72,7 @@
                     "tokens": [
                         {
                             "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/transactions"
+                            "value": "https://apibaas-trial.apigee.net/__APPORG__/__APPAPP__/transactions"
                         }
                     ]
                 }

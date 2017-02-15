@@ -1,0 +1,10 @@
+<AssignMessage name="Assign_Transfer_Response">
+  <AssignTo createNew="true" type="response"></AssignTo>
+  <Set>
+    <Payload contentType="{requestHeaderAccept}" variablePrefix="@" variableSuffix="#">
+        @resData#
+    </Payload>
+    <StatusCode>{status_code}</StatusCode>
+  </Set>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</AssignMessage>
