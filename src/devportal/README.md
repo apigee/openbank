@@ -1,4 +1,4 @@
-**1. Introduction**
+##**1. Introduction**
 
 ----------
 The intent of this document is to guide step by step how to deploy and configure openbank custom features on a default (out of the box) Apigee developer Portal. To know more about Apigee developer portal, refer http://apigee.com/docs/developer-services/content/what-developer-portal.
@@ -11,7 +11,7 @@ On successful deployment of customized site, you will be able to access followin
  - App Gallery to promote App ecosystem of your API program.
  - The deployment of custom changes would result into a similar site as Apigee openbank.
 
-**2. Pre-Requisites**
+##**2. Pre-Requisites**
 
 ----------
 You have created an Apigee developer portal either in the cloud or on-prem. On-prem instance is assumed to be created on a Linux server.
@@ -23,7 +23,7 @@ If you have In-Cloud Instance:
  - Refer http://docs.apigee.com/developer-services/content/working-pantheon.
  - You will need to connect with Apigee support team to request them to associate your Apigee dev portal with your created pantheon account.
 
-**3. Getting Started**
+##**3. Getting Started**
 
 ----------
 **3.1 Get code with customized changes**
@@ -82,7 +82,7 @@ Enter the required parameters for updating the swagger files. eg: Client Id of t
 **3.2.5 push the changes back to the portal git repository**
 **Note**: you will need to push the custom changes back to git, for In-Cloud instance only. 
 
-**4. Further Configurations**
+##**4. Further Configurations**
 
 ----------
 **4.1 Enable the dbank responsive theme**
