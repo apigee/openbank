@@ -83,8 +83,9 @@ This will interactively prompt you for following details, and will then create /
 ## Design
 
 The APIs provided are configurable to connect to your own Banking backend and /
-or provide your own consent apps. The following sections will help you
+or provide your own applications to manage end user consent. The following sections will help you
 understand this solution so that you can go about this on your own.
+
 
 ### Architecture
 
@@ -92,20 +93,28 @@ understand this solution so that you can go about this on your own.
 
 The Banking APIs are designed as Northbound + Southbound APIs.
 
-The Northbound API provides a fixed set of interfaces that can be relyed on by
-the external consumers. In order to minimize changes to the contract, this API
-will not need to be changed once deployed.
+As shown in the architecture diagram above, the message flows is as follows: 
+End user Application <-> _Northbound APIs_ <-> _Southbound APIs_ <-> Backend Systems (Core Banking / Payment etc)
 
-The Southbound API connects to the actual backend of the bank (or the mock
-backend) and provides the data that is exposed by the _Northbound APIs_ When the
-API Developer has to make any changes to the APIs (specifically to connect to a
-different backend), then these are the APIs that need to be modified.
+
+The Northbound API provides a fixed set of interfaces that can be used by
+the external consumers. In order to minimize changes to the contract, and there by to applications that connect to it, this API will not be required to change as often.
+
+The Southbound API connects to the actual backend of the bank. We have used a dummy
+backend as a default as part of this solution build out. Therefore you may want to modify the southbound interfaces to suite your specific backend needs. 
 
 All **Southbound APIs** end with the suffix _'-connector'_
 
 In addition, there are some internal APIs which are not exposed outside, but
 which are used internally from the other APIs and provide common service such as
 sending out SMS, storing and fetching session data etc.
+
+Concepts :
+
+Each API deployed in Apigee Edge is encapsulated withing a unit of deployment called a Proxy (http://docs.apigee.com/api-services/content/understanding-apis-and-api-proxies). To Learn more on the basic concepts of how to manage these within Apigee Edge, please refere to : 
+http://docs.apigee.com/api-services/content/what-apigee-edge
+
+For instance each of the following entities in the sequence diagram below, such as , , , , , ,  are examples of proxies.  
 
 ### Sequence Diagram
 
