@@ -1,5 +1,5 @@
 /src/gateway/*.zip
-config.json
+/src/gateway/*/config.json
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
