@@ -67,7 +67,6 @@ npm install
 gulp deploy --resource openbank_apis
 ```
 
-
 This will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
 
 + Edge Org name
@@ -76,9 +75,17 @@ This will interactively prompt you for following details, and will then create /
 + Edge Env for deployment
 + Usergrid(BaaS) Org Name
 + Usergrid(BaaS) App Name
-+ Usergrid(BaaS) App Client Id
-+ Usergrid(BaaS) App Client Secret 
++ Usergrid(BaaS) Org Client Id
++ Usergrid(BaaS) Org Client Secret 
 
+
+### Test
+
+Once the deploy script is complete, run the following command to do a basic sanity test that the APIs are working
+
+```
+npm test
+```
 
 ## Design
 
