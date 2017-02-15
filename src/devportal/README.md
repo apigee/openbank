@@ -33,8 +33,8 @@ If you have In-Cloud Instance:
 
 **3.2 Customize default developer portal**
 
-**3.2.1 Get default developer portal source**
 
+**3.2.1 Get default developer portal source**
 The default portal code to be modified is in sites folder.
 
 **In-Cloud instance:**
@@ -47,7 +47,6 @@ You will find the default developer code at /var/www/html/sites.
 
 
 **3.2.2 Backup of default developer portal**
-
 A backup of default portal’s code is recommended before importing custom changes.
 
 **For In-Cloud instance,**
@@ -56,8 +55,8 @@ Login Pantheon -> goto your portal site -> Backups -> and create a new backup.
 **For On-prem instance,**
 Take a backup of /var/www/html/sites directory.
 
-**3.2.3 Replace all folder of default code with all folder from openbank repo.**
 
+**3.2.3 Replace all folder of default code with all folder from openbank repo.**
 The all folder from default portal code now has to be replaced with the all folder from the openbank source code. Replace(Overwrite) /sites/all directory with git **/openbnk/src/developerportal/all** directory.
 
 **Note**: We further need to do few **manual configurations**.
@@ -93,7 +92,6 @@ This theme contains all openbank related customisation for the portal, and hence
  - Choose **dbank responsive theme**, enable it and set it as default.
 
 **4.2 Import the image archive**
-
 All the required images are present in openbank.zip. In order to make the images appear on the portal, we need to import the images. Follow the steps below:
 
  - Goto **{your_portal_site}/file/add/upload/archive**.
@@ -102,7 +100,6 @@ All the required images are present in openbank.zip. In order to make the images
 All the required files will be automatically available, and can be found in admin -> content -> Files
 
 **4.3 Smartdocs import and rendering**
-
 Smartdocs methods provide a template for configuring and making API calls through the portal. Hence each API needs a samrtdoc method associated with it. In order to create smartdocs for the APIS, one needs to import respective Open API json files which will get converted to smartdocs method internally. In order to do so, we need to follow the steps below:
 
 **4.3.1 Enable the openbank swagger module**
@@ -112,24 +109,19 @@ To enable openbank swagger or any other module, we can go to admin -> modules an
  - Select **openbank_swagger** module from the list of modules, enable it, and save the configuration.
     
 **4.3.2 Create models and import all openbank API’s swagger files**
-
 Import of all openbank API’s swagger files need to be done for creation of the respective smartdocs. In order to do so, 
-
  - Goto address bar > enter **{your_portal_site}/swagger/import**.
  - Creation of models and import of swagger will start and the progress of the same will be seen on UI.
     
 **4.3.3 Render and publish all API’s methods**
-
  - Goto address bar > enter **{your_portal_site}/swagger/publish**.
  - Rendering and publishing of models will start and the progress of the same will be seen on UI.
  - You’ll find list of all openbank APIs models, rendered and published.
 
 **4.3.4 Configure OAuth 2.0 authentication**
-
 This section is applicable to accounts and userinfo openbank resources only i.e. should not be applied to OAuth and Basepath API documentation. OAuth 2.0 authentication can be used to secure the access to the API. Following steps need to be done to accomplish this.
 
 **4.3.4.1 Update Security Scheme**
-
  - Select Content > SmartDocs.
  - For the API model which needs to be configured(**accountapis** and **userinfoapis**), select **settings** from Operations drop-down.
  - Select "**security settings**" hyperlink from the Template authentication schemes section.
@@ -145,14 +137,12 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
  - Select Submit.
 
 **4.3.4.2 Configure Template Authentication Scheme**
-
  - Select Content > SmartDocs.
  - For the same model, select **Settings** from Operations drop-down.
  - In Template authentication schemes, set **Client Id & Client Secret** to the previously created App’s Consumer key and Secret respectively.**Use an App which request for Account Access APIs.**
  - Click the "Save template authentication schemes" button.
 
 **4.4 Enable other required modules**
-
  - Goto **{your_portal_site}/admin/modules**.
  - Enable **home_page_blocks**.
  - Click Save Configuration.
@@ -162,7 +152,6 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
  - Click "clear all caches"
 
 **4.5 Assign blocks to context**
-
  - Goto admin menu -> structure -> context.
  - Select Edit for "**custom_home**".
  - Select "**Blocks**" from the Reactions section.
@@ -180,7 +169,6 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
    
 **4.5 Create your own developer App**
 one can go and create own developer app and register it. In order to accomplish this:
-
  - Goto MY ACCOUNT -> My Apps.
  - Click on Add a new App and specify the following values.
  - Specify any Name.
