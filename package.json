@@ -2,6 +2,7 @@
   "name": "apigee-openbank",
   "version": "0.0.1",
   "description": "openbanking solution in Apigee",
+<<<<<<< HEAD
   "directories": {
     "test": "test"
   },
@@ -9,12 +10,21 @@
     "apigeetool": "mukundha/apigeetool-node",
     "async": "*",
     "chai": "*",
+=======
+  "scripts": {
+    "start": "npm install && ./setup/setup.sh",
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "dependencies": {
+    "async": "*",
+>>>>>>> master
     "gulp": "*",
     "gulp-batch-replace": "*",
     "gulp-build": "*",
     "gulp-prompt": "^0.2.0",
     "gulp-rename": "*",
     "gulp-util": "*",
+<<<<<<< HEAD
     "launchpad": "file:./src/common/deploy/launchpad",
     "q": "*",
     "seed-sdk": "mukundha/seed-sdk",
@@ -23,4 +33,24 @@
   },
   "author": "mukundha@apigee.com",
   "license": "Apache-2.0"
+=======
+    "q": "*",
+    "through2": "*",
+    "zip-dir": "^1.0.2",
+    "jsonwebtoken": "^7.3.0",
+    "mustache": "^2.3.0",
+    "prompt": "^1.0.0",
+    "request": "^2.79.0",
+    "seed-sdk": "mukundha/seed-sdk",
+    "chai": "*",
+    "fs-extra": "^2.0.0"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "jsonwebtoken": "^7.2.1",
+    "mocha": "^3.2.0",
+    "mocha-phantomjs": "^4.1.0"
+  }
+>>>>>>> master
 }

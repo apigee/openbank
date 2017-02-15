@@ -22,9 +22,19 @@
     <Flows>
         <Flow name="allProducts">
             <Condition>proxy.pathsuffix MatchesPath "/" and request.verb = "GET"</Condition>
+            <Request/>
+            <Response/>
         </Flow>
         <Flow name="singleProduct">
             <Condition>proxy.pathsuffix MatchesPath "/*" and request.verb = "GET"</Condition>
+            <Response>
+                <Step>
+                    <Name>Extract.ProductDetailsFromResponse</Name>
+                </Step>
+                <Step>
+                    <Name>Statistics.CollectProductId</Name>
+                </Step>
+            </Response>
         </Flow>
     </Flows>
     <HTTPProxyConnection>
