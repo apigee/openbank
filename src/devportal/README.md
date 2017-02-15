@@ -1,6 +1,5 @@
 ##**1. Introduction**
 
-----------
 The intent of this document is to guide step by step how to deploy and configure openbank custom features on a default (out of the box) Apigee developer Portal. To know more about Apigee developer portal, refer http://apigee.com/docs/developer-services/content/what-developer-portal.
 
 On successful deployment of customized site, you will be able to access following:
