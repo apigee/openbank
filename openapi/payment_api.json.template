@@ -50,7 +50,7 @@
             "description": "Client ID of the registered App.",
             "type": "string",
             "required": true,
-            "default": "{{ client_id }}"
+            "default": "{{ client_id_pisp }}"
           },
           {
             "in": "query",
@@ -58,7 +58,7 @@
             "description": "Redirect URI defined with your registered App.",
             "type": "string",
             "required": true,
-            "default": "{{ redirect_uri }}"
+            "default": "{{ redirect_uri_pisp }}"
           },
           {
             "in": "query",
