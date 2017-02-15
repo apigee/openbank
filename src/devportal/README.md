@@ -12,7 +12,6 @@ On successful deployment of customized site, you will be able to access followin
 
 ##**2. Pre-Requisites**
 
-----------
 You have created an Apigee developer portal either in the cloud or on-prem. On-prem instance is assumed to be created on a Linux server.
 You have an Apigee Edge gateway exposing OpenBank APIs.
 If you have In-Cloud Instance:
@@ -24,7 +23,6 @@ If you have In-Cloud Instance:
 
 ##**3. Getting Started**
 
-----------
 ###**3.1 Get code with customized changes**
 
  - Clone the openbank git repo.
@@ -83,7 +81,6 @@ Execute the following command to update the swagger files:
 
 ##**4. Further Configurations**
 
-----------
 ###**4.1 Enable the dbank responsive theme**
 
 This theme contains all openbank related customisation for the portal, and hence needs to be enabled and set as default.
