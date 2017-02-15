@@ -33,12 +33,7 @@ resources:
     script: gulpfile.js
     basePath: .
     dependencies:
-<<<<<<< HEAD
-#    - name: session
-#      type: proxy
-#      url: git@revision.aeip.apigee.net:solution-commons/session.git
-#      version: v1.0.0
-=======
+
 #    - name: oauth
 #      type: proxy
 #      url: git@revision.aeip.apigee.net:solution-commons/oauth.git
@@ -52,7 +47,6 @@ resources:
 #      type: proxy
 #      url: git@revision.aeip.apigee.net:solution-commons/authentication-connector.git
 #     version: v1.0.0
->>>>>>> master
     dataSources:
     - name: default
       orgName: '{{usergrid_org}}'

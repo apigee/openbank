@@ -48,8 +48,8 @@ To deploy the APIs and its dependencies on your own org please run the following
 script from the root folder of the cloned repo.
 
 ### Pre-requisites
-node.js 
-npm
++ node.js 
++ npm
 
 ### Run following commands
 Install gulp 
@@ -60,11 +60,6 @@ npm install --global gulp-cli
 Pull node modules
 ```
 npm install
-```
-
-Run the deploy command
-```
-gulp deploy
 ```
 
 #### Run the deploy command
