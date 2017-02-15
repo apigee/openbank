@@ -6,21 +6,21 @@ resources:
     - name: org
       prompt: Edge Org name
     - name: username
-      prompt: username
+      prompt: Username
       ifNotPresent: token
     - name: password
-      prompt: password
+      prompt: Password
       ifNotPresent: token
     - name: env
       prompt: Edge Org Environment
     - name: usergrid_org
-      prompt: BaaS services org name
+      prompt: BaaS services Org name
     - name: usergrid_app
-      prompt: BaaS services app name
+      prompt: BaaS services App name
     - name: usergrid_client_id
-      prompt: BaaS org Client Id
+      prompt: BaaS Org Client Id
     - name: usergrid_secret
-      prompt: BaaS org Client Secret
+      prompt: BaaS Org Client Secret
     configurations:
     - env: test
       baas_host: https://apibaas-trial.apigee.net
@@ -139,6 +139,8 @@ resources:
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey
+        - from: credentials.0.consumerSecret
+          to: apiSecret
       - name: Opendata_App
         payload: '{"name":"Opendata_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"open_data_apis"}'
 
@@ -156,6 +158,23 @@ resources:
       items:
       - name: consent-app
       - name: consent-app-transfers
+    - name: copyTestConfigTemplate
+      type: localCommand
+      items: 
+      - name: testConfig
+        cmd: cp ./test/config.js.template ./test/config.js
+    - name: replaceTestScript
+      type: configSubstitutions
+      items:
+      - name: edgeBasePath
+        filePaths: ['test/config.js'] 
+        value: 'https://{{ org }}-{{ env }}.apigee.net'
+      - name: apiKey
+        filePaths: ['test/config.js'] 
+        value: '{{ apiKey }}' 
+      - name: apiSecret
+        filePaths: ['test/config.js'] 
+        value: '{{ apiSecret }}' 
 
 
 
