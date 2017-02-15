@@ -17,6 +17,10 @@
     "request": "^2.67.0",
     "serve-favicon": "~2.3.0",
     "uuid": "*",
+<<<<<<< HEAD
+    "consent-controllers": "file:../../../../../../common/node/common-consent-controller"
+=======
     "consent-controllers": "git+https://revision.aeip.apigee.net/solution-commons/consent-controller.git#v1.0.0"
+>>>>>>> master
   }
 }

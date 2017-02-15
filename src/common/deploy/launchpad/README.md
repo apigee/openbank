@@ -1,3 +1,47 @@
+# LAUNCHPAD
+
+A deployment tool for apigee solutions. Helps orchestrating the deployement of any solution comprising of apps, products, developer, proxy, baas data etc
+
+----------------
+
+# DOCUMENTATION
+
+### Developer guide
+ref : https://docs.google.com/a/apigee.com/document/d/1ptxyDnFRnH4tKGZb2C1QJ2-Qnp8izvxKCi7vZOJbrSQ/edit?usp=sharing
+
+
+----------------
+## Usage
+
+Usage: gulp < deploy / build / clean > [options]
+
+Options: 
+
+    --resource <RESOURCE>                     Pick any resource defined in config file
+
+    --subresource <SUBRESOURCE1,SUBRESOURCE2> Pick any subresources defined under respective resource in config file 
+
+    --item <ITEM1,ITEM2>                      Pick any items defined in respective RESOURCE,SUBRESOURCE in config file.
+
+    --strict                                  Do not ru dependent tasks. eg. deploy will also run clean and build. 
+
+    --env test                                Choose which edge environment for deployment
+
+    --config <path to config file>            Relative to execution directory
+
+
+Additional parameters can be passed to deploy script to avoid prompt. see eg2.
+
+eg1 : gulp deploy
+
+eg2 : gulp deploy --username gauthamvk@google.com --org bumblebee --env test --resource openbank_apis
+
+
+-----------------
+
+## sample config
+
+```
 resources:
 - name: openbank_apis
   type: solutions.api
@@ -28,37 +72,13 @@ resources:
     - env : prod
       baas_host: https://apibaas-trial.apigee.net
       edge_host: https://api.enterprise.apigee.com
-
-    edgeOrg:
     script: gulpfile.js
     basePath: .
     dependencies:
-<<<<<<< HEAD
-#    - name: session
-#      type: proxy
-#      url: git@revision.aeip.apigee.net:solution-commons/session.git
-#      version: v1.0.0
-=======
-#    - name: oauth
-#      type: proxy
-#      url: git@revision.aeip.apigee.net:solution-commons/oauth.git
-#      version: v1.0.0
     - name: session
       type: proxy
       url: git@revision.aeip.apigee.net:solution-commons/session.git
       version: v1.0.0
-
-#    - name: authentication-connector
-#      type: proxy
-#      url: git@revision.aeip.apigee.net:solution-commons/authentication-connector.git
-#     version: v1.0.0
->>>>>>> master
-    dataSources:
-    - name: default
-      orgName: '{{usergrid_org}}'
-      appName: '{{usergrid_app}}'
-      appClientId: '{{usergrid_client_id}}'
-      appSecret: '{{usergrid_secret}}'
     subResources:
     - name: baas_data_load
       type: baasLoadData
@@ -165,6 +185,48 @@ resources:
       items:
       - name: consent-app
       - name: consent-app-transfers
+```
+
+----------------
+
+## RELEASE
+
+### v1.0.0
+- initial release
+- basic functionality
+
+### v1.0.1
+- multiple items can be deployed
+- multiple subresources can be deployed from command line
+
+### v1.0.2
+- new subResource localCommand added
+- assignResponse subResource is genralized for app, product,proxy,cache, developer subresources
+
+### v1.0.3
+- fix dependency pull
+- fix localCommand variable replace
+
+### v1.0.4
+- fix localCommand
+
+-------------------
+
+## TODO
+
+- p2 data source many
+
+- p2 generate load for generating initial report
+
+- p2 license check
+
+- p2 cache creation with cache properties
+
+- p2 deploy individual dependency from its gulp
+
+- p2 standardize sequential execution of tasks
+
+- p3 constants to diff file eg. baasLoadData.js limit=200
 
 
 
