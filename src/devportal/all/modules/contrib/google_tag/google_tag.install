@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Provides install, update, and uninstall functions.
+ *
+ * @author Jim Berry ("solotandem", http://drupal.org/user/240748)
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function google_tag_uninstall() {
+  db_delete('variable')
+    ->condition('name', db_like('google_tag_') . '%', 'LIKE')
+    ->execute();
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function google_tag_requirements($phase) {
+  $t = get_t();
+  $requirements = array();
+  if ($phase == 'runtime') {
+    if (!preg_match('/^GTM-\w{4,}$/', variable_get('google_tag_container_id', ''))) {
+      // Google Tag Manager container ID has not been set.
+      $text = t('settings page');
+      $link = l($text, 'admin/config/system/google_tag');
+      $requirements['google_tag'] = array(
+        'title' => $t('Google Tag Manager'),
+        'description' => $t('Configure this integration module on its !link.', array('!link' => $link)),
+        'severity' => REQUIREMENT_WARNING,
+        'value' => $t('Not configured'),
+      );
+    }
+  }
+  return $requirements;
+}

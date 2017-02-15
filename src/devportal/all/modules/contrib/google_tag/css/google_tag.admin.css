@@ -1,0 +1,9 @@
+/* Remove extraneous whitespace in panes of vertical tabs. */
+
+#google-tag-settings-form div.vertical-tabs .vertical-tabs-panes fieldset.vertical-tabs-pane {
+  padding-top: 0;
+}
+
+#google-tag-settings-form div.vertical-tabs .fieldset-wrapper {
+  margin-top: 0;
+}

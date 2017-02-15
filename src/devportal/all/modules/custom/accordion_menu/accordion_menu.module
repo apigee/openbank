@@ -103,12 +103,12 @@ function accordion_menu_config($delta = NULL) {
   $config = array(
     // Our settings.
     'menu_name' => 'Menu ' . $delta,
-    'menu_source' => 'navigation',
-    'menu_depth' => 'none',
+    'menu_source' => 'menu-overview',
+    'menu_depth' => '2',
     'block_source' => '',
     'script_scope' => 'footer',
     'header_link' => FALSE,
-    'menu_expanded' => FALSE,
+    'menu_expanded' => TRUE,
     // jQuery UI accordion settings.
     'animated' => 'slide',
     'auto_height' => FALSE,

@@ -1,0 +1,13 @@
+name = Google Tag Manager
+description = Allows your website analytics to be managed using Google Tag Manager.
+package = Statistics
+core = 7.x
+
+configure = admin/config/system/google_tag
+
+; Information added by Drupal.org packaging script on 2014-03-06
+version = "7.x-1.0"
+core = "7.x"
+project = "google_tag"
+datestamp = "1394123006"
+

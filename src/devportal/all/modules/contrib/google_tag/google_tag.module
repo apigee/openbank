@@ -1,0 +1,201 @@
+<?php
+
+/**
+ * @file
+ * Provides primary Drupal hook implementations.
+ *
+ * Adds a JavaScript snippet to selected page responses to trigger analytics and
+ * other tracking items configured using the Google Tag Manager.
+ *
+ * @author Jim Berry ("solotandem", http://drupal.org/user/240748)
+ */
+
+/**
+ * Default list of relative paths.
+ */
+define('GOOGLETAGMANAGER_PATHS', "admin*\nbatch*\nnode/add*\nnode/*/*\nuser/*/*");
+
+/**
+ * Default list of HTTP response statuses that override path conditions.
+ */
+define('GOOGLETAGMANAGER_STATUSES', "403 Forbidden\n404 Not Found");
+
+/**
+ * Implements hook_help().
+ */
+function google_tag_help($path, $arg) {
+  module_load_include('inc', 'google_tag', 'includes/info');
+  return _google_tag_help($path, $arg);
+}
+
+/**
+ * Implements hook_menu().
+ */
+function google_tag_menu() {
+  module_load_include('inc', 'google_tag', 'includes/info');
+  return _google_tag_menu();
+}
+
+/**
+ * Implements hook_permission().
+ */
+function google_tag_permission() {
+  module_load_include('inc', 'google_tag', 'includes/info');
+  return _google_tag_permission();
+}
+
+/**
+ * Implements hook_page_alter().
+ *
+ * Adds a post_render callback and loads the include file.
+ *
+ * @see drupal_render_page()
+ */
+function google_tag_page_alter(&$page) {
+  if (!google_tag_insert_snippet()) {
+    return;
+  }
+
+  // Call sequence:
+  // - drupal_render_page()
+  //   - hook_page_alter()
+  //   - drupal_render()
+  // - drupal_render()
+  //   - callbacks in $elements['#theme_wrappers']
+  //     - hook_preprocess_html(): 'html' is the wrapper for page
+  //     - templates may add tags after body tag
+  //   - callbacks in $elements['#post_render']
+  //     - google_tag_page_process(): callback set here
+
+  // Add callback routine.
+  $page['#post_render'][] = 'google_tag_page_process';
+  // Load include file.
+  module_load_include('inc', 'google_tag', 'includes/snippet');
+}
+
+/**
+ * Returns the state of snippet insertion on the current page response.
+ *
+ * @return boolean
+ *   TRUE if the conditions are met; FALSE otherwise.
+ */
+function google_tag_insert_snippet() {
+  global $user;
+
+  $id = variable_get('google_tag_container_id', '');
+
+  if (empty($id)) {
+    // No container ID.
+    return FALSE;
+  }
+  if (!_google_tag_status_check() && !_google_tag_path_check()) {
+    // Omit snippet based on the response status and path conditions.
+    return FALSE;
+  }
+  if (!_google_tag_role_check($user)) {
+    // Omit snippet based on the user role condition.
+    return FALSE;
+  }
+  return TRUE;
+}
+
+/**
+ * Returns state of snippet insertion based on HTTP response status code.
+ *
+ * @return boolean
+ *   TRUE if the status conditions are met; FALSE otherwise.
+ */
+function _google_tag_status_check() {
+  static $satisfied;
+
+  if (!isset($satisfied)) {
+    $toggle = variable_get('google_tag_status_toggle', 0);
+    $statuses = variable_get('google_tag_status_list', GOOGLETAGMANAGER_STATUSES);
+
+    if (!$toggle) {
+      $satisfied = $toggle;
+    }
+    else {
+      // Get the HTTP response status.
+      $status = drupal_get_http_header('status');
+      $satisfied = strpos($statuses, $status) !== FALSE;
+      $headers = drupal_get_http_header();
+    }
+  }
+  return $satisfied;
+}
+
+/**
+ * Returns state of snippet insertion based on HTTP request URI.
+ *
+ * @return boolean
+ *   TRUE if the path conditions are met; FALSE otherwise.
+ */
+function _google_tag_path_check() {
+  static $satisfied;
+
+  if (!isset($satisfied)) {
+    $toggle = variable_get('google_tag_path_toggle', 0);
+    $paths = variable_get('google_tag_path_list', GOOGLETAGMANAGER_PATHS);
+
+    // Meaning of $toggle
+    // - 0: all paths except listed paths
+    // - 1: only the listed paths
+
+    if (empty($paths)) {
+      $satisfied = !$toggle;
+    }
+    else {
+      // @todo Are not some paths case sensitive???
+      // Convert the paths to lowercase before comparison.
+      $paths = drupal_strtolower($paths);
+      $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
+      $satisfied = drupal_match_path($path, $paths);
+      // @todo Lowercase $_GET['q'] before comparison? What is purpose of this check?
+      if ($path != $_GET['q']) {
+        $satisfied = $satisfied || drupal_match_path($_GET['q'], $paths);
+      }
+      $satisfied = !($toggle xor $satisfied);
+    }
+  }
+  return $satisfied;
+}
+
+/**
+ * Returns state of snippet insertion based on user roles.
+ *
+ * @param object $account
+ *   A user object containing an array of roles to check.
+ *
+ * @return boolean
+ *   TRUE if the role conditions are met; FALSE otherwise.
+ */
+function _google_tag_role_check($account) {
+  static $satisfied;
+
+  if (!isset($satisfied)) {
+    $toggle = variable_get('google_tag_role_toggle', 0);
+    $roles = variable_get('google_tag_role_list', array());
+
+    // Meaning of $toggle
+    // - 0: all roles except listed roles
+    // - 1: only the listed roles
+
+    if (empty($roles)) {
+      $satisfied = !$toggle;
+    }
+    else {
+      $satisfied = FALSE;
+      // Check user roles against listed roles.
+      foreach (array_keys($account->roles) as $rid) {
+        if (isset($roles[$rid]) && $roles[$rid] == $rid) {
+          // User is a member of a listed role.
+          $satisfied = TRUE;
+          break;
+        }
+      }
+      $satisfied = !($toggle xor $satisfied);
+    }
+  }
+  return $satisfied;
+}

@@ -1,0 +1,6 @@
+name = openbank Swagger
+description = Import swagger files, render and publish them.
+version = 7.x-1.0
+core = 7.x
+files[] = openbank_swagger.module
+files[] = openbank_swagger.install_callbacks.inc
