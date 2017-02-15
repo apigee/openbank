@@ -19,6 +19,6 @@
         <Properties>
             <Property name="success.codes">2xx,4xx,5xx</Property>
         </Properties>
-        <URL>https://demo12-test.apigee.net/apis/v1/transfers/complete/{messageid}</URL>
+        <URL>{{ edgeBasePath }}/apis/v1/transfers/complete/{messageid}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

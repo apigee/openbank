@@ -91,6 +91,9 @@ resources:
       - name: redirectConsentTransfers
         filePaths: ['src/gateway/transfers/target/apiproxy/policies/Assign.RedirectConsentApp.xml']
         value: 'https://{{ org }}-{{ env }}.apigee.net/internal/transfer-consent?sessionid={messageid}'
+      - name: edgeBasePath
+        filePaths: ['src/gateway/transfers/target/apiproxy/policies/Callout-Complete-Transfer.xml']
+        value: 'https://{{ org }}-{{ env }}.apigee.net'
     - name: bank_apis
       type: proxy
       items:
@@ -128,16 +131,16 @@ resources:
       type: app
       items:
       - name: AISP_App
-        payload: '{"name":"AISP_App","callback":"http://apigee.com/about","email":"openbank@apigee.net","apiProducts":"account_access_apis"}'
+        payload: '{"name":"AISP_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"account_access_apis"}'
       - name: PISP_App
-        payload: '{"name":"PISP_App","callback":"http://apigee.com/about","email":"openbank@apigee.net","apiProducts":"payment_transfer_apis"}'
+        payload: '{"name":"PISP_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"payment_transfer_apis"}'
       - name: internal_consent_app
-        payload: '{"name":"internal_consent_app","callback":"http://apigee.com/about","email":"openbank@apigee.net","apiProducts":"internal_consent_apis"}'
+        payload: '{"name":"internal_consent_app","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"internal_consent_apis"}'
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey
       - name: Opendata_App
-        payload: '{"name":"Opendata_App","callback":"http://apigee.com/about","email":"openbank@apigee.net","apiProducts":"open_data_apis"}'
+        payload: '{"name":"Opendata_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"open_data_apis"}'
 
     - name: replace_consent_app_key
       type: configSubstitutions
