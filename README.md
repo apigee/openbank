@@ -145,10 +145,12 @@ be customized so that the right API endpoints are provided to the consent app.
 
 ## APIs
 
-The following categories of API proxies will be deployed as part of this solution
+There are two broad sets of proxies in the solution. One set help manage the security around the APIs while the other is the set of functional APIs that a bank would like to expose. For example - accounts, payments, branch locations etc. 
 
 ###Security 
-These set of proxies enable securing the APIs when they are exposed.
+In this solution, access to all APIs are protected via a security mechanism, that requires explicit end user authentication and authorization to make a successful API call. We have broadly used the OAuth 2.0 framework to secure these APIs, with integrated consent management application to manage end user authorization. Therefore, one has to obtain a valid Access Token or a one time Token via the Security APIs before making an call to the Functional APIs.  
+
+The following diagram gives an overview on the call flow between various proxies. 
 
 <img src="readme-images/security.png">
 
