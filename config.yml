@@ -139,6 +139,8 @@ resources:
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey
+        - from: credentials.0.consumerSecret
+          to: apiSecret
       - name: Opendata_App
         payload: '{"name":"Opendata_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"open_data_apis"}'
 
@@ -156,6 +158,23 @@ resources:
       items:
       - name: consent-app
       - name: consent-app-transfers
+    - name: copyTestConfigTemplate
+      type: localCommand
+      items: 
+      - name: testConfig
+        cmd: cp ./test/config.js.template ./test/config.js
+    - name: replaceTestScript
+      type: configSubstitutions
+      items:
+      - name: edgeBasePath
+        filePaths: ['test/config.js'] 
+        value: 'https://{{ org }}-{{ env }}.apigee.net'
+      - name: apiKey
+        filePaths: ['test/config.js'] 
+        value: '{{ apiKey }}' 
+      - name: apiSecret
+        filePaths: ['test/config.js'] 
+        value: '{{ apiSecret }}' 
 
 
 
