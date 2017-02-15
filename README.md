@@ -115,43 +115,57 @@ be customized so that the right API endpoints are provided to the consent app.
 
 ## APIs
 
-The following API proxies will be deployed as part of this solution
+The following categories of API proxies will be deployed as part of this solution
 
-#### accounts
-
-#### accounts-connector
-
-#### authentication-connector
-
-#### consent-app
-
-#### consent-app-transfers
-
-#### locations
-
-#### locations-connector
-
-#### oauth
-
-#### transfers
-
-#### transfers-connector
-
-#### Locations API
-
-#### SMS Token API
-
-#### Session API
-
-#### Accounts Connector
-
-#### Transfer Connector
-
+###Security 
+these set of proxies enable securing the APIs when they are exposed.
+<img src="readme-images/security.png">
+####oauth
+oauth is commonly used as a way for Internet users to authorize websites or applications to access their information on other websites but without giving them the passwords. OAuth 2.0 provides a way for apps to gain limited access to a user's protected resources. This oauth proxy has APIs exposed which helps in generating access token for client Apps which can be further used for making authorized API calls through oauth flow.
 #### Authentication Connector
+This proxy exposes APIs to authenticate the user based on the user id and password provided.
+#### Consent-app
+Used for managing user consent for sharing his/her account information.
+#### consent-app-transfers
+Used for managing user consent for initiating secure transactions
 
-#### Locations Connector
 
-### Consent Apps
+###Account 
+these proxies will expose all account access APIs eg: GET account balance, GET account transactions etc
+####accounts
+accounts proxy is the northbound proxy which will expose the set of account related APIs securely.
+#### accounts-connector
+this is the southbound proxy which will communicate with bank's backend service and fetch the required accounts data.
+
+###Transfer 
+These proxies will expose APIs for secure initiation of Payments.
+#### transfers
+This is the northbound proxy which will expose the set of APIs securely for making secure payments.
+#### transfers-connector
+This is the southbound proxy which connects to the bank backend for payment initiation
+
+
+###OpenData 
+These proxies will expose a set of APIs which are open to all, and does not require any level of security for accessing the data. eg: ATM locations data is open to all, and should be made open to all.
+#### locations
+This is the northbound proxy which provides a fixed set of interfaces for locating bank branches and atms that can be relyed on by the external consumers
+#### locations-connector
+this is the southbound proxy for locations,which connects to the actual backend of the bank (or the mock backend) and provides the data(atms and branch locations) that is exposed by locations. 
+####products
+This northbound proxy provides APIs for fetching products offered by the bank.
+####products-connector
+It is a southbound proxy which returns the list of product offerings which the bank has.
+
+
+###Others
+These are the proxies which will expose APIs which are internal APIs. They wont be exposed on the developer portal, but will be deployed as part of the openbank solution.
+
+####SMS Token 
+sms token proxy exposes APIs to send sms token to users. A simple use case would be, sending otp to the account holder in case of payment initiation when two-factor authentication is enabled.
+####Session 
+This proxy exposes internally used API for generation and management of user sessions.
+
+
 
 ## Changelog
 
