@@ -18,9 +18,9 @@ resources:
     - name: usergrid_app
       prompt: BaaS services app name
     - name: usergrid_client_id
-      prompt: App services App Client Id
+      prompt: BaaS org Client Id
     - name: usergrid_secret
-      prompt: App services App Client Secret
+      prompt: BaaS org Client Secret
     configurations:
     - env: test
       baas_host: https://apibaas-trial.apigee.net
@@ -77,6 +77,8 @@ resources:
         payload: '{ "name": "application-session-cache"}'
       - name: sms-token-cache
         payload: '{ "name": "sms-token-cache"}'
+      - name: nonce-cache
+        payload: '{ "name": "nonce-cache"}'
     - name: replaceorgvalues
       type: configSubstitutions
       items:
@@ -103,6 +105,8 @@ resources:
       - name: transfers
       - name: transfers-connector
       - name: userinfo
+      - name: products
+      - name: products-connector
 
     - name: developers
       type: developer
