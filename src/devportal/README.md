@@ -70,8 +70,9 @@ Access the developer portal website and **login** with admin credentials.
 The **/devportal/all/modules/custom/openbank_swagger** directory contains the OPEN API json files for the Openbank APIs.
  - In order to update the swagger files with the parameters such as host, client ID, client secret, we need to execute the **/openbank/init_portal.js** script.
  - Provide the APIGEE edge org, username password etc when prompted while executing the script
- - The script will automatically create all the open api json files with desired fields.
-execute the following command to update the swagger files:
+ - The script will automatically create all the open api json files with desired fields which can be found in the git repository /openbank/openapi.
+
+Execute the following command to update the swagger files:
 
 ```bash
  $ node init_portal.js
