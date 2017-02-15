@@ -145,10 +145,10 @@ Accounts proxy is the northbound proxy which will expose the set of accounts rel
 This is the southbound proxy which will communicate with bank's backend service and fetch the required accounts data.
 
 ###Transfer 
-These proxies will expose APIs for secure initiation of Payments.
+These proxies will expose APIs for secure initiation of Payments. It Initiates transfer of funds from the consumers account to a recipient account.
 
 **1. transfers**
-This is the northbound proxy which will expose the set of APIs securely for initiating secure payments. Secured with Oauth for authorized API calls.
+This is the northbound proxy which will expose the set of APIs securely for initiating secure payments. It is Secured with Oauth for authorised API calls. This will initiate an authentication and consent flow using 2-factor authentication following which it will initiate funds transfer. The payee information is provided to the API as a JWT token. The JWT token is signed with the client secret of the registered app to ensure that it is not tampered with.
 
 **2. transfers-connector**
 This is the southbound proxy which connects to the bank backend service for payment initiation.
