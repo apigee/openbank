@@ -259,7 +259,10 @@
 
       // Get json response object
       if(jQuery('.response-schema-datatype').text()) {
-          var resSchemaObj = JSON.parse(jQuery('.response-schema-datatype').text()).$ref.substr(14);
+          var definitionsregEx = /\/definitions\/(.*)\w+/g;
+          matches = JSON.parse(jQuery('.response-schema-datatype').text()).dataType.match(definitionsregEx);
+          var resSchemaObj = matches[0].substr(13);
+          
           var resExpandedSchema = JSON.parse(Apigee.APIModel.apiSchema.expandedSchema);
 
 

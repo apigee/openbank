@@ -1,17 +1,37 @@
 /* Apigee custom stylesheet */
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,100,200,300,500,600,700,800");
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+@import url("https://fonts.googleapis.com/css?family=Source%20Sans%20Pro");
+@import url("https://fonts.googleapis.com/css?family=Helvetica%20Neue");
 
 body {
     font-size: 14px;
+    font-family: "Source Sans Pro","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
     color: #6d6e70;
     background-color: #ffffff;
     word-spacing: 2px;
 }
-p, .ui-widget {
+p, .table td, .table th, li, body, pre, code {
+    font-size: 16px !important;
+    line-height: 30px;
 }
 h1, h2, h3, h4, h5, h6 {
-    color: #484848;
+    color: #00543d;
+}
+
+
+.activeTitle
+{
+    font-weight:bold;
+}
+
+.hiddenQuicktabDiv
+{
+    display: none;
+
+}
+.activeQuicktabDiv
+{
+    display: block;
 }
 
 .title-breadcrumb-wrapper{
@@ -35,12 +55,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #breadcrumb-navbar{
-    background: #ff4300;
+    background: #f7f7f7;
 }
 .page-title h1 {
     font-size: 20px;
     margin: 4px 0;
-    color: #fff;
+    color: #333;
     font-weight: 100;
     line-height: 36px;
 }
@@ -48,7 +68,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 12px;
     font-weight: 200;
     line-height: 44px;
-    color: #FFFFFF;
 }
 
 body header.navbar .nav > li > a{
@@ -93,6 +112,7 @@ body.admin-menu.front .page-header { padding-top: 0px;}
     text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
+.slide-caption p { font-size: 30px !important; }
 #flexslider_views_slideshow_main_slideshow-block .flex-control-nav{
     width: 100%;
     position: absolute;
@@ -173,7 +193,16 @@ body.admin-menu .region-logo-right { line-height: 76px; }
 .front .region-content .block li {
     list-style: none;
 }
-
+.front .main-container.container {
+    width: 100%;
+    margin: 0 15px;
+}
+.front .img-responsive { margin: 0 auto }
+.front .col-lg-3 { text-align: center; min-height: 200px; }
+.front #block-block-6 ul, .front #block-block-6 h3 {
+    position: relative;
+    left: 75px;
+}
 .openbank-shortcodes-box.box-center:not(.box-none) h3.box-title {
     letter-spacing: -0.5px;
 }
@@ -269,6 +298,10 @@ body.admin-menu .region-logo-right { line-height: 76px; }
 body.admin-menu #navbar { height: 78px }
 body.admin-menu  header.navbar .nav > li > a { line-height: 48px; }
 .front .region-content .block.home-dbank-block { width: 100%; border-bottom: 1px solid #DDD;}
+
+
+#home_page_start_block { width: 100%; border-bottom: 1px solid #DDD;}
+
 .navbar.navbar-nav > .active > a, .navbar.navbar-nav > .active > a:hover, .navbar.navbar-nav > .active > a:focus, .navbar .nav > li > a:hover, .navbar .nav > li > a.active,.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
     color: #333;
 }
@@ -302,7 +335,7 @@ body.admin-menu  header.navbar .nav > li > a { line-height: 48px; }
     -moz-user-select: none;
     background-image: none;
     border: 1px solid #FFFFFF;
-    border-radius: 0px;
+    border-radius: 4px;
     cursor: pointer;
     display: inline-block;
     font-size: 14px;
@@ -314,7 +347,7 @@ body.admin-menu  header.navbar .nav > li > a { line-height: 48px; }
     vertical-align: middle;
     white-space: nowrap;
 }
-.flexslider .slides img { opacity: 0.7; }
+.flexslider .slides img { opacity: 1.0; }
 .navbar-nav > li > span {
     display: block;
     padding: 14px 15px;
@@ -326,15 +359,15 @@ body.admin-menu  header.navbar .nav > li > a { line-height: 48px; }
 body .fa { color: #d3d3d3;}
 body .btn {
     background-color: transparent;
-    border: 1px solid #ff4300;
+    border: 2px solid #84aab9;
 }
 .front .page-header .btn {
-    background-color: #ff4300;
-    border: 1px solid #ff4300;
+    background-color: #84aab9;
+    border: 1px solid #84aab9;
     color: #FFFFFF;
 }
 body.front .region-content h2 {
-    color: #ff4300;
+    color: #84aab9;
 }
 body .navbar-inverse .navbar-nav > .open > a{ background-color:#ff4300 !important; }
 #method_content a.link_reset_default {
@@ -348,6 +381,10 @@ body .navbar-inverse .navbar-nav > .open > a{ background-color:#ff4300 !importan
 }
 .footer {
     border-top: 1px solid #999;
+}
+
+body .footer {
+    background-color: #999;
 }
 aside.col-sm-3 {
     border-right: 1px solid #DDDDDD;
@@ -370,7 +407,7 @@ body.sidebar-first .main-container.container {
     width: 100%;
 }
 .front .main-container ul li:before {
-    color: #fc4c02;
+    color: #000;
     content: "\f054";
     font-size: 15px;
     font-family: 'FontAwesome';
@@ -394,8 +431,8 @@ body.page-forum hr {
 }
 body header.navbar .nav.account-menu > li > a.sign-up {
     color: #fff !important;
-    border-color: #fc4c02;
-    background-color: #ff4300;
+    border-color: #84aab9;
+    background-color: #84aab9;
     font-size: 14px !important;
     border-radius: 3px;
     border: 1px solid #dfdfdf;
@@ -532,3 +569,4 @@ section#block-block-7 {
 .accordion-content-depth-1,.accordion-content-depth-2,.accordion-content-depth-3,.accordion-content-depth-4,.accordion-content-depth-5 {
     margin-left: 20px !important;
 }
+.ui-accordion .ui-accordion-content { height: auto !important; }
