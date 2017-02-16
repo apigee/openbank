@@ -2,8 +2,7 @@
   "swagger": "2.0",
   "host": "{{ host }}",
   "schemes": [
-    "https",
-    "http"
+    "https"
   ],
   "info": {
     "description": "UserInfo API",
@@ -13,7 +12,7 @@
     "contact": {
       "name": "API Docs",
       "url": "http://example.com/contact",
-      "email": "apis-eng@apigee.com"
+      "email": "solution-ninjas@google.com"
     },
     "license": {
       "name": "Apache 2.0",
@@ -66,8 +65,8 @@
   "securityDefinitions": {
     "aisp_auth": {
       "type": "oauth2",
-      "authorizationUrl": "{{ host }}/apis/v1/oauth/authorize?client_id={{ client_id_aisp }}&redirect_uri=https://api.enterprise.apigee.com/v1/o/demo-eu15/apimodels/userinfoapis/templateauths/{{ org }}/callback&response_type=code&state=af0ifjsldkj&scope=openid accounts&ui-locales=en&acr_values=2",
-      "tokenUrl": "{{ host }}/apis/v1/oauth/token",
+      "authorizationUrl": "{{ host_withprotocol }}/apis/v1/oauth/authorize?client_id={{ client_id_aisp }}&redirect_uri={{ edge_host }}/v1/o/{{ org }}/apimodels/userinfoapis/templateauths/aisp_auth/callback&response_type=code&state=af0ifjsldkj&scope=openid accounts&ui-locales=en&acr_values=2",
+      "tokenUrl": "{{ host_withprotocol }}/apis/v1/oauth/token",
       "flow": "accessCode",
       "scopes": {
         "openid": "openID",

@@ -77,9 +77,7 @@
             "type": "string",
             "required": true,
             "enum": [
-              "openid",
-              "openid accounts",
-              "openid payments"
+              "openid"
             ]
           },
           {
@@ -151,7 +149,7 @@
             "description": " 'authorization_code' or 'client_credentials'.",
             "type": "string",
             "required": true,
-            "enum": [              
+            "enum": [
               "client_credentials",
               "authorization_code"
             ],
