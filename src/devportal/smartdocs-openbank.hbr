@@ -1,0 +1,868 @@
+<div class="row smartdocs-wrapper">
+<style>
+    body section.page-header {display:none}
+    .CodeMirror {min-height:150px}
+    .CodeMirror-scroll {padding:0}
+    /* Responsiveness */
+    @media(max-width:767px) {}
+    @media(min-width:768px) {}
+    @media(min-width:992px) {}
+    @media(min-width:1200px) {}
+    @media(min-width:1400px) {}
+</style>
+    <ul class="nav nav-tabs nav-justified " role="tablist" style="font-size:95%">
+        <!--<li class="active"><a href="#overview" role="tab" data-toggle="tab">Overview</a>
+        </li>
+        <li class="active"><a href="#tryit" role="tab" data-toggle="tab">Try</a>
+        </li>-->
+    </ul>
+    <div class="tab-content resourceRep">
+        <!--<div class="tab-pane fade active in" id="overview">{{{description}}}</div>-->
+        <div class="tab-pane fade active in" id="tryit"> 
+        <!-- Main container -->
+        <div class="row" id="method_container">
+        <!-- Main content -->
+        <div class="col-sm-12" id="method_content">
+        <div class="col-sm-12">
+            <!-- Error container -->
+            <div data-role="error_container"></div>
+            <!-- Inline edit Organization admin credential section -->
+            <div class="admin_auth_section hide">
+                <a class="set_admin_credentials hide" href="javascript:void(0)" title="set admin credentials.">Set Admin Credentials...</a>
+                <a class="auth_admin_email" title="reset admin credentials." href="javascript:void(0)"></a>
+                <i title="Clear admin credentials." class="icon-remove"></i>
+            </div>
+
+            <span id="method_name" data-role="method-name" class="hide">{{name}}</span>
+            <div class="title_container">
+                <div class="verb_container">
+                    <p class="verb {{verb}}" data-role="verb">{{verb}}</p>
+                    {{#if security}}
+                    <span class="icon_lock"></span>
+                    {{/if}}
+                </div>
+                <h2 data-role="method-title" data-allow-edit="true">{{#if displayName}}{{displayName}}{{else}}{{name}}{{/if}}</h2>
+            </div>
+            <p>
+                <br>
+            </p>
+            <div class="description_container">
+                <div class="resource_description" data-allow-edit="true" data-role="method-description">{{{description}}}</div>
+                <br>
+            </div>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="resourceUrlCollapse" data-parent="#accordion">
+                            <h4 class="panel-title" style="display: inline;">Resource URL</h4>
+                            <i id="resourceUrlCollapse-arrow" class="glyphicon glyphicon-chevron-right" style="float:right;"></i>
+
+                        </a>
+                    </div>
+                    <div id="resourceURLTable" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div>
+                                <!-- Resource summary - name, description and resource URL section -->
+                                <div class="resource_details">
+                                    <div class="description_and_url_container">
+                                        <!-- <h3>Resource URL</h3> -->
+                                        <div class="url_container">
+                                            <p data-role="method_url_container">
+                                                {{#if baseUrl}}
+                                                <span data-role="host">{{baseUrl}}</span>{{/if}}{{#if path}}
+                                                <span data-role="path">{{path}}</span>{{/if}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.resource_details -->
+                            </div>
+                            <div class="response-class {{verb}}">                                
+                                <div class="response-data">
+                                  <div class="inner">
+                                    <div class="response-schema-datatype" style="display:none;">{{response.schema}}</div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default headerParamsSection">
+                    <div class="panel-heading">
+                        <a class="headerParametersCollapse" data-parent="#accordion">
+                            <h4 class="panel-title" style="display: inline;">Header Parameters</h4>
+                            <i id="headerParametersCollapse-arrow" class="glyphicon glyphicon-chevron-right" style="float:right;"></i>
+                        </a>
+                    </div>
+                    <div id="headerParametersTable" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div>
+                            {{#if-header-param this.parameters}}
+                                <!-- Header parameters section -->
+                                <ul class="method_table headerParamSection">
+                                    <!-- <h3>Header Parameters</h3> -->
+                                    <li class="method_title">
+                                        <div class="method_data title">Name</div>
+                                        <div class="method_data value">Value</div>
+                                        <div class="method_data description">Description</div>
+                                    </li>
+                                    {{#header-list this.parameters}}
+                                    <li class="method_details" data-role="header-param-list" data-scope="{{scope}}">
+                                        <div class="method_data title">
+                                            <span data-role="name">{{name}}</span>
+                                            {{#required}}
+                                            <br/>
+                                            <span class="required" data-role="required">(required)</span>
+                                            {{/required}}
+                                        </div>
+                                        <div class="method_data value">
+                                            {{#if options}}
+                                            <select name="{{name}}" data-role="multiple-value">
+                                                {{#options}}
+                                                <option value="{{.}}">{{.}}</option>
+                                                {{/options}}
+                                            </select>
+                                            {{else}} {{#if required}}
+                                            <input type="text" name="{{name}}" data-role="value" class="form-control" value="{{defaultValue}}" />{{else}}
+                                            <input type="text" name="{{name}}" data-role="value" class="form-control" placeholder="{{defaultValue}}" value="" />{{/if}} {{/if}}
+                                        </div>
+                                        <div class="method_data description">
+                                            <div data-role="description" data-allow-edit="true">
+                                                {{{this.description}}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {{/header-list}}
+                                </ul>                            
+
+
+                                {{/if-header-param}}
+                                {{#if body.parameters}}
+                                    <div class="body-parameters-wrapper">
+                                        <h3>Body Parameters</h3>
+                                        <hr>
+                                            <form enctype="multipart/form-data" method="post" name="formParams" id="formParams">
+
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="col-sm-2">Name</th>
+                                                                <th class="col-sm-3">Values</th>
+                                                                <th class="col-sm-7">Description</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {{#each body.parameters}}
+
+                                                                <tr data-role="body-param-list" data-scope="{{scope}}" data-dataType="{{dataType}}">
+                                                                    <td style="vertical-align:middle">
+                                                                        <span data-role="name">{{this.name}}</span>
+                                                                        {{#required}}
+                                                                            <br/>
+                                                                            <span class="required" data-role="required">(required)</span>
+                                                                        {{/required}}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{#if options}}
+                                                                        <select name="{{this.name}}" data-role="multiple-value" data-default-value="{{defaultValue}}" class="form-control{{#if defaultValue}} has-default-value{{/if}}">
+                                                                            {{#if required}}{{else}}<option value="">(no value)</option>{{/if}}
+                                                                            {{#options}}
+                                                                            <option value="{{.}}">{{.}}</option>
+                                                                            {{/options}}
+                                                                        </select>
+                                                                        {{else}}
+                                                                            {{#if required}}
+                                                                                <input name="{{this.name}}" type="text" class="form-control" data-role="value" value="{{defaultValue}}"/>
+                                                                            {{else}}
+                                                                                <input name="{{this.name}}" type="text" class="form-control" data-role="value" placeholder="{{defaultValue}}" value=""/>
+                                                                            {{/if}}
+                                                                        {{/if}}
+                                                                    </td>
+                                                                    <td style="vertical-align:middle">
+                                                                        <p data-role="description" data-allow-edit="true" class="markdown">
+                                                                            {{{ this.description }}}
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+
+                                                            {{/each}}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                            </form>
+                                    </div>
+                                {{/if}}
+                                {{#body}}
+                                    {{#if attachments}}
+                                    <form enctype="multipart/form-data" method="post" name="formAttachment" id="formAttachment">
+                                        <h3>Attachments</h3>
+                                        <hr>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th class="col-sm-2">Name</th>
+                                                    <th class="col-sm-3">Value</th>
+                                                    <th class="col-sm-7">Description</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {{#each attachments}}
+                                                <tr class="method_details" data-role="attachments-list" data-scope="{{#if resourceParam}}resource{{else}}method{{/if}}">
+                                                    <td>
+                                                        <span data-role="name">{{name}}</span>
+                                                        {{#required}}
+                                                        <br/><span class="required" data-role="required">(required)</span>
+                                                        {{/required}}
+                                                    </td>
+                                                    <td>
+                                                        {{#if required}}
+                                                        <input name="{{name}}" class="form-control" type="file" data-role="value" required/>
+                                                        {{else}}
+                                                        <input name="{{name}}" class="form-control" type="file" data-role="value" />
+                                                        {{/if}}
+                                                    </td>
+                                                    <td>
+                                                        <p data-role="description" data-allow-edit="true" class="markdown">
+                                                            {{{description}}}
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </form>
+                                    {{/if}}
+                                {{/body}}                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default queryParamsSection">
+                    <div class="panel-heading">
+                        <a class="queryParametersCollapse" data-parent="#accordion">
+                            <h4 class="panel-title" style="display: inline;">Query Parameters</h4>
+                            <i id="queryParametersCollapse-arrow" class="glyphicon glyphicon-chevron-right" style="float:right;"></i>
+                        </a>
+                    </div>
+
+                    <div id="queryParametersTable" class="panel-collapse collapse">
+                        <div class="panel-body">
+                             {{#if-query-param this.parameters}}
+                                <!-- Query parameters section -->
+                                <ul class="method_table">
+                                    <!-- <h3>Query Parameters</h3> -->
+                                    <li class="method_title">
+                                        <div class="method_data title">Name</div>
+                                        <div class="method_data value">Value</div>
+                                        <div class="method_data description">Description</div>
+                                    </li>
+                                    {{#query-list this.parameters}}
+                                    <li class="method_details" data-role="query-param-list" data-scope="{{scope}}">
+                                        <div class="method_data title">
+                                            <span data-role="name">{{name}}</span>
+                                            {{#required}}
+                                            <br/>
+                                            <span class="required" data-role="required">(required)</span>
+                                            {{/required}}
+                                        </div>
+                                        <div class="method_data value">
+                                            {{#if options}}
+                                            <select name="{{name}}" data-role="multiple-value">
+                                                {{#options}}
+                                                <option value="{{.}}">{{.}}</option>
+                                                {{/options}}
+                                            </select>
+                                            {{else}} {{#if required}}
+                                            <input name="{{name}}" class="form-control" type="text" data-role="value" value="{{defaultValue}}" />{{else}}
+                                            <input name="{{name}}" class="form-control" type="text" data-role="value" placeholder="{{defaultValue}}" value="" />{{/if}} {{/if}}
+                                        </div>
+                                        <div class="method_data description">
+                                            <div data-role="description" data-allow-edit="true">
+                                                {{{this.description}}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {{/query-list}}
+                                </ul>
+                                {{/if-query-param}}
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="trySampleCallCollapse" data-parent="#accordion">
+                            <h4 class="panel-title" style="display: inline;">Try it out !</h4>
+                            <i id="trySampleCallCollapse-arrow" class="glyphicon glyphicon-chevron-right" style="float:right;"></i>
+
+                        </a>
+                    </div>
+                    <div id="tryingOutASampleCall" class="panel-collapse collapse">                        
+                        <div class="panel-body">
+                            {{#body}}
+                                <!-- Request payload section -->
+                                <div class="request_payload">
+                                        <h3>Request Body</h3>
+
+                                        <ul class="nav nav-pills" data-role="request-payload-link">
+                                                <li class="active">
+                                                        <a href="javascript:void(0)" data-role="example-link">Value</a>
+                                                </li>
+                                                {{#if doc}}
+                                                <li>
+                                                        <a href="javascript:void(0)" data-role="docs-link">Description</a>
+                                                </li>
+                                                {{/if}}
+                                                <li>
+                                                        <a href="javascript:void(0)" data-role="schema-link">Schema</a>
+                                                </li>
+                                        </ul>
+                                        {{#if doc}}
+                                        <div data-role="request-payload-docs" class="docs">
+                                                {{{doc}}}
+                                        </div>
+                                        {{/if}}
+                                        <div data-role="request-payload-example">
+                                                <textarea class="payload_text" data-format="{{contentType}}"></textarea>
+                                        </div>
+                                        <div data-role="request-payload-schema" style="display:none">
+                                                <textarea class="payload_text_schema" data-format="{{contentType}}" style="width:100%;height:300px;"></textarea>
+                                        </div>
+                                </div>
+                            {{/body}} {{#if-template-param this.parameters}}
+                            <div class="hide" data-role="template-params">
+                                    {{#template-list this.parameters}}
+                                    <p data-scope="{{scope}}">
+                                            <span data-role="name">{{name}}</span>
+                                            <span data-role="description">{{description}}</span>
+                                            <span data-role="defaultValue">{{defaultValue}}</span>
+                                            <span data-role="required">{{required}}</span>
+                                    </p>
+                                    {{/template-list}}
+                            </div>
+                            {{/if-template-param}}
+                            <div class="operation_container">
+                                    <!-- Basic authentication, custom token and OAuth 2 authentication container -->
+                                    <div class="authentication" data-role="authentication_container">
+                                            <div class="well basicauth" data-role="basic_auth_container">
+                                                    <p class="title">Basic Auth</p>
+                                                    <div class="details">
+                                                            <a data-toggle="modal" role="button" href="#basicauth_modal" title="Set credentials." class="link_open_basicauth">Set...</a>
+                                                            <i title="Clear admin credentials." class="icon-remove"></i>
+                                                    </div>
+                                            </div>
+                                            <div class="well oauth2" data-role="oauth2_container">
+                                                    <p class="title">OAuth 2.0</p>
+                                                    <div class="details">
+                                                            <a data-toggle="modal" role="button" href="#oauth2_modal" title="Set credentials." class="link_open_oauth2">Set...</a>
+                                                            <i title="Clear admin credentials." class="icon-remove"></i>
+                                                    </div>
+                                            </div>
+                                            <div class="well customtoken" data-role="custom_token_container">
+                                                    <p class="title">Custom Token</p>
+                                                    <div class="details">
+                                                            <a data-toggle="modal" role="button" href="#customtoken_modal" title="Set credentials." class="link_open_customtoken">Set...</a>
+                                                            <i title="Clear admin credentials." class="icon-remove"></i>
+                                                    </div>
+                                            </div>
+                                    </div>
+                                    <div class="action">
+                                            <button id="send_request">Send
+                                                    <!-- <br/><span>using the values above</span> -->
+                                            </button>
+                                            <a href="javascript:void(0)" class="link_reset_default resetButton btn" style="" title="Reset to default request parameters and body content.">Reset</a>
+                                    </div>    
+                            </div>
+
+                            <!-- Request and response tab section -->
+                            <div class="request_response_tabs">
+                                    <br>
+                                    <a href="javascript:void(0)" id="link_request_tab" data-role="request-link">Request</a>
+                                    <a href="javascript:void(0)" id="link_response_tab" data-role="response-link" class="selected">Response</a>
+                            </div>
+                            <!-- Request and response container -->
+                            <div id="request_response_container">
+                                    <div class="response" data-role="response-container">
+                                            <p>Make a request and see the response.</p>
+                                    </div>
+                                    <div class="request" data-role="request-container">
+                                            <p>Make a request and see the response.</p>
+                                    </div>
+                            </div>
+                            {{#response}} {{#if doc}}
+                            <!-- Response payload doc section -->
+                            <div class="response_payload">
+                                    <h3>Response Payload Elements</h3>
+                                    <div data-role="response-payload-docs">
+                                            {{{response.doc}}}
+                                    </div>
+                            </div>
+                            <div data-role="response-content-type" class="hide">{{contentType}}</div>
+                            <textarea data-role="response-payload" class="hide">{{sample}}</textarea>
+                            {{/if}} {{#if errors}}
+                            <!-- Response errors list section -->
+                            <!--<h3>Response Error Details</h3>
+                            <ul class="method_table">
+                                    <li class="method_title">
+                                            <div class="method_data title">HTTP Code</div>
+                                            <div class="method_data value">Error Code</div>
+                                            <div class="method_data description">Description</div>
+                                    </li>
+                                    {{#each errors}}
+                                    <li class="method_details" data-role="response_errors_list">
+                                            <div class="method_data title">
+                                                    <span data-role="http_status_code">{{httpStatusCode}}</span>
+                                            </div>
+                                            <div class="method_data value">
+                                                    <span data-role="code">{{code}}</span>
+                                            </div>
+                                            <div class="method_data description">
+                                                    <div data-role="description" data-allow-edit="true">
+                                                            {{{description}}}
+                                                    </div>
+                                            </div>
+                                    </li>
+                                    {{/each}}
+                            </ul>-->
+                            {{/if}} {{/response}}
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
+        </div>
+        <!--/.col-sm-12 -->
+
+        </div>
+        <!-- #method_content -->
+
+        <!--Resource Summary-->
+
+        <div class="col-sm-12">
+        <!-- Resource summary - right side info section -->
+        <section class="well well-sm" style="" id="resourceSummary">
+            <div class="table-responsive">
+                <div class="resource_representation_table">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <td colspan="2"><h4>Resource Summary</h4></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="authType">
+                                <td>
+                                    <p class="title">Security</p>
+                                </td>
+                                <td>
+                                    <p class="data auth_type" data-role="auth-type"></p>
+                                </td>
+                            </tr>                            
+                            <tr class="addAdditionalInfo">
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <br>
+                                    <ul class="nav nav-tabs nav-justified resource_summary" role="tablist" style="font-size:95%">
+                                        <!--<li class="hideRequestBodyForGetEventByIDMethod active"><a href="#RequestBody" role="tab" data-toggle="tab">Request</a>
+                                        </li>-->
+                                        <li class="active"><a href="#ResponseBody" role="tab" data-toggle="tab">Response</a>
+                                        </li>
+                                        <li class=""><a href="#ErrorCodes" role="tab" data-toggle="tab">Errors</a>
+                                        </li>                                    
+                                    </ul>
+                                    <div class="tab-content resourceRep">
+                                        <!--<div class="tab-pane fade in active" id="RequestBody">&nbsp;</div>-->
+                                        <div class="tab-pane fade in active" id="ResponseBody">
+                                            <div id="response-object" class="prettyprint">&nbsp;</div>
+                                            <pre id="alt-json-response" class="prettyprint">&nbsp;</pre>
+                                        </div>
+                                        <div class="tab-pane fade" id="EventTypes">This is the place where EventTypes description lies.</div>
+                                        <div class="tab-pane fade" id="ErrorCodes">
+                                            <p class="textGreen" style="font-size:85%">Sample Error Messages & Error Codes.</p>
+                                            <div id="ErrorInfo">This is where error messages sample and description lies.</div>
+                                            <div id="adjustBackgroundForErrorCodes">
+                                                <ul class="nav nav-tabs nav-justified" role="tablist">
+                                                    <li class="active"><a href="#httpStatusCodes" role="tab" data-toggle="tab">HTTP Status Codes</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="tab-content firstApiErrorCodes">
+                                                <div class="tab-pane fade in active" id="httpStatusCodes">This is the place where HTTP Status Codes.</div>
+                                                <!--<div class="tab-pane fade" id="apiErrorCodes">This is the place where API Error Codes.</div>-->
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <!--End of Resource Summary-->
+
+        </div>
+        </div>
+        <div id="working_alert">
+        <p>Working...</p>
+        </div>
+        <!-- OAuth 2 authentication modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="modal_container" data-role="oauth2_modal">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close button_close_modal" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Request {{apiName}} permissions</h3>
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    <p>Making {{apiName}} API requests requires you to grant access to this app.</p>
+                    <p>You will be directed to {{apiName}} to approve the use of your credentials and then returned to this page.</p>
+                    <p>You can revoke these permissions at any time.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Your credentials are saved for the session only.</p>
+                <a class="btn btn-primary button_save_modal" href="javascript:void(0)">OK</a>
+                <a class="button_close_modal" href="javascript:void(0)">Cancel</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- Custom token authentication modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="modal_container" data-role="custom_token_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close button_close_modal" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Custom Token</h3>
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    <form class="form-horizontal">
+                        <div data-role="custom_token_rows">
+                            <div data-role="custom_token_row">
+                                <div class="form-group">
+                                    <label class="control-label">Name:</label>
+                                    <input type="text" class="form-control" placeholder="Name" data-role="name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Value:</label>
+                                    <input type="text" class="form-control" placeholder="Value" data-role="value">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Header:</label>
+                            <input type="radio" name="custom_token_type" data-role="header">
+                        </div><!-- /input-group -->
+                        <div class="form-group">
+                            <label class="control-label">Query:</label>
+                            <input type="radio" data-role="query" name="custom_token_type">
+                        </div><!-- /input-group -->
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary button_save_modal" href="javascript:void(0)">Ok</a>
+                <a class="button_close_modal" href="javascript:void(0)">Cancel</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- Org admin authentication modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="modal_container" data-role="edit_auth_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close button_close_modal" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Set Organization Admin Credentials</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="error_container"></div>
+                    <div class="form-group">
+                        <label class="control-label" for="inputEmail">Email</label>
+                        <input  class="form-control" type="text" id="inputEmail" placeholder="Email"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="inputPassword">Password</label>
+                        <input class="form-control" type="password" id="inputPassword" placeholder="Password"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p>Your credentials are saved for the session only.</p>
+                <a class="btn btn-primary button_save_modal" href="javascript:void(0)">Save</a>
+                <a class="button_close_modal" href="javascript:void(0)">Cancel</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- Confirm the changes modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="modal_container" data-role="confirm_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close button_close_modal" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Warning</h3>
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    <p>Your changes have not been saved.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary button_save_modal" href="javascript:void(0)">Save</a>
+                <a class="button_close_modal" href="javascript:void(0)">Discard</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<div id="apigee-apimodel-bodysample" style="display:none">{{body.sample}}</div>
+<div id="apigee-apimodel-bodydoc" style="display:none">{{body.doc}}</div>
+<script type="text/javascript">
+    var Apigee = Apigee || {};
+    Apigee.APIModel = Apigee.APIModel || {};
+    Apigee.APIModel.apiName = "{{apiName}}";
+    Apigee.APIModel.revisionNumber = "{{revisionNumber}}";
+    Apigee.APIModel.organizationName = "{{organizationName}}";
+    Apigee.APIModel.resourceId = "{{resourceId}}";
+    Apigee.APIModel.methodId = "{{id}}";
+    Apigee.APIModel.methodType = "details";
+    Apigee.APIModel.apiKey = "";
+    Apigee.APIModel.location = "";
+    Apigee.APIModel.templateAuthName = "";
+    Apigee.APIModel.verb="{{verb}}".toLowerCase();
+    // Init hasRawBody to false.
+    Apigee.APIModel.hasRawBody = false;
+    Apigee.APIModel.apiSchema = {{apiSchema}};
+
+    {{#if body}}
+    Apigee.APIModel.bodyParameters={{#if body.parameters}}{{{body.parameters}}}{{else}}false{{/if}};
+    // The following two divs contain HTML-encoded text, to allow us to handle
+    // text which includes quotes.
+    Apigee.APIModel.bodySample = jQuery('div#apigee-apimodel-bodysample').text();
+    if (Apigee.APIModel.bodySample.length == 0) {
+        Apigee.APIModel.bodySample = false;
+    }
+    Apigee.APIModel.bodyDoc = jQuery('div#apigee-apimodel-bodydoc').text();
+    if (Apigee.APIModel.bodyDoc.length == 0) {
+        Apigee.APIModel.bodyDoc = false;
+    }
+    {{else}}
+    Apigee.APIModel.bodyParameters=false;
+    Apigee.APIModel.bodySample=false;
+    Apigee.APIModel.bodyDoc=false;
+    {{/if}}
+    {{#if security}}
+    Apigee.APIModel.security = {{{security}}};
+    for (var k in Apigee.APIModel.security) {
+        if (typeof Apigee.APIModel.security[k] == 'string') {
+            Apigee.APIModel.security[k] = JSON.parse(Apigee.APIModel.security[k]);
+        }
+    }
+    {{else}}
+    Apigee.APIModel.security = false;
+    {{/if}}
+    
+    Apigee.APIModel.originalExpandedSchema={{#if apiSchema.expandedSchema}}{{{apiSchema.expandedSchema}}}{{else}}false{{/if}};
+    Apigee.APIModel.expandedSchema={{#if apiSchema.expandedSchema}}{{{apiSchema.expandedSchema}}}{{else}}false{{/if}};
+
+    if(Apigee.APIModel.bodyParameters) {
+        for(var i in Apigee.APIModel.bodyParameters) {
+            // If a parameter is type of object, set hasRawBody to true so we can remove body parameters section.
+            if(Apigee.APIModel.bodyParameters[i].dataType && Apigee.APIModel.bodyParameters[i].dataType == "object") {
+                Apigee.APIModel.hasRawBody = true;
+            }
+            if(Apigee.APIModel.bodyParameters[i].schema) {
+                var resourceSchema = JSON.parse(Apigee.APIModel.bodyParameters[i].schema);
+                if (resourceSchema.$ref) {
+                    // There is a reference to the schema in the object.
+                    Apigee.APIModel.resourceName = resourceSchema.$ref;
+                    Apigee.APIModel.resourceName = Apigee.APIModel.resourceName.split("/");
+                    Apigee.APIModel.resourceName = Apigee.APIModel.resourceName[Apigee.APIModel.resourceName.length - 1];
+                    break;
+                } else if(resourceSchema.items.$ref) {
+                    // There is an array w/a reference.
+                    Apigee.APIModel.resourceName = resourceSchema.items.$ref;
+                    Apigee.APIModel.resourceName = Apigee.APIModel.resourceName.split("/");
+                    Apigee.APIModel.resourceName = Apigee.APIModel.resourceName[Apigee.APIModel.resourceName.length - 1];
+                }
+            }
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // SECURITY
+    // -------------------------------------------------------------------------
+    var security = [];
+    if(Apigee.APIModel.security) {
+        for (i=0;i<Apigee.APIModel.security.length;i++){
+            security.push(Apigee.APIModel.security[i]);
+        }
+    }
+
+    // If security is set in the model, display the values in the resource
+    // summary table, and pull out the default security values if set.
+    var newAuth = [];
+    var authTypeEl = jQuery("[data-role='auth-type']");
+    authTypeEl.text(newAuth);
+    for (var i in security){
+        for (var keys in security[i]) {
+            if (typeof security[i] == 'string') {
+                security[i] = JSON.parse(security[i]);
+            }
+            if (security[i][keys].type) {
+                switch (security[i][keys].type) {
+                    case 'OAUTH2':
+                        newAuth.push('OAuth 2.0');
+                        secName = keys;
+                        break;
+                    case 'BASIC':
+                        newAuth.push('HTTP Basic');
+                        break;
+                    case 'APIKEY':
+                        newAuth.push('API Key');
+                        if (security[i][keys].templateauths) {
+                            for (var key in security[i][keys].templateauths) {
+                                Apigee.APIModel.apiKey = security[i][keys].templateauths[key];
+                                Apigee.APIModel.location = security[i][keys].location.toLowerCase();
+                                Apigee.APIModel.templateAuthName = key.toLowerCase();
+                            }
+                        }
+                        break
+                }
+            }
+            // If the security object does not have any template auths, it will
+            // have an attribute named "error" that will have the value
+            // "No templateAuth found for KEYNAME", where KEYNAME is the
+            // name of the security object.
+            else if (typeof security[i][keys] === "object" && security[i][keys].hasOwnProperty("error")) {
+                newAuth.push("API Key");
+            }
+        }
+    }
+    if (newAuth.length == 0) {
+        newAuth.push('None');
+    }
+    authTypeEl.text(newAuth.join(', '));
+
+    // -------------------------------------------------------------------------
+    // PAYLOAD
+    // -------------------------------------------------------------------------
+    var payload = jQuery(".request_payload");
+    var payloadTextSchemaEl = jQuery("textarea.payload_text_schema");
+    var originalSchemaObj = null;
+    if (Apigee.APIModel.expandedSchema) {
+        originalSchemaObj = Apigee.APIModel.expandedSchema;
+        expandSchema(originalSchemaObj);
+    }
+
+    if (Apigee.APIModel.verb != "post" && Apigee.APIModel.verb != "put" && Apigee.APIModel.verb != "patch") {
+        // Remove request payload for verbs that carry no payload.
+        payload.remove();
+    }
+    else {
+        // If a sample exists, use it to populate the body payload text area,
+        // else create an example from the api schema to populate the body
+        // payload.
+        if (Apigee.APIModel.bodySample) {
+            // Class payload_text is the request body to send.
+            jQuery("textarea.payload_text").val(Apigee.APIModel.bodySample);
+        }
+
+        if (Apigee.APIModel.expandedSchema && Apigee.APIModel.resourceName != null) {
+            // Put the schema into the Schema tab in the response body.
+            var schemaString = JSON.stringify(originalSchemaObj[Apigee.APIModel.resourceName].properties, null, 4);
+            payloadTextSchemaEl.val(schemaString);
+        }
+
+    }
+
+    // Set Response Schema read from 200 response
+    if(jQuery('.response-schema-datatype').text()) {
+        var definitionsregEx = /\/definitions\/(.*)\w+/g;
+        matches = JSON.parse(jQuery('.response-schema-datatype').text()).dataType.match(definitionsregEx);
+        resSchemaObj = matches[0].substr(13);
+        jQuery('#alt-json-response').text(prettifiedJSONString(Apigee.APIModel.expandedSchema[resSchemaObj]));
+    }    
+    // If any select box has a default value, make sure it is set.
+    jQuery('select.has-default-value').each(function(index) {
+        var defaultValue = jQuery(this).attr('data-default-value');
+        jQuery('option', this).each(function (idx) {
+            if (jQuery(this).attr('value') == defaultValue) {
+                jQuery(this).attr('selected', 'selected');
+            }
+        });
+    });
+
+
+    if (Apigee.APIModel.hasRawBody) {
+        // Remove the body parameters section if the raw body should be
+        // displayed.
+        jQuery(".body-parameters-wrapper").remove();
+    } else {
+        // If the API Model does not have a payload, then remove the payload
+        // section.
+        payload.remove();
+    }
+    // For any content-type listing, convert comma-delimited list into a
+    // columnar list.
+    var contentTypeElements = document.getElementsByClassName('content-type-source-body');
+    for (var k = 0; k < contentTypeElements.length; k++) {
+        if(contentTypeElements[k] != null && 'innerHTML' in contentTypeElements[k]) {
+            contentTypeElements[k].innerHTML = contentTypeElements[k].innerHTML.replace(/,/g, '<br>');
+        }
+    }
+
+    function expandSchema (obj, originalObj) {
+        for (var key in obj) {
+            if (typeof obj[key] === "object") {
+                expandSchema(obj[key], (originalObj || obj));
+            }
+            else {
+                if (key === "$ref") {
+                    if (typeof obj[key] === "string" && obj[key].indexOf("#/definitions") != -1) {
+                        var objRef = obj[key].slice(14);
+                        for (var oKey in originalObj[objRef]) {
+                            if(oKey != 'required'){
+                                obj[oKey] = originalObj[objRef][oKey];
+                            }
+                        }
+                        delete obj[key];
+                        delete obj["description"];
+                    }
+                }
+            }
+        }
+    }
+
+    if (typeof marked != 'undefined') {
+        var descriptions = document.getElementsByClassName('markdown');
+        for (var i = 0; i < descriptions.length; i++) {
+            descriptions[i].innerHTML = marked(descriptions[i].innerHTML);
+        }
+    }
+</script>
+</div>
