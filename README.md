@@ -7,18 +7,18 @@ Apigee OpenBank Solution enables banks to accelerate development of digital
 services. OpenBank solution is built on Apigee Edge API Management Platform, and
 features:
 
-> -   Account Access APIs.
->  - Account Information 
->  - Account Transaction 
->  - Account Information 
-> -   Payment Transfer APIs
->  - Payment Initiation
-> -   Open Data APIs
->  - ATM location 
->  - Branch Location
->  - Bank Products
-> -   OAuth APIs (Security)
-> - UserInfo APIs
+ -   Account Access APIs.
+  - Account Information 
+  - Account Transaction 
+  - Account Information 
+ -   Payment Transfer APIs
+  - Payment Initiation
+ -   Open Data APIs
+  - ATM location 
+  - Branch Location
+  - Bank Products
+ -   OAuth APIs (Security)
+ - UserInfo APIs
 
 
 These APIs play a critical role in the digital transformation of banking
