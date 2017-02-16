@@ -44,51 +44,6 @@ with a **Developer Portal**, dummy backend and a sample app.
 To Learn more on the basic concepts of Apigee Edge, please refere to : 
 http://docs.apigee.com/api-services/content/what-apigee-edge
 
-## Setup
-
-To deploy the APIs and its dependencies on your own org please run the following
-script from the root folder of the cloned repo.
-
-### Pre-requisites
-+ node.js 
-+ npm
-
-### Run following commands
-Install gulp 
-```
-npm install --global gulp-cli
-```
-
-Pull node modules
-```
-npm install
-```
-
-#### Run the deploy command
-```
-gulp deploy --resource openbank_apis
-```
-
-This will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
-
-+ Edge Org name
-+ Edge Username
-+ Edge Password
-+ Edge Env for deployment
-+ BaaS Org Name
-+ BaaS App Name
-+ BaaS Org Client Id
-+ BaaS Org Client Secret 
-
-
-### Test
-
-Once the deploy script is complete, run the following command to do a basic sanity test that the APIs are working
-
-```
-npm test
-```
-
 ## Design
 
 The APIs provided are configurable to connect to your own Banking backend and /
@@ -174,6 +129,53 @@ While online account payment is a fundamental use case of this API, it is its us
 Open Data APIs are a category of APIs that provide general information of a Bank. These are not customer-specific, but bank-specific: locations, products, URLs, and events, for example. These APIs are not subjected to user-level authentication, but are are protected to be used only by signed apps. A **valid client credential** is essential to invoke these APIs.
 Using this category of APIs, a wide variety of new value-added solutions can be provided to consumers. Coupled with customer-specific information, potential new solutions include product and offer recommendations.
 
+## Apigee Edge Setup
+
+To deploy the APIs and its dependencies on your own org please run the following
+script from the root folder of the cloned repo.
+
+### Pre-requisites
++ node.js 
++ npm
+
+### Run following commands
+Install gulp 
+```
+npm install --global gulp-cli
+```
+
+Pull node modules
+```
+npm install
+```
+
+#### Run the deploy command
+```
+gulp deploy --resource openbank_apis
+```
+
+This will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
+
++ Edge Org name
++ Edge Username
++ Edge Password
++ Edge Env for deployment
++ BaaS Org Name
++ BaaS App Name
++ BaaS Org Client Id
++ BaaS Org Client Secret 
+
+
+### Test
+
+Once the deploy script is complete, run the following command to do a basic sanity test that the APIs are working
+
+```
+npm test
+```
+
+
+
 ###Developer Portal
 Every API provider must be able to educate developers and successfully expose their APIs. A developer portal is the face of your API program, providing everything that internal, partner, and third party developers need. 
 
@@ -184,8 +186,8 @@ Apigee Edge provides with a Developer Services portal that you can use to build 
 The below picture depicts how a dev portal looks like:
 <img src="readme-images/openbank.png">
 
-####Developer portal Installation
-The detailed instructions for installation of developer portal for openbank solution can be found in the devportal README.md in the path openbank/src/devportal.
+####Developer portal Setup
+The detailed instructions for developer portal setup for openbank solution can be found [Here](https://github.com/apigee/openbank/tree/master/src/devportal).
 
 ###Data
 The dummy Backend system provided by default for the OpenBank solution is hosted on [Baas 2.0](http://apibaas.apigee.com/) . 
