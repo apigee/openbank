@@ -115,7 +115,7 @@ To enable openbank swagger or any other module, go to admin -> modules and enabl
 
  - Select **openbank_swagger** module from the list of modules, enable it, and save the configuration.
  
- <img src="../../readme-images/devportal/modules.png">
+ <img src="../../readme-images/devportal/modules1.png">
     
 **4.4.2 Create models and import all openbank API’s swagger files**
 Import of all openbank API’s swagger files need to be done for creation of the respective smartdocs. In order to do so, 
