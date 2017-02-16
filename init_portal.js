@@ -37,7 +37,7 @@ prompt
 var onprem_flag = false;
 
 var switch_opdk = [];
-switch_opdk.push({name: 'onprem', description: 'Is this on-premise(opdk) Apigee setup ? Enter - T/F', type: 'boolean', required: true});
+switch_opdk.push({name: 'onprem', description: 'Is this on-premise(opdk) Apigee setup ? Enter - True/False', type: 'boolean', required: true});
 
 prompt_lib.get(switch_opdk, function(err, results) {
     if(!results['onprem']){
@@ -46,7 +46,7 @@ prompt_lib.get(switch_opdk, function(err, results) {
         required_values.push({name: 'org', description: 'Enter the Apigee organization name', type: 'string'});
         required_values.push({name: 'env', description: 'Enter the environment', type: 'string'});
         required_values.push({name: 'username', description: 'Enter the username for the org', type: 'string'});
-        required_values.push({name: 'password', description: 'Enter the password', type: 'string'});
+        required_values.push({name: 'password', description: 'Enter the password', type: 'string', hidden: true});
 
         prompt_lib.start();
 
@@ -59,10 +59,9 @@ prompt_lib.get(switch_opdk, function(err, results) {
         var required_values = [];
 
         required_values.push({name: 'org', description: 'Enter the Apigee organization name', type: 'string'});
-        required_values.push({name: 'mngt_uri', description: 'Enter the opdk management base uri', type: 'string'});
-        required_values.push({name: 'host', description: 'Enter the host name for portal', type: 'string'});
+        required_values.push({name: 'host', description: 'Enter the opdk management base uri. eg: api.company.com', type: 'string'});
         required_values.push({name: 'username', description: 'Enter the username for the org', type: 'string'});
-        required_values.push({name: 'password', description: 'Enter the password', type: 'string'});
+        required_values.push({name: 'password', description: 'Enter the password', type: 'string', hidden: true});
 
         prompt_lib.start();
 
@@ -87,12 +86,23 @@ function post_prompt(err, results) {
     var username = results['username'];
     var password = results['password'];
 
+    var edge_host;
 
     if(!onprem_flag){
-        inject_object.host = 'https://' + results['org'] + '-' + results['env'] + '.net'
+        inject_object.host = results['org'] + '-' + results['env'] + '.apigee.net'
+        edge_host = 'https://api.enterprise.apigee.com';
+        inject_object.host_withprotocol = 'https://' + results['org'] + '-' + results['env'] + '.apigee.net'
+    } else if(check_http(results['host'])){
+        edge_host = 'https://' + results['host'];
+        inject_object.host = clean_http(results['host']);
+        inject_object.host_withprotocol = results['host'];
     } else {
+        edge_host = 'https://' + results['host'];
         inject_object.host = results['host'];
+        inject_object.host_withprotocol = 'https://' + results['host'];
     }
+
+    inject_object.edge_host = edge_host;
 
     var secret_pisp;
     var client_id_pisp;
@@ -102,13 +112,8 @@ function post_prompt(err, results) {
     var client_id_aisp;
     var redirect_uri_aisp;
 
-    var edge_host;
 
-    if(onprem_flag){
-        edge_host = results['mngt_uri'];
-    } else {
-        edge_host = 'https://api.enterprise.apigee.com';
-    }
+
 
     get_app_details('AISP_App', edge_host, org, username, password, function (aisp_details) {
         secret_aisp = aisp_details.credentials[0].consumerSecret;
@@ -158,8 +163,8 @@ function post_prompt(err, results) {
                     }
                 },
                 "iat": 1474028597
-                // secret
             }, secret_pisp);
+            console.log(secret_pisp)
 
             inject_object.token_payment = token_payment
 
@@ -222,7 +227,23 @@ function get_app_details(app, host, org, username, password, callback) {
         if (!error && (response.statusCode == 200 )) {
             callback(JSON.parse(body))
         } else {
-            console.log('ERROR retrieving client_id and secret')
+            console.log('ERROR retrieving client_id and secret, re-run the script')
         }
     })
+}
+
+function check_http(str) {
+    if(str.indexOf('http') > -1){
+        return true
+    } else {
+        return false
+    }
+}
+
+function clean_http(str) {
+    var l = str.split('://');
+    if(l.length == 2)
+        return l[1]
+    else
+        console.log('ERROR in uri, re-run the script')
 }
