@@ -35,11 +35,14 @@ a complete set of **Banking APIs** that comply with _Openbanking_ and _PSD2_
 regulations. In addition this will also allow one to build a _sandbox_ complete
 with a **Developer Portal**, dummy backend and a sample app.
 
-## Prerequisite
+## Getting Started
 
-+   Apigee API Management Developer Account
-+   Apigee API BaaS Account
-+   Apigee Developer Portal
++   Create an [Apigee API Management Developer Account](https://enterprise.apigee.com)
++   Create an [Apigee API BaaS Account](https://apibaas.apigee.com)
++   Request For [Apigee Developer Portal](https://goo.gl/forms/BKMMMwTD2XmAsYKy1)
+
+To Learn more on the basic concepts of Apigee Edge, please refere to : 
+http://docs.apigee.com/api-services/content/what-apigee-edge
 
 ## Setup
 
@@ -72,10 +75,10 @@ This will interactively prompt you for following details, and will then create /
 + Edge Username
 + Edge Password
 + Edge Env for deployment
-+ Usergrid(BaaS) Org Name
-+ Usergrid(BaaS) App Name
-+ Usergrid(BaaS) Org Client Id
-+ Usergrid(BaaS) Org Client Secret 
++ BaaS Org Name
++ BaaS App Name
++ BaaS Org Client Id
++ BaaS Org Client Secret 
 
 
 ### Test
