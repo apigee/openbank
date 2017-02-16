@@ -190,7 +190,7 @@ The below picture depicts how a dev portal looks like:
 The detailed instructions for developer portal setup for openbank solution can be found [Here](https://github.com/apigee/openbank/tree/master/src/devportal).
 
 ###Data
-The dummy Backend system provided by default for the OpenBank solution is hosted on [Baas 2.0](http://apibaas.apigee.com/) . 
+The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Baas 2.0](http://apibaas.apigee.com/) in your org.
 
 
 
