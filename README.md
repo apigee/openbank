@@ -3,26 +3,22 @@
 
 ## Overview
 
-Apigee OpenBank Solution enables banks to accelerate development of digital
-services. OpenBank solution is built on Apigee Edge API Management Platform, and
-features:
+The Apigee Open Banking APIx solution simplifies and accelerates the process of delivering open banking by providing secure, ready-to-use APIs along with the computing infrastructure to support internal and external innovation. The OpenBank solution is built on Apigee Edge API Management Platform, and features the following APIs:
 
- -   Account Access APIs.
-  - Account Information 
-  - Account Transaction 
-  - Account Information 
- -   Payment Transfer APIs
+  - Account Access APIs.
+   - Account Information 
+   - Account Transaction 
+   - Account Information 
+  - Payment Transfer APIs
   - Payment Initiation
- -   Open Data APIs
-  - ATM location 
-  - Branch Location
-  - Bank Products
- -   OAuth APIs (Security)
- - UserInfo APIs
+  - Open Data APIs
+   - ATM location 
+   - Branch Location
+   - Bank Products
+  - OAuth APIs (Security)
+  - UserInfo APIs
 
 
-These APIs play a critical role in the digital transformation of banking
-services as represented below:
 ![enter image description
 here](http://openbank.apigee.com/sites/default/files/openbank_architecture.png)
 
@@ -41,13 +37,13 @@ with a **Developer Portal**, dummy backend and a sample app.
 +   Create an [Apigee API BaaS Account](https://apibaas.apigee.com)
 +   Request For [Apigee Developer Portal](https://goo.gl/BiILtr)
 
-To Learn more on the basic concepts of Apigee Edge, please refere to : 
+To Learn more on the basic concepts of Apigee Edge, please refer to : 
 http://docs.apigee.com/api-services/content/what-apigee-edge
 
 ## Design
 
-The APIs provided are configurable to connect to your own Banking backend and /
-or provide your own applications to manage end user consent. The following sections will help you
+The APIs provided are configurable to connect to one's own Core Banking systems and 
+for the use of ones own applications to manage end user consent. The following sections will help you
 understand this solution so that you can go about this on your own.
 
 
@@ -55,14 +51,14 @@ understand this solution so that you can go about this on your own.
 
 ![API Architecture](http://imageshack.com/a/img922/3760/tCOiYq.png)
 
-The Banking APIs are designed as Northbound + Southbound APIs.
+The Banking APIs are designed such that each API is chained together as Northbound <-> Southbound APIs.
 
-As shown in the architecture diagram above, the message flows is as follows: 
+As shown in the architecture diagram above, the message flow is as follows: 
 End user Application <-> _Northbound APIs_ <-> _Southbound APIs_ <-> Backend Systems (Core Banking / Payment etc)
 
 
 The Northbound API provides a fixed set of interfaces that can be used by
-the external consumers. In order to minimize changes to the contract, and there by to applications that connect to it, this API will not be required to change as often.
+the external consumers. In order to minimize changes to the contract, and there by to applications that connect to it, this API may not be required to change as often.
 
 The Southbound API connects to the actual backend of the bank. We have used a dummy
 backend as a default as part of this solution build out. Therefore you may want to modify the southbound interfaces to suite your specific backend needs. 
@@ -70,16 +66,17 @@ backend as a default as part of this solution build out. Therefore you may want 
 All **Southbound APIs** end with the suffix _'-connector'_
 
 In addition, there are some internal APIs which are not exposed outside, but
-which are used internally from the other APIs and provide common service such as
+which are used internally from the other APIs and provide common services such as
 sending out SMS, storing and fetching session data etc.
 
 
 Each API deployed in Apigee Edge is encapsulated withing a unit of deployment called a [Proxy](http://docs.apigee.com/api-services/content/understanding-apis-and-api-proxies).
-To Learn more on the basic concepts of how to manage these within Apigee Edge, please refere to : 
+To Learn more on the basic concepts of how to manage these within Apigee Edge, please refer to : 
 http://docs.apigee.com/api-services/content/what-apigee-edge
-For instance each of the following entities in the sequence diagram below, such as oAuth, consent-app , session,authentication-connector are examples of proxies.  
 
-There are two broad sets of proxies in the solution. One set, **Security**,  helps manage the security around the APIs while the other is the set of **Functional APIs** that a bank would like to expose. For example: accounts, payments, branch locations etc.
+Each of the following entities in the sequence diagram below, such as oAuth, consent-app , session,authentication-connector are examples of proxies.  
+
+There are two broad sets of proxy defenitions in the solution. One set, **Security**,  helps manage the security around the APIs while the other is the set of **Functional APIs** that a bank would like to expose. For example: accounts, payments, branch locations etc.
 
 
 ### Security 
@@ -94,14 +91,16 @@ Interaction](http://www.websequencediagrams.com/files/render?link=R39gE_mlfbXyVC
 
 The consent app plays a key role in helping the user securely authenticate with the bank. The consent app is a trusted app of the bank which will allow the user to login and subsequently provide consent information.
 
-In this sandbox, the consent app will talk to the following APIs in order to
-fulfill its functionality + Session API + SMS API + Accounts-connector API + Authention-connector API.
+The consent app will talk to the following APIs in order to
+fulfill its functionality : Session API, SMS API, Accounts-connector API, Authentication-connector API.
 For more details on each of these APIs, refer to the README.md of the respective proxy which exposes these APIs.
 
 
 
 ###Functional APIs
-These are the set of APIs which the bank would like to expose for the developers. The Functional APIs deployed and available as part of OpenBank solution are broadly classified as follow:
+
+The Functional APIs deployed and available as part of OpenBank solution are broadly classified as follow:
+
 ####**1. Accounts Information APIS** 
 Account information APIs provide information for a single account held by the consumer. Information is categorized into:
 
@@ -179,9 +178,9 @@ npm test
 ###Developer Portal
 Every API provider must be able to educate developers and successfully expose their APIs. A developer portal is the face of your API program, providing everything that internal, partner, and third party developers need. 
 
-Developers need to interact with the enterprise and with each other. Enable your developer community to provide feedback, make support and feature requests, and submit their own content that can be accessed by other developers with the right developer portal.
+Developers need to interact with the Banks and with each other. Enable your developer community to provide feedback, make support and feature requests, and submit their own content that can be accessed by other developers with the right developer portal.
 
-Apigee Edge provides with a Developer Services portal that you can use to build and launch your own customized website to provide all of these services to your development community. Every Edge customer can create their own developer portal, either in the cloud or on-premises.
+Apigee Edge provides with a Developer Services portal that you can use to build and launch your own customized website to provide all of these services to your development community. One has the option to create their own developer portal, either in the cloud or on-premises.
 
 The below picture depicts how a dev portal looks like:
 <img src="readme-images/openbank.png">
