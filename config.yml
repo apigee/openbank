@@ -14,9 +14,9 @@ resources:
     - name: env
       prompt: Edge Org Environment
     - name: usergrid_org
-      prompt: BaaS services Org name
+      prompt: BaaS Org name
     - name: usergrid_app
-      prompt: BaaS services App name
+      prompt: BaaS App name
     - name: usergrid_client_id
       prompt: BaaS Org Client Id
     - name: usergrid_secret
@@ -134,6 +134,11 @@ resources:
         payload: '{"name":"AISP_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"account_access_apis"}'
       - name: PISP_App
         payload: '{"name":"PISP_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"payment_transfer_apis"}'
+        assignResponse:
+        - from: credentials.0.consumerKey
+          to: testApiKey
+        - from: credentials.0.consumerSecret
+          to: testApiSecret
       - name: internal_consent_app
         payload: '{"name":"internal_consent_app","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"internal_consent_apis"}'
         assignResponse:
@@ -171,10 +176,10 @@ resources:
         value: 'https://{{ org }}-{{ env }}.apigee.net'
       - name: apiKey
         filePaths: ['test/config.js'] 
-        value: '{{ apiKey }}' 
+        value: '{{ testApiKey }}' 
       - name: apiSecret
         filePaths: ['test/config.js'] 
-        value: '{{ apiSecret }}' 
+        value: '{{ testApiSecret }}' 
 
 
 
