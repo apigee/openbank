@@ -1,0 +1,219 @@
+{
+  "swagger": "2.0",
+  "host": "{{ host }}",
+  "schemes": [
+    "https"
+  ],
+  "info": {
+    "description": "Locations API",
+    "title": "List of Branch and ATM Locations",
+    "version": "0.0.1",
+    "termsOfService": "http://example.com/about/terms",
+    "contact": {
+      "name": "API Docs",
+      "url": "http://example.com/contact",
+      "email": "solution-ninjas@google.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://example.com"
+    }
+  },
+  "basePath": "/apis/v1/locations",
+  "paths": {
+    "/atms": {
+      "get": {
+        "description": "<p>Returns a list of ATMs with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitide and radius of search.</p>",
+        "summary": "List of atms",
+        "operationId": "atms",
+        "tags": [
+          "opendata"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AtmsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "latitude",
+            "description": "Latitude of the place around which you want to find ATMs. If latitude is provided, longitude must also be provided.",
+            "type": "float",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "description": "Longitude of the place around which you want to find ATMs. If longitude is provided, latitude must also be provided.",
+            "type": "float",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "radius",
+            "description": "This is the radius (in meters) from the search point. If radius is provided, then latitude and longitude has to also be provided",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "wheelchair",
+            "description": "This is check (in boolean) to see if the ATM is accessible by wheelchair",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "isWithdrawalCharged",
+            "description": "This is to check whether withdrawal of money from this ATM will be charged.",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "description": "This is to check if the ATM is currently available for withdrawing money.",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "openAt",
+            "description": "This is the time (in hours format) at which the ATM needs to be checked if open",
+            "type": "integer",
+            "required": false
+          }
+        ]
+      }
+    },
+    "/branches": {
+      "get": {
+        "description": "<p>Returns a list of Branches with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitude and radius of search.</p>",
+        "summary": "List of Branches",
+        "operationId": "branches",
+        "tags": [
+          "opendata"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BranchesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "latitude",
+            "description": "Latitude of the place around which you want to find Branches. If latitude is provided, longitude must also be provided.",
+            "type": "float",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "description": "Longitude of the place around which you want to find Branches. If longitude is provided, latitude must also be provided.",
+            "type": "float",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "radius",
+            "description": "This is the radius (in meters) from the search point. If radius is provided, then latitude and longitude has to also be provided",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "wheelchair",
+            "description": "This is check (in boolean) to see if the Branch is accessible by wheelchair.",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "openAt",
+            "description": "This is the time (in hours format) at which the Branch needs to be checked if open",
+            "type": "integer",
+            "required": false
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AtmsResponse": {
+      "description": "List of ATM Locations",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User addressable name of the ATM."
+        },
+        "address": {
+          "type": "string",
+          "description": "Address of the ATM."
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency of notes that is disposed by the ATM."
+        },
+        "access": {
+          "type": "object",
+          "description": "Available accessibility features of the ATM."
+        },
+        "location": {
+          "type": "object",
+          "description": "Latitude + Longitude of the ATM."
+        }
+      },
+      "xml": {
+        "name": "AtmsResponse"
+      }
+    },
+    "BranchesResponse": {
+      "description": "List of Branch Locations",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User addressable name of the Branch."
+        },
+        "address": {
+          "type": "string",
+          "description": "Address of the Branch."
+        },
+        "access": {
+          "type": "object",
+          "description": "Available accessibility features of the Branch."
+        },
+        "location": {
+          "type": "object",
+          "description": "Latitude + Longitude of the Branch."
+        }
+      },
+      "xml": {
+        "name": "BranchesResponse"
+      }
+    }
+  }
+}

@@ -41,7 +41,37 @@ function openbank_install_install() {
       ),
     ),
   );
-  menu_link_save($community_menu);
+
+  /*$app_gallery = array(
+    'link_path' => 'app_gallery',
+    'link_title' => "App Gallery",
+    'menu_name' => 'main-menu',
+  );
+  menu_link_save($app_gallery);
+
+
+  $main_apis = array(
+    'link_path' => 'overview',
+    'link_title' => "APIs",
+    'menu_name' => 'main-menu',
+  );
+  menu_link_save($main_apis);*/
+
+  /*$getting_started = array(
+    'link_path' => 'overview',
+    'link_title' => "Getting Started",
+    'router_path' => 'node/%',
+    'menu_name' => 'Overview',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Getting Started',
+      ),
+    ),
+  );
+  menu_link_save($getting_started);*/
+
+
+
   $events_menu = array(
     'link_path' => 'node/' . $events_nid,
     'link_title' => "Events",
@@ -56,10 +86,194 @@ function openbank_install_install() {
   menu_link_save($events_menu);
 
   $links = menu_load_links('main-menu');
-  foreach ($links as $item) {
-    if ($item['link_path'] == 'blog' || $item['link_path'] == 'apis' || $item['link_path'] == 'forum' || $item['link_path'] == 'user/me/apps' || $item['link_path'] == 'faq-page') {
+  /*foreach ($links as $item) {
+    if ($item['link_path'] == 'blog' || $item['link_path'] == 'apis' || $item['link_path'] == 'forum' || $item['link_path'] == 'user/me/apps' || $item['link_path'] == 'faq-page' || $item['link_path'] == 'overview' ||  
+      $item['link_path'] == 'app_gallery') {
       $item['hidden'] = 1;
       menu_link_save($item);
     }
-  }
+  }*/
+
+
+  $query = db_select('node', 'n');
+  $query->condition('title', 'Overview');
+  $query->condition('type', 'page');
+  $query->fields('n', array('nid'));
+  $overview_nid = $query->execute()->fetchField();
+  $path = array('source' => "node/$overview_nid", 'alias' => 'overview');
+  path_save($path);
+
+$getting_started = array(
+    'link_path' => 'node/' . $overview_nid,
+    'link_title' => "APIs",
+    'router_path' => 'node/%',
+    'menu_name' => 'main-menu',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'APIs',
+      ),
+    ),
+  );
+  menu_link_save($getting_started);
+
+
+  $query = db_select('node', 'n');
+  $query->condition('title', 'App Gallery');
+  $query->condition('type', 'page');
+  $query->fields('n', array('nid'));
+  $gallery_nid = $query->execute()->fetchField();
+  $path = array('source' => "node/$gallery_nid", 'alias' => 'gallery');
+  path_save($path);
+
+$gallery = array(
+    'link_path' => 'node/' . $gallery_nid,
+    'link_title' => "App Gallery",
+    'router_path' => 'node/%',
+    'menu_name' => 'main-menu',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'App Gallery',
+      ),
+    ),
+  );
+  menu_link_save($gallery);
+
+
+
+// getting started navigator
+$getting_started_nav = array(
+    'link_path' => 'node/' . $overview_nid,
+    'link_title' => "Getting Started",
+    'router_path' => 'node/%',
+    'menu_name' => 'menu-overview',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Getting started',
+      ),
+    ),
+  
+  );
+ $getstartedMlid = menu_link_save($getting_started_nav);
+
+
+
+
+  // create an app
+  $query = db_select('node', 'n');
+  $query->condition('title', 'Create an App');
+  $query->condition('type', 'page');
+  $query->fields('n', array('nid'));
+  $createApp_nid = $query->execute()->fetchField();
+  $path = array('source' => "node/$createApp_nid", 'alias' => 'createApps');
+  path_save($path);
+
+$createApp = array(
+    'link_path' => 'node/' . $createApp_nid,
+    'link_title' => "Create An App",
+    'router_path' => 'node/%',
+    'menu_name' => 'menu-overview',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'create an app',
+      ),
+    ),
+    'plid' => $getstartedMlid,
+  );
+  menu_link_save($createApp);
+
+
+
+
+
+  //Authorization and authentication
+$query = db_select('node', 'n');
+  $query->condition('title', 'Authentication, Authorization, and Consent');
+  $query->condition('type', 'page');
+  $query->fields('n', array('nid'));
+  $authentication_nid = $query->execute()->fetchField();
+  $path = array('source' => "node/$authentication_nid", 'alias' => 'authentication');
+  path_save($path);
+
+$authentication = array(
+    'link_path' => 'node/' . $authentication_nid,
+    'link_title' => "Authentication, Authorization, and Consent",
+    'router_path' => 'node/%',
+    'menu_name' => 'menu-overview',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Authentication, Authorization, and Consent',
+      ),
+    ),
+    'plid' => $getstartedMlid,
+  );
+  menu_link_save($authentication);
+
+
+
+  //sandbox
+  $query = db_select('node', 'n');
+  $query->condition('title', 'Sandbox');
+  $query->condition('type', 'page');
+  $query->fields('n', array('nid'));
+  $sandbox_nid = $query->execute()->fetchField();
+  $path = array('source' => "node/$sandbox_nid", 'alias' => 'sandbox');
+  path_save($path);
+
+$sandbox = array(
+    'link_path' => 'node/' . $sandbox_nid,
+    'link_title' => "Sandbox",
+    'router_path' => 'node/%',
+    'menu_name' => 'menu-overview',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Sandbox',
+      ),
+    ),
+    'plid' => $getstartedMlid,
+  );
+  menu_link_save($sandbox);
+
+
+  // api catalogue
+
+  $query = db_select('node', 'n');
+  $query->condition('title', 'API Catalogue');
+  $query->condition('type', 'page');
+  $query->fields('n', array('nid'));
+  $Catalogue_nid = $query->execute()->fetchField();
+  $path = array('source' => "node/$Catalogue_nid", 'alias' => 'Catalogue');
+  path_save($path);
+
+$Catalogue = array(
+    'link_path' => 'node/' . $Catalogue_nid,
+    'link_title' => "API Catalogue",
+    'router_path' => 'node/%',
+    'menu_name' => 'menu-overview',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'API Catalogue',
+      ),
+    ),
+    'plid' => $getstartedMlid,
+  );
+  menu_link_save($Catalogue);
+
+
+
+
+
+// adding home-page blocks to the context
+
+  /*$context = module_invoke('context', 'load', 'custom_home');
+ 
+  $home_page_blocks = array(
+    'module' => 'home_page_blocks',
+    'delta' => 'your-block-name',
+    'region' => 'content',
+    'weight' => -8,
+  );
+  $context->reactions['block']['blocks']['home_page_blocks'] = $home_page_blocks;
+ 
+  module_invoke('context', 'save', $context); */
+
 }

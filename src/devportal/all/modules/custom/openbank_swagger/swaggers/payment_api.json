@@ -1,0 +1,130 @@
+{
+  "swagger": "2.0",
+  "host": "apis-bank-dev.apigee.net",
+  "schemes": [
+    "https"
+  ],
+  "info": {
+    "description": "Payment Transfer API",
+    "title": "Payment Transfer",
+    "version": "0.0.1",
+    "termsOfService": "http://example.com/about/terms",
+    "contact": {
+      "name": "API Docs",
+      "url": "http://example.com/contact",
+      "email": "apis-eng@apigee.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://example.com"
+    }
+  },
+  "basePath": "/apis/v1/transfers",
+  "paths": {
+    "/initiate": {
+      "get": {
+        "description": "<p>Initiate transfer of funds from the consumers account to a recipient account.</p><p>&nbsp;</p><p>This API will initiate an authentication and consent flow using 2-factor authentication following which it will initiate funds transfer. <p>&nbsp;</p><p>A nonce will be used to prevent replay attacks and inadvertent duplicate transfers.</p><p>&nbsp;</p><p>The payee information is provided to the API as a JWT token with the following set of payment claims. The JWT token is signed with the client secret of the registered app to ensure that it is not tampered with. Refer <a href='/oauth2'>Authentication, Authorization and Consent</a> for more details. </p><p>&nbsp;</p><p>This method redirects to the redirect_url provided as part of the inputs. It will return transaction_id and status.</p><p>&nbsp;</p><p>To try this API you will need to perform two steps. When you make this call using the Send button you will see a HTTP 302 reponse. Copy the value of 'Location' as part of the response and paste it into a browser. This will trigger the Authetication flow. Now complete the consent flow using sample data provided in <a href='/sandbox'>sandbox</a>. When the consent flow is completed you will see browser taken to the redirect uri with transaction id and status as query parameters.</p>",
+        "summary": "Payment Transfer",
+        "operationId": "Payment Transfer",        
+        "tags": [
+          "PaymentTransfer"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TransferStatus"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "client_id",
+            "description": "Client ID of the registered App.",
+            "type": "string",
+            "required": true,
+            "default": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
+          },
+          {
+            "in": "query",
+            "name": "redirect_uri",
+            "description": "Redirect URI defined with your registered App.",
+            "type": "string",
+            "required": true,
+            "default": "http://localhost/"
+          },
+          {
+            "in": "query",
+            "name": "scope",
+            "description": "Scope of the Access Token requested.",
+            "type": "string",
+            "required": true,
+            "default" : "openid accounts payment"
+          },
+          {
+            "in": "query",
+            "name": "ui-locales",
+            "description": "Locale to be used.",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "en"
+            ],
+            "default": "en"
+          },
+          {
+            "in": "query",
+            "name": "state",
+            "description": "unique ID to maintain state between asynchronous requests.",
+            "type": "string",
+            "required": true,
+            "default": "af0ifjsldkj"
+          },
+          {
+            "in": "query",
+            "name": "acr_values",
+            "description": "Determines the level of security for authentication.",
+            "type": "string",
+            "required": true,
+            "default" : "3"
+
+          },
+          {
+            "in": "query",
+            "name": "request",
+            "description": "The JWT token with all the relevant payment claims.",
+            "type": "string",
+            "required": true,
+            "default" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY2VudHVyZS5jby51ayIsImF1ZCI6Imh0dHBzOi8vYXBpcy1iYW5rLWRldi5hcGlnZWUubmV0IiwicmVzcG9uc2VfdHlwZSI6ImNvZGUiLCJjbGllbnRfaWQiOiJnck9tdllBZWk4YUJBUnpFVklZaEd0cHZ6dG9mQUFqeiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vYXBpLmVudGVycHJpc2UuYXBpZ2VlLmNvbS92MS9vL2FwaXMtYmFuay9hcGltb2RlbHMvcGF5bWVudC10cmFuc2ZlcnMvdGVtcGxhdGVhdXRocy9waXNwX2F1dGgvY2FsbGJhY2siLCJzY29wZSI6Im9wZW5pZCBhY2NvdW50cyBwYXltZW50Iiwic3RhdGUiOiJhZjBpZmpzbGRraiIsImFjcl92YWx1ZXMiOiIzIiwiY2xhaW1zIjp7InBheW1lbnRpbmZvIjp7InR5cGUiOiJzZXBhX2NyZWRpdF90cmFuc2ZlciIsInRvIjp7ImFjY291bnRfbnVtYmVyIjoiNjIxMzYwMDAiLCJyZW1vdGVfYmljIjoiUkJPU0dCMjEwOUgiLCJyZW1vdGVfSUJBTiI6IkdCMzJFU1NFNDA0ODY1NjIxMzYwMTYiLCJyZW1vdGVfbmFtZSI6IkJpZ1ogb25saW5lIHN0b3JlIn0sInZhbHVlIjp7ImN1cnJlbmN5IjoiR0JQIiwiYW1vdW50IjoiMjAwIn0sImFkZGl0aW9uYWwiOnsic3ViamVjdCI6Ik9ubGluZSBQdXJjaGFzZSIsImJvb2tpbmdfY29kZSI6IjJTRkJKMjg1NTMiLCJib29raW5nX2RhdGUiOiIxNDYyNTE3NjQ1ODA5IiwidmFsdWVfZGF0ZSI6IjE0NjI1MTc2NDU4MDkifSwiY2hhbGxlbmdlX3R5cGUiOiJTQU5EQk9YX1RBTiJ9fSwiaWF0IjoxNDYyOTQ4ODM3fQ.0WknH_zuGR_BJdUxjdDfLsDycZstH-0DRPA6xjzhu-k"
+          }
+          ]
+      }
+    }
+  },
+  "definitions": {
+    "TransferStatus": {
+      "description": "Payment Transfer Response",
+      "type": "object",
+      "properties": {
+        "transaction_id": {
+          "type": "string",
+          "description": "unique reference transaction id generated for this transaction."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the transaction."
+        }
+      },
+      "xml": {
+        "name": "TransferStatus"
+      }
+    }
+    }
+  }

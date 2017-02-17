@@ -1,5 +1,5 @@
-name = DBank Responsive Theme
-description = A Responsive theme for the DBank devportal
+name = dbank Responsive Theme
+description = A Responsive theme for the devportal
 core = 7.x
 base theme = apigee_responsive
 
@@ -54,4 +54,4 @@ settings[bootstrap_navbar_position] = fixed-top
 settings[bootstrap_region_well-sidebar_first] = ''
 settings[bootstrap_region_well-sidebar_second] = ''
 settings[footer_position] = static
-settings[footer_bg_color] = #ffffff
+settings[footer_bg_color] = #999

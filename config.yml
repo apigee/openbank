@@ -14,9 +14,9 @@ resources:
     - name: env
       prompt: Edge Org Environment
     - name: usergrid_org
-      prompt: BaaS services Org name
+      prompt: BaaS Org name
     - name: usergrid_app
-      prompt: BaaS services App name
+      prompt: BaaS App name
     - name: usergrid_client_id
       prompt: BaaS Org Client Id
     - name: usergrid_secret

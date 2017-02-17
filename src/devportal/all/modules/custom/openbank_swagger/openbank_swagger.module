@@ -1,0 +1,373 @@
+<?php
+use Drupal\devconnect\Crypto;
+require_once DRUPAL_ROOT . '/profiles/apigee/modules/custom/devconnect/lib/Crypto.php';
+
+//define('SMARTDOCS_SAMPLE_PETSTORE_MODEL', 'petstore example');
+//define('SMARTDOCS_SAMPLE_WEATHER_MODEL', 'weather example');
+define('SMARTDOCS_OAUTH_MODEL', 'oauthapis');
+define('SMARTDOCS_ACCOUNTS_MODEL', 'accountsapis');
+define('SMARTDOCS_OPENDATA_MODEL', 'open-dataapis');
+define('SMARTDOCS_PAYMENT_MODEL', 'payment-transfersapis');
+define('SMARTDOCS_USERINFO_MODEL', 'userinfoapis');
+define('SMARTDOCS_PRODUCTS_MODEL', 'productapis')
+
+ini_set('arg_separator.output', '&');
+
+function openbank_swagger_menu() {
+    $items = array();
+ 
+	  $items['swagger/import'] = array(
+         'title' => 'Create and import SmartDocs models',
+        'page callback' => 'custom_apigee_smartdocs_import_model_content',
+		'access arguments' => array('access content'),
+       );
+		   
+  	
+	  $items['swagger/publish'] = array(
+		 'title' => 'Render and publish models',
+		'page callback' => 'custom_apigee_smartdocs_render_model_content',
+		'access arguments' => array('access content'),
+	   );
+	   
+    return $items;	
+    
+}
+
+/**
+ * Create model and import Swagger file to load content.
+ */
+function custom_apigee_smartdocs_import_model_content() {
+  
+  global $install_state;
+  _custom_apigee_manage_memory();
+  
+
+  // Create SmartDocs  model and Import swagger file model. ####################################
+  
+  /*$model_display_name = 'Pet Store Example API';
+  $model_description = 'Manage inventory and users through an example REST API patterned after the classic pet store demo.';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_create_model',
+    array(
+      SMARTDOCS_SAMPLE_PETSTORE_MODEL,
+      $model_display_name,
+      $model_description,
+    ),
+  );
+  
+  $model_import_file = drupal_get_path('module', 'fhir_swagger') . '/swaggers/petstore.swagger.json';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_import_model',
+    array(
+      SMARTDOCS_SAMPLE_PETSTORE_MODEL,
+      $model_import_file,
+      'swagger',
+      'application/json',
+    ),
+  );
+  
+  $model_display_name = 'Weather Example API';
+  $model_description = 'Get weather reports for any location using the Yahoo Weather API.';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_create_model',
+    array(
+      SMARTDOCS_SAMPLE_WEATHER_MODEL,
+      $model_display_name,
+      $model_description,
+    ),
+  );
+
+  $model_import_file = drupal_get_path('module', 'fhir_swagger') . '/swaggers/weather.xml';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_import_model',
+    array(
+      SMARTDOCS_SAMPLE_WEATHER_MODEL,
+      $model_import_file,
+      'wadl',
+      'application/xml',
+    ),
+  );
+  */
+  
+  $model_display_name = 'oauthapis';
+  $model_description = 'OAuth API documentation.';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_create_model',
+    array(
+      SMARTDOCS_OAUTH_MODEL,
+      $model_display_name,
+      $model_description,
+    ),
+  );
+  
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/auth_api.json';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_import_model',
+    array(
+      SMARTDOCS_OAUTH_MODEL,
+      $model_import_file,
+      'swagger',
+      'application/json',
+    ),
+  );
+
+
+// Account APIs 
+
+  $model_display_name = 'accountsapis';
+  $model_description = 'Accounts API documentation.';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_create_model',
+    array(
+      SMARTDOCS_ACCOUNTS_MODEL,
+      $model_display_name,
+      $model_description,
+    ),
+  );
+  
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/account_api.json';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_import_model',
+    array(
+      SMARTDOCS_ACCOUNTS_MODEL,
+      $model_import_file,
+      'swagger',
+      'application/json',
+    ),
+  );
+
+
+
+// Opendata APIS
+  $model_display_name = 'open-dataapis';
+  $model_description = 'OpenData API documentation.';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_create_model',
+    array(
+      SMARTDOCS_OPENDATA_MODEL,
+      $model_display_name,
+      $model_description,
+    ),
+  );
+  
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/opendata_locations.json';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_import_model',
+    array(
+      SMARTDOCS_OPENDATA_MODEL,
+      $model_import_file,
+      'swagger',
+      'application/json',
+    ),
+  );
+
+
+  // Payment APIs
+ $model_display_name = 'payment-transfersapis';
+  $model_description = 'Payment API documentation.';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_create_model',
+    array(
+      SMARTDOCS_PAYMENT_MODEL,
+      $model_display_name,
+      $model_description,
+    ),
+  );
+  
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/payment_api.json';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_import_model',
+    array(
+      SMARTDOCS_PAYMENT_MODEL,
+      $model_import_file,
+      'swagger',
+      'application/json',
+    ),
+  );
+
+// UserInfo APIs
+  $model_display_name = 'userinfoapis';
+  $model_description = 'User information API documentation.';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_create_model',
+    array(
+      SMARTDOCS_USERINFO_MODEL,
+      $model_display_name,
+      $model_description,
+    ),
+  );
+  
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/userinfo_api.json';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_import_model',
+    array(
+      SMARTDOCS_USERINFO_MODEL,
+      $model_import_file,
+      'swagger',
+      'application/json',
+    ),
+  );
+
+
+  //products model 
+   $model_display_name = 'productapis';
+  $model_description = 'User information API documentation.';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_create_model',
+    array(
+      SMARTDOCS_PRODUCTS_MODEL,
+      $model_display_name,
+      $model_description,
+    ),
+  );
+  
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/opendata_products.json';
+  $operations[] = array(
+    'custom_apigee_batch_smartdocs_import_model',
+    array(
+      SMARTDOCS_PRODUCTS_MODEL,
+      $model_import_file,
+      'swagger',
+      'application/json',
+    ),
+  );
+
+
+
+  // creating and import of smartdocs completed --
+  
+
+  $batch = array(
+    'operations' => $operations,
+    'title' => t('Creating and importing SmartDocs models'),
+    'init_message' => t('SmartDocs model creation has started...'),
+	'file' => drupal_get_path('module', 'openbank_swagger') . '/openbank_swagger.install_callbacks.inc',
+	'error_message' => t('batch process failed'),
+	);
+	
+	batch_set($batch);
+	batch_process('node/1');
+
+	//return $batch;
+}
+
+/**
+ * Renders and publishes SmartDocs nodes.
+ *
+ * @return mixed
+ *   The batch API array.
+ */
+function custom_apigee_smartdocs_render_model_content() {
+  
+  global $install_state;
+ _apigee_manage_memory();
+  drupal_set_message('Rendering SmartDocs documentation pages.', 'status');
+  require_once drupal_get_path('module', 'smartdocs') . '/batch/smartdocs.render.inc';
+
+  // Get batches to render model nodes. #################################################################
+  //$batch_pet = custom_get_smartdocs_render_batch(SMARTDOCS_SAMPLE_PETSTORE_MODEL);
+  //$batch_weather = custom_get_smartdocs_render_batch(SMARTDOCS_SAMPLE_WEATHER_MODEL);
+  $batch_oauth = custom_get_smartdocs_render_batch(SMARTDOCS_OAUTH_MODEL);
+  $batch_accounts = custom_get_smartdocs_render_batch(SMARTDOCS_ACCOUNTS_MODEL);
+  $batch_payment = custom_get_smartdocs_render_batch(SMARTDOCS_PAYMENT_MODEL);
+  $batch_opendata = custom_get_smartdocs_render_batch(SMARTDOCS_OPENDATA_MODEL);
+  $batch_userinfo = custom_get_smartdocs_render_batch(SMARTDOCS_USERINFO_MODEL);
+  $batch_products = custom_get_smartdocs_render_batch(SMARTDOCS_PRODUCTS_MODEL);
+  
+  
+  $operations = array();
+  /*if ($batch_weather != NULL) {
+    $operations = array_merge($operations, $batch_weather['operations']);
+  }
+  if ($batch_pet != NULL) {
+    $operations = array_merge($operations, $batch_pet['operations']);
+  }*/
+  if ($batch_oauth != NULL) {
+    $operations = array_merge($operations, $batch_oauth['operations']);
+  }
+  if ($batch_accounts != NULL) {
+    $operations = array_merge($operations, $batch_accounts['operations']);
+  }
+  if ($batch_payment != NULL) {
+    $operations = array_merge($operations, $batch_payment['operations']);
+  }
+  if ($batch_opendata != NULL) {
+    $operations = array_merge($operations, $batch_opendata['operations']);
+  }
+  if ($batch_userinfo != NULL) {
+    $operations = array_merge($operations, $batch_userinfo['operations']);
+  }
+  if ($batch_products != NULL) {
+    $operations = array_merge($operations, $batch_products['operations']);
+  }
+ 
+ // Get batches to render model nodes complete. #############################################################
+  // Merge batches to return.
+  $batch = array(
+    'operations' => $operations,
+    'title' => t('Rendering and Publishing SmartDocs documentation pages'),
+    'init_message' => t('SmartDocs rendering has started...'),
+    'progress_message' => t('Processed @current out of @total.'),
+    'error_message' => t('Rendering SmartDocs nodes has encountered an error.'),
+     'file' => drupal_get_path('module', 'smartdocs') . '/batch/smartdocs.render.inc',
+  );
+
+  batch_set($batch);
+  batch_process('node/1');
+  return $batch;
+}
+
+
+/**
+ * Get batch for rendering all nodes for a model.
+ *
+ * @return array
+ *   The batch for Drupal batch API.
+ */
+function custom_get_smartdocs_render_batch($model_machine_name) {
+ try {
+    $model = new Apigee\SmartDocs\Model(devconnect_default_org_config());
+    $model->load($model_machine_name);
+    $revision = new Apigee\SmartDocs\Revision($model->getConfig(), $model->getUuid());
+    $rev = max($model->getLatestRevisionNumber(), 1);
+    $revision->load($rev);
+  }
+  catch (Apigee\Exceptions\ResponseException $e) {
+    $message = $e->getResponse();
+    $message_object = @json_decode($message, TRUE);
+    if (is_array($message_object) && array_key_exists('message', $message_object)) {
+      $err_msg = $message_object['message'];
+    }
+    else {
+      $err_msg = $e->getMessage();
+    }
+    $msg_args = array('%model' => $model_machine_name, '!error_message' => $err_msg);
+    drupal_set_message(t('Error rendering SmartDocs methods for %model: !error_message', $msg_args), 'error');
+    watchdog('apigee', 'Error rendering SmartDocs methods for %model: !error_message', $msg_args, WATCHDOG_ERROR);
+    return NULL;
+  }
+  catch (Exception $e) {
+    $msg_args = array('%model' => $model_machine_name, '!error_message' => $e->getMessage());
+    drupal_set_message(t('Error rendering SmartDocs methods for %model: !error_message', $msg_args), 'error');
+    watchdog('apigee', 'Error rendering SmartDocs methods for %model: !error_message', $msg_args, WATCHDOG_ERROR);
+    return NULL;
+  }
+
+  $selected = array();
+  foreach ($revision->getResources() as $resource) {
+    foreach ($resource->getMethods() as $method) {
+      $selected[$method->getUuid()] = $method->getUuid();
+    }
+  }
+  $batch = smartdocs_render($model, $revision, $selected, array('publish' => 'publish'), TRUE);
+  
+  return $batch;
+}
+
+/**
+ * Boosts PHP's memory and execution time for large-capacity batch processes.
+ */
+function _custom_apigee_manage_memory() {
+  ini_set('memory_limit', '2048M');
+  ini_set('max_execution_time', 6000);
+}

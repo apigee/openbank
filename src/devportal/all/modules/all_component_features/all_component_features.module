@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the all_component_features feature.
+ */
+
+include_once 'all_component_features.features.inc';
