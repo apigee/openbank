@@ -34,8 +34,8 @@ with a **Developer Portal**, dummy backend and a sample app.
 ## Getting Started
 
 +   Create an [Apigee API Management Developer Account](https://enterprise.apigee.com)
-+   Create an [Apigee API BaaS Account](https://apibaas.apigee.com)
-+   Request For [Apigee Developer Portal](https://goo.gl/BiILtr)
++   Create an [Apigee BaaS Account](https://apibaas.apigee.com)
++   Request For [Apigee Developer Portal](https://goo.gl/j8Vbew)
 
 To Learn more on the basic concepts of Apigee Edge, please refer to : 
 http://docs.apigee.com/api-services/content/what-apigee-edge
