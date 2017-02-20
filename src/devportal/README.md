@@ -192,7 +192,7 @@ Go through the documentation, create your own Apps and explore the APIS.
  - For exploring and trying the APIs click on the **APIs** on the main menu, select from the list of APIs available, and get started.
 
 
-###**5. Create your own developer App**
+##**5. Create your own developer App**
 one can go and create own developer app and register it. In order to accomplish this:
 
  - Goto MY ACCOUNT -> My Apps.

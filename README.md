@@ -148,7 +148,7 @@ Pull node modules
 npm install
 ```
 
-#### Run the deploy command
+Run the deploy command
 ```
 gulp deploy --resource openbank_apis
 ```
