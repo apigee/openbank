@@ -1,4 +1,4 @@
-Since you have landed here, we assume you already have or requested for Apigee developer portal.
+Since you have landed here, we assume you already have or requested for [Apigee developer portal](https://goo.gl/j8Vbew).
 
 ##**1. Introduction**
 
