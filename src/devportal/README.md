@@ -62,8 +62,10 @@ In order to update the swagger files (**src/devportal/all/modules/custom/openban
  
 #### Pre-requisites
  - APIGEE edge org should have 'PISP_App' and 'AISP_App' apps(the deploy script would have created it by default).
+ 
 #### How to execute ?
 ```bash
+ $ npm install
  $ node init_portal.js
 ```
  - Provide the APIGEE edge org, env, username password etc when prompted while executing the script.
