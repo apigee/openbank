@@ -59,6 +59,7 @@ In order to update the swagger files (**src/devportal/all/modules/custom/openban
  
 #### How to execute ?
 ```bash
+ $ cd openbank
  $ npm install
  $ node init_portal.js
 ```
@@ -67,6 +68,11 @@ In order to update the swagger files (**src/devportal/all/modules/custom/openban
 ####**3.2.4 Replace default code**
 
  - Replace the sites/all folder of default portal repo with the git repo  openbank/src/devportal/all.
+ 
+ 
+```bash
+ $ cp openbank/src/devportal/all {path_to_your_portal_repo}/sites
+```
 
 ####**3.2.5 Save the changes**
 #####**on-cloud**
