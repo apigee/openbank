@@ -168,11 +168,13 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
 
 ###**4.5 Enable other required modules**
 
- - Goto **{your_portal_site}/admin/modules**.
- - Enable **home_page_blocks**.
- - Click Save Configuration.
- - Enable **all_component_features** and **openbank_install** modules.
- - Click save.
+ - Goto **{your_portal_site}/admin/modules**
+ - Enable **home_page_blocks**
+ - Click Save Configuration
+ - Enable **all_component_features**
+ - Save the configuration
+ - Enable **openbank_install** module
+ - Save the configuration
  - Goto admin-> configuration -> Development -> performance.
  - Click "clear all caches"
 
