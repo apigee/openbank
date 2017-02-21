@@ -130,18 +130,16 @@
           {
             "in": "formData",
             "name": "client_id",
-            "description": "Client ID of the registered App.To try sanbox, please use client_id <code>FNSe3KXNGtiZoPCcELbyv4G1SXecyDDJ</code>",
+            "description": "Client ID of the registered App.",
             "type": "string",
-            "required": true,
-            "default": "FNSe3KXNGtiZoPCcELbyv4G1SXecyDDJ"
+            "required": true
           },
           {
             "in": "formData",
             "name": "redirect_uri",
-            "description": "Redirect URI defined with your registered App. This is verified against the redirect uri that is registered when the App is created. If found to be different this call fails to return the access token. e.g redirect_uri <code>http://localhost/</code>",
+            "description": "Redirect URI defined with your registered App. This is verified against the redirect uri that is registered when the App is created. If found to be different this call fails to return the access token.",
             "type": "string",
-            "required": true,
-            "default": "http://localhost/"
+            "required": true
           },
           {
             "in": "formData",
@@ -153,23 +151,21 @@
               "client_credentials",
               "authorization_code"
             ],
-            "default": "client_credentials"
+            "default": "authorization_code"
           },
           {
             "in": "formData",
             "name": "code",
-            "description": "Code returned from the authorize call. Applicable only on grant_type is authorization_code and the value is <code>code</code>.",
+            "description": "Code returned from the authorize call. Applicable only on grant_type = authorization_code and the value is one fetched from /authorize API",
             "type": "string",
-            "required": false,
-            "default": "code"
+            "required": false
           },
           {
             "in": "header",
             "name": "Authorization",
             "description": "Base 64 encoded string with client_id:client_secret.",
             "type": "string",
-            "required": true,
-            "default": "Basic Rk5TZTNLWE5HdGlab1BDY0VMYnl2NEcxU1hlY3lEREo6bk9mNlBQV25ONkhRUHNLZg=="
+            "required": true
           }]
       }
     }

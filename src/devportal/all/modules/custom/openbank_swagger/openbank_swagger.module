@@ -125,7 +125,7 @@ function custom_apigee_smartdocs_import_model_content() {
     ),
   );
   
-  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/account_api.json';
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/account_apis.json';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_import_model',
     array(
