@@ -108,11 +108,13 @@ All the required files will be automatically available, and can be found in admi
 ###**4.4 Smartdocs import and rendering**
 Smartdocs methods provide a template for configuring and making API calls through the portal. Hence each API needs a smartdoc method associated with it. In order to create smartdocs for the APIS, one needs to import respective Open API json files which will get converted to smartdocs method internally. In order to do so, follow the steps below:
 
-**4.4.1 Enable the openbank swagger module**
+**4.4.1 Enable the openbank swagger modules**
 
 To enable openbank swagger or any other module, go to admin -> modules and enable them.
 
- - Select **openbank_swagger** module from the list of modules, enable it, and save the configuration.
+ - Select **openbank_swagger** module from the list of modules, enable it.
+ - Select **smartdocs_auth** module from the list, enable it.
+ - Save the configuration.
  
  <img src="../../readme-images/devportal/modules1.png">
     
@@ -149,10 +151,14 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
 **4.4.4.2 Configure Template Authentication Scheme**
 
  - Select Content > SmartDocs.
- - For the **accountapis** and **userinfoapis** API models, select **Settings** from Operations drop-down.
+ - For the **accountsapis** API models, select **Settings** from Operations drop-down.
  - In Template authentication schemes, set **Client Id & Client Secret** to the Client Id & Client Secret of '*AISP_App*' app, which was created during deployment. (https://enterprise.apigee.com/platform/{org}/apps)
  <img src="../../readme-images/devportal/templateauth.png" width="700px" height="350px"/>
  - Click the "Save template authentication schemes" button.
+ - For the **userinfoapis** API models, select **Settings** from Operations drop-down.
+ - In Template authentication schemes, set **Client Id & Client Secret** to the Client Id & Client Secret of '*AISP_App*' app, which was created during deployment.
+ - Ensure that the callback URL fetched on Saving the Template Auth for *accountsapis* and *userinfoapis* models is already present in the '*AISP_App's*' list of comma seperated values for callback URL. If not, do the same.
+ 
 
 ###**4.5 Enable other required modules**
 
