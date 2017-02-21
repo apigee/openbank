@@ -137,7 +137,7 @@
           {
             "in": "formData",
             "name": "redirect_uri",
-            "description": "Redirect URI defined with your registered App. This is verified against the redirect uri that is registered when the App is created. If found to be different this call fails to return the access token. e.g redirect_uri <code>http://localhost/</code>",
+            "description": "Redirect URI defined with your registered App. This is verified against the redirect uri that is registered when the App is created. If found to be different this call fails to return the access token.",
             "type": "string",
             "required": true
           },
