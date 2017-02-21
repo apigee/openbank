@@ -71,7 +71,7 @@ In order to update the swagger files (**src/devportal/all/modules/custom/openban
  
  
 ```bash
- $ cp openbank/src/devportal/all {path_to_your_portal_repo}/sites
+ $ cp -r openbank/src/devportal/all <path to pantheon cloned repo>/sites
 ```
 
 ####**3.2.5 Save the changes**
@@ -107,7 +107,7 @@ All the required images are zipped in openbank repo here - openbank/src/devporta
 
  - Goto **{your_portal_site}/file/add/upload/archive**
  - Upload the zip **openbank/src/devportal/opebank.zip**
- - Click submit
+ - Click submit.
 
 All the required files will be automatically available, and can be found in admin -> content -> Files
 
