@@ -9,7 +9,7 @@
         <Response/>
     </PreFlow>
     <HTTPTargetConnection>
-        <URL>https://[to_be_replaced]</URL>
+        <URL>{{ sms_endpoint }}</URL>
     </HTTPTargetConnection>
     <PostFlow name="PostFlow">
         <Request/>

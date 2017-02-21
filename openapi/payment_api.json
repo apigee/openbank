@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "apis-bank-dev.apigee.net",
+  "host": "bumblebee-test.apigee.net",
   "schemes": [
     "https"
   ],
@@ -12,7 +12,7 @@
     "contact": {
       "name": "API Docs",
       "url": "http://example.com/contact",
-      "email": "apis-eng@apigee.com"
+      "email": "solution-ninjas@google.com"
     },
     "license": {
       "name": "Apache 2.0",
@@ -50,7 +50,7 @@
             "description": "Client ID of the registered App.",
             "type": "string",
             "required": true,
-            "default": "grOmvYAei8aBARzEVIYhGtpvztofAAjz"
+            "default": "g7VsquT2XmJfWCT17Pr2lyiAmkhj3LgW"
           },
           {
             "in": "query",
@@ -58,7 +58,7 @@
             "description": "Redirect URI defined with your registered App.",
             "type": "string",
             "required": true,
-            "default": "http://localhost/"
+            "default": "http://apigee.com/about"
           },
           {
             "in": "query",
@@ -102,7 +102,7 @@
             "description": "The JWT token with all the relevant payment claims.",
             "type": "string",
             "required": true,
-            "default" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY2VudHVyZS5jby51ayIsImF1ZCI6Imh0dHBzOi8vYXBpcy1iYW5rLWRldi5hcGlnZWUubmV0IiwicmVzcG9uc2VfdHlwZSI6ImNvZGUiLCJjbGllbnRfaWQiOiJnck9tdllBZWk4YUJBUnpFVklZaEd0cHZ6dG9mQUFqeiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vYXBpLmVudGVycHJpc2UuYXBpZ2VlLmNvbS92MS9vL2FwaXMtYmFuay9hcGltb2RlbHMvcGF5bWVudC10cmFuc2ZlcnMvdGVtcGxhdGVhdXRocy9waXNwX2F1dGgvY2FsbGJhY2siLCJzY29wZSI6Im9wZW5pZCBhY2NvdW50cyBwYXltZW50Iiwic3RhdGUiOiJhZjBpZmpzbGRraiIsImFjcl92YWx1ZXMiOiIzIiwiY2xhaW1zIjp7InBheW1lbnRpbmZvIjp7InR5cGUiOiJzZXBhX2NyZWRpdF90cmFuc2ZlciIsInRvIjp7ImFjY291bnRfbnVtYmVyIjoiNjIxMzYwMDAiLCJyZW1vdGVfYmljIjoiUkJPU0dCMjEwOUgiLCJyZW1vdGVfSUJBTiI6IkdCMzJFU1NFNDA0ODY1NjIxMzYwMTYiLCJyZW1vdGVfbmFtZSI6IkJpZ1ogb25saW5lIHN0b3JlIn0sInZhbHVlIjp7ImN1cnJlbmN5IjoiR0JQIiwiYW1vdW50IjoiMjAwIn0sImFkZGl0aW9uYWwiOnsic3ViamVjdCI6Ik9ubGluZSBQdXJjaGFzZSIsImJvb2tpbmdfY29kZSI6IjJTRkJKMjg1NTMiLCJib29raW5nX2RhdGUiOiIxNDYyNTE3NjQ1ODA5IiwidmFsdWVfZGF0ZSI6IjE0NjI1MTc2NDU4MDkifSwiY2hhbGxlbmdlX3R5cGUiOiJTQU5EQk9YX1RBTiJ9fSwiaWF0IjoxNDYyOTQ4ODM3fQ.0WknH_zuGR_BJdUxjdDfLsDycZstH-0DRPA6xjzhu-k"
+            "default" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3d3dy5vcGVuYmFuay5hcGlnZWUuY29tIiwiYXVkIjoiaHR0cHM6Ly9hcGlzLWJhbmstZGV2LmFwaWdlZS5uZXQiLCJyZXNwb25zZV90eXBlIjoidG9rZW4iLCJjbGllbnRfaWQiOiJnN1ZzcXVUMlhtSmZXQ1QxN1ByMmx5aUFta2hqM0xnVyIsInJlZGlyZWN0X3VyaSI6Imh0dHA6Ly9hcGlnZWUuY29tL2Fib3V0Iiwic2NvcGUiOiJvcGVuaWQgYWNjb3VudHMgcGF5bWVudCIsInN0YXRlIjoiYWYwaWZqc2xka2oiLCJhY3JfdmFsdWVzIjoiMiIsImNsYWltcyI6eyJwYXltZW50aW5mbyI6eyJ0eXBlIjoic2VwYV9jcmVkaXRfdHJhbnNmZXIiLCJ0byI6eyJhY2NvdW50X251bWJlciI6Ijc3NzAwMDAwMDIiLCJyZW1vdGVfYmljIjoiUkJPU0dCMjEwOUgiLCJyZW1vdGVfSUJBTiI6IkdCMzJFU1NFNDA0ODY1NjIxMzYwMTYiLCJyZW1vdGVfbmFtZSI6IkJpZ1ogb25saW5lIHN0b3JlIn0sInZhbHVlIjp7ImN1cnJlbmN5IjoiRVVSIiwiYW1vdW50IjoiMzk5In0sImFkZGl0aW9uYWwiOnsic3ViamVjdCI6Ik9ubGluZSBQdXJjaGFzZSIsImJvb2tpbmdfY29kZSI6IjJTRkJKMjg1NTMiLCJib29raW5nX2RhdGUiOiIxNDYyNTE3NjQ1ODA5IiwidmFsdWVfZGF0ZSI6IjE0NjI1MTc2NDU4MDkifSwiY2hhbGxlbmdlX3R5cGUiOiJTQU5EQk9YX1RBTiJ9fSwiaWF0IjoxNDc0MDI4NTk3fQ.gNAUnqGfMTuwh2ApoWfb3L7Q8DoQSrbMyd4-VhAQv68"
           }
           ]
       }

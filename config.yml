@@ -25,9 +25,11 @@ resources:
     - env: test
       baas_host: https://apibaas-trial.apigee.net
       edge_host: https://api.enterprise.apigee.com
+      sms_endpoint: https://rest.nexmo.com/sms/json
     - env : prod
       baas_host: https://apibaas-trial.apigee.net
       edge_host: https://api.enterprise.apigee.com
+      sms_endpoint: https://rest.nexmo.com/sms/json
 
     edgeOrg:
     script: gulpfile.js
@@ -94,6 +96,9 @@ resources:
       - name: edgeBasePath
         filePaths: ['src/gateway/transfers/target/apiproxy/policies/Callout-Complete-Transfer.xml']
         value: 'https://{{ org }}-{{ env }}.apigee.net'
+      - name: sms_endpoint
+        filePaths: ['src/gateway/sms-token/target/apiproxy/targets/confirmation.xml','src/gateway/sms-token/target/apiproxy/targets/default.xml']
+        value: '{{ sms_endpoint }}'
     - name: bank_apis
       type: proxy
       items:
