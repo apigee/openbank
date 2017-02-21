@@ -164,7 +164,6 @@ function post_prompt(err, results) {
                 },
                 "iat": 1474028597
             }, secret_pisp);
-            console.log(secret_pisp)
 
             inject_object.token_payment = token_payment
 

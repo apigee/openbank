@@ -1,4 +1,4 @@
-Since you have landed here, we assume you already have or requested for Apigee developer portal.
+Since you have landed here, we assume you already have or requested for [Apigee developer portal](https://goo.gl/j8Vbew).
 
 ##**1. Introduction**
 
@@ -51,23 +51,22 @@ Login Pantheon -> goto your portal site -> Backups -> and create a new backup.
 #####**on-premise** 
 Take backup of /var/www/html/sites directory.
 
-
-####**3.2.3 Replace default code**
-
- - Replace the sites/all folder of default portal repo with the git repo  openbank/src/devportal/all.
-
-
-####**3.2.4 Update the Open APIs**
+####**3.2.3 Update the Open APIs**
 In order to update the swagger files (**src/devportal/all/modules/custom/openbank_swagger**) with the parameters such as host, client ID, client secret, you need to execute the **/openbank/init_portal.js** script.
  
 #### Pre-requisites
  - APIGEE edge org should have 'PISP_App' and 'AISP_App' apps(the deploy script would have created it by default).
+ 
 #### How to execute ?
 ```bash
+ $ npm install
  $ node init_portal.js
 ```
  - Provide the APIGEE edge org, env, username password etc when prompted while executing the script.
 
+####**3.2.4 Replace default code**
+
+ - Replace the sites/all folder of default portal repo with the git repo  openbank/src/devportal/all.
 
 ####**3.2.5 Save the changes**
 #####**on-cloud**
@@ -192,7 +191,7 @@ Go through the documentation, create your own Apps and explore the APIS.
  - For exploring and trying the APIs click on the **APIs** on the main menu, select from the list of APIs available, and get started.
 
 
-###**5. Create your own developer App**
+##**5. Create your own developer App**
 one can go and create own developer app and register it. In order to accomplish this:
 
  - Goto MY ACCOUNT -> My Apps.
