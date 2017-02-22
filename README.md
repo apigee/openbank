@@ -196,6 +196,22 @@ The dummy Backend system is created by the deploy script for this OpenBank solut
 
 ## Changelog
 
+#### 2017/02/20
+
+* APIs / API Spec
+    * Refined Products API and added to Developer Portal Smartdocs
+    * Updated OpenAPI spec for Products API
+
+* Installation 
+    * New node-based deployment script
+    * New script for easier portal setup
+    
+* Documentation
+    * Updated API documenation
+    * Updated Developer Portal documentation
+    * Updated installation instructions for APIs and Developer Portal
+
+
 #### 2016/11/03
 
 *   Added Products API
