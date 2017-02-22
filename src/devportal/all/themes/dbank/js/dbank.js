@@ -15,7 +15,7 @@
 		});
 		$("div.title-description > a.active").addClass("activeTitle");
 		$("div.title-description > a.activeTitle").parentsUntil("h3.ui-accordion-header").css("display","block");
-		$("section.block.block-block.contextual-links-region.clearfix").addClass("home-dbank-block");
+		$("section.block.block-block.clearfix").addClass("home-dbank-block");
 	});
 })(jQuery);
  
