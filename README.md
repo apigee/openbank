@@ -202,7 +202,7 @@ The dummy Backend system is created by the deploy script for this OpenBank solut
     * Refined Products API and added to Developer Portal Smartdocs
     * Updated OpenAPI spec for Products API
 
-* Installation 
+* Installation
     * New node-based deployment script
     * New script for easier portal setup
     
