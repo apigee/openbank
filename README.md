@@ -1,5 +1,9 @@
 # <a href="http://apigee.com/"><img src="http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png"/></a> OpenBank
 
+## Update!
+We have created a new video to demonstrate the OpenBank Solution and Installation Steps. Please check out the video below and give us your feedback on what you liked and what you would like to see.
+
+[![OpenBank APIs and Installation](http://img.youtube.com/vi/8eecvL75B5w/0.jpg)](http://www.youtube.com/watch?v=8eecvL75B5w "OpenBank APIs and Installation")
 
 ## Overview
 
@@ -207,8 +211,8 @@ The dummy Backend system is created by the deploy script for this OpenBank solut
     * New script for easier portal setup
     
 * Documentation
+    * Create new video overview of the OpenBank APIs and Installation - http://www.youtube.com/watch?v=8eecvL75B5w 
     * Updated API documenation
-    * Updated Developer Portal documentation
     * Updated installation instructions for APIs and Developer Portal
 
 
