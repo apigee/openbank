@@ -211,7 +211,7 @@ The dummy Backend system is created by the deploy script for this OpenBank solut
     * New script for easier portal setup
     
 * Documentation
-    * Create new video overview of the OpenBank APIs and Installation - http://www.youtube.com/watch?v=8eecvL75B5w 
+    * New video overview of the OpenBank APIs and Installation - http://www.youtube.com/watch?v=8eecvL75B5w 
     * Updated API documenation
     * Updated installation instructions for APIs and Developer Portal
 
