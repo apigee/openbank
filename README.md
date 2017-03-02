@@ -9,11 +9,11 @@ We have created a new video to demonstrate the OpenBank Solution and Installatio
 
 This repository is organized into the following sections
 
-[Architecture](#architecture)
-  - [Design](#design)
+[Design](#design)
+  - [Architecture](#architecture)
   - [Security](#security)
   - [APIs](#functional-apis)
-[Setup]
+[Setup](#setup)
   - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Developer Portal](#developer-portal)
@@ -155,7 +155,7 @@ script from the root folder of the cloned repo.
 + node.js 
 + npm
 
-Run the following node commands to deploy the APIs into your own Edge Org.
+#### Instructions
 
 Install gulp 
 ```
