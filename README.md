@@ -1,4 +1,4 @@
-# <a href="http://apigee.com/"><img src="http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png"/></a> OpenBank
+# [![apigee.com](http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png)](http://apigee.com) Openbank
 
 The Apigee Open Banking APIx solution simplifies and accelerates the process of delivering open banking by providing secure, ready-to-use APIs along with the computing infrastructure to support internal and external innovation.
 
@@ -10,31 +10,37 @@ We have created a new video to demonstrate the OpenBank Solution and Installatio
 This repository is organized into the following sections
 
 [Design](#design)
-  - [Architecture](#architecture)
-  - [Security](#security)
-  - [APIs](#functional-apis)
+- [Architecture](#architecture)
+- [Security](#security)
+- [APIs](#functional-apis)  
+
 [Setup](#setup)
-  - [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Developer Portal](#developer-portal)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Developer Portal](#developer-portal)
+
 [Changelog](#changelog)
 
 ## Overview
 
- The OpenBank solution is built on Apigee Edge API Management Platform, and features the following APIs:
+The OpenBank solution is built on Apigee Edge API Management Platform, and features the following APIs:
 
-  - Account Access APIs.
-   - Account Information 
-   - Account Transaction 
-   - Account Information 
-  - Payment Transfer APIs
-  - Payment Initiation
-  - Open Data APIs
-   - ATM location 
-   - Branch Location
-   - Bank Products
-  - OAuth APIs (Security)
-  - UserInfo APIs
+**Account Access APIs**
+  - Account Information 
+  - Account Transaction 
+  - Account Information 
+
+**Payment Transfer APIs**
+- Payment Initiation
+
+**Open Data APIs**
+  - ATM location 
+  - Branch Location
+  - Bank Products
+
+**Security APIs**
+  - OAuth
+  - UserInfo
 
 ![enter image description
 here](http://openbank.apigee.com/sites/default/files/openbank_architecture.png)
@@ -201,8 +207,9 @@ Developers need to interact with the Banks and with each other. Enable your deve
 
 Apigee Edge provides with a Developer Services portal that you can use to build and launch your own customized website to provide all of these services to your development community. One has the option to create their own developer portal, either in the cloud or on-premises.
 
-The below picture depicts how a dev portal looks like:
-<img src="readme-images/openbank.png">
+The below picture depicts how a dev portal looks like
+
+![developer-portal](readme-images/openbank.png)
 
 ####Developer portal Setup
 The detailed instructions for developer portal setup for openbank solution can be found [Here](https://github.com/apigee/openbank/tree/master/src/devportal).
