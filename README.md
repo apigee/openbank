@@ -1,13 +1,27 @@
 # <a href="http://apigee.com/"><img src="http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png"/></a> OpenBank
 
+The Apigee Open Banking APIx solution simplifies and accelerates the process of delivering open banking by providing secure, ready-to-use APIs along with the computing infrastructure to support internal and external innovation.
+
 ## Update!
 We have created a new video to demonstrate the OpenBank Solution and Installation Steps. Please check out the video below and give us your feedback on what you liked and what you would like to see.
 
 [![OpenBank APIs and Installation](http://img.youtube.com/vi/8eecvL75B5w/0.jpg)](http://www.youtube.com/watch?v=8eecvL75B5w "OpenBank APIs and Installation")
 
+This repository is organized into the following sections
+
+[Architecture](#architecture)
+  - [Design](#design)
+  - [Security](#security)
+  - [APIs](#functional-apis)
+[Setup]
+  - [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Developer Portal](#developer-portal)
+[Changelog](#changelog)
+
 ## Overview
 
-The Apigee Open Banking APIx solution simplifies and accelerates the process of delivering open banking by providing secure, ready-to-use APIs along with the computing infrastructure to support internal and external innovation. The OpenBank solution is built on Apigee Edge API Management Platform, and features the following APIs:
+ The OpenBank solution is built on Apigee Edge API Management Platform, and features the following APIs:
 
   - Account Access APIs.
    - Account Information 
@@ -22,27 +36,17 @@ The Apigee Open Banking APIx solution simplifies and accelerates the process of 
   - OAuth APIs (Security)
   - UserInfo APIs
 
-
 ![enter image description
 here](http://openbank.apigee.com/sites/default/files/openbank_architecture.png)
 
 It also provides an implementation of **OpenID** and **oAuth** based authentication, **consent** and **two-factor authentication** using SMS.
 
-## Repository Overview
+### Repository Overview
 
 This repository contains the necessary artifacts that will allow one to pull up
 a complete set of **Banking APIs** that comply with _Openbanking_ and _PSD2_
 regulations. In addition this will also allow one to build a _sandbox_ complete
 with a **Developer Portal**, dummy backend and a sample app.
-
-## Getting Started
-
-+   Create an [Apigee API Management Developer Account](https://enterprise.apigee.com)
-+   Create an [Apigee BaaS Account](https://apibaas.apigee.com)
-+   Request For [Apigee Developer Portal](https://goo.gl/j8Vbew)
-
-To Learn more on the basic concepts of Apigee Edge, please refer to : 
-http://docs.apigee.com/api-services/content/what-apigee-edge
 
 ## Design
 
@@ -99,9 +103,7 @@ The consent app will talk to the following APIs in order to
 fulfill its functionality : Session API, SMS API, Accounts-connector API, Authentication-connector API.
 For more details on each of these APIs, refer to the README.md of the respective proxy which exposes these APIs.
 
-
-
-###Functional APIs
+### Functional APIs
 
 The Functional APIs deployed and available as part of OpenBank solution are broadly classified as follow:
 
@@ -134,14 +136,27 @@ Using this category of APIs, a wide variety of new value-added solutions can be 
 
 ## Apigee Edge Setup
 
+### Getting Started
+
++   Create an [Apigee API Management Developer Account](https://enterprise.apigee.com)
++   Create an [Apigee BaaS Account](https://apibaas.apigee.com)
++   Request For [Apigee Developer Portal](https://goo.gl/j8Vbew)
+
+To Learn more on the basic concepts of Apigee Edge, please refer to : 
+http://docs.apigee.com/api-services/content/what-apigee-edge
+
+
 To deploy the APIs and its dependencies on your own org please run the following
 script from the root folder of the cloned repo.
 
-### Pre-requisites
+### Installation 
+
+#### Pre-requisites
 + node.js 
 + npm
 
-### Run following commands
+Run the following node commands to deploy the APIs into your own Edge Org.
+
 Install gulp 
 ```
 npm install --global gulp-cli
@@ -169,7 +184,7 @@ This will interactively prompt you for following details, and will then create /
 + BaaS Org Client Secret 
 
 
-### Test
+#### Test
 
 Once the deploy script is complete, run the following command to do a basic sanity test that the APIs are working
 
@@ -179,7 +194,7 @@ npm test
 
 
 
-###Developer Portal
+### Developer Portal
 Every API provider must be able to educate developers and successfully expose their APIs. A developer portal is the face of your API program, providing everything that internal, partner, and third party developers need. 
 
 Developers need to interact with the Banks and with each other. Enable your developer community to provide feedback, make support and feature requests, and submit their own content that can be accessed by other developers with the right developer portal.
