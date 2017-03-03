@@ -5,7 +5,7 @@ The Apigee Open Banking APIx solution simplifies and accelerates the process of 
 ## Update!
 We have created a new video to demonstrate the OpenBank Solution and Installation Steps. Please check out the video below and give us your feedback on what you liked and what you would like to see.
 
-[![OpenBank APIs and Installation](http://img.youtube.com/vi/8eecvL75B5w/0.jpg)](http://www.youtube.com/watch?v=8eecvL75B5w "OpenBank APIs and Installation")
+[![OpenBank APIs and Installation](readme-images/youtube.png)](http://www.youtube.com/watch?v=8eecvL75B5w "OpenBank APIs and Installation")
 
 This repository is organized into the following sections
 
