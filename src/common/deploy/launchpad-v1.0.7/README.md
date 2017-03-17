@@ -1,3 +1,47 @@
+# LAUNCHPAD
+
+A deployment tool for apigee solutions. Helps orchestrating the deployement of any solution comprising of apps, products, developer, proxy, baas data etc
+
+----------------
+
+# DOCUMENTATION
+
+### Developer guide
+ref : https://docs.google.com/a/apigee.com/document/d/1ptxyDnFRnH4tKGZb2C1QJ2-Qnp8izvxKCi7vZOJbrSQ/edit?usp=sharing
+
+
+----------------
+## Usage
+
+Usage: gulp < deploy / build / clean > [options]
+
+Options: 
+
+    --resource <RESOURCE>                     Pick any resource defined in config file
+
+    --subresource <SUBRESOURCE1,SUBRESOURCE2> Pick any subresources defined under respective resource in config file 
+
+    --item <ITEM1,ITEM2>                      Pick any items defined in respective RESOURCE,SUBRESOURCE in config file.
+
+    --strict                                  Do not ru dependent tasks. eg. deploy will also run clean and build. 
+
+    --env test                                Choose which edge environment for deployment
+
+    --config <path to config file>            Relative to execution directory
+
+
+Additional parameters can be passed to deploy script to avoid prompt. see eg2.
+
+eg1 : gulp deploy
+
+eg2 : gulp deploy --username gauthamvk@google.com --org bumblebee --env test --resource openbank_apis
+
+
+-----------------
+
+## sample config
+
+```
 resources:
 - name: openbank_apis
   type: solutions.api
@@ -6,45 +50,35 @@ resources:
     - name: org
       prompt: Edge Org name
     - name: username
-      prompt: Username
+      prompt: username
       ifNotPresent: token
     - name: password
-      prompt: Password
+      prompt: password
       ifNotPresent: token
     - name: env
       prompt: Edge Org Environment
     - name: usergrid_org
-      prompt: BaaS Org name
+      prompt: BaaS services org name
     - name: usergrid_app
-      prompt: BaaS App name
+      prompt: BaaS services app name
     - name: usergrid_client_id
-      prompt: BaaS Org Client Id
+      prompt: App services App Client Id
     - name: usergrid_secret
-      prompt: BaaS Org Client Secret
+      prompt: App services App Client Secret
     configurations:
     - env: test
       baas_host: https://apibaas-trial.apigee.net
       edge_host: https://api.enterprise.apigee.com
-      sms_endpoint: https://rest.nexmo.com/sms/json
     - env : prod
       baas_host: https://apibaas-trial.apigee.net
       edge_host: https://api.enterprise.apigee.com
-      sms_endpoint: https://rest.nexmo.com/sms/json
-
-    edgeOrg:
     script: gulpfile.js
     basePath: .
     dependencies:
-#    - name: session
-#      type: proxy
-#      url: git@revision.aeip.apigee.net:solution-commons/session.git
-#      version: v1.0.0
-    dataSources:
-    - name: default
-      orgName: '{{usergrid_org}}'
-      appName: '{{usergrid_app}}'
-      appClientId: '{{usergrid_client_id}}'
-      appSecret: '{{usergrid_secret}}'
+    - name: session
+      type: proxy
+      url: git@revision.aeip.apigee.net:solution-commons/session.git
+      version: v1.0.0
     subResources:
     - name: baas_data_load
       type: baasLoadData
@@ -79,8 +113,6 @@ resources:
         payload: '{ "name": "application-session-cache"}'
       - name: sms-token-cache
         payload: '{ "name": "sms-token-cache"}'
-      - name: nonce-cache
-        payload: '{ "name": "nonce-cache"}'
     - name: replaceorgvalues
       type: configSubstitutions
       items:
@@ -93,12 +125,6 @@ resources:
       - name: redirectConsentTransfers
         filePaths: ['src/gateway/transfers/target/apiproxy/policies/Assign.RedirectConsentApp.xml']
         value: 'https://{{ org }}-{{ env }}.apigee.net/internal/transfer-consent?sessionid={messageid}'
-      - name: edgeBasePath
-        filePaths: ['src/gateway/transfers/target/apiproxy/policies/Callout-Complete-Transfer.xml']
-        value: 'https://{{ org }}-{{ env }}.apigee.net'
-      - name: sms_endpoint
-        filePaths: ['src/gateway/sms-token/target/apiproxy/targets/confirmation.xml','src/gateway/sms-token/target/apiproxy/targets/default.xml']
-        value: '{{ sms_endpoint }}'
     - name: bank_apis
       type: proxy
       items:
@@ -113,8 +139,6 @@ resources:
       - name: transfers
       - name: transfers-connector
       - name: userinfo
-      - name: products
-      - name: products-connector
 
     - name: developers
       type: developer
@@ -136,33 +160,23 @@ resources:
       type: app
       items:
       - name: AISP_App
-        payload: '{"name":"AISP_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"account_access_apis"}'
-        assignResponse:
-        - from: credentials.0.consumerKey
-          to: apiKey_AISP
-        - from: credentials.0.consumerSecret
-          to: apiSecret_AISP
+        payload: '{"name":"AISP_App","callback":"http://apigee.com/about","email":"openbank@apigee.net","apiProducts":"account_access_apis"}'
       - name: PISP_App
-        payload: '{"name":"PISP_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"payment_transfer_apis"}'
-        assignResponse:
-        - from: credentials.0.consumerKey
-          to: apiKey_PISP
-        - from: credentials.0.consumerSecret
-          to: apiSecret_PISP
+        payload: '{"name":"PISP_App","callback":"http://apigee.com/about","email":"openbank@apigee.net","apiProducts":"payment_transfer_apis"}'
       - name: internal_consent_app
-        payload: '{"name":"internal_consent_app","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"internal_consent_apis"}'
+        payload: '{"name":"internal_consent_app","callback":"http://apigee.com/about","email":"openbank@apigee.net","apiProducts":"internal_consent_apis"}'
         assignResponse:
         - from: credentials.0.consumerKey
-          to: apiKey_ICA
+          to: apiKey
       - name: Opendata_App
-        payload: '{"name":"Opendata_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"open_data_apis"}'
+        payload: '{"name":"Opendata_App","callback":"http://apigee.com/about","email":"openbank@apigee.net","apiProducts":"open_data_apis"}'
 
     - name: replace_consent_app_key
       type: configSubstitutions
       items:
       - name: consentAppKey
         filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/consent-app-transfers/target/apiproxy/resources/node/config.json']
-        value: '{{ apiKey_ICA }}'
+        value: '{{ apiKey }}'
       - name: edgeBasePath
         filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/consent-app-transfers/target/apiproxy/resources/node/config.json']
         value: 'https://{{ org }}-{{ env }}.apigee.net'
@@ -171,30 +185,55 @@ resources:
       items:
       - name: consent-app
       - name: consent-app-transfers
-    - name: copyTestConfigTemplate
-      type: util
-      items: 
-      - action: copy
-        from: test/config.js.template
-        to: test/config.js
-    - name: replaceTestScript
-      type: configSubstitutions
-      items:
-      - name: edgeBasePath
-        filePaths: ['test/config.js'] 
-        value: 'https://{{ org }}-{{ env }}.apigee.net'
-      - name: apiKey_AISP
-        filePaths: ['test/config.js'] 
-        value: '{{ apiKey_AISP }}'
-      - name: apiSecret_AISP
-        filePaths: ['test/config.js'] 
-        value: '{{ apiSecret_AISP }}'
-      - name: apiKey_PISP
-        filePaths: ['test/config.js']
-        value: '{{ apiKey_PISP }}'
-      - name: apiSecret_PISP
-        filePaths: ['test/config.js']
-        value: '{{ apiSecret_PISP }}'
+```
+
+----------------
+
+## RELEASE
+
+### v1.0.0
+- initial release
+- basic functionality
+
+### v1.0.1
+- multiple items can be deployed
+- multiple subresources can be deployed from command line
+
+### v1.0.2
+- new subResource localCommand added
+- assignResponse subResource is genralized for app, product,proxy,cache, developer subresources
+
+### v1.0.3
+- fix dependency pull
+- fix localCommand variable replace
+
+### v1.0.4
+- fix localCommand
+
+### v1.0.7
+- using multipart for proxy upload 
+- copy util added 
+- fix deploy phase variable replacement 
+- app deploy made sync 
+- using cross-spawn to run npm commands, to make windows compatible
+
+-------------------
+
+## TODO
+
+- p2 data source many
+
+- p2 generate load for generating initial report
+
+- p2 license check
+
+- p2 cache creation with cache properties
+
+- p2 deploy individual dependency from its gulp
+
+- p2 standardize sequential execution of tasks
+
+- p3 constants to diff file eg. baasLoadData.js limit=200
 
 
 

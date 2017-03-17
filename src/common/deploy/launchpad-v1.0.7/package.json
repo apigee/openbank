@@ -1,0 +1,44 @@
+{
+  "main": "./index.js",
+  "dependencies": {
+    "apigeetool": "git+https://github.com/kidiyoor/apigeetool-node.git#master",
+    "async": "^2.1.4",
+    "cross-spawn": "^5.1.0",
+    "extract-zip": "^1.6.0",
+    "fs-extra": "^1.0.0",
+    "gulp-install": "^0.6.0",
+    "gulp-param": "^1.0.3",
+    "gulp-prompt": "^0.2.0",
+    "gulp-zip": "^3.2.0",
+    "js-yaml": "^3.7.0",
+    "lodash": "^4.17.2",
+    "mustache": "^2.3.0",
+    "node-zip": "^1.1.1",
+    "path": "^0.12.7",
+    "prompt": "^1.0.0",
+    "q": "^1.4.1",
+    "request": "^2.79.0",
+    "yargs": "^6.5.0",
+    "zip-dir": "^1.0.2",
+    "zip-folder": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "name": "launchpad",
+  "version": "1.0.0",
+  "description": "deploy solutions",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@revision.aeip.apigee.net:solution-commons/launchpad.git"
+  },
+  "keywords": [
+    "solutions",
+    "deploy"
+  ],
+  "author": "",
+  "license": "ISC"
+}
