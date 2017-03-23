@@ -113,7 +113,7 @@ For more details on each of these APIs, refer to the README.md of the respective
 
 The Functional APIs deployed and available as part of OpenBank solution are broadly classified as follow:
 
-####**1. Accounts Information APIS** 
+#### **1. Accounts Information APIS** 
 Account information APIs provide information for a single account held by the consumer. Information is categorized into:
 
  - Information
@@ -128,7 +128,7 @@ Banking APIs provide developers with the information needed to create innovative
  - Analysis and recommendations for better money management.
  - Reccomendation of products and deals based on monthly statements.
 
-####**2. Payments APIs** 
+#### **2. Payments APIs** 
 Payment APIs enable the transfer of funds from a consumer's account to a recipient. The initation of transfer is done by the consumer and the recipient's account number is provided by the third-party payment provider (TPPs or PISPs). While initiating a transfer the user will have to authenticate using **two-factor authentication**(otp via sms) following which the transfer will be initiated.
 While online account payment is a fundamental use case of this API, it is its usage and the benefit it provides over traditional third-party payment gateways that makes it hugely impactful. Take a look at some of the use cases:
 
@@ -136,7 +136,7 @@ While online account payment is a fundamental use case of this API, it is its us
  - Push payments providing merchant with immediate access to the transferred amount.
  - Fast retail loans from third-party lenders
 
-####**3. Open Data APIs** 
+#### **3. Open Data APIs** 
 Open Data APIs are a category of APIs that provide general information of a Bank. These are not customer-specific, but bank-specific: locations, products, URLs, and events, for example. These APIs are not subjected to user-level authentication, but are are protected to be used only by signed apps. A **valid client credential** is essential to invoke these APIs.
 Using this category of APIs, a wide variety of new value-added solutions can be provided to consumers. Coupled with customer-specific information, potential new solutions include product and offer recommendations.
 
@@ -211,10 +211,10 @@ The below picture depicts how a dev portal looks like
 
 ![developer-portal](readme-images/openbank.png)
 
-####Developer portal Setup
+#### Developer portal Setup
 The detailed instructions for developer portal setup for openbank solution can be found [Here](https://github.com/apigee/openbank/tree/master/src/devportal).
 
-###Data
+### Data
 The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Baas 2.0](http://apibaas.apigee.com/) in your org.
 
 
