@@ -1,6 +1,6 @@
 Since you have landed here, we assume you already have or requested for [Apigee developer portal](https://goo.gl/j8Vbew).
 
-##**1. Introduction**
+## **1. Introduction**
 
 The intent of this document is to create a customized openbank developer portal from default Apigee developer Portal. 
 
@@ -15,7 +15,7 @@ On successful deployment of customized developer portal, you will be able to acc
  
 Your portal after the openbank customization will look like [openbank.apigee.com](https://openbank.apigee.com) 
 
-##**2. Pre-Requisites**
+## **2. Pre-Requisites**
 
  1. You have an Apigee OpenBank APIs deployed on your Apigee org(If not, [click here](https://github.com/apigee/openbank/blob/master/README.md)).
  2. Apigee dev-portal admin access.
@@ -24,34 +24,34 @@ Your portal after the openbank customization will look like [openbank.apigee.com
 	 - If you have dev portal setup on-premise, you already have access to your site repo at /var/html/www
 
 
-##**3. Getting Started**
+## **3. Getting Started**
 
-###**3.1 Get OpenBank portal custom code**
+### **3.1 Get OpenBank portal custom code**
 
  - Clone [this](https://github.com/apigee/openbank) openbank git repo.
  - /openbank/src/developerportal contains the custom openbank portal code.
 
-###**3.2 Customize default Apigee developer portal**
+### **3.2 Customize default Apigee developer portal**
 
 
-####**3.2.1 Get default developer portal code**
-#####**on-cloud**
+#### **3.2.1 Get default developer portal code**
+##### **on-cloud**
 clone the default portal code. You will find relevant instructions on how to clone, in the pantheon UI or [click here](https://pantheon.io/docs/git/).
 
-#####**on-premise**
+##### **on-premise**
 You will find the default developer code at /var/www/html/sites on the portal instance.
 
 
-####**3.2.2 Backup of default developer portal**
+#### **3.2.2 Backup of default developer portal**
 A backup of default portal’s code is recommended before importing custom changes.
 
-#####**on-cloud**
+##### **on-cloud**
 Login Pantheon -> goto your portal site -> Backups -> and create a new backup.
 
-#####**on-premise** 
+##### **on-premise** 
 Take backup of /var/www/html/sites directory.
 
-####**3.2.3 Update the Open APIs**
+#### **3.2.3 Update the Open APIs**
 In order to update the swagger files (**src/devportal/all/modules/custom/openbank_swagger**) with the parameters such as host, client ID, client secret, you need to execute the **/openbank/init_portal.js** script.
  
 #### Pre-requisites
@@ -65,7 +65,7 @@ In order to update the swagger files (**src/devportal/all/modules/custom/openban
 ```
  - Provide the APIGEE edge org, env, username password etc when prompted while executing the script.
 
-####**3.2.4 Replace default code**
+#### **3.2.4 Replace default code**
 
  - Replace the sites/all folder of default portal repo with the git repo  openbank/src/devportal/all.
  
@@ -74,8 +74,8 @@ In order to update the swagger files (**src/devportal/all/modules/custom/openban
  $ cp -r openbank/src/devportal/all <path to pantheon cloned repo>/sites
 ```
 
-####**3.2.5 Save the changes**
-#####**on-cloud**
+#### **3.2.5 Save the changes**
+##### **on-cloud**
 you will need to push the changes back to the pantheon git repo.
 ```
 git add <path to pantheon cloned repo>/sites/all
@@ -83,10 +83,10 @@ git commit -m "replacing all folder"
 git push origin master
 ```
 Please provide pantheon username and password if prompted. Alternatively you can update the pantheon profile with your SSH key.
-#####**on-premise** 
+##### **on-premise** 
 The changes are already there in /var/html/www, which will automatically reflect on the portal.
 
-##**4. Further Configurations**
+## **4. Further Configurations**
 Please log in to the portal with the admin credentials.
 Once you have logged in with admin credentials, you will find the **admin menu** for making portal customizations.
 <img src="../../readme-images/devportal/adminmenu.png">
@@ -96,13 +96,13 @@ Once you have logged in with admin credentials, you will find the **admin menu**
  - Go to admin menu Configuration -> SmartDocs -> Advanced settings.
  - Click on Choose File button to select the .hbr file from cloned/downloaded openbank source code i.e. */openbank/src/developerportal/smartdocs-openbank.hbr*
 
-###**4.2 Enable the dbank responsive theme**
+### **4.2 Enable the dbank responsive theme**
 This theme contains all openbank related customisation for the portal, and hence needs to be enabled and set as default.
 
  - Goto **{your_portal_site}/admin/appearance**.
  - Choose **dbank responsive theme**, enable it and set it as default.
 
-###**4.3 Import the image archive**
+### **4.3 Import the image archive**
 All the required images are zipped in openbank repo here - openbank/src/devportal/opebank.zip and need to be imported on the portal.
 
  - Goto **{your_portal_site}/file/add/upload/archive**
@@ -111,7 +111,7 @@ All the required images are zipped in openbank repo here - openbank/src/devporta
 
 All the required files will be automatically available, and can be found in admin -> content -> Files
 
-###**4.4 Smartdocs import and rendering**
+### **4.4 Smartdocs import and rendering**
 Smartdocs methods provide a template for configuring and making API calls through the portal. Hence each API needs a smartdoc method associated with it. In order to create smartdocs for the APIS, one needs to import respective Open API json files which will get converted to smartdocs method internally. In order to do so, follow the steps below:
 
 **4.4.1 Enable the openbank swagger modules**
@@ -166,7 +166,7 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
  - Ensure that the callback URL fetched on Saving the Template Auth for *accountsapis* and *userinfoapis* models is already present in the '*AISP_App's*' list of comma seperated values for callback URL. If not, do the same.
  
 
-###**4.5 Enable other required modules**
+### **4.5 Enable other required modules**
 
  - Goto **{your_portal_site}/admin/modules**
  - Enable **home_page_blocks**
@@ -178,7 +178,7 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
  - Goto admin-> configuration -> Development -> performance.
  - Click "clear all caches"
 
-###**4.6 Assign blocks to context**
+### **4.6 Assign blocks to context**
  - Goto admin menu -> structure -> context.
  - Select Edit for "**custom_home**".
  - Select "**Blocks**" from the Reactions section.
@@ -194,7 +194,7 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
   
  - Click on save.
 
-####"**The portal setup is complete**"
+#### "**The portal setup is complete**"
 
 Visit the portal. 
 
@@ -205,7 +205,7 @@ Go through the documentation, create your own Apps and explore the APIS.
  - For exploring and trying the APIs click on the **APIs** on the main menu, select from the list of APIs available, and get started.
 
 
-##**5. Create your own developer App**
+## **5. Create your own developer App**
 one can go and create own developer app and register it. In order to accomplish this:
 
  - Goto MY ACCOUNT -> My Apps.
@@ -218,8 +218,8 @@ one can go and create own developer app and register it. In order to accomplish 
 
  
   
-##**6. Further Portal Customisation**
-###**6.1 Change Dev Portal Logo and Shortcut icon**
+## **6. Further Portal Customisation**
+### **6.1 Change Dev Portal Logo and Shortcut icon**
 one can go and change the default logo for the portal by following the steps below:
 
  -  Goto admin menu Appearance -> settings -> dbank Responsive theme.
@@ -230,17 +230,17 @@ one can go and change the default logo for the portal by following the steps bel
  - Upload new Shortcut icon for the portal.
  - Save the changes.
  
-###**6.2 Change Portal site name**
+### **6.2 Change Portal site name**
 
  - Goto admin menu Configuration -> System -> Site Information.
  - Goto site details section and make required changes.
  - Save the changes.
  
-###**6.3 Create New smartDocs methods**
+### **6.3 Create New smartDocs methods**
 
  
  - In order to create new smartdocs for the portal, one can go to admin menu -> content -> smartdocs, create new model, import respective open api files and render.
 
-###**6.4 Managing user accounts**
+### **6.4 Managing user accounts**
 
  -  To manage user registration, goto admin menu -> configuration -> people -> account settings, and make respective changes.
