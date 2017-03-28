@@ -78,7 +78,8 @@ In order to update the swagger files (**src/devportal/all/modules/custom/openban
 ##### **on-cloud**
 you will need to push the changes back to the pantheon git repo.
 ```
-git add <path to pantheon cloned repo>/sites/all
+cd <path to pantheon cloned repo>
+git add sites/all
 git commit -m "replacing all folder"
 git push origin master
 ```
