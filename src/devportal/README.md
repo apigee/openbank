@@ -159,11 +159,12 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
 
  - Select Content > SmartDocs.
  - For the **accountsapis** API models, select **Settings** from Operations drop-down.
- - In Template authentication schemes, set **Client Id & Client Secret** to the Client Id & Client Secret of '*AISP_App*' app, which was created during deployment. (https://enterprise.apigee.com/platform/{org}/apps)
+ - In Template authentication schemes, set **Client Id & Client Secret** to the Client Id & Client Secret of '**AISP_App**' app, which was created during deployment. (https://enterprise.apigee.com/platform/{org}/apps)
  <img src="../../readme-images/devportal/templateauth.png" width="700px" height="350px"/>
  - Click the "Save template authentication schemes" button.
+ 
  - For the **userinfoapis** API models, select **Settings** from Operations drop-down.
- - In Template authentication schemes, set **Client Id & Client Secret** to the Client Id & Client Secret of '*AISP_App*' app, which was created during deployment.
+ - In Template authentication schemes, set **Client Id & Client Secret** to the Client Id & Client Secret of '**AISP_App**' app, which was created during deployment.
  - Ensure that the callback URL fetched on Saving the Template Auth for *accountsapis* and *userinfoapis* models is already present in the '*AISP_App's*' list of comma seperated values for callback URL. If not, do the same.
  
 
@@ -195,7 +196,7 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
   
  - Click on save.
 
-#### "**The portal setup is complete**"
+#### **" The portal setup is complete !"**
 
 Visit the portal. 
 
