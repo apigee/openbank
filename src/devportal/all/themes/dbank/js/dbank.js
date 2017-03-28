@@ -16,6 +16,8 @@
 		$("div.title-description > a.active").addClass("activeTitle");
 		$("div.title-description > a.activeTitle").parentsUntil("h3.ui-accordion-header").css("display","block");
 		$("section.block.block-block.clearfix").addClass("home-dbank-block");
+		$("#navbar > div.container").css("width","100%");
+		$("div.verb-auth > p").attr("data-role","verb-role");
 	});
 })(jQuery);
  
