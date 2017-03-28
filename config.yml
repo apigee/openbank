@@ -136,7 +136,7 @@ resources:
       type: app
       items:
       - name: AISP_App
-        payload: '{"name":"AISP_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"account_access_apis"}'
+        payload: '{"name":"AISP_App","callback":"https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/userinfoapis/templateauths/aisp_auth/callback,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/accountsapis/templateauths/aisp_auth/callback","email":"openbank@apigee.net","apiProducts":"account_access_apis"}'
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey_AISP
