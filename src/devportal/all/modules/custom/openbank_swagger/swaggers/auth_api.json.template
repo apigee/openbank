@@ -77,7 +77,8 @@
             "type": "string",
             "required": true,
             "enum": [
-              "openid"
+              "openid",
+              "openid accounts"
             ]
           },
           {
