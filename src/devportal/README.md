@@ -172,7 +172,7 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
 
  - Goto **{your_portal_site}/admin/modules**
  - Enable **home_page_blocks**
- - Click Save Configuration
+ - Click Save Configuration (**note**: You need to save configuration after you enable each module)
  - Enable **all_component_features**
  - Save the configuration
  - Enable **openbank_install** module
