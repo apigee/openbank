@@ -16,7 +16,7 @@ function home_page_blocks_default_fe_block_boxes() {
   $fe_block_boxes->machine_name = 'home_page_blocks';
   
 
-  $fe_block_boxes->body = '<div id="home_page_start_block" class="row">
+  $fe_block_boxes->body = '<div class="row">
 <h2 class="rtecenter">DEVELOP. TEST. DEPLOY.</h2>
 
 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
