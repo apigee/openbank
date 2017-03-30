@@ -171,7 +171,7 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
 ### **4.5 Enable other required modules**
 
  - Goto **{your_portal_site}/admin/modules**
- - **Enable each of the following modules ONE BY ONE SEQUENTIALLY"
+ - **Enable each of the following modules ONE BY ONE SEQUENTIALLY**
  - Enable **home_page_blocks**
  - Click Save Configuration (**note**: You need to save configuration after you enable each module)
  - Enable **all_component_features**
