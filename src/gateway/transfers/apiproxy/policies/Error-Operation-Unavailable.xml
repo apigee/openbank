@@ -4,11 +4,14 @@
     <Properties/>
     <FaultResponse>
         <Set>
-		<Payload contentType="applcation/json">\{
-  "Message": \{
-    "Error": "BadRequest"
-  }
-}
+		<Payload contentType="applcation/json">
+      {
+            "status": 400,
+            "message": "BadRequest",
+            "description": "Operation Unavailable",
+            "code": 10005,
+            "more_info": "http://www.example.com/codes/10005"
+      }
 		</Payload>
  		<StatusCode>404</StatusCode>
 	</Set>

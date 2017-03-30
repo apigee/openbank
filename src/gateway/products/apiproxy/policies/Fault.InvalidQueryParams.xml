@@ -6,10 +6,15 @@
             <ReasonPhrase>Bad Request</ReasonPhrase>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
                 {
-                    "error": "Bad Request",
-                    "description": "Invalid combination of parameters for location-aware search"
+                 "status": 400,
+                "message": "Bad Request",
+                 "description": "Invalid combination of parameters for product search",
+                 "code": 10014,
+                "more_info": "http://www.example.com/codes/10014"
                 }
             </Payload>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>BadRequest</ReasonPhrase>
         </Set>
     </FaultResponse>
 </RaiseFault>

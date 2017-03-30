@@ -11,10 +11,13 @@
                 <Header name="Access-Control-Allow-Headers">Authorization,Content-Type,Accept,Origin,X-Requested-With,X-CSDKVersion</Header>
                 <Header name="Access-Control-Max-Age">86400</Header>
      </Headers>
-		<Payload contentType="applcation/json">\{
-  "Message": \{
-          "Error": "SMS OTP Token is invalid/expired"
-  }
+		<Payload contentType="applcation/json">
+{
+"status": 400,
+"message": "invalid OTP",
+"description": "SMS OTP Token is invalid/expired",
+"code": 10020,
+"more_info": "http://www.example.com/codes/10020"
 }
 		</Payload>
  		<StatusCode>400</StatusCode>

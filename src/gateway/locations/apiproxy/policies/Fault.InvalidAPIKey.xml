@@ -7,8 +7,11 @@
         <Set>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
                 {
-                &quot;status&quot;: &quot;error&quot;,
-                &quot;message&quot;: &quot;Invalid API Key&quot;
+                "status": 401,
+                "message": "Unauthorized Access",
+                "description": "Invalid API Key",
+                "code": 10016,
+                "more_info": "http://www.example.com/codes/10016"
                 }
             </Payload>
             <StatusCode>401</StatusCode>
