@@ -6,10 +6,13 @@
     <FaultResponse>
         <Set>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
-                {
-                "status": "error",
-                "message": "Invalid Access Token"
-                }
+    {
+        "status": 401,
+        "message": "Invalid Access Token",
+        "description": "The Access token used is either invalid or has expired",
+        "code": 10000,
+        "more_info": "http://www.example.com/codes/10000"
+    }
             </Payload>
             <StatusCode>401</StatusCode>
             <ReasonPhrase>Unauthorized</ReasonPhrase>

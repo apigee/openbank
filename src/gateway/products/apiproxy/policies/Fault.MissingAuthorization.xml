@@ -6,9 +6,12 @@
     <FaultResponse>
         <Set>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
-                {
-                &quot;status&quot;: &quot;error&quot;,
-                &quot;message&quot;: &quot;Missing Authorization Headers (Bearer or api_key)&quot;
+               {
+                "status": 401,
+                "message": "Authorization error",
+                "description": "Missing Authorization Headers (Bearer or api_key)",
+                "code": 10015,
+                "more_info": "http://www.example.com/codes/10015"
                 }
             </Payload>
             <StatusCode>401</StatusCode>

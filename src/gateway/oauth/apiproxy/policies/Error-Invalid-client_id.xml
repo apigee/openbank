@@ -11,9 +11,13 @@
                 <Header name="Access-Control-Allow-Headers">Authorization,Content-Type,Accept,Origin,X-Requested-With,X-CSDKVersion</Header>
                 <Header name="Access-Control-Max-Age">86400</Header>
             </Headers>
-          	<Payload contentType="application/json" variablePrefix="%" variableSuffix="#">{
- "ErrorCode": "invalid_client",
- "Error": "Unknown client_id."
+          	<Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+{
+"status": 401,
+"message": "invalid_client",
+"description": "Unknown client_id.",
+"code": 10007,
+"more_info": "http://www.example.com/codes/10007"
 }
             </Payload>
             <StatusCode>401</StatusCode>

@@ -7,8 +7,11 @@
             <Headers/>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
                 {
-                "error": "Unauthorized Transaction",
-                "description": "Access Token does not contain an Customer Number reference"
+                "status": 401,
+                "message": "Unauthorized Transaction",
+                "description": "Access Token does not contain an Customer Number reference",
+                "code": 10011,
+                "more_info": "http://www.example.com/codes/10011"
                 }
             </Payload>
             <StatusCode>401</StatusCode>

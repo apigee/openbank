@@ -6,10 +6,13 @@
     <FaultResponse>
         <Set>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
-                {
-                "status": "error",
-                "message": "Invalid Client Credentials Token"
-                }
+    {
+        "status": 401,
+        "message": "Unauthorized access",
+        "description": "Invalid Client Credentials Token",
+        "code": 10023,
+        "more_info": "http://www.example.com/codes/10023"
+    }
             </Payload>
             <StatusCode>401</StatusCode>
             <ReasonPhrase>Unauthorized</ReasonPhrase>

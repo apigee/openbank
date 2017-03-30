@@ -6,10 +6,14 @@
     <FaultResponse>
         <Set>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
-                {
-                "status": "error",
-                "message": "Invalid or Missing Mandatory Request Parameters"
-                }
+               
+    {
+        "status": 400,
+        "message": "Bad request",
+        "description": "Invalid or Missing Mandatory Request Parameters",
+        "code": 10022,
+        "more_info": "http://www.example.com/codes/10022"
+    }
             </Payload>
             <StatusCode>400</StatusCode>
             <ReasonPhrase>Bad Request</ReasonPhrase>

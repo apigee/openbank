@@ -11,10 +11,14 @@
        <Header name="Access-Control-Allow-Headers">Authorization,Content-Type,Accept,Origin,X-Requested-With,X-CSDKVersion</Header>
        <Header name="Access-Control-Max-Age">86400</Header>
      </Headers>
- 	 <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">{
- "ErrorCode": "invalid_session",
- "Error": "Session expired or invalid."
-}
+ 	 <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+    {
+    "status": 500,
+    "message": "invali session",
+    "description": "Session expired or invalid.",
+    "code": 10021,
+    "more_info": "http://www.example.com/codes/10021"
+  }
     </Payload>
     <StatusCode>500</StatusCode>
    </Set>
