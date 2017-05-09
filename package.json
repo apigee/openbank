@@ -15,7 +15,7 @@
     "gulp-prompt": "^0.2.0",
     "gulp-rename": "*",
     "gulp-util": "*",
-    "launchpad": "file:./src/common/deploy/launchpad",
+    "launchpad": "file:./src/common/deploy/launchpad-v1.0.7",
     "q": "*",
     "through2": "*",
     "zip-dir": "^1.0.2",

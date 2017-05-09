@@ -7,8 +7,11 @@
             <Headers/>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
                 {
-                    "error": "Unauthorized Transaction",
-                    "description": "Invalid Account Number reference"
+            "status": 403,
+            "message": "Unauthorized Transaction",
+            "description": "Invalid Account Number reference",
+            "code": 10001,
+            "more_info": "http://www.example.com/codes/10001"
                 }
             </Payload>
             <StatusCode>403</StatusCode>

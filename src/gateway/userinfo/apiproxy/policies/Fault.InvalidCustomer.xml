@@ -7,9 +7,12 @@
             <Headers/>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
                 {
-                "error": "Unauthorized Transaction",
-                "description": "Invalid Customer Number reference"
-                }
+        "status": 403,
+        "message": "Unauthorized Transaction",
+        "description": "Invalid Customer Number reference",
+        "code": 10010,
+        "more_info": "http://www.example.com/codes/10010"
+                }       
             </Payload>
             <StatusCode>403</StatusCode>
             <ReasonPhrase>Resource Not Found</ReasonPhrase>

@@ -25,9 +25,11 @@ resources:
     - env: test
       baas_host: https://apibaas-trial.apigee.net
       edge_host: https://api.enterprise.apigee.com
+      sms_endpoint: https://rest.nexmo.com/sms/json
     - env : prod
       baas_host: https://apibaas-trial.apigee.net
       edge_host: https://api.enterprise.apigee.com
+      sms_endpoint: https://rest.nexmo.com/sms/json
 
     edgeOrg:
     script: gulpfile.js
@@ -94,6 +96,9 @@ resources:
       - name: edgeBasePath
         filePaths: ['src/gateway/transfers/target/apiproxy/policies/Callout-Complete-Transfer.xml']
         value: 'https://{{ org }}-{{ env }}.apigee.net'
+      - name: sms_endpoint
+        filePaths: ['src/gateway/sms-token/target/apiproxy/targets/confirmation.xml','src/gateway/sms-token/target/apiproxy/targets/default.xml']
+        value: '{{ sms_endpoint }}'
     - name: bank_apis
       type: proxy
       items:
@@ -121,9 +126,9 @@ resources:
       items:
       - payload: '{"approvalType":"auto", "displayName":"Open Data APIs","name":"open_data_apis","environments":["test","prod"],"scopes":["openid", "atms", "branches"], "proxies":["oauth", "locations"]}'
         name: open_data_apis
-      - payload: '{"approvalType":"auto", "displayName":"Payment Transfer APIs","name":"payment_transfer_apis","environments":["test","prod"],"scopes":["openid", "accounts", "transfer", "payment"], "proxies":["oauth", "transfers", "accounts"]}'
+      - payload: '{"approvalType":"auto", "displayName":"Payment Transfer APIs","name":"payment_transfer_apis","environments":["test","prod"],"scopes":["openid", "accounts", "transfer", "payment"], "proxies":["oauth", "transfers", "accounts", "userinfo"]}'
         name: payment_transfer_apis
-      - payload: '{"approvalType":"auto", "displayName":"Account Access APIs","name":"account_access_apis","environments":["test","prod"],"scopes":["openid", "accounts", "accounts-info", "accounts-balance", "accounts-transactions"], "proxies":["oauth", "accounts"]}'
+      - payload: '{"approvalType":"auto", "displayName":"Account Access APIs","name":"account_access_apis","environments":["test","prod"],"scopes":["openid", "accounts", "accounts-info", "accounts-balance", "accounts-transactions"], "proxies":["oauth", "accounts", "userinfo"]}'
         name: account_access_apis
       - payload: '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_consent_apis","environments":["test","prod"],"scopes":[], "proxies":["session", "sms-token", "authentication-connector", "oauth"]}'
         name: internal_consent_apis
@@ -131,21 +136,24 @@ resources:
       type: app
       items:
       - name: AISP_App
-        payload: '{"name":"AISP_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"account_access_apis"}'
+        payload: '{"name":"AISP_App","callback":"https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/userinfoapis/templateauths/aisp_auth/callback,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/accountsapis/templateauths/aisp_auth/callback","email":"openbank@apigee.net","apiProducts":"account_access_apis"}'
+        assignResponse:
+        - from: credentials.0.consumerKey
+          to: apiKey_AISP
+        - from: credentials.0.consumerSecret
+          to: apiSecret_AISP
       - name: PISP_App
         payload: '{"name":"PISP_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"payment_transfer_apis"}'
         assignResponse:
         - from: credentials.0.consumerKey
-          to: testApiKey
+          to: apiKey_PISP
         - from: credentials.0.consumerSecret
-          to: testApiSecret
+          to: apiSecret_PISP
       - name: internal_consent_app
         payload: '{"name":"internal_consent_app","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"internal_consent_apis"}'
         assignResponse:
         - from: credentials.0.consumerKey
-          to: apiKey
-        - from: credentials.0.consumerSecret
-          to: apiSecret
+          to: apiKey_ICA
       - name: Opendata_App
         payload: '{"name":"Opendata_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"open_data_apis"}'
 
@@ -154,7 +162,7 @@ resources:
       items:
       - name: consentAppKey
         filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/consent-app-transfers/target/apiproxy/resources/node/config.json']
-        value: '{{ apiKey }}'
+        value: '{{ apiKey_ICA }}'
       - name: edgeBasePath
         filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/consent-app-transfers/target/apiproxy/resources/node/config.json']
         value: 'https://{{ org }}-{{ env }}.apigee.net'
@@ -164,22 +172,29 @@ resources:
       - name: consent-app
       - name: consent-app-transfers
     - name: copyTestConfigTemplate
-      type: localCommand
+      type: util
       items: 
-      - name: testConfig
-        cmd: cp ./test/config.js.template ./test/config.js
+      - action: copy
+        from: test/config.js.template
+        to: test/config.js
     - name: replaceTestScript
       type: configSubstitutions
       items:
       - name: edgeBasePath
         filePaths: ['test/config.js'] 
         value: 'https://{{ org }}-{{ env }}.apigee.net'
-      - name: apiKey
+      - name: apiKey_AISP
         filePaths: ['test/config.js'] 
-        value: '{{ testApiKey }}' 
-      - name: apiSecret
+        value: '{{ apiKey_AISP }}'
+      - name: apiSecret_AISP
         filePaths: ['test/config.js'] 
-        value: '{{ testApiSecret }}' 
+        value: '{{ apiSecret_AISP }}'
+      - name: apiKey_PISP
+        filePaths: ['test/config.js']
+        value: '{{ apiKey_PISP }}'
+      - name: apiSecret_PISP
+        filePaths: ['test/config.js']
+        value: '{{ apiSecret_PISP }}'
 
 
 

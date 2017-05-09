@@ -11,9 +11,13 @@
                 <Header name="Access-Control-Allow-Headers">Authorization,Content-Type,Accept,Origin,X-Requested-With,X-CSDKVersion</Header>
                 <Header name="Access-Control-Max-Age">86400</Header>
             </Headers>
-            <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">{
- "ErrorCode": "%error_type#",
- "Error": "%error_variable#"
+            <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+{
+"status": "%status_code#",
+"message": "%error_type#",
+"description": "%error_variable#",
+"code": 10003,
+"more_info": "http://www.example.com/codes/10003"
 }
       </Payload>
             <StatusCode>{status_code}</StatusCode>

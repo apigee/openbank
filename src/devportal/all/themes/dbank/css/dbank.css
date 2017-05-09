@@ -570,3 +570,5 @@ section#block-block-7 {
     margin-left: 20px !important;
 }
 .ui-accordion .ui-accordion-content { height: auto !important; }
+
+div.modal-content { overflow-y:auto;}

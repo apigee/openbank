@@ -4,8 +4,8 @@
  * This file contains the code for all the consent operations.
  */
 
-var request = require('request');
-
+var request      = require('request');
+var lodash       = require('lodash');
 var stepsProcess = require('./stepsProcess');
 
 //Usage:
@@ -39,8 +39,9 @@ var stepsProcess = require('./stepsProcess');
 function createConsent(customConsent) {
     var baseConsent = new consent();
     if (customConsent) {
-        customConsent.prototype = baseConsent;
-        return customConsent;
+        //customConsent.prototype = baseConsent;
+        lodash.merge(baseConsent, customConsent);
+        return baseConsent;
     } else {
         return baseConsent;
     }

@@ -63,7 +63,7 @@ function all_component_features_quicktabs_default_quicktabs() {
       'vid' => 'productapis_methods',
       'display' => 'frontpage',
       'args' => '',
-      'title' => 'User Info',
+      'title' => 'Products',
       'weight' => '-95',
       'type' => 'view',
     ),

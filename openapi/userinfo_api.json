@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "apis-bank-dev.apigee.net",
+  "host": "bumblebee-test.apigee.net",
   "schemes": [
     "https"
   ],
@@ -12,7 +12,7 @@
     "contact": {
       "name": "API Docs",
       "url": "http://example.com/contact",
-      "email": "apis-eng@apigee.com"
+      "email": "solution-ninjas@google.com"
     },
     "license": {
       "name": "Apache 2.0",
@@ -65,8 +65,8 @@
   "securityDefinitions": {
     "aisp_auth": {
       "type": "oauth2",
-      "authorizationUrl": "https://apis-bank-dev.apigee.net/apis/v1/oauth/authorize?client_id=grOmvYAei8aBARzEVIYhGtpvztofAAjz&redirect_uri=https://api.enterprise.apigee.com/v1/o/apis-bank/apimodels/accounts/templateauths/aisp_auth/callback&response_type=code&state=af0ifjsldkj&scope=openid accounts&ui-locales=en&acr_values=2",
-      "tokenUrl": "https://apis-bank-dev.apigee.net/apis/v1/oauth/token",
+      "authorizationUrl": "https://bumblebee-test.apigee.net/apis/v1/oauth/authorize?client_id=JI7R53dqoyUmfBEnlJm27V0PkpvoIAOv&redirect_uri=https://api.enterprise.apigee.com/v1/o/bumblebee/apimodels/accounts/templateauths/aisp_auth/callback&response_type=code&state=af0ifjsldkj&scope=openid accounts&ui-locales=en&acr_values=2",
+      "tokenUrl": "https://bumblebee-test.apigee.net/apis/v1/oauth/token",
       "flow": "accessCode",
       "scopes": {
         "openid": "openID",

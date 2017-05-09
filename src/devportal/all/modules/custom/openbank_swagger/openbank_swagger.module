@@ -9,7 +9,7 @@ define('SMARTDOCS_ACCOUNTS_MODEL', 'accountsapis');
 define('SMARTDOCS_OPENDATA_MODEL', 'open-dataapis');
 define('SMARTDOCS_PAYMENT_MODEL', 'payment-transfersapis');
 define('SMARTDOCS_USERINFO_MODEL', 'userinfoapis');
-define('SMARTDOCS_PRODUCTS_MODEL', 'productapis')
+define('SMARTDOCS_PRODUCTS_MODEL', 'productapis');
 
 ini_set('arg_separator.output', '&');
 
@@ -125,7 +125,7 @@ function custom_apigee_smartdocs_import_model_content() {
     ),
   );
   
-  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/account_api.json';
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/account_apis.json';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_import_model',
     array(

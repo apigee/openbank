@@ -1,44 +1,58 @@
-# <a href="http://apigee.com/"><img src="http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png"/></a> OpenBank
+# [![apigee.com](http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png)](http://apigee.com) Openbank
 
+The Apigee Open Banking APIx solution simplifies and accelerates the process of delivering open banking by providing secure, ready-to-use APIs along with the computing infrastructure to support internal and external innovation.
+
+## Update!
+We have created a new video to demonstrate the OpenBank Solution and Installation Steps. Please check out the video below and give us your feedback on what you liked and what you would like to see.
+
+[![OpenBank APIs and Installation](readme-images/youtube.png)](http://www.youtube.com/watch?v=8eecvL75B5w "OpenBank APIs and Installation")
+
+This repository is organized into the following sections
+
+[Design](#design)
+- [Architecture](#architecture)
+- [Security](#security)
+- [APIs](#functional-apis)  
+
+[Setup](#setup)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Developer Portal](#developer-portal)
+
+[Changelog](#changelog)
 
 ## Overview
 
-The Apigee Open Banking APIx solution simplifies and accelerates the process of delivering open banking by providing secure, ready-to-use APIs along with the computing infrastructure to support internal and external innovation. The OpenBank solution is built on Apigee Edge API Management Platform, and features the following APIs:
+The OpenBank solution is built on Apigee Edge API Management Platform, and features the following APIs:
 
-  - Account Access APIs.
-   - Account Information 
-   - Account Transaction 
-   - Account Information 
-  - Payment Transfer APIs
-  - Payment Initiation
-  - Open Data APIs
-   - ATM location 
-   - Branch Location
-   - Bank Products
-  - OAuth APIs (Security)
-  - UserInfo APIs
+**Account Access APIs**
+  - Account Information 
+  - Account Transaction 
+  - Account Information 
 
+**Payment Transfer APIs**
+- Payment Initiation
+
+**Open Data APIs**
+  - ATM location 
+  - Branch Location
+  - Bank Products
+
+**Security APIs**
+  - OAuth
+  - UserInfo
 
 ![enter image description
 here](http://openbank.apigee.com/sites/default/files/openbank_architecture.png)
 
 It also provides an implementation of **OpenID** and **oAuth** based authentication, **consent** and **two-factor authentication** using SMS.
 
-## Repository Overview
+### Repository Overview
 
 This repository contains the necessary artifacts that will allow one to pull up
 a complete set of **Banking APIs** that comply with _Openbanking_ and _PSD2_
 regulations. In addition this will also allow one to build a _sandbox_ complete
 with a **Developer Portal**, dummy backend and a sample app.
-
-## Getting Started
-
-+   Create an [Apigee API Management Developer Account](https://enterprise.apigee.com)
-+   Create an [Apigee API BaaS Account](https://apibaas.apigee.com)
-+   Request For [Apigee Developer Portal](https://goo.gl/BiILtr)
-
-To Learn more on the basic concepts of Apigee Edge, please refer to : 
-http://docs.apigee.com/api-services/content/what-apigee-edge
 
 ## Design
 
@@ -95,13 +109,11 @@ The consent app will talk to the following APIs in order to
 fulfill its functionality : Session API, SMS API, Accounts-connector API, Authentication-connector API.
 For more details on each of these APIs, refer to the README.md of the respective proxy which exposes these APIs.
 
-
-
-###Functional APIs
+### Functional APIs
 
 The Functional APIs deployed and available as part of OpenBank solution are broadly classified as follow:
 
-####**1. Accounts Information APIS** 
+#### **1. Accounts Information APIS** 
 Account information APIs provide information for a single account held by the consumer. Information is categorized into:
 
  - Information
@@ -116,7 +128,7 @@ Banking APIs provide developers with the information needed to create innovative
  - Analysis and recommendations for better money management.
  - Reccomendation of products and deals based on monthly statements.
 
-####**2. Payments APIs** 
+#### **2. Payments APIs** 
 Payment APIs enable the transfer of funds from a consumer's account to a recipient. The initation of transfer is done by the consumer and the recipient's account number is provided by the third-party payment provider (TPPs or PISPs). While initiating a transfer the user will have to authenticate using **two-factor authentication**(otp via sms) following which the transfer will be initiated.
 While online account payment is a fundamental use case of this API, it is its usage and the benefit it provides over traditional third-party payment gateways that makes it hugely impactful. Take a look at some of the use cases:
 
@@ -124,20 +136,33 @@ While online account payment is a fundamental use case of this API, it is its us
  - Push payments providing merchant with immediate access to the transferred amount.
  - Fast retail loans from third-party lenders
 
-####**3. Open Data APIs** 
+#### **3. Open Data APIs** 
 Open Data APIs are a category of APIs that provide general information of a Bank. These are not customer-specific, but bank-specific: locations, products, URLs, and events, for example. These APIs are not subjected to user-level authentication, but are are protected to be used only by signed apps. A **valid client credential** is essential to invoke these APIs.
 Using this category of APIs, a wide variety of new value-added solutions can be provided to consumers. Coupled with customer-specific information, potential new solutions include product and offer recommendations.
 
 ## Apigee Edge Setup
 
+### Getting Started
+
++   Create an [Apigee API Management Developer Account](https://enterprise.apigee.com)
++   Create an [Apigee BaaS Account](https://apibaas.apigee.com)
++   Request For [Apigee Developer Portal](https://goo.gl/j8Vbew)
+
+To Learn more on the basic concepts of Apigee Edge, please refer to : 
+http://docs.apigee.com/api-services/content/what-apigee-edge
+
+
 To deploy the APIs and its dependencies on your own org please run the following
 script from the root folder of the cloned repo.
 
-### Pre-requisites
+### Installation 
+
+#### Pre-requisites
 + node.js 
 + npm
 
-### Run following commands
+#### Instructions
+
 Install gulp 
 ```
 npm install --global gulp-cli
@@ -148,7 +173,7 @@ Pull node modules
 npm install
 ```
 
-#### Run the deploy command
+Run the deploy command
 ```
 gulp deploy --resource openbank_apis
 ```
@@ -165,7 +190,7 @@ This will interactively prompt you for following details, and will then create /
 + BaaS Org Client Secret 
 
 
-### Test
+#### Test
 
 Once the deploy script is complete, run the following command to do a basic sanity test that the APIs are working
 
@@ -175,26 +200,43 @@ npm test
 
 
 
-###Developer Portal
+### Developer Portal
 Every API provider must be able to educate developers and successfully expose their APIs. A developer portal is the face of your API program, providing everything that internal, partner, and third party developers need. 
 
 Developers need to interact with the Banks and with each other. Enable your developer community to provide feedback, make support and feature requests, and submit their own content that can be accessed by other developers with the right developer portal.
 
 Apigee Edge provides with a Developer Services portal that you can use to build and launch your own customized website to provide all of these services to your development community. One has the option to create their own developer portal, either in the cloud or on-premises.
 
-The below picture depicts how a dev portal looks like:
-<img src="readme-images/openbank.png">
+The below picture depicts how a dev portal looks like
 
-####Developer portal Setup
+![developer-portal](readme-images/openbank.png)
+
+#### Developer portal Setup
 The detailed instructions for developer portal setup for openbank solution can be found [Here](https://github.com/apigee/openbank/tree/master/src/devportal).
 
-###Data
+### Data
 The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Baas 2.0](http://apibaas.apigee.com/) in your org.
 
 
 
 
 ## Changelog
+
+#### 2017/02/20
+
+* APIs / API Spec
+    * Refined Products API and added to Developer Portal Smartdocs
+    * Updated OpenAPI spec for Products API
+
+* Installation
+    * New node-based deployment script
+    * New script for easier portal setup
+    
+* Documentation
+    * New video overview of the OpenBank APIs and Installation - http://www.youtube.com/watch?v=8eecvL75B5w 
+    * Updated API documenation
+    * Updated installation instructions for APIs and Developer Portal
+
 
 #### 2016/11/03
 

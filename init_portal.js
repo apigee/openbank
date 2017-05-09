@@ -139,7 +139,7 @@ function post_prompt(err, results) {
                 "redirect_uri": redirect_uri_pisp,
                 "scope": "openid accounts payment",
                 "state": "af0ifjsldkj",
-                "acr_values": "2",
+                "acr_values": "3",
                 "claims": {
                     "paymentinfo": {
                         "type": "sepa_credit_transfer",
@@ -164,7 +164,6 @@ function post_prompt(err, results) {
                 },
                 "iat": 1474028597
             }, secret_pisp);
-            console.log(secret_pisp)
 
             inject_object.token_payment = token_payment
 

@@ -1,14 +1,14 @@
-var apigeetool 		= require('apigeetool')
+var apigeetool 			= require('apigeetool')
 var lib				= require('../../lib')
-var async           = require('async')
-var lodash         = require('lodash')
+var async           		= require('async')
+var lodash         		= require('lodash')
 
 var sdk 			= apigeetool.getPromiseSDK()
 
 var adapter = function () {
 	this.clean 			= clean
 	this.build 			= build
-	this.deploy 		= deploy
+	this.deploy 			= deploy
 }
 
 function build(context, resourceName, subResourceName, params, cb) {
@@ -30,7 +30,7 @@ function deploy(context, resourceName, subResourceName, params, cb) {
 		items[i].context = context
 	}
 
-	async.each(items, create_app, function(err){
+	async.eachSeries(items, create_app, function(err){
 		if(err){
 			lib.print('ERROR', err)
 			cb()
