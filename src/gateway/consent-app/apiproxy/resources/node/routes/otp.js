@@ -2,7 +2,7 @@
  * Otp Route.
  */
 var express = require('express');
-var otp = require('common-consent-controller').otp;
+var otp = require('../controllers/otp');
 var router = express.Router();
 
 router.get('/', otp.showMsisdnForm);
