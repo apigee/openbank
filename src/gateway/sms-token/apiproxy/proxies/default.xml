@@ -43,7 +43,6 @@
                     <Name>Lookup-Cache-SMS-OTP-Cache</Name>
                 </Step>
                 <Step>
-                    <Condition>(token_value = null or token_value = "")</Condition>
                     <Name>Error-Invalid-SMS-OTP</Name>
                 </Step>
             </Request>
