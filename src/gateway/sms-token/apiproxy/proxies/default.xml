@@ -42,9 +42,6 @@
                 <Step>
                     <Name>Lookup-Cache-SMS-OTP-Cache</Name>
                 </Step>
-                <Step>
-                    <Name>Error-Invalid-SMS-OTP</Name>
-                </Step>
             </Request>
             <Response>
                 <Step>
