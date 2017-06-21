@@ -34,6 +34,10 @@
                     <Condition>grant_type != "client_credentials"</Condition>
                 </Step>
                 <Step>
+                    <Condition>TokenType != "openid"</Condition>
+                    <Name>Fault-Invalid-Token-Type</Name>
+                </Step>
+                <Step>
                     <Name>Fault.InvalidTransaction</Name>
                     <Condition>grant_type != "client_credentials" and ((customer_number = "") or (customer_number = null) or (customer_number = "acr:token"))
                     </Condition>

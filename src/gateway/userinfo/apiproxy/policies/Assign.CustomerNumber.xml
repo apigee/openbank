@@ -6,6 +6,10 @@
         <Name>customer_number</Name>
         <Ref>accesstoken.customer_number</Ref>
     </AssignVariable>
+    <AssignVariable>
+        <Name>TokenType</Name>
+        <Ref>accesstoken.type</Ref>
+    </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>
 </AssignMessage>

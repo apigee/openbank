@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="1" name="userinfo">
+    <Basepaths>/apis/v1/userinfo</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1459849676150</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
@@ -8,12 +9,26 @@
     <LastModifiedAt>1459851372709</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
     <Policies>
+        <Policy>Assign.CustomerNumber</Policy>
+        <Policy>Assign.UserInfoResponse</Policy>
+        <Policy>Callout.GetUserDetails</Policy>
+        <Policy>Extract.CustomerNumber</Policy>
+        <Policy>Extract.UserInfo</Policy>
+        <Policy>Fault-Invalid-Token-Type</Policy>
+        <Policy>Fault.InvalidAccessToken</Policy>
+        <Policy>Fault.InvalidCustomer</Policy>
+        <Policy>Fault.InvalidTransaction</Policy>
+        <Policy>Jsc.BuildUserInfoResponse</Policy>
+        <Policy>OAuth.VerifyAccessToken</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
+        <Resource>jsc://BuildUserInfoResponse.js</Resource>
+        <Resource>jsc://create.userinfo.response-1.0.js</Resource>
     </Resources>
+    <Spec></Spec>
     <TargetServers/>
     <TargetEndpoints/>
     <validate>false</validate>

@@ -1,10 +1,10 @@
-var scope = context.getVariable("accesstoken.scope");
+var scope = context.getVariable("TokenType");
 var grantType = context.getVariable("grant_type");
 
 if (grantType === 'client_credentials')
     scope = "profile email phone address";
 
-if (scope.indexOf("accounts") !== -1)
+if (scope.indexOf("openid") !== -1)
     scope = "profile email phone address";
 
 var scopes;
