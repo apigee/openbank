@@ -1,5 +1,5 @@
 resources:
-- name: openbank_apis
+- name: openbank_apis2
   type: solutions.api
   properties:
     inputs:
@@ -34,42 +34,42 @@ resources:
     edgeOrg:
     script: gulpfile.js
     basePath: .
-    dependencies:
-#    - name: session
-#      type: proxy
-#      url: git@revision.aeip.apigee.net:solution-commons/session.git
-#      version: v1.0.0
-    dataSources:
-    - name: default
-      orgName: '{{usergrid_org}}'
-      appName: '{{usergrid_app}}'
-      appClientId: '{{usergrid_client_id}}'
-      appSecret: '{{usergrid_secret}}'
     subResources:
     - name: baas_data_load
       type: baasLoadData
       items:
-      - name: banks
-        permissions: ['get,post,delete:banks','get,post,delete:banks/*','get,post,delete:banks/**']
-      - name: transactions
-        permissions: ['get,post,delete:transactions','get,post,delete:transactions/*','get,post,delete:transactions/**']
       - name: accounts
         file: setup/data/accounts.json
         permissions: ['get,post,delete:accounts','get,post,delete:accounts/*','get,post,delete:accounts/**']
+      - name: paymentsubmissions
+        permissions: ['get,post,delete:paymentsubmissions','get,post,delete:paymentsubmissions/*','get,post,delete:paymentsubmissions/**']
+      - name: accountsrequests
+        file: setup/data/accountsrequests.json
+        permissions: ['get,post,put,delete:accountsrequests','get,post,put,delete:accountsrequests/*','get,post,put,delete:accountsrequests/**']
+      - name: beneficiaries
+        file: setup/data/beneficiaries.json
+        permissions: ['get,post,delete:beneficiaries','get,post,delete:beneficiaries/*','get,post,delete:beneficiaries/**']
       - name: customers
         file: setup/data/customers.json
         permissions: ['get,post,delete:customers','get,post,delete:customers/*','get,post,delete:customers/**']
+      - name: directdebits
+        file: setup/data/directdebits.json
+        permissions: ['get,post,delete:directdebits','get,post,delete:directdebits/*','get,post,delete:directdebits/**']
+      - name: paymentsrequests
+        file: setup/data/paymentsrequests.json
+        permissions: ['get,post,put,delete:paymentsrequests','get,post,put,delete:paymentsrequests/*','get,post,put,delete:paymentsrequests/**']
+      - name: standingorders
+        file: setup/data/standingorders.json
+        permissions: ['get,post,delete:standingorders','get,post,delete:standingorders/*','get,post,delete:standingorders/**']
+      - name: transactions
+        file: setup/data/transactions.json
+        permissions: ['get,post,delete:transactions','get,post,delete:transactions/*','get,post,delete:transactions/**']
       - name: locations
         file: setup/data/locations.json
         permissions: ['get,post,delete:locations','get,post,delete:locations/*','get,post,delete:locations/**']
       - name: products
         file: setup/data/products.json
         permissions: ['get,post,delete:products','get,post,delete:products/*','get,post,delete:products/**']
-    - name: create_connections
-      type: baasConnection
-      items:
-      - name: connections
-        file: setup/connections.json
     - name: cacheResources
       type: cache
       items:
@@ -79,22 +79,18 @@ resources:
         payload: '{ "name": "application-session-cache"}'
       - name: sms-token-cache
         payload: '{ "name": "sms-token-cache"}'
+      - name: idempotency-cache
+        payload: '{ "name": "idempotency-cache"}'
       - name: nonce-cache
         payload: '{ "name": "nonce-cache"}'
     - name: replaceorgvalues
       type: configSubstitutions
       items:
       - name: baasBasePath
-        filePaths: ['src/gateway/accounts-connector/target/apiproxy/policies/Assign.TargetURL.xml','src/gateway/locations-connector/target/apiproxy/policies/Assign.TargetURL.xml','src/gateway/products-connector/target/apiproxy/policies/Assign.TargetURL.xml','src/gateway/transfers-connector/target/apiproxy/policies/Callout.AddTransactionToAccount.xml','src/gateway/transfers-connector/target/apiproxy/targets/default.xml','src/gateway/userinfo/target/apiproxy/policies/Callout.GetUserDetails.xml','src/gateway/authentication-connector/target/apiproxy/targets/default.xml']
+        filePaths: ['src/gateway/payments-connector/target/apiproxy/targets/default.xml','src/gateway/payments-connector/target/apiproxy/policies/PostTransaction.xml','src/gateway/accounts-connector/target/apiproxy/policies/Assign.TargetURL.xml','src/gateway/locations-connector/target/apiproxy/policies/Assign.TargetURL.xml','src/gateway/products-connector/target/apiproxy/policies/Assign.TargetURL.xml','src/gateway/userinfo/target/apiproxy/policies/Callout.GetUserDetails.xml','src/gateway/authentication-connector/target/apiproxy/targets/default.xml']
         value: '{{ baas_host }}/{{ usergrid_org }}/{{ usergrid_app }}'
-      - name: redirectConsentOauth
-        filePaths: ['src/gateway/oauth/target/apiproxy/policies/Assign.RedirectConsentApp.xml']
-        value: 'https://{{ org }}-{{ env }}.apigee.net/internal/consent?sessionid={messageid}'
-      - name: redirectConsentTransfers
-        filePaths: ['src/gateway/transfers/target/apiproxy/policies/Assign.RedirectConsentApp.xml']
-        value: 'https://{{ org }}-{{ env }}.apigee.net/internal/transfer-consent?sessionid={messageid}'
       - name: edgeBasePath
-        filePaths: ['src/gateway/transfers/target/apiproxy/policies/Callout-Complete-Transfer.xml']
+        filePaths: ['src/gateway/payments/target/apiproxy/targets/default.xml','src/gateway/oauth/target/apiproxy/policies/Assign.RedirectConsentApp.xml','src/gateway/accounts/target/apiproxy/targets/default.xml']
         value: 'https://{{ org }}-{{ env }}.apigee.net'
       - name: sms_endpoint
         filePaths: ['src/gateway/sms-token/target/apiproxy/targets/confirmation.xml','src/gateway/sms-token/target/apiproxy/targets/default.xml']
@@ -102,7 +98,6 @@ resources:
     - name: bank_apis
       type: proxy
       items:
-      - name: accounts
       - name: accounts-connector
       - name: authentication-connector
       - name: locations
@@ -110,12 +105,11 @@ resources:
       - name: oauth
       - name: session
       - name: sms-token
-      - name: transfers
-      - name: transfers-connector
+      - name: consent-management
+      - name: payments-connector
       - name: userinfo
       - name: products
       - name: products-connector
-
     - name: developers
       type: developer
       items:
@@ -124,77 +118,74 @@ resources:
     - name: apiProducts
       type: product
       items:
-      - payload: '{"approvalType":"auto", "displayName":"Open Data APIs","name":"open_data_apis","environments":["test","prod"],"scopes":["openid", "atms", "branches"], "proxies":["oauth", "locations"]}'
-        name: open_data_apis
-      - payload: '{"approvalType":"auto", "displayName":"Payment Transfer APIs","name":"payment_transfer_apis","environments":["test","prod"],"scopes":["openid", "accounts", "transfer", "payment"], "proxies":["oauth", "transfers", "accounts", "userinfo"]}'
-        name: payment_transfer_apis
-      - payload: '{"approvalType":"auto", "displayName":"Account Access APIs","name":"account_access_apis","environments":["test","prod"],"scopes":["openid", "accounts", "accounts-info", "accounts-balance", "accounts-transactions"], "proxies":["oauth", "accounts", "userinfo"]}'
-        name: account_access_apis
-      - payload: '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_consent_apis","environments":["test","prod"],"scopes":[], "proxies":["session", "sms-token", "authentication-connector", "oauth"]}'
-        name: internal_consent_apis
+      - payload: '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs v2","name":"internal_apis_v2","environments":["test","prod"],"scopes":[], "proxies":["session", "sms-token", "authentication-connector", "oauth","accounts-connector","payments-connector","consent-management"]}'
+        name: internal_apis
     - name: developerApps
       type: app
       items:
+      - name: internal_app
+        payload: '{"name":"internal_app_v2","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"internal_apis_v2"}'
+        assignResponse:
+        - from: credentials.0.consumerKey
+          to: apiKey_IA
+    - name: replace_consent_app_key
+      type: configSubstitutions
+      items:
+      - name: internalAppKey
+        filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/accounts/target/apiproxy/policies/Assign-APIKey.xml','src/gateway/accounts/target/apiproxy/policies/Fetch-Consent.xml','src/gateway/payments/target/apiproxy/policies/Assign-APIKey.xml','src/gateway/payments/target/apiproxy/policies/Get-Payment-Request.xml']
+        value: '{{ apiKey_IA }}'
+      - name: edgeBasePath
+        filePaths: ['src/gateway/accounts/target/apiproxy/policies/Fetch-Consent.xml','src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/payments/target/apiproxy/policies/Get-Payment-Request.xml']
+        value: 'https://{{ org }}-{{ env }}.apigee.net'
+    - name: deploy_remaining_apis
+      type: proxy
+      items:
+      - name: consent-app
+      - name: accounts
+      - name: payments
+    - name: remainingApiProducts
+      type: product
+      items:
+      - payload: '{"approvalType":"auto", "displayName":"Open Data APIs v2","name":"open_data_apis_v2","environments":["test","prod"],"scopes":["openid", "atms", "branches"], "proxies":["oauth", "userinfo"]}'
+        name: open_data_apis
+      - payload: '{"approvalType":"auto", "displayName":"Payment APIs v2","name":"payment_apis_v2","environments":["test","prod"],"scopes":["payment_request"], "proxies":["oauth", "payments"]}'
+        name: payment_apis
+      - payload: '{"approvalType":"auto", "displayName":"Account APIs v2","name":"account_apis_v2","environments":["test","prod"],"scopes":["account_request"], "proxies":["oauth", "accounts"]}'
+        name: account_apis
+    - name: remainingDeveloperApps
+      type: app
+      items:
       - name: AISP_App
-        payload: '{"name":"AISP_App","callback":"https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/userinfoapis/templateauths/aisp_auth/callback,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/accountsapis/templateauths/aisp_auth/callback","email":"openbank@apigee.net","apiProducts":"account_access_apis"}'
+        payload: '{"name":"AISP_App_v2","callback":"https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/userinfoapis/templateauths/aisp_auth/callback,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/accountsapis/templateauths/aisp_auth/callback,http://localhost/","email":"openbank@apigee.net","apiProducts":"account_apis_v2"}'
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey_AISP
         - from: credentials.0.consumerSecret
           to: apiSecret_AISP
       - name: PISP_App
-        payload: '{"name":"PISP_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"payment_transfer_apis"}'
+        payload: '{"name":"PISP_App_v2","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"payment_apis_v2"}'
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey_PISP
         - from: credentials.0.consumerSecret
           to: apiSecret_PISP
-      - name: internal_consent_app
-        payload: '{"name":"internal_consent_app","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"internal_consent_apis"}'
+      - name: Opendata_App
+        payload: '{"name":"Opendata_App_v2","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"open_data_apis_v2"}'
         assignResponse:
         - from: credentials.0.consumerKey
-          to: apiKey_ICA
-      - name: Opendata_App
-        payload: '{"name":"Opendata_App","callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"open_data_apis"}'
-
-    - name: replace_consent_app_key
+          to: apiKey_OA
+    - name: replace_test_keys
       type: configSubstitutions
       items:
-      - name: consentAppKey
-        filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/consent-app-transfers/target/apiproxy/resources/node/config.json']
-        value: '{{ apiKey_ICA }}'
-      - name: edgeBasePath
-        filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/consent-app-transfers/target/apiproxy/resources/node/config.json']
-        value: 'https://{{ org }}-{{ env }}.apigee.net'
-    - name: consent_apis
-      type: proxy
-      items:
-      - name: consent-app
-      - name: consent-app-transfers
-    - name: copyTestConfigTemplate
-      type: util
-      items: 
-      - action: copy
-        from: test/config.js.template
-        to: test/config.js
-    - name: replaceTestScript
-      type: configSubstitutions
-      items:
-      - name: edgeBasePath
-        filePaths: ['test/config.js'] 
-        value: 'https://{{ org }}-{{ env }}.apigee.net'
-      - name: apiKey_AISP
-        filePaths: ['test/config.js'] 
+      - name: AISP_key
+        filePaths: ['test/features/myapi.feature']
         value: '{{ apiKey_AISP }}'
-      - name: apiSecret_AISP
-        filePaths: ['test/config.js'] 
-        value: '{{ apiSecret_AISP }}'
-      - name: apiKey_PISP
-        filePaths: ['test/config.js']
+      - name: PISP_key
+        filePaths: ['test/features/myapi.feature']
         value: '{{ apiKey_PISP }}'
-      - name: apiSecret_PISP
-        filePaths: ['test/config.js']
-        value: '{{ apiSecret_PISP }}'
-
-
-
+      - name: edgePath
+        filePaths: ['test/features/step_definitions/myapi.js']
+        value: '{{ org }}-{{ env }}.apigee.net'
+      - name: internalKey
+        filePaths: ['test/features/myapi.feature']
+        value: '{{ apiKey_IA }}'
