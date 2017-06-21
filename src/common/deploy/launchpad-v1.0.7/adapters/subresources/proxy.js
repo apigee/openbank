@@ -56,7 +56,7 @@ function build_proxy(item, callback) {
 		} else {
 			// do a npm install
 			var npm_dir = path.join(proxy_target_dir, 'resources/node')
-            if (fs.existsSync(npm_dir)){
+            if (fs.existsSync(npm_dir) && item.name != 'consent-app'){
                 lib.npm_install_local_only(npm_dir,function(code){
                     if (code != 0) {
                         lib.print('error', 'error building proxy ' + item.name)
