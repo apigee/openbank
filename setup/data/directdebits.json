@@ -1,0 +1,26 @@
+[{
+  "AccountId": "4567612345",
+  "Currency": "INR",
+  "DirectDebitStatusCode": "Active",
+  "MandateIdentification": "bwjedb4w62156518721",
+  "Name": "DEF",
+  "PreviousPaymentAmount": {
+    "Amount": "300",
+    "Currency": "INR"
+  },
+  "PreviousPaymentDate": "18-05-2017"
+},
+
+
+{
+  "AccountId": "2139531801",
+  "Currency": "INR",
+  "DirectDebitStatusCode": "Active",
+  "MandateIdentification": "556677889216653653",
+  "Name": "ABC",
+  "PreviousPaymentAmount": {
+    "Amount": "250",
+    "Currency": "INR"
+  },
+  "PreviousPaymentDate": "15-04-2017"
+}]

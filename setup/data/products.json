@@ -1,120 +1,135 @@
 [{
-  "name": "PL1",
-  "text": "Personal Loan",
-  "landing-page": "http://bank.com/loans",
-  "category": "Loans",
-  "sub-category": "Loans",
-  "more-info": {
-    "rate-of-interest": 16,
-    "maximum-tenure": 96
-  }
+
+  "name": "FD1",
+  "Category": "Investments",
+  "Landing-page": "http://bank.com/accounts",
+  "More-info": {
+    "Interest-slabs": [
+      {
+        "Rate-of-interest": 7,
+        "Max-period": 3,
+        "Text": "0 to 3 months",
+        "Min-period": 0
+      },
+      {
+        "Rate-of-interest": 7.5,
+        "Max-period": 6,
+        "Text": "3 to 6 months",
+        "Min-period": 3
+      },
+      {
+        "Rate-of-interest": 8,
+        "Max-period": 12,
+        "Text": "6 to 12 months",
+        "Min-period": 6
+      },
+      {
+        "Rate-of-interest": 7.5,
+        "Text": "> 1 year",
+        "Min-period": 12
+      }
+    ]
+  },
+  "Sub-category": "Deposits",
+  "Text": "Fixed Deposits"
 },
-  {
-    "name": "AL1",
-    "text": "Auto Loan",
-    "landing-page": "http://bank.com/loans",
-    "category": "Loans",
-    "sub-category": "Loans",
-    "more-info": {
-      "rate-of-interest": 16,
-      "maximum-tenure": 60
-    }
+
+{
+
+  "name": "OD1",
+  "Category": "Banking",
+  "Landing-page": "http://bank.com/accounts",
+  "More-info": {
+    "rate-of-interest": 0
   },
-  {
-    "name": "HL1",
-    "text": "Home Loan",
-    "landing-page": "http://bank.com/loans",
-    "category": "Loans",
-    "sub-category": "Mortgages",
-    "more-info": {
-      "rate-of-interest": 10,
-      "maximum-tenure": 240
-    }
+  "Sub-category": "Personal Banking",
+  "Text": "Overdraft Account"
+},
+
+
+{
+  "name": "SV",
+  "Category": "Banking",
+  "Landing-page": "http://bank.com/accounts",
+  "More-info": {
+    "rate-of-interest": 4
   },
-  {
-    "name": "HLT1",
-    "text": "Home Loan Takeover",
-    "landing-page": "http://bank.com/loans",
-    "category": "Loans",
-    "sub-category": "Mortgages",
-    "more-info": {
-      "rate-of-interest": 20,
-      "maximum-tenure": 240
-    }
+  "Sub-category": "Personal Banking",
+  "Text": "Savings Account"
+},
+
+{
+  "name": "CC2",
+  "Category": "Credit Cards",
+  "Landing-page": "http://bank.com/cards",
+  "More-info": {
+    "Withdrawal-limits": 2000,
+    "Rewards-conversion-rate": 0.2,
+    "Rewards": true
   },
-  {
-    "name": "CC1",
-    "text": "Platinum Credit Card",
-    "landing-page": "http://bank.com/cards",
-    "category": "Credit Cards",
-    "more-info": {
-      "withdrawal-limits": 5000,
-      "rewards": true,
-      "rewards-conversion-rate": 0.1
-    }
+  "Text": "Rewards Credit Card"
+},
+
+{
+  "name": "CC1",
+  "Category": "Credit Cards",
+  "Landing-page": "http://bank.com/cards",
+  "More-info": {
+    "Withdrawal-limits": 5000,
+    "Rewards-conversion-rate": 0.1,
+    "Rewards": true
   },
-  {
-    "name": "CC2",
-    "text": "Rewards Credit Card",
-    "landing-page": "http://bank.com/cards",
-    "category": "Credit Cards",
-    "more-info": {
-      "withdrawal-limits": 2000,
-      "rewards": true,
-      "rewards-conversion-rate": 0.2
-    }
+  "Text": "Platinum Credit Card"
+},
+
+
+{
+
+  "name": "HLT1",
+  "Category": "Loans",
+  "Landing-page": "http://bank.com/loans",
+  "More-info": {
+    "Rate-of-interest": 20,
+    "Maximum-tenure": 240
   },
-  {
-    "name": "SV",
-    "text": "Savings Account",
-    "landing-page": "http://bank.com/accounts",
-    "category": "Banking",
-    "sub-category": "Personal Banking",
-    "more-info": {
-      "rate-of-interest": 4
-    }
+  "Sub-category": "Mortgages",
+  "Text": "Home Loan Takeover"
+},
+
+{
+  "name": "HL1",
+  "Category": "Loans",
+  "Landing-page": "http://bank.com/loans",
+  "More-info": {
+    "Rate-of-interest": 10,
+    "Maximum-tenure": 240
   },
-  {
-    "name": "OD1",
-    "text": "Overdraft Account",
-    "landing-page": "http://bank.com/accounts",
-    "category": "Banking",
-    "sub-category": "Personal Banking",
-    "more-info": {
-      "rate-of-interest": 0
-    }
+  "Sub-category": "Mortgages",
+  "Text": "Home Loan"
+},
+
+{
+
+  "name": "AL1",
+  "Category": "Loans",
+  "Landing-page": "http://bank.com/loans",
+  "More-info": {
+    "Rate-of-interest": 16,
+    "Maximum-tenure": 60
   },
-  {
-    "name": "FD1",
-    "text": "Fixed Deposits",
-    "landing-page": "http://bank.com/accounts",
-    "category": "Investments",
-    "sub-category": "Deposits",
-    "more-info": {
-      "interest-slabs": [
-        {
-          "min-period": 0,
-          "max-period": 3,
-          "rate-of-interest": 7,
-          "text": "0 to 3 months"
-        },
-        {
-          "min-period": 3,
-          "max-period": 6,
-          "rate-of-interest": 7.5,
-          "text": "3 to 6 months"
-        },
-        {
-          "min-period": 6,
-          "max-period": 12,
-          "rate-of-interest": 8,
-          "text": "6 to 12 months"
-        },
-        {
-          "min-period": 12,
-          "rate-of-interest": 7.5,
-          "text": "> 1 year"
-        }
-      ]
-    }
-  }]
+  "Sub-category": "Loans",
+  "Text": "Auto Loan"
+},
+
+{
+  "name": "PL1",
+  "Category": "Loans",
+  "Landing-page": "http://bank.com/loans",
+  "More-info": {
+    "Rate-of-interest": 16,
+    "Maximum-tenure": 96
+  },
+  "Sub-category": "Loans",
+  "Text": "Personal Loan"
+}
+]

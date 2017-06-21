@@ -1,0 +1,63 @@
+[{
+  "AccountId": "2139531801",
+  "CreditorAccount": {
+    "SecondaryIdentification": "myAccount2",
+    "Identification": "4567612345",
+    "SchemeName": "ghy",
+    "Name": "Account2"
+  },
+  "CreditorReferenceInformation": "Credit67895",
+  "Currency": "INR",
+  "FinalPaymentAmount": {
+    "Amount": "300",
+    "Currency": "INR"
+  },
+  "FinalPaymentDate": "13-11-2017",
+  "FirstPaymentAmount": {
+    "Amount": "300",
+    "Currency": "INR"
+  },
+  "FirstPaymentDate": "13-01-2017",
+  "Frequency": "QtrDay",
+  "NextPaymentAmount": {
+    "Amount": "300",
+    "Currency": "INR"
+  },
+  "NextPaymentDate": "13-09-2017",
+  "Servicer": {
+    "Identification": "TU",
+    "SchemeName": "cvb"
+  }
+},
+
+{
+  "AccountId": "4567612345",
+  "CreditorAccount": {
+    "SecondaryIdentification": "myAccount1",
+    "Identification": "2139531801",
+    "SchemeName": "asd",
+    "Name": "Account1"
+  },
+  "CreditorReferenceInformation": "Credit12345",
+  "Currency": "INR",
+  "FinalPaymentAmount": {
+    "Amount": "400",
+    "Currency": "INR"
+  },
+  "FinalPaymentDate": "27-11-2017",
+  "FirstPaymentAmount": {
+    "Amount": "400",
+    "Currency": "INR"
+  },
+  "FirstPaymentDate": "27-01-2017",
+  "Frequency": "QtrDay",
+  "NextPaymentAmount": {
+    "Amount": "400",
+    "Currency": "INR"
+  },
+  "NextPaymentDate": "27-09-2017",
+  "Servicer": {
+    "Identification": "EY",
+    "SchemeName": "zxc"
+  }
+}]

@@ -1,0 +1,32 @@
+[{
+  "name": "firstpaymentrequest",
+  "CreditorAccount": {
+    "Identification": "1287432455",
+    "SchemeName": "HJKI",
+    "Name": "uiy"
+  },
+  "CreditorAgent": {
+    "Identification": "EX1",
+    "SchemeName": "TYI"
+  },
+  "DebtorAccount": {
+    "Identification": "2139531801",
+    "SchemeName": "TYCV",
+    "Name": "GHIL"
+  },
+  "DebtorAgent": {
+    "Identification": "906745",
+    "SchemeName": "EW"
+  },
+  "EndToEndIdentification": "ACME6712",
+  "InstructedAmount": {
+    "Amount": "678",
+    "Currency": "INR"
+  },
+  "InstructionIdentification": "kjhnbvcxsderthg",
+  "MerchantCategoryCode": "RET56",
+  "RemittanceInformation": {
+    "Unstructured": "lkjhertyuv",
+    "CreditorReferenceInformation": "nghhahebghas"
+  }
+}]

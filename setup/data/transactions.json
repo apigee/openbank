@@ -1,0 +1,37 @@
+[{
+  "AccountId": "2139531801",
+  "AddressLine": "16th block Az apartments",
+  "Amount": {
+    "Amount": "100",
+    "Currency": "INR"
+  },
+  "Balance": {
+    "Type": "CR",
+    "Amount": "4600",
+    "CreditDebitIndicator": "Debit"
+  },
+  "BankTransactionCode": {
+    "SubCode": "ER",
+    "Code": "QW"
+  },
+  "BookingDate": {
+    "Date": "26-04-2017",
+    "DateTime": "26-04-2017 10:20:00"
+  },
+  "CreditDebitIndicator": "Debit",
+  "MerchantDetails": {
+    "MerchantCategoryCode": "RET",
+    "Name": "BIGZ"
+  },
+  "ProprietaryBankTransactionCode": {
+    "Issuer": "QWER",
+    "Code": "QWER15677"
+  },
+  "Status": "Booked",
+  "TransactionId": "2139531801hxnbcxjhxbjhxklhl",
+  "TransactionInformation": "online shopping at BigZ",
+  "ValueDate": {
+    "Date": "26-04-2017",
+    "DateTime": "26-04-2017 10:20:00"
+  }
+}]

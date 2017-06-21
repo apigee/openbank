@@ -1,93 +1,69 @@
-[
-  {
-    "name": "19321890873",
-    "account_number": "19321890873",
-    "balance": "1900",
-    "balance_available": 1900,
-    "currency": "EUR",
-    "customers": "84487942",
-    "IBAN": "123210FZAKF9554ARE",
-    "is_debit_note_enabled": true,
-    "is_locked": true,
-    "label": "main savings",
-    "overdraft": true,
-    "preauth_amount": 10000,
-    "routingNumber": "732717720",
-    "sortCode": "43-18-22",
-    "swiftCode": "AREAGB8C"
+[{
+
+  "name": "4567612345",
+  "Account": {
+    "SecondaryIdentification": "EY2",
+    "Identification": "4567612345",
+    "SchemeName": "EY",
+    "Name": "Account 2"
   },
-  {
-    "name": "84675875469",
-    "account_number": "84675875469",
-    "balance": "2500",
-    "balance_available": "2500",
-    "currency": "EUR",
-    "customers": "46582398",
-    "IBAN": "745980FZEBA9124FGV",
-    "is_debit_note_enabled": true,
-    "is_locked": true,
-    "is_trusted": false,
-    "label": "main savings",
-    "overdraft": true,
-    "preauth_amount": 1000000,
-    "routingNumber": "211917727",
-    "sortCode": "55-32-77",
-    "swiftCode": "VBSAGG8L"
+  "account_number": "4567612345",
+  "AccountId": "4567612345",
+  "Amount": "5000",
+  "Balance": 50000,
+  "CreditDebitIndicator": "Debit",
+  "CreditLine": {
+    "Type": "CR",
+    "Amount": {
+      "Amount": "100",
+      "Currency": "INR"
+    },
+    "Included": true
   },
-  {
-    "name": "2139531801",
-    "account_number": "2139531801",
-    "balance": 1900,
-    "balance_available": 1900,
-    "currency": "EUR",
-    "customers": "123456789",
-    "IBAN": "AL90208110080000002139531801",
-    "is_debit_note_enabled": true,
-    "is_locked": true,
-    "label": "main savings",
-    "overdraft": true,
-    "preauth_amount": 10000
+  "Currency": "INR",
+  "customers": "123456789",
+  "Date": {
+    "Date": "26-04-2017",
+    "DateTime": "26-04-2017 10:20:00"
   },
-  {
-    "name": "1039531801",
-    "account_number": "1039531801",
-    "balance": 1500,
-    "balance_available": 1500,
-    "currency": "EUR",
-    "customers": "46582398",
-    "IBAN": "AL90208110080000001039531801",
-    "is_debit_note_enabled": true,
-    "is_locked": true,
-    "label": "main savings",
-    "overdraft": true,
-    "preauth_amount": 23000
-  },
-  {
-    "name": "17109552631",
-    "account_number": "17109552631",
-    "balance": 1450,
-    "balance_available": 1450,
-    "currency": "EUR",
-    "customers": "62936395",
-    "IBAN": "123080FZAFA9124AZE",
-    "is_debit_note_enabled": true,
-    "is_locked": true,
-    "label": "main account",
-    "overdraft": true,
-    "preauth_amount": 10000
-  },
-  {
-    "name": "74379891646",
-    "account_number": "74379891646",
-    "balance": 6700,
-    "balance_available": 6530,
-    "currency": "EUR",
-    "customers": "84487942",
-    "IBAN": "1230230FZFEA9128WZE",
-    "is_locked": false,
-    "is_trusted": true,
-    "label": "first account",
-    "overdraft": true,
-    "preauth_amount": 1000000
+  "Nickname": "David",
+  "Servicer": {
+    "Identification": "Account Provider 2",
+    "SchemeName": "DEF"
   }
-]
+},
+
+
+{
+  "name": "2139531801",
+  "Account": {
+    "SecondaryIdentification": "EN1",
+    "Identification": "2139531801",
+    "SchemeName": "EN",
+    "Name": "Account 1"
+  },
+  "account_number": "2139531801",
+  "AccountId": "2139531801",
+  "Amount": "10000",
+  "Balance": 50000,
+  "CreditDebitIndicator": "Debit",
+  "CreditLine": {
+    "Type": "CR",
+    "Amount": {
+      "Amount": "200",
+      "Currency": "INR"
+    },
+    "Included": true
+  },
+  "Currency": "INR",
+  "customers": "123456789",
+  "Date": {
+    "Date": "26-04-2017",
+    "DateTime": "26-05-2017 12:30:00"
+  },
+  "Nickname": "David",
+  "Servicer": {
+    "Identification": "Account Provider",
+    "SchemeName": "ABC"
+  }
+}]

@@ -1,0 +1,36 @@
+[{
+  "name": "firstaccountrequest",
+
+  "ExpiresAt": "20-06-2012",
+  "Permissions": [
+    "ReadStandingOrdersSensitive",
+    "ReadStandingOrders",
+    "ReadDirectDebits",
+    "ReadBeneficiariesSensitive",
+    "ReadBeneficiaries",
+    "ReadBalances",
+    "ReadAccounts",
+    "ReadTransactionsSensitive"
+  ],
+  "PermissionsExpirationDateTime": "20-06-2012",
+  "Products": [
+    "BBAN"
+  ],
+  "SelectedAccounts": [
+    {
+      "Account": {
+        "SecondaryIdentification": "EN1",
+        "Identification": "2139531801",
+        "SchemeName": "EN",
+        "Name": "Account 1"
+      },
+      "Servicer": {
+        "Identification": "Account Provider",
+        "SchemeName": "ABC"
+      }
+    }
+  ],
+  "status": "Authorized",
+  "TransactionFromDateTime": "20-06-2012",
+  "TransactionToDateTime": "20-06-2012"
+}]

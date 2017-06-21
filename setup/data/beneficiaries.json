@@ -1,0 +1,32 @@
+[{
+  
+  "AccountId": "4567612345",
+  "CreditorAccount": {
+    "SecondaryIdentification": "Second Account",
+    "Identification": "890654324",
+    "SchemeName": "yjgdera",
+    "Name": "Axis Account"
+  },
+  "CreditorReferenceInformation": "DaveAxisaccount",
+  
+  "Servicer": {
+    "Identification": "895435",
+    "SchemeName": "kliyth"
+  }
+},
+
+{
+
+  "AccountId": "2139531801",
+  "CreditorAccount": {
+    "SecondaryIdentification": "First Account",
+    "Identification": "789568456",
+    "SchemeName": "xdcdcdcd",
+    "Name": "Bank Account"
+  },
+  "CreditorReferenceInformation": "DaveKotakaccount",
+  "Servicer": {
+    "Identification": "5678914",
+    "SchemeName": "jkh"
+  }
+}]
