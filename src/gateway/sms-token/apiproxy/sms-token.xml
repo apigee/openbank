@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="1" name="sms-token">
+    <Basepaths>/internal/apis/v1/sms</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1459097476957</CreatedAt>
     <CreatedBy>noreply_admin@apigee.com</CreatedBy>
@@ -10,12 +11,15 @@
     <Policies>
         <Policy>Assign-SMS-Token-validation-response</Policy>
         <Policy>Assign-Twilio-SMS-Payload</Policy>
+        <Policy>Assign.TransferConfirmationPayload</Policy>
         <Policy>Error-Invalid-SMS-OTP</Policy>
         <Policy>Error-Invalid-identifier</Policy>
         <Policy>Ext-Generate-Token</Policy>
         <Policy>Extract-Identifier</Policy>
+        <Policy>Extract.TransactionDetails</Policy>
         <Policy>Lookup-Cache-SMS-OTP-Cache</Policy>
         <Policy>Populate-Cache-SMS-OTP-Cache</Policy>
+        <Policy>Verify.ConsentAppAPIKey</Policy>
         <Policy>set-success-token-response</Policy>
         <Policy>verify-api-key</Policy>
     </Policies>
@@ -26,8 +30,11 @@
         <Resource>jsc://generate.token.js</Resource>
         <Resource>jsc://token.js</Resource>
     </Resources>
+    <Spec></Spec>
     <TargetServers/>
     <TargetEndpoints>
+        <TargetEndpoint>confirmation</TargetEndpoint>
         <TargetEndpoint>default</TargetEndpoint>
     </TargetEndpoints>
+    <validate>false</validate>
 </APIProxy>
