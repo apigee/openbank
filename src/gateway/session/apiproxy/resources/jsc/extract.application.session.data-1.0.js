@@ -33,6 +33,7 @@ buildTransactionInfoObject("ui_locales",sessionDataJson.ui_locales);
 buildTransactionInfoObject("to",sessionDataJson.account_number);
 buildTransactionInfoObject("amount",sessionDataJson.amount);
 buildTransactionInfoObject("currency",sessionDataJson.currency);
+buildTransactionInfoObject("request_id",sessionDataJson.request_id);
 
 
 // create a flow variable

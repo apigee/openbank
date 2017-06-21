@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="1" name="session">
+    <Basepaths>/internal/apis/v1/session</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1459140459746</CreatedAt>
     <CreatedBy>noreply_admin@apigee.com</CreatedBy>
@@ -14,7 +15,7 @@
         <Policy>Ext-Extract-Application-Session</Policy>
         <Policy>Extract-Transaction-session-id</Policy>
         <Policy>Lookup-Cache-Application-authorization-transaction-session</Policy>
-        <Policy>Security-Verify-API-Key</Policy>
+        <Policy>Verify.ConsentAppAPIKey</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
@@ -22,6 +23,7 @@
     <Resources>
         <Resource>jsc://extract.application.session.data-1.0.js</Resource>
     </Resources>
+    <Spec></Spec>
     <TargetServers/>
     <TargetEndpoints/>
 </APIProxy>

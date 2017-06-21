@@ -36,7 +36,7 @@
                     <Name>Assign-TransactionInfo-response</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath &quot;/transactions/{auth.transaction.session.id}&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/transactions/{auth.transaction.session.id}") and (request.verb = "GET")</Condition>
         </Flow>
     </Flows>
     <PostFlow name="PostFlow">
