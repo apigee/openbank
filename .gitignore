@@ -54,3 +54,5 @@ build/
 setup/config.sh
 test/config.js
 
+
+*.DS_Store
