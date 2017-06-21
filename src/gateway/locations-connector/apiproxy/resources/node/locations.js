@@ -29,34 +29,42 @@ function getLocations(resType, req, callback) {
         },
         json: true
     };
+    var openingday =  "allday";
+    var openingAt = "alltime";
 
     if (req.query.latitude && req.query.longitude) {
         var radius = req.query.radius || 1;
         var lat = req.query.latitude;
         var long = req.query.longitude;
+        
+        console.log("lat"+lat);
 
-        options.qs.ql += ' and location within ' + radius + ' of ' + lat + ', ' + long;
+        options.qs.ql += ' and Location within ' + radius + ' of ' + lat + ', ' + long;
     }
 
     if (req.query.hasOwnProperty('wheelchair')) {
-        options.qs.ql += " and access.wheelchair = " + (req.query.wheelchair === 'true');
+        options.qs.ql += " and Access.wheelchair = " + (req.query.wheelchair === 'true');
     }
 
     if (resType === 'atm' && req.query.currency) {
-        options.qs.ql += " and currency = '" + req.query.currency + "'";
+        options.qs.ql += " and Currency = '" + req.query.currency + "'";
     }
 
     if (resType === 'atm' && req.query.hasOwnProperty('isWithdrawalCharged')) {
-        options.qs.ql += " and isWithdrawalCharged = " + (req.query.isWithdrawalCharged === 'true');
+        options.qs.ql += " and IsWithdrawalCharged = " + (req.query.isWithdrawalCharged === 'true');
     }
 
     if (resType === 'atm' && req.query.hasOwnProperty('status')) {
-        options.qs.ql += " and status = '" + req.query.status + "'";
+        options.qs.ql += " and Status = '" + req.query.status + "'";
     }
 
-    if (req.query.openAt) {
-        options.qs.ql += " and timings.opensAt <= " + req.query.openAt
-            + " and timings.closesAt >= " + req.query.openAt;
+    if (req.query.openingDay) 
+    {
+        openingday = req.query.openingDay;
+        if(req.query.openAt)
+        {
+            openingAt = req.query.openAt;
+        }
     }
 
     console.log(options.qs.ql);
@@ -64,19 +72,111 @@ function getLocations(resType, req, callback) {
     request(options, function (err, resp, body) {
         var data = [];
 
-        if (!err && resp.statusCode == 200 && body.entities) {
+        if (!err && resp.statusCode == 200 && body.entities) 
+        {
+            if(resType == "atm")
+            {
             for (var i = 0; i < body.entities.length; i++) {
-                var entity = body.entities[i];
-
-                delete entity.uuid;
-                delete entity.type;
-                delete entity.metadata;
-                delete entity.created;
-                delete entity.modified;
-                delete entity.resources;
+                var entity = {}; 
+                
+                entity.AtmId = body.entities[i].AtmId;
+                entity.AtmServices = body.entities[i].AtmServices;
+                entity.Address = body.entities[i].Address;
+                entity.Currency = body.entities[i].Currency;
+                entity.Location = body.entities[i].Location;
+                entity.LocationCategory = body.entities[i].LocationCategory;
+                entity.MinimumValueDispensed = body.entities[i].MinimumValueDispensed;
+                entity.Organisation = body.entities[i].Organisation;
+                entity.SiteName = body.entities[i].SiteName;
+                entity.SupportedLanguages = body.entities[i].SupportedLanguages;
+              
+                
+               
 
                 data.push(entity);
             }
+        }
+        else if(resType == "branch")
+        {
+            var filterDay = false;
+            var filtertime = false;
+            if(openingday != "allday")
+            {
+                filterDay = true;
+                
+            }
+            
+            if(openingAt != "alltime")
+            {
+             filtertime = true;
+            }
+            
+            
+            for (var i = 0; i < body.entities.length; i++) 
+            {
+                
+                var entity = {}; 
+                entity.AtmAtBranch = body.entities[i].AtmAtBranch;
+                entity.Access = body.entities[i].Access;
+                entity.BranchIdentification = body.entities[i].BranchIdentification;
+                entity.BranchName = body.entities[i].BranchName;
+                entity.Address = body.entities[i].Address;
+                entity.BranchMediatedServiceName = body.entities[i].BranchMediatedServiceName;
+                entity.BranchPhoto = body.entities[i].BranchPhoto;
+                entity.BranchSelfServeServiceName = body.entities[i].BranchSelfServeServiceName;
+                entity.BranchType = body.entities[i].BranchType;
+                entity.CustomerSegment = body.entities[i].CustomerSegment;
+                entity.FaxNumber = body.entities[i].FaxNumber;
+                entity.Location = body.entities[i].Location;
+                entity.OpeningTimes = body.entities[i].OpeningTimes;
+                entity.Organisation = body.entities[i].Organisation;
+                entity.TelephoneNumber = body.entities[i].TelephoneNumber;
+                
+                if(filterDay)
+                {
+                    if(body.entities[i].openingTimes)
+                    {
+                        
+                    for(var j = 0; j < body.entities[i].openingTimes.length; j++)
+                    {
+                        if( body.entities[i].openingTimes[j].openingDay == openingday )
+                        {
+                            if(filtertime)
+                            {
+                                
+                                var openingTime = body.entities[i].openingTimes[j].openingTime.split(":");
+                                var closingTime = body.entities[i].openingTimes[j].closingTime.split(":");
+                                
+                                
+                                var openminute = parseFloat(openingTime[0])*60 + parseFloat(openingTime[1]);
+                                var closeminute = parseFloat(closingTime[0])*60 + parseFloat(closingTime[1]);
+                                
+                                console.log("open"+ openminute);
+                                console.log("close"+ closeminute);
+                                
+                                if( (openingAt >= openminute ) && (openingAt <= closeminute)) 
+                                {
+                                    data.push(entity);
+                                    break;
+                                }
+                                
+                            }
+                            else
+                            {
+                                data.push(entity);
+                                break;
+                            }
+                        }
+                    }
+                }
+                }
+                else
+                {
+                    data.push(entity);
+                }
+                
+            }
+        }
         }
 
         callback(data);

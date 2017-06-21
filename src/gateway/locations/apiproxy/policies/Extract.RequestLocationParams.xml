@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ExtractVariables name="Extract.RequestLocationParams">
     <DisplayName>Extract.RequestLocationParams</DisplayName>
     <Source>request</Source>
@@ -9,6 +10,12 @@
     </QueryParam>
     <QueryParam name="radius">
         <Pattern ignoreCase="true">{radius}</Pattern>
+    </QueryParam>
+    <QueryParam name="openingDay">
+        <Pattern ignoreCase="true">{openingDay}</Pattern>
+    </QueryParam>
+    <QueryParam name="openAt">
+        <Pattern ignoreCase="true">{openAt}</Pattern>
     </QueryParam>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </ExtractVariables>
