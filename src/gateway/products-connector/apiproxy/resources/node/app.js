@@ -30,8 +30,8 @@ var getProducts = function(req, res) {
         delete product.metadata;
         delete product.type;
 
-        product.id = product.name;
-        product.name = product.text;
+        product.Id = product.name;
+        product.Name = product.Text;
         delete product.text;
 
         products.push(product);
