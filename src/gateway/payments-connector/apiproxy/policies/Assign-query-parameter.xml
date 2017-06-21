@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-query-parameter">
+    <DisplayName>Assign query parameter</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers/>
+        <QueryParams>
+            <QueryParam name="ql">{querystatement}</QueryParam>
+        </QueryParams>
+        <FormParams/>
+        <!-- <Verb>GET</Verb> -->
+        <Path/>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

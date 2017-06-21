@@ -1,0 +1,22 @@
+{
+  "name": "consent-v2",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "baasURI": "https://apibaas-trial.apigee.net",
+  "baasOrg": "custdemo",
+  "baasApp": "testdemorrai",
+  "clientId": "b3U6jvW5q9wOEeanNBIuBzeXfQ",
+  "clientSecret": "b3U6PsdoJZM16RcTb_DSwP0KL61TMn4",
+  "dependencies": {
+    "body-parser": "~1.16.0",
+    "debug": "~2.6.0",
+    "express": "~4.14.1",
+    "morgan": "~1.7.0",
+    "request": "latest"
+  },
+  "author": "Rohan Mahalank",
+  "license": "ISC"
+}

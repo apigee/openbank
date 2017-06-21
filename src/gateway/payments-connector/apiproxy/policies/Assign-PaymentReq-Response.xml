@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Assign-PaymentReq-Response">
+    <DisplayName>Assign PaymentReq Response</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://Assign-Payments-Response.js</ResourceURL>
+</Javascript>

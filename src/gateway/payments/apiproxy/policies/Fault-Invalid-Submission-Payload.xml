@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Fault-Invalid-Submission-Payload">
+    <DisplayName>Fault: Invalid Submission Payload</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+                {
+        "status": 400,
+        "message": "Bad Request",
+        "description": "Payload Payment Id doesnot match Token Payment Id",
+        "code": 10031,
+        "more_info": "http://www.example.com/codes/10031"
+                }
+                
+            </Payload>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

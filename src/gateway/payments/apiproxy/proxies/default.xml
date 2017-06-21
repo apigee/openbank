@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>OAuth-Verify-Access-Token</Name>
+            </Step>
+            <Step>
+                <Name>Fetch-Request-Params</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>Remove-Authorization-Headers</Name>
+            </Step>
+            <Step>
+                <Name>Assign-APIKey</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="paymentsRequest">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>AssignStatus</Name>
+                </Step>
+                <Step>
+                    <Name>Lookup-Cache-Idempotency</Name>
+                </Step>
+                <Step>
+                    <Condition>lookupcache.Lookup-Cache-Idempotency.cachehit == true</Condition>
+                    <Name>AssignCacheresponse</Name>
+                </Step>
+                <Step>
+                    <Condition>lookupcache.Lookup-Cache-Idempotency.cachehit == true</Condition>
+                    <Name>Raise-Fault-CacheHit</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>FetchPaymentId</Name>
+                </Step>
+                <Step>
+                    <Name>Populate-Cache-Idempotency</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/payments") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="GetPaymentRequest">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/payments/{paymentId}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="paymentSubmissions">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>InvalidateAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>OAuth-Invalidate-Access-Token</Name>
+                </Step>
+                <Step>
+                    <Condition>TokenType != "payment_request"</Condition>
+                    <Name>Fault-Invalid-Token-type</Name>
+                </Step>
+                <Step>
+                    <Name>Extract-Id-from-Payload</Name>
+                </Step>
+                <Step>
+                    <Name>Get-Payment-Request</Name>
+                </Step>
+                <Step>
+                    <Name>Validate-PaymentSubmission</Name>
+                </Step>
+                <Step>
+                    <Condition>((PaymentId != PaymentRequestId) or (validSubmissionReq = false))</Condition>
+                    <Name>Fault-Invalid-Submission-Payload</Name>
+                </Step>
+                <Step>
+                    <Name>Assign-Submission-Status</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/payment-submissions") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="GetPaymentSubmissions">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/payment-submissions/{paymentSubmissionId}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="PutPaymentRequest">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/payments/{paymentId}") and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="ErrorFlow">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Fault-Invalid-Path</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/") or (proxy.pathsuffix MatchesPath "/{PaymentId}")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/apis/v2/payments</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>
