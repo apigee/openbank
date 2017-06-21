@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "{{ host }}",
+  "host": "testdemorrai-test.apigee.net",
   "schemes": [
     "https"
   ],
@@ -9,7 +9,7 @@
     "title": "Generate Access Token",
     "version": "0.0.1"
   },
-  "basePath": "/apis/v1/oauth",
+  "basePath": "/apis/v2/oauth",
   "paths": {
     "/authorize": {
       "get": {
@@ -33,13 +33,6 @@
             "in": "query",
             "name": "client_id",
             "description": "Client ID of the registered App.",
-            "type": "string",
-            "required": true
-          },
-          {
-            "in": "query",
-            "name": "client_secret",
-            "description": "Client Secret of the registered App.",
             "type": "string",
             "required": true
           },
@@ -77,20 +70,10 @@
             "type": "string",
             "required": true,
             "enum": [
-              "openid",
-              "openid accounts"
+              "account_request",
+              "payment_request",
+              "openid"
             ]
-          },
-          {
-            "in": "query",
-            "name": "ui-locales",
-            "description": "Locale to be used.",
-            "type": "string",
-            "required": true,
-            "enum": [
-              "en"
-            ],
-            "default": "en"
           },
           {
             "in": "query",
@@ -102,7 +85,15 @@
               "2",
               "3"
             ],
-            "default": "3"
+            "default": "2"
+          },
+          {
+            "in": "query",
+            "name": "request_id",
+            "description": "Request Id for which Authorization Flow need to be executed",
+            "type": "string",
+            "required": true
+
           }
         ]
       }

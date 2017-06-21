@@ -1,6 +1,6 @@
 {
       "swagger": "2.0",
-          "host": "apis-bank-dev.apigee.net",
+          "host": "testdemorrai-test.apigee.net",
           "schemes": [
                     "https"
                         
@@ -82,32 +82,32 @@
                               "description": "Single Product Item",
                                           "type": "object",
                                           "properties": {
-                                            "id": {
+                                            "Id": {
                                                                   "type": "string",
                                                                                       "description": "Unique identifier for this product"
                                                                                                       
                                             },
-                                            "name": {
+                                            "Name": {
                                                                   "type": "string",
                                                                                       "description": "Name of the product offered"
                                                                                                       
                                             },
-                                            "category": {
+                                            "Category": {
                                                                   "type": "string",
                                                                                       "description": "Classification of the product offering"
                                                                                                       
                                             },
-                                            "sub-category": {
+                                            "Sub-category": {
                                                                   "type": "object",
                                                                                       "description": "Sub-category of classification of this product"
                                                                                                       
                                             },
-                                            "landing-page": {
+                                            "Landing-page": {
                                                                   "type": "string",
                                                                                       "description": "Landing page for this product"
                                                                                                       
                                             },
-                                            "more-info": {
+                                            "More-info": {
                                                                   "type": "object",
                                                                                       "description": "Additional information about the product"
                                                                                                       
@@ -119,16 +119,16 @@
                 "Error": {
                               "type": "object",
                               "properties": {
-                                "code": {
+                                "Code": {
                                                       "type": "integer",
                                                                           "format": "int32"
                                                                                           
                                 },
-                                "message": {
+                                "Message": {
                                                       "type": "string"
                                                                       
                                 },
-                                "fields": {
+                                "Fields": {
                                                       "type": "string"
                                                                       
                                 }

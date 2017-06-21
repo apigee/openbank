@@ -16,7 +16,7 @@ var request         = require('request');
     node install_tmp.js
 */
 
-var files_list = ['src/devportal/all/modules/custom/openbank_swagger/swaggers/account_apis.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/auth_api.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/userinfo_api.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/opendata_locations.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/payment_api.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/opendata_products.json.template']
+var files_list = ['src/devportal/all/modules/custom/openbank_swagger/swaggers/accountsinfov2.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/authv2.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/userinfov2.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/opendata-locations.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/paymentsV2.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/opendata-products.json.template']
 
 var inject_object = {}
 
@@ -129,45 +129,21 @@ function post_prompt(err, results) {
             inject_object.secret_pisp = secret_pisp;
             inject_object.client_id_aisp = client_id_aisp;
             inject_object.client_id_pisp = client_id_pisp;
-            inject_object.redirect_uri_pisp = redirect_uri_pisp
+            inject_object.redirect_uri_pisp = redirect_uri_pisp;
 
-            var token_payment = jwt.sign({
-                "iss": "https://www.openbank.apigee.com",
-                "aud": "https://apis-bank-dev.apigee.net",
-                "response_type": "token",
-                "client_id": client_id_pisp,
-                "redirect_uri": redirect_uri_pisp,
-                "scope": "openid accounts payment",
-                "state": "af0ifjsldkj",
-                "acr_values": "3",
-                "claims": {
-                    "paymentinfo": {
-                        "type": "sepa_credit_transfer",
-                        "to": {
-                            "account_number": "7770000002",
-                            "remote_bic": "RBOSGB2109H",
-                            "remote_IBAN": "GB32ESSE40486562136016",
-                            "remote_name": "BigZ online store"
-                        },
-                        "value": {
-                            "currency": "EUR",
-                            "amount": "399"
-                        },
-                        "additional": {
-                            "subject": "Online Purchase",
-                            "booking_code": "2SFBJ28553",
-                            "booking_date": "1462517645809",
-                            "value_date": "1462517645809"
-                        },
-                        "challenge_type": "SANDBOX_TAN"
-                    }
-                },
-                "iat": 1474028597
-            }, secret_pisp);
+            get_app_details('Opendata_App', edge_host, org, username, password, function (opendata_details) {
+            secret_openid = opendata_details.credentials[0].consumerSecret;
+            client_id_openid = opendata_details.credentials[0].consumerKey;
+            redirect_uri_openid = opendata_details.callbackUrl;
 
-            inject_object.token_payment = token_payment
+            inject_object.client_id_openid = client_id_openid;
+            inject_object.secret_openid = secret_openid;
+
+
 
             replace_variables(paths, inject_object)
+                });
+            
         });
 
     });

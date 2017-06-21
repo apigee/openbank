@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "bumblebee-test.apigee.net",
+  "host": "{{ host }}",
   "schemes": [
     "https"
   ],
@@ -46,8 +46,7 @@
         "security": [
           {
             "aisp_auth": [
-              "openid",
-              "accounts"
+              "openid"
             ]
           }
         ],
@@ -65,12 +64,11 @@
   "securityDefinitions": {
     "aisp_auth": {
       "type": "oauth2",
-      "authorizationUrl": "https://bumblebee-test.apigee.net/apis/v1/oauth/authorize?client_id=JI7R53dqoyUmfBEnlJm27V0PkpvoIAOv&redirect_uri=https://api.enterprise.apigee.com/v1/o/bumblebee/apimodels/accounts/templateauths/aisp_auth/callback&response_type=code&state=af0ifjsldkj&scope=openid accounts&ui-locales=en&acr_values=2",
-      "tokenUrl": "https://bumblebee-test.apigee.net/apis/v1/oauth/token",
+      "authorizationUrl": "{{ host_withprotocol }}/apis/v2/oauth/authorize?client_id={{ client_id_openid }}&redirect_uri={{ edge_host }}/v1/o/{{ org }}/apimodels/userinfoapis/templateauths/aisp_auth/callback&response_type=code&state=af0ifjsldkj&scope=openid&acr_values=2",
+      "tokenUrl": "{{ host_withprotocol }}/apis/v2/oauth/token",
       "flow": "accessCode",
       "scopes": {
-        "openid": "openID",
-        "accounts": "AISP apis"
+        "openid": "openID"
       }
     }
   },

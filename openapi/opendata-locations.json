@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "{{ host }}",
+  "host": "testdemorrai-test.apigee.net",
   "schemes": [
     "https"
   ],
@@ -19,11 +19,11 @@
       "url": "http://example.com"
     }
   },
-  "basePath": "/apis/v1/locations",
+  "basePath": "/apis/v2/locations",
   "paths": {
     "/atms": {
       "get": {
-        "description": "<p>Returns a list of ATMs with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitide and radius of search.</p>",
+        "description": "<p>Returns a list of ATMs with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitude and radius of search.</p>",
         "summary": "List of atms",
         "operationId": "atms",
         "tags": [
@@ -49,14 +49,14 @@
             "in": "query",
             "name": "latitude",
             "description": "Latitude of the place around which you want to find ATMs. If latitude is provided, longitude must also be provided.",
-            "type": "float",
+            "type": "string",
             "required": false
           },
           {
             "in": "query",
             "name": "longitude",
             "description": "Longitude of the place around which you want to find ATMs. If longitude is provided, latitude must also be provided.",
-            "type": "float",
+            "type": "string",
             "required": false
           },
           {
@@ -82,16 +82,16 @@
           },
           {
             "in": "query",
-            "name": "status",
-            "description": "This is to check if the ATM is currently available for withdrawing money.",
-            "type": "boolean",
+            "name": "currency",
+            "description": "The currency required",
+            "type": "string",
             "required": false
           },
           {
             "in": "query",
-            "name": "openAt",
-            "description": "This is the time (in hours format) at which the ATM needs to be checked if open",
-            "type": "integer",
+            "name": "status",
+            "description": "This is to check if the ATM is currently available for withdrawing money.",
+            "type": "string",
             "required": false
           }
         ]
@@ -125,14 +125,14 @@
             "in": "query",
             "name": "latitude",
             "description": "Latitude of the place around which you want to find Branches. If latitude is provided, longitude must also be provided.",
-            "type": "float",
+            "type": "string",
             "required": false
           },
           {
             "in": "query",
             "name": "longitude",
             "description": "Longitude of the place around which you want to find Branches. If longitude is provided, latitude must also be provided.",
-            "type": "float",
+            "type": "string",
             "required": false
           },
           {
@@ -151,9 +151,16 @@
           },
           {
             "in": "query",
+            "name": "openingDay",
+            "description": "This is the day of the week on which the Branch needs to be checked if open",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
             "name": "openAt",
-            "description": "This is the time (in hours format) at which the Branch needs to be checked if open",
-            "type": "integer",
+            "description": "This is the time (in minute format) at which the Branch needs to be checked if open on a particular week day",
+            "type": "string",
             "required": false
           }
         ]
@@ -165,25 +172,48 @@
       "description": "List of ATM Locations",
       "type": "object",
       "properties": {
-        "name": {
+        "AtmId": {
           "type": "string",
-          "description": "User addressable name of the ATM."
+          "description": "Unique ATM Id "
         },
-        "address": {
+        "AtmServices": {
           "type": "string",
-          "description": "Address of the ATM."
+          "description": "Types of service atm provide"
         },
-        "currency": {
+        "Address": {
+          "type": "object",
+          "description": "Address of the ATM"
+        },
+        "Currency": {
           "type": "string",
           "description": "Currency of notes that is disposed by the ATM."
         },
-        "access": {
-          "type": "object",
-          "description": "Available accessibility features of the ATM."
-        },
-        "location": {
+        "Location": {
           "type": "object",
           "description": "Latitude + Longitude of the ATM."
+        },
+        "LocationCategory": {
+          "type": "string",
+          "description": "Location category"
+        },
+        "MinimumValueDispensed": {
+          "type": "string",
+          "description": "Minimum amount dispensed"
+        },
+        "Organisation": {
+          "type": "object",
+          "description": "Organization to which the ATM belongs"
+        },
+        "SiteName": {
+          "type": "string",
+          "description": "Site of ATM"
+        },
+        "SupportedLanguages": {
+          "type": "array",
+          "items" : {
+            "type":"string"
+          },
+          "description": "Languages supported"
         }
       },
       "xml": {
@@ -194,21 +224,69 @@
       "description": "List of Branch Locations",
       "type": "object",
       "properties": {
-        "name": {
+        "BranchIdentification": {
           "type": "string",
-          "description": "User addressable name of the Branch."
+          "description": "Unique Identification of the Branch."
         },
-        "address": {
+        "Address": {
           "type": "string",
           "description": "Address of the Branch."
         },
-        "access": {
+        "Access": {
           "type": "object",
           "description": "Available accessibility features of the Branch."
         },
-        "location": {
+        "Location": {
           "type": "object",
           "description": "Latitude + Longitude of the Branch."
+        },
+        "AtmAtBranch": {
+          "type": "string",
+          "description": "Determines if ATM is available at the branch"
+        },
+        "BranchName": {
+          "type": "string",
+          "description": "Name of branch"
+        },
+        "BranchMediatedServiceName": {
+          "type": "string",
+          "description": "name of branch service mediator"
+        },
+        "BranchPhoto": {
+          "type": "string",
+          "description": "link for branch photo"
+        },
+        "BranchType": {
+          "type": "string",
+          "description": "type of branch"
+        },
+        "CustomerSegment": {
+          "type": "array",
+          "items" : 
+          {
+            "type" : "string"
+            },
+          "description": "category of customers which the branch addresses"
+        },
+        "FaxNumber": {
+          "type": "string",
+          "description": "fax number of branch"
+        },
+        "OpeningTimes": {
+          "type": "array",
+          "items" : 
+          {
+            "type" : "string"
+            },
+          "description": "opening times of the branch"
+        },
+        "Organisation": {
+          "type": "object",
+          "description": "Organisation details of branch"
+        },
+        "TelephoneNumber": {
+          "type": "object",
+          "description": "Contact number of the branch"
         }
       },
       "xml": {
@@ -217,3 +295,4 @@
     }
   }
 }
+ 

@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "bumblebee-test.apigee.net",
+  "host": "{{ host }}",
   "schemes": [
     "https"
   ],
@@ -9,7 +9,7 @@
     "title": "Generate Access Token",
     "version": "0.0.1"
   },
-  "basePath": "/apis/v1/oauth",
+  "basePath": "/apis/v2/oauth",
   "paths": {
     "/authorize": {
       "get": {
@@ -33,13 +33,6 @@
             "in": "query",
             "name": "client_id",
             "description": "Client ID of the registered App.",
-            "type": "string",
-            "required": true
-          },
-          {
-            "in": "query",
-            "name": "client_secret",
-            "description": "Client Secret of the registered App.",
             "type": "string",
             "required": true
           },
@@ -77,19 +70,10 @@
             "type": "string",
             "required": true,
             "enum": [
+              "account_request",
+              "payment_request",
               "openid"
             ]
-          },
-          {
-            "in": "query",
-            "name": "ui-locales",
-            "description": "Locale to be used.",
-            "type": "string",
-            "required": true,
-            "enum": [
-              "en"
-            ],
-            "default": "en"
           },
           {
             "in": "query",
@@ -101,7 +85,15 @@
               "2",
               "3"
             ],
-            "default": "3"
+            "default": "2"
+          },
+          {
+            "in": "query",
+            "name": "request_id",
+            "description": "Request Id for which Authorization Flow need to be executed",
+            "type": "string",
+            "required": true
+
           }
         ]
       }
@@ -130,18 +122,16 @@
           {
             "in": "formData",
             "name": "client_id",
-            "description": "Client ID of the registered App.To try sanbox, please use client_id <code>FNSe3KXNGtiZoPCcELbyv4G1SXecyDDJ</code>",
+            "description": "Client ID of the registered App.",
             "type": "string",
-            "required": true,
-            "default": "FNSe3KXNGtiZoPCcELbyv4G1SXecyDDJ"
+            "required": true
           },
           {
             "in": "formData",
             "name": "redirect_uri",
-            "description": "Redirect URI defined with your registered App. This is verified against the redirect uri that is registered when the App is created. If found to be different this call fails to return the access token. e.g redirect_uri <code>http://localhost/</code>",
+            "description": "Redirect URI defined with your registered App. This is verified against the redirect uri that is registered when the App is created. If found to be different this call fails to return the access token.",
             "type": "string",
-            "required": true,
-            "default": "http://localhost/"
+            "required": true
           },
           {
             "in": "formData",
@@ -153,23 +143,21 @@
               "client_credentials",
               "authorization_code"
             ],
-            "default": "client_credentials"
+            "default": "authorization_code"
           },
           {
             "in": "formData",
             "name": "code",
-            "description": "Code returned from the authorize call. Applicable only on grant_type is authorization_code and the value is <code>code</code>.",
+            "description": "Code returned from the authorize call. Applicable only on grant_type = authorization_code and the value is one fetched from /authorize API",
             "type": "string",
-            "required": false,
-            "default": "code"
+            "required": false
           },
           {
             "in": "header",
             "name": "Authorization",
             "description": "Base 64 encoded string with client_id:client_secret.",
             "type": "string",
-            "required": true,
-            "default": "Basic Rk5TZTNLWE5HdGlab1BDY0VMYnl2NEcxU1hlY3lEREo6bk9mNlBQV25ONkhRUHNLZg=="
+            "required": true
           }]
       }
     }
