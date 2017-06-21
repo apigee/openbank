@@ -7,7 +7,7 @@
     <Scope>Global</Scope>
     <CacheKey>
         <KeyFragment ref="client_id"/>
-    	<KeyFragment ref="nonce"/>
+        <KeyFragment ref="nonce"/>
     </CacheKey>
     <ExpirySettings>
         <TimeoutInSec>2000</TimeoutInSec>

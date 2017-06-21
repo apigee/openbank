@@ -6,6 +6,6 @@
     <AssignTo>session.Payload</AssignTo>
     <Scope>Global</Scope>
     <CacheKey>
-        <KeyFragment ref="auth.transaction.session.id"></KeyFragment>
+        <KeyFragment ref="sessionid"/>
     </CacheKey>
 </LookupCache>

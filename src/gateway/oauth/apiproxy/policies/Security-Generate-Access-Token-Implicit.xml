@@ -13,20 +13,11 @@
     <Attributes>
         <Attribute name="sessionid" ref="sessionid" display="false"/>
         <Attribute name="scope" ref="scope" display="false"/>
-        <Attribute name="sub" ref="sub" display="false"/>
+        <Attribute name="type" ref="type" display="false"/>
         <Attribute name="acr_values" ref="acr_values" display="false"/>
-        <Attribute name="amr" ref="amr" display="false"/>
-        <Attribute name="azp" ref="azp" display="false"/>
-        <Attribute name="auth_time" ref="auth_time" display="false"/>
+        <Attribute name="auth_time" ref="system.timestamp" display="false"/>
         <Attribute name="customer_number" ref="customer_id" display="false"/>
-        <Attribute name="account_number" ref="accountNumber" display="false"/>
-        <Attribute name="full_name" ref="fullName" display="false"/>
-        <!-- Attributes for payment API -->
-        <Attribute name="to" ref="to" display="false"/>
-        <Attribute name="sort_code" ref="sort_code" display="false"/>
-        <Attribute name="IBAN" ref="IBAN" display="false"/>
-        <Attribute name="currency" ref="currency" display="false"/>
-        <Attribute name="amount" ref="amount" display="false"/>
+        <Attribute name="request_id" ref="request_id" display="false"/>
     </Attributes>
     <AppEndUser>customer_number</AppEndUser>
     <UserName>customer_number</UserName>

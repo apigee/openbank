@@ -3,5 +3,5 @@
     <DisplayName>AccessEntity: Get API Product Scopes</DisplayName>
     <Properties/>
     <EntityIdentifier ref="apiproduct.name"/>
-    <EntityType  value="apiproduct"/>
+    <EntityType value="apiproduct"/>
 </AccessEntity>

@@ -7,6 +7,6 @@
     <Scope>Global</Scope>
     <CacheKey>
         <KeyFragment ref="client_id"/>
-    	<KeyFragment ref="nonce"/>
+        <KeyFragment ref="nonce"/>
     </CacheKey>
 </LookupCache>

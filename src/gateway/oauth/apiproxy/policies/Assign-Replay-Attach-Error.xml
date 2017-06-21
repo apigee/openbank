@@ -3,12 +3,12 @@
     <DisplayName>Assign: Replay Attack Error</DisplayName>
     <Properties/>
     <AssignVariable>
-		<Name>error_variable</Name>
-		<Value>Invalid_Request</Value>
-	</AssignVariable>
-	<AssignVariable>
-		<Name>error_type</Name>
-		<Value>Replay%20Attack</Value>
-	</AssignVariable>
+        <Name>error_variable</Name>
+        <Value>Invalid_Request</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>error_type</Name>
+        <Value>Replay%20Attack</Value>
+    </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </AssignMessage>

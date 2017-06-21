@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
     <Description/>
-    <FaultRules>
-        <FaultRule name="InvalidClientID">
-            <Step>
-                <Condition>verifyapikey.Authorize-Client-Application.failed = true</Condition>
-                <Name>Error-Invalid-client_id</Name>
-                <FaultRules/>
-            </Step>
-        </FaultRule>
-    </FaultRules>
+    <FaultRules/>
     <PreFlow name="PreFlow">
-        <Request>
-            <Step>
-                <Condition>request.verb = "OPTIONS"</Condition>
-                <Name>Cors-Preflighted</Name>
-            </Step>
-        </Request>
+        <Request/>
         <Response/>
     </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
     <Flows>
         <Flow name="authorization">
             <Description/>
@@ -37,10 +28,7 @@
                     <Name>Get-API-Product-Scopes</Name>
                 </Step>
                 <Step>
-                    <Name>Security-AuthorizeGet-Client-Attributes</Name>
-                </Step>
-                <Step>
-                    <Name>Ext-Validate-request-parameters</Name>
+                    <Name>Validate-other-Parameters</Name>
                 </Step>
                 <Step>
                     <Condition>(error_type != null And error_type = "invalid_redirect_uri")</Condition>
@@ -98,18 +86,6 @@
                 </Step>
                 <Step>
                     <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
-                    <Name>Get-Application-Attributes</Name>
-                </Step>
-                <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
-                    <Name>Assign-ID-Token-Payload-authorization_code-flow</Name>
-                </Step>
-                <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
-                    <Name>Generate-ID-Token</Name>
-                </Step>
-                <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
                     <Name>Assign.TokenResponse</Name>
                 </Step>
                 <Step>
@@ -119,7 +95,7 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
         </Flow>
-        <Flow name="authorized-transaction">
+        <Flow name="authorized">
             <Description/>
             <Request>
                 <Step>
@@ -129,22 +105,15 @@
                     <Name>Extract-Transaction-session-id</Name>
                 </Step>
                 <Step>
-                    <Condition>auth.transaction.session.id != null and auth.transaction.session.id != ""</Condition>
+                    <Condition>sessionid != null and sessionid != ""</Condition>
                     <Name>Get-Application-Session</Name>
                 </Step>
                 <Step>
-                    <Condition>(auth.transaction.session.id = null or rauth.transaction.session.id = "") or (session.Payload = null) or (session.Payload = "")</Condition>
+                    <Condition>(sessionid = null or request.formparam.sessionid = "") or (session.Payload = null) or (session.Payload = "")</Condition>
                     <Name>Error-Response-Invalid-Session</Name>
                 </Step>
                 <Step>
-                    <Name>Extract-Application-Session-information</Name>
-                </Step>
-                <Step>
-                    <Condition>response_type_id_token = true</Condition>
-                    <Name>Get-Application-Attributes</Name>
-                </Step>
-                <Step>
-                    <Name>Assign-JWT-Payload</Name>
+                    <Name>Extract-Application-Session</Name>
                 </Step>
             </Request>
             <Response>
@@ -157,85 +126,20 @@
                     <Name>Security-Generate-Access-Token-Implicit</Name>
                 </Step>
                 <Step>
-                    <Condition>response_type_id_token = true</Condition>
-                    <Name>Generate-ID-Token</Name>
-                </Step>
-                <Step>
-                    <Name>Ext-Construct-Response</Name>
+                    <Name>Construct-Response</Name>
                 </Step>
                 <Step>
                     <Name>Assign-Consent-Application-TX-Response</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/authorized/transactions/*") and (request.verb = "POST")</Condition>
-        </Flow>
-        <Flow name="authorized-transactions-all">
-            <Description/>
-            <Request>
-                <Step>
-                    <Name>Verify.ConsentAppAPIKey</Name>
-                </Step>
-                <Step>
-                    <Name>Extract-Transaction-session-id</Name>
-                </Step>
-                <Step>
-                    <Condition>auth.transaction.session.id != null and auth.transaction.session.id != ""</Condition>
-                    <Name>Get-Application-Session</Name>
-                </Step>
-                <Step>
-                    <Condition>(auth.transaction.session.id = null or request.formparam.sessionid = "") or (session.Payload = null) or (session.Payload = "")</Condition>
-                    <Name>Error-Response-Invalid-Session</Name>
-                </Step>
-                <Step>
-                    <Name>Extract-Application-Session-information</Name>
-                </Step>
-                <Step>
-                    <Condition>response_type_id_token = true</Condition>
-                    <Name>Get-Application-Attributes</Name>
-                </Step>
-                <Step>
-                    <Name>Assign-JWT-Payload</Name>
-                </Step>
-            </Request>
-            <Response>
-                <Step>
-                    <Condition>response_type_code = true</Condition>
-                    <Name>Generate-Authorization-Code</Name>
-                </Step>
-                <Step>
-                    <Condition>response_type_token = true</Condition>
-                    <Name>Security-Generate-Access-Token-Implicit</Name>
-                </Step>
-                <Step>
-                    <Condition>response_type_id_token = true</Condition>
-                    <Name>Generate-ID-Token</Name>
-                </Step>
-                <Step>
-                    <Name>Ext-Construct-Response</Name>
-                </Step>
-                <Step>
-                    <Name>Assign-Consent-Application-TX-Response</Name>
-                </Step>
-            </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/authorized/transactions") and (request.verb = "POST")</Condition>
-        </Flow>
-        <Flow name="DefaultFlow">
-            <Description/>
-            <Request>
-                <Step>
-                    <Name>Error-Operation-Unavailable</Name>
-                </Step>
-            </Request>
-            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/authorized/*") and (request.verb = "POST")</Condition>
         </Flow>
     </Flows>
-    <PostFlow name="PostFlow">
-        <Request/>
-        <Response/>
-    </PostFlow>
     <HTTPProxyConnection>
-        <BasePath>/apis/v1/oauth</BasePath>
+        <BasePath>/apis/v2/oauth</BasePath>
+        <Properties/>
         <VirtualHost>secure</VirtualHost>
+        <VirtualHost>default</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="noroute"/>
 </ProxyEndpoint>
