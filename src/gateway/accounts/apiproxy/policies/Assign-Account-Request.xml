@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="assign-account-request">
+    <DisplayName>assign account request</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://assign.js</ResourceURL>
+</Javascript>

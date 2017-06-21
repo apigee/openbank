@@ -1,19 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="6" name="accounts">
+<APIProxy revision="7" name="accountsv2">
+    <Basepaths>/apis/v2/accounts</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1461136905205</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>accounts</Description>
-    <DisplayName>accounts</DisplayName>
-    <LastModifiedAt>1461152748709</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <CreatedAt>1497528613209</CreatedAt>
+    <CreatedBy>rairupam@google.com</CreatedBy>
+    <Description>accountsv2</Description>
+    <DisplayName>accountsv2</DisplayName>
+    <LastModifiedAt>1497615358649</LastModifiedAt>
+    <LastModifiedBy>rairupam@google.com</LastModifiedBy>
     <Policies>
+        <Policy>Assign-APIKey</Policy>
+        <Policy>Assign-Account-List-in-headers</Policy>
+        <Policy>Assign-Token-Details</Policy>
+        <Policy>AssignIdentificationForAccInfo</Policy>
+        <Policy>AssignUuid</Policy>
+        <Policy>Consent-Data</Policy>
+        <Policy>Create-Client-Data</Policy>
+        <Policy>Extract.AccountNumber</Policy>
+        <Policy>Extract.AccountValidateParams</Policy>
+        <Policy>Extract.TransactionId</Policy>
+        <Policy>Fault-Invalid-Token-Type</Policy>
+        <Policy>Fault-Permission-Denied</Policy>
+        <Policy>Fault.BadRequest</Policy>
+        <Policy>Fault.InvalidAccessToken</Policy>
+        <Policy>Fault.InvalidCCToken</Policy>
+        <Policy>Fetch-Consent</Policy>
+        <Policy>Jsc.SetConnectorURL</Policy>
+        <Policy>OAuth.VerifyAccessToken</Policy>
+        <Policy>assign-account-request</Policy>
+        <Policy>fault-AccountInvalid</Policy>
+        <Policy>unauthorized-acc-req</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
+        <Resource>jsc://AssignIdentificationForAccInfo.js</Resource>
+        <Resource>jsc://AssignUuid.js</Resource>
+        <Resource>jsc://Consent-Data.js</Resource>
+        <Resource>jsc://Create-Client-Data.js</Resource>
+        <Resource>jsc://SetConnectorURL.js</Resource>
+        <Resource>jsc://assign.js</Resource>
     </Resources>
+    <Spec></Spec>
     <TargetServers/>
     <TargetEndpoints>
         <TargetEndpoint>default</TargetEndpoint>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Token-Details">
+    <DisplayName>Assign Token Details</DisplayName>
+    <Properties/>
+    <!--<AssignVariable>
+        <Name>account_number</Name>
+        <Ref>accesstoken.account_number</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>customer_number</Name>
+        <Ref>accesstoken.customer_number</Ref>
+    </AssignVariable>-->
+    <AssignVariable>
+        <Name>AccountRequestId</Name>
+        <Ref>accesstoken.request_id</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>TokenType</Name>
+        <Ref>accesstoken.type</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

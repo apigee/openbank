@@ -5,6 +5,9 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
+                <Name>Verify-API-Key</Name>
+            </Step>
+            <Step>
                 <Name>Assign.TargetURL</Name>
             </Step>
         </Request>
@@ -16,7 +19,7 @@
     </PostFlow>
     <Flows/>
     <HTTPProxyConnection>
-        <BasePath>/internal/connector/v1/accounts</BasePath>
+        <BasePath>/internal/connector/v2/accounts</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>

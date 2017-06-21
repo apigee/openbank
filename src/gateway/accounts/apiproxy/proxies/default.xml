@@ -16,52 +16,82 @@
                 <Name>OAuth.VerifyAccessToken</Name>
             </Step>
             <Step>
-                <Name>Assign.AccountNumber</Name>
-                <Condition>grant_type != "client_credentials"</Condition>
+                <Name>Assign-Token-Details</Name>
+                <!--<Condition>grant_type != "client_credentials"</Condition>-->
             </Step>
-            <Step>
+            <!--<Step>
                 <Name>Fault.InvalidTransaction</Name>
                 <Condition>grant_type != "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
-            </Step>
+            </Step>-->
             <Step>
                 <Name>Extract.AccountNumber</Name>
-                <Condition>grant_type = "client_credentials"</Condition>
+                <!--<Condition>grant_type = "client_credentials"</Condition>-->
+            </Step>
+            <Step>
+                <Name>assign-account-request</Name>
             </Step>
         </Request>
         <Response/>
     </PreFlow>
     <PostFlow name="PostFlow">
-        <Request/>
-        <Response/>
+        <Request>
+            <Step>
+                <Condition>((doVerification = true) or (InfoFlowVerified = true))</Condition>
+                <Name>Fetch-Consent</Name>
+            </Step>
+            <Step>
+                <Condition>((doVerification = true) or (InfoFlowVerified = true))</Condition>
+                <Name>Consent-Data</Name>
+            </Step>
+            <Step>
+                <Condition>(((doVerification = true) or (InfoFlowVerified = true) ) and (reqStatus != "Authorized"))</Condition>
+                <Name>unauthorized-acc-req</Name>
+            </Step>
+            <Step>
+                <Condition>(((doVerification = true) or (InfoFlowVerified = true)) and (accountIsValid = false))</Condition>
+                <Name>fault-AccountInvalid</Name>
+            </Step>
+            <Step>
+                <Condition>(((doVerification = true) or (InfoFlowVerified = true)) and (validPermissions = false))</Condition>
+                <Name>Fault-Permission-Denied</Name>
+            </Step>
+            <Step>
+                <Name>Assign-APIKey</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Condition>((doVerification = true) or (InfoFlowVerified = true))</Condition>
+                <Name>Create-Client-Data</Name>
+            </Step>
+        </Response>
     </PostFlow>
     <Flows>
-        <Flow name="accountInfo">
-            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}") or (proxy.pathsuffix MatchesPath "/{account_number}/info")) and (request.verb = "GET")</Condition>
-            <Request>
-                <Step>
-                    <Name>Fault.InvalidAccount</Name>
-                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
-                </Step>
-            </Request>
-            <Response/>
-        </Flow>
         <Flow name="accountBalance">
-            <Condition>(proxy.pathsuffix MatchesPath "/{account_number}/balance") and (request.verb = "GET")</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}/balance") or (proxy.pathsuffix MatchesPath "/balance") ) and (request.verb = "GET")</Condition>
             <Request>
-                <Step>
+                <!--<Step>
                     <Name>Fault.InvalidAccount</Name>
                     <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
+                </Step>-->
+                <Step>
+                    <Condition>TokenType != "account_request"</Condition>
+                    <Name>Fault-Invalid-Token-Type</Name>
                 </Step>
             </Request>
             <Response/>
         </Flow>
         <Flow name="accountTransactions">
-            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}/transactions") or (proxy.pathsuffix MatchesPath "/{account_number}/transactions/{transaction_id}")) and (request.verb = "GET")
+            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}/transactions") or (proxy.pathsuffix MatchesPath "/{account_number}/transactions/{transaction_id}") or (proxy.pathsuffix MatchesPath "/transactions")) and (request.verb = "GET")
             </Condition>
             <Request>
-                <Step>
+                <!--<Step>
                     <Name>Fault.InvalidAccount</Name>
                     <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
+                </Step>-->
+                <Step>
+                    <Condition>TokenType != "account_request"</Condition>
+                    <Name>Fault-Invalid-Token-Type</Name>
                 </Step>
                 <Step>
                     <Name>Extract.TransactionId</Name>
@@ -87,10 +117,81 @@
             </Request>
             <Response/>
         </Flow>
+        <Flow name="accountBeneficiary">
+            <Description/>
+            <Request>
+                <!--<Step>
+                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
+                    <Name>Fault.InvalidAccount</Name>
+                </Step>-->
+                <Step>
+                    <Condition>TokenType != "account_request"</Condition>
+                    <Name>Fault-Invalid-Token-Type</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}/beneficiaries") or (proxy.pathsuffix MatchesPath "/beneficiaries") ) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="accountRequest">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>AssignUuid</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/accounts-requests")</Condition>
+        </Flow>
+        <Flow name="standingorders">
+            <Description/>
+            <Request>
+                <!--<Step>
+                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
+                    <Name>Fault.InvalidAccount</Name>
+                </Step>-->
+                <Step>
+                    <Condition>TokenType != "account_request"</Condition>
+                    <Name>Fault-Invalid-Token-Type</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/standing-orders") or (proxy.pathsuffix MatchesPath "/{account_number}/standing-orders")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="direct-debits">
+            <Description/>
+            <Request>
+                <!--<Step>
+                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
+                    <Name>Fault.InvalidAccount</Name>
+                </Step>-->
+                <Step>
+                    <Condition>TokenType != "account_request"</Condition>
+                    <Name>Fault-Invalid-Token-Type</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/direct-debits") or (proxy.pathsuffix MatchesPath "/{account_number}/direct-debits")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="accountInfo">
+            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}") or (proxy.pathsuffix MatchesPath "/") or (proxy.pathsuffix MatchesPath "/{account_number}/info")) and (request.verb = "GET")</Condition>
+            <Request>
+                <!--<Step>
+                    <Name>Fault.InvalidAccount</Name>
+                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
+                </Step>-->
+                <Step>
+                    <Condition>TokenType != "account_request"</Condition>
+                    <Name>Fault-Invalid-Token-Type</Name>
+                </Step>
+                <Step>
+                    <Name>AssignIdentificationForAccInfo</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
     </Flows>
-
     <HTTPProxyConnection>
-        <BasePath>/apis/v1/accounts</BasePath>
+        <BasePath>/apis/v2/accounts</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>

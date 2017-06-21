@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="unauthorized-acc-req">
+    <DisplayName>Fault:AccountRequest UnAuthorized</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+                {
+        "status": 403,
+        "message": "UnAuthorized",
+        "description": "Account Request status @reqStatus#",
+        "code": 10023,
+        "more_info": "http://www.example.com/codes/10023"
+                }
+                
+            </Payload>
+            <StatusCode>403</StatusCode>
+            <ReasonPhrase>UnAuthorized</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

@@ -11,11 +11,15 @@
             <Step>
                 <Name>Jsc.SetConnectorURL</Name>
             </Step>
+            <Step>
+                <Name>Assign-Account-List-in-headers</Name>
+            </Step>
         </Request>
         <Response/>
     </PostFlow>
     <Flows/>
-    <LocalTargetConnection>
-        <Path>/internal/connector/v1/accounts/{account_number}{pathSuffix}</Path>
-    </LocalTargetConnection>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>{{ edgeBasePath }}/internal/connector/v2/accounts{account_number}{pathSuffix}</URL>
+    </HTTPTargetConnection>
 </TargetEndpoint>
