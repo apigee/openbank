@@ -1,0 +1,10 @@
+{
+	"name": "myapi-test",
+	"version": "1.0.0",
+	"description": "Integration testing for myapi v1",
+	"dependencies": {
+		"apickli": "latest",
+		"gulp": "latest",
+		"gulp-cucumber": "latest"
+	}
+}
