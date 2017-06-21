@@ -1,6 +1,7 @@
 var stepsProcess = require('./stepsProcess');
 var request = require('request');
 var login = {};
+var jwt = require('jsonwebtoken');
 
 login.loginForm = function(req, res, next) {
     console.log('rendering login page');
@@ -26,14 +27,13 @@ login.doLogin = function(req, res, next) {
         "json": true
     };
 
-    console.log('auth options : ', JSON.stringify(options));
-
     request(options, function(error, response, body) {
         if (!error && response.statusCode == 200) {
             try {
                 var authenticationTransaction = body;
-                console.log(body);
                 req.session.authenticationTransaction = body;
+                var loginJWT = jwt.sign(body, 'ssshhhh', {expiresIn: 60 * 60});
+                res.cookie('login-jwt',loginJWT, { maxAge: 3600000, httpOnly: true });
                 stepsProcess.loadStep(req, res, next);
             } catch (ex) {}
         } else {

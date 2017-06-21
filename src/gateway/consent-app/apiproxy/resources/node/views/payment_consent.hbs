@@ -1,0 +1,42 @@
+<div class="consent-page-wrapper">
+    <div class="consent-page">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Access authorization</h2>
+            </div>
+            <div class="panel-body">
+                <div class="consent-content">
+                    <form role="form" action="{{{basePath}}}/consent" method="post">
+                        <p><strong>{{tpp}}</strong> application is requesting your permission for the following transfer</p>
+                            <label class="account-select">Please select an account from which the amount has to be
+                                debited</label>
+                            <ul>
+                                <select class="dropbdown" id="debitorAccount" required name="debitorAccount">
+                                    <option selected="selected" disabled="disabled">--Select an Account--</option>
+                                    {{#each debitorAccounts}}
+                                        <option value="{{buildJSON this}}" name="debitorAccount">{{this.AccountId}}</option>
+                                    {{/each}}
+                                </select>
+                            </ul>
+
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div>I agree to transfer {{currency}} <strong>{{amount}}</strong> to account number:
+                                        <strong>{{creditorAccountId}}</strong></div>
+                                </div>
+                            </div>
+                        <p>By clicking <strong>Allow</strong>, you are allowing this TPP or Bank to use your information
+                            in accordance with their respective terms of service and privacy policies
+                        </p>
+                        <div class="consent-button">
+                            <button type="submit" name="allow" value="allow" class="btn btn-primary grass-btn">Allow
+                            </button>
+                            <button type="submit" name="deny" value="deny" class="btn btn-primary grass-btn">Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -30,6 +30,9 @@ appStyles.setBasicStyles = function () {
   hbs.registerHelper('basePath', function (){
     return new hbs.SafeString(config.base_path);
   });
+  hbs.registerHelper('buildJSON', function (obj){
+      return JSON.stringify(obj);
+  });
 }
 
 

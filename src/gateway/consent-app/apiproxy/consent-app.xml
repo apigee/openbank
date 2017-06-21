@@ -1,21 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="2" name="consent-app">
+<APIProxy revision="5" name="consent-appv2">
+    <Basepaths>/apis/internal/v2/consentapp</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1459417611796</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>consent-app</Description>
-    <DisplayName>consent-app</DisplayName>
-    <LastModifiedAt>1461136424719</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <Policies/>
+    <CreatedAt>1496910651360</CreatedAt>
+    <CreatedBy>rmahalank@apigee.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>consent-appv2</DisplayName>
+    <LastModifiedAt>1496918777447</LastModifiedAt>
+    <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
+    <Policies>
+        <Policy>add-cors</Policy>
+    </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
+        <Resource>node://app.js</Resource>
+        <Resource>node://config.json</Resource>
+        <Resource>node://controllers/consent.js</Resource>
+        <Resource>node://controllers/index.js</Resource>
+        <Resource>node://controllers/login.js</Resource>
+        <Resource>node://controllers/otp.js</Resource>
+        <Resource>node://controllers/stepsProcess.js</Resource>
+        <Resource>node://controllers/style.js</Resource>
+        <Resource>node://node_modules.zip</Resource>
+        <Resource>node://package.json</Resource>
+        <Resource>node://public/css/bootstrap-theme.css</Resource>
+        <Resource>node://public/css/bootstrap-theme.css.map</Resource>
+        <Resource>node://public/css/bootstrap-theme.min.css</Resource>
+        <Resource>node://public/css/bootstrap.css</Resource>
+        <Resource>node://public/css/bootstrap.css.map</Resource>
+        <Resource>node://public/css/bootstrap.min.css</Resource>
+        <Resource>node://public/css/normalize.css</Resource>
+        <Resource>node://public/css/style.css</Resource>
+        <Resource>node://public/fonts/glyphicons-halflings-regular.eot</Resource>
+        <Resource>node://public/fonts/glyphicons-halflings-regular.svg</Resource>
+        <Resource>node://public/fonts/glyphicons-halflings-regular.ttf</Resource>
+        <Resource>node://public/fonts/glyphicons-halflings-regular.woff</Resource>
+        <Resource>node://public/images/logo.png</Resource>
+        <Resource>node://public/js/libs/bootstrap.js</Resource>
+        <Resource>node://public/js/libs/bootstrap.min.js</Resource>
+        <Resource>node://public/js/libs/handlebars-1.1.2.js</Resource>
+        <Resource>node://public/js/libs/jquery-1.10.2.js</Resource>
+        <Resource>node://public/stylesheets/style.css</Resource>
+        <Resource>node://routes/consent.js</Resource>
+        <Resource>node://routes/index.js</Resource>
+        <Resource>node://routes/login.js</Resource>
+        <Resource>node://routes/otp.js</Resource>
+        <Resource>node://views/account_consent.hbs</Resource>
+        <Resource>node://views/error.hbs</Resource>
+        <Resource>node://views/layout.hbs</Resource>
+        <Resource>node://views/login.hbs</Resource>
+        <Resource>node://views/menu.hbs</Resource>
+        <Resource>node://views/openid_consent.hbs</Resource>
+        <Resource>node://views/otp.hbs</Resource>
+        <Resource>node://views/payment_consent.hbs</Resource>
+        <Resource>node://views/verify_otp.hbs</Resource>
     </Resources>
+    <Spec></Spec>
     <TargetServers/>
     <TargetEndpoints>
         <TargetEndpoint>default</TargetEndpoint>
     </TargetEndpoints>
-    <validate>false</validate>
 </APIProxy>

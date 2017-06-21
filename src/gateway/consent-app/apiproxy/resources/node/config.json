@@ -1,48 +1,85 @@
 {
-  "base_path": "/internal/consent",
-  "logo_uri": "http://dev-dbank.devportal.apigee.com/sites/default/files/logo4.png",
+  "base_path": "/apis/internal/v2/consentapp",
+  "logo_uri": "/apis/internal/v2/consentapp/images/logo.png",
   "styles": {
     "header_background_color": "#FFF"
   },
   "consentTransaction": {
-    "transactionEndpoint": "{{edgeBasePath}}/internal/apis/v1/session/transactions/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1/session/transactions/",
     "method": "GET",
     "headers": {
-      "x-apikey": "{{consentAppKey}}"
+      "x-apikey": "{{internalAppKey}}"
     }
   },
   "authenticationTransaction": {
-    "transactionEndpoint": "{{edgeBasePath}}/internal/connector/v1/authenticate",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1/authenticate",
     "method": "POST",
     "headers": {
-      "x-apikey": "{{consentAppKey}}"
+      "x-apikey": "{{internalAppKey}}"
     }
   },
   "accessTokenTransaction": {
-    "transactionEndpoint": "{{edgeBasePath}}/apis/v1/oauth/authorized/transactions/",
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/v2/oauth/authorized/",
     "method": "POST",
     "headers": {
-      "x-apikey": "{{consentAppKey}}"
+      "x-apikey": "{{internalAppKey}}"
     }
   },
   "generateOtp": {
-    "transactionEndpoint": "{{edgeBasePath}}/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": "{{consentAppKey}}"
+      "x-apikey": "{{internalAppKey}}"
     }
   },
   "validateOtp": {
-    "transactionEndpoint": "{{edgeBasePath}}/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": "{{consentAppKey}}"
+      "x-apikey": "{{internalAppKey}}"
     }
   },
   "getAccounts": {
-    "transactionEndpoint": "{{edgeBasePath}}/internal/connector/v1/accounts",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/accounts",
     "method": "GET",
-    "headers": null
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
+  "getAccountRequest": {
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/accounts/accounts-requests",
+    "method": "GET",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
+  "getPaymentRequest": {
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/v2/payments-connector/payments/",
+    "method": "GET",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
+  "updatePaymentRequest": {
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/v2/payments-connector/payments/",
+    "method": "PUT",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
+  "updateAccountRequest": {
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/accounts/accounts-requests",
+    "method": "PUT",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
+  "createConsent": {
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v2/consent/",
+    "method": "POST",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
   },
   "errors": {
     "user_cancel": {
@@ -85,3 +122,5 @@
     }
   }
 }
+
+

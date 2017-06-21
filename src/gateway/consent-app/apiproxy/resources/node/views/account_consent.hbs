@@ -1,0 +1,62 @@
+<div class="consent-page-wrapper">
+    <div class="consent-page">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Access authorization</h2>
+            </div>
+            <div class="panel-body">
+                <div class="consent-content">
+                    <form role="form" action="{{{basePath}}}/consent" method="post">
+                        <p><strong>{{tpp}}</strong> application is requesting your permission to share the following
+                            details</p>
+                        {{#if permissions}}
+                            <ul class="list-group">
+                                {{#each permissions}}
+                                    <strong>{{this}}</strong>
+                                {{/each}}
+                            </ul>
+                            <label class="account-select">Please select accounts</label>
+                            <ul>
+                                {{#each accounts}}
+                                    <li>
+                                        <input type="checkbox" value="{{buildJSON this}}" name="accounts"
+                                               id="{{this.AccountId}}" {{this.requested}}><label
+                                            for="{{this.AccountId}}">{{this.AccountId}}</label>
+                                    </li>
+                                {{/each}}
+                            </ul>
+
+                        {{else}}
+                            <h3>The application does not require any permissions.</h3>
+                        {{/if}}
+                        {{#if TransactionFromDateTime}}
+                            Transaction Details can be obtained from <strong>{{TransactionFromDateTime}}</strong>
+                            {{#if TransactionToDateTime}}
+                                to <strong>{{TransactionToDateTime}}</strong>
+                            {{/if}}
+
+                        {{/if}}
+                        <br/>
+                        {{#if expiresAt}}
+                            This access is valid till  <strong>{{expiresAt}}</strong>
+                        {{/if}}
+
+                        {{#if tnc}}
+                            <p>I agree to the <a href="{{tnc}}" class="tnc-link" target="_blank">Terms and
+                                conditions</a></p>
+                        {{/if}}
+                        <p>By clicking <strong>Allow</strong>, you are allowing this TPP or Bank to use your information
+                            in accordance with their respective terms of service and privacy policies
+                        </p>
+                        <div class="consent-button">
+                            <button type="submit" name="allow" value="allow" class="btn btn-primary grass-btn">Allow
+                            </button>
+                            <button type="submit" name="deny" value="deny" class="btn btn-primary grass-btn">Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

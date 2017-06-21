@@ -1,19 +1,17 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var ApigeeStore = require('express-session-apigee-cache')(session);
+var cookieParser = require('cookie-parser');
 var style = require('./controllers/style');
-
 
 // Routes
 var routes = require('./routes/index');
 var login = require('./routes/login');
-var otp = require('./routes/otp');
 var consent = require('./routes/consent');
+var otp = require('./routes/otp');
 
 // Configuration
 var config = require('./config.json');
@@ -49,13 +47,19 @@ app.use(session({
    saveUninitialized: false
 }));
 
-
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header("Access-Control-Allow-Headers","*");
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 // Define the routes
 app.use('/', routes);
 app.use('/login', login);
-app.use('/otp', otp);
 app.use('/consent', consent);
+app.use('/otp', otp);
+
 
 // Add the custom styles.
 style.setBasicStyles();
@@ -67,21 +71,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-// production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
@@ -92,4 +82,11 @@ app.use(function(err, req, res, next) {
 });
 
 
+
 module.exports = app;
+
+//start
+
+app.listen(3000, function () {
+    console.log('Example app listening on port 3000!')
+});
