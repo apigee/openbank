@@ -104,7 +104,7 @@ In order to enable **two-factor authentication** for the functional APIs, OTP(on
 #### OAuth API Flow
 
 ![OAuth API
-Interaction](https://sequencediagram.googleplex.com/view/5674110436769792)
+Interaction](readme-images/OpenBankV2-Consent-Flow.png)
 
 #### Consent App
 
