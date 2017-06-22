@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="1" name="session">
-    <Basepaths>/internal/apis/v1/session</Basepaths>
+    <Basepaths>/internal/apis/v2/session</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1459140459746</CreatedAt>
     <CreatedBy>noreply_admin@apigee.com</CreatedBy>

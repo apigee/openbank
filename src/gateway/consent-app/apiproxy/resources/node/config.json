@@ -5,7 +5,7 @@
     "header_background_color": "#FFF"
   },
   "consentTransaction": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1/session/transactions/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v2/session/transactions/",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"

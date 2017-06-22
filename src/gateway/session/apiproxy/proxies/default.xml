@@ -44,7 +44,7 @@
         <Response/>
     </PostFlow>
     <HTTPProxyConnection>
-        <BasePath>/internal/apis/v1/session</BasePath>
+        <BasePath>/internal/apis/v2/session</BasePath>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="noroute"/>
