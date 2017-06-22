@@ -3,7 +3,7 @@ var proxyPathSuffix = context.getVariable('proxy.pathsuffix');
 var Suffix = "";
 if(proxyPathSuffix.indexOf("payment-submissions") >= 0)
 {
-    Suffix = "paymentsumbissions";
+    Suffix = "paymentsubmissions";
 }
 else
 {

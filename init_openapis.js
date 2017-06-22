@@ -115,12 +115,12 @@ function post_prompt(err, results) {
 
 
 
-    get_app_details('AISP_App', edge_host, org, username, password, function (aisp_details) {
+    get_app_details('AISP_App_v2', edge_host, org, username, password, function (aisp_details) {
         secret_aisp = aisp_details.credentials[0].consumerSecret;
         client_id_aisp = aisp_details.credentials[0].consumerKey;
         redirect_uri_aisp = aisp_details.callbackUrl;
 
-        get_app_details('PISP_App', edge_host, org, username, password, function (pisp_details) {
+        get_app_details('PISP_App_v2', edge_host, org, username, password, function (pisp_details) {
             secret_pisp = pisp_details.credentials[0].consumerSecret;
             client_id_pisp = pisp_details.credentials[0].consumerKey;
             redirect_uri_pisp = pisp_details.callbackUrl;
@@ -131,7 +131,7 @@ function post_prompt(err, results) {
             inject_object.client_id_pisp = client_id_pisp;
             inject_object.redirect_uri_pisp = redirect_uri_pisp;
 
-            get_app_details('Opendata_App', edge_host, org, username, password, function (opendata_details) {
+            get_app_details('Opendata_App_v2', edge_host, org, username, password, function (opendata_details) {
             secret_openid = opendata_details.credentials[0].consumerSecret;
             client_id_openid = opendata_details.credentials[0].consumerKey;
             redirect_uri_openid = opendata_details.callbackUrl;
