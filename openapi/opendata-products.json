@@ -20,7 +20,7 @@
                                     }
                                         
           },
-              "basePath": "/apis/v1",
+              "basePath": "/apis/v2",
               "paths": {
                 "/products": {
                   "get": {

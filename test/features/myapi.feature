@@ -8,7 +8,7 @@ Feature:
 		Then response code should be 200
 
 	Scenario: Getting Product details of the bank
-		When I GET /apis/v1/products
+		When I GET /apis/v2/products
 		Then response code should be 200
 
 	Scenario: Getting Account Information when invalid access Token given 

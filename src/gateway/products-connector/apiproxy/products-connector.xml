@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="1" name="products-connector">
-    <Basepaths>/internal/connector/v1/products</Basepaths>
+    <Basepaths>/internal/connector/v2/products</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1462448387352</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>

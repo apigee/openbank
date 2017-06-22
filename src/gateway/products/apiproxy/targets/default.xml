@@ -13,6 +13,6 @@
     </PostFlow>
     <Flows/>
     <LocalTargetConnection>
-        <Path>/internal/connector/v1/products</Path>
+        <Path>/internal/connector/v2/products</Path>
     </LocalTargetConnection>
 </TargetEndpoint>
