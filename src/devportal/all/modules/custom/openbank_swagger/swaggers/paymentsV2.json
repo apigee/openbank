@@ -139,7 +139,7 @@
           }
         },
         "security": [{
-          "pisp_auth": ["payment_request"]
+          "pisp_auth": ["payments"]
         }],
         "parameters": [{
             "in": "header",
@@ -210,11 +210,11 @@
   "securityDefinitions": {
     "pisp_auth": {
       "type": "oauth2",
-      "authorizationUrl": "https://testdemorrai-test.apigee.net/apis/v2/oauth/authorize?client_id=ljIcpckr2HyRqkAluHX3BiTEUzGjFbev&redirect_uri=http://localhost/&response_type=code&state=af0ifjsldkj&scope=payment_request&acr_values=2&request_id=firstpaymentrequest",
+      "authorizationUrl": "https://testdemorrai-test.apigee.net/apis/v2/oauth/authorize?client_id=ljIcpckr2HyRqkAluHX3BiTEUzGjFbev&redirect_uri=http://localhost/&response_type=code&state=af0ifjsldkj&scope=payments&acr_values=2&request_id=firstpaymentrequest",
       "tokenUrl": "https://testdemorrai-test.apigee.net/apis/v2/oauth/token",
       "flow": "accessCode",
       "scopes": {
-        "payment_request" : "PISP apis"
+        "payments" : "PISP apis"
       }
     }
   },

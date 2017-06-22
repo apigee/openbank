@@ -70,8 +70,8 @@
             "type": "string",
             "required": true,
             "enum": [
-              "account_request",
-              "payment_request",
+              "accounts",
+              "payments",
               "openid"
             ]
           },

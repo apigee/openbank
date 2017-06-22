@@ -18,14 +18,14 @@ Feature:
 
 
 	Scenario: Getting Account Information with valid Access Token 
-		When I GET /apis/v2/oauth/authorize?client_id={{AISP_key}}&redirect_uri=http://localhost/&response_type=token&state=af0ifjsldkj&scope=account_request&acr_values=2&request_id=firstaccountrequest
+		When I GET /apis/v2/oauth/authorize?client_id={{AISP_key}}&redirect_uri=http://localhost/&response_type=token&state=af0ifjsldkj&scope=accounts&acr_values=2&request_id=firstaccountrequest
 		Then response code should be 302
 		Then response header Location should exist
 
 		Then I set sessionId from Location header
 
 		Given I set Content-Type header to application/json
-		Given I set body to {"customerId":"123456789" , "type":"account_request"}
+		Given I set body to {"customerId":"123456789" , "type":"accounts"}
 		Given I set x-apikey header to {{internalKey}}
 
 		When I POST openbank request to /apis/v2/oauth/authorized
@@ -48,14 +48,14 @@ Feature:
 		Then response code should be 401
 
 	Scenario: Make Payment Submission
-		When I GET /apis/v2/oauth/authorize?client_id={{PISP_key}}&redirect_uri=http://localhost/&response_type=token&state=af0ifjsldkj&scope=payment_request&acr_values=2&request_id=firstpaymentrequest
+		When I GET /apis/v2/oauth/authorize?client_id={{PISP_key}}&redirect_uri=http://localhost/&response_type=token&state=af0ifjsldkj&scope=payments&acr_values=2&request_id=firstpaymentrequest
 		Then response code should be 302
 		Then response header Location should exist
 
 		Then I set sessionId from Location header
 
 		Given I set Content-Type header to application/json
-		Given I set body to {"customerId":"123456789" , "type":"payment_request"}
+		Given I set body to {"customerId":"123456789" , "type":"payments"}
 		Given I set x-apikey header to {{internalKey}}
 
 		When I POST openbank request to /apis/v2/oauth/authorized

@@ -25,7 +25,7 @@ consent.showConsent = function (req, res, next) {
 
     var authenticationTransaction = req.session.authenticationTransaction;
 
-    if (type == "account_request") {
+    if (type == "accounts") {
         async.parallel({
             userAccounts: function (callback) {
                 // Get the user Accounts
@@ -93,7 +93,7 @@ consent.showConsent = function (req, res, next) {
 
         });
     }
-    else if (type == "payment_request") {
+    else if (type == "payments") {
         async.parallel({
             userAccounts: function (callback) {
                 // Get the user Accounts
@@ -184,7 +184,7 @@ consent.doConsent = function (req, res, next) {
     type = type[0];
     // If the user allowed his consent the call the access token endpoint.
     if (req.body.allow == 'allow') {
-        if (type == "account_request") {
+        if (type == "accounts") {
 
             var consentedAccounts = [];//req.body.accounts;
             for (var i in req.body) {
@@ -252,7 +252,7 @@ consent.doConsent = function (req, res, next) {
 
             });
         }
-        else if (type == "payment_request") {
+        else if (type == "payments") {
             var consentedPayment = JSON.parse(req.body.debitorAccount);
             DebtorAccountDetails = consentedPayment.Account;
             DebtorAgentDetails = consentedPayment.Servicer;

@@ -137,7 +137,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
             "name": "Authorization",
@@ -178,7 +178,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
             "name": "Authorization",
@@ -219,7 +219,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
             "name": "Authorization",
@@ -260,7 +260,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
             "name": "Authorization",
@@ -301,7 +301,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
             "name": "Authorization",
@@ -342,7 +342,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
             "name": "Authorization",
@@ -383,7 +383,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
           "name": "Authorization",
@@ -416,7 +416,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
           "name": "Authorization",
@@ -449,7 +449,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
           "name": "Authorization",
@@ -482,7 +482,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
           "name": "Authorization",
@@ -515,7 +515,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
           "name": "Authorization",
@@ -548,7 +548,7 @@
           }
         },
         "security": [{
-          "aisp_auth": ["account_request"]
+          "aisp_auth": ["accounts"]
         }],
         "parameters": [{
           "name": "Authorization",
@@ -563,11 +563,11 @@
   "securityDefinitions": {
     "aisp_auth": {
       "type": "oauth2",
-      "authorizationUrl": "https://testdemorrai-test.apigee.net/apis/v2/oauth/authorize?client_id=bkJ2TvlHG2xw0kg59WLDTxzJrXPi8mHh&redirect_uri=http://localhost/&response_type=code&state=af0ifjsldkj&scope=account_request&acr_values=2&request_id=firstaccountrequest",
+      "authorizationUrl": "https://testdemorrai-test.apigee.net/apis/v2/oauth/authorize?client_id=bkJ2TvlHG2xw0kg59WLDTxzJrXPi8mHh&redirect_uri=http://localhost/&response_type=code&state=af0ifjsldkj&scope=accounts&acr_values=2&request_id=firstaccountrequest",
       "tokenUrl": "https://testdemorrai-test.apigee.net/apis/v2/oauth/token",
       "flow": "accessCode",
       "scopes": {
-        "account_request": "AISP apis"
+        "accounts": "AISP apis"
       }
     }
   },

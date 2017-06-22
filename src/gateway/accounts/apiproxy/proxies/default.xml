@@ -75,7 +75,7 @@
                     <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
                 </Step>-->
                 <Step>
-                    <Condition>TokenType != "account_request"</Condition>
+                    <Condition>TokenType != "accounts"</Condition>
                     <Name>Fault-Invalid-Token-Type</Name>
                 </Step>
             </Request>
@@ -90,7 +90,7 @@
                     <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
                 </Step>-->
                 <Step>
-                    <Condition>TokenType != "account_request"</Condition>
+                    <Condition>TokenType != "accounts"</Condition>
                     <Name>Fault-Invalid-Token-Type</Name>
                 </Step>
                 <Step>
@@ -125,7 +125,7 @@
                     <Name>Fault.InvalidAccount</Name>
                 </Step>-->
                 <Step>
-                    <Condition>TokenType != "account_request"</Condition>
+                    <Condition>TokenType != "accounts"</Condition>
                     <Name>Fault-Invalid-Token-Type</Name>
                 </Step>
             </Request>
@@ -150,7 +150,7 @@
                     <Name>Fault.InvalidAccount</Name>
                 </Step>-->
                 <Step>
-                    <Condition>TokenType != "account_request"</Condition>
+                    <Condition>TokenType != "accounts"</Condition>
                     <Name>Fault-Invalid-Token-Type</Name>
                 </Step>
             </Request>
@@ -165,7 +165,7 @@
                     <Name>Fault.InvalidAccount</Name>
                 </Step>-->
                 <Step>
-                    <Condition>TokenType != "account_request"</Condition>
+                    <Condition>TokenType != "accounts"</Condition>
                     <Name>Fault-Invalid-Token-Type</Name>
                 </Step>
             </Request>
@@ -180,7 +180,7 @@
                     <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
                 </Step>-->
                 <Step>
-                    <Condition>TokenType != "account_request"</Condition>
+                    <Condition>TokenType != "accounts"</Condition>
                     <Name>Fault-Invalid-Token-Type</Name>
                 </Step>
                 <Step>

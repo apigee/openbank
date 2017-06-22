@@ -69,7 +69,7 @@
                     <Name>OAuth-Invalidate-Access-Token</Name>
                 </Step>
                 <Step>
-                    <Condition>TokenType != "payment_request"</Condition>
+                    <Condition>TokenType != "payments"</Condition>
                     <Name>Fault-Invalid-Token-type</Name>
                 </Step>
                 <Step>
