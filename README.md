@@ -26,12 +26,17 @@ This repository is organized into the following sections
 The OpenBank solution is built on Apigee Edge API Management Platform, and features the following APIs:
 
 **Account Access APIs**
+  - Account Request 
   - Account Information 
-  - Account Transaction 
-  - Account Information 
+  - Transactions
+  - Balances
+  - Direct Debits
+  - Standing Orders
+  - Products
 
-**Payment Transfer APIs**
-- Payment Initiation
+**Payment APIs**
+- Payment Request
+- Payment Submission
 
 **Open Data APIs**
   - ATM location 
@@ -45,12 +50,12 @@ The OpenBank solution is built on Apigee Edge API Management Platform, and featu
 ![enter image description
 here](http://openbank.apigee.com/sites/default/files/openbank_architecture.png)
 
-It also provides an implementation of **OpenID** and **oAuth** based authentication, **consent** and **two-factor authentication** using SMS.
+It also provides an implementation of **OpenID** and **oAuth** based authentication, **consent** and **two-factor authentication** using phone number and PIN based authentication using external SMS API.
 
 ### Repository Overview
 
 This repository contains the necessary artifacts that will allow one to pull up
-a complete set of **Banking APIs** that comply with _Openbanking_ and _PSD2_
+a complete set of **Banking APIs** that comply with CMA 0.1 specification (that in turn comply with _Openbanking_ and _PSD2_ )
 regulations. In addition this will also allow one to build a _sandbox_ complete
 with a **Developer Portal**, dummy backend and a sample app.
 
@@ -99,7 +104,7 @@ In order to enable **two-factor authentication** for the functional APIs, OTP(on
 #### OAuth API Flow
 
 ![OAuth API
-Interaction](http://www.websequencediagrams.com/files/render?link=R39gE_mlfbXyVC0IS1Z8)
+Interaction](https://sequencediagram.googleplex.com/view/5674110436769792)
 
 #### Consent App
 
@@ -218,9 +223,14 @@ The detailed instructions for developer portal setup for openbank solution can b
 The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Baas 2.0](http://apibaas.apigee.com/) in your org.
 
 
-
-
 ## Changelog
+
+#### 2017/06/20
+
+* APIs / API Spec
+    * APIs are made compliant with CMA 0.1 spec 
+    * Support for CMA 0.1 consent model for Accounts and Payments APIs
+
 
 #### 2017/02/20
 
