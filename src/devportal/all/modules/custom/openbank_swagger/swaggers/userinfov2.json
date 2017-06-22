@@ -19,7 +19,7 @@
       "url": "http://example.com"
     }
   },
-  "basePath": "/apis/v1/userinfo",
+  "basePath": "/apis/v2/userinfo",
   "paths": {
     "/acr:token": {
       "get": {

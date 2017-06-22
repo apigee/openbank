@@ -72,7 +72,7 @@
         <Response/>
     </PostFlow>
     <HTTPProxyConnection>
-        <BasePath>/apis/v1/userinfo</BasePath>
+        <BasePath>/apis/v2/userinfo</BasePath>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="noroute"/>
