@@ -147,11 +147,11 @@ resources:
       type: product
       items:
       - payload: '{"approvalType":"auto", "displayName":"Open Data APIs v2","name":"open_data_apis_v2","environments":["test","prod"],"scopes":["openid", "atms", "branches"], "proxies":["oauth", "userinfo"]}'
-        name: open_data_apis
+        name: open_data_apis_v2
       - payload: '{"approvalType":"auto", "displayName":"Payment APIs v2","name":"payment_apis_v2","environments":["test","prod"],"scopes":["payment_request"], "proxies":["oauth", "payments"]}'
-        name: payment_apis
+        name: payment_apis_v2
       - payload: '{"approvalType":"auto", "displayName":"Account APIs v2","name":"account_apis_v2","environments":["test","prod"],"scopes":["account_request"], "proxies":["oauth", "accounts"]}'
-        name: account_apis
+        name: account_apis_v2
     - name: remainingDeveloperApps
       type: app
       items:

@@ -4,7 +4,7 @@ Feature:
 
 
 	Scenario: Getting ATM details of the bank
-		When I GET /apis/v1/locations/atms
+		When I GET /apis/v2/locations/atms
 		Then response code should be 200
 
 	Scenario: Getting Product details of the bank
