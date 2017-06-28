@@ -180,7 +180,7 @@ npm install
 
 Run the deploy command
 ```
-gulp deploy --resource openbank_apis
+gulp deploy --resource openbank_apis2
 ```
 
 This will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
