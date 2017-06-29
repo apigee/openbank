@@ -16,7 +16,7 @@
         <Attribute name="type" ref="type" display="false"/>
         <Attribute name="acr_values" ref="acr_values" display="false"/>
         <Attribute name="auth_time" ref="system.timestamp" display="false"/>
-        <Attribute name="customer_number" ref="customer_id" display="false"/>
+        <Attribute name="customer_number" ref="customerId" display="false"/>
         <Attribute name="request_id" ref="request_id" display="false"/>
     </Attributes>
     <AppEndUser>customer_number</AppEndUser>
