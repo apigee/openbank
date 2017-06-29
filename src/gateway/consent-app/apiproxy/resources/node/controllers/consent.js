@@ -298,7 +298,7 @@ consent.doConsent = function (req, res, next) {
                 else {
                     var error = {
                         "error": "NOT_FOUND",
-                        "description": "Unable to update account request Info"
+                        "description": "Unable to update payment request Info"
                     };
                     stepsProcess.sendError(error, req, res, next);
                 }
