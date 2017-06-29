@@ -43,6 +43,8 @@ resources:
         permissions: ['get,post,delete:accounts','get,post,delete:accounts/*','get,post,delete:accounts/**']
       - name: paymentsubmissions
         permissions: ['get,post,delete:paymentsubmissions','get,post,delete:paymentsubmissions/*','get,post,delete:paymentsubmissions/**']
+      - name: consents
+        permissions: ['get,post,put,delete:consents','get,post,put,delete:consents/*','get,post,put,delete:consents/**']
       - name: accountsrequests
         file: setup/data/accountsrequests.json
         permissions: ['get,post,put,delete:accountsrequests','get,post,put,delete:accountsrequests/*','get,post,put,delete:accountsrequests/**']
