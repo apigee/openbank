@@ -57,7 +57,11 @@ exports.getAccountInfo = function (req, res) {
             delete details.Date ;
             delete details.CreditLine; 
         }
-        res.json(details);
+        var obj = {};
+        var arr = [];
+        arr.push(details);
+        obj["Accounts"] = arr;
+        res.json(obj);
     });
 };
 
