@@ -140,7 +140,7 @@
                 </Step>
             </Request>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/accounts-requests")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/accounts-requests/*")</Condition>
         </Flow>
         <Flow name="standingorders">
             <Description/>

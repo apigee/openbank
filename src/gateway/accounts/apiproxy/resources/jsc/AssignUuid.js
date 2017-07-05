@@ -11,7 +11,7 @@ function generateUUID() {
 };
 
 
-if(verb = "POST")
+if(verb == "POST")
 {
     var content = JSON.parse(context.getVariable("request.content"));
     content.name = generateUUID();
