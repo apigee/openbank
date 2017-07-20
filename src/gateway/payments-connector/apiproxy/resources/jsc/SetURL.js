@@ -12,9 +12,9 @@ else
 
 
 var pathTokens = proxyPathSuffix.split("/");
-if(pathTokens[2])
+/*if(pathTokens[2])
 {
     Suffix += "/" + pathTokens[2];
-}
+}*/
 
 context.setVariable("Suffix",Suffix);
