@@ -10,6 +10,7 @@ resources:
       ifNotPresent: token
     - name: password
       prompt: Password
+      hidden: true
       ifNotPresent: token
     - name: env
       prompt: Edge Org Environment
