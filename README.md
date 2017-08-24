@@ -30,6 +30,7 @@ The OpenBank solution is built on Apigee Edge API Management Platform, and featu
   - Direct Debits
   - Standing Orders
   - Products
+  
 **Security APIs**
   - OAuth
   - UserInfo
@@ -93,7 +94,7 @@ In order to enable **two-factor authentication** for the functional APIs, OTP(on
 #### OAuth API Flow
 
 ![OAuth API
-Interaction](https://sequencediagram.googleplex.com/view/5674110436769792)
+Interaction](./images/oauth-consent-flow.png)
 
 #### Login App
 
@@ -126,17 +127,6 @@ Banking APIs provide developers with the information needed to create innovative
  - Analysis and recommendations for better money management.
  - Reccomendation of products and deals based on monthly statements.
 
-#### **2. Payments APIs** 
-Payment APIs enable the transfer of funds from a consumer's account to a recipient. The initation of transfer is done by the consumer and the recipient's account number is provided by the third-party payment provider (TPPs or PISPs). While initiating a transfer the user will have to authenticate using **two-factor authentication**(otp via sms) following which the transfer will be initiated.
-While online account payment is a fundamental use case of this API, it is its usage and the benefit it provides over traditional third-party payment gateways that makes it hugely impactful. Take a look at some of the use cases:
-
- - Immediate payment transfers for online purchases, thus providing guaranteed services.
- - Push payments providing merchant with immediate access to the transferred amount.
- - Fast retail loans from third-party lenders
-
-#### **3. Open Data APIs** 
-Open Data APIs are a category of APIs that provide general information of a Bank. These are not customer-specific, but bank-specific: locations, products, URLs, and events, for example. These APIs are not subjected to user-level authentication, but are are protected to be used only by signed apps. A **valid client credential** is essential to invoke these APIs.
-Using this category of APIs, a wide variety of new value-added solutions can be provided to consumers. Coupled with customer-specific information, potential new solutions include product and offer recommendations.
 
 ## Apigee Edge Setup
 
@@ -173,7 +163,7 @@ npm install
 
 Run the deploy command
 ```
-gulp deploy --resource openbank_apis
+gulp deploy 
 ```
 
 This will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
@@ -186,6 +176,9 @@ This will interactively prompt you for following details, and will then create /
 + BaaS App Name
 + BaaS Org Client Id
 + BaaS Org Client Secret 
++ Consent Session Key for signing the Session Cookie
++ Login App Key for signing the user details 
+
 
 
 
@@ -193,35 +186,28 @@ This will interactively prompt you for following details, and will then create /
 
 Once the deploy script is complete, run the following command to do a basic sanity test that the APIs are working
 
+change to test folder
 ```
-npm test
+cd test
 ```
 
+install node modules
+```
+npm install
+```
 
-
-### Developer Portal
-Every API provider must be able to educate developers and successfully expose their APIs. A developer portal is the face of your API program, providing everything that internal, partner, and third party developers need. 
-
-Developers need to interact with the Banks and with each other. Enable your developer community to provide feedback, make support and feature requests, and submit their own content that can be accessed by other developers with the right developer portal.
-
-Apigee Edge provides with a Developer Services portal that you can use to build and launch your own customized website to provide all of these services to your development community. One has the option to create their own developer portal, either in the cloud or on-premises.
-
-The below picture depicts how a dev portal looks like
-
-![developer-portal](readme-images/openbank.png)
-
-#### Developer portal Setup
-The detailed instructions for developer portal setup for openbank solution can be found [Here](https://github.com/apigee/openbank/tree/master/src/devportal).
-
-### Data
-The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Baas 2.0](http://apibaas.apigee.com/) in your org.
-
-
-
+run tests
+```
+gulp test
+```
 
 ## Changelog
 
 #### 2017/08/24
+* APIs / API Spec
+    * APIs are made compliant with OpenBanking v1.0.0
+    * Support for Open Bank Security Profile v1.0.0 - hybrid flow
+
 
 #### 2017/06/20
 
