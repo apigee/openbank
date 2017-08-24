@@ -1,12 +1,144 @@
 var request = require('request');
 var apigee = require('apigee-access');
 
-
-function getAccountDetails(req, callback) {
+exports.getAccountInfo = function (req, res) {
     var accountNumber = req.params.accountNumber;
+    var basePath = apigee.getVariable(req, 'appBasePath');
+    var options =
+        {
+            url: basePath + "/accounts",
+            qs: {
+                ql: "where AccountId = '" + accountNumber + "'"
+            },
+            json: true
+        };
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var accountDetails = {};
+
+            accountDetails.AccountId = body.entities[0].AccountId;
+            accountDetails.Currency = body.entities[0].Currency;
+            accountDetails.Nickname = body.entities[0].Nickname;
+            accountDetails.Account = body.entities[0].Account;
+            accountDetails.Servicer = body.entities[0].Servicer;
+
+            accnts = {};
+            accnts.Data = {};
+            accnts.Data.Account = [];
+            accnts.Data.Account.push(accountDetails);
+            accnts.Links = {};
+            accnts.Links.self = "/accounts/" + accountNumber;
+            accnts.Meta = {};
+            res.json(accnts);
+
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
+exports.getAccountsOfCustomer = function (req, res) {
+
+
+    var cursor = req.query.pageHint;
+    var limit = req.query.limit;
 
     var basePath = apigee.getVariable(req, 'appBasePath');
+    var accountIds = null;
+    if (req.query && req.query.accountsList) {
+        accountIds = req.query.accountsList;
+    }
+    var options = {};
+    // get accounts information only for selected accounts of customer
+    if (accountIds) {
+        accountIds = JSON.parse(accountIds);
+        var sqlquery = "where AccountId = '";
+        if (accountIds.length > 0) {
+            for (var j = 0; j < accountIds.length; j++) {
+                sqlquery += accountIds[j] + "' or AccountId = '";
+            }
+            sqlquery = sqlquery.substr(0, sqlquery.length - 16);
 
+
+        }
+        else {
+            sqlquery = "";
+        }
+        options =
+            {
+                url: basePath + "/accounts",
+                qs: {
+                    ql: sqlquery
+                },
+                json: true
+            };
+
+    }
+    // get accounts info for all accounts of the customer
+    else {
+        if (!req.query || !req.query.customerId) {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            return res.status(400).json(errJson);
+        }
+        var customerId = req.query.customerId;
+        options = {
+            url: basePath + "/accounts",
+            qs: {
+                ql: "where CustomerId = '" + customerId + "'"
+            },
+            json: true
+        };
+    }
+    if (cursor) {
+        options.qs.cursor = cursor;
+    }
+    if (limit) {
+        options.qs.limit = limit;
+    }
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var accounts = [];
+
+            for (var i = 0; i < body.entities.length; i++) {
+                var accountDetails = {};
+                accountDetails.AccountId = body.entities[i].AccountId;
+                accountDetails.Currency = body.entities[i].Currency;
+                accountDetails.Nickname = body.entities[i].Nickname;
+                accountDetails.Account = body.entities[i].Account;
+                accountDetails.Servicer = body.entities[i].Servicer;
+
+                accounts.push(accountDetails);
+            }
+            var accnts = {};
+            accnts.Data = {};
+            accnts.Data["Account"] = accounts;
+            accnts.Meta = {};
+            accnts.Links = {};
+            if (body.cursor) {
+                accnts.Links.next = "/accounts?PageHint=" + body.cursor;
+            }
+            res.json(accnts);
+
+        } else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
+// get account balance for a given account of customer
+exports.getAccountBalance = function (req, res) {
+    var accountNumber = req.params.accountNumber;
+    var basePath = apigee.getVariable(req, 'appBasePath');
     var options = {
         url: basePath + "/accounts/" + accountNumber,
         json: true
@@ -14,448 +146,610 @@ function getAccountDetails(req, callback) {
 
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            var accountDetails = {};
-
-            try {
-                accountDetails.AccountId = body.entities[0].AccountId;
-                //accountDetails.account_number = body.entities[0].AccountId;
-                accountDetails.Currency = body.entities[0].Currency;
-                accountDetails.Nickname = body.entities[0].Nickname;
-                accountDetails.Account = body.entities[0].Account;
-                accountDetails.Servicer = body.entities[0].Servicer;
-                
-                
-                accountDetails.Amount = body.entities[0].Amount;
-                accountDetails.CreditDebitIndicator = body.entities[0].CreditDebitIndicator;
-                accountDetails.Type = body.entities[0].Type;
-                accountDetails.Date = body.entities[0].Date;
-                accountDetails.CreditLine = body.entities[0].CreditLine;
-
-                
-                callback(accountDetails);
-
-            } catch (err) {
-                callback(null);
+            var balance = {};
+            balance.AccountId = body.entities[0].AccountId;
+            balance.Amount = body.entities[0].Amount;
+            balance.CreditDebitIndicator = body.entities[0].CreditDebitIndicator;
+            balance.Type = body.entities[0].Type;
+            if (body.entities[0].DateTime) {
+                balance.DateTime = new Date(body.entities[0].DateTime).toISOString();
             }
-        } else {
-            callback(null);
+            balance.CreditLine = body.entities[0].CreditLine;
+
+            var accBalance = {};
+            accBalance.Data = {};
+            accBalance.Data.Balance = [];
+            accBalance.Data.Balance.push(balance);
+            accBalance.Meta = {};
+            accBalance.Links = {};
+            accBalance.Links.self = "/accounts/" + accountNumber + "/balances";
+            res.json(accBalance);
+
+
         }
-    });
-}
-
-
-
-
-exports.getAccountInfo = function (req, res) {
-    getAccountDetails(req, function (details) {
-        if (details) 
-        {
-            console.log("details available");
-            delete details.Amount;
-            delete details.CreditDebitIndicator ;
-            delete details.Type ;
-            delete details.Date ;
-            delete details.CreditLine; 
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
         }
-        var obj = {};
-        var arr = [];
-        arr.push(details);
-        obj["Accounts"] = arr;
-        res.json(obj);
     });
 };
 
-exports.getAccountsOfCustomer = function (req, res) {
-    
+// get balance info of selected accounts of customer
+exports.getAccountsBalanceOfCustomer = function (req, res) {
+    var options = getOptionsJsonForCustomer("accounts", req, res);
 
-    var customerId = req.query.customerId;
-    console.log(customerId);
-
-    var basePath = apigee.getVariable(req, 'appBasePath');
-
-    var AccountIds = req.query.accountsList;
-    var options  = {};
-    if(AccountIds)
-    {
-        AccountIds = JSON.parse(AccountIds);
-        var sqlquery = "where AccountId = '";
-        if(AccountIds.length >0)
-        {
-            for(var j=0; j< AccountIds.length;j++ )
-            {
-            sqlquery+= AccountIds[j] + "' or AccountId = '";
-            }
-        sqlquery = sqlquery.substr(0, sqlquery.length-16);
-        
-            
-        }
-        else
-        {
-           sqlquery = ""; 
-        }
-        options = 
-        {
-        url: basePath + "/accounts",
-        qs: {
-            ql: sqlquery
-        },
-        json: true
-        };
-
-    }
-    
-    else
-    {
-    if (!req.query || !req.query.customerId) 
-    {
-        return res.status(400).send();
-    }
-    options = {
-        url: basePath + "/accounts",
-        qs: {
-            ql: "where customers = '" + customerId + "'"
-        },
-        json: true
-    };
-    }
     request(options, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            var accounts = [];
-
-            for (var i = 0; i < body.entities.length; i++) 
-            {
-                //console.log("body"+JSON.stringify(body));
-                var accountDetails = {};
-
-                //accountDetails.id = body.entities[i].name;
-                //accountDetails.account_number = body.entities[i].AccountId;
-                accountDetails.AccountId = body.entities[i].AccountId;
-                accountDetails.Currency = body.entities[i].Currency;
-                accountDetails.Nickname = body.entities[i].Nickname;
-                accountDetails.Account = body.entities[i].Account;
-                accountDetails.Servicer = body.entities[i].Servicer;
-  
-                accounts.push(accountDetails);
-            }
-            var accnts = {};
-            accnts["Accounts"] = accounts;
-            res.json(accnts);
-            //res.json(accounts);
-
-        } else {
-            res.status(400).send();
-        }
-    });
-};
-
-
-exports.getAccountsBalanceOfCustomer = function ( req , res )
-{
-     var basePath = apigee.getVariable(req, 'appBasePath');
-        var AccountIds = JSON.parse(req.query.accountsList);
-        
-        var sqlquery = "where AccountId = '";
-        if(AccountIds.length >0)
-        {
-            for(var j=0; j< AccountIds.length;j++ )
-            {
-                console.log("Account"+AccountIds[j]);
-            sqlquery+= AccountIds[j] + "' or AccountId = '";
-            }
-        sqlquery = sqlquery.substr(0, sqlquery.length-16);
-        
-            
-        }
-        else
-        {
-           sqlquery = ""; 
-        }
-        console.log("Sql query"+sqlquery );
-        var options = {
-        url: basePath + "/accounts",
-        qs: {
-            ql: sqlquery
-        },
-        json: true
-    };
-   
-        request(options, function (error, response, body) 
-    {
         var balances = {};
-        console.log("RESPONSE" + JSON.stringify(response));
         if (!error && response.statusCode == 200) {
             var accounts = [];
 
             for (var i = 0; i < body.entities.length; i++) {
                 var balance = {};
-                
+
                 balance.AccountId = body.entities[i].AccountId;
                 balance.Amount = body.entities[i].Amount;
                 balance.CreditDebitIndicator = body.entities[i].CreditDebitIndicator;
                 balance.Type = body.entities[i].Type;
-                balance.Date = body.entities[i].Date;
+                if (body.entities[0].DateTime) {
+                    balance.DateTime = new Date(body.entities[0].DateTime).toISOString();
+                }
                 balance.CreditLine = body.entities[i].CreditLine;
 
                 accounts.push(balance);
             }
-            balances["Balances"] = accounts;
+            balances.Data = {};
+            balances.Data["Balance"] = accounts;
+            balances.Meta = {};
+            balances.Links = {};
+            if (body.cursor) {
+                balances.Links.next = "/balances?PageHint=" + body.cursor;
+            }
             res.json(balances);
 
         }
-        else 
-        {
-            res.status(400).send();
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
         }
     });
-    
+
 };
-
-exports.getAccountsTransactionOfCustomer = function(req,res)
-{
-     var basePath = apigee.getVariable(req, 'appBasePath');
-    
-    var AccountIds = JSON.parse(req.query.accountsList);
-    
-        var sqlquery = "where AccountId = '";
-        if(AccountIds.length >0)
-        {
-        for(var j=0; j< AccountIds.length;j++ )
-        {
-            sqlquery+= AccountIds[j] + "' or AccountId = '";
-        }
-        sqlquery = sqlquery.substr(0, sqlquery.length-16);
-
-        }
-        else
-        {
-           sqlquery = ""; 
-        }
-        var options = {
-        url: basePath + "/transactions",
-        qs: {
-            ql: sqlquery
-        },
-        json: true
-    };
-        request(options, function (error, response, body) 
-        {
-            //console.log("RESPONSE"+JSON.stringify(response));
-         var tr = {};  
-        if (!error && response.statusCode == 200) 
-        {
-            var transactions = [];
-            //console.log("success");
-            //console.log("RESPONSE"+JSON.stringify(body));
-            for (var i = 0; i < body.entities.length; i++) 
-            {
-                var transaction = {};
-                
-                transaction.AccountId = body.entities[i].AccountId;
-                transaction.TransactionReference = body.entities[i].uuid;
-                transaction.TransactionId = body.entities[i].TransactionId;
-                transaction.Status = body.entities[i].Status;
-                transaction.AddressLine = body.entities[i].AddressLine;
-                transaction.BookingDate = body.entities[i].BookingDate;
-                transaction.ValueDate = body.entities[i].ValueDate;
-                transaction.BankTransactionCode = body.entities[i].BankTransactionCode;
-                transaction.ProprietaryBankTransactionCode = body.entities[i].ProprietaryBankTransactionCode;
-                    transaction.TransactionInformation = body.entities[i].TransactionInformation;
-                    transaction.Balance = body.entities[i].Balance;
-                    transaction.Amount = body.entities[i].Amount;
-                    transaction.CreditDebitIndicator = body.entities[i].CreditDebitIndicator;
-                    transaction.MerchantDetails = body.entities[i].MerchantDetails;
-                    transaction.Type = body.entities[i].Type;
-                    transaction.Name = body.entities[i].Name;
-                    transaction.MerchantCategoryCode = body.entities[i].MerchantCategoryCode;
-                    transaction.Currency = body.entities[i].Currency;
-                    
-                    
-                
-                
-                transactions.push(transaction);
-            }
-            tr["Transactions"] = transactions;
-            res.json(tr);
-
-        }
-        else 
-        {
-            //console.log("status is not 200");
-            res.status(400).send();
-        }
-    });
-    
-};
-
-exports.getAccountBalance = function (req, res) {
-    getAccountDetails(req, function (details) 
-    {
-        var balances = {};
-        var balance = {};
-        if (details) {
-                balance.AccountId = details.AccountId;
-                balance.Amount = details.Amount;
-                balance.CreditDebitIndicator = details.CreditDebitIndicator;
-                balance.Type = details.Type;
-                balance.Date = details.Date;
-                balance.CreditLine = details.CreditLine;
-        }
-        balances["Balances"] = [];
-        balances["Balances"].push(balance);
-        res.json(balances);
-    });
-};
-
-exports.getAccountTransaction = function (req, res) {
-    var accountNumber = req.params.accountNumber;
-    var transactionId = req.params.transactionId;
-
-    var basePath = apigee.getVariable(req, 'appBasePath');
-
-    var options = {
-        url: basePath + "/transactions",
-        qs: {
-            ql: "where AccountId = '" + accountNumber + "'",
-            limit: 1000
-        },
-        json: true
-    };
-
-    if (transactionId) {
-        options.url += '/' + transactionId;
-        delete options.qs;
+// Get details of all transactions of  all selected accounts of customer
+exports.getAccountsTransactionOfCustomer = function (req, res) {
+    var options = getOptionsJsonForCustomer("transactions", req, res);
+    if (req.query && req.query.fromBookingDateTime && !isNaN(Date.parse(req.query.fromBookingDateTime))) {
+        options.qs.ql += " and BookingDateTime >= " + Date.parse(req.query.fromBookingDateTime);
+    }
+    if (req.query && req.query.toBookingDateTime && !isNaN(Date.parse(req.query.toBookingDateTime))) {
+        options.qs.ql += " and BookingDateTime <= " + Date.parse(req.query.toBookingDateTime);
     }
 
     request(options, function (error, response, body) {
-        if (!error && response.statusCode == 200 && body.entities) {
+        var tr = {};
+        if (!error && response.statusCode == 200) {
             var transactions = [];
             for (var i = 0; i < body.entities.length; i++) {
-                var transaction = {}
+                var transaction = {};
 
                 transaction.AccountId = body.entities[i].AccountId;
                 transaction.TransactionReference = body.entities[i].TransactionReference;
                 transaction.TransactionId = body.entities[i].uuid;
-                transaction.Status = body.entities[i].Status;
-                transaction.AddressLine = body.entities[i].AddressLine;
-                transaction.BookingDate = body.entities[i].BookingDate;
-                transaction.ValueDate = body.entities[i].ValueDate;
-                transaction.BankTransactionCode = body.entities[i].BankTransactionCode;
-                transaction.ProprietaryBankTransactionCode = body.entities[i].ProprietaryBankTransactionCode;
-                transaction.TransactionInformation = body.entities[i].TransactionInformation;
-                transaction.Balance = body.entities[i].Balance;
                 transaction.Amount = body.entities[i].Amount;
                 transaction.CreditDebitIndicator = body.entities[i].CreditDebitIndicator;
+                transaction.Status = body.entities[i].Status;
+                if (body.entities[i].BookingDateTime) {
+                    transaction.BookingDateTime = new Date(body.entities[i].BookingDateTime).toISOString();
+                }
+                if (body.entities[i].ValueDateTime) {
+                    transaction.ValueDateTime = new Date(body.entities[i].ValueDateTime).toISOString();
+                }
+                transaction.TransactionInformation = body.entities[i].TransactionInformation;
+                transaction.AddressLine = body.entities[i].AddressLine;
+                transaction.BankTransactionCode = body.entities[i].BankTransactionCode;
+                transaction.ProprietaryBankTransactionCode = body.entities[i].ProprietaryBankTransactionCode;
+                transaction.Balance = body.entities[i].Balance;
                 transaction.MerchantDetails = body.entities[i].MerchantDetails;
-                transaction.Type = body.entities[i].Type;
-                transaction.Name = body.entities[i].Name;
-                transaction.MerchantCategoryCode = body.entities[i].MerchantCategoryCode;
-                transaction.Currency = body.entities[i].Currency;
+
+                transactions.push(transaction);
+            }
+            tr.Data = {};
+            tr.Data["Transaction"] = transactions;
+            tr.Meta = {};
+            tr.Links = {};
+            if (body.cursor) {
+                tr.Links.next = "/transactions?PageHint=" + body.cursor;
+            }
+            res.json(tr);
+
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+
+};
+
+// get list of transactions of a single account of customer
+exports.getAccountTransaction = function (req, res) {
+
+    var accountNumber = req.params.accountNumber;
+    var options = getOptionsJsonForAccount("transactions", req);
+    if (req.query && req.query.fromBookingDateTime && !isNaN(Date.parse(req.query.fromBookingDateTime))) {
+        options.qs.ql += " and BookingDateTime >= " + Date.parse(req.query.fromBookingDateTime);
+    }
+    if (req.query && req.query.toBookingDateTime && !isNaN(Date.parse(req.query.toBookingDateTime))) {
+        options.qs.ql += " and BookingDateTime <= " + Date.parse(req.query.toBookingDateTime);
+    }
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var transactions = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var transaction = {};
+
+                transaction.AccountId = body.entities[i].AccountId;
+                transaction.TransactionReference = body.entities[i].TransactionReference;
+                transaction.TransactionId = body.entities[i].uuid;
+                transaction.Amount = body.entities[i].Amount;
+                transaction.CreditDebitIndicator = body.entities[i].CreditDebitIndicator;
+                transaction.Status = body.entities[i].Status;
+                if (body.entities[i].BookingDateTime) {
+                    transaction.BookingDateTime = new Date(body.entities[i].BookingDateTime).toISOString();
+                }
+                if (body.entities[i].ValueDateTime) {
+                    transaction.ValueDateTime = new Date(body.entities[i].ValueDateTime).toISOString();
+                }
+                transaction.TransactionInformation = body.entities[i].TransactionInformation;
+                transaction.AddressLine = body.entities[i].AddressLine;
+                transaction.BankTransactionCode = body.entities[i].BankTransactionCode;
+                transaction.ProprietaryBankTransactionCode = body.entities[i].ProprietaryBankTransactionCode;
+                transaction.Balance = body.entities[i].Balance;
+                transaction.MerchantDetails = body.entities[i].MerchantDetails;
 
                 transactions.push(transaction);
             }
             var tr = {};
-            tr["Transactions"] = transactions;
+            tr.Data = {};
+            tr.Data["Transaction"] = transactions;
+            tr.Meta = {};
+            tr.Links = {};
+            if (body.cursor) {
+                tr.Links.next = "/accounts/" + accountNumber + "/transactions?PageHint=" + body.cursor;
+            }
             res.json(tr);
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
         }
     });
 };
 
-
+// get list of account beneficiaries for a single account
 exports.getAccountBeneficiaries = function (req, res) {
     var accountNumber = req.params.accountNumber;
-    
-
-    var basePath = apigee.getVariable(req, 'appBasePath');
-
-    var options = {
-        url: basePath + "/beneficiaries",
-        qs: {
-            ql: "where AccountId = '" + accountNumber + "'"
-        },
-        json: true
-    };
-
-    
-
+    var options = getOptionsJsonForAccount("beneficiaries", req);
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200 && body.entities) {
             var beneficiaries = [];
             for (var i = 0; i < body.entities.length; i++) {
                 var beneficiary = {};
 
-                
+
                 beneficiary.AccountId = body.entities[i].AccountId;
                 beneficiary.BeneficiaryId = body.entities[i].uuid;
-                beneficiary.CreditorReferenceInformation = body.entities[i].CreditorReferenceInformation;
+                beneficiary.Reference = body.entities[i].Reference;
                 beneficiary.Servicer = body.entities[i].Servicer;
                 beneficiary.CreditorAccount = body.entities[i].CreditorAccount;
 
                 beneficiaries.push(beneficiary);
             }
             var ben = {};
-            ben["Beneficiaries"] = beneficiaries
+            ben.Data = {};
+            ben.Data.Beneficiary = beneficiaries;
+            ben.Meta = {};
+            ben.Links = {};
+            if (body.cursor) {
+                ben.Links.next = "/accounts/" + accountNumber + "/beneficiaries?PageHint=" + body.cursor;
+            }
             res.json(ben);
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
+// get beneficiary details of all selected accounts of a customer
+exports.getAccountsBeneficiariesOfCustomer = function (req, res) {
+
+    var options = getOptionsJsonForCustomer("beneficiaries", req, res);
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var beneficiaries = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var beneficiary = {};
+
+                beneficiary.AccountId = body.entities[i].AccountId;
+                beneficiary.BeneficiaryId = body.entities[i].uuid;
+                beneficiary.Reference = body.entities[i].Reference;
+                beneficiary.Servicer = body.entities[i].Servicer;
+                beneficiary.CreditorAccount = body.entities[i].CreditorAccount;
+
+                beneficiaries.push(beneficiary);
+            }
+            var ben = {};
+            ben.Data = {};
+            ben.Data.Beneficiary = beneficiaries;
+            ben.Meta = {};
+            ben.Links = {};
+            if (body.cursor) {
+                ben.Links.next = "/beneficiaries?PageHint=" + body.cursor;
+            }
+            res.json(ben);
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+
+
+};
+
+// get standing order details for all selected customer's accounts
+exports.getStandingOrdersOfCustomer = function (req, res) {
+
+    var options = getOptionsJsonForCustomer("standingorders", req, res);
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var standingorders = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var so = {};
+
+                so.AccountId = body.entities[i].AccountId;
+                so.StandingOrderId = body.entities[i].uuid;
+                so.Frequency = body.entities[i].Frequency;
+                so.Currency = body.entities[i].Currency;
+                so.Reference = body.entities[i].Reference;
+                if (body.entities[i].FirstPaymentDateTime) {
+                    so.FirstPaymentDateTime = new Date(body.entities[i].FirstPaymentDateTime).toISOString();
+                }
+                if (body.entities[i].NextPaymentDateTime) {
+                    so.NextPaymentDateTime = new Date(body.entities[i].NextPaymentDateTime).toISOString();
+                }
+                if (body.entities[i].FinalPaymentDateTime) {
+                    so.FinalPaymentDateTime = new Date(body.entities[i].FinalPaymentDateTime).toISOString();
+                }
+                so.FirstPaymentAmount = body.entities[i].FirstPaymentAmount;
+                so.NextPaymentAmount = body.entities[i].NextPaymentAmount;
+                so.FinalPaymentAmount = body.entities[i].FinalPaymentAmount;
+                so.Servicer = body.entities[i].Servicer;
+                so.CreditorAccount = body.entities[i].CreditorAccount;
+
+                standingorders.push(so);
+
+            }
+            var sto = {};
+            sto.Data = {};
+            sto.Data.StandingOrder = standingorders;
+            sto.Meta = {};
+            sto.Links = {};
+            if (body.cursor) {
+                sto.Links.next = "/standing-orders?PageHint=" + body.cursor;
+            }
+            res.json(sto);
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+
+
+};
+
+// get standing orders details for an account of customer
+exports.getAccountStandingOrders = function (req, res) {
+    var accountNumber = req.params.accountNumber;
+    var options = getOptionsJsonForAccount("standingorders", req);
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var standingorders = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var so = {};
+
+                so.AccountId = body.entities[i].AccountId;
+                so.StandingOrderId = body.entities[i].uuid;
+                so.Frequency = body.entities[i].Frequency;
+                so.Currency = body.entities[i].Currency;
+                so.Reference = body.entities[i].Reference;
+                if (body.entities[i].FirstPaymentDateTime) {
+                    so.FirstPaymentDateTime = new Date(body.entities[i].FirstPaymentDateTime).toISOString();
+                }
+                if (body.entities[i].NextPaymentDateTime) {
+                    so.NextPaymentDateTime = new Date(body.entities[i].NextPaymentDateTime).toISOString();
+                }
+                if (body.entities[i].FinalPaymentDateTime) {
+                    so.FinalPaymentDateTime = new Date(body.entities[i].FinalPaymentDateTime).toISOString();
+                }
+                so.FirstPaymentAmount = body.entities[i].FirstPaymentAmount;
+                so.NextPaymentAmount = body.entities[i].NextPaymentAmount;
+                so.FinalPaymentDateTime = new Date(body.entities[i].FinalPaymentDateTime).toISOString();
+                so.FinalPaymentAmount = body.entities[i].FinalPaymentAmount;
+                so.Servicer = body.entities[i].Servicer;
+                so.CreditorAccount = body.entities[i].CreditorAccount;
+
+                standingorders.push(so);
+            }
+            var sto = {};
+            sto.Data = {};
+            sto.Data.StandingOrder = standingorders;
+            sto.Meta = {};
+            sto.Links = {};
+            if (body.cursor) {
+                sto.Links.next = "/accounts/" + accountNumber + "/standing-orders?PageHint=" + body.cursor;
+            }
+            res.json(sto);
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
         }
     });
 };
 
 
-exports.createAccountRequest = function(req,res)
-{
+// get direct debits list of all selected accounts of a customer
+exports.getDirectDebitsOfCustomer = function (req, res) {
+
+    var options = getOptionsJsonForCustomer("directdebits", req, res);
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var directdebits = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var dd = {};
+
+
+                dd.AccountId = body.entities[i].AccountId;
+                dd.DirectDebitId = body.entities[i].uuid;
+                dd.MandateIdentification = body.entities[i].MandateIdentification;
+                dd.DirectDebitStatusCode = body.entities[i].DirectDebitStatusCode;
+                dd.Name = body.entities[i].name;
+                if (body.entities[i].PreviousPaymentDateTime) {
+                    dd.PreviousPaymentDateTime = new Date(body.entities[i].PreviousPaymentDateTime).toISOString();
+                }
+                dd.PreviousPaymentAmount = body.entities[i].PreviousPaymentAmount;
+
+                directdebits.push(dd);
+            }
+            var drd = {};
+            drd.Data = {};
+            drd.Data["DirectDebit"] = directdebits;
+            drd.Meta = {};
+            drd.Links = {};
+            if (body.cursor) {
+                drd.Links.next = "/direct-debits?PageHint=" + body.cursor;
+            }
+            res.json(drd);
+
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+
+};
+
+
+// get direct debits list for a single account of customer
+exports.getAccountDirectDebits = function (req, res) {
+    var accountNumber = req.params.accountNumber;
+    var options = getOptionsJsonForAccount("directdebits", req);
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var directdebits = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var dd = {};
+
+
+                dd.AccountId = body.entities[i].AccountId;
+                dd.DirectDebitId = body.entities[i].uuid;
+                dd.MandateIdentification = body.entities[i].MandateIdentification;
+                dd.DirectDebitStatusCode = body.entities[i].DirectDebitStatusCode;
+                dd.Name = body.entities[i].name;
+                if (body.entities[i].PreviousPaymentDateTime) {
+                    dd.PreviousPaymentDateTime = new Date(body.entities[i].PreviousPaymentDateTime).toISOString();
+                }
+                dd.PreviousPaymentAmount = body.entities[i].PreviousPaymentAmount;
+
+                directdebits.push(dd);
+            }
+            var drd = {};
+            drd.Data = {};
+            drd.Data["DirectDebit"] = directdebits;
+            drd.Meta = {};
+            drd.Links = {};
+            if (body.cursor) {
+                drd.Links.next = "/accounts/" + accountNumber + "/direct-debits?PageHint=" + body.cursor;
+            }
+            res.json(drd);
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
+
+// get products of customer
+exports.getProductsOfCustomer = function (req, res) {
+
+    var options = getOptionsJsonForCustomer("products", req, res);
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var products = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var product = {};
+
+
+                product.AccountId = body.entities[i].AccountId;
+                product.ProductIdentifier = body.entities[i].uuid;
+                product.ProductType = body.entities[i].ProductType;
+                product.ProductName = body.entities[i].ProductName;
+                product.SecondaryProductIdentifier = body.entities[i].SecondaryProductIdentifier;
+
+                products.push(product);
+            }
+            var prd = {};
+            prd.Data = {};
+            prd.Data["Product"] = products;
+            prd.Meta = {};
+            prd.Links = {};
+            if (body.cursor) {
+                prd.Links.next = "/products?PageHint=" + body.cursor;
+            }
+            res.json(prd);
+
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+
+};
+
+
+// get products of an account of a customer
+exports.getAccountProducts = function (req, res) {
+    var accountNumber = req.params.accountNumber;
+    var options = getOptionsJsonForAccount("products", req);
+    options.qs.ql = "where AccountId contains '" + accountNumber + "'";
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var products = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var product = {};
+
+
+                product.AccountId = "" + accountNumber;
+                product.ProductIdentifier = body.entities[i].name;
+                product.ProductType = body.entities[i].ProductType;
+                product.ProductName = body.entities[i].ProductName;
+                product.SecondaryProductIdentifier = body.entities[i].SecondaryProductIdentifier;
+
+                products.push(product);
+            }
+            var prd = {};
+            prd.Data = {};
+            prd.Data["Product"] = products;
+            prd.Meta = {};
+            prd.Links = {};
+            if (body.cursor) {
+                prd.Links.next = "/accounts/" + accountNumber + "/products?PageHint=" + body.cursor;
+            }
+            res.json(prd);
+
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
+
+exports.createAccountRequest = function (req, res) {
     var basePath = apigee.getVariable(req, 'appBasePath');
     var requestPayload = apigee.getVariable(req, 'request.content');
     requestPayload = JSON.parse(requestPayload);
-    requestPayload.status = "AwaitingAuthentication";
-    //requestPayload = JSON.stringify(requestPayload);
-    
+    requestPayload.Data.Status = "AwaitingAuthentication";
+    requestPayload.name = generateUUID();
+    requestPayload.TppId = req.query.tppId;
+
     var options = {
         url: basePath + "/accountsrequests",
-        method : "POST",
-        headers : {'content-type' : 'application/json'},
-        body : requestPayload,
+        method: "POST",
+        headers: {'content-type': 'application/json'},
+        body: requestPayload,
         json: true
     };
-    
-    request(options, function(err, resp, bdy)
-    {
-        //resp = JSON.parse(resp);
-        //bdy = JSON.parse(bdy);
-        //console.log("bbbdddyyy"+JSON.stringify(resp));
-        //console.log("body"+JSON.stringify(bdy));
-        //console.log("ent"+JSON.stringify(bdy.entities));
-        
-        
-        if (!err && (resp.statusCode == 200 )  && bdy.entities)
-        {
-            var accRequest = bdy.entities[0];
-                accRequest.AccountRequestId = accRequest.name;
-                delete accRequest.created;
-                delete accRequest.modified;
-                //delete accRequest.customerId;
 
-                delete accRequest.uuid;
-                delete accRequest.type;
-                delete accRequest.metadata;
-            
+    request(options, function (err, resp, body) {
+        if (!err && (resp.statusCode == 200 ) && body.entities) {
+            var accRequest = {};
+            accRequest.Data = {};
+            accRequest.Data.AccountRequestId = body.entities[0].name;
+            accRequest.Data.Status = body.entities[0].Data.Status;
+            accRequest.Data.CreationDateTime = new Date(body.entities[0].created).toISOString();
+            accRequest.Data.Permissions = body.entities[0].Data.Permissions;
+            if (body.entities[0].Data.ExpirationDateTime) {
+                accRequest.Data.ExpirationDateTime = new Date(body.entities[0].Data.ExpirationDateTime).toISOString();
+            }
+            if (body.entities[0].Data.TransactionFromDateTime) {
+                accRequest.Data.TransactionFromDateTime = new Date(body.entities[0].Data.TransactionFromDateTime).toISOString();
+            }
+            if (body.entities[0].Data.TransactionToDateTime) {
+                accRequest.Data.TransactionToDateTime = new Date(body.entities[0].Data.TransactionToDateTime).toISOString();
+            }
+            accRequest.Risk = body.entities[0].Risk;
+            accRequest.Links = {};
+            accRequest.Links.self = "/account-requests/" + accRequest.Data.AccountRequestId;
+            accRequest.Meta = {};
+
             res.status(201).json(accRequest);
         }
         else {
-            res.status(400).send();
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
         }
-        
+
     });
-    
+
 }
 
+exports.getAccountRequest = function (req, res) {
+    var requestId = req.params.requestId;
 
-exports.getAccountRequest = function(req,res){
-  var requestId = req.params.requestId;
-  
-    
+
     var basePath = apigee.getVariable(req, 'appBasePath');
+    var tppId = req.query.tppId;
 
     var options = {
-        url: basePath + "/accountsrequests" ,
+        url: basePath + "/accountsrequests",
         qs: {
             ql: "where name = '" + requestId + "'"
         },
@@ -464,384 +758,227 @@ exports.getAccountRequest = function(req,res){
 
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            
-            var accreq = body.entities[0];
-             accreq.AccountIds = [];
-            var selectedacc = accreq.SelectedAccounts;
-            for(var i=0; i< selectedacc.length;i++ )
-            {
-                //console.log(selectedacc[i]);
-               // console.log(selectedacc[i].Account);
-                //console.log("Val"+selectedacc[i].Account["Identification"]);
-                accreq.AccountIds.push(selectedacc[i].Account.Identification);
+            if (body.entities && body.entities.length > 0) {
+                if (body.entities[0].TppId && body.entities[0].TppId != tppId) {
+                    var errJson = {};
+                    errJson.ErrorResponseCode = 403;
+                    errJson.ErrorDescription = "UnAuthorized Access"
+                    res.status(403).json(errJson);
+
+                }
+
+                else {
+                    var accRequest = {};
+                    accRequest.Data = {};
+                    accRequest.Data.AccountRequestId = body.entities[0].name;
+                    accRequest.Data.Status = body.entities[0].Data.Status;
+                    accRequest.Data.CreationDateTime = new Date(body.entities[0].created).toISOString();
+                    accRequest.Data.Permissions = body.entities[0].Data.Permissions;
+                    if (body.entities[0].Data.ExpirationDateTime) {
+                        accRequest.Data.ExpirationDateTime = new Date(body.entities[0].Data.ExpirationDateTime).toISOString();
+                    }
+                    if (body.entities[0].Data.TransactionFromDateTime) {
+                        accRequest.Data.TransactionFromDateTime = new Date(body.entities[0].Data.TransactionFromDateTime).toISOString();
+                    }
+                    if (body.entities[0].Data.TransactionToDateTime) {
+                        accRequest.Data.TransactionToDateTime = new Date(body.entities[0].Data.TransactionToDateTime).toISOString();
+                    }
+                    accRequest.Risk = body.entities[0].Risk;
+                    accRequest.Links = {};
+                    accRequest.Links.self = "/account-requests/" + accRequest.Data.AccountRequestId;
+                    accRequest.Meta = {};
+
+
+                    res.json(accRequest);
+                }
             }
-            
-            
-                accreq.AccountRequestId = accreq.name;
-                delete accreq.created;
-                delete accreq.modified;
-                //delete accRequest.customerId;
-
-                delete accreq.uuid;
-                delete accreq.type;
-                delete accreq.metadata;
-                delete accreq.name;
-
-            res.json(accreq);
+            else {
+                var errJson = {};
+                errJson.ErrorResponseCode = 400;
+                errJson.ErrorDescription = "Bad Request";
+                res.status(400).json(errJson);
+            }
 
         } else {
-            res.status(404).send();
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(404).json(errJson);
         }
     });
-    
-    
+
+
 };
 
-exports.updateAccountRequest = function(req,res)
-{
+exports.updateAccountRequest = function (req, res) {
     var basePath = apigee.getVariable(req, 'appBasePath');
     var requestId = req.params.requestId;
     var requestPayload = apigee.getVariable(req, 'request.content');
     requestPayload = JSON.parse(requestPayload);
-    //requestPayload.status = "AwaitingAuthentication";
-    //requestPayload = JSON.stringify(requestPayload);
-    
+
     var options = {
         url: basePath + "/accountsrequests",
         qs: {
             ql: "where name = '" + requestId + "'"
         },
-        method : "PUT",
-        headers : {'content-type' : 'application/json'},
-        body : requestPayload,
+        method: "PUT",
+        headers: {'content-type': 'application/json'},
+        body: requestPayload,
         json: true
     };
-    
-    request(options, function(err, resp, bdy)
-    {
-        //resp = JSON.parse(resp);
-        //bdy = JSON.parse(bdy);
-        //console.log("bbbdddyyy"+JSON.stringify(resp));
-        //console.log("body"+JSON.stringify(bdy));
-        //console.log("ent"+JSON.stringify(bdy.entities));
-        
-        
-        if (!err && (resp.statusCode == 200 )  && bdy.entities)
-        {
-            var accRequest = bdy.entities[0];
-                accRequest.AccountRequestId = accRequest.name;
-                delete accRequest.created;
-                delete accRequest.modified;
-                //delete accRequest.customerId;
 
-                delete accRequest.uuid;
-                delete accRequest.type;
-                delete accRequest.metadata;
-            
+    request(options, function (err, resp, body) {
+        if (!err && (resp.statusCode == 200 ) && body.entities) {
+            var accRequest = {};
+            accRequest.Data = {};
+            accRequest.Data.AccountRequestId = body.entities[0].name;
+            accRequest.Data.Status = body.entities[0].Data.Status;
+            accRequest.Data.CreationDateTime = new Date(body.entities[0].created).toISOString();
+            accRequest.Data.Permissions = body.entities[0].Data.Permissions;
+            if (body.entities[0].Data.ExpirationDateTime) {
+                accRequest.Data.ExpirationDateTime = new Date(body.entities[0].Data.ExpirationDateTime).toISOString();
+            }
+            if (body.entities[0].Data.TransactionFromDateTime) {
+                accRequest.Data.TransactionFromDateTime = new Date(body.entities[0].Data.TransactionFromDateTime).toISOString();
+            }
+            if (body.entities[0].Data.TransactionToDateTime) {
+                accRequest.Data.TransactionToDateTime = new Date(body.entities[0].Data.TransactionToDateTime).toISOString();
+            }
+            accRequest.Risk = body.entities[0].Risk;
+            accRequest.Links = {};
+            accRequest.Links.self = "/account-requests/" + accRequest.Data.AccountRequestId;
+            accRequest.Meta = {};
+
             res.json(accRequest);
         }
         else {
-            res.status(400).send();
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
         }
-        
+
     });
 }
 
-exports.deleteAccountRequest = function(req,res)
-{
+exports.deleteAccountRequest = function (req, res) {
+    if (!req.params || !req.params.requestId || req.params.requestId == null || req.params.requestId == "") {
+        var errJson = {};
+        errJson.ErrorResponseCode = 400;
+        errJson.ErrorDescription = "Bad Request";
+        res.status(400).json(errJson);
+    }
     var requestId = req.params.requestId;
-  
-    
+
     var basePath = apigee.getVariable(req, 'appBasePath');
 
     var options = {
-        method : "DELETE",
-        url: basePath + "/accountsrequests" ,
+        method: "DELETE",
+        url: basePath + "/accountsrequests",
         qs: {
             ql: "where name = '" + requestId + "'"
         }
-        //json: true
     };
 
     request(options, function (error, response, body) {
-        if (!error && response.statusCode == 204 || response.statusCode == 200) 
-        {
+        body = JSON.parse(body);
+        if (!error && (response.statusCode == 204 || response.statusCode == 200) && body.entities && body.entities.length > 0) {
             res.status(204).send();
 
-        } else 
-        {
-            res.status(404).send();
+        }
+        else if (response.statusCode = 404) {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
         }
     });
+};
+
+function generateUUID() {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+};
+
+
+function getOptionsJsonForCustomer(baasCollection, req, res) {
+    var basePath = apigee.getVariable(req, 'appBasePath');
+    if (!req.query || !req.query.accountsList) {
+
+        var errJson = {};
+        errJson.ErrorResponseCode = 400;
+        errJson.ErrorDescription = "Empty Account List";
+        res.status(400).json(errJson);
+    }
+    var accountIds = JSON.parse(req.query.accountsList);
+
+    var cursor = req.query.pageHint;
+    var limit = req.query.limit;
+
+    var sqlquery = "where AccountId = '";
+    if (accountIds.length > 0) {
+        for (var j = 0; j < accountIds.length; j++) {
+            sqlquery += accountIds[j] + "' or AccountId = '";
+        }
+        sqlquery = sqlquery.substr(0, sqlquery.length - 16);
+
+
+    }
+    else {
+        sqlquery = "";
+        var errJson = {};
+        errJson.ErrorResponseCode = 400;
+        errJson.ErrorDescription = "Empty Account List";
+        res.status(400).json(errJson);
+    }
+    var options = {
+        url: basePath + "/" + baasCollection,
+        qs: {
+            ql: sqlquery
+        },
+        json: true
+    };
+    if (cursor) {
+        options.qs.cursor = cursor;
+    }
+    if (limit) {
+        options.qs.limit = limit;
+    }
+
+    return options;
 }
-exports.getAccountsBeneficiariesOfCustomer = function (req, res) {
-    
-    var basePath = apigee.getVariable(req, 'appBasePath');
-    var AccountIds = JSON.parse(req.query.accountsList);
-        var sqlquery = "where AccountId = '";
-        if(AccountIds.length >0)
-        {
-        for(var j=0; j< AccountIds.length;j++ )
-        {
-            sqlquery+= AccountIds[j] + "' or AccountId = '";
-        }
-        sqlquery = sqlquery.substr(0, sqlquery.length-16);
 
-        }
-        else
-        {
-           sqlquery = ""; 
-        }
-        var options = {
-        url: basePath + "/beneficiaries",
-        qs: {
-            ql: sqlquery
-        },
-        json: true
-    };
-        request(options, function (error, response, body) {
-        if (!error && response.statusCode == 200 && body.entities) {
-            var beneficiaries = [];
-            for (var i = 0; i < body.entities.length; i++) {
-                var beneficiary = {};
-              
-                beneficiary.AccountId = body.entities[i].AccountId;
-                beneficiary.BeneficiaryId = body.entities[i].uuid;
-                beneficiary.CreditorReferenceInformation = body.entities[i].CreditorReferenceInformation;
-                beneficiary.Servicer = body.entities[i].Servicer;
-                beneficiary.CreditorAccount = body.entities[i].CreditorAccount;
-
-                beneficiaries.push(beneficiary);
-            }
-            var ben = {};
-            ben["Beneficiaries"] = beneficiaries;
-            res.json(ben);
-        }
-        else
-        {
-            res.status(400).send();
-        }
-    });
-    
-        
-   
-};
-
-
-
-exports.getStandingOrdersOfCustomer = function (req, res) {
-
-    var basePath = apigee.getVariable(req, 'appBasePath');
-    var AccountIds = JSON.parse(req.query.accountsList);
-        var sqlquery = "where AccountId = '";
-        if(AccountIds.length >0)
-        {
-        for(var j=0; j< AccountIds.length;j++ )
-        {
-            sqlquery+= AccountIds[j] + "' or AccountId = '";
-        }
-        sqlquery = sqlquery.substr(0, sqlquery.length-16);
-
-        }
-        else
-        {
-           sqlquery = ""; 
-        }
-        var options = {
-        url: basePath + "/standingorders",
-        qs: {
-            ql: sqlquery
-        },
-        json: true
-    };
-
-        request(options, function (error, response, body) {
-        if (!error && response.statusCode == 200 && body.entities) 
-        {
-            //console.log("standingorders" + JSON.stringify(response));
-            var standingorders = [];
-            for (var i = 0; i < body.entities.length; i++) {
-                var so = {};
- 
-                so.AccountId = body.entities[i].AccountId;
-                so.StandingOrderId = body.entities[i].uuid;
-                so.Currency = body.entities[i].Currency;
-                so.Frequency = body.entities[i].Frequency;
-                so.CreditorReferenceInformation = body.entities[i].CreditorReferenceInformation;
-                so.FirstPaymentDate = body.entities[i].FirstPaymentDate;
-                so.FirstPaymentAmount = body.entities[i].FirstPaymentAmount;
-                so.NextPaymentDate = body.entities[i].NextPaymentDate;
-                so.NextPaymentAmount = body.entities[i].NextPaymentAmount;
-                so.FinalPaymentDate = body.entities[i].FinalPaymentDate;
-                so.FinalPaymentAmount = body.entities[i].FinalPaymentAmount;
-                so.Servicer = body.entities[i].Servicer;
-                so.CreditorAccount = body.entities[i].CreditorAccount;
-   
-                standingorders.push(so);
-                
-            }
-            var sto = {};
-            sto["StandingOrders"] = standingorders;
-            res.json(sto);
-        }
-        else
-        {
-            res.status(400).send();
-        }
-    });
-   
-    
-};
-
-
-exports.getAccountStandingOrders = function (req, res) {
+function getOptionsJsonForAccount(baasCollection, req) {
     var accountNumber = req.params.accountNumber;
-    
+    var cursor = req.query.pageHint;
+    var limit = req.query.limit;
 
     var basePath = apigee.getVariable(req, 'appBasePath');
 
     var options = {
-        url: basePath + "/standingorders",
+        url: basePath + "/" + baasCollection,
         qs: {
             ql: "where AccountId = '" + accountNumber + "'"
         },
         json: true
     };
+    if (cursor) {
+        options.qs.cursor = cursor;
+    }
+    if (limit) {
+        options.qs.limit = limit;
+    }
 
-    
-
-    request(options, function (error, response, body) {
-        if (!error && response.statusCode == 200 && body.entities) {
-            var standingorders = [];
-            for (var i = 0; i < body.entities.length; i++) {
-                var so = {};
-
-                
-                so.AccountId = body.entities[i].AccountId;
-                so.StandingOrderId = body.entities[i].uuid;
-                so.Currency = body.entities[i].Currency;
-                so.Frequency = body.entities[i].Frequency;
-                so.CreditorReferenceInformation = body.entities[i].CreditorReferenceInformation;
-                so.FirstPaymentDate = body.entities[i].FirstPaymentDate;
-                so.FirstPaymentAmount = body.entities[i].FirstPaymentAmount;
-                so.NextPaymentDate = body.entities[i].NextPaymentDate;
-                so.NextPaymentAmount = body.entities[i].NextPaymentAmount;
-                so.FinalPaymentDate = body.entities[i].FinalPaymentDate;
-                so.FinalPaymentAmount = body.entities[i].FinalPaymentAmount;
-                so.Servicer = body.entities[i].Servicer;
-                so.CreditorAccount = body.entities[i].CreditorAccount;
-
-                standingorders.push(so);
-            }
-            var sto = {};
-            sto["StandingOrders"] = standingorders;
-            res.json(sto);
-        }
-    });
-};
-
-
-exports.getDirectDebitsOfCustomer = function (req, res) {
- 
-    var basePath = apigee.getVariable(req, 'appBasePath');
-    var AccountIds = JSON.parse(req.query.accountsList);
-        var sqlquery = "where AccountId = '";
-        if(AccountIds.length >0)
-        {
-        for(var j=0; j< AccountIds.length;j++ )
-        {
-            sqlquery+= AccountIds[j] + "' or AccountId = '";
-        }
-        sqlquery = sqlquery.substr(0, sqlquery.length-16);
-
-        }
-        else
-        {
-           sqlquery = ""; 
-        }
-        var options = 
-        {
-        url: basePath + "/directdebits",
-        qs: {
-            ql: sqlquery
-        },
-        json: true
-        };
-        request(options, function (error, response, body) {
-        if (!error && response.statusCode == 200 && body.entities) {
-            var directdebits = [];
-            for (var i = 0; i < body.entities.length; i++) {
-                var dd = {};
-
-                
-                dd.AccountId = body.entities[i].AccountId;
-                dd.DirectDebitId = body.entities[i].uuid;
-                dd.MandateIdentification = body.entities[i].MandateIdentification;
-                dd.DirectDebitStatusCode = body.entities[i].DirectDebitStatusCode;
-                dd.Currency = body.entities[i].Currency;
-                dd.Name = body.entities[i].Name;
-                dd.PreviousPaymentDate = body.entities[i].PreviousPaymentDate;
-                dd.PreviousPaymentAmount = body.entities[i].PreviousPaymentAmount;
-
-                directdebits.push(dd);
-            }
-            var drd = {};
-            drd["DirectDebits"] = directdebits;
-            res.json(drd);
-            
-        }
-        else
-        {
-            res.status(400).send();
-        }
-    });
-    
-};
-
-
-
-exports.getAccountDirectDebits = function (req, res) {
-    var accountNumber = req.params.accountNumber;
-    
-
-    var basePath = apigee.getVariable(req, 'appBasePath');
-
-    var options = {
-        url: basePath + "/directdebits",
-        qs: {
-            ql: "where AccountId = '" + accountNumber + "'"
-        },
-        json: true
-    };
-
-    
-
-    request(options, function (error, response, body) {
-        if (!error && response.statusCode == 200 && body.entities) {
-           var directdebits = [];
-            for (var i = 0; i < body.entities.length; i++) {
-                var dd = {};
-
-                
-                dd.AccountId = body.entities[i].AccountId;
-                dd.DirectDebitId = body.entities[i].uuid;
-                dd.MandateIdentification = body.entities[i].MandateIdentification;
-                dd.DirectDebitStatusCode = body.entities[i].DirectDebitStatusCode;
-                dd.Currency = body.entities[i].Currency;
-                dd.Name = body.entities[i].Name;
-                dd.PreviousPaymentDate = body.entities[i].PreviousPaymentDate;
-                dd.PreviousPaymentAmount = body.entities[i].PreviousPaymentAmount;
-
-                directdebits.push(dd);
-            }
-            var drd = {};
-            drd["DirectDebits"] = directdebits;
-            res.json(drd);
-        }
-    });
-};
-
-
-exports.validate = function(req, res) {
-
-};
+    return options;
+}

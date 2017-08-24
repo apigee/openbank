@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Validate-Account-Request">
+    <DisplayName>Validate Account/Payment Request</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://ValdiateAccountPaymentRequest.js</ResourceURL>
+</Javascript>

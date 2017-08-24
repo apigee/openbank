@@ -1,34 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
     <Description/>
-    <FaultRules>
-        <FaultRule name="InvalidAccessToken">
-            <Condition>(fault.name = "FailedToResolveAccessToken") or (fault.name = "InvalidTokenType") or (fault.name = "InvalidAccessToken") or (fault.name = "invalid_access_token") or (fault.name = "InvalidAPICallAsNoApiProductMatchFound") or (fault.name = "access_token_expired")</Condition>
-            <Step>
-                <FaultRules/>
-                <Name>Fault.InvalidAccessToken</Name>
-            </Step>
-        </FaultRule>
-    </FaultRules>
+    <FaultRules/>
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>OAuth.VerifyAccessToken</Name>
+                <Name>Verify-Access-Token</Name>
             </Step>
             <Step>
+                <Condition>oauthV2.Verify-Access-Token.failed = true</Condition>
+                <Name>RaiseFaultInvalidAccessToken</Name>
+            </Step>
+            <Step>
+                <Name>Extract-Access-Token</Name>
+            </Step>
+            <Step>
+                <Name>GetTokenAttributes</Name>
+            </Step>
+            <Step>
+                <Name>Quota-Client-Id</Name>
+            </Step>
+            <Step>
+                <Condition>ratelimit.Quota-Client-Id.failed = true</Condition>
+                <Name>Raise-Fault-Quota-Exceeded</Name>
+            </Step>
+            <Step>
+                <Name>Access-App-Attributes</Name>
+            </Step>
+            <Step>
+                <Name>Extract-App-Attributes</Name>
+            </Step>
+            <Step>
+                <Condition>(request.header.Accept!=null) and (request.header.Accept != "application/json")</Condition>
+                <Name>Raise-Fault-Invalid-Accept-Header</Name>
+            </Step>
+            <Step>
+                <Name>Path-Verification</Name>
+            </Step>
+            <Step>
+                <!--<Condition>doValidation = true</Condition>-->
                 <Name>Assign-Token-Details</Name>
-                <!--<Condition>grant_type != "client_credentials"</Condition>-->
-            </Step>
-            <!--<Step>
-                <Name>Fault.InvalidTransaction</Name>
-                <Condition>grant_type != "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
-            </Step>-->
-            <Step>
-                <Name>Extract.AccountNumber</Name>
-                <!--<Condition>grant_type = "client_credentials"</Condition>-->
             </Step>
             <Step>
-                <Name>assign-account-request</Name>
+                <Condition>((doValidation = true and (tokenType != "accounts")) or (doValidation = false and ( tokenScope != "accounts")))</Condition>
+                <Name>Raise-Fault-Invalid-Scope</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true and requestId = null</Condition>
+                <Name>Raise-Fault-Account-Request-Id-Missing</Name>
+            </Step>
+            <Step>
+                <Name>ExtractRequestParams</Name>
             </Step>
         </Request>
         <Response/>
@@ -36,163 +58,275 @@
     <PostFlow name="PostFlow">
         <Request>
             <Step>
-                <Condition>((doVerification = true) or (InfoFlowVerified = true))</Condition>
-                <Name>Fetch-Consent</Name>
+                <Condition>doValidation = true</Condition>
+                <Name>Fetch-Account-Consent</Name>
             </Step>
             <Step>
-                <Condition>((doVerification = true) or (InfoFlowVerified = true))</Condition>
-                <Name>Consent-Data</Name>
+                <Condition>doValidation = true</Condition>
+                <Name>ValidateReqWithConsentData</Name>
             </Step>
             <Step>
-                <Condition>(((doVerification = true) or (InfoFlowVerified = true) ) and (reqStatus != "Authorized"))</Condition>
-                <Name>unauthorized-acc-req</Name>
+                <Condition>doValidation = true and isError = true</Condition>
+                <Name>RaiseFaultInvalidAccess</Name>
             </Step>
             <Step>
-                <Condition>(((doVerification = true) or (InfoFlowVerified = true)) and (accountIsValid = false))</Condition>
-                <Name>fault-AccountInvalid</Name>
+                <Condition>doValidation = true</Condition>
+                <Name>Get-Acc-Req-Data</Name>
             </Step>
             <Step>
-                <Condition>(((doVerification = true) or (InfoFlowVerified = true)) and (validPermissions = false))</Condition>
-                <Name>Fault-Permission-Denied</Name>
+                <Condition>doValidation = true</Condition>
+                <Name>Validate-Req-with-Acc-Req-data</Name>
             </Step>
             <Step>
-                <Name>Assign-APIKey</Name>
+                <Condition>doValidation = true and isError = true</Condition>
+                <Name>Raise-Fault-Invalid-Permissions</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true</Condition>
+                <Name>Assign-Other-Params</Name>
+            </Step>
+            <Step>
+                <Name>Assign-APIKey-Header</Name>
             </Step>
         </Request>
         <Response>
             <Step>
-                <Condition>((doVerification = true) or (InfoFlowVerified = true))</Condition>
-                <Name>Create-Client-Data</Name>
+                <Condition>doValidation = true and updateAccessCountPayload != null</Condition>
+                <Name>Update-Access-Count</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true</Condition>
+                <Name>Assign-Response-Headers</Name>
+            </Step>
+            <Step>
+                <Condition>fapiInteractionId != null</Condition>
+                <Name>Add-Interaction-Id-header</Name>
+            </Step>
+            <Step>
+                <Condition>request.verb = "GET" or request.verb = "POST"</Condition>
+                <Name>Extract-Private-Config</Name>
+            </Step>
+            <Step>
+                <Condition>request.verb = "GET" or request.verb = "POST"</Condition>
+                <Name>Create-JWS-Header</Name>
+            </Step>
+            <Step>
+                <Condition>request.verb = "GET" or request.verb = "POST"</Condition>
+                <Name>Add-JWS-Header</Name>
             </Step>
         </Response>
     </PostFlow>
     <Flows>
-        <Flow name="accountBalance">
-            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}/balance") or (proxy.pathsuffix MatchesPath "/balance") ) and (request.verb = "GET")</Condition>
-            <Request>
-                <!--<Step>
-                    <Name>Fault.InvalidAccount</Name>
-                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
-                </Step>-->
-                <Step>
-                    <Condition>TokenType != "accounts"</Condition>
-                    <Name>Fault-Invalid-Token-Type</Name>
-                </Step>
-            </Request>
-            <Response/>
-        </Flow>
-        <Flow name="accountTransactions">
-            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}/transactions") or (proxy.pathsuffix MatchesPath "/{account_number}/transactions/{transaction_id}") or (proxy.pathsuffix MatchesPath "/transactions")) and (request.verb = "GET")
-            </Condition>
-            <Request>
-                <!--<Step>
-                    <Name>Fault.InvalidAccount</Name>
-                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
-                </Step>-->
-                <Step>
-                    <Condition>TokenType != "accounts"</Condition>
-                    <Name>Fault-Invalid-Token-Type</Name>
-                </Step>
-                <Step>
-                    <Name>Extract.TransactionId</Name>
-                    <Condition>(proxy.pathsuffix MatchesPath "/{account_number}/transactions/{transaction_id}")</Condition>
-                </Step>
-            </Request>
-            <Response/>
-        </Flow>
-        <Flow name="accountValidate">
-            <Condition>(proxy.pathsuffix MatchesPath "/validate") and (request.verb = "POST")</Condition>
-            <Request>
-                <Step>
-                    <Name>Fault.InvalidCCToken</Name>
-                    <Condition>grant_type != "client_credentials"</Condition>
-                </Step>
-                <Step>
-                    <Name>Extract.AccountValidateParams</Name>
-                </Step>
-                <Step>
-                    <Name>Fault.BadRequest</Name>
-                    <Condition>account_number == null or account_name == null or sort_code == null</Condition>
-                </Step>
-            </Request>
-            <Response/>
-        </Flow>
-        <Flow name="accountBeneficiary">
-            <Description/>
-            <Request>
-                <!--<Step>
-                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
-                    <Name>Fault.InvalidAccount</Name>
-                </Step>-->
-                <Step>
-                    <Condition>TokenType != "accounts"</Condition>
-                    <Name>Fault-Invalid-Token-Type</Name>
-                </Step>
-            </Request>
-            <Response/>
-            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}/beneficiaries") or (proxy.pathsuffix MatchesPath "/beneficiaries") ) and (request.verb = "GET")</Condition>
-        </Flow>
-        <Flow name="accountRequest">
+        <Flow name="GetAccountBalances">
             <Description/>
             <Request>
                 <Step>
-                    <Name>AssignUuid</Name>
+                    <Name>Validate-Get-Account-resource</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
             </Request>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/accounts-requests/*")</Condition>
+            <Response>
+                <Step>
+                    <Name>Create-Balance-Response</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/balances") or (proxy.pathsuffix MatchesPath "/accounts/{AccountId}/balances")) and (request.verb = "GET")</Condition>
         </Flow>
-        <Flow name="standingorders">
+        <Flow name="GetAccountTransactions">
             <Description/>
             <Request>
-                <!--<Step>
-                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
-                    <Name>Fault.InvalidAccount</Name>
-                </Step>-->
                 <Step>
-                    <Condition>TokenType != "accounts"</Condition>
-                    <Name>Fault-Invalid-Token-Type</Name>
+                    <Name>Validate-Get-Transactions-Request</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
             </Request>
-            <Response/>
-            <Condition>((proxy.pathsuffix MatchesPath "/standing-orders") or (proxy.pathsuffix MatchesPath "/{account_number}/standing-orders")) and (request.verb = "GET")</Condition>
+            <Response>
+                <Step>
+                    <Name>Create-Transactions-Response</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/transactions") or (proxy.pathsuffix MatchesPath "/accounts/{AccountId}/transactions")) and (request.verb = "GET")</Condition>
         </Flow>
-        <Flow name="direct-debits">
+        <Flow name="GetAccountBeneficiaries">
             <Description/>
             <Request>
-                <!--<Step>
-                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
-                    <Name>Fault.InvalidAccount</Name>
-                </Step>-->
                 <Step>
-                    <Condition>TokenType != "accounts"</Condition>
-                    <Name>Fault-Invalid-Token-Type</Name>
+                    <Name>Validate-Get-Account-resource</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Create-Beneficiaries-Response</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/beneficiaries") or (proxy.pathsuffix MatchesPath "/accounts/{AccountId}/beneficiaries")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="GetAccountDirectDebits">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Validate-Get-Account-resource</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Create-DirectDebits-Response</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/direct-debits") or (proxy.pathsuffix MatchesPath "/accounts/{AccountId}/direct-debits")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="GetAccountStandingOrders">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Validate-Get-Account-resource</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Create-StandingOrders-Response</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/standing-orders") or (proxy.pathsuffix MatchesPath "/accounts/{AccountId}/standing-orders")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="GetAccountProducts">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Validate-Get-Account-resource</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Create-Products-Response</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/accounts/{AccountId}/product")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="GetAccountRequest">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(accountRequestId = null) or (accountRequestId = "") </Condition>
+                    <Name>Raise-Fault-Missing-Request-Id</Name>
+                </Step>
+                <Step>
+                    <Name>Validate-Get-Account-resource</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+                <Step>
+                    <Name>Assign-Acc-Req-Params</Name>
                 </Step>
             </Request>
             <Response/>
-            <Condition>((proxy.pathsuffix MatchesPath "/direct-debits") or (proxy.pathsuffix MatchesPath "/{account_number}/direct-debits")) and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/account-requests/{AccountRequestId}") and (request.verb = "GET")</Condition>
         </Flow>
-        <Flow name="accountInfo">
-            <Condition>((proxy.pathsuffix MatchesPath "/{account_number}") or (proxy.pathsuffix MatchesPath "/") or (proxy.pathsuffix MatchesPath "/{account_number}/info")) and (request.verb = "GET")</Condition>
+        <Flow name="DeleteAccountRequest">
+            <Description/>
             <Request>
-                <!--<Step>
-                    <Name>Fault.InvalidAccount</Name>
-                    <Condition>grant_type = "client_credentials" and ((account_number = "") or (account_number = null) or (account_number = "acr:token"))</Condition>
-                </Step>-->
                 <Step>
-                    <Condition>TokenType != "accounts"</Condition>
-                    <Name>Fault-Invalid-Token-Type</Name>
+                    <Condition>(accountRequestId = null) or (accountRequestId = "")</Condition>
+                    <Name>Raise-Fault-Missing-Request-Id</Name>
                 </Step>
                 <Step>
-                    <Name>AssignIdentificationForAccInfo</Name>
+                    <Name>Validate-Get-Account-resource</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/account-requests/{AccountRequestId}") and (request.verb = "DELETE")</Condition>
+        </Flow>
+        <Flow name="CreateAccountRequest">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Validate-Acc-Req-Perm</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Perm-Array</Name>
+                </Step>
+                <Step>
+                    <Name>Validate-Post-Acc-Req</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+                <Step>
+                    <Name>Validate-JWS</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Signature</Name>
+                </Step>
+                <Step>
+                    <Name>Assign-Valid-Acc-Req-Payload</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/account-requests") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="GetAccountDetails">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Validate-Get-Account-resource</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Create-Accounts-Response</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/accounts") or (proxy.pathsuffix MatchesPath "/accounts/{AccountId}") ) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="InvalidPath">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Raise-Fault-Invalid-Operation</Name>
                 </Step>
             </Request>
             <Response/>
         </Flow>
     </Flows>
     <HTTPProxyConnection>
-        <BasePath>/apis/v2/accounts</BasePath>
+        <BasePath>/apis/v2/ais</BasePath>
         <Properties/>
+        <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="default">

@@ -7,19 +7,12 @@
         <Response/>
     </PreFlow>
     <PostFlow name="PostFlow">
-        <Request>
-            <Step>
-                <Name>Jsc.SetConnectorURL</Name>
-            </Step>
-            <Step>
-                <Name>Assign-Account-List-in-headers</Name>
-            </Step>
-        </Request>
+        <Request/>
         <Response/>
     </PostFlow>
     <Flows/>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/internal/connector/v2/accounts{account_number}{pathSuffix}</URL>
+        <URL>{{ edgeBasePath }}/internal/connector/v2/ais</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

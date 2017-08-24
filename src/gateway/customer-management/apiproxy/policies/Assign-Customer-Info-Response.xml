@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Customer-Info-Response">
+    <DisplayName>Assign: Customer Info Response</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{
+            "CustomerId":"@customerId#",
+            "CustomerName":"@customerName#",
+            "UserId":"@userId#",
+            "Phone":"@phone#",
+            "Address":"@address#"
+            }
+        </Payload>
+        <StatusCode>200</StatusCode>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="response"/>
+</AssignMessage>

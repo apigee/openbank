@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="12000" name="Create-JWS-Header">
+    <DisplayName>Create JWS Header</DisplayName>
+    <Properties/>
+    <IncludeURL>jsc://jws-initialization.js</IncludeURL>
+    <IncludeURL>jsc://jsrsasign-all-min.js</IncludeURL>
+    <IncludeURL>jsc://Base64EncodeDecode.js</IncludeURL>
+    <ResourceURL>jsc://CreateJWS.js</ResourceURL>
+</Javascript>

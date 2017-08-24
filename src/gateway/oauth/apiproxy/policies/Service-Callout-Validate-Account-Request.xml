@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="Service-Callout-Validate-Account-Request">
+    <DisplayName>Service Callout Validate Account Request</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myAccountRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+            <Header name="x-apikey">{{ internalAppKey }}</Header>
+        </Headers>
+            <QueryParams>
+                <QueryParam name="tppId">{tppId}</QueryParam>
+            </QueryParams>
+        </Set>
+    </Request>
+    <Response>requestIdResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>{{ edgeBasePath }}/internal/connector/v2/ais/account-requests/{requestId}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

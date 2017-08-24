@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="Raise-Fault-Invalid-Request">
+    <DisplayName>Error: Raise Fault Invalid Request</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+        
+            {
+            "ErrorResponseCode" : "@errorResponseCode#",
+            "ErrorDescription" : "@errorDescription#"
+            }
+        
+    </Payload>
+            <StatusCode>{errorResponseCode}</StatusCode>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

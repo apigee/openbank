@@ -1,10 +1,19 @@
 {
-	"name": "myapi-test",
-	"version": "1.0.0",
-	"description": "Integration testing for myapi v1",
-	"dependencies": {
-		"apickli": "latest",
-		"gulp": "latest",
-		"gulp-cucumber": "latest"
-	}
+  "name": "openbank-testing",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rohan Mahalank",
+  "license": "ISC",
+  "dependencies": {
+    "apickli": "latest",
+    "chromedriver": "^2.31.0",
+    "fs": "latest",
+    "gulp": "^3.9.1",
+    "gulp-cucumber": "0.0.22",
+    "jsonwebtoken": "latest",
+    "selenium-webdriver": "^3.5.0"
+  }
 }

@@ -1,37 +1,118 @@
-[{
-  "AccountId": "2139531801",
-  "AddressLine": "16th block Az apartments",
-  "Amount": {
-    "Amount": "100",
-    "Currency": "INR"
+[
+  {
+    "AccountId": "987654321",
+    "Amount": {
+      "Amount": 100,
+      "Currency": "GBP"
+    },
+    "Balance": {
+      "Type": "InterimBooked",
+      "Amount": {
+        "Amount": 230,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Debit"
+    },
+    "BankTransactionCode": {
+      "SubCode": "DomesticCreditTransfer",
+      "Code": "ReceivedCreditTransfer"
+    },
+    "BookingDateTime": 1491388987000,
+    "CreditDebitIndicator": "Debit",
+    "ProprietaryBankTransactionCode": {
+      "Issuer": "AlphaBank",
+      "Code": "Transfer"
+    },
+    "Status": "Booked",
+    "TransactionInformation": "Cash from Aubrey",
+    "TransactionReference": "Ref 123",
+    "ValueDateTime": 1491389122000
   },
-  "Balance": {
-    "Type": "CR",
-    "Amount": "4600",
-    "CreditDebitIndicator": "Debit"
+  {
+    "AccountId": "987654321",
+    "Amount": {
+      "Amount": 100,
+      "Currency": "GBP"
+    },
+    "Balance": {
+      "Type": "InterimBooked",
+      "Amount": {
+        "Amount": 230,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Debit"
+    },
+    "BankTransactionCode": {
+      "SubCode": "DomesticCreditTransfer",
+      "Code": "ReceivedCreditTransfer"
+    },
+    "BookingDateTime": 1491388987000,
+    "CreditDebitIndicator": "Debit",
+    "ProprietaryBankTransactionCode": {
+      "Issuer": "AlphaBank",
+      "Code": "Transfer"
+    },
+    "Status": "Booked",
+    "TransactionInformation": "Cash from Aubrey",
+    "TransactionReference": "Ref 123",
+    "ValueDateTime": 1491389122000
   },
-  "BankTransactionCode": {
-    "SubCode": "ER",
-    "Code": "QW"
+  {
+    "AccountId": "987654321",
+    "Amount": {
+      "Amount": 100,
+      "Currency": "GBP"
+    },
+    "Balance": {
+      "Type": "InterimBooked",
+      "Amount": {
+        "Amount": 230,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Credit"
+    },
+    "BankTransactionCode": {
+      "SubCode": "DomesticCreditTransfer",
+      "Code": "ReceivedCreditTransfer"
+    },
+    "BookingDateTime": 1491388987000,
+    "CreditDebitIndicator": "Credit",
+    "ProprietaryBankTransactionCode": {
+      "Issuer": "AlphaBank",
+      "Code": "Transfer"
+    },
+    "Status": "Booked",
+    "TransactionInformation": "Cash from Aubrey",
+    "TransactionReference": "Ref 123",
+    "ValueDateTime": 1491389122000
   },
-  "BookingDate": {
-    "Date": "26-04-2017",
-    "DateTime": "26-04-2017 10:20:00"
-  },
-  "CreditDebitIndicator": "Debit",
-  "MerchantDetails": {
-    "MerchantCategoryCode": "RET",
-    "Name": "BIGZ"
-  },
-  "ProprietaryBankTransactionCode": {
-    "Issuer": "QWER",
-    "Code": "QWER15677"
-  },
-  "Status": "Booked",
-  "TransactionId": "2139531801hxnbcxjhxbjhxklhl",
-  "TransactionInformation": "online shopping at BigZ",
-  "ValueDate": {
-    "Date": "26-04-2017",
-    "DateTime": "26-04-2017 10:20:00"
+  {
+    "AccountId": "123459876",
+    "Amount": {
+      "Amount": 100,
+      "Currency": "GBP"
+    },
+    "Balance": {
+      "Type": "InterimBooked",
+      "Amount": {
+        "Amount": 230,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Credit"
+    },
+    "BankTransactionCode": {
+      "SubCode": "DomesticCreditTransfer",
+      "Code": "ReceivedCreditTransfer"
+    },
+    "BookingDateTime": 1491388987000,
+    "CreditDebitIndicator": "Credit",
+    "ProprietaryBankTransactionCode": {
+      "Issuer": "AlphaBank",
+      "Code": "Transfer"
+    },
+    "Status": "Booked",
+    "TransactionInformation": "Cash from Aubrey",
+    "TransactionReference": "Ref 123",
+    "ValueDateTime": 1491389122000
   }
-}]
+]

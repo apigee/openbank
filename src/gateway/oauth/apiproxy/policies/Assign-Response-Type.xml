@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Response-Type">
+    <DisplayName>Assign Response Type</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>code</Name>
+        <Value>code</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>token</Name>
+        <Value>token</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

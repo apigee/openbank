@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AccessEntity async="false" continueOnError="false" enabled="true" name="Access-App-Attributes">
+    <DisplayName>Access App Attributes</DisplayName>
+    <Properties/>
+    <EntityType value="app"/>
+    <EntityIdentifier ref="oauthv2accesstoken.GetTokenAttributes.client_id" type="consumerkey"/>
+</AccessEntity>

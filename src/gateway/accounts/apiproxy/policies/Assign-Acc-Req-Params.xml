@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Acc-Req-Params">
+    <DisplayName>Assign Acc Req Params</DisplayName>
+    <Properties/>
+    <Set>
+        <QueryParams>
+            <QueryParam name="tppId">{appTppId}</QueryParam>
+        </QueryParams>
+        <Verb>GET</Verb>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

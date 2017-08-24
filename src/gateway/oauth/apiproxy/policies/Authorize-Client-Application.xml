@@ -2,5 +2,5 @@
 <VerifyAPIKey async="false" continueOnError="false" enabled="true" name="Authorize-Client-Application">
     <DisplayName>Security: Authorize Client Application</DisplayName>
     <Properties/>
-    <APIKey ref="client_id"/>
+    <APIKey ref="clientId"/>
 </VerifyAPIKey>

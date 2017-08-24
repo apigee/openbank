@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Body-Attributes">
+    <DisplayName>Extract: Body Attributes</DisplayName>
+    <Properties/>
+    <JSONPayload>
+        <Variable name="ClientId">
+            <JSONPath>$.ClientId</JSONPath>
+        </Variable>
+        <Variable name="ResponseType">
+            <JSONPath>$.ResponseType</JSONPath>
+        </Variable>
+        <Variable name="ResponseTypeToken">
+            <JSONPath>$.ResponseTypeToken</JSONPath>
+        </Variable>
+        <Variable name="ResponseTypeIdToken">
+            <JSONPath>$.ResponseTypeIdToken</JSONPath>
+        </Variable>
+        <Variable name="ResponseTypeCode">
+            <JSONPath>$.ResponseTypeCode</JSONPath>
+        </Variable>
+        <Variable name="Type">
+            <JSONPath>$.Type</JSONPath>
+        </Variable>
+        <Variable name="Scope">
+            <JSONPath>$.Scope</JSONPath>
+        </Variable>
+        <Variable name="RedirectUri">
+            <JSONPath>$.RedirectUri</JSONPath>
+        </Variable>
+        <Variable name="RequestId">
+            <JSONPath>$.RequestId</JSONPath>
+        </Variable>
+        <Variable name="RequestState">
+            <JSONPath>$.RequestState</JSONPath>
+        </Variable>
+        <Variable name="ApplicationName">
+            <JSONPath>$.ApplicationName</JSONPath>
+        </Variable>
+        <Variable name="ApplicationId">
+            <JSONPath>$.ApplicationId</JSONPath>
+        </Variable>
+        <Variable name="TppId">
+            <JSONPath>$.TppId</JSONPath>
+        </Variable>
+        <Variable name="CustomerId">
+            <JSONPath>$.CustomerId</JSONPath>
+        </Variable>
+        <Variable name="Nonce">
+            <JSONPath>$.Nonce</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

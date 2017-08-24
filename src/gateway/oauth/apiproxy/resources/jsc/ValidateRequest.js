@@ -1,0 +1,89 @@
+var config =
+    {
+
+        "QueryParams": [
+            {"responseType": {"Mandatory": true}},
+            {"clientId": {"Mandatory": true}},
+            {"state": {"Mandatory": true}},
+            {
+                "scope": {
+                    "Mandatory": true,
+                    "ValueList": ["openid", "openid accounts", "openid payments", "openid accounts payments", "openid payments accounts"]
+                }
+            },
+            {"nonce": {"Mandatory": true}},
+            {"redirectUri": {"Mandatory": true}},
+            {"request": {"Mandatory": true}}
+        ]
+    };
+
+var error = validateRequest(config);
+if (!error.isError) {
+    var responseType = context.getVariable("request.queryparam.responseType");
+    if (!parseResponseType(responseType)) {
+        var errorJson = {};
+        errorJson.isError = true;
+        errorJson.errorResponseCode = 400;
+        errorJson.errorDescription = "responseType query parameter type is invalid";
+    }
+
+}
+if (!error.isError) {
+    context.setVariable("isError", false);
+
+    context.setVariable("responseType", context.getVariable("request.queryparam.responseType"));
+    context.setVariable("clientId", context.getVariable("request.queryparam.clientId"));
+    context.setVariable("requestState", context.getVariable("request.queryparam.state"));
+    context.setVariable("scope", context.getVariable("request.queryparam.scope"));
+    context.setVariable("nonce", context.getVariable("request.queryparam.nonce"));
+    context.setVariable("redirectUri", context.getVariable("request.queryparam.redirectUri"));
+    //context.setVariable("request", context.getVariable("request.queryparam.request"));
+}
+else {
+    //set 401 if clientID is not present
+    var clientId = context.getVariable("request.queryparam.clientId");
+    if ((clientId === null || clientId === "")) {
+        error.errorResponseCode = 401;
+    }
+    context.setVariable("isError", error.isError);
+    context.setVariable("errorResponseCode", error.errorResponseCode);
+    context.setVariable("errorDescription", error.errorDescription);
+
+}
+
+
+/**
+ * Parse response_type. OpenId connect can support multiple response_type
+ * for more information - http://openid.net/specs/oauth-v2-multiple-response-types-1_0.html
+ * for e.g. a combination of code, token and id_token.
+ * This will be used to conditionally execute GenerateIDToken, AuthorizationCode & AccessToken policies
+ * @param {String} responseType - Space separated string e.g."code id_token token"
+ *
+ * @return void
+ */
+function parseResponseType(responseType) {
+    var responseTypes = responseType.split(" ");
+    var responseTypeCode = false;
+    var responseTypeToken = false;
+    var responseTypeIdToken = false;
+    var bStatus = false;
+
+    for (var j = 0; j < responseTypes.length; j++) {
+        if (responseTypes[j] == "code") {
+            responseTypeCode = true;
+            bStatus = true;
+        }
+        else if (responseTypes[j] == "token") {
+            responseTypeToken = true;
+            bStatus = true;
+        }
+        else if (responseTypes[j] == "id_token") {
+            responseTypeIdToken = true;
+            bStatus = true;
+        }
+    }
+    context.setVariable("responseTypeToken", responseTypeToken);
+    context.setVariable("responseTypeCode", responseTypeCode);
+    context.setVariable("responseTypeIdToken", responseTypeIdToken);
+    return bStatus;
+}

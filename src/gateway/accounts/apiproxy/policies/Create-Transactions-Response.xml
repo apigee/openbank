@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Create-Transactions-Response">
+    <DisplayName>Create Transactions Response</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://CreateTransactionsResponse.js</ResourceURL>
+</Javascript>

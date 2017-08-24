@@ -1,15 +1,19 @@
 {
   "base_path": "/apis/internal/v2/consentapp",
   "logo_uri": "/apis/internal/v2/consentapp/images/logo.png",
+  "consentPath": "{{ edgeBasePath }}/apis/internal/v2/consentapp/consent",
+  "cookieName":"OB_SESSION",
+  "sessionImpl":"./cookie_session_impl",
+  "cookieKey" : "{{ consentSessionKey }}",
+  "loginJWTKey": "{{ jwtSignKey }}",
   "styles": {
     "header_background_color": "#FFF"
   },
-  "consentTransaction": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v2/session/transactions/",
-    "method": "GET",
-    "headers": {
-      "x-apikey": "{{internalAppKey}}"
-    }
+  "loginApplication": {
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v2/loginapp"
+  },
+  "scaApplication": {
+    "transactionEndpoint": "/apis/internal/v2/consentapp/otp"
   },
   "authenticationTransaction": {
     "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1/authenticate",
@@ -18,8 +22,15 @@
       "x-apikey": "{{internalAppKey}}"
     }
   },
+  "customerTransaction": {
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/customers",
+    "method": "GET",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
   "accessTokenTransaction": {
-    "transactionEndpoint": "{{ edgeBasePath }}/apis/v2/oauth/authorized/",
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/v2/oauth/authorized",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
@@ -40,14 +51,14 @@
     }
   },
   "getAccounts": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/accounts",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/ais/accounts",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "getAccountRequest": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/accounts/accounts-requests",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/ais/account-requests/",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
@@ -60,20 +71,6 @@
       "x-apikey": "{{internalAppKey}}"
     }
   },
-  "updatePaymentRequest": {
-    "transactionEndpoint": "{{ edgeBasePath }}/apis/v2/payments-connector/payments/",
-    "method": "PUT",
-    "headers": {
-      "x-apikey": "{{internalAppKey}}"
-    }
-  },
-  "updateAccountRequest": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/accounts/accounts-requests",
-    "method": "PUT",
-    "headers": {
-      "x-apikey": "{{internalAppKey}}"
-    }
-  },
   "createConsent": {
     "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v2/consent/",
     "method": "POST",
@@ -82,44 +79,16 @@
     }
   },
   "errors": {
-    "user_cancel": {
-      "code": "Consent_Rejected",
-      "description": "User rejected consent"
-    }
-  },
-  "loa": {
-    "1": {
-      "steps": [
-        {
-          "name": "OTP",
-          "weight": 0,
-          "path": "/otp"
-        }
-      ]
-    },
-    "2": {
-      "steps": [
-        {
-          "name": "UID_PWD",
-          "weight": 0,
-          "path": "/login"
-        }
-      ]
-    },
-    "3": {
-      "steps": [
-        {
-          "name": "UID_PWD",
-          "weight": 0,
-          "path": "/login"
-        },
-        {
-          "name": "OTP",
-          "weight": 1,
-          "path": "/otp"
-        }
-      ]
-    }
+    "customerNotFound": "NOT_FOUND_CUSTOMER",
+    "accountNotFound": "NOT_FOUND_ACCOUNT",
+    "accountRequestNotFound": "NOT_FOUND_ACCOUNT_REQUEST",
+    "paymentRequestNotFound": "NOT_FOUND_PAYMENT_REQUEST",
+    "invalidSession": "INVALID_SESSION",
+    "invalidType": "INVALID_SCOPE",
+    "consentNotCreated": "UNABLE_TO_CREATE_CONSENT",
+    "userCancelConsent": "CONSENT_REJECTED",
+    "internalError": "INTERNAL_ERROR_OCCURED",
+    "invalidOtp": "INVALID_OTP"
   }
 }
 

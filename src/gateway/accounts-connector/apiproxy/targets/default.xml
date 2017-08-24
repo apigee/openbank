@@ -11,6 +11,10 @@
         <Response/>
     </PostFlow>
     <Flows/>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://api.usergrid.com</URL>
+    </HTTPTargetConnection>
     <ScriptTarget>
         <ResourceURL>node://app.js</ResourceURL>
     </ScriptTarget>

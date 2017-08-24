@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-App-Attributes">
+    <DisplayName>Extract App Attributes</DisplayName>
+    <Properties/>
+    <Source>AccessEntity.Access-App-Attributes</Source>
+    <XMLPayload>
+        <Variable name="appPublicKey" type="string">
+            <XPath>/App/Attributes/Attribute[Name='publicKey']/Value/text()</XPath>
+        </Variable>
+        <Variable name="appTppId" type="string">
+            <XPath>/App/Attributes/Attribute[Name='tppId']/Value/text()</XPath>
+        </Variable>
+        <Variable name="appId" type="string">
+            <XPath>/App/AppId/text()</XPath>
+        </Variable>
+    </XMLPayload>
+</ExtractVariables>

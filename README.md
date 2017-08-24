@@ -3,9 +3,6 @@
 The Apigee Open Banking APIx solution simplifies and accelerates the process of delivering open banking by providing secure, ready-to-use APIs along with the computing infrastructure to support internal and external innovation.
 
 ## Update!
-We have created a new video to demonstrate the OpenBank Solution and Installation Steps. Please check out the video below and give us your feedback on what you liked and what you would like to see.
-
-[![OpenBank APIs and Installation](readme-images/youtube.png)](http://www.youtube.com/watch?v=8eecvL75B5w "OpenBank APIs and Installation")
 
 This repository is organized into the following sections
 
@@ -33,16 +30,6 @@ The OpenBank solution is built on Apigee Edge API Management Platform, and featu
   - Direct Debits
   - Standing Orders
   - Products
-
-**Payment APIs**
-- Payment Request
-- Payment Submission
-
-**Open Data APIs**
-  - ATM location 
-  - Branch Location
-  - Bank Products
-
 **Security APIs**
   - OAuth
   - UserInfo
@@ -50,12 +37,14 @@ The OpenBank solution is built on Apigee Edge API Management Platform, and featu
 ![enter image description
 here](http://openbank.apigee.com/sites/default/files/openbank_architecture.png)
 
-It also provides an implementation of **OpenID** and **oAuth** based authentication, **consent** and **two-factor authentication** using phone number and PIN based authentication using external SMS API.
+The Account Access API follows the Open Banking ![Account and Transaction API Specification - v1.0.0](https://www.openbanking.org.uk/read-write-apis/account-transaction-api/v1-0-0/)
+
+It also provides an implementation of ![Open Banking Security Profile v1.0.0](https://www.google.com/url?q=https%3A%2F%2Fopenbanking.atlassian.net%2Fwiki%2Fspaces%2FWOR%2Fpages%2F4297946%2F1.%2BOpen%2BBanking%2BSecurity%2BProfile%2B-%2Bv1.0.0&sa=D&sntz=1&usg=AFQjCNGeP_lI2auSpn6nZi9csdk5Fnidhw). It is  **OpenID** and **oAuth** based authentication, having **consent** and **two-factor authentication** using phone number and PIN based authentication using external SMS API.
 
 ### Repository Overview
 
 This repository contains the necessary artifacts that will allow one to pull up
-a complete set of **Banking APIs** that comply with CMA 0.1 specification (that in turn comply with _Openbanking_ and _PSD2_ )
+a complete set of **Banking APIs** that comply with CMA 1.0 specification (that in turn comply with _Openbanking_ and _PSD2_ )
 regulations. In addition this will also allow one to build a _sandbox_ complete
 with a **Developer Portal**, dummy backend and a sample app.
 
@@ -104,7 +93,11 @@ In order to enable **two-factor authentication** for the functional APIs, OTP(on
 #### OAuth API Flow
 
 ![OAuth API
-Interaction](readme-images/OpenBankV2-Consent-Flow.png)
+Interaction](https://sequencediagram.googleplex.com/view/5674110436769792)
+
+#### Login App
+
+The login app provides a basic user authentication funcationality. The banks might want to replace it with their corporate login app
 
 #### Consent App
 
@@ -180,7 +173,7 @@ npm install
 
 Run the deploy command
 ```
-gulp deploy --resource openbank_apis2
+gulp deploy --resource openbank_apis
 ```
 
 This will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
@@ -193,6 +186,7 @@ This will interactively prompt you for following details, and will then create /
 + BaaS App Name
 + BaaS Org Client Id
 + BaaS Org Client Secret 
+
 
 
 #### Test
@@ -226,6 +220,8 @@ The dummy Backend system is created by the deploy script for this OpenBank solut
 
 
 ## Changelog
+
+#### 2017/08/24
 
 #### 2017/06/20
 

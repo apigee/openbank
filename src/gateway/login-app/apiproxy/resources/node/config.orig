@@ -1,0 +1,29 @@
+{
+  "base_path": "/apis/internal/v2/loginapp",
+  "logo_uri": "/apis/internal/v2/loginapp/images/logo.png",
+    "jwtSignKey": "{{jwtSignKey}}",
+  "authCookieName": "OB_AUTHSESSION",
+  "authExpiryInSeconds":3600,
+  "styles": {
+    "header_background_color": "#FFF"
+  },
+  "authenticationTransaction": {
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/user/authenticate",
+    "method": "POST",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
+  "errors": {
+    "unidentified_user": {
+      "code": "Login_Failed",
+      "description": "User Login Failed"
+    },
+     "invalid_state": {
+      "code":"Data_Invalid",
+      "description": "Invalid State Value"
+    }
+  }
+}
+
+

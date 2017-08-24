@@ -2,5 +2,6 @@
 <Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Validate-Request">
     <DisplayName>Validate Request</DisplayName>
     <Properties/>
-    <ResourceURL>jsc://validate.request.js</ResourceURL>
+    <ResourceURL>jsc://ValidateRequest.js</ResourceURL>
+    <IncludeURL>jsc://ValidateRequestResource.js</IncludeURL>
 </Javascript>

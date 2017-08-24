@@ -5,11 +5,11 @@
   "scripts": {
     "start": "node app.js"
   },
-  "baasURI": "https://apibaas-trial.apigee.net",
-  "baasOrg": "custdemo",
-  "baasApp": "testdemorrai",
-  "clientId": "b3U6jvW5q9wOEeanNBIuBzeXfQ",
-  "clientSecret": "b3U6PsdoJZM16RcTb_DSwP0KL61TMn4",
+  "baasURI": "{{ baasURI }}",
+  "baasOrg": "{{ baasOrg }}",
+  "baasApp": "{{ baasApp }}",
+  "clientId": "{{ baasClientId}}",
+  "clientSecret": "{{ baasClientSecret }}",
   "dependencies": {
     "body-parser": "~1.16.0",
     "debug": "~2.6.0",

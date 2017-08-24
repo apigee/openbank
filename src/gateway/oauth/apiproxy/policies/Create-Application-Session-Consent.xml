@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Create-Application-Session-Consent">
+    <DisplayName>Assign: Consent Request Session Body</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="request">request</AssignTo>
+    <Set>
+        <Verb>POST</Verb>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {
+            "ClientId" : "@clientId#",
+            "ResponseType" : "@responseType#",
+            "ResponseTypeToken" : "@responseTypeToken#",
+            "ResponseTypeCode" : "@responseTypeCode#",
+            "ResponseTypeIdToken":"@responseTypeIdToken#",
+            "Scope" : "@scope#",
+            "Type": "@type#",
+            "RedirectUri":"@redirectUri#",
+            "RequestId":"@requestId#",
+            "State":"@requestState#",
+            "Nonce":"@nonce#",
+            "ApplicationName":"@applicationName#",
+            "ApplicationDesc":"@applicationDesc#",
+            "ApplicationId":"@applicationId#",
+            "TppId":@tppId#
+            }
+        </Payload>
+    </Set>
+</AssignMessage>

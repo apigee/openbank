@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Target-URL">
+    <DisplayName>Assign Target URL</DisplayName>
+    <AssignTo createNew="false" transport="http" type="request"/>
+    <AssignVariable>
+        <Name>appBasePath</Name>
+        <Value>{{ baasBasePath }}</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

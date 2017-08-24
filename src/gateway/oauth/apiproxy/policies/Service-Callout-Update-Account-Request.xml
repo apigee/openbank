@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="Service-Callout-Update-Account-Request">
+    <DisplayName>Service Callout Update Account Request</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myAccountRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+            <Header name="x-apikey">{{ internalAppKey }}</Header>
+        </Headers>
+            <Verb>PUT</Verb>
+            <Payload contentType="application/json">{"Status": "Authorised"}</Payload>
+        </Set>
+    </Request>
+    <Response>requestIdResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>{{ edgeBasePath }}/internal/connector/v2/ais/account-requests/{RequestId}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

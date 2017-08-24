@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="500" name="Validate-Client-Assertion">
+    <DisplayName>Validate Client Assertion</DisplayName>
+    <Properties/>
+    <IncludeURL>jsc://jws-initialization.js</IncludeURL>
+    <IncludeURL>jsc://jsrsasign-all-min.js</IncludeURL>
+    <IncludeURL>jsc://Base64EncodeDecode.js</IncludeURL>
+    <ResourceURL>jsc://ValidateClientAssertion.js</ResourceURL>
+</Javascript>

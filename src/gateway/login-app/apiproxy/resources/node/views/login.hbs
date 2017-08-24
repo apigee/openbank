@@ -1,0 +1,21 @@
+<div class="login-page-wrapper">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="grass-form-wrapper">
+        <form role="form" action='{{{basePath}}}/' method="post">
+          <div class="form-group">
+            <input class="form-control" name="username" placeholder="Customer number" type="text" value="">
+          </div>
+          <div class="form-group">
+            <input class="form-control" name="password" placeholder="Your Password" type="password">
+            <input class="form-control" name="redirectUri" value="{{redirectUri}}" type="hidden">
+            <input class="form-control" name="state" value="{{state}}" type="hidden">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary grass-btn">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

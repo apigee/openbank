@@ -2,21 +2,17 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Token-Details">
     <DisplayName>Assign Token Details</DisplayName>
     <Properties/>
-    <!--<AssignVariable>
-        <Name>account_number</Name>
-        <Ref>accesstoken.account_number</Ref>
+    <AssignVariable>
+        <Name>requestId</Name>
+        <Ref>accesstoken.RequestId</Ref>
     </AssignVariable>
     <AssignVariable>
-        <Name>customer_number</Name>
-        <Ref>accesstoken.customer_number</Ref>
-    </AssignVariable>-->
-    <AssignVariable>
-        <Name>AccountRequestId</Name>
-        <Ref>accesstoken.request_id</Ref>
+        <Name>tokenType</Name>
+        <Ref>accesstoken.Type</Ref>
     </AssignVariable>
     <AssignVariable>
-        <Name>TokenType</Name>
-        <Ref>accesstoken.type</Ref>
+        <Name>tokenScope</Name>
+        <Ref>oauthv2accesstoken.GetTokenAttributes.scope</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>

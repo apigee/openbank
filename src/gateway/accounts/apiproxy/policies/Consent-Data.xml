@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Consent-Data">
-    <DisplayName>Consent Data</DisplayName>
-    <Properties/>
-    <ResourceURL>jsc://Consent-Data.js</ResourceURL>
-</Javascript>

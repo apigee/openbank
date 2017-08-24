@@ -6,7 +6,7 @@
     <Source>nonce</Source>
     <Scope>Global</Scope>
     <CacheKey>
-        <KeyFragment ref="client_id"/>
+        <KeyFragment ref="clientId"/>
         <KeyFragment ref="nonce"/>
     </CacheKey>
     <ExpirySettings>

@@ -6,19 +6,25 @@
     <ExternalAuthorization>false</ExternalAuthorization>
     <Operation>GenerateAccessTokenImplicitGrant</Operation>
     <SupportedGrantTypes/>
-    <Scope>scope</Scope>
-    <ClientId>client_id</ClientId>
+    <ClientId>ClientId</ClientId>
     <ResponseType>token</ResponseType>
     <ExpiresIn ref="token_timeout">2592000000</ExpiresIn>
     <Attributes>
-        <Attribute name="sessionid" ref="sessionid" display="false"/>
-        <Attribute name="scope" ref="scope" display="false"/>
-        <Attribute name="type" ref="type" display="false"/>
-        <Attribute name="acr_values" ref="acr_values" display="false"/>
+        <Attribute name="ClientId" ref="ClientId" display="false"/>
+        <Attribute name="ResponseType" ref="ResponseType" display="false"/>
+        <Attribute name="Type" ref="Type" display="false"/>
         <Attribute name="auth_time" ref="system.timestamp" display="false"/>
-        <Attribute name="customer_number" ref="customerId" display="false"/>
-        <Attribute name="request_id" ref="request_id" display="false"/>
+        <Attribute name="Scope" ref="Scope" display="false"/>
+        <Attribute name="RedirectUri" ref="RedirectUri" display="false"/>
+        <Attribute name="RequestId" ref="RequestId" display="false"/>
+        <Attribute name="State" ref="State" display="false"/>
+        <Attribute name="AppName" ref="AppName" display="false"/>
+        <Attribute name="AppId" ref="AppId" display="false"/>
+        <Attribute name="TppId" ref="TppId" display="false"/>
+        <Attribute name="CustomerId" ref="CustomerId" display="false"/>
+        <Attribute name="Nonce" ref="Nonce" display="false"/>
     </Attributes>
-    <AppEndUser>customer_number</AppEndUser>
-    <UserName>customer_number</UserName>
+    <AppEndUser>CustomerId</AppEndUser>
+    <UserName>CustomerId</UserName>
+    <GenerateErrorResponse enabled="true"/>
 </OAuthV2>

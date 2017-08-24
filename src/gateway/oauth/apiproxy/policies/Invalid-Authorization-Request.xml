@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <RaiseFault async="false" continueOnError="false" enabled="true" name="Invalid-Authorization-Request">
-    <DisplayName>Error Response: Authorization Request</DisplayName>
+    <DisplayName>Error: Authorization Request Response</DisplayName>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <FaultResponse>
         <Set>
             <Headers>
-                <Header name="Location">{redirect_uri}{error_response_symbol}error={error_type}&amp;error_description={error_variable}&amp;state={state}</Header>
+                <Header name="Location">{redirectUri}{error_response_symbol}error={error_type}&amp;error_description={error_variable}&amp;state={requestState}</Header>
                 <Header name="Response-Message">Valid Domain</Header>
                 <Header name="Access-Control-Allow-Origin">{request.header.origin}</Header>
                 <Header name="Access-Control-Allow-Credentials">true</Header>

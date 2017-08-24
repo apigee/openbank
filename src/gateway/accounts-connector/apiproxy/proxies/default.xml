@@ -8,7 +8,7 @@
                 <Name>Verify-API-Key</Name>
             </Step>
             <Step>
-                <Name>Assign.TargetURL</Name>
+                <Name>Assign-Target-URL</Name>
             </Step>
         </Request>
         <Response/>
@@ -19,8 +19,9 @@
     </PostFlow>
     <Flows/>
     <HTTPProxyConnection>
-        <BasePath>/internal/connector/v2/accounts</BasePath>
+        <BasePath>/internal/connector/v2/ais</BasePath>
         <Properties/>
+        <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="default">

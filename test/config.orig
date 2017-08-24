@@ -1,0 +1,7 @@
+{
+  "edgeBasePath": "{{ edgeBasePath }}",
+  "TPPAppClientId": "{{ keyAISP }}",
+  "internalAppKey": "{{ internalAppKey }}"
+}
+
+

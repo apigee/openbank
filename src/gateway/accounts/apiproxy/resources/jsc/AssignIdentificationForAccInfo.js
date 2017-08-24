@@ -1,1 +1,0 @@
-context.setVariable("InfoFlowVerified",true);

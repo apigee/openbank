@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="Update-Access-Count">
+    <DisplayName>Update Access Count</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myRequest3">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="x-apikey">{{ internalAppKey }}</Header>
+            </Headers>
+            <!--<Headers>
+                <Header name="x-apikey">298bd34c-7de4-41a4-9b87-229602e62984</Header>
+            </Headers>-->
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            @updateAccessCountPayload#
+        </Payload>
+            <Verb>PUT</Verb>
+        </Set>
+    </Request>
+    <Response>calloutResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>{{ edgeBasePath }}/apis/internal/v2/consent/{consentId}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

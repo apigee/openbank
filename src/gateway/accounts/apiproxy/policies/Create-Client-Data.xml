@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Create-Client-Data">
-    <DisplayName>Create Client Data</DisplayName>
-    <Properties/>
-    <ResourceURL>jsc://Create-Client-Data.js</ResourceURL>
-</Javascript>

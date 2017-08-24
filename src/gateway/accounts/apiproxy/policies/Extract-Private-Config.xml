@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="Extract-Private-Config" mapIdentifier="BankKVM">
+    <DisplayName>Extract Private Config</DisplayName>
+    <Properties/>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>86400</ExpiryTimeInSecs>
+    <Scope>environment</Scope>
+    <Get assignTo="private.privateKey" index="1">
+        <Key>
+            <Parameter>privateKey</Parameter>
+        </Key>
+    </Get>
+</KeyValueMapOperations>

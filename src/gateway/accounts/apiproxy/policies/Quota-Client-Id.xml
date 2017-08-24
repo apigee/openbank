@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Quota async="false" continueOnError="true" enabled="true" name="Quota-Client-Id" type="calendar">
+    <DisplayName>Quota Client Id</DisplayName>
+    <Allow count="1500"/>
+    <Interval>1</Interval>
+    <TimeUnit>hour</TimeUnit>
+    <Identifier ref="oauthv2accesstoken.GetTokenAttributes.client_id"/>
+    <StartTime>2017-07-26 08:12:00</StartTime>
+    <Distributed>true</Distributed>
+    <Synchronous>true</Synchronous>
+</Quota>

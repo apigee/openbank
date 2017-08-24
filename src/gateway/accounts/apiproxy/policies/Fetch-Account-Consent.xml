@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="true" enabled="true" name="Fetch-Account-Consent">
+    <DisplayName>Fetch Account Consent</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <!--<Headers>
+                <Header name="x-apikey">298bd34c-7de4-41a4-9b87-229602e62984</Header>
+            </Headers>-->
+            <Headers>
+                <Header name="x-apikey">{{ internalAppKey }}</Header>
+            </Headers>
+            <QueryParams>
+                <QueryParam name="requestId">{requestId}</QueryParam>
+                <QueryParam name="consentType">account</QueryParam>
+            </QueryParams>
+            <Verb>GET</Verb>
+        </Set>
+    </Request>
+    <Response>consentResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>{{ edgeBasePath }}/apis/internal/v2/consent</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

@@ -6,7 +6,7 @@
     <AssignTo>nonce_cache_value</AssignTo>
     <Scope>Global</Scope>
     <CacheKey>
-        <KeyFragment ref="client_id"/>
+        <KeyFragment ref="clientId"/>
         <KeyFragment ref="nonce"/>
     </CacheKey>
 </LookupCache>

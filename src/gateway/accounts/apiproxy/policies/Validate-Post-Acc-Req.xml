@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="Validate-Post-Acc-Req">
+    <DisplayName>Validate Post Acc Req</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://PostAccountRequestConfig.js</ResourceURL>
+    <IncludeURL>jsc://ValidateRequest.js</IncludeURL>
+</Javascript>

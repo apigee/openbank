@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="true" enabled="true" name="ExtractRequestParams">
+    <DisplayName>Extract Req Params</DisplayName>
+    <Source clearPayload="false">request</Source>
+    <URIPath>
+        <Pattern ignoreCase="true">/accounts/{accountId}</Pattern>
+        <Pattern ignoreCase="true">/accounts/{accountId}/balances</Pattern>
+        <Pattern ignoreCase="true">/accounts/{accountId}/transactions</Pattern>
+        <Pattern ignoreCase="true">/accounts/{accountId}/beneficiaries</Pattern>
+        <Pattern ignoreCase="true">/accounts/{accountId}/direct-debits</Pattern>
+        <Pattern ignoreCase="true">/accounts/{accountId}/standing-orders</Pattern>
+        <Pattern ignoreCase="true">/accounts/{accountId}/product</Pattern>
+        <Pattern ignoreCase="true">/account-requests/{accountRequestId}</Pattern>
+    </URIPath>
+    <Header name="x-fapi-financial-id">
+        <Pattern ignoreCase="true">{fapiFinancialId}</Pattern>
+    </Header>
+    <Header name="x-jws-signature">
+        <Pattern ignoreCase="true">{jwsSignature}</Pattern>
+    </Header>
+    <Header name="x-fapi-interaction-id">
+        <Pattern ignoreCase="true">{fapiInteractionId}</Pattern>
+    </Header>
+    <Header name="x-fapi-customer-ip-address">
+        <Pattern ignoreCase="true">{fapiCustomerIpAddr}</Pattern>
+    </Header>
+    <QueryParam name="toBookingDateTime">
+        <Pattern ignoreCase="true">{toBookingDateTime}</Pattern>
+    </QueryParam>
+    <QueryParam name="fromBookingDateTime">
+        <Pattern ignoreCase="true">{fromBookingDateTime}</Pattern>
+    </QueryParam>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

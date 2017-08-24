@@ -7,49 +7,28 @@ app.use(bodyParser.json());
 
 var accounts = require("./accounts.js");
 
-app.get('/', accounts.getAccountsOfCustomer);
+app.get('/accounts', accounts.getAccountsOfCustomer);
 app.get('/transactions', accounts.getAccountsTransactionOfCustomer);
-app.get('/balance', accounts.getAccountsBalanceOfCustomer);
+app.get('/balances', accounts.getAccountsBalanceOfCustomer);
 app.get('/beneficiaries', accounts.getAccountsBeneficiariesOfCustomer);
 app.get('/standing-orders', accounts.getStandingOrdersOfCustomer);
 app.get('/direct-debits', accounts.getDirectDebitsOfCustomer);
 
+app.get('/accounts/:accountNumber', accounts.getAccountInfo);
+app.get('/accounts/:accountNumber/balances', accounts.getAccountBalance);
+app.get('/accounts/:accountNumber/beneficiaries', accounts.getAccountBeneficiaries);
+app.get('/accounts/:accountNumber/standing-orders', accounts.getAccountStandingOrders);
+app.get('/accounts/:accountNumber/direct-debits', accounts.getAccountDirectDebits);
+app.get('/accounts/:accountNumber/transactions', accounts.getAccountTransaction);
+app.get('/accounts/:accountNumber/product', accounts.getAccountProducts);
 
-app.post('/accounts-requests', accounts.createAccountRequest);
-app.get('/accounts-requests/:requestId', accounts.getAccountRequest);
-app.put('/accounts-requests/:requestId', accounts.updateAccountRequest);
-app.delete('/accounts-requests/:requestId', accounts.deleteAccountRequest);
 
+app.get('/account-requests/:requestId', accounts.getAccountRequest);
+app.put('/account-requests/:requestId', accounts.updateAccountRequest);
+app.delete('/account-requests/:requestId', accounts.deleteAccountRequest);
+app.post('/account-requests', accounts.createAccountRequest);
 
-
-/*
- * GET /acr:token/info
- * GET Account Information
- */
-app.get('/:accountNumber', accounts.getAccountInfo);
-app.get('/:accountNumber/info', accounts.getAccountInfo);
-
-/*
- * GET /acr:token/balance
- * GET Account balance details
- */
-app.get('/:accountNumber/balance', accounts.getAccountBalance);
-app.get('/:accountNumber/beneficiaries', accounts.getAccountBeneficiaries);
-app.get('/:accountNumber/standing-orders', accounts.getAccountStandingOrders);
-app.get('/:accountNumber/direct-debits', accounts.getAccountDirectDebits);
-
-/*
- *  GET /acr:token/transactions
- *  GET Transaction of an Account
- */
-app.get('/:accountNumber/transactions', accounts.getAccountTransaction);
-app.get('/:accountNumber/transactions/:transactionId', accounts.getAccountTransaction);
-
-/*
-* POST /validate
-*/
-app.post('/validate', accounts.validate);
 
 app.listen(3000, function () {
-  console.log('App listening on port 3000!');
+    console.log('App listening on port 3000!');
 });
