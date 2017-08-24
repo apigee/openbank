@@ -25,7 +25,7 @@ resources:
     - name: consentSessionKey
       prompt: Enter Consent Session Key
     - name: jwtSignKey
-      prompt: Enter jwt Signing Key
+      prompt: Enter Login App Key
     
     configurations:
     - env: test
