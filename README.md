@@ -28,7 +28,6 @@ The OpenBank solution is built on Apigee Edge API Management Platform, and featu
 **Account Access APIs**
   - Account Information 
   - Account Transaction 
-  - Account Information 
 
 **Payment Transfer APIs**
 - Payment Initiation
@@ -126,7 +125,7 @@ Banking APIs provide developers with the information needed to create innovative
 
  - Aggregation of financial metrics such as net worth and savings across multiple accounts.
  - Analysis and recommendations for better money management.
- - Reccomendation of products and deals based on monthly statements.
+ - Recommendation of products and deals based on monthly statements.
 
 #### **2. Payments APIs** 
 Payment APIs enable the transfer of funds from a consumer's account to a recipient. The initation of transfer is done by the consumer and the recipient's account number is provided by the third-party payment provider (TPPs or PISPs). While initiating a transfer the user will have to authenticate using **two-factor authentication**(otp via sms) following which the transfer will be initiated.
