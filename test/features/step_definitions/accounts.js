@@ -5,10 +5,8 @@ var jwt = require('jsonwebtoken');
 var fs = require('fs-extra');
 var cert = fs.readFileSync(process.cwd() + '/testtpp_jwt.pem');
 function getClientAssertion(clientId) {
-    console.log("here");
     var token_payment = jwt.sign({
-        "iss": "https://private.api.openbank.com/",
-        "clientId": clientId,
+        "iss": clientId,
         "exp": 1546300800,
         "iat": 1502966900
     }, cert, {"algorithm": "RS256"});
@@ -50,8 +48,7 @@ module.exports = function () {
     });
 
     this.Given(/^TPP obtains the oauth accesstoken\-client credentials with accounts scope and store in global scope$/, function (callback) {
-        //TODO: set clientAssertion
-        this.apickli.setRequestBody('grant_type=client_credentials&scope=accounts&clientAssertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
+        this.apickli.setRequestBody('grant_type=client_credentials&scope=accounts&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
         this.apickli.post('/apis/v2/oauth/token', function (error, response) {
@@ -67,8 +64,7 @@ module.exports = function () {
     });
 
     this.Given(/^TPP obtains the oauth accesstoken\-client credentials with invalid scope and store in global scope$/, function (callback) {
-        //TODO: set clientAssertion
-        this.apickli.setRequestBody('grant_type=client_credentials&scope=openid&clientAssertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
+        this.apickli.setRequestBody('grant_type=client_credentials&scope=openid&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
         this.apickli.post('/apis/v2/oauth/token', function (error, response) {
@@ -123,7 +119,6 @@ module.exports = function () {
         });
     });
     this.Then(/^the response body should be empty$/, function (callback) {
-        // Write code here that turns the phrase above into concrete actions
         if (this.apickli.getResponseObject().body == '{}') {
             callback();
         }

@@ -77,15 +77,15 @@
             <Request>
                 <Step>
                     <Name>Extract-JWT-Body</Name>
-                    <Condition>(request.formparam.clientAssertion != null)</Condition>
+                    <Condition>(request.formparam.client_assertion != null)</Condition>
                 </Step>
                 <Step>
                     <Name>Authorize-Client-Application</Name>
-                    <Condition>(isError != true) and (request.formparam.clientAssertion != null)</Condition>
+                    <Condition>(isError != true) and (request.formparam.client_assertion != null)</Condition>
                 </Step>
                 <Step>
                     <Name>Validate-Client-Assertion</Name>
-                    <Condition>(isError != true) and (request.formparam.clientAssertion != null)</Condition>
+                    <Condition>(isError != true) and (request.formparam.client_assertion != null)</Condition>
                 </Step>
                 <Step>
                     <Name>Raise-Fault-Invalid-Request</Name>
@@ -93,7 +93,7 @@
                 </Step>
                 <Step>
                     <Name>Assign-Auth-Basic-Header</Name>
-                    <Condition>(request.formparam.clientAssertion != null)</Condition>
+                    <Condition>(request.formparam.client_assertion != null)</Condition>
                 </Step>
                 <Step>
                     <Condition>request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials"</Condition>

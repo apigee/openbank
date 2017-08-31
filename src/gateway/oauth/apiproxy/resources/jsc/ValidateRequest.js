@@ -2,8 +2,8 @@ var config =
     {
 
         "QueryParams": [
-            {"responseType": {"Mandatory": true}},
-            {"clientId": {"Mandatory": true}},
+            {"response_type": {"Mandatory": true}},
+            {"client_id": {"Mandatory": true}},
             {"state": {"Mandatory": true}},
             {
                 "scope": {
@@ -12,14 +12,14 @@ var config =
                 }
             },
             {"nonce": {"Mandatory": true}},
-            {"redirectUri": {"Mandatory": true}},
+            {"redirect_uri": {"Mandatory": true}},
             {"request": {"Mandatory": true}}
         ]
     };
 
 var error = validateRequest(config);
 if (!error.isError) {
-    var responseType = context.getVariable("request.queryparam.responseType");
+    var responseType = context.getVariable("request.queryparam.response_type");
     if (!parseResponseType(responseType)) {
         var errorJson = {};
         errorJson.isError = true;
@@ -31,17 +31,17 @@ if (!error.isError) {
 if (!error.isError) {
     context.setVariable("isError", false);
 
-    context.setVariable("responseType", context.getVariable("request.queryparam.responseType"));
-    context.setVariable("clientId", context.getVariable("request.queryparam.clientId"));
+    context.setVariable("responseType", context.getVariable("request.queryparam.response_type"));
+    context.setVariable("clientId", context.getVariable("request.queryparam.client_id"));
     context.setVariable("requestState", context.getVariable("request.queryparam.state"));
     context.setVariable("scope", context.getVariable("request.queryparam.scope"));
     context.setVariable("nonce", context.getVariable("request.queryparam.nonce"));
-    context.setVariable("redirectUri", context.getVariable("request.queryparam.redirectUri"));
+    context.setVariable("redirectUri", context.getVariable("request.queryparam.redirect_uri"));
     //context.setVariable("request", context.getVariable("request.queryparam.request"));
 }
 else {
     //set 401 if clientID is not present
-    var clientId = context.getVariable("request.queryparam.clientId");
+    var clientId = context.getVariable("request.queryparam.client_id");
     if ((clientId === null || clientId === "")) {
         error.errorResponseCode = 401;
     }

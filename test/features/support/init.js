@@ -11,7 +11,7 @@ var config = require("../../config.json");
 module.exports = function () {
     // cleanup before every scenario
     this.Before(function () {
-        this.apickli = new apickli.Apickli('http', config.edgeBasePath);
+        this.apickli = new apickli.Apickli('https', config.edgeBasePath);
         this.apickli.addRequestHeader('Cache-Control', 'no-cache');
         this.apickli.setGlobalVariable('TPPAppClientId', config.TPPAppClientId);
         this.apickli.setGlobalVariable('internalAppKey', config.internalAppKey);

@@ -14,8 +14,7 @@ var config = require("../../config.json");
 
 function createClientAssertion(clientId) {
     var jwtToken = jwt.sign({
-        "iss": "https://private.api.openbank.com/",
-        "clientId": clientId,
+        "iss": clientId,
         "exp": 1546300800,
         "iat": 1502966900
     }, cert, {algorithm: "RS256"});
@@ -53,9 +52,9 @@ function createRequestObjectJWT(clientId, redirectUri, state, nonce, scope, resp
 
     var requestJWT = {
         "iss": "https://api.openbank.com",
-        "responseType": responseType,
-        "clientId": clientId,
-        "redirectUri": redirectUri,
+        "response_type": responseType,
+        "client_id": clientId,
+        "redirect_uri": redirectUri,
         "scope": scope,
         "state": state,
         "nonce": nonce,
@@ -73,8 +72,6 @@ module.exports = function () {
 
 
     this.Given(/^TPP create a client Assertion JWT and stores in the global variable$/, function (callback) {
-        // Write code here that turns the phrase above into concrete actions
-
         var clientAssertion = createClientAssertion(config.TPPAppClientId);//"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3ByaXZhdGUuYXBpLm9wZW5iYW5rLmNvbS8iLCJjbGllbnRJZCI6IlFhSkJoT0xUdkZqUVdUTzk3MDRhVnkxY3BWSzB0SzVMIiwiZXhwIjoxNTAzOTc2OTAwLCJpYXQiOjE1MDI5NjY5MDB9.be_yzudsgJ4YukFpSEq3BujUVjW5iL5NolPgu_UcbXjm5S6tH1Bx5Th61TnSjeK91TBPS6IUXjDE-bqsgJymAdHaGRum8Ixewh4oIwOuWMja2ozmhI4RB-tE0Clj6WJAsLT5sowv2gB61Yd3iGzwoNq9RgAU9uWkg7J61VXaiQ29QpQxfBX1XnXrrAh3s8vsyAa-ZiztMysW9GAcNOWBD836UE6uY4GaGdxH63MhN4iq3N8T-O93VC3aNjnI7EeuKpFUIfcCSZIVWlRWYCgsQ5NwtZD3uoXprALrP8eyZq_sUQXmL7YjI4O2_cGjZfHHkLazkoVJSxID8iCUjHm1Tw"
         this.apickli.setGlobalVariable('clientAssertion', clientAssertion);
         callback();
@@ -101,7 +98,7 @@ module.exports = function () {
     this.Given(/^TPP sets the request queryParams and creates the request Object$/, function (queryParameters, callback) {
         var queryParams = queryParameters.rowsHash();
         var queryParamsHashes = queryParameters.hashes();
-        var request = createRequestObjectJWT(this.apickli.replaceVariables(queryParams.clientId), queryParams.redirectUri, queryParams.state, queryParams.nonce, queryParams.scope, queryParams.responseType, queryParams.urns);
+        var request = createRequestObjectJWT(this.apickli.replaceVariables(queryParams.client_id), queryParams.redirect_uri, queryParams.state, queryParams.nonce, queryParams.scope, queryParams.response_type, queryParams.urns);
         queryParamsHashes.push({"parameter": "request", "value": request});
         this.apickli.setQueryParameters(queryParamsHashes);
         callback();
@@ -127,7 +124,7 @@ module.exports = function () {
     this.Given(/^TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login$/, function (queryParameters) {
         var queryParams = queryParameters.rowsHash();
         var queryParamsHashes = queryParameters.hashes();
-        var request = createRequestObjectJWT(this.apickli.replaceVariables(queryParams.clientId), queryParams.redirectUri, queryParams.state, queryParams.nonce, queryParams.scope, queryParams.responseType, queryParams.urns);
+        var request = createRequestObjectJWT(this.apickli.replaceVariables(queryParams.client_id), queryParams.redirect_uri, queryParams.state, queryParams.nonce, queryParams.scope, queryParams.response_type, queryParams.urns);
         queryParamsHashes.push({"parameter": "request", "value": request});
         var qs = "?";
         for (var queryParam in queryParamsHashes) {
