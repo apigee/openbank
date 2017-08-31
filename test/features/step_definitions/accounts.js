@@ -9,7 +9,7 @@ function getClientAssertion(clientId) {
     var token_payment = jwt.sign({
         "iss": "https://private.api.openbank.com/",
         "clientId": clientId,
-        "exp": 1503976900,
+        "exp": 1546300800,
         "iat": 1502966900
     }, cert, {"algorithm": "RS256"});
 
