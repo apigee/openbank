@@ -13,6 +13,9 @@
         <Variable name="RequestId">
             <JSONPath>$.RequestId</JSONPath>
         </Variable>
+        <Variable name="Type">
+            <JSONPath>$.Type</JSONPath>
+        </Variable>
     </JSONPayload>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </ExtractVariables>
