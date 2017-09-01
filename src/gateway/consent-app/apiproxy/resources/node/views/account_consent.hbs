@@ -11,9 +11,7 @@
                             details</p>
                         {{#if permissions}}
                             <ul class="list-group">
-                                {{#each permissions}}
-                                    <strong>{{this}}</strong>
-                                {{/each}}
+                                {{formatPermission permissions}}
                             </ul>
                             <label class="account-select">Please select accounts</label>
                             <ul>
@@ -30,15 +28,15 @@
                             <h3>The application does not require any permissions.</h3>
                         {{/if}}
                         {{#if TransactionFromDateTime}}
-                            Transaction Details can be obtained from <strong>{{TransactionFromDateTime}}</strong>
+                            Transaction Details can be obtained from <strong>{{formatDate TransactionFromDateTime}}</strong>
                             {{#if TransactionToDateTime}}
-                                to <strong>{{TransactionToDateTime}}</strong>
+                                to <strong>{{formatDate TransactionToDateTime}}</strong>
                             {{/if}}
 
                         {{/if}}
                         <br/>
                         {{#if expiresAt}}
-                            This access is valid till <strong>{{expiresAt}}</strong>
+                            This access is valid till  <strong>{{formatDate expiresAt}}</strong>
                         {{/if}}
                         <div id="consent-info-div">
                             {{#if tnc}}

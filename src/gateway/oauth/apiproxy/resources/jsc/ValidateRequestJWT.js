@@ -26,8 +26,8 @@ jws.parseJWS(jwt);
 //key = rstrtohex(key);
 isValid = KJUR.jws.JWS.verifyJWT(jwt, key, {
     alg: alg,
-    responseType: responseType,
-    clientId: clientId,
+    response_type: responseType,
+    client_id: clientId,
     state: state,
     scope: scope,
     nonce: nonce,
@@ -44,9 +44,25 @@ if (!validateScopes(scopesXML, scope)) {
     errorJson.errorDescription = "Application doesnt have access to requested scope";
 }
 var payload = JSON.parse(jws.parsedJWS.payloadS);
-if (payload.redirectUri != redirectUri || applicationRedirectionUris.indexOf(redirectUri) === -1) {
+if (payload.redirect_uri != redirectUri || applicationRedirectionUris.indexOf(redirectUri) === -1) {
     isValid = false;
     errorJson.errorDescription = "RedirectUri queryparam doesnt match Request Token";
+}
+if (state && payload.state != state) {
+    isValid = false;
+    errorJson.errorDescription = "state queryparam doesnt match Request Token";
+}
+if (nonce && payload.nonce != nonce) {
+    isValid = false;
+    errorJson.errorDescription = "nonce queryparam doesnt match Request Token";
+}
+if (payload.client_id != clientId) {
+    isValid = false;
+    errorJson.errorDescription = "client_id queryparam doesnt match Request Token";
+}
+if (payload.response_type != responseType) {
+    isValid = false;
+    errorJson.errorDescription = "response_type queryparam doesnt match Request Token";
 }
 if (!validateClaims(payload.claims, scope)) {
     isValid = false;

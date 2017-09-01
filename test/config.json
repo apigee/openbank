@@ -1,7 +1,7 @@
 {
-  "edgeBasePath": "mdemo101-test.apigee.net",
-  "TPPAppClientId": "bL0sALw70onhuxeA31vtPeRNqPijDsaU",
-  "internalAppKey": "gmjgk7HOtnolnV2IpwnZcNX0o7YxD957"
+  "edgeBasePath": "{{ edgeBasePath }}",
+  "TPPAppClientId": "{{ keyAISP }}",
+  "internalAppKey": "{{ internalAppKey }}"
 }
 
 

@@ -9,7 +9,7 @@ var applicationPublicKey = context.getVariable("verifyapikey.Authorize-Client-Ap
 var clientId = context.getVariable("clientId");
 var jwt = context.getVariable("jwt");
 
-isValid = KJUR.jws.JWS.verifyJWT(jwt, applicationPublicKey, {alg: alg, gracePeriod: 0, clientId: clientId});
+isValid = KJUR.jws.JWS.verifyJWT(jwt, applicationPublicKey, {alg: alg, gracePeriod: 0, client_id: clientId});
 
 var errorJson = {};
 errorJson.isError = true;

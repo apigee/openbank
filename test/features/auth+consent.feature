@@ -7,11 +7,11 @@ Feature:
 #TPP fetching the access token with the client_credentials
   Scenario Outline: TPP making a client credential call for access token
     Given TPP sets the request formBody
-      | parameter           | value                                                            |
-      | grant_type          | <type>                                                           |
-      | scope               | <scope>                                                          |
-      | clientAssertionType | urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer |
-      | clientAssertion     | <jwtCredentials>                                                 |
+      | parameter             | value                                                            |
+      | grant_type            | <type>                                                           |
+      | scope                 | <scope>                                                          |
+      | client_assertion_type | urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer |
+      | client_assertion      | <jwtCredentials>                                                 |
     And Tpp sets Content-Type header to application/x-www-form-urlencoded
     When the TPP makes the POST /apis/v2/oauth/token
     Then response code should be <responseCode>
@@ -31,11 +31,11 @@ Feature:
   Scenario Outline: TPP creates the request object
     Given TPP sets the request queryParams and creates the request Object
       | parameter    | value          |
-      | clientId     | <clientId>     |
-      | redirectUri  | <redirectUri>  |
+      | client_id     | <clientId>     |
+      | redirect_uri  | <redirectUri>  |
       | state        | <state>        |
       | scope        | <scope>        |
-      | responseType | <responseType> |
+      | response_type | <responseType> |
       | urns         | <urns>         |
       | nonce        | <nonce>        |
     When the TPP makes the GET /apis/v2/oauth/authorize
@@ -70,11 +70,11 @@ Feature:
   Scenario Outline: When the user is redirect to login page
     Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
       | parameter    | value                             |
-      | clientId     | `TPPAppClientId`                  |
-      | redirectUri  | http://localhost/                 |
+      | client_id     | `TPPAppClientId`                  |
+      | redirect_uri  | http://localhost/                 |
       | state        | abcd1234                          |
       | scope        | openid accounts                   |
-      | responseType | code id_token                     |
+      | response_type | code id_token                     |
       | urns         | urn:openbank:intent:accounts:1000 |
       | nonce        | <nonce>                           |
     When User enters <username> and <password> and submits the form
@@ -103,7 +103,7 @@ Feature:
       | code                  | <authCode>                                                       |
       | redirect_uri          | <redirectUri>                                                    |
       | client_assertion_type | urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer |
-      | clientAssertion       | <jwtCredentials>                                                 |
+      | client_assertion       | <jwtCredentials>                                                 |
     When the TPP makes the POST /apis/v2/oauth/token
     Then response code should be <responseCode>
 
