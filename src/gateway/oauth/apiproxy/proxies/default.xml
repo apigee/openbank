@@ -109,6 +109,14 @@
                     <Name>Extract-Token-Response</Name>
                 </Step>
                 <Step>
+                    <Condition>Type = "accounts" and request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
+                    <Name>Service-Callout-Update-Account-Request</Name>
+                </Step>
+                <Step>
+                    <Condition>Type = "payments" and request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
+                    <Name>Service-Callout-Update-Payment-Request</Name>
+                </Step>
+                <Step>
                     <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
                     <Name>Assign-Token-Response</Name>
                 </Step>
@@ -142,11 +150,11 @@
                     <Name>Security-Generate-Access-Token-Implicit</Name>
                 </Step>
                 <Step>
-                    <Condition>Type = "accounts"</Condition>
+                    <Condition>Type = "accounts" and ResponseTypeToken = true</Condition>
                     <Name>Service-Callout-Update-Account-Request</Name>
                 </Step>
                 <Step>
-                    <Condition>Type = "payments"</Condition>
+                    <Condition>Type = "payments" and ResponseTypeToken = true</Condition>
                     <Name>Service-Callout-Update-Payment-Request</Name>
                 </Step>
                 <Step>

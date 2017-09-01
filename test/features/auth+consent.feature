@@ -64,7 +64,7 @@ Feature:
       | `TPPAppClientId` | http://localhost/                    | abcd1234 | 16    | openid                   | code id_token | onlyAccountClaimURN                 | 302          | urn:openbank:intent:accounts:1000                                   |
       #| `validClientId` | http://localhost/                    | abcd1234 | 17 | openid                   | code id_token | onlyPaymentClaimURN                 | 302          | |
       | `TPPAppClientId` | http://localhost/                    | abcd1234 | 18    | openid accounts payments | code id_token | noClaimURN                          | 400          |                                                                     |
-
+#need to add scenarios for different responseTypes
 
 #UI FLOWS
   Scenario Outline: When the user is redirect to login page
