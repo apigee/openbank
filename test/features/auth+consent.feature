@@ -30,14 +30,14 @@ Feature:
 #TPP redirects the /authorize call to the user
   Scenario Outline: TPP creates the request object
     Given TPP sets the request queryParams and creates the request Object
-      | parameter    | value          |
+      | parameter     | value          |
       | client_id     | <clientId>     |
       | redirect_uri  | <redirectUri>  |
-      | state        | <state>        |
-      | scope        | <scope>        |
+      | state         | <state>        |
+      | scope         | <scope>        |
       | response_type | <responseType> |
-      | urns         | <urns>         |
-      | nonce        | <nonce>        |
+      | urns          | <urns>         |
+      | nonce         | <nonce>        |
     When the TPP makes the GET /apis/v2/oauth/authorize
     Then response code should be <responseCode>
 
@@ -69,14 +69,14 @@ Feature:
 #UI FLOWS
   Scenario Outline: When the user is redirect to login page
     Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
-      | parameter    | value                             |
-      | client_id     | `TPPAppClientId`                  |
-      | redirect_uri  | http://localhost/                 |
-      | state        | abcd1234                          |
-      | scope        | openid accounts                   |
-      | response_type | code id_token                     |
-      | urns         | urn:openbank:intent:accounts:1000 |
-      | nonce        | <nonce>                           |
+      | parameter     | value             |
+      | client_id     | `TPPAppClientId`  |
+      | redirect_uri  | http://localhost/ |
+      | state         | abcd1234          |
+      | scope         | openid accounts   |
+      | response_type | code id_token     |
+      | urns          | <urn>             |
+      | nonce         | <nonce>           |
     When User enters <username> and <password> and submits the form
     Given Login Succeeds
     When User selects the <accounts> on consent page and submits the form
@@ -85,10 +85,10 @@ Feature:
     Then OTP verification Succeeds and User is redirected with auth code with <status>
 
     Examples:
-      | username | password  | otp  | accounts                      | nonce | status  |
-      | rohan    | Qwerty123 | 4567 | 111111111                     | 12    | success |
-      | rohan    | Qwerty123 | 4567 | 111111111,123459876           | 122   | success |
-      | rohan    | Qwerty123 | 4567 | 111111111,123459876,987654321 | 321   | success |
+      | username | password  | otp  | accounts                      | nonce | status  | urn                               |
+      | rohan    | Qwerty123 | 4567 | 111111111                     | 12    | success | urn:openbank:intent:accounts:1005 |
+      | rohan    | Qwerty123 | 4567 | 111111111,123459876           | 122   | success | urn:openbank:intent:accounts:1006 |
+      | rohan    | Qwerty123 | 4567 | 111111111,123459876,987654321 | 321   | success | urn:openbank:intent:accounts:1007 |
     #need to handle negative test cases
       #| wrongusernameorpass | wrongusernameorpass | 4567 | 111111111                     |   412    | failure |
       #| rohan               | Qwerty123           | 4567 |                              | | success |
@@ -103,19 +103,19 @@ Feature:
       | code                  | <authCode>                                                       |
       | redirect_uri          | <redirectUri>                                                    |
       | client_assertion_type | urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer |
-      | client_assertion       | <jwtCredentials>                                                 |
+      | client_assertion      | <jwtCredentials>                                                 |
     When the TPP makes the POST /apis/v2/oauth/token
     Then response code should be <responseCode>
 
     Examples:
-      | authCode       | type             | redirectUri                          | clientIdSecret64 | responseCode | jwtCredentials         |
+      | authCode   | type               | redirectUri                          | clientIdSecret64 | responseCode | jwtCredentials         |
 
       | `authCode` | authorization_code | http://localhost/                    | validCredentials | 200          | `clientAssertion`      |
      #| authorization_code | authorization_code | http://localhost/                    | validCredentials | 200          | `clientAssertion`      |
-      | wrongType  | authorization_code        | http://localhost/                    | validCredentials | 400          | `clientAssertion`      |
-      | `authCode` | authorization_code      | http://localhost/                    | validCredentials | 400          | `clientAssertion`      |
-      | `authCode` | authorization_code        | http://localhost/notValidRedirectUri | validCredentials | 400          | `clientAssertion`      |
-      | `authCode` | authorization_code        | http://localhost/                    | validCredentials | 401          | invalidClientAssertion |
+      | wrongType  | authorization_code | http://localhost/                    | validCredentials | 400          | `clientAssertion`      |
+      | `authCode` | authorization_code | http://localhost/                    | validCredentials | 400          | `clientAssertion`      |
+      | `authCode` | authorization_code | http://localhost/notValidRedirectUri | validCredentials | 400          | `clientAssertion`      |
+      | `authCode` | authorization_code | http://localhost/                    | validCredentials | 401          | invalidClientAssertion |
 
 
 

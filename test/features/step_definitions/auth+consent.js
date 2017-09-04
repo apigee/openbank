@@ -101,7 +101,7 @@ module.exports = function () {
         callback();
     });
     this.Given(/^TPP create a auth code and stores in the global variable$/, function (callback) {
-        this.apickli.setRequestBody('{         "ClientId": "' + config.TPPAppClientId + '", "ResponseType": "code id_token",         "ResponseTypeToken": "false",         "ResponseTypeCode": "true",         "ResponseTypeIdToken": "false",         "Scope": "openid accounts",         "Type": "accounts",         "RedirectUri": "http://localhost/",         "RequestId": "1001",         "RequestState": "af0ifjsldkj",         "ApplicationName": "AISP_App_v2",                  "CustomerId": "10203040",         "Nonce": "n-0S6_WzA2Mj",         "TppId": "12345"     }');
+        this.apickli.setRequestBody('{         "ClientId": "' + config.TPPAppClientId + '", "ResponseType": "code id_token",         "ResponseTypeToken": "false",         "ResponseTypeCode": "true",         "ResponseTypeIdToken": "false",         "Scope": "openid accounts",         "Type": "accounts",         "RedirectUri": "http://localhost/",         "RequestId": "1008",         "RequestState": "af0ifjsldkj",         "ApplicationName": "AISP_App_v2",                  "CustomerId": "10203040",         "Nonce": "n-0S6_WzA2Mj",         "TppId": "12345"     }');
         this.apickli.setRequestHeader('x-apikey', config.internalAppKey);
         this.apickli.setRequestHeader('Content-Type', 'application/json');
         var othis = this;
