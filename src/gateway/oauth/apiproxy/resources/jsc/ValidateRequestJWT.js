@@ -33,7 +33,7 @@ isValid = KJUR.jws.JWS.verifyJWT(jwt, key, {
     nonce: nonce,
     //aud: ['http://foo.com'], // aud: 'http://foo.com' is fine too.
     //jti: 'id123456',
-    gracePeriod: 0  // accept 1 hour slow or fast
+    gracePeriod: 1 * 60 * 60  // accept 1 hour slow or fast
 });
 var errorJson = {};
 errorJson.isError = true;

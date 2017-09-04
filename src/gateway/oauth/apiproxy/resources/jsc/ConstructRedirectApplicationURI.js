@@ -29,7 +29,7 @@ var ResponseTypeIdToken = context.getVariable("ResponseTypeIdToken");
 
 // Based on the response_type construct the application response
 // if the response_type contains id_token or token then add a "#" else add a "?"
-if (ResponseTypeToken == "true")
+if (ResponseTypeToken == "true" || ResponseTypeIdToken == "true")
     application_uri = application_uri + "#";
 else
     application_uri = application_uri + "?";

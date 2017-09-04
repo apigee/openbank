@@ -10,6 +10,12 @@
         <Variable name="expires_in">
             <JSONPath>$.expires_in</JSONPath>
         </Variable>
+        <Variable name="RequestId">
+            <JSONPath>$.RequestId</JSONPath>
+        </Variable>
+        <Variable name="Type">
+            <JSONPath>$.Type</JSONPath>
+        </Variable>
     </JSONPayload>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </ExtractVariables>

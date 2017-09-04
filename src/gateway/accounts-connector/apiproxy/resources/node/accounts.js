@@ -694,7 +694,7 @@ exports.createAccountRequest = function (req, res) {
     var basePath = apigee.getVariable(req, 'appBasePath');
     var requestPayload = apigee.getVariable(req, 'request.content');
     requestPayload = JSON.parse(requestPayload);
-    requestPayload.Data.Status = "AwaitingAuthentication";
+    requestPayload.Status = "AwaitingAuthentication";
     requestPayload.name = generateUUID();
     requestPayload.TppId = req.query.tppId;
 
@@ -711,7 +711,7 @@ exports.createAccountRequest = function (req, res) {
             var accRequest = {};
             accRequest.Data = {};
             accRequest.Data.AccountRequestId = body.entities[0].name;
-            accRequest.Data.Status = body.entities[0].Data.Status;
+            accRequest.Data.Status = body.entities[0].Status;
             accRequest.Data.CreationDateTime = new Date(body.entities[0].created).toISOString();
             accRequest.Data.Permissions = body.entities[0].Data.Permissions;
             if (body.entities[0].Data.ExpirationDateTime) {
@@ -771,7 +771,7 @@ exports.getAccountRequest = function (req, res) {
                     var accRequest = {};
                     accRequest.Data = {};
                     accRequest.Data.AccountRequestId = body.entities[0].name;
-                    accRequest.Data.Status = body.entities[0].Data.Status;
+                    accRequest.Data.Status = body.entities[0].Status;
                     accRequest.Data.CreationDateTime = new Date(body.entities[0].created).toISOString();
                     accRequest.Data.Permissions = body.entities[0].Data.Permissions;
                     if (body.entities[0].Data.ExpirationDateTime) {
@@ -832,7 +832,7 @@ exports.updateAccountRequest = function (req, res) {
             var accRequest = {};
             accRequest.Data = {};
             accRequest.Data.AccountRequestId = body.entities[0].name;
-            accRequest.Data.Status = body.entities[0].Data.Status;
+            accRequest.Data.Status = body.entities[0].Status;
             accRequest.Data.CreationDateTime = new Date(body.entities[0].created).toISOString();
             accRequest.Data.Permissions = body.entities[0].Data.Permissions;
             if (body.entities[0].Data.ExpirationDateTime) {

@@ -14,11 +14,8 @@ var config = require("../../config.json");
 
 function createClientAssertion(clientId) {
     var jwtToken = jwt.sign({
-        "iss": clientId,
-        "exp": 1546300800,
-        "iat": 1502966900
-    }, cert, {algorithm: "RS256"});
-
+        "iss": clientId
+    }, cert, {algorithm: "RS256", "expiresIn": "1h"});
     return jwtToken;
 }
 function createRequestObjectJWT(clientId, redirectUri, state, nonce, scope, responseType, urns) {
@@ -63,7 +60,7 @@ function createRequestObjectJWT(clientId, redirectUri, state, nonce, scope, resp
         }
     };
 
-    var jwtToken = jwt.sign(requestJWT, cert, {algorithm: "RS256"});
+    var jwtToken = jwt.sign(requestJWT, cert, {algorithm: "RS256", "expiresIn": "1h"});
 
     return jwtToken;
 }
@@ -72,7 +69,7 @@ module.exports = function () {
 
 
     this.Given(/^TPP create a client Assertion JWT and stores in the global variable$/, function (callback) {
-        var clientAssertion = createClientAssertion(config.TPPAppClientId);//"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3ByaXZhdGUuYXBpLm9wZW5iYW5rLmNvbS8iLCJjbGllbnRJZCI6IlFhSkJoT0xUdkZqUVdUTzk3MDRhVnkxY3BWSzB0SzVMIiwiZXhwIjoxNTAzOTc2OTAwLCJpYXQiOjE1MDI5NjY5MDB9.be_yzudsgJ4YukFpSEq3BujUVjW5iL5NolPgu_UcbXjm5S6tH1Bx5Th61TnSjeK91TBPS6IUXjDE-bqsgJymAdHaGRum8Ixewh4oIwOuWMja2ozmhI4RB-tE0Clj6WJAsLT5sowv2gB61Yd3iGzwoNq9RgAU9uWkg7J61VXaiQ29QpQxfBX1XnXrrAh3s8vsyAa-ZiztMysW9GAcNOWBD836UE6uY4GaGdxH63MhN4iq3N8T-O93VC3aNjnI7EeuKpFUIfcCSZIVWlRWYCgsQ5NwtZD3uoXprALrP8eyZq_sUQXmL7YjI4O2_cGjZfHHkLazkoVJSxID8iCUjHm1Tw"
+        var clientAssertion = createClientAssertion(config.TPPAppClientId);
         this.apickli.setGlobalVariable('clientAssertion', clientAssertion);
         callback();
     });
@@ -104,7 +101,7 @@ module.exports = function () {
         callback();
     });
     this.Given(/^TPP create a auth code and stores in the global variable$/, function (callback) {
-        this.apickli.setRequestBody('{         "ClientId": "' + config.TPPAppClientId + '", "ResponseType": "code id_token",         "ResponseTypeToken": "false",         "ResponseTypeCode": "true",         "ResponseTypeIdToken": "false",         "Scope": "openid accounts",         "Type": "accounts",         "RedirectUri": "http://localhost/",         "RequestId": "1001",         "RequestState": "af0ifjsldkj",         "ApplicationName": "AISP_App_v2",                  "CustomerId": "10203040",         "Nonce": "n-0S6_WzA2Mj",         "TppId": "12345"     }');
+        this.apickli.setRequestBody('{         "ClientId": "' + config.TPPAppClientId + '", "ResponseType": "code id_token",         "ResponseTypeToken": "false",         "ResponseTypeCode": "true",         "ResponseTypeIdToken": "false",         "Scope": "openid accounts",         "Type": "accounts",         "RedirectUri": "http://localhost/",         "RequestId": "1008",         "RequestState": "af0ifjsldkj",         "ApplicationName": "AISP_App_v2",                  "CustomerId": "10203040",         "Nonce": "n-0S6_WzA2Mj",         "TppId": "12345"     }');
         this.apickli.setRequestHeader('x-apikey', config.internalAppKey);
         this.apickli.setRequestHeader('Content-Type', 'application/json');
         var othis = this;
@@ -165,20 +162,22 @@ module.exports = function () {
     });
 
     this.Given(/^Consent Succeeds$/, function () {
-        var condition = seleniumWebdriver.until.elementLocated({name: 'otp'});
+        var condition = seleniumWebdriver.until.elementIsVisible(this.driver.findElement({id: 'verify-otp-div'}));
         return this.driver.wait(condition, 10000);
     });
 
     this.When(/^User enter the otp (\d+) on sms verification page and submits the form$/, function (otp, callback) {
 
         this.driver.findElement({name: 'otp'}).sendKeys(otp);
-        this.driver.findElement({name: 'otp'}).submit();
+        this.driver.findElement({id: 'submitOtp'}).click();
         callback();
     });
 
-    this.Then(/^OTP verification Succeeds and User is redirected with auth code with (.*)$/, function (status, callback) {
-        this.driver.quit();
-        callback();
+    this.Then(/^OTP verification Succeeds and User is redirected with auth code with (.*)$/, function (status) {
+        var condition = seleniumWebdriver.until.urlContains('code');
+        this.driver.wait(condition, 15000);
+        return this.driver.quit();
+
     });
 
 

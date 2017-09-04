@@ -84,7 +84,8 @@ function getAccountRequestDetails(req, res, opt, customerAccountDetails) {
     request(options, function (error, response, result) {
         if (!error && response.statusCode == 200 && result && result.Data && result.Data.Permissions && result.Data.Permissions.length > 0) {
             var accountRequestDetails = result;
-
+            var msisdn =  req.session.customerDetails.Phone;
+            msisdn = msisdn.toString().slice(-4);
             var accountRequestData = {};
             accountRequestData.tpp = opt.ApplicationName;
             accountRequestData.permissions = accountRequestDetails.Data.Permissions;
@@ -93,6 +94,7 @@ function getAccountRequestDetails(req, res, opt, customerAccountDetails) {
             accountRequestData.TransactionToDateTime = accountRequestDetails.Data.TransactionToDateTime;
             accountRequestData.accounts = customerAccountDetails.Data.Account;
             accountRequestData.cookies = req.cookies;
+            accountRequestData.msisdn = msisdn;
             responseHandler.render(req, res, 'account_consent', accountRequestData);
         }
         else {
@@ -117,6 +119,8 @@ function getPaymentRequestDetails(req, res, opt, customerAccountDetails) {
 
             var payementRequestData = {};
             payementRequestData.tpp = consentData.application;
+            var msisdn =  req.session.customerDetails.Phone;
+            msisdn = msisdn.toString().slice(-4);
             var paymentRequest = [];
             if (paymentRequestDetails) {
                 if (paymentRequestDetails.InstructedAmount) {
@@ -132,6 +136,7 @@ function getPaymentRequestDetails(req, res, opt, customerAccountDetails) {
             }
             payementRequestData.debitorAccounts = customerAccountDetails.Data.Account;
             payementRequestData.cookies = req.cookies;
+            payementRequestData.msisdn = msisdn;
             responseHandler.render(req, res, 'payment_consent', payementRequestData);
 
         }
@@ -153,10 +158,6 @@ consent.showConsent = function (req, res, next) {
     if (!opt.RedirectUri) {
         opt.RedirectUri = "/";
     }
-    //set sca(otp) flag
-    //TODP define conditions to set the flag
-    req.session.flagSCA = true;
-
     var userDetails = jwt.verify(userDetailsJWT, config.loginJWTKey || 'ssshhhh');
     req.session.UserId = userDetails.user.uuid;
 
@@ -206,12 +207,19 @@ consent.createConsent = function (req, res, next, opt) {
             consent.getAccessToken(req, res, next, opt);
         }
         else {
-            responseHandler.redirectError(req, res, opt.RedirectUri + "?error=" + config.errors.consentNotCreated + "&state=" + opt.State);
+            responseHandler.redirectErrorJSON(req, res, opt.RedirectUri + "?error=" + config.errors.consentNotCreated + "&state=" + opt.State);
         }
 
     });
 
 
+}
+
+function isRequiredSCA(req, opt) {
+    if(req.headers['x-ob-google-sca-required'] == 'true' || req.headers['x-ob-google-sca-required'] == "True"){
+        return true;
+    }
+    return false;
 }
 
 consent.doConsent = function (req, res, next) {
@@ -226,7 +234,7 @@ consent.doConsent = function (req, res, next) {
     var config = req.app.get('config');
 
     // If the user allowed his consent the call the access token endpoint.
-    if (req.body.allow == 'allow') {
+    if (req.body.submitType == 'allow') {
         if (opt.Type == "accounts") {
 
             opt.SelectedAccounts = [];
@@ -245,11 +253,16 @@ consent.doConsent = function (req, res, next) {
                     }
                 }
             }
-            opt.flagSCA = req.session.flagSCA;
+            opt.flagSCA = isRequiredSCA(req, opt);
             //determine SCA flag value here
+            //TODO: define conditions to set the flag
+            req.session.flagSCA = opt.flagSCA;
             if (req.session.flagSCA) {
                 req.session.opt = opt;
-                responseHandler.redirect(req, res, config.scaApplication.transactionEndpoint);
+                if(!otp)
+                    var otp = require('./otp');
+                otp.generateOtp(req, res, next);
+                //responseHandler.redirect(req, res, config.scaApplication.transactionEndpoint);
             }
             else {
                 //create Consent, generate authcode and redirect
@@ -279,11 +292,11 @@ consent.doConsent = function (req, res, next) {
         }
         else {
             //req.session = null;
-            responseHandler.redirectError(req, res, opt.RedirectUri + "?error=" + config.errors.invalidType + "&state=" + opt.State);
+            responseHandler.redirectErrorJSON(req, res, opt.RedirectUri + "?error=" + config.errors.invalidType + "&state=" + opt.State);
         }
     } else {
         //req.session = null;
-        responseHandler.redirectError(req, res, opt.RedirectUri + "?error=" + config.errors.userCancelConsent + "&state=" + opt.State);
+        responseHandler.redirectErrorJSON(req, res, opt.RedirectUri + "?error=" + config.errors.userCancelConsent + "&state=" + opt.State);
     }
 
 };
@@ -369,7 +382,7 @@ consent.getAccessToken = function (req, res, next, opt) {
             //req.session.destroy();
             responseHandler.redirectFinal(req, res, redirect_uri);
         } else {
-            responseHandler.redirectError(req, res, opt.RedirectUri + "?error=" + config.errors.internalError + "&state=" + opt.State);
+            responseHandler.redirectErrorJSON(req, res, opt.RedirectUri + "?error=" + config.errors.internalError + "&state=" + opt.State);
         }
     });
 };

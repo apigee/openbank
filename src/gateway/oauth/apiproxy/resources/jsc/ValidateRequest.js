@@ -82,6 +82,10 @@ function parseResponseType(responseType) {
             bStatus = true;
         }
     }
+    // code token flow is rejected
+    if(responseTypeToken && responseTypeCode){
+        bStatus = false;
+    }
     context.setVariable("responseTypeToken", responseTypeToken);
     context.setVariable("responseTypeCode", responseTypeCode);
     context.setVariable("responseTypeIdToken", responseTypeIdToken);

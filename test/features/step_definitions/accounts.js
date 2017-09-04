@@ -6,10 +6,8 @@ var fs = require('fs-extra');
 var cert = fs.readFileSync(process.cwd() + '/testtpp_jwt.pem');
 function getClientAssertion(clientId) {
     var token_payment = jwt.sign({
-        "iss": clientId,
-        "exp": 1546300800,
-        "iat": 1502966900
-    }, cert, {"algorithm": "RS256"});
+        "iss": clientId
+    }, cert, {algorithm: "RS256", "expiresIn": "1h"});
 
     return token_payment;
 }
