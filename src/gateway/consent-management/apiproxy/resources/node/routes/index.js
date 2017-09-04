@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
         query.ql = "where CustomerId = '" + customerId + "'";
     }
     else if (req.query && req.query.requestId && req.query.consentType) {
-        query.ql = "where RequestId = '" + req.query.requestId + "' and ConsentType = 'account'";
+        query.ql = "where RequestId = '" + req.query.requestId + "' and ConsentType = '"+req.query.consentType+"'";
     }
     options = {
         url: packagejson.baasURI + "/" + packagejson.baasOrg + "/" + packagejson.baasApp + "/consents",
@@ -28,7 +28,7 @@ router.get('/', function (req, res, next) {
         qs: query
     };
     request(options, function (err, response, resbody) {
-        if (!err && response.statusCode == 200) {
+        if (!err && response.statusCode === 200) {
             var body = JSON.parse(resbody);
             if (body.entities)
                 res.send(body.entities);
@@ -59,7 +59,7 @@ router.get('/:consentId', function (req, res, next) {
         qs: query
     };
     request(options, function (err, response, resbody) {
-        if (!err && response.statusCode == 200) {
+        if (!err && response.statusCode === 200) {
             var body = JSON.parse(resbody);
             if (body.entities)
                 res.send(body.entities[0]);
@@ -93,7 +93,7 @@ router.post('/', function (req, res, next) {
         qs: query
     };
     request(options, function (err, response, resbody) {
-        if (!err && response.statusCode == 200) {
+        if (!err && response.statusCode === 200) {
             res.sendStatus(201);
         }
         else {
@@ -122,7 +122,7 @@ router.put('/:consentId', function (req, res, next) {
         qs: query
     };
     request(options, function (err, response, resbody) {
-        if (!err && response.statusCode == 200) {
+        if (!err && response.statusCode === 200) {
             res.sendStatus(200);
         }
         else {
@@ -148,7 +148,7 @@ router.delete('/:consentId', function (req, res, next) {
         qs: query
     };
     request(options, function (err, response, resbody) {
-        if (!err && response.statusCode == 200) {
+        if (!err && response.statusCode === 200) {
             res.sendStatus(200);
         }
         else {

@@ -13,7 +13,7 @@
             </Headers>
             <QueryParams>
                 <QueryParam name="requestId">{requestId}</QueryParam>
-                <QueryParam name="consentType">account</QueryParam>
+                <QueryParam name="consentType">accounts</QueryParam>
             </QueryParams>
             <Verb>GET</Verb>
         </Set>
