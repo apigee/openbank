@@ -142,18 +142,28 @@
             "required": false
           },
           {
+            "in": "formData",
+            "name": "nonce",
+            "description": "A nonce value",
+            "type": "string",
+            "required": false
+          },
+          {
             "in": "header",
             "name": "Authorization",
             "description": "Base 64 encoded string with client_id:client_secret.",
             "type": "string",
-            "required": true
+            "required": false
           },
           {
             "in": "formData",
             "name": "client_assertion_type",
             "description": "Required for client_assertion based authentication. The value MUST be 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'",
             "type": "string",
-            "required": false
+            "required": false,
+            "enum":[
+              "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+            ]
           },
           {
             "in": "formData",
