@@ -77,15 +77,15 @@
             <Request>
                 <Step>
                     <Name>Extract-JWT-Body</Name>
-                    <Condition>(request.formparam.client_assertion != null)</Condition>
+                    <Condition>(request.formparam.client_assertion != null) and (request.formparam.client_assertion != "")</Condition>
                 </Step>
                 <Step>
                     <Name>Authorize-Client-Application</Name>
-                    <Condition>(isError != true) and (request.formparam.client_assertion != null)</Condition>
+                    <Condition>(isError != true) and (request.formparam.client_assertion != null) and (request.formparam.client_assertion != "")</Condition>
                 </Step>
                 <Step>
                     <Name>Validate-Client-Assertion</Name>
-                    <Condition>(isError != true) and (request.formparam.client_assertion != null)</Condition>
+                    <Condition>(isError != true) and (request.formparam.client_assertion != null) and (request.formparam.client_assertion != "")</Condition>
                 </Step>
                 <Step>
                     <Name>Raise-Fault-Invalid-Request</Name>
