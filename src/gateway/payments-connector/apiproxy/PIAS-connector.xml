@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="PIAS-connector">
+    <Basepaths>/internal/connector/v2/pias</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1504689986726</CreatedAt>
+    <CreatedBy>rmahalank@apigee.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>PIAS-connector</DisplayName>
+    <LastModifiedAt>1504690110198</LastModifiedAt>
+    <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
+    <Policies>
+        <Policy>remove-query-param-apikey</Policy>
+        <Policy>verify-api-key</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>node://app.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>
