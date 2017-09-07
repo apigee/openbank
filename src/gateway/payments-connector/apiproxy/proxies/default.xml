@@ -22,6 +22,7 @@
         <BasePath>/internal/connector/v2/pias</BasePath>
         <Properties/>
         <VirtualHost>default</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="default">
         <TargetEndpoint>default</TargetEndpoint>
