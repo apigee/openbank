@@ -25,7 +25,6 @@ router.get('/payments/:paymentId', function (req, res, next) {
         if (!err && response.statusCode === 200) {
             try {
                 resbody = JSON.parse(resbody);
-                res.status(201);
                 var body = {};
                 body.Data = resbody.entities[0].Data;
                 body.Risk = resbody.entities[0].Risk;
@@ -69,7 +68,6 @@ router.get('/payment-submissions/:paymentSubmissionsId', function (req, res, nex
         if (!err && response.statusCode === 200) {
             try {
                 resbody = JSON.parse(resbody);
-                res.status(201);
                 var body = {};
                 body.Data = {};
                 body.Link = {"Self": resbody.entities[0].metadata.path};
