@@ -11,10 +11,8 @@ var joseHeader =
         "crit": ["b64", "http://openbanking.org.uk/iat", "http://openbanking.org.uk/iss"]
 
     };
-var jws = new KJUR.jws.JWS();
-var payload = Base64.encode(JSON.stringify(joseHeader)) + "." + Base64.encode(responsePayload);
 
-var signature = KJUR.jws.JWS.sign(joseHeader.alg, joseHeader, payload, privateKey);
-
-var detachedJws = Base64.encode(JSON.stringify(joseHeader)) + ".." + Base64.encode(signature);
+var jwt = KJUR.jws.JWS.sign(joseHeader.alg, joseHeader, responsePayload, privateKey);
+detachedJWT = jwt.split(".");
+var detachedJws = detachedJWT[0] + ".." + detachedJWT[2];
 context.setVariable("detachedJws", detachedJws);

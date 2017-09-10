@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="2" name="accountsv2">
+<APIProxy revision="36" name="accounts">
     <Basepaths>/accountsv2rupam</Basepaths>
+    <Basepaths>/apis/v2/ais</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1503040253483</CreatedAt>
-    <CreatedBy>rairupam@google.com</CreatedBy>
+    <CreatedAt>1504674844156</CreatedAt>
+    <CreatedBy>rmahalank@apigee.com</CreatedBy>
     <Description></Description>
     <DisplayName>Accountsv2Rupam</DisplayName>
-    <LastModifiedAt>1503319864063</LastModifiedAt>
-    <LastModifiedBy>rairupam@google.com</LastModifiedBy>
+    <LastModifiedAt>1504787264909</LastModifiedAt>
+    <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
     <Policies>
         <Policy>Access-App-Attributes</Policy>
+        <Policy>Add-CORS</Policy>
         <Policy>Add-Interaction-Id-header</Policy>
         <Policy>Add-JWS-Header</Policy>
         <Policy>Assign-APIKey-Header</Policy>
@@ -44,6 +46,7 @@
         <Policy>Raise-Fault-Invalid-Scope</Policy>
         <Policy>Raise-Fault-Invalid-Signature</Policy>
         <Policy>Raise-Fault-Missing-Request-Id</Policy>
+        <Policy>Raise-Fault-OPTIONS</Policy>
         <Policy>Raise-Fault-Quota-Exceeded</Policy>
         <Policy>RaiseFaultInvalidAccess</Policy>
         <Policy>RaiseFaultInvalidAccessToken</Policy>
