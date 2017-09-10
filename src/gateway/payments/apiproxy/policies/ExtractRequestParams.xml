@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="true" enabled="true" name="ExtractRequestParams">
+    <DisplayName>ExtractVariables Request Params</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Header name="x-fapi-financial-id">
+        <Pattern ignoreCase="true">{fapiFinancialId}</Pattern>
+    </Header>
+    <Header name="x-idempotency-key">
+        <Pattern ignoreCase="true">{idempotencyKey}</Pattern>
+    </Header>
+    <Header name="x-jws-signature">
+        <Pattern ignoreCase="true">{jwsSignature}</Pattern>
+    </Header>
+    <Header name="x-fapi-interaction-id">
+        <Pattern ignoreCase="true">{fapiInteractionId}</Pattern>
+    </Header>
+    <Header name="x-fapi-customer-ip-address">
+        <Pattern ignoreCase="true">{fapiCustomerIpAddr}</Pattern>
+    </Header>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

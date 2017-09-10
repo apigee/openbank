@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RaiseFaultInvalidAccessToken">
+    <DisplayName>RaiseFault Invalid Access Token</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+        
+            {
+            "ErrorResponseCode" : "401",
+            "ErrorDescription" : "Missing/Invalid Access Token"
+            }
+        
+    </Payload>
+            <StatusCode>401</StatusCode>
+            <ReasonPhrase>UnAuthorised</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Quota async="false" continueOnError="true" enabled="true" name="Quota-Client-Id" type="calendar">
+    <DisplayName>Quota Client Id</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Identifier ref="apigee.client_id"/>
+    <Allow count="1500"/>
+    <Interval>1</Interval>
+    <DataStoreFailureModeOpen>false</DataStoreFailureModeOpen>
+    <Distributed>true</Distributed>
+    <PreciseAtSecondsLevel>false</PreciseAtSecondsLevel>
+    <StartTime>2017-07-07 12:00:00</StartTime>
+    <Synchronous>true</Synchronous>
+    <TimeUnit>hour</TimeUnit>
+</Quota>

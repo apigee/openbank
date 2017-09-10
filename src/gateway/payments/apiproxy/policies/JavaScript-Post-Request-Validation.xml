@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="JavaScript-Post-Request-Validation">
+    <DisplayName>JavaScript Post Request Validation</DisplayName>
+    <Properties/>
+    <IncludeURL>jsc://ValidateRequest.js</IncludeURL>
+    <ResourceURL>jsc://ValidatePostRequest.js</ResourceURL>
+</Javascript>

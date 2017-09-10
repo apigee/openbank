@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-App-Attributes">
+    <DisplayName>ExtractVariables App Attributes</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">AccessEntity.Access-App-Attributes</Source>
+    <XMLPayload stopPayloadProcessing="false">
+        <Namespaces/>
+        <Variable name="appPublicKey" type="string">
+            <XPath>/App/Attributes/Attribute[Name='publicKey']/Value/text()</XPath>
+        </Variable>
+        <Variable name="appTppId" type="string">
+            <XPath>/App/Attributes/Attribute[Name='tppId']/Value/text()</XPath>
+        </Variable>
+        <Variable name="appId" type="string">
+            <XPath>/App/AppId/text()</XPath>
+        </Variable>
+    </XMLPayload>
+</ExtractVariables>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="Extract-Variables-PaymentId">
+    <DisplayName>Extract Variables PaymentId</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="paymentId">
+            <JSONPath>$.Data.PaymentId</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

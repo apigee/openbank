@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="10" name="Payment-Initiation-APIs">
+    <Basepaths>pis/open-banking/v1.0</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1505076567256</CreatedAt>
+    <CreatedBy>rmahalank@apigee.com</CreatedBy>
+    <Description>Specification for Payment Initiation</Description>
+    <DisplayName>Payment-Initiation-APIs</DisplayName>
+    <LastModifiedAt>1505081922536</LastModifiedAt>
+    <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
+    <Policies>
+        <Policy>Access-App-Attributes</Policy>
+        <Policy>Add-Interaction-Id-header</Policy>
+        <Policy>Add-JWS-Header</Policy>
+        <Policy>Assign-APIKey-Header</Policy>
+        <Policy>Assign-Response-Headers</Policy>
+        <Policy>Assign-Token-Details</Policy>
+        <Policy>Create-JWS-Header</Policy>
+        <Policy>Extract-App-Attributes</Policy>
+        <Policy>Extract-Private-Config</Policy>
+        <Policy>Extract-Variables-PaymentId</Policy>
+        <Policy>ExtractRequestParams</Policy>
+        <Policy>JavaScript-Get-Request-Validation</Policy>
+        <Policy>JavaScript-Post-Request-Validation</Policy>
+        <Policy>JavaScript-Validate-Request-Payload-JWS</Policy>
+        <Policy>Quota-Client-Id</Policy>
+        <Policy>Raise-Fault-Invalid-Accept-Header</Policy>
+        <Policy>Raise-Fault-Invalid-Request</Policy>
+        <Policy>Raise-Fault-Invalid-Scope</Policy>
+        <Policy>Raise-Fault-Payment-Id-mismatch</Policy>
+        <Policy>Raise-Fault-Quota-Exceeded</Policy>
+        <Policy>RaiseFaultInvalidAccessToken</Policy>
+        <Policy>Verify-Access-Token</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>openapi://association.json</Resource>
+        <Resource>jsc://CreateJWS.js</Resource>
+        <Resource>jsc://ValidateGetRequest.js</Resource>
+        <Resource>jsc://ValidatePostRequest.js</Resource>
+        <Resource>jsc://ValidateRequest.js</Resource>
+        <Resource>jsc://ValidateRequestPayloadJWS.js</Resource>
+        <Resource>jsc://jsrsasign-all-min.js</Resource>
+        <Resource>jsc://jws-initialization.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>
