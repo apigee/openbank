@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="11" name="consent-app">
-    <Basepaths>/apis/internal/v2/consentapp</Basepaths>
+<APIProxy revision="11" name="ConsentAppOBv1.0">
+    <Basepaths>/apis/internal/v1.0/consentapp</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1503310960649</CreatedAt>
     <CreatedBy>rmahalank@apigee.com</CreatedBy>
     <Description></Description>
-    <DisplayName>consent-appv2</DisplayName>
+    <DisplayName>ConsentAppOBv1.0</DisplayName>
     <LastModifiedAt>1503314214879</LastModifiedAt>
     <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
     <Policies>

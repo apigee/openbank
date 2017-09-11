@@ -20,6 +20,6 @@
     <Response>calloutResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/apis/internal/v2/consent/{consentId}</URL>
+        <URL>{{ edgeBasePath }}/apis/internal/v1.0/consent/{consentId}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

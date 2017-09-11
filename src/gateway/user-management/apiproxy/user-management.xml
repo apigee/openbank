@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="1" name="user-management">
-    <Basepaths>/internal/connector/v2/user/authenticate</Basepaths>
+<APIProxy revision="1" name="UserManagementOBv1.0">
+    <Basepaths>/internal/connector/v1.0/user/authenticate</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1502173871397</CreatedAt>
     <CreatedBy>rmahalank@apigee.com</CreatedBy>
     <Description></Description>
-    <DisplayName>user-management</DisplayName>
+    <DisplayName>UserManagementOBv1.0</DisplayName>
     <LastModifiedAt>1502173871397</LastModifiedAt>
     <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
     <Policies/>

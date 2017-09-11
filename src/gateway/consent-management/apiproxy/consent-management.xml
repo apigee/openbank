@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="1" name="consent-management_v2">
-    <Basepaths>/apis/internal/v2/consent/</Basepaths>
+<APIProxy revision="1" name="ConsentManagementOBv1.0">
+    <Basepaths>/apis/internal/v1.0/consent/</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1502347909524</CreatedAt>
     <CreatedBy>rairupam@google.com</CreatedBy>
     <Description></Description>
-    <DisplayName>consent-managementv2</DisplayName>
+    <DisplayName>ConsentManagementOBv1.0</DisplayName>
     <LastModifiedAt>1502358637592</LastModifiedAt>
     <LastModifiedBy>rairupam@google.com</LastModifiedBy>
     <Policies>

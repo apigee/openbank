@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="1" name="sms-token">
-    <Basepaths>/internal/apis/v1/sms</Basepaths>
+<APIProxy revision="1" name="SmsTokenOBv1.0">
+    <Basepaths>/internal/apis/v1.0/sms</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1459097476957</CreatedAt>
     <CreatedBy>noreply_admin@apigee.com</CreatedBy>
     <Description>sms-token</Description>
-    <DisplayName>sms-token</DisplayName>
+    <DisplayName>SMSTokenOBv1.0</DisplayName>
     <LastModifiedAt>1459097476957</LastModifiedAt>
     <LastModifiedBy>noreply_admin@apigee.com</LastModifiedBy>
     <Policies>

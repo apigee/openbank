@@ -72,7 +72,7 @@
         </Flow>
     </Flows>
     <HTTPProxyConnection>
-        <BasePath>/internal/apis/v1/sms</BasePath>
+        <BasePath>/internal/apis/v1.0/sms</BasePath>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="confirmation">

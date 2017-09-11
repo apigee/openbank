@@ -1,7 +1,7 @@
 {
-  "base_path": "/apis/internal/v2/consentapp",
-  "logo_uri": "/apis/internal/v2/consentapp/images/logo.png",
-  "consentPath": "{{ edgeBasePath }}/apis/internal/v2/consentapp/consent",
+  "base_path": "/apis/internal/v1.0/consentapp",
+  "logo_uri": "/apis/internal/v1.0/consentapp/images/logo.png",
+  "consentPath": "{{ edgeBasePath }}/apis/internal/v1.0/consentapp/consent",
   "cookieName":"OB_SESSION",
   "sessionImpl":"./cookie_session_impl",
   "cookieKey" : "{{ consentSessionKey }}",
@@ -10,10 +10,10 @@
     "header_background_color": "#FFF"
   },
   "loginApplication": {
-    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v2/loginapp"
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v1.0/loginapp"
   },
   "scaApplication": {
-    "transactionEndpoint": "/apis/internal/v2/consentapp/otp"
+    "transactionEndpoint": "/apis/internal/v1.0/consentapp/otp"
   },
   "authenticationTransaction": {
     "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1/authenticate",
@@ -72,7 +72,7 @@
     }
   },
   "createConsent": {
-    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v2/consent/",
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v1.0/consent/",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"

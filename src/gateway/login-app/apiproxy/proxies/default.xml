@@ -12,7 +12,7 @@
     </PostFlow>
     <Flows/>
     <HTTPProxyConnection>
-        <BasePath>/apis/internal/v2/loginapp</BasePath>
+        <BasePath>/apis/internal/v1.0/loginapp</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
         <VirtualHost>default</VirtualHost>

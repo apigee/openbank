@@ -125,11 +125,17 @@ resources:
       type: proxy
       items:
       - name: accounts-connector
+        apiName: AccountsOBv1.0Connector
       - name: sms-token
+        apiName: SmsTokenOBv1.0
       - name: consent-management
+        apiName: ConsentManagementOBv1.0
       - name: user-management
+        apiName: UserManagementOBv1.0
       - name: customer-management
+        apiName: CustomerManagementOBv1.0
       - name: login-app
+        apiName: LoginAppOBv1.0
     - name: developers
       type: developer
       items:
@@ -170,8 +176,11 @@ resources:
       type: proxy
       items:
       - name: oauth
+        apiName: OauthOBv1.0
       - name: consent-app
+        apiName: ConsentAppOBv1.0
       - name: accounts
+        apiName: AccountsOBv1.0
     - name: remainingApiProducts
       type: product
       items:

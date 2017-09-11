@@ -179,7 +179,7 @@
         </Flow>
     </Flows>
     <HTTPProxyConnection>
-        <BasePath>/apis/v2/oauth</BasePath>
+        <BasePath>/apis/v1.0/oauth</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
         <VirtualHost>default</VirtualHost>

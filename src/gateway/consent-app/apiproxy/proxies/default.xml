@@ -12,7 +12,7 @@
     </PostFlow>
     <Flows/>
     <HTTPProxyConnection>
-        <BasePath>/apis/internal/v2/consentapp</BasePath>
+        <BasePath>/apis/internal/v1.0/consentapp</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
         <VirtualHost>default</VirtualHost>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="2" name="accountsv2">
-    <Basepaths>/accountsv2rupam</Basepaths>
+<APIProxy revision="2" name="AccountsOBv1.0">
+    <Basepaths>/open-bank/apis/v1.0/ais</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1503040253483</CreatedAt>
     <CreatedBy>rairupam@google.com</CreatedBy>
     <Description></Description>
-    <DisplayName>Accountsv2Rupam</DisplayName>
+    <DisplayName>AccountsOBv1.0</DisplayName>
     <LastModifiedAt>1503319864063</LastModifiedAt>
     <LastModifiedBy>rairupam@google.com</LastModifiedBy>
     <Policies>

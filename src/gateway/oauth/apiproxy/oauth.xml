@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="14" name="oauth">
-    <Basepaths>/apis/v2/oauth</Basepaths>
+<APIProxy revision="14" name="OauthOBv1.0">
+    <Basepaths>/apis/v1.0/oauth</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1503481677175</CreatedAt>
     <CreatedBy>rmahalank@apigee.com</CreatedBy>
     <Description></Description>
-    <DisplayName>oauthv2</DisplayName>
+    <DisplayName>OauthOBv1.0</DisplayName>
     <LastModifiedAt>1503481677175</LastModifiedAt>
     <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
     <Policies>

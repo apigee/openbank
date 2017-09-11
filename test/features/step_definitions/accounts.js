@@ -20,7 +20,7 @@ module.exports = function () {
         this.apickli.setRequestHeader('x-apikey', this.apickli.getGlobalVariable("internalAppKey"));
         this.apickli.setRequestHeader('Content-Type', 'application/json');
         var othis = this;
-        this.apickli.post('/apis/v2/oauth/authorized', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/authorized', function (error, response) {
             if (!error && response.statusCode == 200) {
                 var accesstoken = JSON.parse(response.body).application_tx_response.split('&')[1];
                 accesstoken = accesstoken.split('=')[1];
@@ -49,7 +49,7 @@ module.exports = function () {
         this.apickli.setRequestBody('grant_type=client_credentials&scope=accounts&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
-        this.apickli.post('/apis/v2/oauth/token', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/token', function (error, response) {
             if (!error && response.statusCode == 200) {
                 var accesstoken = JSON.parse(response.body).access_token;
                 othis.apickli.setGlobalVariable('accesstoken_cc', accesstoken);
@@ -65,7 +65,7 @@ module.exports = function () {
         this.apickli.setRequestBody('grant_type=client_credentials&scope=openid&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
-        this.apickli.post('/apis/v2/oauth/token', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/token', function (error, response) {
             if (!error && response.statusCode == 200) {
                 var accesstoken = JSON.parse(response.body).access_token;
                 othis.apickli.setGlobalVariable('accesstoken_cc_invalid', accesstoken);
@@ -104,7 +104,7 @@ module.exports = function () {
         this.apickli.setRequestHeader('x-apikey', this.apickli.getGlobalVariable("internalAppKey"));
         this.apickli.setRequestHeader('Content-Type', 'application/json');
         var othis = this;
-        this.apickli.post('/apis/v2/oauth/authorized', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/authorized', function (error, response) {
             if (!error && response.statusCode == 200) {
                 var accesstoken = JSON.parse(response.body).application_tx_response.split('&')[1];
                 accesstoken = accesstoken.split('=')[1];
@@ -131,7 +131,7 @@ module.exports = function () {
         this.apickli.setRequestHeader('x-apikey', this.apickli.getGlobalVariable("internalAppKey"));
         this.apickli.setRequestHeader('Content-Type', 'application/json');
         var othis = this;
-        this.apickli.post('/apis/v2/oauth/authorized', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/authorized', function (error, response) {
             if (!error && response.statusCode == 200) {
                 var accesstoken = JSON.parse(response.body).application_tx_response.split('&')[1];
                 accesstoken = accesstoken.split('=')[1];
@@ -150,7 +150,7 @@ module.exports = function () {
         this.apickli.setRequestHeader('x-apikey', this.apickli.getGlobalVariable("internalAppKey"));
         this.apickli.setRequestHeader('Content-Type', 'application/json');
         var othis = this;
-        this.apickli.post('/apis/v2/oauth/authorized', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/authorized', function (error, response) {
             if (!error && response.statusCode == 200) {
                 var accesstoken = JSON.parse(response.body).application_tx_response.split('&')[1];
                 accesstoken = accesstoken.split('=')[1];

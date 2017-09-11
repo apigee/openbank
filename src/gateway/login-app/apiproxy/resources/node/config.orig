@@ -1,6 +1,6 @@
 {
-  "base_path": "/apis/internal/v2/loginapp",
-  "logo_uri": "/apis/internal/v2/loginapp/images/logo.png",
+  "base_path": "/apis/internal/v1.0/loginapp",
+  "logo_uri": "/apis/internal/v1.0/loginapp/images/logo.png",
     "jwtSignKey": "{{jwtSignKey}}",
   "authCookieName": "OB_AUTHSESSION",
   "authExpiryInSeconds":3600,

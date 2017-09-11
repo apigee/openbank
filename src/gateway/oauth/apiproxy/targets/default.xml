@@ -13,6 +13,6 @@
     <Flows/>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/apis/internal/v2/consentapp</URL>
+        <URL>{{ edgeBasePath }}/apis/internal/v1.0/consentapp</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

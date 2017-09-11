@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="1" name="login-app">
-    <Basepaths>/apis/internal/v2/loginapp</Basepaths>
+<APIProxy revision="1" name="LoginAppOBv1.0">
+    <Basepaths>/apis/internal/v1.0/loginapp</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1502182596826</CreatedAt>
     <CreatedBy>rmahalank@apigee.com</CreatedBy>
     <Description></Description>
-    <DisplayName>login-appv2</DisplayName>
+    <DisplayName>LoginAppOBv1.0</DisplayName>
     <LastModifiedAt>1502270565345</LastModifiedAt>
     <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
     <Policies>

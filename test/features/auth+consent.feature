@@ -13,7 +13,7 @@ Feature:
       | client_assertion_type | urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer |
       | client_assertion      | <jwtCredentials>                                                 |
     And Tpp sets Content-Type header to application/x-www-form-urlencoded
-    When the TPP makes the POST /apis/v2/oauth/token
+    When the TPP makes the POST /apis/v1.0/oauth/token
     Then response code should be <responseCode>
 
     Examples:
@@ -38,7 +38,7 @@ Feature:
       | response_type | <responseType> |
       | urns          | <urns>         |
       | nonce         | <nonce>        |
-    When the TPP makes the GET /apis/v2/oauth/authorize
+    When the TPP makes the GET /apis/v1.0/oauth/authorize
     Then response code should be <responseCode>
 
     Examples:
@@ -104,7 +104,7 @@ Feature:
       | redirect_uri          | <redirectUri>                                                    |
       | client_assertion_type | urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer |
       | client_assertion      | <jwtCredentials>                                                 |
-    When the TPP makes the POST /apis/v2/oauth/token
+    When the TPP makes the POST /apis/v1.0/oauth/token
     Then response code should be <responseCode>
 
     Examples:
