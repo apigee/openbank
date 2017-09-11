@@ -1,3 +1,19 @@
+/*
+ Copyright 2017 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 /*jslint node: true */
 'use strict';
 var apickli = require('apickli');
@@ -105,7 +121,7 @@ module.exports = function () {
         this.apickli.setRequestHeader('x-apikey', config.internalAppKey);
         this.apickli.setRequestHeader('Content-Type', 'application/json');
         var othis = this;
-        this.apickli.post('/apis/v2/oauth/authorized', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/authorized', function (error, response) {
             if (!error && response.statusCode == 200) {
                 var code = JSON.parse(response.body).application_tx_response.split('&')[1];
                 code = code.split('=')[1];
@@ -131,7 +147,7 @@ module.exports = function () {
         this.driver = new seleniumWebdriver.Builder()
             .forBrowser('chrome')
             .build();
-        return this.driver.get('https://' + config.edgeBasePath + '/apis/v2/oauth/authorize' + qs);
+        return this.driver.get('https://' + config.edgeBasePath + '/apis/v1.0/oauth/authorize' + qs);
     });
 
 

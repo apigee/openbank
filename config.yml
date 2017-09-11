@@ -125,11 +125,17 @@ resources:
       type: proxy
       items:
       - name: accounts-connector
+        apiName: AccountsOBv1.0Connector
       - name: sms-token
+        apiName: SmsTokenOBv1.0
       - name: consent-management
+        apiName: ConsentManagementOBv1.0
       - name: user-management
+        apiName: UserManagementOBv1.0
       - name: customer-management
+        apiName: CustomerManagementOBv1.0
       - name: login-app
+        apiName: LoginAppOBv1.0
     - name: developers
       type: developer
       items:
@@ -138,7 +144,7 @@ resources:
     - name: apiProducts
       type: product
       items:
-      - payload: '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_apis","environments":["test","prod"],"scopes":[], "proxies":["sms-token", "oauth","accounts-connector","consent-management","user-management","customer-management"]}'
+      - payload: '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_apis","environments":["test","prod"],"scopes":[], "proxies":["SmsTokenOBv1.0", "OauthOBv1.0","AccountsOBv1.0Connector","ConsentManagementOBv1.0","UserManagementOBv1.0","CustomerManagementOBv1.0"]}'
         name: internal_apis
     - name: developerApps
       type: app
@@ -170,12 +176,15 @@ resources:
       type: proxy
       items:
       - name: oauth
+        apiName: OauthOBv1.0
       - name: consent-app
+        apiName: ConsentAppOBv1.0
       - name: accounts
+        apiName: AccountsOBv1.0
     - name: remainingApiProducts
       type: product
       items:
-      - payload: '{"approvalType":"auto", "displayName":"Account APIs","name":"account_apis","environments":["test","prod"],"scopes":["accounts","openid"], "proxies":["oauth", "accounts"]}'
+      - payload: '{"approvalType":"auto", "displayName":"Account APIs","name":"account_apis","environments":["test","prod"],"scopes":["accounts","openid"], "proxies":["OauthOBv1.0", "AccountsOBv1.0"]}'
         name: account_apis
     - name: remainingDeveloperApps
       type: app
