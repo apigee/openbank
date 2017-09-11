@@ -84,7 +84,7 @@ function getAccountRequestDetails(req, res, opt, customerAccountDetails) {
     request(options, function (error, response, result) {
         if (!error && response.statusCode == 200 && result && result.Data && result.Data.Permissions && result.Data.Permissions.length > 0) {
             var accountRequestDetails = result;
-            var msisdn =  req.session.customerDetails.Phone;
+            var msisdn = req.session.customerDetails.Phone;
             msisdn = msisdn.toString().slice(-4);
             var accountRequestData = {};
             accountRequestData.tpp = opt.ApplicationName;
@@ -118,23 +118,22 @@ function getPaymentRequestDetails(req, res, opt, customerAccountDetails) {
             var paymentRequestDetails = result;
 
             var payementRequestData = {};
-            payementRequestData.tpp = consentData.application;
-            var msisdn =  req.session.customerDetails.Phone;
+            payementRequestData.tpp = opt.ApplicationName;
+            var msisdn = req.session.customerDetails.Phone;
             msisdn = msisdn.toString().slice(-4);
             var paymentRequest = [];
             if (paymentRequestDetails) {
-                if (paymentRequestDetails.InstructedAmount) {
-                    payementRequestData.amount = paymentRequestDetails.InstructedAmount.Amount;
-                    payementRequestData.currency = paymentRequestDetails.InstructedAmount.Currency;
+                if (paymentRequestDetails.Data && paymentRequestDetails.Data.Initiation && paymentRequestDetails.Data.Initiation.InstructedAmount) {
+                    payementRequestData.amount = paymentRequestDetails.Data.Initiation.InstructedAmount.Amount;
+                    payementRequestData.currency = paymentRequestDetails.Data.Initiation.InstructedAmount.Currency;
 
                 }
-                if (paymentRequestDetails.CreditorAgent && paymentRequestDetails.CreditorAccount) {
-                    payementRequestData.creditorAgentId = paymentRequestDetails.CreditorAgent.Identification;
-                    payementRequestData.creditorAccountId = paymentRequestDetails.CreditorAccount.Identification;
-                    payementRequestData.creditorName = paymentRequestDetails.CreditorAccount.Name;
+                if (paymentRequestDetails.Data && paymentRequestDetails.Data.Initiation && paymentRequestDetails.Data.Initiation.CreditorAccount) {
+                    payementRequestData.creditorAccountId = paymentRequestDetails.Data.Initiation.CreditorAccount.Identification;
+                    payementRequestData.creditorName = paymentRequestDetails.Data.Initiation.CreditorAccount.Name;
                 }
             }
-            payementRequestData.debitorAccounts = customerAccountDetails.Data.Account;
+            payementRequestData.debtorAccounts = customerAccountDetails.Data.Account;
             payementRequestData.cookies = req.cookies;
             payementRequestData.msisdn = msisdn;
             responseHandler.render(req, res, 'payment_consent', payementRequestData);
@@ -216,7 +215,8 @@ consent.createConsent = function (req, res, next, opt) {
 }
 
 function isRequiredSCA(req, opt) {
-    if(req.headers['x-ob-google-sca-required'] == 'true' || req.headers['x-ob-google-sca-required'] == "True"){
+    //TODO: define conditions to set the flag
+    if (req.headers['x-ob-google-sca-required'] == 'true' || req.headers['x-ob-google-sca-required'] == "True") {
         return true;
     }
     return false;
@@ -242,24 +242,22 @@ consent.doConsent = function (req, res, next) {
                 if (i.indexOf("accounts") != -1) {
                     if (!(req.body.accounts instanceof Array)) {
                         var account = JSON.parse(req.body.accounts);
-                        opt.SelectedAccounts.push({"Account": account.Account, "Servicer": account.Servicer});
+                        opt.SelectedAccounts.push(account);
                     }
                     else {
                         for (var j in req.body.accounts) {
                             var account = JSON.parse(req.body.accounts[j]);
-                            opt.SelectedAccounts.push({"Account": account.Account, "Servicer": account.Servicer});
+                            opt.SelectedAccounts.push(account);
                         }
 
                     }
                 }
             }
             opt.flagSCA = isRequiredSCA(req, opt);
-            //determine SCA flag value here
-            //TODO: define conditions to set the flag
             req.session.flagSCA = opt.flagSCA;
             if (req.session.flagSCA) {
                 req.session.opt = opt;
-                if(!otp)
+                if (!otp)
                     var otp = require('./otp');
                 otp.generateOtp(req, res, next);
                 //responseHandler.redirect(req, res, config.scaApplication.transactionEndpoint);
@@ -273,16 +271,20 @@ consent.doConsent = function (req, res, next) {
         }
         else if (opt.Type == "payments") {
             opt.SelectedAccounts = [];
-            var account = JSON.parse(req.body.debitorAccount);
-            opt.SelectedAccounts.push({"Account": account.Account, "Servicer": account.Servicer});
+            var account = JSON.parse(req.body.debtorAccount);
+            opt.SelectedAccounts.push(account);
 
-            //determine SCA flag value here
+            opt.flagSCA = isRequiredSCA(req, opt);
+            req.session.flagSCA = opt.flagSCA;
             if (req.session.flagSCA) {
-                res.redirect(config.scaApplication.transactionEndpoint);
+                req.session.opt = opt;
+                if (!otp)
+                    var otp = require('./otp');
+                otp.generateOtp(req, res, next);
+                //res.redirect(config.scaApplication.transactionEndpoint);
             }
             else {
                 //create Consent, generate authcode and redirect
-                opt.flagSCA = req.session.flagSCA;
                 consent.createConsent(req, res, next, opt);
             }
 
@@ -296,6 +298,7 @@ consent.doConsent = function (req, res, next) {
         }
     } else {
         //req.session = null;
+        //TODO:reject account/payment request
         responseHandler.redirectErrorJSON(req, res, opt.RedirectUri + "?error=" + config.errors.userCancelConsent + "&state=" + opt.State);
     }
 

@@ -65,7 +65,7 @@
     }
   },
   "getPaymentRequest": {
-    "transactionEndpoint": "{{ edgeBasePath }}/apis/v2/payments-connector/payments/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/pias/payments/",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"

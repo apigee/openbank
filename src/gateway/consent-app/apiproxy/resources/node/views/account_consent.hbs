@@ -99,7 +99,7 @@
                 type: 'post',
                 data: $form.serialize() + "&submitType="+ $(this).attr("value"),
                 headers: {
-                    "x-ob-google-sca-required": "True"   //If your header name has spaces or any other char not appropriate
+                    "x-ob-google-sca-required": "True"
                 },
                 contentType: "application/x-www-form-urlencoded",
                 success: function (data) {

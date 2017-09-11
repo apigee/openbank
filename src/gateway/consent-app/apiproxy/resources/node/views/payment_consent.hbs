@@ -6,33 +6,38 @@
             </div>
             <div class="panel-body">
                 <div class="consent-content">
-                    <form role="form" action="{{{basePath}}}/consent" method="post">
-                        <p><strong>{{tpp}}</strong> application is requesting your permission for the following transfer</p>
-                            <label class="account-select">Please select an account from which the amount has to be
-                                debited</label>
-                            <ul>
-                                <select class="dropbdown" id="debitorAccount" required name="debitorAccount">
-                                    <option selected="selected" disabled="disabled">--Select an Account--</option>
-                                    {{#each debitorAccounts}}
-                                        <option value="{{buildJSON this}}" name="debitorAccount">{{this.AccountId}}</option>
-                                    {{/each}}
-                                </select>
-                            </ul>
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div>I agree to transfer {{currency}} <strong>{{amount}}</strong> to account number:
-                                        <strong>{{creditorAccountId}}</strong></div>
-                                </div>
-                            </div>
-                        <p>By clicking <strong>Allow</strong>, you are allowing this TPP or Bank to use your information
-                            in accordance with their respective terms of service and privacy policies
+                    <form role="form" action="{{{basePath}}}/consent" method="post" id="consentform">
+                        <p><strong>{{tpp}}</strong> application is requesting your permission for the following transfer
                         </p>
-                        <div class="consent-button">
-                            <button type="submit" name="allow" value="allow" class="btn btn-primary grass-btn">Allow
-                            </button>
-                            <button type="submit" name="deny" value="deny" class="btn btn-primary grass-btn">Cancel
-                            </button>
+                        <label class="account-select">Please select an account from which the amount has to be
+                            debited</label>
+                        <ul>
+                            <select class="dropbdown" id="debtorAccount" required name="debtorAccount">
+                                <option selected="selected" disabled="disabled">--Select an Account--</option>
+                                {{#each debtorAccounts}}
+                                    <option value="{{buildJSON this}}" name="debtorAccount">{{this.AccountId}}</option>
+                                {{/each}}
+                            </select>
+                        </ul>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div>I agree to transfer {{currency}} <strong>{{amount}}</strong> to account number:
+                                    <strong>{{creditorAccountId}}</strong></div>
+                            </div>
+                        </div>
+                        <div id="consent-info-div">
+
+                            <p>By clicking <strong>Allow</strong>, you are allowing this TPP or Bank to use your
+                                information
+                                in accordance with their respective terms of service and privacy policies
+                            </p>
+                            <div class="consent-button">
+                                <button type="submit" name="allow" value="allow" class="btn btn-primary grass-btn">Allow
+                                </button>
+                                <button type="submit" name="deny" value="deny" class="btn btn-primary grass-btn">Cancel
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -40,3 +45,77 @@
         </div>
     </div>
 </div>
+<div id="otp-info-div" style="display: none;">
+    <p>
+        <centre><strong>Additional Verification needed for the Consent</strong></centre>
+    </p>
+</div>
+<div class="verify-pin-wrapper" id="verify-otp-div" style="display: none;">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="grass-form-wrapper">
+                <form role="form" action="{{{basePath}}}/otp/validate" method="POST" id="verifyOtp">
+                    <div class="form-group">
+                        <p>
+                            <strong>Verify your One Time Password number</strong>
+                        </p>
+                        <input class="form-control" placeholder="One time password" type="password" name="otp">
+                        <span class="help-block">
+              Please enter the
+              <strong>One Time Password</strong> sent to your mobile number ending with {{msisdn}}.
+            </span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="submitOtp" class="btn btn-primary grass-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#consentform").submit(function () {
+            return false;
+        });
+        $("#allow, #deny").click(function (event) {
+            $form = $("#consentform");//$(this).parent("form");
+            $.ajax({
+                url: $form.attr("action"),
+                type: 'post',
+                data: $form.serialize() + "&submitType=" + $(this).attr("value"),
+                headers: {
+                    "x-ob-google-sca-required": "True"
+                },
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    }
+                    else {
+                        document.getElementById("otp-info-div").style.display = "block";
+                        document.getElementById("verify-otp-div").style.display = "block";
+                        document.getElementById("consent-info-div").style.display = "none";
+                        document.getElementById("consent-div").style.opacity = "0.5";
+                        document.getElementById("consent-div").style.background = "#CCC";
+                        document.getElementById("consent-div").style.pointerEvents = "none";
+                    }
+                }
+            });
+        });
+
+
+        $("#verifyOtp").submit(function () {
+            return false;
+        });
+        $("#submitOtp").click(function (event) {
+            $form = $("#verifyOtp");//$(this).parent("form");
+            $.post($form.attr("action"), $form.serialize(), function (data) {
+                // do something with response (data)
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                }
+            });
+        });
+    });
+</script>
