@@ -26,5 +26,6 @@
     </Attributes>
     <AppEndUser>CustomerId</AppEndUser>
     <UserName>CustomerId</UserName>
+    <Scope>Type</Scope>
     <GenerateErrorResponse enabled="true"/>
 </OAuthV2>
