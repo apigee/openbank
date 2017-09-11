@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="10" name="Payment-Initiation-APIs">
+<APIProxy revision="12" name="Payment-Initiation-APIs">
     <Basepaths>pis/open-banking/v1.0</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1505076567256</CreatedAt>
+    <CreatedAt>1505131078432</CreatedAt>
     <CreatedBy>rmahalank@apigee.com</CreatedBy>
     <Description>Specification for Payment Initiation</Description>
     <DisplayName>Payment-Initiation-APIs</DisplayName>
-    <LastModifiedAt>1505081922536</LastModifiedAt>
+    <LastModifiedAt>1505131718414</LastModifiedAt>
     <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
     <Policies>
         <Policy>Access-App-Attributes</Policy>
@@ -22,6 +22,7 @@
         <Policy>ExtractRequestParams</Policy>
         <Policy>JavaScript-Get-Request-Validation</Policy>
         <Policy>JavaScript-Post-Request-Validation</Policy>
+        <Policy>JavaScript-Vadilate-And-Update-Payment-Submission</Policy>
         <Policy>JavaScript-Validate-Request-Payload-JWS</Policy>
         <Policy>Quota-Client-Id</Policy>
         <Policy>Raise-Fault-Invalid-Accept-Header</Policy>
@@ -30,6 +31,9 @@
         <Policy>Raise-Fault-Payment-Id-mismatch</Policy>
         <Policy>Raise-Fault-Quota-Exceeded</Policy>
         <Policy>RaiseFaultInvalidAccessToken</Policy>
+        <Policy>Response-Cache-Idempotency-Hit</Policy>
+        <Policy>Service-Callout-Fetch-and-Validate-Consent</Policy>
+        <Policy>Service-Callout-Validate-Payment-Request-Status</Policy>
         <Policy>Verify-Access-Token</Policy>
     </Policies>
     <ProxyEndpoints>
@@ -38,6 +42,7 @@
     <Resources>
         <Resource>openapi://association.json</Resource>
         <Resource>jsc://CreateJWS.js</Resource>
+        <Resource>jsc://VadilateAndUpdatePaymentSubmission.js</Resource>
         <Resource>jsc://ValidateGetRequest.js</Resource>
         <Resource>jsc://ValidatePostRequest.js</Resource>
         <Resource>jsc://ValidateRequest.js</Resource>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="true" enabled="true" name="Service-Callout-Fetch-and-Validate-Consent">
+    <DisplayName>Service Callout Fetch and Validate Consent</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myConsentRequest">
+        <Set>
+            <Headers>
+                <Header name="x-apikey">5GGIcSBWw4nY0WFAQSZE02GeWr8aKOwO</Header>
+            </Headers>
+            <QueryParams>
+                <QueryParam name="requestId">{requestId}</QueryParam>
+                <QueryParam name="consentType">accounts</QueryParam>
+            </QueryParams>
+            <Verb>GET</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>consentResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://rohan-test.apigee.net/apis/internal/v2/consent</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

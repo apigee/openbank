@@ -37,6 +37,10 @@
             <Step>
                 <Name>ExtractRequestParams</Name>
             </Step>
+            <Step>
+                <Condition>request.verb = "POST"</Condition>
+                <Name>Response-Cache-Idempotency-Hit</Name>
+            </Step>
         </Request>
         <Response>
             <Step>
@@ -58,7 +62,11 @@
     </PreFlow>
     <PostFlow name="PostFlow">
         <Request/>
-        <Response/>
+        <Response>
+            <Step>
+                <Name>Response-Cache-Idempotency-Hit</Name>
+            </Step>
+        </Response>
     </PostFlow>
     <Flows>
         <Flow name="CreateSingleImmediatePaymentRequest">
@@ -126,6 +134,19 @@
                 </Step>
                 <Step>
                     <Name>JavaScript-Validate-Request-Payload-JWS</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+                <Step>
+                    <Name>Service-Callout-Fetch-and-Validate-Consent</Name>
+                </Step>
+                <Step>
+                    <Name>Service-Callout-Validate-Payment-Request-Status</Name>
+                </Step>
+                <Step>
+                    <Name>JavaScript-Vadilate-And-Update-Payment-Submission</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>

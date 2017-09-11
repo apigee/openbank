@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="true" enabled="true" name="Service-Callout-Validate-Payment-Request-Status">
+    <DisplayName>Service Callout Validate Payment Request Status</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myPaymentRequest">
+        <Set>
+            <Headers>
+                <Header name="x-apikey">5GGIcSBWw4nY0WFAQSZE02GeWr8aKOwO</Header>
+            </Headers>
+            <Verb>GET</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>paymentsRequestResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://rohan-test.apigee.net/internal/connector/v2/pias/payments/{requestId}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

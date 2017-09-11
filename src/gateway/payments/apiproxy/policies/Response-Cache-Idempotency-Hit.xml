@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ResponseCache async="false" continueOnError="false" enabled="true" name="Response-Cache-Idempotency-Hit">
+    <DisplayName>Response Cache Idempotency Hit</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix/>
+        <KeyFragment ref="idempotencyKey"/>
+    </CacheKey>
+    <Scope>Global</Scope>
+    <ExpirySettings>
+        <ExpiryDate/>
+        <TimeOfDay/>
+        <TimeoutInSec ref="">1440</TimeoutInSec>
+    </ExpirySettings>
+    <SkipCacheLookup/>
+    <SkipCachePopulation/>
+</ResponseCache>
