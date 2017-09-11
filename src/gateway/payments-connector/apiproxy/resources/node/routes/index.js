@@ -49,6 +49,51 @@ router.get('/payments/:paymentId', function (req, res, next) {
     });
 });
 
+router.put('/payments/:paymentId', function (req, res, next) {
+    //get payment request
+    query = {};
+    query.client_id = packagejson.clientId;
+    query.client_secret = packagejson.clientSecret;
+    var paymentId = req.params.paymentId;
+    options = {
+        url: packagejson.baasURI + "/" + packagejson.baasOrg + "/" + packagejson.baasApp + "/payments/" + paymentId,
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Accept-Charset': 'utf-8'
+        },
+        body: req.body,
+        json: true,
+        qs: query
+    };
+    request(options, function (err, response, resbody) {
+        if (!err && response.statusCode === 200) {
+            try {
+                resbody = JSON.parse(resbody);
+                var body = {};
+                body.Data = resbody.entities[0].Data;
+                body.Risk = resbody.entities[0].Risk;
+                body.Link = {"Self": resbody.entities[0].metadata.path};
+                body.Meta = {};
+                body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
+                body.Data.PaymentId = resbody.entities[0].uuid;
+                body.Data.Status = resbody.entities[0].Status;
+                res.send(body);
+            }
+            catch (e) {
+                var err = new Error('Bad Request');
+                err.status = 400;
+                next(err);
+            }
+        }
+        else {
+            var err = new Error('Bad Request');
+            err.status = 400;
+            next(err);
+        }
+    });
+});
+
 router.get('/payment-submissions/:paymentSubmissionsId', function (req, res, next) {
     //get payment submission
     query = {};
@@ -99,7 +144,7 @@ router.post('/payments', function (req, res, next) {
     query.client_secret = packagejson.clientSecret;
     var customerId = req.body.customerId;
     var consentId = req.body.consentId;
-    req.body.Status = "AcceptedTechnicalValidation";
+    req.body.Status = "Pending";
     options = {
         url: packagejson.baasURI + "/" + packagejson.baasOrg + "/" + packagejson.baasApp + "/payments",
         method: 'POST',
@@ -148,7 +193,7 @@ router.post('/payment-submissions', function (req, res, next) {
     query.client_secret = packagejson.clientSecret;
     var customerId = req.body.customerId;
     var consentId = req.body.consentId;
-    req.body.Status = "AcceptedSettlementInProcess";
+    req.body.Status = "AcceptedCustomerProfile";
     options = {
         url: packagejson.baasURI + "/" + packagejson.baasOrg + "/" + packagejson.baasApp + "/payment-submissions",
         method: 'POST',
