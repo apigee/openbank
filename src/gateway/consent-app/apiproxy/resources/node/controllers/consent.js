@@ -119,7 +119,6 @@ function getAccountRequestDetails(req, res, opt, customerAccountDetails) {
     });
 }
 
-//TODO payment request yet to be defined
 function getPaymentRequestDetails(req, res, opt, customerAccountDetails) {
 //get customer account details
     var config = req.app.get('config');
