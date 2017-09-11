@@ -16,56 +16,56 @@
     "transactionEndpoint": "/apis/internal/v1.0/consentapp/otp"
   },
   "authenticationTransaction": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1/authenticate",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/authenticate",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "customerTransaction": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/customers",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/customers",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "accessTokenTransaction": {
-    "transactionEndpoint": "{{ edgeBasePath }}/apis/v2/oauth/authorized",
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/v1.0/oauth/authorized",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "generateOtp": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1.0/sms/otp/",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "validateOtp": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1.0/sms/otp/",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "getAccounts": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/accounts",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/accounts",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "getAccountRequest": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v2/accounts/accounts-requests",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/accounts/accounts-requests",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "getPaymentRequest": {
-    "transactionEndpoint": "{{ edgeBasePath }}/apis/v2/payments-connector/payments/",
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/v1.0/payments-connector/payments/",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"

@@ -30,6 +30,6 @@
     <Response>requestIdResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/internal/connector/v2/ais/account-requests/{RequestId}</URL>
+        <URL>{{ edgeBasePath }}/internal/connector/v1.0/ais/account-requests/{RequestId}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
