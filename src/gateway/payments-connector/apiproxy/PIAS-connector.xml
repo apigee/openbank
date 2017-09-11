@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="1" name="payments-connector">
-    <Basepaths>/internal/connector/v2/pias</Basepaths>
+    <Basepaths>/internal/connector/v1.0/pis</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1504766519231</CreatedAt>
     <CreatedBy>rmahalank@apigee.com</CreatedBy>

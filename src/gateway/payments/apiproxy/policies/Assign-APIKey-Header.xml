@@ -5,7 +5,7 @@
     <Properties/>
     <Add>
         <Headers>
-            <Header name="x-apikey">5GGIcSBWw4nY0WFAQSZE02GeWr8aKOwO</Header>
+            <Header name="x-apikey">{{ internalAppKey }}</Header>
         </Headers>
     </Add>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

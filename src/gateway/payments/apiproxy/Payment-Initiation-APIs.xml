@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="12" name="Payment-Initiation-APIs">
+<APIProxy revision="12" name="payments">
     <Basepaths>pis/open-banking/v1.0</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1505131078432</CreatedAt>
     <CreatedBy>rmahalank@apigee.com</CreatedBy>
     <Description>Specification for Payment Initiation</Description>
-    <DisplayName>Payment-Initiation-APIs</DisplayName>
+    <DisplayName>payments</DisplayName>
     <LastModifiedAt>1505131718414</LastModifiedAt>
     <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
     <Policies>

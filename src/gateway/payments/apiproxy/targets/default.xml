@@ -17,6 +17,6 @@
     <Flows/>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://rohan-test.apigee.net/internal/connector/v2/pias</URL>
+        <URL>{{ edgeBasePath }}/internal/connector/v1.0/pis</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

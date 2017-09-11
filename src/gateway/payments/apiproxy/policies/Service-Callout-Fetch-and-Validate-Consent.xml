@@ -5,7 +5,7 @@
     <Request clearPayload="true" variable="myConsentRequest">
         <Set>
             <Headers>
-                <Header name="x-apikey">5GGIcSBWw4nY0WFAQSZE02GeWr8aKOwO</Header>
+                <Header name="x-apikey">{{ internalAppKey }}</Header>
             </Headers>
             <QueryParams>
                 <QueryParam name="requestId">{requestId}</QueryParam>
@@ -18,6 +18,6 @@
     <Response>consentResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://rohan-test.apigee.net/apis/internal/v2/consent</URL>
+        <URL>{{ edgeBasePath }}/apis/internal/v1.0/consent</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
