@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AccessEntity async="false" continueOnError="false" enabled="true" name="Get-API-Product-Scopes">
-    <DisplayName>AccessEntity: Get API Product Scopes</DisplayName>
-    <Properties/>
-    <EntityIdentifier ref="apiproduct.name"/>
-    <EntityType  value="apiproduct"/>
-</AccessEntity>

@@ -1,0 +1,1297 @@
+{
+  "swagger": "2.0",
+  "host": "{{ host }}",
+  "schemes": [
+    "https"
+  ],
+  "info": {
+    "description": "Customer Bank Account Information",
+    "title": "Account Information",
+    "version": "0.0.1",
+    "termsOfService": "http://example.com/about/terms",
+    "contact": {
+      "name": "API Docs",
+      "url": "http://example.com/contact",
+      "email": "solution-ninjas@google.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://example.com"
+    }
+  },
+  "basePath": "/apis/v2/accounts",
+  "paths": {
+    "/accounts-requests": {
+      "post": {
+        "description": "<p>Create a new account Request</p>",
+        "summary": "Create a new Account Request",
+        "operationId": "Create AccountRequest",
+        "tags": [
+          "Create AccountRequest"
+        ],
+        "consumes": ["application/json"],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccReqResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized access"
+          }
+        },
+        "parameters": [{
+            "name": "Authorization",
+            "in": "header",
+            "description": "This is Mandatory parameter. Authorization Bearer {token}; token obtained using grant_type as 'client_credentials' (App credential based authorization) using  Oauth API",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content-Type application/json",
+            "type": "string",
+            "default": "application/json",
+            "required": true
+          },
+          {
+            "name": "AccountRequest",
+            "in": "body",
+            "description": "Account Request details",
+            "schema": {
+              "$ref": "#/definitions/NewAccountRequest"
+            },
+            "required": true
+          }
+        ]
+      }
+    },
+    "/accounts-requests/{accountRequestId}": {
+      "get": {
+        "description": "<p>This will return the account request details related to a specific account request Id  provided in the path parameter</p>",
+        "summary": "get Account Request ",
+        "operationId": "Get Account Request",
+        "tags": [
+          "Get AccountRequest"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccReqResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+ 
+        "parameters": [{
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization Bearer Token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "accountRequestId",
+            "in": "path",
+            "description": "Account Request Id ",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/{AccountId}/balance": {
+      "get": {
+        "description": "<p>This will return the account balance of a specific account of the user provided in the path parameter</p>",
+        "summary": "Account Balance ",
+        "operationId": "Account Balance",
+        "tags": [
+          "AccountBalance"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountBalance"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization Bearer Token",
+            "type": "string"
+          },
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "Account Id of the customer",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/{AccountId}": {
+      "get": {
+        "description": "<p>This will return the account Information of a specific account of the user provided in the path parameter</p>",
+        "summary": "Account Information ",
+        "operationId": "Account Information",
+        "tags": [
+          "AccountInformation"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountInformation"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization Bearer Token",
+            "type": "string"
+          },
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "Account Id of the customer",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/{AccountId}/transactions": {
+      "get": {
+        "description": "<p>This will return list of all the transactions of a specific account of the user provided in the path parameter</p>",
+        "summary": "Account Transactions ",
+        "operationId": "Account Transactions",
+        "tags": [
+          "AccountTransactions"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountTransactions"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization Bearer Token",
+            "type": "string"
+          },
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "Account Id of the customer",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/{AccountId}/beneficiaries": {
+      "get": {
+        "description": "<p>This will return list of all the beneficiaries of a specific account of the customer provided in the path parameter</p>",
+        "summary": "Account Beneficiaries ",
+        "operationId": "Account Beneficiaries",
+        "tags": [
+          "AccountBeneficiaries"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountBeneficiaries"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization Bearer Token",
+            "type": "string"
+          },
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "Account Id of the customer",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/{AccountId}/standing-orders": {
+      "get": {
+        "description": "<p>This will return list of all the standing orders of a specific account of the user provided in the path parameter</p>",
+        "summary": "Account StandingOrders ",
+        "operationId": "Account StandingOrders",
+        "tags": [
+          "AccountStandingOrders"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountStandingOrders"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization Bearer Token",
+            "type": "string"
+          },
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "Account Id of the customer",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/{AccountId}/direct-debits": {
+      "get": {
+        "description": "<p>This will return list of all the direct debits of a specific account of the user provided in the path parameter</p>",
+        "summary": "Account DirectDebits ",
+        "operationId": "Account DirectDebits",
+        "tags": [
+          "AccountDirectDebits"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountDirectDebits"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization Bearer Token",
+            "type": "string"
+          },
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "Account Id of the customer",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/": {
+      "get": {
+        "description": "<p>This will return account information of all accounts of the user provided in the account request</p>",
+        "summary": "Customer Info ",
+        "operationId": "Customer Info",
+        "tags": [
+          "CustomerInfo"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CustomerInfo"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "Authorization Bearer Token",
+          "type": "string"
+        }]
+      }
+    },
+    "/balance": {
+      "get": {
+        "description": "<p>This will return balance information of all accounts of the user provided in the account request</p>",
+        "summary": "Customer Balance ",
+        "operationId": "Customer Balance",
+        "tags": [
+          "CustomerBalance"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountBalance"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "Authorization Bearer Token",
+          "type": "string"
+        }]
+      }
+    },
+    "/transactions": {
+      "get": {
+        "description": "<p>This will return list of transactions of all accounts of the user provided in the account request</p>",
+        "summary": "Customer Transactions ",
+        "operationId": "Customer Transactions",
+        "tags": [
+          "CustomerTransactions"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountTransactions"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "Authorization Bearer Token",
+          "type": "string"
+        }]
+      }
+    },
+    "/beneficiaries": {
+      "get": {
+        "description": "<p>This will return list of beneficiaries associated with all accounts of the user provided in the account request</p>",
+        "summary": "Customer Beneficiaries ",
+        "operationId": "Customer Beneficiaries",
+        "tags": [
+          "CustomerBeneficiaries"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountBeneficiaries"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "Authorization Bearer Token",
+          "type": "string"
+        }]
+      }
+    },
+    "/standing-orders": {
+      "get": {
+        "description": "<p>This will return list of standing orders associated with all accounts of the user provided in the account request</p>",
+        "summary": "Customer StandingOrders ",
+        "operationId": "Customer StandingOrders",
+        "tags": [
+          "CustomerStandingOrders"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountStandingOrders"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "Authorization Bearer Token",
+          "type": "string"
+        }]
+      }
+    },
+    "/direct-debits": {
+      "get": {
+        "description": "<p>This will return list of direct debits associated with all accounts of the user provided in the account request</p>",
+        "summary": "Customer DirectDebits ",
+        "operationId": "Customer DirectDebits",
+        "tags": [
+          "CustomerDirectDebits"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AccountDirectDebits"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [{
+          "aisp_auth": ["accounts"]
+        }],
+        "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "description": "Authorization Bearer Token",
+          "type": "string"
+        }]
+      }
+    }
+  },
+ 
+  "securityDefinitions": {
+    "aisp_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "{{ host_withprotocol }}/apis/v2/oauth/authorize?client_id={{ client_id_aisp }}&redirect_uri={{ edge_host }}/v1/o/{{ org }}/apimodels/accountsapisv2/templateauths/aisp_auth/callback&response_type=code&state=af0ifjsldkj&scope=accounts&acr_values=2&request_id=firstaccountrequest",
+      "tokenUrl": "{{ host_withprotocol }}/apis/v2/oauth/token",
+      "flow": "accessCode",
+      "scopes": {
+        "accounts": "AISP apis"
+      }
+    }
+  },
+  "definitions": {
+    "NewAccountRequest": {
+      "type": "object",
+      "description": "New Accounts Request",
+      "properties": {
+        "ExpiresAt": {
+          "type": "string",
+          "description": "Determines what time the Request Expires"
+        },
+        "Permissions": {
+          "type": "array",
+          "items" : 
+          {
+            "type": "string"
+            },
+          "description": "Permissions being Requested"
+        },
+        "PermissionsExpirationDateTime": {
+          "type": "string",
+          "description": "Expiritaion Time for Permissions"
+        },
+        "TransactionFromDateTime": {
+          "type": "string",
+          "description": "Transaction From DateTime"
+        },
+        "TransactionToDateTime": {
+          "type": "string",
+          "description": "Transaction To DateTime"
+        },
+ 
+        "SelectedAccounts": {
+          "type": "array",
+          "description": "Accounts for which Account Request is made",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Account": {
+                "type": "object",
+                "description": "Accounts Details",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "Name of account"
+                  },
+                  "SchemeName": {
+                    "type": "string",
+                    "description": "SchemeName of account"
+                  },
+                  "Identification": {
+                    "type": "string",
+                    "description": "Identification of account"
+                  },
+                  "SecondaryIdentification": {
+                    "type": "string",
+                    "description": "Secondary Identification of account"
+                  }
+ 
+                }
+              },
+              "Servicer": {
+                "type": "object",
+                "description": "Servicer",
+                "properties": {
+                  "SchemeName": {
+                    "type": "string",
+                    "description": "Scheme Name of Servicer"
+                  },
+                  "Identification": {
+                    "type": "string",
+                    "description": "Identification of Servicer"
+                  }
+ 
+                }
+ 
+              }
+            }
+          }
+        }
+      }
+    },
+    "CustomerInfo": {
+      "description": "Account Information Object",
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "type": "string",
+          "description": "A unique identifier used to identify the account resource. This identifier has no meaning to the account owner"
+        },
+        "Currency": {
+          "type": "string",
+          "description": "Identification of the currency in which the account is held. Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account."
+        },
+        "Nickname": {
+          "type": "string",
+          "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account."
+        },
+        "Account": {
+          "type": "object",
+          "properties": {
+            "SecondaryIdentification": {
+              "type": "string",
+              "description": "This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number"
+            },
+            "Identification": {
+              "type": "string",
+              "description": "Unique and unambiguous identification of the servicing institution."
+            },
+            "SchemeName": {
+              "type": "string",
+              "description": "Name of the identification scheme, in a coded form as published in an external list."
+            },
+            "Name": {
+              "type": "string",
+              "description": "Name of the account, as assigned by the account servicing institution"
+            }
+          }
+ 
+        },
+        "Servicer": {
+          "type": "object",
+          "properties": {
+            "Identification": {
+              "type": "string",
+              "description": "Unique and unambiguous identification of the servicing institution."
+            },
+            "SchemeName": {
+              "type": "string",
+              "description": "Name of the identification scheme, in a coded form as published in an external list."
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "CustomerInfo"
+      }
+    },
+    "AccountInformation": {
+      "description": "Account Information Object",
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "type": "string",
+          "description": "A unique identifier used to identify the account resource. This identifier has no meaning to the account owner"
+        },
+        "Currency": {
+          "type": "string",
+          "description": "Identification of the currency in which the account is held. Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account."
+        },
+        "Nickname": {
+          "type": "string",
+          "description": "The nickname of the account, assigned by the account owner in order to provide an additional means of identification of the account."
+        },
+        "Account": {
+          "type": "object",
+          "properties": {
+            "SecondaryIdentification": {
+              "type": "string",
+              "description": "This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number"
+            },
+            "Identification": {
+              "type": "string",
+              "description": "Unique and unambiguous identification of the servicing institution."
+            },
+            "SchemeName": {
+              "type": "string",
+              "description": "Name of the identification scheme, in a coded form as published in an external list."
+            },
+            "Name": {
+              "type": "string",
+              "description": "Name of the account, as assigned by the account servicing institution"
+            }
+          }
+ 
+        },
+        "Servicer": {
+          "type": "object",
+          "properties": {
+            "Identification": {
+              "type": "string",
+              "description": "Unique and unambiguous identification of the servicing institution."
+            },
+            "SchemeName": {
+              "type": "string",
+              "description": "Name of the identification scheme, in a coded form as published in an external list."
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "CustomerInfo"
+      }
+    },
+    "AccountBalance": {
+      "description": "Account Balance Object",
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "type": "string",
+          "description": "A unique identifier used to identify the account resource. This identifier has no meaning to the account owner."
+        },
+        "CreditDebitIndicator": {
+          "type": "string",
+          "description": "Indicates whether the balance is a credit or a debit balance. Usage: A zero balance is considered to be a credit balance."
+        },
+        "Type": {
+          "type": "string",
+          "description": "Balance type, in a coded form."
+        },
+        "Amount": {
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "type": "string",
+              "description": "Amount To be transferred"
+            },
+            "Currency": {
+              "type": "string",
+              "description": "A code allocated to a currency by a Maintenance Agency "
+            }
+          }
+        },
+        "Date": {
+          "type": "object",
+          "properties": {
+            "Date": {
+              "type": "string",
+              "description": "ISO Date YYYY-MM-DD"
+            },
+            "DateTime": {
+              "type": "string",
+              "description": "1SO Date YYYY-MM-DD hh:mm:ss"
+            }
+          }
+        },
+        "CreditLine": {
+          "type": "object",
+          "properties": {
+            "Included": {
+              "type": "boolean",
+              "description": "Indicates whether or not the credit line is included in the balance of the account"
+            },
+            "Type": {
+              "type": "string",
+              "description": "Limit type, in a coded form."
+            },
+ 
+            "Amount": {
+              "type": "object",
+              "properties": {
+                "Amount": {
+                  "type": "string",
+                  "description": "Amount To be transferred"
+                },
+                "Currency": {
+                  "type": "string",
+                  "description": "A code allocated to a currency by a Maintenance Agency "
+                }
+              }
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "AccountBalance"
+      }
+    },
+    "AccountTransactions": {
+      "description": "Account Transaction Object",
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "type": "string",
+          "description": "Account number to be used for the purposes of display. It does not give the complete account number but an obfuscated version only showing last 4 digits. Leading digits are replaced by ‘X’."
+        },
+        "TransactionId": {
+          "type": "string",
+          "description": "maxLength 40 text"
+        },
+        "TransactionReference": {
+          "type": "string",
+          "description": "Unique reference for the transaction"
+        },
+        "CreditDebitIndicator": {
+          "type": "string",
+          "description": "Indicates whether the entry is a credit or a debit entry"
+        },
+        "Status": {
+          "type": "string",
+          "description": "Status of an entry on the books of the account servicer."
+        },
+        "TransactionInformation": {
+          "type": "string",
+          "description": "Further details of the transaction"
+        },
+        "AddressLine": {
+          "type": "string",
+          "description": "Information that locates and identifies a specific address"
+        },
+        "Amount": {
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "type": "string",
+              "description": "Amount To be transferred"
+            },
+            "Currency": {
+              "type": "string",
+              "description": "A code allocated to a currency by a Maintenance Agency "
+            }
+          }
+        },
+        "BookingDate": {
+        "type": "object",
+        "properties": {
+          "Date": {
+            "type": "string",
+            "description": "ISO Date YYYY-MM-DD"
+          },
+          "DateTime": {
+            "type": "string",
+            "description": "1SO Date YYYY-MM-DD hh:mm:ss"
+          }
+        }
+      },
+      "ValueDate": {
+        "type": "object",
+        "properties": {
+          "Date": {
+            "type": "string",
+            "description": "ISO Date YYYY-MM-DD"
+          },
+          "DateTime": {
+            "type": "string",
+            "description": "1SO Date YYYY-MM-DD hh:mm:ss"
+          }
+        }
+      },
+      "BankTransactionCode": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "string",
+            "description": "Proprietary bank transaction code to identify the underlying transaction."
+          },
+          "SubCode": {
+            "type": "string",
+            "description": "Identification of the issuer of the proprietary bank transaction code"
+          }
+        }
+      },
+      "Balance": {
+        "type": "object",
+        "properties": {
+          "CreditDebitIndicator": {
+            "type": "string",
+            "description": "Indicates whether the balance is a credit or a debit balance"
+          },
+          "Type": {
+            "type": "string",
+            "description": "Balance type, in a coded form."
+          },
+ 
+          "Amount": {
+            "type": "object",
+            "properties": {
+              "Amount": {
+                "type": "string",
+                "description": "Amount To be transferred"
+              },
+              "Currency": {
+                "type": "string",
+                "description": "A code allocated to a currency by a Maintenance Agency "
+              }
+            }
+          }
+        }
+      },
+      "ProprietaryBankTransactionCode": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "string",
+            "description": "Proprietary bank transaction code to identify the underlying transaction."
+          },
+          "Issuer": {
+            "type": "string",
+            "description": "Identification of the issuer of the proprietary bank transaction code."
+          }
+        }
+      },
+      "MerchantDetails": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "description": "Name by which the merchant is known."
+          },
+          "MerchantCategoryCode": {
+            "type": "string",
+            "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction."
+          }
+        }
+      }
+    },
+      "xml": {
+        "name": "AccountTransactions"
+      }
+    },
+    "AccountBeneficiaries": {
+      "description": "Account Beneficiary Object",
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "type": "string",
+          "description": "Account number to be used for the purposes of display. It does not give the complete account number but an obfuscated version only showing last 4 digits. Leading digits are replaced by ‘X’."
+        },
+        "BeneficiaryId": {
+          "type": "string",
+          "description": "maxLength 40 text"
+        },
+        "CreditorReferenceInformation": {
+          "type": "string",
+          "description": "Unique reference for the transaction"
+        },
+        "CreditorAccount": {
+          "type": "object",
+          "properties": {
+            "SecondaryIdentification": {
+              "type": "string",
+              "description": "This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number"
+            },
+            "Identification": {
+              "type": "string",
+              "description": "Unique and unambiguous identification of the servicing institution."
+            },
+            "SchemeName": {
+              "type": "string",
+              "description": "Name of the identification scheme, in a coded form as published in an external list."
+            },
+            "Name": {
+              "type": "string",
+              "description": "Name of the account, as assigned by the account servicing institution"
+            }
+          }
+ 
+        },
+        "Servicer": {
+          "type": "object",
+          "properties": {
+            "Identification": {
+              "type": "string",
+              "description": "Unique and unambiguous identification of the servicing institution."
+            },
+            "SchemeName": {
+              "type": "string",
+              "description": "Name of the identification scheme, in a coded form as published in an external list."
+            }
+          }
+        }
+      },
+ 
+      "xml": {
+        "name": "AccountBeneficiaries"
+      }
+    },
+    "AccReqResponse": {
+      "description": "Account-Request Response Object",
+      "type": "object",
+      "properties": {
+        "AccountRequestId": {
+          "type": "string",
+          "description": "Unique identification as assigned to identify the account request resource."
+        },
+        "Status": {
+          "type": "string",
+          "description": "Specifies the status of the account request resource in code form."
+        },
+        "PermissionsExpirationDateTime": {
+          "type": "string",
+          "description": "Specified date and time the permissions will expire."
+        },
+        "TransactionFromDateTime": {
+          "type": "string",
+          "description": "Specified start date and time for the transaction query period."
+        },
+        "TransactionToDateTime": {
+          "type": "string",
+          "description": "Specified end date and time for the transaction query period."
+        },
+        "Permissions": {
+          "type": "array",
+          "items" : {
+            "type" : "string"
+            },
+          "description": "Specified Permissions"
+ 
+        },
+        "SelectedAccounts": {
+          "type": "array",
+          "description": "Accounts for which Account Request is made",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Account": {
+                "type": "object",
+                "description": "Accounts Details",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "Name of account"
+                  },
+                  "SchemeName": {
+                    "type": "string",
+                    "description": "Scheme Name of account"
+                  },
+                  "Identification": {
+                    "type": "string",
+                    "description": "Identification of account"
+                  },
+                  "SecondaryIdentification": {
+                    "type": "string",
+                    "description": "Secondary Identification of account"
+                  }
+ 
+                }
+              },
+              "Servicer": {
+                "type": "object",
+                "description": "Servicer",
+                "properties": {
+                  "SchemeName": {
+                    "type": "string",
+                    "description": "Scheme Name of Servicer"
+                  },
+                  "Identification": {
+                    "type": "string",
+                    "description": "Identification of Servicer"
+                  }
+ 
+                }
+ 
+              }
+            }
+          }
+        }
+      },
+ 
+      "xml": {
+        "name": "AccReqResponse"
+      }
+    },
+    "AccountStandingOrders": {
+      "description": "Account Standing Orders Object",
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "type": "string",
+          "description": "Account number to be used for the purposes of display. It does not give the complete account number but an obfuscated version only showing last 4 digits. Leading digits are replaced by ‘X’."
+        },
+        "StandingOrderId": {
+          "type": "string",
+          "description": "A unique and immutable identifier used to identify the standing order resource."
+        },
+        "Currency": {
+          "type": "string",
+          "description": "Identification of the currency of the standing order"
+        },
+        "Frequency": {
+          "type": "string",
+          "description": "Frequency Of the standing order"
+        },
+        "CreditorReferenceInformation": {
+          "type": "string",
+          "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction."
+        },
+        "FirstPaymentDate": {
+          "type": "string",
+          "description": "The date on which the first payment for a Standing Order schedule will be made."
+        },
+        "NextPaymentDate": {
+          "type": "string",
+          "description": "The date on which the next payment for a Standing Order schedule will be made."
+        },
+        "FinalPaymentDate": {
+          "type": "string",
+          "description": "The date on which the final payment for a Standing Order schedule will be made"
+        },
+        "CreditorAccount": {
+          "type": "object",
+          "properties": {
+            "SecondaryIdentification": {
+              "type": "string",
+              "description": "This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify accounts with a roll number"
+            },
+            "Identification": {
+              "type": "string",
+              "description": "Unique and unambiguous identification of the servicing institution."
+            },
+            "SchemeName": {
+              "type": "string",
+              "description": "Name of the identification scheme, in a coded form as published in an external list."
+            },
+            "Name": {
+              "type": "string",
+              "description": "Name of the account, as assigned by the account servicing institution"
+            }
+          }
+ 
+        },
+        "Servicer": {
+          "type": "object",
+          "properties": {
+            "Identification": {
+              "type": "string",
+              "description": "Unique and unambiguous identification of the servicing institution."
+            },
+            "SchemeName": {
+              "type": "string",
+              "description": "Name of the identification scheme, in a coded form as published in an external list."
+            }
+          }
+        },
+        "FirstPaymentAmount": {
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "type": "string",
+              "description": "Amount To be transferred"
+            },
+            "Currency": {
+              "type": "string",
+              "description": "A code allocated to a currency by a Maintenance Agency "
+            }
+          }
+        },
+        "NextPaymentAmount": {
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "type": "string",
+              "description": "Amount To be transferred"
+            },
+            "Currency": {
+              "type": "string",
+              "description": "A code allocated to a currency by a Maintenance Agency "
+            }
+          }
+        },
+        "FinalPaymentAmount": {
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "type": "string",
+              "description": "Amount To be transferred"
+            },
+            "Currency": {
+              "type": "string",
+              "description": "A code allocated to a currency by a Maintenance Agency "
+            }
+          }
+        }
+ 
+      },
+ 
+      "xml": {
+        "name": "AccountStandingOrders"
+      }
+ 
+    },
+    "AccountDirectDebits": {
+      "description": "Account Direct Debits Object",
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "type": "string",
+          "description": "Account number to be used for the purposes of display. It does not give the complete account number but an obfuscated version only showing last 4 digits. Leading digits are replaced by ‘X’."
+        },
+        "DirectDebitId": {
+          "type": "string",
+          "description": "A unique and immutable identifier used to identify the direct debit resource."
+        },
+        "MandateIdentification": {
+          "type": "string",
+          "description": "Direct Debit reference"
+        },
+        "DirectDebitStatusCode": {
+          "type": "string",
+          "description": "Specifies the status of the direct debit in code form"
+        },
+        "Currency": {
+          "type": "string",
+          "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme"
+        },
+        "Name": {
+          "type": "string",
+          "description": "Name of Service User"
+        },
+        "PreviousPaymentDate": {
+          "type": "string",
+          "description": "Date of most recent direct debit collection."
+        },
+        "PreviousPaymentAmount": {
+          "type": "object",
+          "properties": {
+            "Amount": {
+              "type": "string",
+              "description": "Amount To be transferred"
+            },
+            "Currency": {
+              "type": "string",
+              "description": "A code allocated to a currency by a Maintenance Agency "
+            }
+          }
+        }
+ 
+      },
+ 
+      "xml": {
+        "name": "AccountDirectDebits"
+      }
+    }
+ 
+  }
+}

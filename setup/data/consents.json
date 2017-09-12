@@ -1,0 +1,114 @@
+[
+  {
+    "name": "C1001",
+    "AppId": "e43d6563-c0b0-4546-a05d-18610b8f6f1a",
+    "AuthType": "idpassword",
+    "BrowserInfo": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML",
+    "ConsentType": "accounts",
+    "CustomerId": "10203040",
+    "IsDeleted": false,
+    "NoOfAccessWithoutUsersPresence": 0,
+    "RequestId": "1001",
+    "SelectedAccounts": [
+      {
+        "Account": {
+          "SecondaryIdentification": "rairupamBankAccount1",
+          "Identification": "987654321",
+          "SchemeName": "BBAN",
+          "Name": "rairupamAccount1"
+        },
+        "Servicer": {
+          "Identification": "OBBANK123",
+          "SchemeName": "BICFI"
+        }
+      }
+    ],
+    "Status": "Authorized",
+    "TppId": "12345",
+    "UserId": "rairupam"
+  },
+  {
+    "name": "C1002",
+    "AppId": "e43d6563-c0b0-4546-a05d-18610b8f6f1a",
+    "AuthType": "idpassword",
+    "BrowserInfo": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML",
+    "ConsentType": "accounts",
+    "CustomerId": "10203040",
+    "IsDeleted": false,
+    "NoOfAccessWithoutUsersPresence": 0,
+    "RequestId": "1002",
+    "SelectedAccounts": [
+      {
+        "Account": {
+          "SecondaryIdentification": "MyAcc3",
+          "Identification": "111111111",
+          "SchemeName": "IBAN",
+          "Name": "MyAcount3"
+        },
+        "Servicer": {
+          "Identification": "OBBANK123",
+          "SchemeName": "BICFI"
+        }
+      }
+    ],
+    "Status": "Authorized",
+    "TppId": "12345",
+    "UserId": "rairupam"
+  },
+  {
+    "name": "C1003",
+    "AppId": "e43d6563-c0b0-4546-a05d-18610b8f6f1a",
+    "AuthType": "idpassword",
+    "BrowserInfo": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML",
+    "ConsentType": "accounts",
+    "CustomerId": "10203040",
+    "IsDeleted": false,
+    "NoOfAccessWithoutUsersPresence": 0,
+    "RequestId": "1003",
+    "SelectedAccounts": [
+      {
+        "Account": {
+          "SecondaryIdentification": "rairupamBankAccount1",
+          "Identification": "987654321",
+          "SchemeName": "BBAN",
+          "Name": "rairupamAccount1"
+        },
+        "Servicer": {
+          "Identification": "OBBANK123",
+          "SchemeName": "BICFI"
+        }
+      }
+    ],
+    "Status": "Authorized",
+    "TppId": "12345",
+    "UserId": "rairupam"
+  },
+  {
+    "name": "C1004",
+    "AppId": "e43d6563-c0b0-4546-a05d-18610b8f6f1a",
+    "AuthType": "idpassword",
+    "BrowserInfo": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML",
+    "ConsentType": "accounts",
+    "CustomerId": "10203040",
+    "IsDeleted": false,
+    "NoOfAccessWithoutUsersPresence": 0,
+    "RequestId": "1004",
+    "SelectedAccounts": [
+      {
+        "Account": {
+          "SecondaryIdentification": "rairupamBankAccount1",
+          "Identification": "987654321",
+          "SchemeName": "BBAN",
+          "Name": "rairupamAccount1"
+        },
+        "Servicer": {
+          "Identification": "OBBANK123",
+          "SchemeName": "BICFI"
+        }
+      }
+    ],
+    "Status": "Authorized",
+    "TppId": "12345",
+    "UserId": "rairupam"
+  }
+]

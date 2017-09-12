@@ -1,69 +1,55 @@
+/*
+ Copyright 2017 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 /**
  * IndexController
  * The controller for the home page operations.
  */
-
+var session = require('./../lib/session');
 var request = require('request');
-var stepsProcess = require('./stepsProcess');
 var index = {};
+var config = require('../config.json');
 
-index.consentTransaction = function(req, res, next) {
-    req.session.regenerate(function(err) {
-        if (err) {
-            throw new Error(err.message);
-        }
-    });
-    var sessionid = req.session.sessionid = req.query.sessionid;
 
-    // Call the transaction endpoint to get the details of the authentication
-    // After getting the details decide on the LOA based on acr value.
-    var config = req.app.get('config');
-    var options = {
-        'url': config.consentTransaction.transactionEndpoint + sessionid,
-        'method': config.consentTransaction.method,
-        'headers': config.consentTransaction.headers
-    };
-    request.get(options, function(error, response, body) {
-        // Once we get the response we need to store it till the end of the consent.
-        // We store the response in the session.
-        if (!error && response.statusCode == 200) {
-            try {
-                var consentTransaction = JSON.parse(body);
-                req.session.consentTransaction = consentTransaction;
-                var acr_value = consentTransaction.acr_values;
-                var loa = config.loa;
-                var loaActive = loa[acr_value];
-                var numSteps = loaActive.steps.length;
+index.storeSession = function (req, res, next) {
 
-                // If the number of steps is greater than or equal to 2 sort them on
-                // weight
-                if (numSteps > 1) {
-                    loaActive.steps.sort(function(a, b) {
-                        if (a.weight < b.weight) {
-                            return -1;
-                        }
-                        if (a.weight > b.weight) {
-                            return 1;
-                        }
-                        return 0;
-                    });
-                }
+    var state = makeState();//for loginApp redirection
+    var sessionObj = {
+        consentTransaction: req.body,
+        state: state
+    }
 
-                // Set the active loa steps into session and allow it to be handled by
-                // step process controller.
-                req.session.loaActiveSteps = loaActive.steps;
-                req.session.loaNumSteps = numSteps;
-                stepsProcess.loadStep(req, res, next);
+    if (req.session) {//Already a  session is found, but URL is wrong
+        console.log("Cookie Error, Invalid State: Invalid session");
+        session.replace(sessionObj, req, res);
+        //redirect to Error Page;
+    } else {
+        session.create(sessionObj, req, res);
+    }
 
-            } catch (ex) {}
-        } else {
-            var err = {
-                "error": body.error,
-                "description": body.error_description
-            };
-            stepsProcess.sendError(err, req, res, next);
-        }
-    });
+    res.redirect(config.loginApplication.transactionEndpoint + "?redirectUri=" + config.consentPath + "&state=" + state);
 };
 
+function makeState() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
 module.exports = index;

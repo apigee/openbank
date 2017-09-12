@@ -20,7 +20,7 @@ function all_component_features_quicktabs_default_quicktabs() {
   $quicktabs->title = 'API Documentation';
   $quicktabs->tabs = array(
     0 => array(
-      'vid' => 'oauthapis_methods',
+      'vid' => 'oauthapisv2_methods',
       'display' => 'frontpage',
       'args' => '',
       'title' => 'OAuth 2.0',
@@ -28,7 +28,7 @@ function all_component_features_quicktabs_default_quicktabs() {
       'type' => 'view',
     ),
     1 => array(
-      'vid' => 'accountsapis_methods',
+      'vid' => 'accountsapisv2_methods',
       'display' => 'frontpage',
       'args' => '',
       'title' => 'Account Access',
@@ -36,7 +36,7 @@ function all_component_features_quicktabs_default_quicktabs() {
       'type' => 'view',
     ),
     2 => array(
-      'vid' => 'payment-transfersapis_methods',
+      'vid' => 'paymentsapisv2_methods',
       'display' => 'frontpage',
       'args' => '',
       'title' => 'Payment Transfer',

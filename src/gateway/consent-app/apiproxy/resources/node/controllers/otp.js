@@ -1,24 +1,37 @@
-var stepsProcess = require('./stepsProcess');
+/*
+ Copyright 2017 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 var request = require('request');
 var otp = {};
+var responseHandler = require('./../lib/response_handler');
+/*
 
-otp.showMsisdnForm = function(req, res, next) {
-    var msisdn = req.session.authenticationTransaction.phone_number;
-    console.log('phone = ' + msisdn);
+otp.showMsisdnForm = function (req, res, next) {
+    var msisdn = req.session.customerDetails.Phone;
     if (msisdn === null || typeof msisdn === 'undefined' || msisdn === '') {
-        console.log('rendering otp page');
-        res.render('otp');
+        responseHandler.render(req, res, 'otp');
     } else
         otp.generateOtp(req, res, next);
 };
+ */
 
-otp.generateOtp = function(req, res, next) {
+otp.generateOtp = function (req, res, next) {
     var config = req.app.get('config');
-
-    var msisdn = req.body.msisdn || req.session.authenticationTransaction.phone_number;
-    console.log('sending OTP to ' + msisdn);
-
-    // call the authentication endpoint to validate the user credentials
+    var msisdn = req.session.customerDetails.Phone;
+    // call the sms authentication endpoint to validate the user credentials
     var options = {
         'url': config.generateOtp.transactionEndpoint + msisdn,
         'method': config.generateOtp.method,
@@ -26,27 +39,32 @@ otp.generateOtp = function(req, res, next) {
         "json": true
     };
 
-    request(options, function(error, response, body) {
-        if (response.statusCode) {
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
             req.session.msisdn = msisdn;
-            // req.originalUrl = config.base_path+'/otp/validate';
-            // next();
-            otp.showOtpForm(req, res, next);
+            //otp.showOtpForm(req, res, next);
+            var opt = req.session.opt;
+            req.session = {};
+            req.session.opt = opt;
+            responseHandler.sendText(req, res, "OK")
+        }
+        else {
+            responseHandler.redirectErrorJSON(req, res, req.session.opt.redirectUri + "?error=" + config.errors.invalidOtp + "&state=" + req.session.opt.state);
         }
     });
 };
+/*
 
-otp.showOtpForm = function(req, res, next) {
-    var msisdn = req.body.msisdn || req.session.authenticationTransaction.phone_number;
+otp.showOtpForm = function (req, res, next) {
+    var msisdn = req.body.msisdn || req.session.customerDetails.Phone;
     msisdn = msisdn.toString().slice(-4);
     var otpData = {};
     otpData.msisdn = msisdn;
-
-    console.log('rendering otp verify page');
-    res.render('verify_otp', otpData);
+    responseHandler.render(req, res, 'verify_otp', otpData);
 };
+*/
 
-otp.validateOtp = function(req, res, next) {
+otp.validateOtp = function (req, res, next) {
     var otp = req.body.otp;
     var msisdn = req.session.msisdn;
 
@@ -57,15 +75,13 @@ otp.validateOtp = function(req, res, next) {
         'headers': config.validateOtp.headers,
         "json": true
     };
-    request(options, function(error, response, body) {
+    request(options, function (error, response, body) {
         if (response.statusCode == 200) {
-            stepsProcess.loadStep(req, res, next);
+            if(!consent)
+                var consent = require('./consent');
+            consent.createConsent(req, res, next, req.session.opt);
         } else {
-            var err = {
-                "error": body.error,
-                "description": body.error_description
-            };
-            stepsProcess.sendError(err, req, res, next);
+            responseHandler.redirectErrorJSON(req, res, req.session.opt.redirectUri + "?error=" + config.errors.invalidOtp + "&state=" + req.session.opt.state);
         }
     });
 }

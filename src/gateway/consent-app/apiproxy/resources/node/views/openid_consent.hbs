@@ -1,0 +1,55 @@
+{{!--
+ Copyright 2017 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ --}}
+
+<div class="consent-page-wrapper">
+    <div class="consent-page">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Access authorization</h2>
+            </div>
+            <div class="panel-body">
+                <div class="consent-content">
+                    <form role="form" action="{{{basePath}}}/consent" method="post">
+                        <p><strong>{{tpp}}</strong> application is requesting your permission to share the following details</p>
+                        {{#if permissions}}
+                            <ul class="list-group">
+                                {{#each permissions}}
+                                    <li class="list-group-item">{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        {{else}}
+                            <h3>The application does not require any permissions.</h3>
+                        {{/if}}
+
+                        {{#if tnc}}
+                            <p>I agree to the <a href="{{tnc}}" class="tnc-link" target="_blank">Terms and
+                                conditions</a></p>
+                        {{/if}}
+                        <p>By clicking <strong>Allow</strong>, you are allowing this TPP or Bank to use your information
+                            in accordance with their respective terms of service and privacy policies
+                        </p>
+                        <div class="consent-button">
+                            <button type="submit" name="allow" value="allow" class="btn btn-primary grass-btn">Allow
+                            </button>
+                            <button type="submit" name="deny" value="deny" class="btn btn-primary grass-btn">Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

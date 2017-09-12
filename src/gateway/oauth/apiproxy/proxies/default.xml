@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright 2017 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limit
+-->
 <ProxyEndpoint name="default">
     <Description/>
-    <FaultRules>
-        <FaultRule name="InvalidClientID">
-            <Step>
-                <Condition>verifyapikey.Authorize-Client-Application.failed = true</Condition>
-                <Name>Error-Invalid-client_id</Name>
-                <FaultRules/>
-            </Step>
-        </FaultRule>
-    </FaultRules>
+    <FaultRules/>
     <PreFlow name="PreFlow">
-        <Request>
-            <Step>
-                <Condition>request.verb = "OPTIONS"</Condition>
-                <Name>Cors-Preflighted</Name>
-            </Step>
-        </Request>
+        <Request/>
         <Response/>
     </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
     <Flows>
         <Flow name="authorization">
             <Description/>
@@ -27,8 +33,8 @@
                     <Name>Validate-Request</Name>
                 </Step>
                 <Step>
-                    <Condition>(error_type != null And error_type != "")</Condition>
-                    <Name>Error-Invalid-request</Name>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                    <Condition>isError = true</Condition>
                 </Step>
                 <Step>
                     <Name>Authorize-Client-Application</Name>
@@ -37,18 +43,11 @@
                     <Name>Get-API-Product-Scopes</Name>
                 </Step>
                 <Step>
-                    <Name>Security-AuthorizeGet-Client-Attributes</Name>
+                    <Name>Validate-Request-JWT</Name>
                 </Step>
                 <Step>
-                    <Name>Ext-Validate-request-parameters</Name>
-                </Step>
-                <Step>
-                    <Condition>(error_type != null And error_type = "invalid_redirect_uri")</Condition>
-                    <Name>Error-Invalid-request</Name>
-                </Step>
-                <Step>
-                    <Condition>(error_variable != null)</Condition>
-                    <Name>Invalid-Authorization-Request</Name>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                    <Condition>isError = true</Condition>
                 </Step>
                 <Step>
                     <Condition>nonce != null and nonce != ""</Condition>
@@ -67,28 +66,56 @@
                     <Name>Populate-Nonce-Information</Name>
                 </Step>
                 <Step>
-                    <Name>Create-Application-Session</Name>
+                    <Name>Service-Callout-Validate-Account-Request</Name>
+                    <Condition>type != null and type != "" and type == "accounts"</Condition>
                 </Step>
                 <Step>
-                    <Name>Store-Application-Session</Name>
+                    <Name>Service-Callout-Validate-Payment-Request</Name>
+                    <Condition>type != null and type != "" and type == "payments"</Condition>
+                </Step>
+                <Step>
+                    <Name>Validate-Account-Request</Name>
+                </Step>
+                <Step>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                    <Condition>isError = true</Condition>
+                </Step>
+                <Step>
+                    <Name>Create-Application-Session-Consent</Name>
                 </Step>
             </Request>
-            <Response>
-                <Step>
-                    <Name>Assign.RedirectConsentApp</Name>
-                </Step>
-            </Response>
+            <Response/>
             <Condition>(proxy.pathsuffix MatchesPath "/authorize")</Condition>
         </Flow>
         <Flow name="token">
             <Description/>
             <Request>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials"</Condition>
-                    <Name>OAuth.GenerateAccessToken</Name>
+                    <Name>Extract-JWT-Body</Name>
+                    <Condition>(request.formparam.client_assertion != null) and (request.formparam.client_assertion != "")</Condition>
                 </Step>
                 <Step>
-                    <Name>OAuth.RefreshAccessToken</Name>
+                    <Name>Authorize-Client-Application</Name>
+                    <Condition>(isError != true) and (request.formparam.client_assertion != null) and (request.formparam.client_assertion != "")</Condition>
+                </Step>
+                <Step>
+                    <Name>Validate-Client-Assertion</Name>
+                    <Condition>(isError != true) and (request.formparam.client_assertion != null) and (request.formparam.client_assertion != "")</Condition>
+                </Step>
+                <Step>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                    <Condition>isError = true</Condition>
+                </Step>
+                <Step>
+                    <Name>Assign-Auth-Basic-Header</Name>
+                    <Condition>(request.formparam.client_assertion != null)</Condition>
+                </Step>
+                <Step>
+                    <Condition>request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials"</Condition>
+                    <Name>Security-Generate-Access-Token</Name>
+                </Step>
+                <Step>
+                    <Name>Security-Refresh-Access-Token</Name>
                 </Step>
             </Request>
             <Response>
@@ -97,145 +124,86 @@
                     <Name>Extract-Token-Response</Name>
                 </Step>
                 <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
-                    <Name>Get-Application-Attributes</Name>
+                    <Condition>Type = "accounts" and request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
+                    <Name>Service-Callout-Update-Account-Request</Name>
+                </Step>
+                <Step>
+                    <Condition>Type = "payments" and request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
+                    <Name>Service-Callout-Update-Payment-Request</Name>
                 </Step>
                 <Step>
                     <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
-                    <Name>Assign-ID-Token-Payload-authorization_code-flow</Name>
-                </Step>
-                <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
-                    <Name>Generate-ID-Token</Name>
-                </Step>
-                <Step>
-                    <Condition>request.formparam.grant_type = "authorization_code" and oauthV2.failed = false</Condition>
-                    <Name>Assign.TokenResponse</Name>
+                    <Name>Assign-Token-Response</Name>
                 </Step>
                 <Step>
                     <Condition>request.formparam.grant_type = "client_credentials" and oauthV2.failed = false</Condition>
-                    <Name>Assign.TokenResponseCC</Name>
+                    <Name>Assign-Token-Response-CC</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
         </Flow>
-        <Flow name="authorized-transaction">
+        <Flow name="authorized">
             <Description/>
             <Request>
                 <Step>
-                    <Name>Verify.ConsentAppAPIKey</Name>
+                    <Name>ConsentAppAPIKey</Name>
                 </Step>
                 <Step>
-                    <Name>Extract-Transaction-session-id</Name>
+                    <Name>Extract-Body-Attributes</Name>
                 </Step>
                 <Step>
-                    <Condition>auth.transaction.session.id != null and auth.transaction.session.id != ""</Condition>
-                    <Name>Get-Application-Session</Name>
-                </Step>
-                <Step>
-                    <Condition>(auth.transaction.session.id = null or rauth.transaction.session.id = "") or (session.Payload = null) or (session.Payload = "")</Condition>
-                    <Name>Error-Response-Invalid-Session</Name>
-                </Step>
-                <Step>
-                    <Name>Extract-Application-Session-information</Name>
-                </Step>
-                <Step>
-                    <Condition>response_type_id_token = true</Condition>
-                    <Name>Get-Application-Attributes</Name>
-                </Step>
-                <Step>
-                    <Name>Assign-JWT-Payload</Name>
+                    <Name>Assign-Response-Type</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
-                    <Condition>response_type_code = true</Condition>
+                    <Condition>ResponseTypeCode = true</Condition>
                     <Name>Generate-Authorization-Code</Name>
                 </Step>
                 <Step>
-                    <Condition>response_type_token = true</Condition>
+                    <Condition>ResponseTypeToken = true</Condition>
                     <Name>Security-Generate-Access-Token-Implicit</Name>
                 </Step>
                 <Step>
-                    <Condition>response_type_id_token = true</Condition>
-                    <Name>Generate-ID-Token</Name>
+                    <Condition>Type = "accounts" and ResponseTypeToken = true</Condition>
+                    <Name>Service-Callout-Update-Account-Request</Name>
                 </Step>
                 <Step>
-                    <Name>Ext-Construct-Response</Name>
+                    <Condition>Type = "payments" and ResponseTypeToken = true</Condition>
+                    <Name>Service-Callout-Update-Payment-Request</Name>
+                </Step>
+                <Step>
+                    <Name>Extract-Private-Key</Name>
+                </Step>
+                <Step>
+                    <Name>Generate-Id-Token</Name>
+                    <Condition>ResponseTypeIdToken = true</Condition>
+                </Step>
+                <Step>
+                    <Name>Service-Callout-Create-ID-token</Name>
+                    <Condition>ResponseTypeIdToken = true</Condition>
+                </Step>
+                <Step>
+                    <Name>Construct-Redirect-Application-URI</Name>
                 </Step>
                 <Step>
                     <Name>Assign-Consent-Application-TX-Response</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/authorized/transactions/*") and (request.verb = "POST")</Condition>
-        </Flow>
-        <Flow name="authorized-transactions-all">
-            <Description/>
-            <Request>
-                <Step>
-                    <Name>Verify.ConsentAppAPIKey</Name>
-                </Step>
-                <Step>
-                    <Name>Extract-Transaction-session-id</Name>
-                </Step>
-                <Step>
-                    <Condition>auth.transaction.session.id != null and auth.transaction.session.id != ""</Condition>
-                    <Name>Get-Application-Session</Name>
-                </Step>
-                <Step>
-                    <Condition>(auth.transaction.session.id = null or request.formparam.sessionid = "") or (session.Payload = null) or (session.Payload = "")</Condition>
-                    <Name>Error-Response-Invalid-Session</Name>
-                </Step>
-                <Step>
-                    <Name>Extract-Application-Session-information</Name>
-                </Step>
-                <Step>
-                    <Condition>response_type_id_token = true</Condition>
-                    <Name>Get-Application-Attributes</Name>
-                </Step>
-                <Step>
-                    <Name>Assign-JWT-Payload</Name>
-                </Step>
-            </Request>
-            <Response>
-                <Step>
-                    <Condition>response_type_code = true</Condition>
-                    <Name>Generate-Authorization-Code</Name>
-                </Step>
-                <Step>
-                    <Condition>response_type_token = true</Condition>
-                    <Name>Security-Generate-Access-Token-Implicit</Name>
-                </Step>
-                <Step>
-                    <Condition>response_type_id_token = true</Condition>
-                    <Name>Generate-ID-Token</Name>
-                </Step>
-                <Step>
-                    <Name>Ext-Construct-Response</Name>
-                </Step>
-                <Step>
-                    <Name>Assign-Consent-Application-TX-Response</Name>
-                </Step>
-            </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/authorized/transactions") and (request.verb = "POST")</Condition>
-        </Flow>
-        <Flow name="DefaultFlow">
-            <Description/>
-            <Request>
-                <Step>
-                    <Name>Error-Operation-Unavailable</Name>
-                </Step>
-            </Request>
-            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/authorized") and (request.verb = "POST")</Condition>
         </Flow>
     </Flows>
-    <PostFlow name="PostFlow">
-        <Request/>
-        <Response/>
-    </PostFlow>
     <HTTPProxyConnection>
-        <BasePath>/apis/v1/oauth</BasePath>
+        <BasePath>/apis/v1.0/oauth</BasePath>
+        <Properties/>
         <VirtualHost>secure</VirtualHost>
+        <VirtualHost>default</VirtualHost>
     </HTTPProxyConnection>
-    <RouteRule name="noroute"/>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/authorize")</Condition>
+    </RouteRule>
+    <RouteRule name="noroute">
+        <Condition>(proxy.pathsuffix MatchesPath "/authorized") or (proxy.pathsuffix MatchesPath "/token")</Condition>
+    </RouteRule>
 </ProxyEndpoint>

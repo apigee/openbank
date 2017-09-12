@@ -2,19 +2,20 @@
 <ProxyEndpoint name="default">
     <Description/>
     <FaultRules/>
-    <Flows/>
-    <PostFlow name="PostFlow">
-        <Request/>
-        <Response/>
-    </PostFlow>
     <PreFlow name="PreFlow">
         <Request/>
         <Response/>
     </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows/>
     <HTTPProxyConnection>
-        <BasePath>/internal/consent</BasePath>
+        <BasePath>/apis/internal/v1.0/consentapp</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
+        <VirtualHost>default</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="default">
         <TargetEndpoint>default</TargetEndpoint>

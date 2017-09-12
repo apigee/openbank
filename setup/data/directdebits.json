@@ -1,0 +1,25 @@
+[
+  {
+    "AccountId": "987654321",
+    "DirectDebitStatusCode": "Active",
+    "MandateIdentification": "Caravanners",
+    "Name": "Towbar Club 3 - We Love Towbars",
+    "PreviousPaymentAmount": {
+      "Amount": 100,
+      "Currency": "GBP"
+    },
+    "PreviousPaymentDateTime": 1496659387000
+  },
+  {
+    "AccountId": "987654321",
+    "DirectDebitId": "DD77",
+    "DirectDebitStatusCode": "Active",
+    "MandateIdentification": "Golfers",
+    "Name": "Golf Club",
+    "PreviousPaymentAmount": {
+      "Amount": 22.3,
+      "Currency": "GBP"
+    },
+    "PreviousPaymentDateTime": 1499331600000
+  }
+]

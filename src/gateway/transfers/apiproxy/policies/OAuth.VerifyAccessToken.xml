@@ -1,5 +1,0 @@
-<OAuthV2 async="false" continueOnError="false" enabled="true" name="OAuth.VerifyAccessToken">
-    <DisplayName>OAuth.VerifyAccessToken</DisplayName>
-    <Operation>VerifyAccessToken</Operation>
-    <AccessTokenPrefix>Bearer</AccessTokenPrefix>
-</OAuthV2>

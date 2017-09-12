@@ -1,87 +1,95 @@
 {
-  "base_path": "/internal/consent",
-  "logo_uri": "http://dev-dbank.devportal.apigee.com/sites/default/files/logo4.png",
+  "base_path": "/apis/internal/v1.0/consentapp",
+  "logo_uri": "/apis/internal/v1.0/consentapp/images/logo.png",
+  "consentPath": "{{ edgeBasePath }}/apis/internal/v1.0/consentapp/consent",
+  "cookieName":"OB_SESSION",
+  "sessionImpl":"./cookie_session_impl",
+  "cookieKey" : "{{ consentSessionKey }}",
+  "loginJWTKey": "{{ jwtSignKey }}",
   "styles": {
     "header_background_color": "#FFF"
   },
-  "consentTransaction": {
-    "transactionEndpoint": "{{edgeBasePath}}/internal/apis/v1/session/transactions/",
-    "method": "GET",
-    "headers": {
-      "x-apikey": "{{consentAppKey}}"
-    }
+  "loginApplication": {
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v1.0/loginapp"
+  },
+  "scaApplication": {
+    "transactionEndpoint": "/apis/internal/v1.0/consentapp/otp"
   },
   "authenticationTransaction": {
-    "transactionEndpoint": "{{edgeBasePath}}/internal/connector/v1/authenticate",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/authenticate",
     "method": "POST",
     "headers": {
-      "x-apikey": "{{consentAppKey}}"
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
+  "customerTransaction": {
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/customers",
+    "method": "GET",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
     }
   },
   "accessTokenTransaction": {
-    "transactionEndpoint": "{{edgeBasePath}}/apis/v1/oauth/authorized/transactions/",
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/v1.0/oauth/authorized",
     "method": "POST",
     "headers": {
-      "x-apikey": "{{consentAppKey}}"
+      "x-apikey": "{{internalAppKey}}"
     }
   },
   "generateOtp": {
-    "transactionEndpoint": "{{edgeBasePath}}/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1.0/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": "{{consentAppKey}}"
+      "x-apikey": "{{internalAppKey}}"
     }
   },
   "validateOtp": {
-    "transactionEndpoint": "{{edgeBasePath}}/internal/apis/v1/sms/otp/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1.0/sms/otp/",
     "method": "POST",
     "headers": {
-      "x-apikey": "{{consentAppKey}}"
+      "x-apikey": "{{internalAppKey}}"
     }
   },
   "getAccounts": {
-    "transactionEndpoint": "{{edgeBasePath}}/internal/connector/v1/accounts",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/ais/accounts",
     "method": "GET",
-    "headers": null
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
+  "getAccountRequest": {
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/ais/account-requests/",
+    "method": "GET",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
+  "getPaymentRequest": {
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/pis/payments/",
+    "method": "GET",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
+  },
+  "createConsent": {
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v1.0/consent/",
+    "method": "POST",
+    "headers": {
+      "x-apikey": "{{internalAppKey}}"
+    }
   },
   "errors": {
-    "user_cancel": {
-      "code": "Consent_Rejected",
-      "description": "User rejected consent"
-    }
-  },
-  "loa": {
-    "1": {
-      "steps": [
-        {
-          "name": "OTP",
-          "weight": 0,
-          "path": "/otp"
-        }
-      ]
-    },
-    "2": {
-      "steps": [
-        {
-          "name": "UID_PWD",
-          "weight": 0,
-          "path": "/login"
-        }
-      ]
-    },
-    "3": {
-      "steps": [
-        {
-          "name": "UID_PWD",
-          "weight": 0,
-          "path": "/login"
-        },
-        {
-          "name": "OTP",
-          "weight": 1,
-          "path": "/otp"
-        }
-      ]
-    }
+    "customerNotFound": "NOT_FOUND_CUSTOMER",
+    "accountNotFound": "NOT_FOUND_ACCOUNT",
+    "accountRequestNotFound": "NOT_FOUND_ACCOUNT_REQUEST",
+    "paymentRequestNotFound": "NOT_FOUND_PAYMENT_REQUEST",
+    "invalidSession": "INVALID_SESSION",
+    "invalidType": "INVALID_SCOPE",
+    "consentNotCreated": "UNABLE_TO_CREATE_CONSENT",
+    "userCancelConsent": "CONSENT_REJECTED",
+    "internalError": "INTERNAL_ERROR_OCCURED",
+    "invalidOtp": "INVALID_OTP"
   }
 }
+
+

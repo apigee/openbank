@@ -1,9 +1,0 @@
-exports = module.exports = {
-  hostUrl: '{{ edgeBasePath }}',
-  clientId_AISP: '{{ apiKey_AISP }}',
-  clientSecret_AISP: '{{ apiSecret_AISP }}',
-  clientId_PISP: '{{ apiKey_PISP }}',
-  clientSecret_PISP: '{{ apiSecret_PISP }}',
-  accountId: '2139531801',
-  customerId: '123456789'
-};

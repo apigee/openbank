@@ -1,0 +1,44 @@
+[
+  {
+    "AccountId": "123459876",
+    "BeneficiaryId": "Ben3",
+    "CreditorAccount": {
+      "Identification": "976512349",
+      "SchemeName": "BBAN",
+      "Name": "Ms Martha"
+    },
+    "Reference": "payx Shop",
+    "Servicer": {
+      "Identification": "SC802001",
+      "SchemeName": "UKSortCode"
+    }
+  },
+  {
+    "AccountId": "987654321",
+    "BeneficiaryId": "Ben2",
+    "CreditorAccount": {
+      "Identification": "167834256",
+      "SchemeName": "BBAN",
+      "Name": "Mr Akash"
+    },
+    "Reference": "Green Park LandLord",
+    "Servicer": {
+      "Identification": "SC802001",
+      "SchemeName": "UKSortCode"
+    }
+  },
+  {
+    "AccountId": "987654321",
+    "BeneficiaryId": "Ben1",
+    "CreditorAccount": {
+      "Identification": "123456789",
+      "SchemeName": "BBAN",
+      "Name": "Mrs Juniper"
+    },
+    "Reference": "Towbar Club",
+    "Servicer": {
+      "Identification": "SC802001",
+      "SchemeName": "UKSortCode"
+    }
+  }
+]

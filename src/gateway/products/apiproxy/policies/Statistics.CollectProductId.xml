@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<StatisticsCollector async="false" continueOnError="false" enabled="true" name="Statistics.CollectProductId">
-    <DisplayName>Statistics.CollectProductId</DisplayName>
-    <Properties/>
-    <Statistics>
-        <Statistic name="product_id" ref="product_id" type="string">NA</Statistic>
-        <Statistic name="product_name" ref="product_name" type="string">NA</Statistic>
-    </Statistics>
-</StatisticsCollector>

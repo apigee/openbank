@@ -1,0 +1,60 @@
+[
+  {
+    "AccountId": "987654321",
+    "CreditorAccount": {
+      "Identification": "90179017",
+      "SchemeName": "BBAN",
+      "Name": "Mr Tee"
+    },
+    "FinalPaymentAmount": {
+      "Amount": 23,
+      "Currency": "GBP"
+    },
+    "FinalPaymentDateTime": 1528761600000,
+    "FirstPaymentAmount": {
+      "Amount": 23,
+      "Currency": "GBP"
+    },
+    "FirstPaymentDateTime": 1497225600000,
+    "Frequency": "WkinMnthDay(2)",
+    "NextPaymentAmount": {
+      "Amount": 23,
+      "Currency": "GBP"
+    },
+    "NextPaymentDateTime": 1499817600000,
+    "Reference": "Golf - We Love Golf",
+    "Servicer": {
+      "Identification": "SC236054",
+      "SchemeName": "UKSortCode"
+    }
+  },
+  {
+    "AccountId": "987654321",
+    "CreditorAccount": {
+      "Identification": "123456789",
+      "SchemeName": "BBAN",
+      "Name": "Mrs Juniper"
+    },
+    "FinalPaymentAmount": {
+      "Amount": 10,
+      "Currency": "GBP"
+    },
+    "FinalPaymentDateTime": 1818028800000,
+    "FirstPaymentAmount": {
+      "Amount": 10,
+      "Currency": "GBP"
+    },
+    "FirstPaymentDateTime": 1502496000000,
+    "Frequency": "EvryWorkgDay",
+    "NextPaymentAmount": {
+      "Amount": 10,
+      "Currency": "GBP"
+    },
+    "NextPaymentDateTime": 1502582400000,
+    "Reference": "Towbar Club 2 - We Love Towbars",
+    "Servicer": {
+      "Identification": "SC802001",
+      "SchemeName": "UKSortCode"
+    }
+  }
+]

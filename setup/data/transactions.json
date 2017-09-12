@@ -1,0 +1,118 @@
+[
+  {
+    "AccountId": "987654321",
+    "Amount": {
+      "Amount": 100,
+      "Currency": "GBP"
+    },
+    "Balance": {
+      "Type": "InterimBooked",
+      "Amount": {
+        "Amount": 230,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Debit"
+    },
+    "BankTransactionCode": {
+      "SubCode": "DomesticCreditTransfer",
+      "Code": "ReceivedCreditTransfer"
+    },
+    "BookingDateTime": 1491388987000,
+    "CreditDebitIndicator": "Debit",
+    "ProprietaryBankTransactionCode": {
+      "Issuer": "AlphaBank",
+      "Code": "Transfer"
+    },
+    "Status": "Booked",
+    "TransactionInformation": "Cash from Aubrey",
+    "TransactionReference": "Ref 123",
+    "ValueDateTime": 1491389122000
+  },
+  {
+    "AccountId": "987654321",
+    "Amount": {
+      "Amount": 100,
+      "Currency": "GBP"
+    },
+    "Balance": {
+      "Type": "InterimBooked",
+      "Amount": {
+        "Amount": 230,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Debit"
+    },
+    "BankTransactionCode": {
+      "SubCode": "DomesticCreditTransfer",
+      "Code": "ReceivedCreditTransfer"
+    },
+    "BookingDateTime": 1491388987000,
+    "CreditDebitIndicator": "Debit",
+    "ProprietaryBankTransactionCode": {
+      "Issuer": "AlphaBank",
+      "Code": "Transfer"
+    },
+    "Status": "Booked",
+    "TransactionInformation": "Cash from Aubrey",
+    "TransactionReference": "Ref 123",
+    "ValueDateTime": 1491389122000
+  },
+  {
+    "AccountId": "987654321",
+    "Amount": {
+      "Amount": 100,
+      "Currency": "GBP"
+    },
+    "Balance": {
+      "Type": "InterimBooked",
+      "Amount": {
+        "Amount": 230,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Credit"
+    },
+    "BankTransactionCode": {
+      "SubCode": "DomesticCreditTransfer",
+      "Code": "ReceivedCreditTransfer"
+    },
+    "BookingDateTime": 1491388987000,
+    "CreditDebitIndicator": "Credit",
+    "ProprietaryBankTransactionCode": {
+      "Issuer": "AlphaBank",
+      "Code": "Transfer"
+    },
+    "Status": "Booked",
+    "TransactionInformation": "Cash from Aubrey",
+    "TransactionReference": "Ref 123",
+    "ValueDateTime": 1491389122000
+  },
+  {
+    "AccountId": "123459876",
+    "Amount": {
+      "Amount": 100,
+      "Currency": "GBP"
+    },
+    "Balance": {
+      "Type": "InterimBooked",
+      "Amount": {
+        "Amount": 230,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Credit"
+    },
+    "BankTransactionCode": {
+      "SubCode": "DomesticCreditTransfer",
+      "Code": "ReceivedCreditTransfer"
+    },
+    "BookingDateTime": 1491388987000,
+    "CreditDebitIndicator": "Credit",
+    "ProprietaryBankTransactionCode": {
+      "Issuer": "AlphaBank",
+      "Code": "Transfer"
+    },
+    "Status": "Booked",
+    "TransactionInformation": "Cash from Aubrey",
+    "TransactionReference": "Ref 123",
+    "ValueDateTime": 1491389122000
+  }
+]

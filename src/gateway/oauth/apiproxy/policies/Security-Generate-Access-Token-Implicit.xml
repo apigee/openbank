@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright 2017 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limit
+-->
 <OAuthV2 async="false" continueOnError="false" enabled="true" name="Security-Generate-Access-Token-Implicit">
     <DisplayName>Security: Generate Access Token Implicit</DisplayName>
     <Properties/>
@@ -6,28 +21,26 @@
     <ExternalAuthorization>false</ExternalAuthorization>
     <Operation>GenerateAccessTokenImplicitGrant</Operation>
     <SupportedGrantTypes/>
-    <Scope>scope</Scope>
-    <ClientId>client_id</ClientId>
+    <ClientId>ClientId</ClientId>
     <ResponseType>token</ResponseType>
     <ExpiresIn ref="token_timeout">2592000000</ExpiresIn>
     <Attributes>
-        <Attribute name="sessionid" ref="sessionid" display="false"/>
-        <Attribute name="scope" ref="scope" display="false"/>
-        <Attribute name="sub" ref="sub" display="false"/>
-        <Attribute name="acr_values" ref="acr_values" display="false"/>
-        <Attribute name="amr" ref="amr" display="false"/>
-        <Attribute name="azp" ref="azp" display="false"/>
-        <Attribute name="auth_time" ref="auth_time" display="false"/>
-        <Attribute name="customer_number" ref="customer_id" display="false"/>
-        <Attribute name="account_number" ref="accountNumber" display="false"/>
-        <Attribute name="full_name" ref="fullName" display="false"/>
-        <!-- Attributes for payment API -->
-        <Attribute name="to" ref="to" display="false"/>
-        <Attribute name="sort_code" ref="sort_code" display="false"/>
-        <Attribute name="IBAN" ref="IBAN" display="false"/>
-        <Attribute name="currency" ref="currency" display="false"/>
-        <Attribute name="amount" ref="amount" display="false"/>
+        <Attribute name="ClientId" ref="ClientId" display="false"/>
+        <Attribute name="ResponseType" ref="ResponseType" display="false"/>
+        <Attribute name="Type" ref="Type" display="false"/>
+        <Attribute name="auth_time" ref="system.timestamp" display="false"/>
+        <Attribute name="Scope" ref="Scope" display="false"/>
+        <Attribute name="RedirectUri" ref="RedirectUri" display="false"/>
+        <Attribute name="RequestId" ref="RequestId" display="false"/>
+        <Attribute name="State" ref="State" display="false"/>
+        <Attribute name="AppName" ref="AppName" display="false"/>
+        <Attribute name="AppId" ref="AppId" display="false"/>
+        <Attribute name="TppId" ref="TppId" display="false"/>
+        <Attribute name="CustomerId" ref="CustomerId" display="false"/>
+        <Attribute name="Nonce" ref="Nonce" display="false"/>
     </Attributes>
-    <AppEndUser>customer_number</AppEndUser>
-    <UserName>customer_number</UserName>
+    <AppEndUser>CustomerId</AppEndUser>
+    <UserName>CustomerId</UserName>
+    <Scope>Type</Scope>
+    <GenerateErrorResponse enabled="true"/>
 </OAuthV2>

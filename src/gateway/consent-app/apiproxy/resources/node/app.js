@@ -1,19 +1,33 @@
+/*
+ Copyright 2017 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
-var ApigeeStore = require('express-session-apigee-cache')(session);
+var cookieParser = require('cookie-parser');
 var style = require('./controllers/style');
-
 
 // Routes
 var routes = require('./routes/index');
-var login = require('./routes/login');
-var otp = require('./routes/otp');
 var consent = require('./routes/consent');
+var otp = require('./routes/otp');
+
+//Filter
+var sessionFilter = require('./routes/session_filter');
 
 // Configuration
 var config = require('./config.json');
@@ -32,64 +46,65 @@ app.set('config', config);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+    extended: false
 }));
-app.use(cookieParser());
+app.use(cookieParser(config.cookieKey || 'keyboard cat'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-var options = {
-  cache: 'consent_app_session',
-  prefix: "casess:",
-  ttl: 300,
-}
-app.use(session({
-   store: new ApigeeStore(options),
-   secret: 'keyboard cat',
-   resave: false,
-   saveUninitialized: false
-}));
+// var options = {
+//  cache: 'consent_app_session',
+//  prefix: "casess:",
+//  ttl: 300,
+//  };
+// app.use(session({
+// store: new ApigeeStore(options),
+// secret: 'keyboard cat',
+// resave: false,
+// saveUninitialized: false
+// }));
+//TODO:change session type
+/*
+ app.use(cookieSession({
+ name: 'session',
+ keys: ['keyboard cat'],
+ maxAge: 60 * 60 * 1000 // 1 hour
+ }));*/
 
-
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header("Access-Control-Allow-Headers", "*");
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 // Define the routes
-app.use('/', routes);
-app.use('/login', login);
-app.use('/otp', otp);
-app.use('/consent', consent);
+app.use('/', sessionFilter, routes);
+app.use('/consent', sessionFilter, consent);
+app.use('/otp', sessionFilter, otp);
 
-// Add the custom styles.
+// Add the custom styles.express-session-apigee-cache
 style.setBasicStyles();
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
+// no stacktraces leaked to user
+app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
-      message: err.message,
-      error: err
+        message: err.message,
+        error: {}
     });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+    console.log("Error : " + err);
 });
 
-
 module.exports = app;
+
+//start
+app.listen(3000, function () {
+    console.log('Consent app listening on port 3000!')
+});

@@ -1,0 +1,149 @@
+{{!--
+ Copyright 2017 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ --}}
+
+<div class="consent-page-wrapper" id="consent-div">
+    <div class="consent-page">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Access authorization</h2>
+            </div>
+            <div class="panel-body">
+                <div class="consent-content">
+                    <form role="form" action="{{{basePath}}}/consent" method="post" id="consentform">
+                        <p><strong>{{tpp}}</strong> application is requesting your permission to share the following
+                            details</p>
+                        {{#if permissions}}
+                            <ul class="list-group">
+                                {{formatPermission permissions}}
+                            </ul>
+                            <label class="account-select">Please select accounts</label>
+                            <ul>
+                                {{#each accounts}}
+                                    <li>
+                                        <input type="checkbox" value="{{buildJSON this}}" name="accounts"
+                                               id="{{this.AccountId}}" {{this.requested}}><label
+                                            for="{{this.AccountId}}">{{this.AccountId}}</label>
+                                    </li>
+                                {{/each}}
+                            </ul>
+
+                        {{else}}
+                            <h3>The application does not require any permissions.</h3>
+                        {{/if}}
+                        {{#if TransactionFromDateTime}}
+                            Transaction Details can be obtained from <strong>{{formatDate TransactionFromDateTime}}</strong>
+                            {{#if TransactionToDateTime}}
+                                to <strong>{{formatDate TransactionToDateTime}}</strong>
+                            {{/if}}
+
+                        {{/if}}
+                        <br/>
+                        {{#if expiresAt}}
+                            This access is valid till  <strong>{{formatDate expiresAt}}</strong>
+                        {{/if}}
+                        <div id="consent-info-div">
+                            {{#if tnc}}
+                                <p>I agree to the <a href="{{tnc}}" class="tnc-link" target="_blank">Terms and
+                                    conditions</a></p>
+                            {{/if}}
+                            <p>By clicking <strong>Allow</strong>, you are allowing this TPP or Bank to use your
+                                information
+                                in accordance with their respective terms of service and privacy policies
+                            </p>
+                            <div class="consent-button">
+                                <button type="submit" name="allow" id="allow" value="allow" class="btn btn-primary grass-btn">Allow
+                                </button>
+                                <button type="submit" name="deny" id="deny" value="deny" class="btn btn-primary grass-btn">Cancel
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="otp-info-div" style="display: none;">
+    <p>
+        <centre><strong>Additional Verification needed for the Consent</strong></centre>
+    </p>
+</div>
+<div class="verify-pin-wrapper" id="verify-otp-div" style="display: none;">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="grass-form-wrapper">
+                <form role="form" action="{{{basePath}}}/otp/validate" method="POST" id="verifyOtp">
+                    <div class="form-group">
+                        <p>
+                            <strong>Verify your One Time Password number</strong>
+                        </p>
+                        <input class="form-control" placeholder="One time password" type="password" name="otp">
+                        <span class="help-block">
+              Please enter the
+              <strong>One Time Password</strong> sent to your mobile number ending with {{msisdn}}.
+            </span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="submitOtp" class="btn btn-primary grass-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#consentform").submit(function() { return false; });
+        $("#allow, #deny").click(function(event) {
+            $form = $("#consentform");//$(this).parent("form");
+            $.ajax({
+                url: $form.attr("action"),
+                type: 'post',
+                data: $form.serialize() + "&submitType="+ $(this).attr("value"),
+                headers: {
+                    "x-ob-google-sca-required": "True"
+                },
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    }
+                    else {
+                        document.getElementById("otp-info-div").style.display = "block";
+                        document.getElementById("verify-otp-div").style.display = "block";
+                        document.getElementById("consent-info-div").style.display = "none";
+                        document.getElementById("consent-div").style.opacity = "0.5";
+                        document.getElementById("consent-div").style.background = "#CCC";
+                        document.getElementById("consent-div").style.pointerEvents = "none";
+                    }
+                }
+            });
+        });
+
+
+        $("#verifyOtp").submit(function() { return false; });
+        $("#submitOtp").click(function(event) {
+            $form = $("#verifyOtp");//$(this).parent("form");
+            $.post($form.attr("action"), $form.serialize(), function(data) {
+                // do something with response (data)
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                }
+            });
+        });
+    });
+</script>
