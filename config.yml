@@ -150,7 +150,7 @@ resources:
     - name: apiProducts
       type: product
       items:
-      - payload: '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_apis","environments":["test","prod"],"scopes":[], "proxies":["SmsTokenOBv1.0", "OauthOBv1.0","AccountsOBv1.0Connector","ConsentManagementOBv1.0","UserManagementOBv1.0","CustomerManagementOBv1.0","PaymentsOBv1.0Connector"]}'
+      - payload: '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_apis","environments":["test","prod"],"scopes":[]}'
         name: internal_apis
     - name: developerApps
       type: app
@@ -192,9 +192,9 @@ resources:
     - name: remainingApiProducts
       type: product
       items:
-      - payload: '{"approvalType":"auto", "displayName":"Account APIs","name":"account_apis","environments":["test","prod"],"scopes":["accounts","openid"], "proxies":["OauthOBv1.0", "AccountsOBv1.0"]}'
+      - payload: '{"approvalType":"auto", "displayName":"Account APIs","name":"account_apis","environments":["test","prod"],"scopes":["accounts","openid"], "proxies":["oauth", "accounts"]}'
         name: account_apis
-      - payload: '{"approvalType":"auto", "displayName":"Payments APIs","name":"payment_apis","environments":["test","prod"],"scopes":["payments","openid"], "proxies":["OauthOBv1.0", "PaymentsOBv1.0"]}'
+      - payload: '{"approvalType":"auto", "displayName":"Payments APIs","name":"payment_apis","environments":["test","prod"],"scopes":["payments","openid"], "proxies":["oauth", "payments"]}'
         name: payment_apis
     - name: remainingDeveloperApps
       type: app
