@@ -339,7 +339,7 @@
         </Flow>
     </Flows>
     <HTTPProxyConnection>
-        <BasePath>/ais/open-banking/apis/v1.0</BasePath>
+        <BasePath>/ais/open-banking/v1.0</BasePath>
         <Properties/>
         <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>
