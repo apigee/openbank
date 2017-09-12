@@ -123,7 +123,7 @@ function getPaymentRequestDetails(req, res, opt, customerAccountDetails) {
 //get customer account details
     var config = req.app.get('config');
     var options = {
-        'url': config.getPaymentRequest.transactionEndpoint + "/" + opt.requestId + "?tppId=" + opt.TppId,
+        'url': config.getPaymentRequest.transactionEndpoint + "/" + opt.RequestId + "?tppId=" + opt.TppId,
         'method': config.getPaymentRequest.method,
         'headers': config.getPaymentRequest.headers,
         'json': true

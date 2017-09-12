@@ -51,6 +51,10 @@ resources:
       - name: accountsrequests
         file: setup/data/accountsrequests.json
         permissions: ['get,post,put,delete:accountsrequests','get,post,put,delete:accountsrequests/*','get,post,put,delete:accountsrequests/**']
+      - name: payments
+        permissions: ['get,post,delete:payments','get,post,delete:payments/*','get,post,delete:payments/**']
+      - name: payment-submissions
+        permissions: ['get,post,put,delete:payment-submissions','get,post,put,delete:payment-submissions/*','get,post,put,delete:payment-submissions/**']
       - name: beneficiaries
         file: setup/data/beneficiaries.json
         permissions: ['get,post,delete:beneficiaries','get,post,delete:beneficiaries/*','get,post,delete:beneficiaries/**']
@@ -97,19 +101,19 @@ resources:
         filePaths: ['src/gateway/user-management/target/apiproxy/targets/default.xml','src/gateway/customer-management/target/apiproxy/targets/default.xml','src/gateway/accounts-connector/target/apiproxy/policies/Assign-Target-URL.xml']
         value: '{{ baas_host }}/{{ usergrid_org }}/{{ usergrid_app }}'
       - name: baasURI
-        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json']
+        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
         value: '{{ baas_host }}'
       - name: baasOrg
-        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json']
+        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
         value: '{{ usergrid_org }}'
       - name: baasApp
-        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json']
+        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
         value: '{{ usergrid_app }}'
       - name: baasClientId
-        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json']
+        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
         value: '{{ usergrid_client_id }}'
       - name: baasClientSecret
-        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json']
+        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
         value: '{{ usergrid_secret }}'
       - name: edgeBasePath
         filePaths: ['src/gateway/login-app/target/apiproxy/resources/node/config.json']
@@ -136,6 +140,8 @@ resources:
         apiName: CustomerManagementOBv1.0
       - name: login-app
         apiName: LoginAppOBv1.0
+      - name: payments-connector
+        apiName: PaymentsOBv1.0Connector
     - name: developers
       type: developer
       items:
@@ -144,7 +150,7 @@ resources:
     - name: apiProducts
       type: product
       items:
-      - payload: '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_apis","environments":["test","prod"],"scopes":[], "proxies":["SmsTokenOBv1.0", "OauthOBv1.0","AccountsOBv1.0Connector","ConsentManagementOBv1.0","UserManagementOBv1.0","CustomerManagementOBv1.0"]}'
+      - payload: '{"approvalType":"auto", "attributes":[{"name":"access","value":"private"}], "displayName":"Internal Consent APIs","name":"internal_apis","environments":["test","prod"],"scopes":[], "proxies":["SmsTokenOBv1.0", "OauthOBv1.0","AccountsOBv1.0Connector","ConsentManagementOBv1.0","UserManagementOBv1.0","CustomerManagementOBv1.0","PaymentsOBv1.0Connector"]}'
         name: internal_apis
     - name: developerApps
       type: app
@@ -158,10 +164,10 @@ resources:
       type: configSubstitutions
       items:
       - name: internalAppKey
-        filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/accounts/target/apiproxy/policies/Assign-APIKey-Header.xml','src/gateway/accounts/target/apiproxy/policies/Fetch-Account-Consent.xml','src/gateway/accounts/target/apiproxy/policies/Get-Acc-Req-Data.xml','src/gateway/accounts/target/apiproxy/policies/Update-Access-Count.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Payment-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Payment-Request.xml']
+        filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/accounts/target/apiproxy/policies/Assign-APIKey-Header.xml','src/gateway/accounts/target/apiproxy/policies/Fetch-Account-Consent.xml','src/gateway/accounts/target/apiproxy/policies/Get-Acc-Req-Data.xml','src/gateway/accounts/target/apiproxy/policies/Update-Access-Count.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Payment-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Payment-Request.xml','src/gateway/payments/target/apiproxy/policies/Assign-APIKey-Header.xml','src/gateway/payments/target/apiproxy/policies/Service-Callout-Validate-Payment-Request-Status.xml','src/gateway/payments/target/apiproxy/policies/Service-Callout-Fetch-and-Validate-Consent.xml']
         value: '{{ apiKey_IA }}'
       - name: edgeBasePath
-        filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/accounts/target/apiproxy/policies/Fetch-Account-Consent.xml','src/gateway/accounts/target/apiproxy/policies/Get-Acc-Req-Data.xml','src/gateway/accounts/target/apiproxy/policies/Update-Access-Count.xml','src/gateway/accounts/target/apiproxy/targets/default.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Payment-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Payment-Request.xml','src/gateway/oauth/target/apiproxy/targets/default.xml']
+        filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/accounts/target/apiproxy/policies/Fetch-Account-Consent.xml','src/gateway/accounts/target/apiproxy/policies/Get-Acc-Req-Data.xml','src/gateway/accounts/target/apiproxy/policies/Update-Access-Count.xml','src/gateway/accounts/target/apiproxy/targets/default.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Payment-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Payment-Request.xml','src/gateway/oauth/target/apiproxy/targets/default.xml','src/gateway/payments/target/apiproxy/policies/Service-Callout-Validate-Payment-Request-Status.xml','src/gateway/payments/target/apiproxy/policies/Service-Callout-Fetch-and-Validate-Consent.xml','src/gateway/payments/target/apiproxy/targets/default.xml']
         value: 'https://{{ org }}-{{ env }}.apigee.net'
       - name: consentSessionKey
         filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json']
@@ -181,11 +187,15 @@ resources:
         apiName: ConsentAppOBv1.0
       - name: accounts
         apiName: AccountsOBv1.0
+      - name: payments
+        apiName: PaymentsOBv1.0
     - name: remainingApiProducts
       type: product
       items:
       - payload: '{"approvalType":"auto", "displayName":"Account APIs","name":"account_apis","environments":["test","prod"],"scopes":["accounts","openid"], "proxies":["OauthOBv1.0", "AccountsOBv1.0"]}'
         name: account_apis
+      - payload: '{"approvalType":"auto", "displayName":"Payments APIs","name":"payment_apis","environments":["test","prod"],"scopes":["payments","openid"], "proxies":["OauthOBv1.0", "PaymentsOBv1.0"]}'
+        name: payment_apis
     - name: remainingDeveloperApps
       type: app
       items:
@@ -198,6 +208,15 @@ resources:
           to: apiSecret_AISP
         - from: appId
           to: appId_AISP
+      - name: PISP_App
+        payload: '{"name":"PISP_App","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuZhaB6ciF8hzzHkv3tkl20LS8KfWgRb/V4I6pB9ADNPBNgrceSf+mLoIWxrRDgTSYqyYYXmj3Fy9B1mG4lpUvrClt4hHKaBvsRZKn4/r2dPxUo0ggI+ruxQaQoKf2v8sEJe6Sx7btBvBxTqOMlIxP1GDNYJICaXo8jsBeNVDtCeFP2e9QJUmNvYGY7IfB8vUqFFcHushNmKmdR5H6pUg/JOsheFyi41UT05Zu3FvMHBAJab4OnybOLrovCVshu3Q7BOFkQVkYF4HrD0IM4GDojGt4OfMqESnLvG7+UywNjs/zjmdX0mn1wG7mZjlXfgh0DKo/MeWCW+gEQdPejCrBwIDAQAB -----END PUBLIC KEY-----"}],"callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"payment_apis"}'
+        assignResponse:
+        - from: credentials.0.consumerKey
+          to: apiKey_PISP
+        - from: credentials.0.consumerSecret
+          to: apiSecret_PISP
+        - from: appId
+          to: appId_PISP
     - name: copyTestConfigTemplate
       type: util
       items: 
@@ -210,9 +229,9 @@ resources:
       - name: keyAISP
         filePaths: ['test/config.json']
         value: '{{ apiKey_AISP }}'
-      - name: appIdAISP
+      - name: keyPISP
         filePaths: ['test/config.json']
-        value: '{{ appId_AISP }}'
+        value: '{{ apiKey_PISP }}'
       - name: edgeBasePath
         filePaths: ['test/config.json']
         value: '{{ org }}-{{ env }}.apigee.net'

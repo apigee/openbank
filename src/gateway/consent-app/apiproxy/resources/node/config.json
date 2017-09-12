@@ -65,7 +65,7 @@
     }
   },
   "getPaymentRequest": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/pigits/payments/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/pis/payments/",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"

@@ -31,6 +31,6 @@
     <Response>requestIdResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/internal/connector/v1.0/pis/payments/{RequestId}</URL>
+        <URL>{{ edgeBasePath }}/internal/connector/v1.0/pis/payments/{requestId}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

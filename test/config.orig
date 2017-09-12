@@ -1,6 +1,7 @@
 {
   "edgeBasePath": "{{ edgeBasePath }}",
   "TPPAppClientId": "{{ keyAISP }}",
+  "TPPAppClientIdPayment": "{{ keyPISP }}",
   "internalAppKey": "{{ internalAppKey }}"
 }
 
