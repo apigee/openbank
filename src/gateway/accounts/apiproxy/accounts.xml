@@ -15,7 +15,7 @@
  limitations under the License.
 -->
 <APIProxy revision="2" name="AccountsOBv1.0">
-    <Basepaths>/open-bank/apis/v1.0/ais</Basepaths>
+    <Basepaths>/ais/open-banking/apis/v1.0</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1504674844156</CreatedAt>
     <CreatedBy>rmahalank@apigee.com</CreatedBy>
