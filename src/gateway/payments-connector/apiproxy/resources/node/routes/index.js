@@ -24,7 +24,7 @@ router.get('/payments/:paymentId', function (req, res, next) {
     request(options, function (err, response, resbody) {
         if (!err && response.statusCode === 200) {
             try {
-                resbody = JSON.parse(resbody);
+                resbody = parseIfNotObject(resbody);
                 var body = {};
                 body.Data = resbody.entities[0].Data;
                 body.Risk = resbody.entities[0].Risk;
@@ -69,7 +69,7 @@ router.put('/payments/:paymentId', function (req, res, next) {
     request(options, function (err, response, resbody) {
         if (!err && response.statusCode === 200) {
             try {
-                resbody = JSON.parse(resbody);
+                resbody = parseIfNotObject(resbody);
                 var body = {};
                 body.Data = resbody.entities[0].Data;
                 body.Risk = resbody.entities[0].Risk;
@@ -112,7 +112,7 @@ router.get('/payment-submissions/:paymentSubmissionsId', function (req, res, nex
     request(options, function (err, response, resbody) {
         if (!err && response.statusCode === 200) {
             try {
-                resbody = JSON.parse(resbody);
+                resbody = parseIfNotObject(resbody);
                 var body = {};
                 body.Data = {};
                 body.Link = {"Self": resbody.entities[0].metadata.path};
@@ -234,6 +234,13 @@ router.post('/payment-submissions', function (req, res, next) {
 
     });
 });
+
+function parseIfNotObject(obj) {
+    if (typeof obj === "object") {
+        return obj;
+    }
+    return JSON.parse(obj);
+}
 
 
 module.exports = router;
