@@ -1,22 +1,6 @@
-/*
- Copyright 2017 Google Inc.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- https://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
-
-/*  Validate the request payload with
- *   the detached jws signature provided in the header
- */
+/*  Validate the request payload with 
+*   the detached jws signature provided in the header
+*/
 
 var xJwsSignature = context.getVariable("jwsSignature");
 var appPublicKey = context.getVariable("appPublicKey");
@@ -32,7 +16,7 @@ var jwsParts = xJwsSignature.split("..");
 
 if (jwsParts.length == 2) {
     // base64 decode the JOSE Header
-    var jwt = jwsParts[0] + "." + utf8tob64u(requestPayload) + "." + jwsParts[1];
+    var jwt = jwsParts[0]+ "." + utf8tob64u(requestPayload) + "." + jwsParts[1];
     jws.parseJWS(jwt);
     var isValid = KJUR.jws.JWS.verify(jwt, appPublicKey);
     if (isValid) {

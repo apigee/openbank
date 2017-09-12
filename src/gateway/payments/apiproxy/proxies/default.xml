@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Verify-Access-Token</Name>
+            </Step>
+            <Step>
+                <!--invalid access token thus no scope value-->
+                <Condition>(oauthV2.Verify-Access-Token.failed = true) and (scope = null)</Condition>
+                <Name>RaiseFaultInvalidAccessToken</Name>
+            </Step>
+            <Step>
+                <!--valid access token thus scope value should have payments-->
+                <Condition>(oauthV2.Verify-Access-Token.failed = true)</Condition>
+                <Name>Raise-Fault-Invalid-Scope</Name>
+            </Step>
+            <Step>
+                <Condition>(request.header.Accept!=null) and (request.header.Accept != "application/json")</Condition>
+                <Name>Raise-Fault-Invalid-Accept-Header</Name>
+            </Step>
+            <Step>
+                <Name>Quota-Client-Id</Name>
+            </Step>
+            <Step>
+                <Condition>ratelimit.Quota-Client-Id.failed = true</Condition>
+                <Name>Raise-Fault-Quota-Exceeded</Name>
+            </Step>
+            <Step>
+                <Name>Access-App-Attributes</Name>
+            </Step>
+            <Step>
+                <Name>Extract-App-Attributes</Name>
+            </Step>
+            <Step>
+                <Name>ExtractRequestParams</Name>
+            </Step>
+            <Step>
+                <Condition>request.verb = "POST"</Condition>
+                <Name>Response-Cache-Idempotency-Hit</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>Assign-Response-Headers</Name>
+            </Step>
+            <Step>
+                <Name>Add-Interaction-Id-header</Name>
+            </Step>
+            <Step>
+                <Name>Extract-Private-Config</Name>
+            </Step>
+            <Step>
+                <Name>Create-JWS-Header</Name>
+            </Step>
+            <Step>
+                <Name>Add-JWS-Header</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>Response-Cache-Idempotency-Hit</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="CreateSingleImmediatePaymentRequest">
+            <Description>Create a single immediate payment</Description>
+            <Request>
+                <Step>
+                    <Condition>(grant_type = "implicit") or (grant_type = "authorization_code")</Condition>
+                    <Name>RaiseFaultInvalidAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>JavaScript-Post-Request-Validation</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+                <Step>
+                    <Name>JavaScript-Validate-Request-Payload-JWS</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/payments") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="GetSingleImmediatePaymentRequest">
+            <Description>Get a single immediate payment</Description>
+            <Request>
+                <Step>
+                    <Name>JavaScript-Get-Request-Validation</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/payments/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="CreatePaymentSubmission">
+            <Description>Create a payment submission</Description>
+            <Request>
+                <Step>
+                    <Condition>(grant_type = "client_credentials")</Condition>
+                    <Name>RaiseFaultInvalidAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>JavaScript-Post-Request-Validation</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+                <Step>
+                    <Name>Assign-Token-Details</Name>
+                </Step>
+                <Step>
+                    <Name>Extract-Variables-PaymentId</Name>
+                </Step>
+                <Step>
+                    <Condition>paymentId != requestId</Condition>
+                    <Name>Raise-Fault-Payment-Id-mismatch</Name>
+                </Step>
+                <Step>
+                    <Name>JavaScript-Validate-Request-Payload-JWS</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+                <Step>
+                    <Name>Service-Callout-Fetch-and-Validate-Consent</Name>
+                </Step>
+                <Step>
+                    <Name>Service-Callout-Validate-Payment-Request-Status</Name>
+                </Step>
+                <Step>
+                    <Name>JavaScript-Vadilate-And-Update-Payment-Submission</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/payment-submissions") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="GetPaymentSubmission">
+            <Description>Get a payment submission</Description>
+            <Request>
+                <Step>
+                    <Name>JavaScript-Get-Request-Validation</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/payment-submissions/*") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/pis/open-banking/v1.0</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

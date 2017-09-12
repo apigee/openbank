@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="true" enabled="true" name="Service-Callout-Validate-Payment-Request-Status">
+    <DisplayName>Service Callout Validate Payment Request Status</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myPaymentRequest">
+        <Set>
+            <Headers>
+                <Header name="x-apikey">{{ internalAppKey }}</Header>
+            </Headers>
+            <Verb>GET</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>paymentsRequestResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>{{ edgeBasePath }}/internal/connector/v1.0/pis/payments/{requestId}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

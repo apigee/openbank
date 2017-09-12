@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AccessEntity async="false" continueOnError="false" enabled="true" name="Access-App-Attributes">
+    <DisplayName>AccessEntity App Attributes</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <EntityIdentifier ref="apigee.client_id" type="consumerkey"/>
+    <EntityType value="app"/>
+</AccessEntity>

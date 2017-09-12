@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript timeLimit="12000" async="false" continueOnError="false" enabled="true" name="Create-JWS-Header">
+    <DisplayName>JavaScript Create JWS Header</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IncludeURL>jsc://jws-initialization.js</IncludeURL>
+    <IncludeURL>jsc://jsrsasign-all-min.js</IncludeURL>
+    <ResourceURL>jsc://CreateJWS.js</ResourceURL>
+</Javascript>

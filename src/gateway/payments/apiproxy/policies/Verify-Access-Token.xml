@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="true" enabled="true" name="Verify-Access-Token">
+    <DisplayName>OAuthV2 Verify Access Token</DisplayName>
+    <AccessToken>request.header.Authorization</AccessToken>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <Operation>VerifyAccessToken</Operation>
+    <GenerateResponse enabled="false"/>
+    <Scope>payments</Scope>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <AccessTokenPrefix>Bearer</AccessTokenPrefix>
+</OAuthV2>
