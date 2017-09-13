@@ -21,7 +21,7 @@ var errorJson = {};
 errorJson.isError = false;
 errorJson.errorResponseCode = 400;
 errorJson.errorDescription = "accountRequest/paymentRequest is already authorised";
-if ((type !== null && type !== "" && (type == "accounts" || type == "payments" )) && (requestContent && requestContent.Data && requestContent.Data.Status == "Authorised")) {
+if ((type !== null && type !== "" && (type == "accounts" || type == "payments" )) && (requestContent && requestContent.Data && requestContent.Data.Status != "Pending")) {
     errorJson.isError = true;
 }
 context.setVariable("isError", errorJson.isError);

@@ -24,7 +24,7 @@
             <Header name="x-apikey">{{ internalAppKey }}</Header>
         </Headers>
             <Verb>PUT</Verb>
-            <Payload contentType="application/json">{"Status": "Authorised"}</Payload>
+            <Payload contentType="application/json">{"Status": "AcceptedTechnicalValidation"}</Payload>
         </Set>
     </Request>
     <Response>requestIdResponse</Response>
