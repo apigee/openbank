@@ -14,6 +14,11 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * ValidateRequest.js
+ * Generic Script is for validation of request based on config provided
+ */
 //var error = validateRequest();
 
 validPayload = {}

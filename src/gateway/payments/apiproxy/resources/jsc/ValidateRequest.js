@@ -13,10 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
-/*
-*   A Generic function which validates the paramerters according to the config provided
-*/
+/**
+ * @file
+ * ValidateRequest.js
+ * Generic function which validates the paramerters according to the config provided
+ */
 
 validPayload = {}
 function validateRequest(RequestConfig) {

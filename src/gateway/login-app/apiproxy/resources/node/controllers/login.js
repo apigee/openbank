@@ -17,6 +17,13 @@
 /**
  * Created by rmahalank on 8/8/17.
  */
+
+/**
+ * @file
+ * login.js
+ * Login Controller.
+ * This file contains the code for all the Login operations.
+ */
 var request = require('request');
 var login = {};
 var jwt = require('jsonwebtoken');

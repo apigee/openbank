@@ -14,6 +14,11 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * ExtractAccessToken.js
+ * Script is used obtain the token
+ */
 var token = context.getVariable("request.header.Authorization");
 if (token) {
     token = token.split(" ");

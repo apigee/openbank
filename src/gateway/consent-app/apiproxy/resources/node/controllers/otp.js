@@ -14,19 +14,16 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * otp.js
+ * OTP Controller.
+ * The controller for the OTP operations.
+ */
+
 var request = require('request');
 var otp = {};
 var responseHandler = require('./../lib/response_handler');
-/*
-
-otp.showMsisdnForm = function (req, res, next) {
-    var msisdn = req.session.customerDetails.Phone;
-    if (msisdn === null || typeof msisdn === 'undefined' || msisdn === '') {
-        responseHandler.render(req, res, 'otp');
-    } else
-        otp.generateOtp(req, res, next);
-};
- */
 
 otp.generateOtp = function (req, res, next) {
     var config = req.app.get('config');
@@ -53,16 +50,6 @@ otp.generateOtp = function (req, res, next) {
         }
     });
 };
-/*
-
-otp.showOtpForm = function (req, res, next) {
-    var msisdn = req.body.msisdn || req.session.customerDetails.Phone;
-    msisdn = msisdn.toString().slice(-4);
-    var otpData = {};
-    otpData.msisdn = msisdn;
-    responseHandler.render(req, res, 'verify_otp', otpData);
-};
-*/
 
 otp.validateOtp = function (req, res, next) {
     var otp = req.body.otp;

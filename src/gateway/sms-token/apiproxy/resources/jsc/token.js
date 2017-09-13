@@ -19,8 +19,9 @@
 /* jshint bitwise: false */
 /* jshint laxcomma: true */
 
-
 /**
+ * @file
+ * token.js
  * Setup Token proto.
  *
  * @api public

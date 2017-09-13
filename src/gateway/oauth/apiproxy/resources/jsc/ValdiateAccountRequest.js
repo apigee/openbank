@@ -13,6 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+/**
+ * @file
+ * ValdiateAccountRequest.js
+ * validate account /payment request status
+ */
 
 var requestContent = context.getVariable("requestIdResponse.content");
 var type = context.getVariable("type");

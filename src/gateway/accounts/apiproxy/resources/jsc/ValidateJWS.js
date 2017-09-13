@@ -14,8 +14,10 @@
  limitations under the License.
  */
 
-/*  Validate the request payload with
- *   the detached jws signature provided in the header
+/**
+ * @file
+ * ValidateJWS.js
+ * Validate the request payload with the detached jws signature provided in the header
  */
 
 var xJwsSignature = context.getVariable("jwsSignature");

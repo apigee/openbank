@@ -13,7 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
+/**
+ * @file
+ * app.js
+ * Entry point for the node application to run.
+ */
 var bodyParser = require('body-parser');
 
 var express = require('express');

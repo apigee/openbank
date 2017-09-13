@@ -13,7 +13,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
+/**
+ * @file
+ * session_filter.js
+ * Session middleware
+ * Cookie to Session
+ */
 var session = require('./../lib/session');
 
 var filter = function (req, res, next) {

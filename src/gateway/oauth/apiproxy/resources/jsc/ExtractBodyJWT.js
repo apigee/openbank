@@ -13,7 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
+/**
+ * @file
+ * ExtractBodyJWT.js
+ * Extract payload from JWT and extract clientID from payload
+ */
 var sJWT = context.getVariable("request.formparam.client_assertion");
 context.setVariable("jwt", sJWT);
 var errorJson = {};

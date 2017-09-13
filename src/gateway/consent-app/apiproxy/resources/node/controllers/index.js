@@ -15,7 +15,9 @@
  */
 
 /**
- * IndexController
+ * @file
+ * index.js
+ * Index Controller.
  * The controller for the home page operations.
  */
 var session = require('./../lib/session');

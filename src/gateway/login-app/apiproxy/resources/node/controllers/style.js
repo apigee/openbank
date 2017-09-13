@@ -17,6 +17,12 @@
 /**
  * Created by rmahalank on 8/8/17.
  */
+/**
+ * @file
+ * style.js
+ * Style Controller.
+ * The controller for the UI operations.
+ */
 var hbs = require('hbs');
 var appStyles = {};
 var config = require('../config.json');

@@ -13,6 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+/**
+ * @file
+ * ValidateRequestResource.js
+ * Generic Script to Validate request resource based on config provided
+ */
 
 //var error = validateRequest();
 

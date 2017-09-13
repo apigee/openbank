@@ -14,6 +14,12 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * index.js
+ * Consent Route.
+ * This file contains the code for all the Consent operations.
+ */
 var express = require('express');
 var router = express.Router();
 

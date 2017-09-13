@@ -14,6 +14,11 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * GetAccTransactionsConfig.js
+ * Script is used valid the request based on the config defined
+ */
 var GetAccTransactionsResourceConfig =
     {
         "Headers": [

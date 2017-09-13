@@ -13,7 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
+/**
+ * @file
+ * ValidatePostRequest.js
+ * Validate Get request resource with the confid provided
+ */
 var PostResourceConfig =
     {
         "Headers": [

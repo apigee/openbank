@@ -13,7 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
+/**
+ * @file
+ * app.js
+ * Entry point for the node application to run.
+ */
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -50,25 +54,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser(config.cookieKey || 'keyboard cat'));
 app.use(express.static(path.join(__dirname, 'public')));
-
-// var options = {
-//  cache: 'consent_app_session',
-//  prefix: "casess:",
-//  ttl: 300,
-//  };
-// app.use(session({
-// store: new ApigeeStore(options),
-// secret: 'keyboard cat',
-// resave: false,
-// saveUninitialized: false
-// }));
-//TODO:change session type
-/*
- app.use(cookieSession({
- name: 'session',
- keys: ['keyboard cat'],
- maxAge: 60 * 60 * 1000 // 1 hour
- }));*/
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', req.headers.origin);

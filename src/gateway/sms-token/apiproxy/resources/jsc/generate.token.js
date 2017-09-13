@@ -14,6 +14,11 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * generate.token.js
+ * Used to generate token
+ */
 var hash = Token();
 var payload = "APIGEE";
 var challenge = hash.random({length: payload.length, type: "numeric"});
