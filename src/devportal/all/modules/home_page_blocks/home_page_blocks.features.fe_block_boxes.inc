@@ -33,7 +33,7 @@ function home_page_blocks_default_fe_block_boxes() {
 </div>
 </div>
 
-<h3 class="box-title"><a href="/overview"><span style="color: rgb(0, 159, 208);">Getting started</span></a></h3>
+<h3 class="box-title"><a href="/overview"><span >Getting Started</span></a></h3>
 
 <div class="box-content">Learn about the banking APIs and understand how to create apps.</div>
 </div>
@@ -53,7 +53,7 @@ function home_page_blocks_default_fe_block_boxes() {
 </div>
 </div>
 
-<h3 class="box-title"><a href="/api-catalogue"><span style="color: rgb(0, 159, 208);">API catalogue</span></a></h3>
+<h3 class="box-title"><a href="/api-catalogue"><span >API Catalogue</span></a></h3>
 
 <div class="box-content">Explore OpenBank&#39;s PSD2 and Open Banking APIs to build and test your app.</div>
 </div>
@@ -73,7 +73,7 @@ function home_page_blocks_default_fe_block_boxes() {
 </div>
 </div>
 
-<h3 class="box-title"><a href="/blogs"><span style="color: rgb(0, 159, 208);">Developer community</span></a></h3>
+<h3 class="box-title"><a href="/blogs"><span >Developer Community</span></a></h3>
 
 <div class="box-content">Learn, share, and collaborate with other developers through forums and blogs.</div>
 </div>
@@ -93,7 +93,7 @@ function home_page_blocks_default_fe_block_boxes() {
 </div>
 </div>
 
-<h3 class="box-title"><a href="/app-gallery-0"><span style="color: rgb(0, 159, 208);">Reference apps</span></a></h3>
+<h3 class="box-title"><a href="/app-gallery-0"><span >Reference Apps</span></a></h3>
 
 <div class="box-content">Experiment with our reference apps, and see OpenBank&#39;s APIs come to life.</div>
 </div>

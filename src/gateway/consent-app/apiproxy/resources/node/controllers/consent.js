@@ -16,6 +16,7 @@
 
 /**
  * @file
+ * consent.js
  * Consent Controller.
  * This file contains the code for all the consent operations.
  */
@@ -70,12 +71,12 @@ function getCustomerAccountDetails(req, res, opt, customerDetails) {
             else {//TODO:openid other consents like profile email phone address
                 /* else
                  if (type = "openid") {
-                 var openidRequestData = {};
-                 openidRequestData.tpp = consentData.application;
-                 openidRequestData.permissions = consentTransaction.scope.split(" ");
-                 openidRequestData.permissions.shift();
-                 openidRequestData.cookies = req.cookies;
-                 res.render('openid_consent', openidRequestData);
+                     var openidRequestData = {};
+                     openidRequestData.tpp = consentData.application;
+                     openidRequestData.permissions = consentTransaction.scope.split(" ");
+                     openidRequestData.permissions.shift();
+                     openidRequestData.cookies = req.cookies;
+                     res.render('openid_consent', openidRequestData);
                  }
                  * */
                 responseHandler.redirectError(req, res, opt.RedirectUri + "?error=" + config.errors.invalidType + "&state=" + opt.State);
@@ -275,7 +276,6 @@ consent.doConsent = function (req, res, next) {
                 if (!otp)
                     var otp = require('./otp');
                 otp.generateOtp(req, res, next);
-                //responseHandler.redirect(req, res, config.scaApplication.transactionEndpoint);
             }
             else {
                 //create Consent, generate authcode and redirect
@@ -296,7 +296,6 @@ consent.doConsent = function (req, res, next) {
                 if (!otp)
                     var otp = require('./otp');
                 otp.generateOtp(req, res, next);
-                //res.redirect(config.scaApplication.transactionEndpoint);
             }
             else {
                 //create Consent, generate authcode and redirect
@@ -320,49 +319,49 @@ consent.doConsent = function (req, res, next) {
 };
 
 /*
- function udpateAccountRequest() {
- //update account request
- var options = {
- 'url': config.updateAccountRequest.transactionEndpoint + "/" + requestId,
- 'method': config.updateAccountRequest.method,
- 'headers': config.updateAccountRequest.headers,
- 'body': {
- "status": "Authorized"
- },
- 'json': true
- };
- request(options, function (err, response, body) {
- if (!err && response.statusCode == 200) {
+function udpateAccountRequest() {
+    //update account request
+    var options = {
+        'url': config.updateAccountRequest.transactionEndpoint + "/" + requestId,
+        'method': config.updateAccountRequest.method,
+        'headers': config.updateAccountRequest.headers,
+        'body': {
+            "status": "Authorized"
+        },
+        'json': true
+    };
+    request(options, function (err, response, body) {
+        if (!err && response.statusCode == 200) {
 
- }
- else {
- res.redirect(opt.redirectUri + "?error=" + opt.config.error + "&state=" + opt.state);
- }
+        }
+        else {
+            res.redirect(opt.redirectUri + "?error=" + opt.config.error + "&state=" + opt.state);
+        }
 
 
- });
- }
+    });
+}
 
- function updatePaymentRequest() {
- //update payement request
- var options = {
- 'url': config.updatePaymentRequest.transactionEndpoint + "/" + requestId,
- 'method': config.updatePaymentRequest.method,
- 'headers': config.updatePaymentRequest.headers,
- 'body': {
- "status": "Authorized"
- },
- 'json': true
- };
- request(options, function (err, response, body) {
- if (!err && response.statusCode == 200) {
+function updatePaymentRequest() {
+    //update payement request
+    var options = {
+        'url': config.updatePaymentRequest.transactionEndpoint + "/" + requestId,
+        'method': config.updatePaymentRequest.method,
+        'headers': config.updatePaymentRequest.headers,
+        'body': {
+            "status": "AcceptedTechnicalValidation"
+        },
+        'json': true
+    };
+    request(options, function (err, response, body) {
+        if (!err && response.statusCode == 200) {
 
- }
- else {
- res.redirect(opt.redirectUri + "?error=" + opt.config.error + "&state=" + opt.state);
- }
- });
- }
+        }
+        else {
+            res.redirect(opt.redirectUri + "?error=" + opt.config.error + "&state=" + opt.state);
+        }
+    });
+}
  */
 
 consent.getAccessToken = function (req, res, next, opt) {

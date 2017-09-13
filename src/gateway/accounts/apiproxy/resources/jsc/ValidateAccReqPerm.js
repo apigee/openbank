@@ -14,6 +14,12 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * ValidateAccReqPerm.js
+ * Script is used to validate account request permissions
+ */
+
 var validPermissionEnum = ["ReadAccountsBasic", "ReadAccountsDetail", "ReadBalances", "ReadBeneficiariesBasic", "ReadBeneficiariesDetail", "ReadDirectDebits", "ReadProducts", "ReadStandingOrdersBasic", "ReadStandingOrdersDetail", "ReadTransactionsBasic", "ReadTransactionsCredits", "ReadTransactionsDebits", "ReadTransactionsDetail"];
 var content = "";
 var permissions = null;

@@ -17,6 +17,11 @@
 /**
  * Created by rmahalank on 8/8/17.
  */
+/**
+ * @file
+ * app.js
+ * Entry point for the node application to run.
+ */
 var express = require('express');
 var logger = require('morgan');
 var bodyParser = require('body-parser');

@@ -14,14 +14,18 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * PostAccountRequestConfig.js
+ * Script is used valid the request based on the config defined
+ */
 var PostAccountRequestConfig =
     {
         "Headers": [
             {"Authorization": {"Mandatory": true}},
             {"x-fapi-financial-id": {"Mandatory": true}},
             {"Content-Type": {"Mandatory": true, ValueList: ["application/json"]}},
-            {"x-jws-signature": {"Mandatory": true}},
-            {"Accept": {"ValueList": ["application/json"]}}
+            {"x-jws-signature": {"Mandatory": true}}
 
         ],
         "Body": [

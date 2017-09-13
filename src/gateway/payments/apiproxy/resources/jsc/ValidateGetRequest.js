@@ -13,13 +13,16 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
+/**
+ * @file
+ * ValidateGetRequest.js
+ * Validate Get request resource with the confid provided
+ */
 var GetResourceConfig =
     {
         "Headers": [
             {"Authorization": {"Mandatory": true}},
-            {"x-fapi-financial-id": {"Mandatory": true}},
-            {"Accept": {"ValueList": ["application/json"]}}
+            {"x-fapi-financial-id": {"Mandatory": true}}
 
         ]
     };

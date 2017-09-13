@@ -13,7 +13,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
+/**
+ * @file
+ * style.js
+ * Style Controller.
+ * The controller for the UI operations.
+ */
 var hbs = require('hbs');
 var appStyles = {};
 var config = require('../config.json');

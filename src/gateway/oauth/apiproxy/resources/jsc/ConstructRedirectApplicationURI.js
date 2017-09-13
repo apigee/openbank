@@ -14,10 +14,10 @@
  limitations under the License.
  */
 
-/*
- * Construct response based on /authorize response_type parameter
- * 
- * construct.response-1.0.js
+/**
+ * @file
+ * ConstructRedirectApplicationURI.js
+ * Construct response URI based on /authorize response_type parameter
  */
 
 var application_uri;

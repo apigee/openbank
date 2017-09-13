@@ -13,7 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
+/**
+ * @file
+ * ValidatePostRequest.js
+ * Validate Get request resource with the confid provided
+ */
 var PostResourceConfig =
     {
         "Headers": [
@@ -21,8 +25,7 @@ var PostResourceConfig =
             {"x-fapi-financial-id": {"Mandatory": true}},
             {"x-idempotency-key": {"Mandatory": true}},
             {"x-jws-signature": {"Mandatory": true}},
-            {"Content-Type": {"Mandatory": true, "ValueList": ["application/json"]}},
-            {"Accept": {"ValueList": ["application/json"]}}
+            {"Content-Type": {"Mandatory": true, "ValueList": ["application/json"]}}
 
         ],
         "Body": [

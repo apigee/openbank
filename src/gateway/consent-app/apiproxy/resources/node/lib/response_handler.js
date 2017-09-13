@@ -13,6 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+/**
+ * @file
+ * response_handler.js
+ * Cookies response handler to add session back to cookie
+ */
 
 var session = require('./../lib/session');
 

@@ -18,6 +18,11 @@
  * Created by muthukkannan on 8/14/17.
  */
 
+/**
+ * @file
+ * cookie_session_impl.js
+ * Cookie session constructor
+ */
 var session =     {
     //Dummy implementation; for Cookie Session Base Implementation is sufficient
     // create: function (sessionDetails) {

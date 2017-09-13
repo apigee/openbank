@@ -14,12 +14,16 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * GetAccTransactionsConfig.js
+ * Script is used valid the request based on the config defined
+ */
 var GetAccTransactionsResourceConfig =
     {
         "Headers": [
             {"Authorization": {"Mandatory": true}},
-            {"x-fapi-financial-id": {"Mandatory": true}},
-            {"Accept": {"ValueList": ["application/json"]}}
+            {"x-fapi-financial-id": {"Mandatory": true}}
 
         ],
 

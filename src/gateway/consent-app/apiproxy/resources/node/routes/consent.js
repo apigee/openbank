@@ -15,6 +15,8 @@
  */
 
 /**
+ * @file
+ * consent.js
  * Consent Route.
  */
 

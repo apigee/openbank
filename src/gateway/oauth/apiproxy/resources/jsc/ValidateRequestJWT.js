@@ -13,6 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+/**
+ * @file
+ * ValidateRequestJWT.js
+ * Validate Request JWT in request
+ */
 
 var jws = new KJUR.jws.JWS();
 

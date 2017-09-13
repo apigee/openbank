@@ -4,12 +4,13 @@ require_once DRUPAL_ROOT . '/profiles/apigee/modules/custom/devconnect/lib/Crypt
 
 //define('SMARTDOCS_SAMPLE_PETSTORE_MODEL', 'petstore example');
 //define('SMARTDOCS_SAMPLE_WEATHER_MODEL', 'weather example');
-define('SMARTDOCS_OAUTH_MODEL', 'oauthapisv2');
-define('SMARTDOCS_ACCOUNTS_MODEL', 'accountsapisv2');
-define('SMARTDOCS_OPENDATA_MODEL', 'open-dataapis');
-define('SMARTDOCS_PAYMENT_MODEL', 'paymentsapisv2');
+define('SMARTDOCS_OAUTH_MODEL', 'oauth-apis-v1-0');
+define('SMARTDOCS_ACCOUNTS_MODEL', 'accounts-apis-v1-0');
+define('SMARTDOCS_PAYMENT_MODEL', 'payments-apis-v1-0');
+
+/*define('SMARTDOCS_OPENDATA_MODEL', 'open-dataapis');
 define('SMARTDOCS_USERINFO_MODEL', 'userinfoapis');
-define('SMARTDOCS_PRODUCTS_MODEL', 'productapis');
+define('SMARTDOCS_PRODUCTS_MODEL', 'productapis');*/
 
 ini_set('arg_separator.output', '&');
 
@@ -89,7 +90,8 @@ function custom_apigee_smartdocs_import_model_content() {
   );
   */
   
-  $model_display_name = 'oauthapisv2';
+  // oauth APIs
+  $model_display_name = 'OAuth APIs V1.0';
   $model_description = 'OAuth API documentation.';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_create_model',
@@ -100,7 +102,7 @@ function custom_apigee_smartdocs_import_model_content() {
     ),
   );
   
-  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/authv2.json';
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/oauthv1-0.json';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_import_model',
     array(
@@ -114,7 +116,7 @@ function custom_apigee_smartdocs_import_model_content() {
 
 // Account APIs 
 
-  $model_display_name = 'accountsapisv2';
+  $model_display_name = 'Accounts APIs V1.0';
   $model_description = 'Accounts API documentation.';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_create_model',
@@ -125,7 +127,7 @@ function custom_apigee_smartdocs_import_model_content() {
     ),
   );
   
-  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/accountsinfov2.json';
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/accountv1-0.json';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_import_model',
     array(
@@ -139,7 +141,7 @@ function custom_apigee_smartdocs_import_model_content() {
 
 
 // Opendata APIS
-  $model_display_name = 'open-dataapis';
+  /*$model_display_name = 'open-dataapis';
   $model_description = 'OpenData API documentation.';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_create_model',
@@ -159,11 +161,11 @@ function custom_apigee_smartdocs_import_model_content() {
       'swagger',
       'application/json',
     ),
-  );
+  );*/
 
 
   // Payment APIs
- $model_display_name = 'paymentsapisv2';
+ $model_display_name = 'Payments APIs V1.0';
   $model_description = 'Payment API documentation.';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_create_model',
@@ -174,7 +176,7 @@ function custom_apigee_smartdocs_import_model_content() {
     ),
   );
   
-  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/paymentsV2.json';
+  $model_import_file = drupal_get_path('module', 'openbank_swagger') . '/swaggers/paymentv1-0.json';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_import_model',
     array(
@@ -186,7 +188,7 @@ function custom_apigee_smartdocs_import_model_content() {
   );
 
 // UserInfo APIs
-  $model_display_name = 'userinfoapis';
+  /*$model_display_name = 'userinfoapis';
   $model_description = 'User information API documentation.';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_create_model',
@@ -206,11 +208,11 @@ function custom_apigee_smartdocs_import_model_content() {
       'swagger',
       'application/json',
     ),
-  );
+  );*/
 
 
   //products model 
-   $model_display_name = 'productapis';
+   /*$model_display_name = 'productapis';
   $model_description = 'User information API documentation.';
   $operations[] = array(
     'custom_apigee_batch_smartdocs_create_model',
@@ -230,7 +232,7 @@ function custom_apigee_smartdocs_import_model_content() {
       'swagger',
       'application/json',
     ),
-  );
+  );*/
 
 
 
@@ -270,9 +272,9 @@ function custom_apigee_smartdocs_render_model_content() {
   $batch_oauth = custom_get_smartdocs_render_batch(SMARTDOCS_OAUTH_MODEL);
   $batch_accounts = custom_get_smartdocs_render_batch(SMARTDOCS_ACCOUNTS_MODEL);
   $batch_payment = custom_get_smartdocs_render_batch(SMARTDOCS_PAYMENT_MODEL);
-  $batch_opendata = custom_get_smartdocs_render_batch(SMARTDOCS_OPENDATA_MODEL);
-  $batch_userinfo = custom_get_smartdocs_render_batch(SMARTDOCS_USERINFO_MODEL);
-  $batch_products = custom_get_smartdocs_render_batch(SMARTDOCS_PRODUCTS_MODEL);
+ // $batch_opendata = custom_get_smartdocs_render_batch(SMARTDOCS_OPENDATA_MODEL);
+  //$batch_userinfo = custom_get_smartdocs_render_batch(SMARTDOCS_USERINFO_MODEL);
+  //$batch_products = custom_get_smartdocs_render_batch(SMARTDOCS_PRODUCTS_MODEL);
   
   
   $operations = array();
@@ -291,7 +293,9 @@ function custom_apigee_smartdocs_render_model_content() {
   if ($batch_payment != NULL) {
     $operations = array_merge($operations, $batch_payment['operations']);
   }
-  if ($batch_opendata != NULL) {
+
+
+  /*if ($batch_opendata != NULL) {
     $operations = array_merge($operations, $batch_opendata['operations']);
   }
   if ($batch_userinfo != NULL) {
@@ -299,7 +303,7 @@ function custom_apigee_smartdocs_render_model_content() {
   }
   if ($batch_products != NULL) {
     $operations = array_merge($operations, $batch_products['operations']);
-  }
+  }*/
  
  // Get batches to render model nodes complete. #############################################################
   // Merge batches to return.

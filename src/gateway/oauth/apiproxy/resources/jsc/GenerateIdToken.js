@@ -13,6 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+/**
+ * @file
+ * GenerateIdToken.js
+ * Generate Id token JWS
+ */
 
 var jwt;
 var key = context.getVariable("private.privateKey");

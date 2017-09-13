@@ -20,7 +20,7 @@ function all_component_features_quicktabs_default_quicktabs() {
   $quicktabs->title = 'API Documentation';
   $quicktabs->tabs = array(
     0 => array(
-      'vid' => 'oauthapisv2_methods',
+      'vid' => 'oauth-apis-v1-0_methods',
       'display' => 'frontpage',
       'args' => '',
       'title' => 'OAuth 2.0',
@@ -28,43 +28,19 @@ function all_component_features_quicktabs_default_quicktabs() {
       'type' => 'view',
     ),
     1 => array(
-      'vid' => 'accountsapisv2_methods',
+      'vid' => 'accounts-apis-v1-0_methods',
       'display' => 'frontpage',
       'args' => '',
-      'title' => 'Account Access',
+      'title' => 'Accounts APIs',
       'weight' => '-99',
       'type' => 'view',
     ),
     2 => array(
-      'vid' => 'paymentsapisv2_methods',
+      'vid' => 'payments-apis-v1-0_methods',
       'display' => 'frontpage',
       'args' => '',
-      'title' => 'Payment Transfer',
+      'title' => 'Payments APIs',
       'weight' => '-98',
-      'type' => 'view',
-    ),
-    3 => array(
-      'vid' => 'open-dataapis_methods',
-      'display' => 'frontpage',
-      'args' => '',
-      'title' => 'Open Data',
-      'weight' => '-97',
-      'type' => 'view',
-    ),
-    4 => array(
-      'vid' => 'userinfoapis_methods',
-      'display' => 'frontpage',
-      'args' => '',
-      'title' => 'User Info',
-      'weight' => '-96',
-      'type' => 'view',
-    ),
-    5 => array(
-      'vid' => 'productapis_methods',
-      'display' => 'frontpage',
-      'args' => '',
-      'title' => 'Products',
-      'weight' => '-95',
       'type' => 'view',
     ),
   );

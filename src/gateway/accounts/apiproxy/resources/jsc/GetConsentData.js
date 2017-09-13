@@ -14,6 +14,11 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * GetConsentData.js
+ * Script is used to access consent data and check for status, access
+ */
 var consentResponse = context.getVariable("consentResponse.content");
 var fapiCustomerIpAddr = context.getVariable("fapiCustomerIpAddr");
 var proxyPathSuffix = context.getVariable('proxy.pathsuffix');

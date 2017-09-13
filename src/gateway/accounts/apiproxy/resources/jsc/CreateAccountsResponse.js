@@ -14,7 +14,11 @@
  limitations under the License.
  */
 
-//This script is used to form client response based on the permissions and scope in account request
+/**
+ * @file
+ * CreateAccountsResponse.js
+ * Script is used to form client response based on the permissions and scope in account request
+ */
 
 var responseStatus = context.getVariable("response.status.code");
 if (responseStatus == 200) {

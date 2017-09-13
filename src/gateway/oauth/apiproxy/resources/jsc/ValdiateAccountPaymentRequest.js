@@ -13,6 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+/**
+ * @file
+ * ValdiateAccountPaymentRequest.js
+ * validate account /payment request status
+ */
 
 var requestContent = context.getVariable("requestIdResponse.content");
 var type = context.getVariable("type");
@@ -21,7 +26,7 @@ var errorJson = {};
 errorJson.isError = false;
 errorJson.errorResponseCode = 400;
 errorJson.errorDescription = "accountRequest/paymentRequest is already authorised";
-if ((type !== null && type !== "" && (type == "accounts" || type == "payments" )) && (requestContent && requestContent.Data && requestContent.Data.Status != "Pending")) {
+if ((type !== null && type !== "" && (type == "accounts" || type == "payments" )) && (requestContent && requestContent.Data && !(requestContent.Data.Status == "Pending" || requestContent.Data.Status == "AwaitingAuthentication"))) {
     errorJson.isError = true;
 }
 context.setVariable("isError", errorJson.isError);

@@ -15,8 +15,25 @@ p, .table td, .table th, li, body, pre, code {
     line-height: 30px;
 }
 h1, h2, h3, h4, h5, h6 {
-    color: #00543d;
+    color: #36474f;
 }
+
+
+
+.dialog-div .ui-dialog-titlebar {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.dialog-div .ui-dialog-titlebar {
+    margin: 0;
+    line-height: 1.428571429;
+}
+
+
+
+
 
 
 .activeTitle
@@ -101,6 +118,13 @@ body.admin-menu.front .page-header { padding-top: 0px;}
     margin: 0;
 }
 
+.flex-nav-container .flexslider{
+    border: none;
+    border-radius: 0px;
+    margin: 0;
+    margin-top:70px;
+}
+
 .slide-caption{
     color: rgb(134, 134, 134);
     font-size: 1.9em;
@@ -120,8 +144,18 @@ body.admin-menu.front .page-header { padding-top: 0px;}
     text-align: center;
     z-index: 300;
 }
+.flex-nav-container  .flex-control-nav{
+    width: 100%;
+    position: absolute;
+    bottom: 15px;
+    text-align: center;
+    z-index: 300;
+}
 
 body.front #flexslider_views_slideshow_main_slideshow-block .flex-direction-nav li {
+    line-height: 40px;
+}
+body.front .flex-nav-container .flex-direction-nav li {
     line-height: 40px;
 }
 
@@ -367,16 +401,16 @@ body .btn {
     color: #FFFFFF;
 }
 body.front .region-content h2 {
-    color: #84aab9;
+    color: #36474f;
 }
-body .navbar-inverse .navbar-nav > .open > a{ background-color:#ff4300 !important; }
+body .navbar-inverse .navbar-nav > .open > a{ background-color:#4885ed !important; }
 #method_content a.link_reset_default {
     display: inline-block;
     margin: 0 0 0 10px !important;
     font-size: 13px;
     padding: 8px 40px;
     border-radius: 7px / 5px 5px 5px 5px;
-    background-color: #ff4300;
+    background-color: #4885ed;
     color: #FFFFFF;
 }
 .footer {
@@ -414,7 +448,13 @@ body.sidebar-first .main-container.container {
     margin: 0 5px 0 -15px;
 }
 .block h3.box-title span {
-    color: #4d4d4d !important;
+    color: #36474f !important;
+    font-size:20px;
+}
+
+.block h3.box-title span:hover {
+    color: #039be5 !important;
+    font-size:20px;
 }
 #block-block-8 { border-bottom: none; }
 body.navbar-is-fixed-top #breadcrumb-navbar { margin-top: 66px }
