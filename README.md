@@ -16,7 +16,12 @@ This document is organized into the following sections
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Test](#Test)
-- [Developer Portal](#developer-portal)
+
+[Developer Portal](#developer-portal)
+
+- [Developer Portal Setup](#developer-portal-setup) 
+
+[Data](#data)
 
 [Changelog](#changelog)
 
@@ -219,9 +224,24 @@ run tests
 gulp test
 ```
 
-### Developer Portal
 
-Developer Portal setup is detailed in a separate [document](./src/devportal/README.md)
+## Developer Portal
+Every API provider must be able to educate developers and successfully expose their APIs. A developer portal is the face of your API program, providing everything that internal, partner, and third party developers need. 
+
+Developers need to interact with the Banks and with each other. Enable your developer community to provide feedback, make support and feature requests, and submit their own content that can be accessed by other developers with the right developer portal.
+
+Apigee Edge provides with a Developer Services portal that you can use to build and launch your own customized website to provide all of these services to your development community. One has the option to create their own developer portal, either in the cloud or on-premises.
+
+The below picture depicts how a dev portal looks like
+
+![developer-portal](images/openbank.png)
+
+### Developer Portal Setup
+The detailed instructions for developer portal setup for openbank solution can be found [Here](./src/devportal/README.md).
+
+## Data
+The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Baas 2.0](http://apibaas.apigee.com/) in your org.  You can find the dummy data under `./setup/data` folder
+
 
 ## Changelog
 
