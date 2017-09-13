@@ -2,19 +2,19 @@
 {
   $(document).ready(function()
 {
-  ORG = "testdemorrai";
+  ORG = "apis-bank";
   ENV = "test";
-  CLIENT_ID_ACCOUNTS = "zPq1BGV4OlLV7hJR1DsbfTI1t3orbDmD";
-  CLIENT_SECRET_ACCOUNTS = "BCEfUEVCTbzThYLO";
-  CLIENT_ID_PAYMENTS = "WN6WqzK7iMrexdi7wGMGMx77eRVbYWKG";
-  CLIENT_SECRET_PAYMENTS = "jnKP73THQSpDli96";  
+  CLIENT_ID_ACCOUNTS = "clientid_aisp";
+  CLIENT_SECRET_ACCOUNTS = "clientsecret_aisp";
+  CLIENT_ID_PAYMENTS = "clientid_pisp";
+  CLIENT_SECRET_PAYMENTS = "clientsecret_pisp";  
   ACCOUNTS_SMARTDOC_NAME = "accounts-apis-v1-0";
   ACCOUNTS_OAUTH_NAME = "PSUOAuth2Security";
 
   PAYMENTS_SMARTDOC_NAME = "payments-apis-v1-0";
   PAYMENTS_OAUTH_NAME = "PSUOAuth2Security";
 
-  BASE_URL = "https://testdemorrai-test.apigee.net";
+  BASE_URL = "https://apis-bank-test.apigee.net";
 
   BASIC_HEADER_ACCOUNTS = Base64.encode(CLIENT_ID_ACCOUNTS + ":" + CLIENT_SECRET_ACCOUNTS);
   BASIC_HEADER_PAYMENTS = Base64.encode(CLIENT_ID_PAYMENTS + ":" + CLIENT_SECRET_PAYMENTS);
@@ -131,7 +131,7 @@ function showCreateRequestPage()
   }
   else
   {
-    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Create Account Request");
+    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Create Payment Request");
     
     $authoriseInput = $('<div id="showRequest" style="background:#FFFFFF;"> <table> <tr> <td><label>Authorization</label></td> <td><input type="text" name="BearerAuthInput" value="qwerty"></input></td> </tr> <tr> <td><label>x-fapi-financial-id</label></td> <td><input type="text" name="financialIdInput" value="34"></input></td> </tr> <tr> <td><label>x-jws-signature</label></td> <td><input type="text" name="jwsInput"></input></td> </tr><tr> <td><label>x-idempotency-key</label></td> <td><input type="text" name="idempotencyInput"></input></td> </tr> <tr> <td><label>Payload</label></td> <td> &nbsp &nbsp <textarea cols="18" style="oveflow:scroll" name="reqPayloadInput"></textarea></td> </tr> </table></div>');
     ReqContent = JSON.stringify({"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACME Inc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internal ops code 5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat 7","Acacia Lodge"],"StreetName":"Acacia Avenue","BuildingNumber":"27","PostCode":"GU31 2ZZ","TownName":"Sparsholt","CountySubDivision":["Wessex"],"Country":"UK"}}});
@@ -196,12 +196,12 @@ function createRequest()
 
           localStorage.RequestId = responseText.Data.PaymentId;
         
-          var json = JSON.parse($('.payload_text').val());
+          var json = JSON.parse(window.apiModelEditor.getRequestPayLoad());
           if(json.Data && json.Data.PaymentId)
           {
             
             json.Data.PaymentId = localStorage.RequestId;
-            $('.payload_text').val(JSON.stringify(json));
+            window.apiModelEditor.setRequestPayLoad(JSON.stringify(json));
             
           }
         }
@@ -388,12 +388,13 @@ function showJWSButton()
     $('span.close-modal').on("click",closeDialog);
   }
 }
-
+//window.apiModelEditor.setRequestPayLoad
+//window.apiModelEditor.getRequestPayLoad()
 function openJWSDialog()
 {
   var modal = document.getElementById('myModal');
   modal.style.display = "block";
-  $('textarea[name=jwt_payload]').val($('.payload_text').val());
+  $('textarea[name=jwt_payload]').val(window.apiModelEditor.getRequestPayLoad());
 }
 
 function createJWTFromPayload()
