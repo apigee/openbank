@@ -13,10 +13,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+/**
+ * @file
+ * CreateJWS.js
+ * Script is used to create jws detached signature
+ */
 
-/*  Create the jws detached signature
-*   and pass it in the response header
-*/
 var responsePayload = JSON.parse(context.getVariable("response.content"));
 responsePayload = JSON.stringify(responsePayload);
 var privateKey = context.getVariable("private.privateKey");

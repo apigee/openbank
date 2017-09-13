@@ -14,6 +14,11 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * GetAccReqData.js
+ * Script is used to validate account request status and permission
+ */
 var accReqResponse = context.getVariable("accReqResponse.content");
 var proxyPathSuffix = context.getVariable('proxy.pathsuffix');
 

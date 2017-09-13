@@ -16,7 +16,17 @@ This document is organized into the following sections
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Test](#Test)
-- [Developer Portal](#developer-portal)
+
+[Developer Portal](#developer-portal)
+
+- [Developer Portal Setup](#developer-portal-setup) 
+
+[Data](#data)
+
+[Notes for Implementors](#notes-for-implementors)
+
+- [Client App Developers](#client-app-developers)
+- [API Deployment](#api-deployment)
 
 [Changelog](#changelog)
 
@@ -219,9 +229,37 @@ run tests
 gulp test
 ```
 
-### Developer Portal
 
-Developer Portal setup is detailed in a separate [document](./src/devportal/README.md)
+## Developer Portal
+Every API provider must be able to educate developers and successfully expose their APIs. A developer portal is the face of your API program, providing everything that internal, partner, and third party developers need. 
+
+Developers need to interact with the Banks and with each other. Enable your developer community to provide feedback, make support and feature requests, and submit their own content that can be accessed by other developers with the right developer portal.
+
+Apigee Edge provides with a Developer Services portal that you can use to build and launch your own customized website to provide all of these services to your development community. One has the option to create their own developer portal, either in the cloud or on-premises.
+
+The below picture depicts how a dev portal looks like
+
+![developer-portal](images/openbank.png)
+
+### Developer Portal Setup
+The detailed instructions for developer portal setup for openbank solution can be found [Here](./src/devportal/README.md).
+
+## Data
+The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Baas 2.0](http://apibaas.apigee.com/) in your org.  You can find the dummy data under `./setup/data` folder
+
+## Notes for Implementors
+
+### Client App Developers
+
+- The APIs use Public/Private Key pair for doing JWS signing of the Payload. The Public Key of the sample bank and Private Key for the sample TPP (Client App) are present in `./test` folder.
+
+### API Deployment
+
+- You can find two sets of Public/Private Key Pair under `./test` folder; you could use it for configuring the APIs to use them for signing/verifying the responses/requests.
+- Private key for the bank has to be provided during deployment. It is recommended to define a Prompt in config.yml and use it as value for the private key.
+- For Production access, a Mutual TSL connectivity needs to be configured as defined [here](http://docs.apigee.com/api-services/content/creating-virtual-host).
+- While running `gulp deploy` please do make sure there are no custom APIs defined with the same names; otherwise those APIs will be overwritten with a new revision.   
+
 
 ## Changelog
 

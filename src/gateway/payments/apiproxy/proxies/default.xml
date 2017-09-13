@@ -20,6 +20,10 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
+                <Condition>request.verb = "OPTIONS"</Condition>
+                <Name>Raise-Fault-OPTIONS</Name>
+            </Step>
+            <Step>
                 <Name>Verify-Access-Token</Name>
             </Step>
             <Step>
@@ -33,7 +37,7 @@
                 <Name>Raise-Fault-Invalid-Scope</Name>
             </Step>
             <Step>
-                <Condition>(request.header.Accept!=null) and (request.header.Accept != "application/json")</Condition>
+                <Condition>(request.header.Accept!=null) and !(request.header.Accept = "application/json" or request.header.Accept = "*/*")</Condition>
                 <Name>Raise-Fault-Invalid-Accept-Header</Name>
             </Step>
             <Step>
@@ -80,6 +84,9 @@
         <Response>
             <Step>
                 <Name>Response-Cache-Idempotency-Hit</Name>
+            </Step>
+            <Step>
+                <Name>Add-CORS</Name>
             </Step>
         </Response>
     </PostFlow>

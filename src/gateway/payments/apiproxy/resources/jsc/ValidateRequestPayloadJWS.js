@@ -13,7 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
+/**
+ * @file
+ * ValidateRequestPayloadJWS.js
+ * Validate the request payload with detached jws signature provided
+ */
 /*  Validate the request payload with
 *   the detached jws signature provided in the header
 */

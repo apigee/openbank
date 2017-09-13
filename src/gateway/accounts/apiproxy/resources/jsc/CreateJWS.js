@@ -14,6 +14,11 @@
  limitations under the License.
  */
 
+/**
+ * @file
+ * CreateJWS.js
+ * Script is used to create detached JWS value
+ */
 var responsePayload = JSON.parse(context.getVariable("response.content"));
 responsePayload = JSON.stringify(responsePayload);
 var privateKey = context.getVariable("private.privateKey");

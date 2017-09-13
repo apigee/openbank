@@ -13,7 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-
+/**
+ * @file
+ * VadilateAndUpdatePaymentSubmission.js
+ * Validate payment request and update payment submission payload with debitors account details
+ */
 var paymentRequest = context.getVariable("paymentsRequestResponse.content");
 var paymentConsent = context.getVariable("consentResponse.content");
 
@@ -29,7 +33,7 @@ if(paymentRequestStatusCode == 200 &&  paymentRequest){
     if(paymentRequest.Data.Status == "AcceptedTechnicalValidation"){
         if(paymentConsentStatusCode == 200 && paymentConsent){
             paymentConsent = JSON.parse(paymentConsent);
-            if(paymentRequest.Data.Status == "Authorised"){
+            if(paymentConsent.Data.Status == "Authorised"){
                 //get debitor accounts.. append it to the body!
                 var requestBody = JSON.parse(context.getVariable("request.content"));
                 requestBody.Data.Initiation.DebtorAccount = paymentConsent.SelectedAccounts[0];

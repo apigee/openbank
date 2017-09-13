@@ -14,12 +14,13 @@
  limitations under the License.
  */
 
-/*
-*
-* A dummy navigator object - jsrasign expects to be running in a browser and expects 
-* these to be in the global namespace
-*
-*/
+/**
+ * @file
+ * jws-initialization.js
+ * A dummy navigator object - jsrasign expects to be running in a browser and expects
+ * these to be in the global namespace
+ * Construct response URI based on /authorize response_type parameter
+ */
 
 var navigator = navigator || {appName : ''};
 var window = window || {};
