@@ -23,6 +23,11 @@ This document is organized into the following sections
 
 [Data](#data)
 
+[Notes for Implementors](#notes-for-implementors)
+
+- [Client App Developers](#client-app-developers)
+- [API Deployment](#api-deployment)
+
 [Changelog](#changelog)
 
 ## Overview
@@ -241,6 +246,19 @@ The detailed instructions for developer portal setup for openbank solution can b
 
 ## Data
 The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Baas 2.0](http://apibaas.apigee.com/) in your org.  You can find the dummy data under `./setup/data` folder
+
+## Notes for Implementors
+
+### Client App Developers
+
+- The APIs use Public/Private Key pair for doing JWS signing of the Payload. The Public Key of the sample bank and Private Key for the sample TPP (Client App) are present in `./test` folder.
+
+### API Deployment
+
+- You can find two sets of Public/Private Key Pair under `./test` folder; you could use it for configuring the APIs to use them for signing/verifying the responses/requests.
+- Private key for the bank has to be provided during deployment. It is recommended to define a Prompt in config.yml and use it as value for the private key.
+- For Production access, a Mutual TSL connectivity needs to be configured as defined [here](http://docs.apigee.com/api-services/content/creating-virtual-host).
+- While running `gulp deploy` please do make sure there are no custom APIs defined with the same names; otherwise those APIs will be overwritten with a new revision.   
 
 
 ## Changelog
