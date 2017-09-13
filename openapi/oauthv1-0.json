@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "{{ host }}",
+  "host": "testdemorrai-test.apigee.net",
   "schemes": [
     "https"
   ],
@@ -9,7 +9,7 @@
     "title": "Generate Access Token",
     "version": "0.0.1"
   },
-  "basePath": "/apis/v2/oauth",
+  "basePath": "/apis/v1.0/oauth",
   "paths": {
     "/authorize": {
       "get": {
@@ -28,37 +28,46 @@
           }
         },
         "security": [],
-        "parameters": [
-          {
+        "parameters": [{
             "in": "query",
             "name": "client_id",
-            "description": "Client ID of the registered App.",
+            "description": "TPPs MUST provide this value and set it to the client id issued to them.",
             "type": "string",
+            "default": "zPq1BGV4OlLV7hJR1DsbfTI1t3orbDmD",
             "required": true
           },
           {
             "in": "query",
             "name": "redirect_uri",
-            "description": "Redirect URI defined with your registered App.",
+            "description": "Redirect URI defined with your registered App.  This MUST be a valid, absolute URL that was registered during Client Registration.",
+            "type": "string",
+            "default" : "http://localhost/",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "nonce",
+            "description": "A nonce value",
             "type": "string",
             "required": true
           },
           {
             "in": "query",
             "name": "response_type",
-            "description": "The value must be one of 'code' for requesting an authorization code or 'token' for requesting an access token (implicit grant). The redirect url is passed with query params state and code.",
+            "description": "OAuth 2.0 requires that this parameter is provided. Value is set to  ‘code id_token’ or ‘code’. The values for these parameters MUST match those in the Request Object, if present.",
             "type": "string",
             "required": true,
             "enum": [
+              "code id_token",
+              "code",
               "token",
-              "code"
-            ],
-            "default": "token"
+              "token id_token"
+            ]
           },
           {
             "in": "query",
             "name": "state",
-            "description": "Unique id to maintain state between asynchronous requests.",
+            "description": "TPPs MAY provide a state parameter. An Unique id to maintain state between asynchronous requests at the Client.",
             "type": "string",
             "required": true,
             "default": "af0ifjsldkj"
@@ -66,31 +75,19 @@
           {
             "in": "query",
             "name": "scope",
-            "description": "Scope of the access token requested.",
+            "description": "The scopes MUST be a sub-set of the scopes that were registered during Client Registration. At a minimum the scope parameter MUST contain openid. Other valid scopes are: accounts, payments",
             "type": "string",
             "required": true,
             "enum": [
-              "accounts",
-              "payments",
+              "openid accounts",
+              "openid payments",
               "openid"
             ]
           },
           {
             "in": "query",
-            "name": "acr_values",
-            "description": "Determines the level of security for authentication. A value of 2 will require only Customer Id and Password. A value of 3 will request for OTP.",
-            "type": "string",
-            "required": true,
-            "enum": [
-              "2",
-              "3"
-            ],
-            "default": "2"
-          },
-          {
-            "in": "query",
-            "name": "request_id",
-            "description": "Request Id for which Authorization Flow need to be executed",
+            "name": "request",
+            "description": "The parameter MUST contain a JWS that is signed by the TPP.  The JWS payload MUST consist of a JSON object containing a request object as per OIDC Core 6.1.<p>The request object MUST contain a claims section that includes as a minimum <p><li>openbanking_intent_id that identifies the intent id for which this authorisation is requested",
             "type": "string",
             "required": true
 
@@ -118,19 +115,20 @@
           }
         },
         "security": [],
-        "parameters": [
-          {
+        "parameters": [{
             "in": "formData",
             "name": "client_id",
-            "description": "Client ID of the registered App.",
+            "description": "Client ID of the registered App - for non-authenticated requests and Optional for client-assertion requests",
             "type": "string",
-            "required": true
+            "default": "zPq1BGV4OlLV7hJR1DsbfTI1t3orbDmD",
+            "required": false
           },
           {
             "in": "formData",
             "name": "redirect_uri",
             "description": "Redirect URI defined with your registered App. This is verified against the redirect uri that is registered when the App is created. If found to be different this call fails to return the access token.",
             "type": "string",
+            "default" : "http://localhost/",
             "required": true
           },
           {
@@ -142,8 +140,7 @@
             "enum": [
               "client_credentials",
               "authorization_code"
-            ],
-            "default": "authorization_code"
+            ]
           },
           {
             "in": "formData",
@@ -157,8 +154,36 @@
             "name": "Authorization",
             "description": "Base 64 encoded string with client_id:client_secret.",
             "type": "string",
-            "required": true
-          }]
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "scope",
+            "description": "The scopes is used for grant_type 'client_credentials'",
+            "type": "string",
+            "enum": [
+              "accounts",
+              "payments"
+            ]
+          },
+          {
+            "in": "formData",
+            "name": "client_assertion_type",
+            "description": "Required for client_assertion based authentication. The value MUST be 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'",
+            "type": "string",
+            "required": false,
+            "enum": [
+              "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+            ]
+          },
+          {
+            "in": "formData",
+            "name": "client_assertion",
+            "description": "Authentication JWT token containing clientId as iss and signed using the private key of the TPP",
+            "type": "string",
+            "required": false
+          }
+        ]
       }
     }
   },

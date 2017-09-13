@@ -22,8 +22,7 @@ var GetResourceConfig =
     {
         "Headers": [
             {"Authorization": {"Mandatory": true}},
-            {"x-fapi-financial-id": {"Mandatory": true}},
-            {"Accept": {"ValueList": ["application/json"]}}
+            {"x-fapi-financial-id": {"Mandatory": true}}
 
         ]
     };

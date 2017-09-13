@@ -25,8 +25,7 @@ var PostAccountRequestConfig =
             {"Authorization": {"Mandatory": true}},
             {"x-fapi-financial-id": {"Mandatory": true}},
             {"Content-Type": {"Mandatory": true, ValueList: ["application/json"]}},
-            {"x-jws-signature": {"Mandatory": true}},
-            {"Accept": {"ValueList": ["application/json"]}}
+            {"x-jws-signature": {"Mandatory": true}}
 
         ],
         "Body": [

@@ -23,7 +23,11 @@
     </PreFlow>
     <PostFlow name="PostFlow">
         <Request/>
-        <Response/>
+        <Response>
+            <Step>
+                <Name>Add-CORS</Name>
+            </Step>
+        </Response>
     </PostFlow>
     <Flows>
         <Flow name="authorization">

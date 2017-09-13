@@ -25,8 +25,7 @@ var PostResourceConfig =
             {"x-fapi-financial-id": {"Mandatory": true}},
             {"x-idempotency-key": {"Mandatory": true}},
             {"x-jws-signature": {"Mandatory": true}},
-            {"Content-Type": {"Mandatory": true, "ValueList": ["application/json"]}},
-            {"Accept": {"ValueList": ["application/json"]}}
+            {"Content-Type": {"Mandatory": true, "ValueList": ["application/json"]}}
 
         ],
         "Body": [

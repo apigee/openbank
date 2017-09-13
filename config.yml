@@ -200,7 +200,7 @@ resources:
       type: app
       items:
       - name: AISP_App
-        payload: '{"name":"AISP_App","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuZhaB6ciF8hzzHkv3tkl20LS8KfWgRb/V4I6pB9ADNPBNgrceSf+mLoIWxrRDgTSYqyYYXmj3Fy9B1mG4lpUvrClt4hHKaBvsRZKn4/r2dPxUo0ggI+ruxQaQoKf2v8sEJe6Sx7btBvBxTqOMlIxP1GDNYJICaXo8jsBeNVDtCeFP2e9QJUmNvYGY7IfB8vUqFFcHushNmKmdR5H6pUg/JOsheFyi41UT05Zu3FvMHBAJab4OnybOLrovCVshu3Q7BOFkQVkYF4HrD0IM4GDojGt4OfMqESnLvG7+UywNjs/zjmdX0mn1wG7mZjlXfgh0DKo/MeWCW+gEQdPejCrBwIDAQAB -----END PUBLIC KEY-----"}],"callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"account_apis"}'
+        payload: '{"name":"AISP_App","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuZhaB6ciF8hzzHkv3tkl20LS8KfWgRb/V4I6pB9ADNPBNgrceSf+mLoIWxrRDgTSYqyYYXmj3Fy9B1mG4lpUvrClt4hHKaBvsRZKn4/r2dPxUo0ggI+ruxQaQoKf2v8sEJe6Sx7btBvBxTqOMlIxP1GDNYJICaXo8jsBeNVDtCeFP2e9QJUmNvYGY7IfB8vUqFFcHushNmKmdR5H6pUg/JOsheFyi41UT05Zu3FvMHBAJab4OnybOLrovCVshu3Q7BOFkQVkYF4HrD0IM4GDojGt4OfMqESnLvG7+UywNjs/zjmdX0mn1wG7mZjlXfgh0DKo/MeWCW+gEQdPejCrBwIDAQAB -----END PUBLIC KEY-----"}],"callback":"http://localhost/,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/accounts-apis-v1-0/templateauths/PSUOAuth2Security/callback","email":"openbank@apigee.net","apiProducts":"account_apis"}'
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey_AISP
@@ -209,7 +209,7 @@ resources:
         - from: appId
           to: appId_AISP
       - name: PISP_App
-        payload: '{"name":"PISP_App","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuZhaB6ciF8hzzHkv3tkl20LS8KfWgRb/V4I6pB9ADNPBNgrceSf+mLoIWxrRDgTSYqyYYXmj3Fy9B1mG4lpUvrClt4hHKaBvsRZKn4/r2dPxUo0ggI+ruxQaQoKf2v8sEJe6Sx7btBvBxTqOMlIxP1GDNYJICaXo8jsBeNVDtCeFP2e9QJUmNvYGY7IfB8vUqFFcHushNmKmdR5H6pUg/JOsheFyi41UT05Zu3FvMHBAJab4OnybOLrovCVshu3Q7BOFkQVkYF4HrD0IM4GDojGt4OfMqESnLvG7+UywNjs/zjmdX0mn1wG7mZjlXfgh0DKo/MeWCW+gEQdPejCrBwIDAQAB -----END PUBLIC KEY-----"}],"callback":"http://localhost/","email":"openbank@apigee.net","apiProducts":"payment_apis"}'
+        payload: '{"name":"PISP_App","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuZhaB6ciF8hzzHkv3tkl20LS8KfWgRb/V4I6pB9ADNPBNgrceSf+mLoIWxrRDgTSYqyYYXmj3Fy9B1mG4lpUvrClt4hHKaBvsRZKn4/r2dPxUo0ggI+ruxQaQoKf2v8sEJe6Sx7btBvBxTqOMlIxP1GDNYJICaXo8jsBeNVDtCeFP2e9QJUmNvYGY7IfB8vUqFFcHushNmKmdR5H6pUg/JOsheFyi41UT05Zu3FvMHBAJab4OnybOLrovCVshu3Q7BOFkQVkYF4HrD0IM4GDojGt4OfMqESnLvG7+UywNjs/zjmdX0mn1wG7mZjlXfgh0DKo/MeWCW+gEQdPejCrBwIDAQAB -----END PUBLIC KEY-----"}],"callback":"http://localhost/,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/payments-apis-v1-0/templateauths/PSUOAuth2Security/callback","email":"openbank@apigee.net","apiProducts":"payment_apis"}'
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey_PISP

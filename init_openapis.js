@@ -17,7 +17,7 @@
 var mustache 		= require('mustache');
 var path 			= require('path');
 var fs				= require('fs-extra');
-var jwt             = require('jsonwebtoken');
+//var jwt             = require('jsonwebtoken');
 var prompt_lib		= require('prompt');
 var request         = require('request');
 
@@ -32,7 +32,7 @@ var request         = require('request');
     node install_tmp.js
 */
 
-var files_list = ['src/devportal/all/modules/custom/openbank_swagger/swaggers/accountsinfov2.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/authv2.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/userinfov2.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/opendata-locations.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/paymentsV2.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/opendata-products.json.template']
+var files_list = ['src/devportal/all/modules/custom/openbank_swagger/swaggers/oauthv1-0.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/accountv1-0.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/paymentv1-0.json.template','src/devportal/all/themes/dbank/js/smartdocsDynamic.js.template'];
 
 var inject_object = {}
 
@@ -98,6 +98,10 @@ function post_prompt(err, results) {
     }
 
     inject_object.org = results['org'];
+    if(results['env'])
+    {
+    inject_object.env = results['env'];
+    }
     var org = results['org']
     var username = results['username'];
     var password = results['password'];
@@ -131,12 +135,12 @@ function post_prompt(err, results) {
 
 
 
-    get_app_details('AISP_App_v2', edge_host, org, username, password, function (aisp_details) {
+    get_app_details('AISP_App', edge_host, org, username, password, function (aisp_details) {
         secret_aisp = aisp_details.credentials[0].consumerSecret;
         client_id_aisp = aisp_details.credentials[0].consumerKey;
         redirect_uri_aisp = aisp_details.callbackUrl;
 
-        get_app_details('PISP_App_v2', edge_host, org, username, password, function (pisp_details) {
+        get_app_details('PISP_App', edge_host, org, username, password, function (pisp_details) {
             secret_pisp = pisp_details.credentials[0].consumerSecret;
             client_id_pisp = pisp_details.credentials[0].consumerKey;
             redirect_uri_pisp = pisp_details.callbackUrl;
@@ -146,8 +150,8 @@ function post_prompt(err, results) {
             inject_object.client_id_aisp = client_id_aisp;
             inject_object.client_id_pisp = client_id_pisp;
             inject_object.redirect_uri_pisp = redirect_uri_pisp;
-
-            get_app_details('Opendata_App_v2', edge_host, org, username, password, function (opendata_details) {
+            replace_variables(paths, inject_object);
+            /*get_app_details('Opendata_App_v2', edge_host, org, username, password, function (opendata_details) {
             secret_openid = opendata_details.credentials[0].consumerSecret;
             client_id_openid = opendata_details.credentials[0].consumerKey;
             redirect_uri_openid = opendata_details.callbackUrl;
@@ -158,7 +162,7 @@ function post_prompt(err, results) {
 
 
             replace_variables(paths, inject_object)
-                });
+                });*/
             
         });
 
