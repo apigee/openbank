@@ -134,10 +134,6 @@ An API end point is provided for each type of information.
 These Account Information APIs are secured with **oAuth 2.0**  and need a **valid Access token** for making API calls. 
 
 
- - Aggregation of financial metrics such as net worth and savings across multiple accounts.
- - Analysis and recommendations for better money management.
- - Recommendation of products and deals based on monthly statements.
-
 #### **2. Payment Initiation APIs**
 Payment Initiation APIs provide a simple one time payment functionality. It has two sets of APIs:
  - Payment request  - (CREATE, GET and DELETE) to request for a one time payment  
@@ -146,6 +142,10 @@ Payment Initiation APIs provide a simple one time payment functionality. It has 
 The Payment Initiation APIs are also secured with **oAuth 2.0** and need a **valid Access token**. 
 
 Banking APIs provide developers with the information needed to create innovative Fintech apps for consumers.There are a few obvious use cases worth mentioning:
+
+ - Aggregation of financial metrics such as net worth and savings across multiple accounts.
+ - Analysis and recommendations for better money management.
+ - Recommendation of products and deals based on monthly statements.
 
 
 ## Apigee Edge Setup
@@ -221,7 +221,7 @@ gulp test
 
 ### Developer Portal
 
-Developer Portal setup is detailed in separate [document](./src/devportal/README.md)
+Developer Portal setup is detailed in a separate [document](./src/devportal/README.md)
 
 ## Changelog
 
