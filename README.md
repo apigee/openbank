@@ -5,30 +5,30 @@ The Apigee Open Banking APIx solution simplifies and accelerates the process of 
 
 This document is organized into the following sections
 
-[Overview](#overview)
+1.[Overview](#overview)
 
-[Design](#design)
+2.[Design](#design)
 - [Architecture](#architecture)
 - [Security](#security)
 - [APIs](#functional-apis)  
 
-[Setup](#setup)
+3.[Setup](#setup)
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Test](#Test)
 
-[Developer Portal](#developer-portal)
+4.[Developer Portal](#developer-portal)
 
 - [Developer Portal Setup](#developer-portal-setup) 
 
-[Data](#data)
+5.[Data](#data)
 
-[Notes for Implementors](#notes-for-implementors)
+6.[Additional Notes](#additional-notes)
 
 - [Client App Developers](#client-app-developers)
 - [API Deployment](#api-deployment)
 
-[Changelog](#changelog)
+7.[Changelog](#changelog)
 
 ## Overview
 
@@ -46,6 +46,11 @@ The OpenBank solution is built on Apigee Edge API Management Platform, and featu
 **Payment Initiation APIs**
   - Single Immediate Payment
   - Payment Submission
+  
+**Open Data APIs**
+  - ATMs
+  - Branches
+  - Products
   
 **Security APIs**
   - OAuth
@@ -151,6 +156,16 @@ Payment Initiation APIs provide a simple one time payment functionality. It has 
 
 The Payment Initiation APIs are also secured with **oAuth 2.0** and need a **valid Access token**. 
 
+
+#### **3. Open Data APIs**
+Open Data APIs provide API access for public data, like information about Bank Branches.  These APIs do not need any authentication. The APIs available are:
+ - ATMs - To search on the available list of ATMs, based on the location.
+ - Branch - To search on the Bank's Branch listing based on the location or open time or services available
+ - Products - The list of banking products that availed with the Bank.
+
+ 
+ 
+
 Banking APIs provide developers with the information needed to create innovative Fintech apps for consumers.There are a few obvious use cases worth mentioning:
 
  - Aggregation of financial metrics such as net worth and savings across multiple accounts.
@@ -247,7 +262,9 @@ The detailed instructions for developer portal setup for openbank solution can b
 ## Data
 The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Baas 2.0](http://apibaas.apigee.com/) in your org.  You can find the dummy data under `./setup/data` folder
 
-## Notes for Implementors
+## Additional Notes
+
+Additional notes for implementors.
 
 ### Client App Developers
 

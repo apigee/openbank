@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <PreFlow name="PreFlow">
+        <Request>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="allProducts">
+            <Condition>proxy.pathsuffix MatchesPath "/" and request.verb = "GET"</Condition>
+            <Request/>
+            <Response/>
+        </Flow>
+        <Flow name="singleProduct">
+            <Condition>proxy.pathsuffix MatchesPath "/*" and request.verb = "GET"</Condition>
+            <Response>
+                <Step>
+                    <Name>Extract.ProductDetailsFromResponse</Name>
+                </Step>
+                <Step>
+                    <Name>Statistics.CollectProductId</Name>
+                </Step>
+            </Response>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/apis/v2/products</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>
