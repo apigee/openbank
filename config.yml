@@ -81,6 +81,12 @@ resources:
       - name: consents
         file: setup/data/consents.json
         permissions: ['get,post,delete:consents','get,post,delete:consents/*','get,post,delete:consents/**']
+      - name: locations
+        file: setup/data/locations.json
+        permissions: ['get,post,delete:consents','get,post,delete:consents/*','get,post,delete:consents/**']
+      - name: bankproducts
+        file: setup/data/bankproducts.json
+        permissions: ['get,post,delete:consents','get,post,delete:consents/*','get,post,delete:consents/**']
     - name: cacheResources
       type: cache
       items:
@@ -98,7 +104,7 @@ resources:
       type: configSubstitutions
       items:
       - name: baasBasePath
-        filePaths: ['src/gateway/user-management/target/apiproxy/targets/default.xml','src/gateway/customer-management/target/apiproxy/targets/default.xml','src/gateway/accounts-connector/target/apiproxy/policies/Assign-Target-URL.xml']
+        filePaths: ['src/gateway/user-management/target/apiproxy/targets/default.xml','src/gateway/customer-management/target/apiproxy/targets/default.xml','src/gateway/accounts-connector/target/apiproxy/policies/Assign-Target-URL.xml','src/gateway/locations-connector/target/apiproxy/policies/Assign-Target-URL.xml','src/gateway/products-connector/target/apiproxy/policies/Assign-Target-URL.xml']
         value: '{{ baas_host }}/{{ usergrid_org }}/{{ usergrid_app }}'
       - name: baasURI
         filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
@@ -142,6 +148,10 @@ resources:
         apiName: LoginAppOBv1.0
       - name: payments-connector
         apiName: PaymentsOBv1.0Connector
+      - name: locations-connector
+        apiName: locations-connector
+      - name: products-connector
+        apiName: products-connector
     - name: developers
       type: developer
       items:
@@ -189,6 +199,10 @@ resources:
         apiName: AccountsOBv1.0
       - name: payments
         apiName: PaymentsOBv1.0
+      - name: locations
+        apiName: locations
+      - name: products
+        apiName: products
     - name: remainingApiProducts
       type: product
       items:
