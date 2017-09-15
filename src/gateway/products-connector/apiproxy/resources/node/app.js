@@ -1,3 +1,8 @@
+/**
+ * @file
+ * app.js
+ * Product connector server application.
+ */
 var express = require('express');
 var app = express();
 

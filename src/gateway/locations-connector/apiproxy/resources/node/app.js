@@ -1,3 +1,9 @@
+/**
+ * @file
+ * app.js
+ * Location connector server application
+ */
+
 var express = require('express');
 var app = express();
 

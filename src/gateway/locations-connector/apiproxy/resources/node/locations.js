@@ -1,3 +1,8 @@
+/**
+ * @file
+ * locations.js
+ * Locations Route.
+ */
 var request = require('request');
 var apigee = require('apigee-access');
 
