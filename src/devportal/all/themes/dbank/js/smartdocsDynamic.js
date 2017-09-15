@@ -37,6 +37,7 @@ showclientCredPage();
 showJWSButton();
 
 
+
 function showclientCredPage()
 {
   $("div[data-role=oauth2_modal] a.button_save_modal").remove();
@@ -55,7 +56,7 @@ function showclientCredPage()
   $("div[data-role=oauth2_modal] a.button_closenew_modal").on("click", ResetAndCancel);
   $("div[data-role=oauth2_modal] button.button_closenew_modal").on("click", ResetAndCancel);
 
-  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Request Client Credential Access Token");
+  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Step 1: Get Client Credential Access Token");
 
   $('div[data-role=oauth2_modal] div.modal-body div.content').hide();
   $('div[data-role=oauth2_modal] div.modal-footer p').hide();
@@ -123,17 +124,17 @@ function showCreateRequestPage()
   var ReqContent = "";
   if(localStorage.ccScope == "accounts")
   {
-    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Create Account Request");
+    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Step 2: Create Account Request");
     
-    $authoriseInput = $('<div id="showRequest" style="background:#FFFFFF;"> <table> <tr> <td><label>Authorization</label></td> <td><input type="text" name="BearerAuthInput" value="qwerty"></input></td> </tr> <tr> <td><label>x-fapi-financial-id</label></td> <td><input type="text" name="financialIdInput" value="34"></input></td> </tr> <tr> <td><label>x-jws-signature</label></td> <td><input type="text" name="jwsInput"></input></td> </tr> <tr> <td><label>body</label></td> <td> &nbsp &nbsp<textarea cols="18" style="oveflow:scroll" name="reqPayloadInput"></textarea></td> </tr> </table></div>');
+    $authoriseInput = $('<div id="showRequest" style="background:#FFFFFF;"> <table> <tr> <td><label>Authorization</label></td> <td><input type="text" name="BearerAuthInput" value="qwerty"></input></td> </tr> <tr> <td><label>x-fapi-financial-id</label></td> <td><input type="text" name="financialIdInput" value="34"></input></td> </tr> <tr> <td><label>x-jws-signature</label></td> <td><input type="text" name="jwsInput"></input></td> </tr> <tr> <td><label>body</label></td> <td> &nbsp &nbsp<textarea cols="26" rows="6" style="oveflow:scroll" name="reqPayloadInput"></textarea></td> </tr> </table></div>');
     ReqContent = JSON.stringify({"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}});
 
   }
   else
   {
-    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Create Payment Request");
+    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Step 2: Create Account Request");
     
-    $authoriseInput = $('<div id="showRequest" style="background:#FFFFFF;"> <table> <tr> <td><label>Authorization</label></td> <td><input type="text" name="BearerAuthInput" value="qwerty"></input></td> </tr> <tr> <td><label>x-fapi-financial-id</label></td> <td><input type="text" name="financialIdInput" value="34"></input></td> </tr> <tr> <td><label>x-jws-signature</label></td> <td><input type="text" name="jwsInput"></input></td> </tr><tr> <td><label>x-idempotency-key</label></td> <td><input type="text" name="idempotencyInput"></input></td> </tr> <tr> <td><label>Payload</label></td> <td> &nbsp &nbsp <textarea cols="18" style="oveflow:scroll" name="reqPayloadInput"></textarea></td> </tr> </table></div>');
+    $authoriseInput = $('<div id="showRequest" style="background:#FFFFFF;"> <table> <tr> <td><label>Authorization</label></td> <td><input type="text" name="BearerAuthInput" value="qwerty"></input></td> </tr> <tr> <td><label>x-fapi-financial-id</label></td> <td><input type="text" name="financialIdInput" value="34"></input></td> </tr> <tr> <td><label>x-jws-signature</label></td> <td><input type="text" name="jwsInput"></input></td> </tr><tr> <td><label>x-idempotency-key</label></td> <td><input type="text" name="idempotencyInput"></input></td> </tr> <tr> <td><label>Payload</label></td> <td> &nbsp &nbsp <textarea rows="6" cols="26" style="oveflow:scroll" name="reqPayloadInput"></textarea></td> </tr> </table></div>');
     ReqContent = JSON.stringify({"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACME Inc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internal ops code 5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat 7","Acacia Lodge"],"StreetName":"Acacia Avenue","BuildingNumber":"27","PostCode":"GU31 2ZZ","TownName":"Sparsholt","CountySubDivision":["Wessex"],"Country":"UK"}}});
     $("input[name=idempotencyInput]").val(Date.parse(new Date()));
   }
@@ -225,7 +226,7 @@ function createRequest()
 function showAccessTokenPage()
 {
   $('div[data-role=oauth2_modal] div.modal-body #showRequest').hide();
-  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Access Token Parameters");
+  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Step 3: Set additional Parameters for getting Access Token");
   var $authoriseInput = $('<div id="authoriseInput" style="background:#FFFFFF;"> <table> <tr> <td><label>request</label></td> <td><input type="text" name="requestInput" value="qwerty"></input></td> </tr> </table></div>');
   $authoriseInput.appendTo($('div[data-role=oauth2_modal] > div.modal-dialog > div.modal-content > div.modal-body'));
   localStorage.nonce = Date.parse(new Date());
@@ -357,7 +358,7 @@ function getJWS(payload)
  function ResetAndCancel()
 {
   closeAuthModal();
-  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').val("Request Client Credential Access Token");
+  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').val("Step 1: Get Client Credential Access Token");
   $('div[data-role=oauth2_modal] div.modal-body div.content').hide();
   $('div[data-role=oauth2_modal] div.modal-footer p').hide();
   $('div[data-role=oauth2_modal] div.modal-body #showRequest').hide();
