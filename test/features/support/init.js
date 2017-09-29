@@ -31,6 +31,7 @@ module.exports = function () {
         this.apickli.addRequestHeader('Cache-Control', 'no-cache');
         this.apickli.setGlobalVariable('TPPAppClientId', config.TPPAppClientId);
         this.apickli.setGlobalVariable('internalAppKey', config.internalAppKey);
+        this.apickli.setGlobalVariable('TPPAppClientIdPayment', config.TPPAppClientIdPayment);
         //callback();
     });
 }

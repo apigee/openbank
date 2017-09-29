@@ -31,7 +31,7 @@
                             <select class="dropbdown" id="debtorAccount" required name="debtorAccount">
                                 <option selected="selected" disabled="disabled">--Select an Account--</option>
                                 {{#each debtorAccounts}}
-                                    <option value="{{buildJSON this}}" name="debtorAccount">{{this.AccountId}}</option>
+                                    <option value="{{buildJSON this}}" name="debtorAccount" id="{{this.AccountId}}">{{this.AccountId}}</option>
                                 {{/each}}
                             </select>
                         </ul>

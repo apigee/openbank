@@ -49,6 +49,13 @@ module.exports = function () {
         });
     });
     this.Given(/^TPP sets the request headers$/, function (headers, callback) {
+        //clear all headers
+        const self = this;
+        var headersTable = headers.hashes();
+        headersTable.forEach(function(h) {
+            self.apickli.removeRequestHeader(h.name);
+        });
+
         this.apickli.setHeaders(headers.hashes());
         callback();
     });

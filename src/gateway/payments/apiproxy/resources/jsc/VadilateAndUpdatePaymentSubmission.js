@@ -33,10 +33,10 @@ if(paymentRequestStatusCode == 200 &&  paymentRequest){
     if(paymentRequest.Data.Status == "AcceptedTechnicalValidation"){
         if(paymentConsentStatusCode == 200 && paymentConsent){
             paymentConsent = JSON.parse(paymentConsent);
-            if(paymentConsent.Data.Status == "Authorised"){
+            if(paymentConsent[0] && paymentConsent[0].Status == "Authorised"){
                 //get debitor accounts.. append it to the body!
                 var requestBody = JSON.parse(context.getVariable("request.content"));
-                requestBody.Data.Initiation.DebtorAccount = paymentConsent.SelectedAccounts[0];
+                requestBody.Data.Initiation.DebtorAccount = paymentConsent[0].SelectedAccounts[0];
                 context.setVariable('request.content', JSON.stringify(requestBody));
             }
             else{
