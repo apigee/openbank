@@ -137,7 +137,7 @@ module.exports = function () {
     this.Given(/^TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login$/, function (queryParameters) {
         var queryParams = queryParameters.rowsHash();
         var queryParamsHashes = queryParameters.hashes();
-        var request = createRequestObjectJWT(this.apickli.replaceVariables(queryParams.client_id), queryParams.redirect_uri, queryParams.state, queryParams.nonce, queryParams.scope, queryParams.response_type, queryParams.urns);
+        var request = createRequestObjectJWT(this.apickli.replaceVariables(queryParams.client_id), queryParams.redirect_uri, queryParams.state, queryParams.nonce, queryParams.scope, queryParams.response_type, this.apickli.replaceVariables(queryParams.urns));
         queryParamsHashes.push({"parameter": "request", "value": request});
         var qs = "?";
         for (var queryParam in queryParamsHashes) {
@@ -173,6 +173,13 @@ module.exports = function () {
         else {
             this.driver.findElement({id: accounts}).click();
         }
+        this.driver.findElement({name: 'allow'}).click();
+        callback();
+    });
+
+    this.When(/^User selects the (.*) from the dropdown on consent page and submits$/, function (accounts, callback) {
+        this.driver.findElement({id: 'debtorAccount'}).click();
+        this.driver.findElement({id: accounts}).click();
         this.driver.findElement({name: 'allow'}).click();
         callback();
     });

@@ -132,7 +132,7 @@ function showCreateRequestPage()
   }
   else
   {
-    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Step 2: Create Account Request");
+    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Step 2: Create Payment Request");
     
     $authoriseInput = $('<div id="showRequest" style="background:#FFFFFF;"> <table> <tr> <td><label>Authorization</label></td> <td><input type="text" name="BearerAuthInput" value="qwerty"></input></td> </tr> <tr> <td><label>x-fapi-financial-id</label></td> <td><input type="text" name="financialIdInput" value="34"></input></td> </tr> <tr> <td><label>x-jws-signature</label></td> <td><input type="text" name="jwsInput"></input></td> </tr><tr> <td><label>x-idempotency-key</label></td> <td><input type="text" name="idempotencyInput"></input></td> </tr> <tr> <td><label>Payload</label></td> <td> &nbsp &nbsp <textarea rows="6" cols="26" style="oveflow:scroll" name="reqPayloadInput"></textarea></td> </tr> </table></div>');
     ReqContent = JSON.stringify({"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACME Inc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internal ops code 5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat 7","Acacia Lodge"],"StreetName":"Acacia Avenue","BuildingNumber":"27","PostCode":"GU31 2ZZ","TownName":"Sparsholt","CountySubDivision":["Wessex"],"Country":"UK"}}});
