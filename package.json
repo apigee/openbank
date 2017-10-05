@@ -22,7 +22,7 @@
     "jsonwebtoken": "^7.3.0",
     "mustache": "^2.3.0",
     "prompt": "^1.0.0",
-    "request": "^2.79.0",
+    "request": "2.81.0",
     "seed-sdk": "mukundha/seed-sdk",
     "fs-extra": "^2.0.0"
   },
