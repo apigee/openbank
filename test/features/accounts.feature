@@ -74,7 +74,7 @@ Feature:
       | /ais/open-banking/v1.0/accounts/987654321/standing-orders |
       | /ais/open-banking/v1.0/accounts/987654321/direct-debits   |
       | /ais/open-banking/v1.0/accounts/987654321/product         |
-
+  
   Scenario Outline: TPP makes GET Accounts API call with missing x-fapi-financial-id header
     Given TPP sets the request headers
       | name                       | value                |
@@ -92,7 +92,7 @@ Feature:
       | /ais/open-banking/v1.0/beneficiaries                      |
       | /ais/open-banking/v1.0/standing-orders                    |
       | /ais/open-banking/v1.0/direct-debits                      |
-      | /ais/open-banking/v1.0/accounts/987654321/                |
+      | /ais/open-banking/v1.0/accounts/987654321                 |
       | /ais/open-banking/v1.0/accounts/987654321/balances        |
       | /ais/open-banking/v1.0/accounts/987654321/transactions    |
       | /ais/open-banking/v1.0/accounts/987654321/beneficiaries   |

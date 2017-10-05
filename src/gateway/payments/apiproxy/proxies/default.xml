@@ -192,6 +192,13 @@
             <Response/>
             <Condition>(proxy.pathsuffix MatchesPath "/payment-submissions/*") and (request.verb = "GET")</Condition>
         </Flow>
+        <Flow name="Resource not found">
+            <Request>
+                <Step>
+                    <Name>Raise-Fault-Resource-Not-Found</Name>
+                </Step>
+            </Request>
+        </Flow>
     </Flows>
     <HTTPProxyConnection>
         <BasePath>/pis/open-banking/v1.0</BasePath>

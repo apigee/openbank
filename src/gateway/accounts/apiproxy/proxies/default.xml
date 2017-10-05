@@ -335,14 +335,12 @@
             </Response>
             <Condition>((proxy.pathsuffix MatchesPath "/accounts") or (proxy.pathsuffix MatchesPath "/accounts/{AccountId}") ) and (request.verb = "GET")</Condition>
         </Flow>
-        <Flow name="InvalidPath">
-            <Description/>
+        <Flow name="Resource not found">
             <Request>
                 <Step>
-                    <Name>Raise-Fault-Invalid-Operation</Name>
+                    <Name>Raise-Fault-Resource-Not-Found</Name>
                 </Step>
             </Request>
-            <Response/>
         </Flow>
     </Flows>
     <HTTPProxyConnection>

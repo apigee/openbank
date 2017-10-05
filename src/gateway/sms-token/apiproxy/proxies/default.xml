@@ -85,6 +85,13 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/confirmation/{identifier}") and (request.verb = "POST")</Condition>
         </Flow>
+        <Flow name="Resource not found"> 
+            <Request>
+                <Step>
+                    <Name>Raise-Fault-Resource-Not-Found</Name>
+                </Step>
+            </Request>
+        </Flow>
     </Flows>
     <HTTPProxyConnection>
         <BasePath>/internal/apis/v1.0/sms</BasePath>
