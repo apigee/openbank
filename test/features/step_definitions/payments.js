@@ -71,6 +71,7 @@ module.exports = function () {
     this.Given(/^TPP creates x-jws-signature with default headers for the body (.*)$/, function (body, callback) {
 
         var d = new Date();
+        d.setMinutes(d.getMinutes() - 10);
         var token = createJWTwithoutExpiry(this.apickli.replaceVariables(body), {
             "alg": "RS256",
             "kid": "90210ABAD",
@@ -138,5 +139,12 @@ module.exports = function () {
         }
 
     });
+    this.Then(/^TPP asserts the value of body path (.*) with scenario variable (.*)$/, function (path, variable, callback) {
+        if (this.apickli.assertScenarioVariableValue(variable, this.apickli.evaluatePathInResponseBody(path))) {
+            callback();
+        } else {
+            callback(new Error('value of variable ' + variable + ' isn\'t equal to value in body path ' + path));
+        }
+    })
 
 };
