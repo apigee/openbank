@@ -21,7 +21,7 @@
 
 validPayload = {}
 function validateRequest(RequestConfig) {
-    var key, i, j, ispresent;
+    var key, i, ispresent;
     var errorJson = {};
     errorJson.isError = true;
     errorJson.errorResponseCode = 400;
@@ -213,7 +213,7 @@ function getBodyParameterVal(param) {
     // check for empty payload
     if (context.getVariable("request.content")) {
         var content = JSON.parse(context.getVariable("request.content"));
-        var contextBodyParam = "";
+        //var contextBodyParam = "";
         try {
             var keys = param.split('.');
             var value = content[keys[0]];

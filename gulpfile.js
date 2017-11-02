@@ -21,7 +21,7 @@ var eslint = require('gulp-eslint');
 require('edge-launchpad')(gulp);
 
 gulp.task('lint', function() {
-    return gulp.src(['./src/**/*.js', '!**/node_modules/**', '!**/target/**','!**/public/js/**', '!**/devportal/**', '!**/jsrsasign-all-min.js'])
+    return gulp.src(['./src/**/*.js', '!**/node_modules/**', '!**/target/**','!**/public/js/**', '!**/devportal/**', '!**/jsrsasign-all-min.js', '!**/ValidateRequest.js'])
         .pipe(eslint({
 			fix: true
 		}))
