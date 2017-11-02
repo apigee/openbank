@@ -86,8 +86,7 @@ exports.getAccountsOfCustomer = function (req, res) {
             sqlquery = sqlquery.substr(0, sqlquery.length - 16);
 
 
-        }
-        else {
+        } else {
             sqlquery = "";
         }
         options =
@@ -99,9 +98,7 @@ exports.getAccountsOfCustomer = function (req, res) {
                 json: true
             };
 
-    }
-    // get accounts info for all accounts of the customer
-    else {
+    } else {// get accounts info for all accounts of the customer
         if (!req.query || !req.query.customerId) {
             var errJson = {};
             errJson.ErrorResponseCode = 400;

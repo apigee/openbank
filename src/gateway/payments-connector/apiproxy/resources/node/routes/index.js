@@ -164,8 +164,8 @@ router.post('/payments', function (req, res, next) {
     query = {};
     query.client_id = packagejson.clientId;
     query.client_secret = packagejson.clientSecret;
-    var customerId = req.body.customerId;
-    var consentId = req.body.consentId;
+    //var customerId = req.body.customerId;
+    //var consentId = req.body.consentId;
     req.body.Status = "Pending";
     options = {
         url: packagejson.baasURI + "/" + packagejson.baasOrg + "/" + packagejson.baasApp + "/payments",
@@ -213,8 +213,8 @@ router.post('/payment-submissions', function (req, res, next) {
     query = {};
     query.client_id = packagejson.clientId;
     query.client_secret = packagejson.clientSecret;
-    var customerId = req.body.customerId;
-    var consentId = req.body.consentId;
+    //var customerId = req.body.customerId;
+    //var consentId = req.body.consentId;
     req.body.Status = "AcceptedSettlementInProcess";
     options = {
         url: packagejson.baasURI + "/" + packagejson.baasOrg + "/" + packagejson.baasApp + "/payment-submissions",

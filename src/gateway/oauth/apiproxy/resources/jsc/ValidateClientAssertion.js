@@ -19,7 +19,7 @@
  * Validate Client Assertion JWS
  */
 
-var jws = new KJUR.jws.JWS();
+//var jws = new KJUR.jws.JWS();
 
 var isValid = false;
 var alg = ['RS256']; // algorithm to sign - if unsecured jwt then use 'none'

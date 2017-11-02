@@ -26,7 +26,7 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var session = require('express-session');
+//var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var style = require('./controllers/style');
 
