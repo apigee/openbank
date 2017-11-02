@@ -14,6 +14,26 @@
  limitations under the License.
 */
 
-var gulp = require('gulp')
+var gulp = require('gulp');
+var cucumber = require('gulp-cucumber');
+var eslint = require('gulp-eslint');
 
-require('edge-launchpad')(gulp)
+require('edge-launchpad')(gulp);
+
+gulp.task('lint', function() {
+    return gulp.src(['./src/**/*.js', '!**/node_modules/**', '!**/target/**','!**/public/js/**', '!**/devportal/**', '!**/jsrsasign-all-min.js'])
+        .pipe(eslint({
+			fix: true
+		}))
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
+
+gulp.task('test', function() {
+    return gulp.src('test/features/*')
+        .pipe(cucumber({
+            'steps': ['test/features/step_definitions/env.js','test/features/step_definitions/apickli-gherkin.js','test/features/step_definitions/auth+consent.js','test/features/step_definitions/accounts.js','test/features/step_definitions/payments.js'],
+            'support': 'test/features/support/*.js',
+            'format': 'pretty'
+        }));
+});
