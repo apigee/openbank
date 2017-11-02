@@ -185,7 +185,7 @@ Feature:
       | scope         | openid payments                                 |
       | response_type | code id_token                                   |
       | urns          | urn:openbank:intent:payments:`paymentRequestId` |
-      | nonce         | n<idempotencyKey>                                |
+      | nonce         | n<idempotencyKey>                               |
     When User enters rohan and Qwerty123 and submits the form
     Given Login Succeeds
     And User selects the 111111111 from the dropdown on consent page and submits

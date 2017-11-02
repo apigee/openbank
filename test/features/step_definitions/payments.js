@@ -22,8 +22,8 @@
 var apickli = require('apickli');
 var jwt = require('jsonwebtoken');
 var fs = require('fs-extra');
-var tppPrivateCert = fs.readFileSync(process.cwd() + '/testtpp_jwt.pem');
-var bankPublicCert = fs.readFileSync(process.cwd() + '/testbank_jwt_pub.pem');
+var tppPrivateCert = fs.readFileSync(process.cwd() + '/test/testtpp_jwt.pem');
+var bankPublicCert = fs.readFileSync(process.cwd() + '/test/testbank_jwt_pub.pem');
 var seleniumWebdriver = require('selenium-webdriver');
 
 //create a token with the tppPrivateCert imported

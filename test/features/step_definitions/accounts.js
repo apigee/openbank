@@ -19,7 +19,7 @@
 var apickli = require('apickli');
 var jwt = require('jsonwebtoken');
 var fs = require('fs-extra');
-var cert = fs.readFileSync(process.cwd() + '/testtpp_jwt.pem');
+var cert = fs.readFileSync(process.cwd() + '/test/testtpp_jwt.pem');
 function getClientAssertion(clientId) {
     var token_payment = jwt.sign({
         "iss": clientId
