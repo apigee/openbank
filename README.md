@@ -32,7 +32,7 @@ This document is organized into the following sections
 
 ## Overview
 
-The  OpenBank solution is built on Apigee Edge API Management Platform, and features the following APIs:
+The OpenBank solution is built on Apigee Edge API Management Platform, and features the following APIs:
 
 **Account Access APIs**
   - Account Request 
