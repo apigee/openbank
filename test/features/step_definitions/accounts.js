@@ -47,12 +47,11 @@ function getJWS() {
   ]
 };
 
-    var payload = {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-
-    var jws = jwt.sign(payload, cert, header);
+    var payload = {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}};
+    //payload = JSON.parse(JSON.stringify(payload));
+    var jws = jwt.sign(payload, cert, { algorithm: "RS256", header: header, noTimestamp: true});
     var detachedJWS = jws.split(".");
     var jws_Signature = detachedJWS[0] + ".." + detachedJWS[2];
-
     return jws_Signature;
 }
 
