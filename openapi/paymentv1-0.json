@@ -93,6 +93,14 @@
             "description": "Header containing a detached JWS signature of the body of the payload."
           },
           {
+            "in": "header",
+            "name": "Content-Type",
+            "type": "string",
+            "required": true,
+            "default" : "application/json",
+            "description": "Content type of the payload."
+          },
+          {
             "name": "body",
             "in": "body",
             "description": "Setup a single immediate payment",
@@ -324,6 +332,14 @@
             "type": "string",
             "required": true,
             "description": "Header containing a detached JWS signature of the body of the payload."
+          },
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "type": "string",
+            "required": true,
+            "default" : "application/json",
+            "description": "Content type of the payload."
           },
           {
             "name": "body",

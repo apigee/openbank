@@ -19,27 +19,57 @@
 var apickli = require('apickli');
 var jwt = require('jsonwebtoken');
 var fs = require('fs-extra');
+var seleniumWebdriver = require('selenium-webdriver');
 var cert = fs.readFileSync(process.cwd() + '/test/testtpp_jwt.pem');
 function getClientAssertion(clientId) {
-    var token_payment = jwt.sign({
+    var token_accounts = jwt.sign({
         "iss": clientId
     }, cert, {algorithm: "RS256", "expiresIn": "1h"});
 
-    return token_payment;
+    return token_accounts;
+}
+
+
+
+
+
+function getJWS() {
+    var header = {
+  "alg": "RS256",
+  "kid": "90210ABAD",
+  "b64": false,
+  "http://openbanking.org.uk/iat": "2017-06-12T20:05:50+00:00",
+  "http://openbanking.org.uk/iss": "C=UK, ST=England, L=London, O=Acme Ltd.",
+  "crit": [
+    "b64",
+    "http://openbanking.org.uk/iat",
+    "http://openbanking.org.uk/iss"
+  ]
+};
+
+    var payload = {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
+
+    var jws = jwt.sign(payload, cert, header);
+    var detachedJWS = jws.split(".");
+    var jws_Signature = detachedJWS[0] + ".." + detachedJWS[2];
+
+    return jws_Signature;
 }
 
 module.exports = function () {
 
-    this.Given(/^Tpp obtains accesstoken for accounts claim and store in global scope$/, function (callback) {
+    
 
-        this.apickli.setRequestBody('{         "ClientId": "' + this.apickli.getGlobalVariable("TPPAppClientId") + '", "ResponseType": "code id_token",         "ResponseTypeToken": "true",         "ResponseTypeCode": "false",         "ResponseTypeIdToken": "false",         "Scope": "openid accounts",         "Type": "accounts",         "RedirectUri": "http://localhost/",         "RequestId": "1001",         "RequestState": "af0ifjsldkj",         "ApplicationName": "AISP_App_v2",                  "CustomerId": "10203040",         "Nonce": "n-0S6_WzA2Mj",         "TppId": "12345"     }');
-        this.apickli.setRequestHeader('x-apikey', this.apickli.getGlobalVariable("internalAppKey"));
-        this.apickli.setRequestHeader('Content-Type', 'application/json');
+
+    this.Given(/^Tpp obtains accesstoken for accounts claim from authcode and stores in global scope$/, function (callback) {
+
+        this.apickli.setRequestBody('grant_type=authorization_code&redirect_uri=http://localhost/&code=' + this.apickli.replaceVariables("`code`") + '&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
+        this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
-        this.apickli.post('/apis/v1.0/oauth/authorized', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/token', function (error, response) {
             if (!error && response.statusCode == 200) {
-                var accesstoken = JSON.parse(response.body).application_tx_response.split('&')[1];
-                accesstoken = accesstoken.split('=')[1];
+                var accesstoken = JSON.parse(response.body).access_token;
+                //othis.apickli.storeValueInScenarioScope('accesstoken', accesstoken);
                 othis.apickli.setGlobalVariable('accesstoken', accesstoken)
                 callback();
             }
@@ -47,7 +77,11 @@ module.exports = function () {
                 callback(new Error(error));
             }
         });
+        this.apickli.removeRequestHeader('Content-Type');
+
     });
+
+
     this.Given(/^TPP sets the request headers$/, function (headers, callback) {
         //clear all headers
         const self = this;
@@ -120,24 +154,25 @@ module.exports = function () {
         });
     });
 
-    this.Given(/^TPP obtains the oauth accesstoken for account with no associated data and store in global scope$/, function (callback) {
-        //TODO:set ClientId , RequestId ApplicationId , ApplicationName , CustomerId , TppId
-        this.apickli.setRequestBody('{         "ClientId": "' + this.apickli.getGlobalVariable("TPPAppClientId") + '", "ResponseType": "code id_token",         "ResponseTypeToken": "true",         "ResponseTypeCode": "false",         "ResponseTypeIdToken": "false",         "Scope": "openid accounts",         "Type": "accounts",         "RedirectUri": "http://localhost/",         "RequestId": "1002",         "RequestState": "af0ifjsldkj",         "ApplicationName": "AISP_App_v2",                  "CustomerId": "10203040",         "Nonce": "n-0S6_WzA2Mj",         "TppId": "12345"     }');
-        //TODO:set internal consent key
-        this.apickli.setRequestHeader('x-apikey', this.apickli.getGlobalVariable("internalAppKey"));
-        this.apickli.setRequestHeader('Content-Type', 'application/json');
+
+    this.Given(/^Tpp obtains accesstoken for accounts claim with no associated data and stores in global scope$/, function (callback) {
+
+        this.apickli.setRequestBody('grant_type=authorization_code&redirect_uri=http://localhost/&code=' + this.apickli.replaceVariables("`code`") + '&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
+        this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
-        this.apickli.post('/apis/v1.0/oauth/authorized', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/token', function (error, response) {
             if (!error && response.statusCode == 200) {
-                var accesstoken = JSON.parse(response.body).application_tx_response.split('&')[1];
-                accesstoken = accesstoken.split('=')[1];
-                othis.apickli.setGlobalVariable('accesstoken_emptyaccount', accesstoken);
+                var accesstoken = JSON.parse(response.body).access_token;
+                //othis.apickli.storeValueInScenarioScope('accesstoken', accesstoken);
+                othis.apickli.setGlobalVariable('accesstoken_emptyaccount', accesstoken)
                 callback();
             }
             else {
                 callback(new Error(error));
             }
         });
+        this.apickli.removeRequestHeader('Content-Type');
+
     });
     this.Then(/^the response body should be empty$/, function (callback) {
         if (this.apickli.getResponseObject().body == '{}') {
@@ -147,52 +182,61 @@ module.exports = function () {
             callback(new Error('response body not empty'));
         }
     });
-    this.Given(/^TPP obtains the oauth accesstoken for accountRequest with with permissions ReadAccountsDetail and store in global scope$/, function (callback) {
-        //TODO:set ClientId , RequestId ApplicationId , ApplicationName , CustomerId , TppId
-        this.apickli.setRequestBody('{         "ClientId": "' + this.apickli.getGlobalVariable("TPPAppClientId") + '", "ResponseType": "code id_token",         "ResponseTypeToken": "true",         "ResponseTypeCode": "false",         "ResponseTypeIdToken": "false",         "Scope": "openid accounts",         "Type": "accounts",         "RedirectUri": "http://localhost/",         "RequestId": "1003",         "RequestState": "af0ifjsldkj",         "ApplicationName": "AISP_App_v2",                  "CustomerId": "10203040",         "Nonce": "n-0S6_WzA2Mj",         "TppId": "12345"     }');
-        //TODO:set internal consent key
-        this.apickli.setRequestHeader('x-apikey', this.apickli.getGlobalVariable("internalAppKey"));
-        this.apickli.setRequestHeader('Content-Type', 'application/json');
+
+
+    this.Given(/^Tpp obtains accesstoken for accounts claim with permissions ReadAccountsDetail and stores in global scope$/, function (callback) {
+
+        this.apickli.setRequestBody('grant_type=authorization_code&redirect_uri=http://localhost/&code=' + this.apickli.replaceVariables("`code`") + '&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
+        this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
-        this.apickli.post('/apis/v1.0/oauth/authorized', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/token', function (error, response) {
             if (!error && response.statusCode == 200) {
-                var accesstoken = JSON.parse(response.body).application_tx_response.split('&')[1];
-                accesstoken = accesstoken.split('=')[1];
-                othis.apickli.setGlobalVariable('accesstoken_ReadAccountsDetailPermission', accesstoken);
+                var accesstoken = JSON.parse(response.body).access_token;
+                //othis.apickli.storeValueInScenarioScope('accesstoken', accesstoken);
+                othis.apickli.setGlobalVariable('accesstoken_ReadAccountsDetailPermission', accesstoken)
                 callback();
             }
             else {
                 callback(new Error(error));
             }
         });
+        this.apickli.removeRequestHeader('Content-Type');
+
     });
-    this.Given(/^TPP obtains the oauth accesstoken for accountRequest with with permissions ReadBalances and store in global scope$/, function (callback) {
-        //TODO:set ClientId , RequestId ApplicationId , ApplicationName , CustomerId , TppId
-        this.apickli.setRequestBody('{         "ClientId": "' + this.apickli.getGlobalVariable("TPPAppClientId") + '", "ResponseType": "code id_token",         "ResponseTypeToken": "true",         "ResponseTypeCode": "false",         "ResponseTypeIdToken": "false",         "Scope": "openid accounts",         "Type": "accounts",         "RedirectUri": "http://localhost/",         "RequestId": "1004",         "RequestState": "af0ifjsldkj",         "ApplicationName": "AISP_App_v2",                  "CustomerId": "10203040",         "Nonce": "n-0S6_WzA2Mj",         "TppId": "12345"     }');
-        //TODO:set internal consent key
-        this.apickli.setRequestHeader('x-apikey', this.apickli.getGlobalVariable("internalAppKey"));
-        this.apickli.setRequestHeader('Content-Type', 'application/json');
+
+
+    this.Given(/^Tpp obtains accesstoken for accounts claim with permissions ReadBalances and store in global scope$/, function (callback) {
+
+        this.apickli.setRequestBody('grant_type=authorization_code&redirect_uri=http://localhost/&code=' + this.apickli.replaceVariables("`code`") + '&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
+        this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
-        this.apickli.post('/apis/v1.0/oauth/authorized', function (error, response) {
+        this.apickli.post('/apis/v1.0/oauth/token', function (error, response) {
             if (!error && response.statusCode == 200) {
-                var accesstoken = JSON.parse(response.body).application_tx_response.split('&')[1];
-                accesstoken = accesstoken.split('=')[1];
-                othis.apickli.setGlobalVariable('accesstoken_ReadBalancesPermission', accesstoken);
+                var accesstoken = JSON.parse(response.body).access_token;
+                //othis.apickli.storeValueInScenarioScope('accesstoken', accesstoken);
+                othis.apickli.setGlobalVariable('accesstoken_ReadBalancesPermission', accesstoken)
                 callback();
             }
             else {
                 callback(new Error(error));
             }
         });
+        this.apickli.removeRequestHeader('Content-Type');
+
     });
+
     this.Given(/^TPP set body to (.*)$/, function (bodyValue, callback) {
         this.apickli.setRequestBody(bodyValue);
         callback();
     });
 
+
+   
+
+
     this.Given(/^TPP obtains the account request JWS token and store in global scope$/, function (callback) {
         var othis = this;
-        othis.apickli.setGlobalVariable('account_request_jws', "eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwMjEwQUJBRCIsImI2NCI6ZmFsc2UsImh0dHA6Ly9vcGVuYmFua2luZy5vcmcudWsvaWF0IjoiMjAxNy0wNi0xMlQyMDowNTo1MCswMDowMCIsImh0dHA6Ly9vcGVuYmFua2luZy5vcmcudWsvaXNzIjoiQz1VSywgU1Q9RW5nbGFuZCwgTD1Mb25kb24sIE89QWNtZSBMdGQuIiwiY3JpdCI6WyJiNjQiLCJodHRwOi8vb3BlbmJhbmtpbmcub3JnLnVrL2lhdCIsImh0dHA6Ly9vcGVuYmFua2luZy5vcmcudWsvaXNzIl19..mE6uDZP8fcYGI94CZtFMgj3v540ezYl_3ruGgjI0amOeYj4mYyHvUjIpof24yEzf_baDy9x_gjcoMLnCAO0tPGqKeFiFm33_jBDvFlHQlt7qAsCc2w62NMpYophzqwfmpraT_srTbEsAEfO4dU-I-pr_b3Vxd8ZbH1LyNV8e8wQAzR6KL137i8JfJBAeRzU9M1t1izwEK7jvd6I35LzupUprxnJJdiU8KXpi-KIQDUOhR28sPKNJZiTlg3E6iTTpRc7h5B1Ulh7swSWwu7uD6JuABD9Ucg_rzQ-MwH5lmjywlWwRPSAokQ-ksiWQVQORD2DWOXEACV1la4p_i2wosw");
+        othis.apickli.setGlobalVariable('account_request_jws', getJWS());
         callback();
     });
 };

@@ -116,10 +116,10 @@ resources:
         filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
         value: '{{ usergrid_app }}'
       - name: baasClientId
-        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
+        filePaths: ['src/gateway/accounts-connector/target/apiproxy/resources/node/package.json','src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
         value: '{{ usergrid_client_id }}'
       - name: baasClientSecret
-        filePaths: ['src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
+        filePaths: ['src/gateway/accounts-connector/target/apiproxy/resources/node/package.json','src/gateway/consent-management/target/apiproxy/resources/node/package.json','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
         value: '{{ usergrid_secret }}'
       - name: edgeBasePath
         filePaths: ['src/gateway/login-app/target/apiproxy/resources/node/config.json']

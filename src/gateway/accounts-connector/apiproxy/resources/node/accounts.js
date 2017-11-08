@@ -21,6 +21,7 @@
  */
 var request = require('request');
 var apigee = require('apigee-access');
+var packagejson = require('./package.json');
 
 exports.getAccountInfo = function (req, res) {
     var accountNumber = req.params.accountNumber;
@@ -29,7 +30,9 @@ exports.getAccountInfo = function (req, res) {
         {
             url: basePath + "/accounts",
             qs: {
-                ql: "where AccountId = '" + accountNumber + "'"
+                ql: "where AccountId = '" + accountNumber + "'",
+                client_id : packagejson.clientId,
+                client_secret : packagejson.clientSecret
             },
             json: true
         };
@@ -93,7 +96,9 @@ exports.getAccountsOfCustomer = function (req, res) {
             {
                 url: basePath + "/accounts",
                 qs: {
-                    ql: sqlquery
+                    ql: sqlquery,
+                    client_id : packagejson.clientId,
+                    client_secret : packagejson.clientSecret
                 },
                 json: true
             };
@@ -109,7 +114,9 @@ exports.getAccountsOfCustomer = function (req, res) {
         options = {
             url: basePath + "/accounts",
             qs: {
-                ql: "where CustomerId = '" + customerId + "'"
+                ql: "where CustomerId = '" + customerId + "'",
+                client_id : packagejson.clientId,
+                client_secret : packagejson.clientSecret
             },
             json: true
         };
@@ -159,7 +166,11 @@ exports.getAccountBalance = function (req, res) {
     var basePath = apigee.getVariable(req, 'appBasePath');
     var options = {
         url: basePath + "/accounts/" + accountNumber,
-        json: true
+        json: true,
+        qs : {
+                client_id : packagejson.clientId,
+                client_secret : packagejson.clientSecret
+            }
     };
 
     request(options, function (error, response, body) {
@@ -197,7 +208,6 @@ exports.getAccountBalance = function (req, res) {
 // get balance info of selected accounts of customer
 exports.getAccountsBalanceOfCustomer = function (req, res) {
     var options = getOptionsJsonForCustomer("accounts", req, res);
-
     request(options, function (error, response, body) {
         var balances = {};
         if (!error && response.statusCode == 200) {
@@ -245,6 +255,7 @@ exports.getAccountsTransactionOfCustomer = function (req, res) {
     if (req.query && req.query.toBookingDateTime && !isNaN(Date.parse(req.query.toBookingDateTime))) {
         options.qs.ql += " and BookingDateTime <= " + Date.parse(req.query.toBookingDateTime);
     }
+
 
     request(options, function (error, response, body) {
         var tr = {};
@@ -721,7 +732,11 @@ exports.createAccountRequest = function (req, res) {
         method: "POST",
         headers: {'content-type': 'application/json'},
         body: requestPayload,
-        json: true
+        json: true,
+        qs : {
+            client_id : packagejson.clientId,
+            client_secret : packagejson.clientSecret
+            }
     };
 
     request(options, function (err, resp, body) {
@@ -769,7 +784,9 @@ exports.getAccountRequest = function (req, res) {
     var options = {
         url: basePath + "/accountsrequests",
         qs: {
-            ql: "where name = '" + requestId + "'"
+            ql: "where name = '" + requestId + "'",
+            client_id : packagejson.clientId,
+            client_secret : packagejson.clientSecret
         },
         json: true
     };
@@ -837,7 +854,9 @@ exports.updateAccountRequest = function (req, res) {
     var options = {
         url: basePath + "/accountsrequests",
         qs: {
-            ql: "where name = '" + requestId + "'"
+            ql: "where name = '" + requestId + "'",
+            client_id : packagejson.clientId,
+            client_secret : packagejson.clientSecret
         },
         method: "PUT",
         headers: {'content-type': 'application/json'},
@@ -894,7 +913,9 @@ exports.deleteAccountRequest = function (req, res) {
         method: "DELETE",
         url: basePath + "/accountsrequests",
         qs: {
-            ql: "where name = '" + requestId + "'"
+            ql: "where name = '" + requestId + "'",
+            client_id : packagejson.clientId,
+            client_secret : packagejson.clientSecret
         }
     };
 
@@ -963,7 +984,9 @@ function getOptionsJsonForCustomer(baasCollection, req, res) {
     var options = {
         url: basePath + "/" + baasCollection,
         qs: {
-            ql: sqlquery
+            ql: sqlquery,
+            client_id : packagejson.clientId,
+            client_secret : packagejson.clientSecret
         },
         json: true
     };
@@ -987,7 +1010,9 @@ function getOptionsJsonForAccount(baasCollection, req) {
     var options = {
         url: basePath + "/" + baasCollection,
         qs: {
-            ql: "where AccountId = '" + accountNumber + "'"
+            ql: "where AccountId = '" + accountNumber + "'",
+            client_id : packagejson.clientId,
+            client_secret : packagejson.clientSecret
         },
         json: true
     };

@@ -40,6 +40,7 @@ stylesheets[all][] = css/dbank.css
 
 scripts[] = js/global.js
 scripts[] = js/smartdocs.js
+scripts[] = js/jwt.js
 scripts[] = js/jws-initialization.js
 scripts[] = js/jsrsasign-all-min.js
 scripts[] = js/Base64EncodeDecode.js
@@ -49,13 +50,13 @@ scripts[] = js/dbank.js
 ;Settings
 ;---------------
 settings[header_bg_color] = #ffffff
-settings[header_txt_color] = #36474f
+settings[header_txt_color] = #808080
 settings[header_hover_bg_color] = #ffffff
-settings[header_hover_txt_color] => #000000
+settings[header_hover_txt_color] => #333
 settings[link_color] = #eb552f
 settings[link_hover_color] = #4a494a
 settings[bootstrap_navbar_position] = fixed-top
 settings[bootstrap_region_well-sidebar_first] = ''
 settings[bootstrap_region_well-sidebar_second] = ''
 settings[footer_position] = static
-settings[footer_bg_color] = #4885ed
+settings[footer_bg_color] = #999
