@@ -77,6 +77,7 @@ dependencies[] = rules_admin
 dependencies[] = search
 dependencies[] = smartdocs
 dependencies[] = smartdocs_auth
+dependencies[] = jwtgeneration
 dependencies[] = smtp
 dependencies[] = special_menu_items
 dependencies[] = sumo

@@ -1,0 +1,137 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+
+function jwtgeneration_menu() {
+    $items = array();
+ 
+	 $items['ajax/getJWT'] = array(
+    'title' => 'JWT generation', 
+    'page callback' => 'getJWT',
+    'access arguments' => array('access content'),
+  );
+	   
+    return $items;	
+    
+}
+
+
+
+function getJWT()
+{
+	
+
+// JWT Header
+/*$header = [
+    "alg"     => "RS256",
+    "typ"     => "JWT"
+];
+ 
+// JWT Payload data
+$payload = [
+    "sub"        => "1234567890",
+    "name"        => "John Doe",
+    "admin"        => true
+];*/
+
+
+$header = json_decode($_GET['header'], false);
+$payload = json_decode($_GET['payload'], false);
+// Create the JWT
+$jwt = generateJWT('sha256', $header, $payload, "abc");
+	
+print  $jwt;
+}
+
+
+
+function base64UrlEncode($data) {
+    return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+}
+
+function generateJWT($algo, $header,  $payload,  $privateKeyFile){
+    $headerEncoded = base64UrlEncode(json_encode($header));
+ 
+    $payloadEncoded = base64UrlEncode(json_encode($payload));
+ 
+    // Delimit with period (.)
+    $dataEncoded = "$headerEncoded.$payloadEncoded";
+ 
+    //$privateKey = "file://".$privateKeyFile;
+ 
+    //$privateKeyResource = openssl_pkey_get_private($privateKey);
+
+    $privateKeyResource = "-----BEGIN RSA PRIVATE KEY-----
+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
+-----END RSA PRIVATE KEY-----";
+ 
+    $result = openssl_sign($dataEncoded, $signature, $privateKeyResource, $algo);
+ 
+    if ($result === false)
+    {
+        throw new RuntimeException("Failed to generate signature: ".implode("\n", getOpenSSLErrors()));
+    }
+ 
+    $signatureEncoded = base64UrlEncode($signature);
+ 
+    $jwt = "$dataEncoded.$signatureEncoded";
+ 
+    return $jwt;
+}
+ 
+
+ 
+
+
+
+
+
