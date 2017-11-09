@@ -26,6 +26,10 @@ resources:
       prompt: Enter Consent Session Key
     - name: jwtSignKey
       prompt: Enter Login App Key
+    - name: BankPrivateKey
+      prompt: Enter Bank's Private Key
+    - name: TppPublicKey
+      prompt: Enter Tpp's Public Key
     
     configurations:
     - env: test
@@ -47,46 +51,31 @@ resources:
       items:
       - name: accounts
         file: setup/data/accounts.json
-        permissions: ['get,post,delete:accounts','get,post,delete:accounts/*','get,post,delete:accounts/**']
       - name: accountsrequests
         file: setup/data/accountsrequests.json
-        permissions: ['get,post,put,delete:accountsrequests','get,post,put,delete:accountsrequests/*','get,post,put,delete:accountsrequests/**']
       - name: payments
-        permissions: ['get,post,delete:payments','get,post,delete:payments/*','get,post,delete:payments/**']
       - name: payment-submissions
-        permissions: ['get,post,put,delete:payment-submissions','get,post,put,delete:payment-submissions/*','get,post,put,delete:payment-submissions/**']
       - name: beneficiaries
         file: setup/data/beneficiaries.json
-        permissions: ['get,post,delete:beneficiaries','get,post,delete:beneficiaries/*','get,post,delete:beneficiaries/**']
       - name: customers
         file: setup/data/customers.json
-        permissions: ['get,post,delete:customers','get,post,delete:customers/*','get,post,delete:customers/**']
       - name: directdebits
         file: setup/data/directdebits.json
-        permissions: ['get,post,delete:directdebits','get,post,delete:directdebits/*','get,post,delete:directdebits/**']
       - name: standingorders
         file: setup/data/standingorders.json
-        permissions: ['get,post,delete:standingorders','get,post,delete:standingorders/*','get,post,delete:standingorders/**']
       - name: transactions
         file: setup/data/transactions.json
-        permissions: ['get,post,delete:transactions','get,post,delete:transactions/*','get,post,delete:transactions/**']
       - name: products
         file: setup/data/products.json
-        permissions: ['get,post,delete:products','get,post,delete:products/*','get,post,delete:products/**']
       - name: id-tokens
-        permissions: ['get,post,delete:id-tokens','get,post,delete:id-tokens/*','get,post,delete:id-tokens/**']
       - name: users
         file: setup/data/users.json
-        permissions: ['get,post,delete:users','get,post,delete:users/*','get,post,delete:users/**']
       - name: consents
         file: setup/data/consents.json
-        permissions: ['get,post,delete:consents','get,post,delete:consents/*','get,post,delete:consents/**']
       - name: locations
         file: setup/data/locations.json
-        permissions: ['get,post,delete:consents','get,post,delete:consents/*','get,post,delete:consents/**']
       - name: bankproducts
         file: setup/data/bankproducts.json
-        permissions: ['get,post,delete:consents','get,post,delete:consents/*','get,post,delete:consents/**']
     - name: cacheResources
       type: cache
       items:
@@ -98,7 +87,7 @@ resources:
       type: kvm
       items:
       - name: BankKVM
-        payload: '{ "name" : "BankKVM", "entry" : [ { "name" : "privateKey", "value" : "-----BEGIN RSA PRIVATE KEY----- MIIEpAIBAAKCAQEA2gHHPkSDSlbXJfGujn9QgqibeLIwnq4MwyKxncXphFCdiVgw2bcx/UQdg62J6x4XZF+gfXyu13j7ZzMNA/EqA86DPwmpDikcuJKaaCfKgbYGRltQR+grq33bZY4QOBz88pPLJqdNB7qRHhrHX4Nxzt8/cDa2cWf+zCI052GnBQ1k5mu18Cc/ZLx33eL0CeMgtYpA8R32O+lQXCOHpABvhVSFdXProa960PEsOpPRKFzqRKB4axUn1zPwdunCAOAhHt6yTwh62LexE56ee1o4dIPERi53DMzguV3BGKdj0jhTEDHwolKM5z5nfZNGbXmRnk736FiFph8IQkvlmd9trQIDAQABAoIBAQCRh6Be89OE+6WSAd0Z6Olw32cx0hncw6lnVjCldumk1z/i4IlzvPRU8nSVY3JvDt5kteVn/6Sj2HJS+ORWXlZCxkgc+7Dr8AvpNox2vSFVJ5LWwrw71EPariCYkZZILym4MWrq+cHVR/j51LyFCTUe+S7bFNsDp32S/b69OxYIqyWF+fWGcZxKM5+HECMpJkgSz5eSjtpC5ejclS7iujYqjZLi2GY+pZrHGGCZgPMVMn4ENNL51pvZeCvMA3MjsgIx/TXWEk4n0hpk8iJy3vBEdFsmoxGIOso76INnZTCqA/JTfQ0irHRhM6JHMEWI8t9uqz45SFDOjcpyA5dFOtbNAoGBAPg07KKKoPcVFP6PDaY8hNUiFNfhOuvJVoH1ZZ7c7VfAkkDKzdGDqqbSB8bU6y2/6S82uVl4wRGlOcgIgFPzn9JOtbeSLFfC5K8v6aArx1nA+EnZkvEHjRDZC3rczfRsWN9EUvOJ+Pc+i3mMmtlJu+diman36N664mknodkScmAzAoGBAODaG/iEm3R5V1sZISmJ1TcYUgAXCnU+8bJUGTbeBJrhTGdLL02WW2xC0XQJ1TNMDRNSL4VtTq0DT5PV7K32MHfkH4w5NewOcaRYmz6FHnzF7UKYM0tkV1OkvITzjMGEfxG6PPMLMrHfElMdp9QaN87p28R0I9OzoDuO+zzaLZqfAoGAJ1akBqL4HhEOUcY0gJto5irPqON+pi4z8scFAye6ykSwKWq7MjCvFF+HcgD/ATJAcAY5XC/iUbyhKs4GIMglFXz6Gg0l0AcInad3XLZzkwsdjv7X5jGvLvNneWKTleCyOTin+QduGSmli284f6XLDUI4XpL3Ko3uIoJwiWn+DLcCgYAWhUHv7jgzvkOFmEq+AlQcpI7x+1zMyXUjy1CLMkl7yb0BS4J9XuXhPgAEg0ebT66vlLe1wXDz2zUJNY/zDIlmOK8AOGqyLfAr6cQCywp2rMxKszvP/UjR09od5tbeOwsPF3wrS5/UOOd486tvjwCv9LRSRN+hwIf37yYyvhd7OQKBgQDTOPDOyZCK2OHkiDuNJA04E2XycnfHPJ5H65ZeqbHQTXuG2GCvj3P7G2ICqc1A4wcCPrTAG4CRm5yC6rYFNH457iXvgHTX9PCZqX7y07yI6PrGmfz9M8sTV09u2LNIVEPIHSg6S8gKNH2lvD45LVNNB013KU9LOlM4jfhFycFD/A== -----END RSA PRIVATE KEY-----" } ] , "encrypted": "true"}'
+        payload: '{ "name" : "BankKVM", "entry" : [ { "name" : "privateKey", "value" : "{{ BankPrivateKey }}" } ] , "encrypted": "true"}'
     
     - name: replaceorgvalues
       type: configSubstitutions
@@ -214,7 +203,7 @@ resources:
       type: app
       items:
       - name: AISP_App
-        payload: '{"name":"AISP_App","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuZhaB6ciF8hzzHkv3tkl20LS8KfWgRb/V4I6pB9ADNPBNgrceSf+mLoIWxrRDgTSYqyYYXmj3Fy9B1mG4lpUvrClt4hHKaBvsRZKn4/r2dPxUo0ggI+ruxQaQoKf2v8sEJe6Sx7btBvBxTqOMlIxP1GDNYJICaXo8jsBeNVDtCeFP2e9QJUmNvYGY7IfB8vUqFFcHushNmKmdR5H6pUg/JOsheFyi41UT05Zu3FvMHBAJab4OnybOLrovCVshu3Q7BOFkQVkYF4HrD0IM4GDojGt4OfMqESnLvG7+UywNjs/zjmdX0mn1wG7mZjlXfgh0DKo/MeWCW+gEQdPejCrBwIDAQAB -----END PUBLIC KEY-----"}],"callback":"http://localhost/,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/accounts-apis-v1-0/templateauths/PSUOAuth2Security/callback","email":"openbank@apigee.net","apiProducts":"account_apis"}'
+        payload: '{"name":"AISP_App","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"{{ TppPublicKey }}"}],"callback":"http://localhost/,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/accounts-apis-v1-0/templateauths/PSUOAuth2Security/callback","email":"openbank@apigee.net","apiProducts":"account_apis"}'
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey_AISP
@@ -223,7 +212,7 @@ resources:
         - from: appId
           to: appId_AISP
       - name: PISP_App
-        payload: '{"name":"PISP_App","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuZhaB6ciF8hzzHkv3tkl20LS8KfWgRb/V4I6pB9ADNPBNgrceSf+mLoIWxrRDgTSYqyYYXmj3Fy9B1mG4lpUvrClt4hHKaBvsRZKn4/r2dPxUo0ggI+ruxQaQoKf2v8sEJe6Sx7btBvBxTqOMlIxP1GDNYJICaXo8jsBeNVDtCeFP2e9QJUmNvYGY7IfB8vUqFFcHushNmKmdR5H6pUg/JOsheFyi41UT05Zu3FvMHBAJab4OnybOLrovCVshu3Q7BOFkQVkYF4HrD0IM4GDojGt4OfMqESnLvG7+UywNjs/zjmdX0mn1wG7mZjlXfgh0DKo/MeWCW+gEQdPejCrBwIDAQAB -----END PUBLIC KEY-----"}],"callback":"http://localhost/,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/payments-apis-v1-0/templateauths/PSUOAuth2Security/callback","email":"openbank@apigee.net","apiProducts":"payment_apis"}'
+        payload: '{"name":"PISP_App","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"{{ TppPublicKey }}"}],"callback":"http://localhost/,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/payments-apis-v1-0/templateauths/PSUOAuth2Security/callback","email":"openbank@apigee.net","apiProducts":"payment_apis"}'
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey_PISP
@@ -231,12 +220,13 @@ resources:
           to: apiSecret_PISP
         - from: appId
           to: appId_PISP
-    - name: copyTestConfigTemplate
+    - name: copyConfigTemplate
       type: util
       items: 
       - action: copy
         from: test/config.orig
         to: test/config.json
+
     - name: replace_test_keys
       type: configSubstitutions
       items:
