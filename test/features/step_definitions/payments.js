@@ -93,7 +93,7 @@ module.exports = function () {
 
     this.Then(/^OTP verification Succeeds and User is redirected with auth code stored in scenario scope$/, function () {
         var condition = seleniumWebdriver.until.urlContains('code');
-        this.driver.wait(condition, 15000);
+        this.driver.wait(condition, 35000);
         var othis = this;
         this.driver.getCurrentUrl().then(function (currentUrl) {
             currentUrl = currentUrl.split('#')[1].split('&');

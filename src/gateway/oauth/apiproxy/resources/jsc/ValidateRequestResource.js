@@ -336,4 +336,5 @@ function setKeyVal(keyPath, param) {
 
     temp[keyList[len - 1]] = param;
 }
-module.export = validateRequest;
+
+

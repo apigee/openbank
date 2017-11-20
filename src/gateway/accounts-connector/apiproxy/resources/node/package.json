@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "clientId": "{{ baasClientId}}",
+  "clientSecret": "{{ baasClientSecret }}",
   "author": "",
   "license": "ISC",
   "dependencies": {

@@ -1,17 +1,79 @@
 Feature:
   Accounts Features
 
+
   Scenario: Tpp obtains an access token and stores in global scope
-    Given Tpp obtains accesstoken for accounts claim and store in global scope
+    Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
+      | parameter     | value                                           |
+      | client_id     | `TPPAppClientId`                         |
+      | redirect_uri  | http://localhost/                               |
+      | state         | state123                                        |
+      | scope         | openid accounts                                 |
+      | response_type | code id_token                                   |
+      | urns          | urn:openbank:intent:accounts:1001 |
+      | nonce         | nonce9001                                        |
+    When User enters rohan and Qwerty123 and submits the form
+    Given Login Succeeds
+    And User selects the 987654321 on consent page and submits the form
+    Given Consent Succeeds
+    When User enter the otp 8976 on sms verification page and submits the form
+    Then OTP verification Succeeds and User is redirected with auth code stored in scenario scope
+    Given Tpp obtains accesstoken for accounts claim from authcode and stores in global scope
+
 
   Scenario: Tpp obtains an access token for account with no data and stores in global scope
-    Given TPP obtains the oauth accesstoken for account with no associated data and store in global scope
+    Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
+      | parameter     | value                                           |
+      | client_id     | `TPPAppClientId`                         |
+      | redirect_uri  | http://localhost/                               |
+      | state         | state123                                        |
+      | scope         | openid accounts                                 |
+      | response_type | code id_token                                   |
+      | urns          | urn:openbank:intent:accounts:1002 |
+      | nonce         | nonce9002                                        |
+    When User enters rohan and Qwerty123 and submits the form
+    Given Login Succeeds
+    And User selects the 111111111 on consent page and submits the form
+    Given Consent Succeeds
+    When User enter the otp 8976 on sms verification page and submits the form
+    Then OTP verification Succeeds and User is redirected with auth code stored in scenario scope
+    Given Tpp obtains accesstoken for accounts claim with no associated data and stores in global scope
 
   Scenario: Tpp obtains an access token for single permission ReadAccountsDetail for accessing resource and stores in global scope
-    Given TPP obtains the oauth accesstoken for accountRequest with with permissions ReadAccountsDetail and store in global scope
+    Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
+      | parameter     | value                                           |
+      | client_id     | `TPPAppClientId`                         |
+      | redirect_uri  | http://localhost/                               |
+      | state         | state123                                        |
+      | scope         | openid accounts                                 |
+      | response_type | code id_token                                   |
+      | urns          | urn:openbank:intent:accounts:1003 |
+      | nonce         | nonce9003                                        |
+    When User enters rohan and Qwerty123 and submits the form
+    Given Login Succeeds
+    And User selects the 987654321 on consent page and submits the form
+    Given Consent Succeeds
+    When User enter the otp 8976 on sms verification page and submits the form
+    Then OTP verification Succeeds and User is redirected with auth code stored in scenario scope
+    Given Tpp obtains accesstoken for accounts claim with permissions ReadAccountsDetail and stores in global scope
 
   Scenario: Tpp obtains an access token for single permission ReadBalances for accessing resource and stores in global scope
-    Given TPP obtains the oauth accesstoken for accountRequest with with permissions ReadBalances and store in global scope
+    Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
+      | parameter     | value                                           |
+      | client_id     | `TPPAppClientId`                         |
+      | redirect_uri  | http://localhost/                               |
+      | state         | state123                                        |
+      | scope         | openid accounts                                 |
+      | response_type | code id_token                                   |
+      | urns          | urn:openbank:intent:accounts:1004 |
+      | nonce         | nonce9004                                        |
+    When User enters rohan and Qwerty123 and submits the form
+    Given Login Succeeds
+    And User selects the 987654321 on consent page and submits the form
+    Given Consent Succeeds
+    When User enter the otp 8976 on sms verification page and submits the form
+    Then OTP verification Succeeds and User is redirected with auth code stored in scenario scope
+    Given Tpp obtains accesstoken for accounts claim with permissions ReadBalances and store in global scope
 
   Scenario: Tpp obtains an client credentials access token and stores in global scope
     Given TPP obtains the oauth accesstoken-client credentials with accounts scope and store in global scope
