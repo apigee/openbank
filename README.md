@@ -193,6 +193,20 @@ script from the root folder of the cloned repo.
 #### Pre-requisites
 + node.js 
 + npm
++ 2 pair of RSA256 keys, one for the bank and other for the tpp
+```
+#to generate bank's keys
+ssh-keygen -t rsa -b 4096 -f bank.key
+# Don't add passphrase
+openssl rsa -in bank.key -pubout -outform PEM -out bank.key.pub
+
+#to generate tpp's keys
+ssh-keygen -t rsa -b 4096 -f tpp.key
+# Don't add passphrase
+openssl rsa -in tpp.key -pubout -outform PEM -out tpp.key.pub
+
+```
+
 
 #### Instructions
 
@@ -223,6 +237,8 @@ This will interactively prompt you for following details, and will then create /
 + BaaS Org Client Secret 
 + Consent Session Key for signing the Session Cookie
 + Login App Key for signing the user details 
++ Bank private key (Please make sure to add this key without any newline characters)
++ TPP public key (Please make sure to add this key without any newline characters)
 
 
 ### Test
@@ -238,6 +254,11 @@ install node modules
 ```
 npm install
 ```
+Make sure you add the following in test folder
+- The private key of the bank in `testbank_jwt.pem`.
+- The public key of the bank in `testbank_jwt_pub.pem`.
+- The private key of the TPP in `testtpp_jwt.pem`.
+- The public key of the TPP in `testtpp_jwt_pub.pem`.
 
 run tests
 ```
@@ -272,7 +293,7 @@ Additional notes for implementors.
 
 ### API Deployment
 
-- You can find two sets of Public/Private Key Pair under `./test` folder; you could use it for configuring the APIs to use them for signing/verifying the responses/requests.
+- You can find two sets of Public/Private Key Pair under `./test` folder(these should be the same keys used while deployment of the proxies); you could use it for configuring the APIs to use them for signing/verifying the responses/requests.
 - Private key for the bank has to be provided during deployment. It is recommended to define a Prompt in config.yml and use it as value for the private key.
 - For Production access, a Mutual TSL connectivity needs to be configured as defined [here](http://docs.apigee.com/api-services/content/creating-virtual-host).
 - While running `gulp deploy` please do make sure there are no custom APIs defined with the same names; otherwise those APIs will be overwritten with a new revision.   
