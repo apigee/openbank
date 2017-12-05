@@ -100,8 +100,8 @@ router.post('/', function (req, res, next) {
     query = {};
     query.client_id = packagejson.clientId;
     query.client_secret = packagejson.clientSecret;
-    var customerId = req.body.customerId;
-    var consentId = req.body.consentId;
+    //var customerId = req.body.customerId;
+    //var consentId = req.body.consentId;
     options = {
         url: packagejson.baasURI + "/" + packagejson.baasOrg + "/" + packagejson.baasApp + "/consents/",
         method: 'POST',

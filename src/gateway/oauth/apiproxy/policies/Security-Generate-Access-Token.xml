@@ -20,6 +20,7 @@
     <Attributes/>
     <ExternalAuthorization>false</ExternalAuthorization>
     <Operation>GenerateAccessToken</Operation>
+    <ExpiresIn>3600000</ExpiresIn>
     <SupportedGrantTypes>
         <GrantType>authorization_code</GrantType>
         <GrantType>client_credentials</GrantType>

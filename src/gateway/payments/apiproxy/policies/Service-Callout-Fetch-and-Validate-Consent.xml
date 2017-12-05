@@ -24,7 +24,7 @@
             </Headers>
             <QueryParams>
                 <QueryParam name="requestId">{requestId}</QueryParam>
-                <QueryParam name="consentType">accounts</QueryParam>
+                <QueryParam name="consentType">payments</QueryParam>
             </QueryParams>
             <Verb>GET</Verb>
         </Set>

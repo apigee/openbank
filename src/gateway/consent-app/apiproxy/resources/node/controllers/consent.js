@@ -22,7 +22,7 @@
  */
 
 var request = require('request');
-var async = require('async');
+//var async = require('async');
 var consent = {};
 var jwt = require('jsonwebtoken');
 var responseHandler = require('./../lib/response_handler');
@@ -137,7 +137,7 @@ function getPaymentRequestDetails(req, res, opt, customerAccountDetails) {
             payementRequestData.tpp = opt.ApplicationName;
             var msisdn = req.session.customerDetails.Phone;
             msisdn = msisdn.toString().slice(-4);
-            var paymentRequest = [];
+            //var paymentRequest = [];
             if (paymentRequestDetails) {
                 if (paymentRequestDetails.Data && paymentRequestDetails.Data.Initiation && paymentRequestDetails.Data.Initiation.InstructedAmount) {
                     payementRequestData.amount = paymentRequestDetails.Data.Initiation.InstructedAmount.Amount;
@@ -395,9 +395,9 @@ consent.getAccessToken = function (req, res, next, opt) {
 
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            var redirect_uri = body.application_tx_response;
+            var redirectUri = body.application_tx_response;
             //req.session.destroy();
-            responseHandler.redirectFinal(req, res, redirect_uri);
+            responseHandler.redirectFinal(req, res, redirectUri);
         } else {
             responseHandler.redirectErrorJSON(req, res, opt.RedirectUri + "?error=" + config.errors.internalError + "&state=" + opt.State);
         }

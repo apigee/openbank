@@ -4,10 +4,10 @@
 {
   ORG = "apis-bank";
   ENV = "test";
-  CLIENT_ID_ACCOUNTS = "clientid_aisp";
-  CLIENT_SECRET_ACCOUNTS = "clientsecret_aisp";
-  CLIENT_ID_PAYMENTS = "clientid_pisp";
-  CLIENT_SECRET_PAYMENTS = "clientsecret_pisp";  
+  CLIENT_ID_ACCOUNTS = "";
+  CLIENT_SECRET_ACCOUNTS = "";
+  CLIENT_ID_PAYMENTS = "";
+  CLIENT_SECRET_PAYMENTS = "";  
   ACCOUNTS_SMARTDOC_NAME = "accounts-apis-v1-0";
   ACCOUNTS_OAUTH_NAME = "PSUOAuth2Security";
 
@@ -21,7 +21,6 @@
 
   TEMPLATE_CALLBACK_ACCOUNTS = "https://api.enterprise.apigee.com/v1/o/"+ORG+"/apimodels/"+ACCOUNTS_SMARTDOC_NAME+"/templateauths/"+ACCOUNTS_OAUTH_NAME+"/callback";
   TEMPLATE_CALLBACK_PAYMENTS = "https://api.enterprise.apigee.com/v1/o/"+ORG+"/apimodels/"+PAYMENTS_SMARTDOC_NAME+"/templateauths/"+PAYMENTS_OAUTH_NAME+"/callback";
-  PRIVATE_KEY = "-----BEGIN RSA PRIVATE KEY-----MIIEowIBAAKCAQEAuZhaB6ciF8hzzHkv3tkl20LS8KfWgRb/V4I6pB9ADNPBNgrceSf+mLoIWxrRDgTSYqyYYXmj3Fy9B1mG4lpUvrClt4hHKaBvsRZKn4/r2dPxUo0ggI+ruxQaQoKf2v8sEJe6Sx7btBvBxTqOMlIxP1GDNYJICaXo8jsBeNVDtCeFP2e9QJUmNvYGY7IfB8vUqFFcHushNmKmdR5H6pUg/JOsheFyi41UT05Zu3FvMHBAJab4OnybOLrovCVshu3Q7BOFkQVkYF4HrD0IM4GDojGt4OfMqESnLvG7+UywNjs/zjmdX0mn1wG7mZjlXfgh0DKo/MeWCW+gEQdPejCrBwIDAQABAoIBABbZyDPrAwqUlpVVUmyIpd2SI7CXqZRpRXT7xsaQRm2N4NsLiUutfe5F8WNuMNEeDN0zTOurc15dWLS/9BiIcKitzSmEsOZSJ45RJUzyBmLicnLsh1Ts24MEHZuUw6POCRnd5IT9PqW1SS1EYV+WuROHsLT03nO5pq20UCEVeOmEQgwB6mmTZ8UIESuhQ6EkCQmyipcFtdmzVANwyRAjsiFwXV9tXtYwpLZPp0UrpujSpE2k/IM7vhlOn6njOhWHNseI23d/BgcfrG/kAIW7KTBBaP5NKmY2lLtFxo2tYNOetfRQSpUmmG17Z4rI3vp6WBYVtgmiyxt9RMXeekZdHCECgYEA91OwU4hW28zeNQk1/kXx/o0F/LUVOi4inQCoU2V8VGWNOIZbvwcghQVjz5fBakZk2ENoE897cmC8tHemaeS72dPKEgwpI05ZJX9nPJ5eUcfGXjGHLQiVwqdZSFA9znkcwmNUkqP+gvmH+cg4EOyOpn4QkTW5aQK+Tu1J+6kDJ3ECgYEAwBp7d/MBnnGV7HUW6aK87Y+Vuu0T9pjKLr2gzS591s0yt6U0maybazmpIhUgrU19PGjZ9zmI+DSki+EqFGh5uHF7Mrj4ofVAs51ax29UZ6XcgMZfvqPfJnYxgVoPyS6+8ZEmHbCguS70SJXg0k5oWnhu7iQ9tcoddrshOqnC7fcCgYEA75JXSHLWgA7QZ1tGu8kRAdukowbdSwAJcz+BzVaOukmsI8ax9DZ5H6D678k2BzWs1Xdlx1rBXyepYr5LqmNwOy3VnOm+p35rB9GDNMrK3ji/Q9qB7/NS7byg1VU0qV3Tp9ADyg+kp0YCmseA15PtEgUnEyGROdD4eweLFITAk2ECgYBetS+l5UIpESqu1tMjAD5QiHdzHqq26oDTJl3+iis0GRol++bA1J4S8Ox3hx8DEa7qd27uOYlThPCSncGXKiLIUfpA+XxqrHTnmG5G4JYmO1lIi4RsgnHjjmW9td8OemNcyQiXnpq+cW2x02JxjIJaCAH4mhlqZGi+PmeVelhF5QKBgDOQTN8abBweSBvavri9M4X/8M3mmWBFTLEJc8OXOMiBgBSZYyLitpjGjrzXINB3LRsKic2ug5rx282RSF1OH3Is2LF/nOBNyuIoIEKzA2YTa7/znxjhzwlEnIAbvLPO2Ivf1/j7UWFvVO4GzD1qZksSKoaCawFUIeJZXCUfKueo-----END RSA PRIVATE KEY-----";
   JOSE_HEADER = {
             "alg": "RS256",
             "kid": "90210ABAD",
@@ -55,7 +54,7 @@ function showclientCredPage()
   $("div[data-role=oauth2_modal] a.button_closenew_modal").on("click", ResetAndCancel);
   $("div[data-role=oauth2_modal] button.button_closenew_modal").on("click", ResetAndCancel);
 
-  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Request Client Credential Access Token");
+  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Step 1: Get Client Credential Access Token");
 
   $('div[data-role=oauth2_modal] div.modal-body div.content').hide();
   $('div[data-role=oauth2_modal] div.modal-footer p').hide();
@@ -123,17 +122,17 @@ function showCreateRequestPage()
   var ReqContent = "";
   if(localStorage.ccScope == "accounts")
   {
-    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Create Account Request");
+    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Step 2: Create Account Request");
     
-    $authoriseInput = $('<div id="showRequest" style="background:#FFFFFF;"> <table> <tr> <td><label>Authorization</label></td> <td><input type="text" name="BearerAuthInput" value="qwerty"></input></td> </tr> <tr> <td><label>x-fapi-financial-id</label></td> <td><input type="text" name="financialIdInput" value="34"></input></td> </tr> <tr> <td><label>x-jws-signature</label></td> <td><input type="text" name="jwsInput"></input></td> </tr> <tr> <td><label>body</label></td> <td> &nbsp &nbsp<textarea cols="18" style="oveflow:scroll" name="reqPayloadInput"></textarea></td> </tr> </table></div>');
+    $authoriseInput = $('<div id="showRequest" style="background:#FFFFFF;"> <table> <tr> <td><label>Authorization</label></td> <td><input type="text" name="BearerAuthInput" value="qwerty"></input></td> </tr> <tr> <td><label>x-fapi-financial-id</label></td> <td><input type="text" name="financialIdInput" value="34"></input></td> </tr> <tr> <td><label>x-jws-signature</label></td> <td><input type="text" name="jwsInput"></input></td> </tr> <tr> <td><label>body</label></td> <td> &nbsp &nbsp<textarea cols="26" rows="6" style="oveflow:scroll" name="reqPayloadInput"></textarea></td> </tr> </table></div>');
     ReqContent = JSON.stringify({"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}});
 
   }
   else
   {
-    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Create Payment Request");
+    $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Step 2: Create Payment Request");
     
-    $authoriseInput = $('<div id="showRequest" style="background:#FFFFFF;"> <table> <tr> <td><label>Authorization</label></td> <td><input type="text" name="BearerAuthInput" value="qwerty"></input></td> </tr> <tr> <td><label>x-fapi-financial-id</label></td> <td><input type="text" name="financialIdInput" value="34"></input></td> </tr> <tr> <td><label>x-jws-signature</label></td> <td><input type="text" name="jwsInput"></input></td> </tr><tr> <td><label>x-idempotency-key</label></td> <td><input type="text" name="idempotencyInput"></input></td> </tr> <tr> <td><label>Payload</label></td> <td> &nbsp &nbsp <textarea cols="18" style="oveflow:scroll" name="reqPayloadInput"></textarea></td> </tr> </table></div>');
+    $authoriseInput = $('<div id="showRequest" style="background:#FFFFFF;"> <table> <tr> <td><label>Authorization</label></td> <td><input type="text" name="BearerAuthInput" value="qwerty"></input></td> </tr> <tr> <td><label>x-fapi-financial-id</label></td> <td><input type="text" name="financialIdInput" value="34"></input></td> </tr> <tr> <td><label>x-jws-signature</label></td> <td><input type="text" name="jwsInput"></input></td> </tr><tr> <td><label>x-idempotency-key</label></td> <td><input type="text" name="idempotencyInput"></input></td> </tr> <tr> <td><label>Payload</label></td> <td> &nbsp &nbsp <textarea rows="6" cols="26" style="oveflow:scroll" name="reqPayloadInput"></textarea></td> </tr> </table></div>');
     ReqContent = JSON.stringify({"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACME Inc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internal ops code 5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat 7","Acacia Lodge"],"StreetName":"Acacia Avenue","BuildingNumber":"27","PostCode":"GU31 2ZZ","TownName":"Sparsholt","CountySubDivision":["Wessex"],"Country":"UK"}}});
     $("input[name=idempotencyInput]").val(Date.parse(new Date()));
   }
@@ -225,7 +224,7 @@ function createRequest()
 function showAccessTokenPage()
 {
   $('div[data-role=oauth2_modal] div.modal-body #showRequest').hide();
-  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Access Token Parameters");
+  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').text("Step 3: Set additional Parameters for getting Access Token");
   var $authoriseInput = $('<div id="authoriseInput" style="background:#FFFFFF;"> <table> <tr> <td><label>request</label></td> <td><input type="text" name="requestInput" value="qwerty"></input></td> </tr> </table></div>');
   $authoriseInput.appendTo($('div[data-role=oauth2_modal] > div.modal-dialog > div.modal-content > div.modal-body'));
   localStorage.nonce = Date.parse(new Date());
@@ -323,9 +322,9 @@ function showError(errorMessage)
   };
 
 
-var jws = new KJUR.jws.JWS();
+//var jws = new KJUR.jws.JWS();
 
-var jwt = KJUR.jws.JWS.sign(JOSE_HEADER.alg, JOSE_HEADER, jwtBody, PRIVATE_KEY);
+var jwt = getJsonWebToken(JOSE_HEADER, jwtBody);
 
   return jwt;
 }
@@ -336,10 +335,22 @@ function getJWS(payload)
 {
   var responsePayload = JSON.parse(payload);
   responsePayload = JSON.stringify(responsePayload);
-  var jwt = KJUR.jws.JWS.sign(JOSE_HEADER.alg, JOSE_HEADER, responsePayload, PRIVATE_KEY);
+  var jwt = getJsonWebToken(JOSE_HEADER, JSON.parse(responsePayload));
   detachedJWT = jwt.split(".");
   var detachedJws = detachedJWT[0] + ".." + detachedJWT[2];
   return detachedJws; 
+}
+
+
+function getJWSClientAssertion(payload)
+{
+  var responsePayload = JSON.parse(payload);
+  responsePayload = JSON.stringify(responsePayload);
+  var client_assertion_header = { "alg": "RS256", "expiresIn": "1h"}
+  var jwt = getJsonWebToken(client_assertion_header, JSON.parse(responsePayload));
+  //detachedJWT = jwt.split(".");
+  //var detachedJws = detachedJWT[0] + ".." + detachedJWT[2];
+  return jwt; 
 }
 
     
@@ -357,7 +368,7 @@ function getJWS(payload)
  function ResetAndCancel()
 {
   closeAuthModal();
-  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').val("Request Client Credential Access Token");
+  $('div[data-role=oauth2_modal] div.modal-header h3.modal-title').val("Step 1: Get Client Credential Access Token");
   $('div[data-role=oauth2_modal] div.modal-body div.content').hide();
   $('div[data-role=oauth2_modal] div.modal-footer p').hide();
   $('div[data-role=oauth2_modal] div.modal-body #showRequest').hide();
@@ -379,28 +390,60 @@ function showJWSButton()
 
     $('.createjwtButton').on("click",openJWSDialog);
 
+  }
 
+  if($("div.body-parameters-wrapper input[name=client_assertion]").length >0)
+  {
+    var $input = $('<button type="button" class="btn btn-primary createjwtButtonClientAssertion" value="Create JWT">Create JWT</button>');
+    $input.appendTo($("div.body-parameters-wrapper input[name=client_assertion]").parent().next());
+
+
+    $('.createjwtButtonClientAssertion').on("click",openJWSDialogClientAssertion);
+
+  }
     var $jwtDialogDiv = $('<div id="myModal" class="modal fade in" role="dialog"><div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h3 class="modal-title">Create JWT</h3> </div> <span class="close-modal">&times;</span> <table> <tr> <td> <label>Payload<label> </td> <td> <textarea name="jwt_payload" rows="8" cols="50"></textarea> </td> </tr> <table> <p class="modal-footer"><button class="btn btn-primary button_createJWS" type="button">Create</button>&nbsp <button type="button" class="btn btn-primary button_cacelDialog">Cancel</button> </p> </div> </div></div>');
     $jwtDialogDiv.appendTo($('body'));
 
     $('button.button_createJWS').on("click",createJWTFromPayload);
     $('button.button_cacelDialog').on("click",closeDialog);
     $('span.close-modal').on("click",closeDialog);
-  }
+  
+
+  
+  
 }
-//window.apiModelEditor.setRequestPayLoad
-//window.apiModelEditor.getRequestPayLoad()
+
 function openJWSDialog()
 {
+  localStorage.jwtFor = "x-jws-signature";
   var modal = document.getElementById('myModal');
   modal.style.display = "block";
   $('textarea[name=jwt_payload]').val(window.apiModelEditor.getRequestPayLoad());
 }
 
+function openJWSDialogClientAssertion()
+{
+  localStorage.jwtFor = "clientAssertion";
+  var modal = document.getElementById('myModal');
+  modal.style.display = "block";
+  $('textarea[name=jwt_payload]').val('{ "iss": "' + CLIENT_ID_ACCOUNTS + '" }');
+}
+
 function createJWTFromPayload()
 {
-  var jws = getJWS($('textarea[name=jwt_payload]').val());
-  $("ul.headerParamSection input[name=x-jws-signature]").val(jws);
+  var jws = "";
+  
+  if(localStorage.jwtFor == "x-jws-signature")
+  {
+    jws = getJWS($('textarea[name=jwt_payload]').val());
+    $("ul.headerParamSection input[name=x-jws-signature]").val(jws);
+  }
+
+  else if (localStorage.jwtFor == "clientAssertion")
+  {
+    jws = getJWSClientAssertion($('textarea[name=jwt_payload]').val());
+    $("div.body-parameters-wrapper input[name=client_assertion]").val(jws); 
+  }
   var modal = document.getElementById('myModal');
   modal.style.display = "none";
   //$("#dialogJWT").dialog("close");

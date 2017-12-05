@@ -57,25 +57,25 @@ exp = Math.round(exp / 1000);
 var nonce = context.getVariable("Nonce");
 
 
-var s_hash = context.getVariable("RequestState");
-var c_hash = context.getVariable("oauthv2authcode.Generate-Authorization-Code.code");
+var sHash = context.getVariable("RequestState");
+var cHash = context.getVariable("oauthv2authcode.Generate-Authorization-Code.code");
 
 var sha256 = crypto.getSHA256();
-sha256.update(s_hash);
-var s_hash = sha256.digest();
-var s_hash = hexToBytes(s_hash);
-var s_hash = bytesToBase64(s_hash.splice(0, s_hash.length / 2));
+sha256.update(sHash);
+var sHash = sha256.digest();
+var sHash = hexToBytes(sHash);
+var sHash = bytesToBase64(sHash.splice(0, sHash.length / 2));
 
 var sha256 = crypto.getSHA256();
-sha256.update(c_hash);
-var c_hash = sha256.digest();
-var c_hash = hexToBytes(c_hash);
-var c_hash = bytesToBase64(c_hash.splice(0, c_hash.length / 2));
+sha256.update(cHash);
+var cHash = sha256.digest();
+var cHash = hexToBytes(cHash);
+var cHash = bytesToBase64(cHash.splice(0, cHash.length / 2));
 
 //console.log( CryptoJS.enc.Base64.stringify(ct.ciphertext));
 
 
-var customerId = context.getVariable("CustomerId");
+//var customerId = context.getVariable("CustomerId");
 
 var idTokenClaim = {
     "iss": iss,
@@ -84,13 +84,13 @@ var idTokenClaim = {
     "exp": exp,
     "iat": iat,
     "nonce": nonce,
-    "s_hash": s_hash,
-    "c_hash": c_hash
+    "s_hash": sHash,
+    "c_hash": cHash
 };
 
 
-var ResponseTypeToken = context.getVariable("ResponseTypeToken");
-var ResponseTypeCode = context.getVariable("ResponseTypeCode");
+//var ResponseTypeToken = context.getVariable("ResponseTypeToken");
+//var ResponseTypeCode = context.getVariable("ResponseTypeCode");
 var ResponseTypeIdToken = context.getVariable("ResponseTypeIdToken");
 
 if (ResponseTypeIdToken == "true") {

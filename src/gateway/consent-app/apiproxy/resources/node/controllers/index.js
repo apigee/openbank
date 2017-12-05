@@ -21,7 +21,7 @@
  * The controller for the home page operations.
  */
 var session = require('./../lib/session');
-var request = require('request');
+//var request = require('request');
 var index = {};
 var config = require('../config.json');
 

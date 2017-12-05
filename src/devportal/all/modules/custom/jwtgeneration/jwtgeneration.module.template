@@ -1,0 +1,87 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+
+function jwtgeneration_menu() {
+    $items = array();
+ 
+	 $items['ajax/getJWT'] = array(
+    'title' => 'JWT generation', 
+    'page callback' => 'getJWT',
+    'access arguments' => array('access content'),
+  );
+	   
+    return $items;	
+    
+}
+
+
+
+function getJWT()
+{
+	
+
+// JWT Header
+/*$header = [
+    "alg"     => "RS256",
+    "typ"     => "JWT"
+];
+ 
+// JWT Payload data
+$payload = [
+    "sub"        => "1234567890",
+    "name"        => "John Doe",
+    "admin"        => true
+];*/
+
+
+$header = json_decode($_GET['header'], false);
+$payload = json_decode($_GET['payload'], false);
+// Create the JWT
+$jwt = generateJWT('sha256', $header, $payload, "abc");
+	
+print  $jwt;
+}
+
+
+
+function base64UrlEncode($data) {
+    return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+}
+
+function generateJWT($algo, $header,  $payload,  $privateKeyFile){
+    $headerEncoded = base64UrlEncode(json_encode($header));
+ 
+    $payloadEncoded = base64UrlEncode(json_encode($payload));
+ 
+    // Delimit with period (.)
+    $dataEncoded = "$headerEncoded.$payloadEncoded";
+ 
+    //$privateKey = "file://".$privateKeyFile;
+ 
+    //$privateKeyResource = openssl_pkey_get_private($privateKey);
+
+    $privateKeyResource = "{{ PrivateKey }}";
+ 
+    $result = openssl_sign($dataEncoded, $signature, $privateKeyResource, $algo);
+ 
+    if ($result === false)
+    {
+        throw new RuntimeException("Failed to generate signature: ".implode("\n", getOpenSSLErrors()));
+    }
+ 
+    $signatureEncoded = base64UrlEncode($signature);
+ 
+    $jwt = "$dataEncoded.$signatureEncoded";
+ 
+    return $jwt;
+}
+ 
+
+ 
+
+
+
+
+
