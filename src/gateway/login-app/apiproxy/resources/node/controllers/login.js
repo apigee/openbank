@@ -47,7 +47,7 @@ login.loginForm = function (req, res, next) {
                 stack: redirectUri
             }
         }
-        res.render(error, err);
+        res.render('error', err);
     } else if (!state) {
         console.log("Invalid State value");
         var err = config.errors.invalid_state;
