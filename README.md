@@ -179,7 +179,7 @@ Banking APIs provide developers with the information needed to create innovative
 
 +   Create an [Apigee API Management Developer Account](https://enterprise.apigee.com)
 +   Create an [Apigee BaaS Account](https://apibaas.apigee.com)
-+   Request For [Apigee Developer Portal](https://goo.gl/j8Vbew), if you want to use portal
++   Request For [Apigee Developer Portal](https://pages.apigee.com/contact-sales-reg.html), if you want to use portal
 
 To Learn more on the basic concepts of Apigee Edge, please refer to : 
 http://docs.apigee.com/api-services/content/what-apigee-edge
