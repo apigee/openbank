@@ -59,6 +59,7 @@ resources:
         file: setup/data/beneficiaries.json
       - name: customers
         file: setup/data/customers.json
+        permissions: ['get,post,delete:customers','get,post,delete:customers/*','get,post,delete:customers/**']
       - name: directdebits
         file: setup/data/directdebits.json
       - name: standingorders
