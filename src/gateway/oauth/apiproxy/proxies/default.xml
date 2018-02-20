@@ -112,13 +112,14 @@
                 </Step>
                 <Step>
                     <Name>Assign-Auth-Basic-Header</Name>
-                    <Condition>(request.formparam.client_assertion != null)</Condition>
+                    <Condition>(request.formparam.client_assertion != null) and (request.formparam.client_assertion != "")</Condition>
                 </Step>
                 <Step>
                     <Condition>request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials"</Condition>
                     <Name>Security-Generate-Access-Token</Name>
                 </Step>
                 <Step>
+                    <Condition>request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "client_credentials"</Condition>
                     <Name>Security-Refresh-Access-Token</Name>
                 </Step>
             </Request>

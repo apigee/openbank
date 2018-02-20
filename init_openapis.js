@@ -32,7 +32,7 @@ var request         = require('request');
     node install_tmp.js
 */
 
-var files_list = ['src/devportal/all/modules/custom/openbank_swagger/swaggers/oauthv1-0.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/accountv1-0.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/paymentv1-0.json.template','src/devportal/all/themes/dbank/js/smartdocsDynamic.js.template'];
+var files_list = ['src/devportal/all/modules/custom/jwtgeneration/jwtgeneration.module.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/oauthv1-0.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/accountv1-0.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/paymentv1-0.json.template','src/devportal/all/themes/dbank/js/smartdocsDynamic.js.template'];
 
 var inject_object = {}
 
@@ -63,6 +63,7 @@ prompt_lib.get(switch_opdk, function(err, results) {
         required_values.push({name: 'env', description: 'Enter the environment', type: 'string'});
         required_values.push({name: 'username', description: 'Enter the username for the org', type: 'string'});
         required_values.push({name: 'password', description: 'Enter the password', type: 'string', hidden: true});
+        required_values.push({name: 'tppPrivateKey', description: 'Enter the Tpp private key', type: 'string'})
 
         prompt_lib.start();
 
@@ -101,6 +102,10 @@ function post_prompt(err, results) {
     if(results['env'])
     {
     inject_object.env = results['env'];
+    }
+    if(results['tppPrivateKey'])
+    {
+       inject_object.PrivateKey =  results['tppPrivateKey'];
     }
     var org = results['org']
     var username = results['username'];

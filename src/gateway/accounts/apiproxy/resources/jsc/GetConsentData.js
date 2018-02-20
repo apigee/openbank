@@ -21,7 +21,7 @@
  */
 var consentResponse = context.getVariable("consentResponse.content");
 var fapiCustomerIpAddr = context.getVariable("fapiCustomerIpAddr");
-var proxyPathSuffix = context.getVariable('proxy.pathsuffix');
+//var proxyPathSuffix = context.getVariable('proxy.pathsuffix');
 
 var isError = false;
 var errorCode = 400;

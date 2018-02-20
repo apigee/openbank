@@ -50,7 +50,7 @@ router.get('/payments/:paymentId', function (req, res, next) {
                 var body = {};
                 body.Data = resbody.entities[0].Data;
                 body.Risk = resbody.entities[0].Risk;
-                body.Link = {"Self": resbody.entities[0].metadata.path};
+                body.Links = {"Self": resbody.entities[0].metadata.path};
                 body.Meta = {};
                 body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
                 body.Data.PaymentId = resbody.entities[0].uuid;
@@ -95,7 +95,7 @@ router.put('/payments/:paymentId', function (req, res, next) {
                 var body = {};
                 body.Data = resbody.entities[0].Data;
                 body.Risk = resbody.entities[0].Risk;
-                body.Link = {"Self": resbody.entities[0].metadata.path};
+                body.Links = {"Self": resbody.entities[0].metadata.path};
                 body.Meta = {};
                 body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
                 body.Data.PaymentId = resbody.entities[0].uuid;
@@ -137,7 +137,7 @@ router.get('/payment-submissions/:paymentSubmissionsId', function (req, res, nex
                 resbody = parseIfNotObject(resbody);
                 var body = {};
                 body.Data = {};
-                body.Link = {"Self": resbody.entities[0].metadata.path};
+                body.Links = {"Self": resbody.entities[0].metadata.path};
                 body.Meta = {};
                 body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
                 body.Data.PaymentId = resbody.entities[0].Data.PaymentId;
@@ -164,8 +164,8 @@ router.post('/payments', function (req, res, next) {
     query = {};
     query.client_id = packagejson.clientId;
     query.client_secret = packagejson.clientSecret;
-    var customerId = req.body.customerId;
-    var consentId = req.body.consentId;
+    //var customerId = req.body.customerId;
+    //var consentId = req.body.consentId;
     req.body.Status = "Pending";
     options = {
         url: packagejson.baasURI + "/" + packagejson.baasOrg + "/" + packagejson.baasApp + "/payments",
@@ -185,7 +185,7 @@ router.post('/payments', function (req, res, next) {
                 var body = {};
                 body.Data = resbody.entities[0].Data;
                 body.Risk = resbody.entities[0].Risk;
-                body.Link = {"Self": resbody.entities[0].metadata.path};
+                body.Links = {"Self": resbody.entities[0].metadata.path};
                 body.Meta = {};
                 body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
                 body.Data.PaymentId = resbody.entities[0].uuid;
@@ -213,9 +213,9 @@ router.post('/payment-submissions', function (req, res, next) {
     query = {};
     query.client_id = packagejson.clientId;
     query.client_secret = packagejson.clientSecret;
-    var customerId = req.body.customerId;
-    var consentId = req.body.consentId;
-    req.body.Status = "AcceptedCustomerProfile";
+    //var customerId = req.body.customerId;
+    //var consentId = req.body.consentId;
+    req.body.Status = "AcceptedSettlementInProcess";
     options = {
         url: packagejson.baasURI + "/" + packagejson.baasOrg + "/" + packagejson.baasApp + "/payment-submissions",
         method: 'POST',
@@ -233,7 +233,7 @@ router.post('/payment-submissions', function (req, res, next) {
                 res.status(201);
                 var body = {};
                 body.Data = {};
-                body.Link = {"Self": resbody.entities[0].metadata.path};
+                body.Links = {"Self": resbody.entities[0].metadata.path};
                 body.Meta = {};
                 body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
                 body.Data.PaymentId = resbody.entities[0].Data.PaymentId;

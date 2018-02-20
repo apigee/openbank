@@ -77,10 +77,7 @@ function hasValidPermissions() {
     if (proxyPathSuffix.indexOf("balances") >= 0) {
 
         return getDataReadPermission(accPermissions, "ReadBalances", null);
-    }
-
-    //transactios
-    else if (proxyPathSuffix.indexOf("transactions") >= 0) {
+    } else if (proxyPathSuffix.indexOf("transactions") >= 0) {//transactios
         if (accPermissions.indexOf("ReadTransactionsCredits") > -1)
             context.setVariable("readCredits", true);
 
@@ -89,32 +86,15 @@ function hasValidPermissions() {
 
         return getDataReadPermission(accPermissions, "ReadTransactionsBasic", "ReadTransactionsDetail");
 
-    }
-
-
-    //beneficiaries
-    else if (proxyPathSuffix.indexOf("beneficiaries") >= 0) {
+    } else if (proxyPathSuffix.indexOf("beneficiaries") >= 0) {//beneficiaries
         return getDataReadPermission(accPermissions, "ReadBeneficiariesBasic", "ReadBeneficiariesDetail");
-    }
-
-
-    // standing-orders
-    else if (proxyPathSuffix.indexOf("standing-orders") >= 0) {
+    } else if (proxyPathSuffix.indexOf("standing-orders") >= 0) { // standing-orders
         return getDataReadPermission(accPermissions, "ReadStandingOrdersBasic", "ReadStandingOrdersDetail");
-    }
-
-    // direct debits
-    else if (proxyPathSuffix.indexOf("direct-debits") >= 0) {
+    } else if (proxyPathSuffix.indexOf("direct-debits") >= 0) {// direct debits
         return getDataReadPermission(accPermissions, "ReadDirectDebits", null);
-    }
-
-    // products
-    else if (proxyPathSuffix.indexOf("product") >= 0) {
+    } else if (proxyPathSuffix.indexOf("product") >= 0) {// products
         return getDataReadPermission(accPermissions, "ReadProducts", null);
-    }
-
-    // accounts info
-    else if (proxyPathSuffix.indexOf("accounts") >= 0) {
+    } else if (proxyPathSuffix.indexOf("accounts") >= 0) {  // accounts info
         return getDataReadPermission(accPermissions, "ReadAccountsBasic", "ReadAccountsDetail");
     }
 

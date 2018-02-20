@@ -14,14 +14,24 @@
  limitations under the License.
  */
 
-var gulp = require('gulp');
-var cucumber = require('gulp-cucumber');
+/**
+ * @file
+ * app.js
+ * Location connector server application
+ */
 
-gulp.task('test', function() {
-    return gulp.src('features/*')
-			.pipe(cucumber({
-				'steps': ['features/step_definitions/env.js','features/step_definitions/apickli-gherkin.js','features/step_definitions/auth+consent.js','features/step_definitions/accounts.js'],
-				'support': 'features/support/*.js',
-				'format': 'pretty'
-			}));
+
+
+
+var express = require('express');
+var app = express();
+
+var locations = require('./locations.js');
+
+app.get('/atms', locations.getAtms);
+app.get('/branches', locations.getBranches);
+
+
+app.listen(3000, function () {
+    console.log('App listening on port 3000!');
 });

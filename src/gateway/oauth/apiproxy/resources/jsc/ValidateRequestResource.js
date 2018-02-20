@@ -15,15 +15,13 @@
  */
 /**
  * @file
- * ValidateRequestResource.js
- * Generic Script to Validate request resource based on config provided
+ * ValidateRequest.js
+ * Generic function which validates the paramerters according to the config provided
  */
-
-//var error = validateRequest();
 
 validPayload = {}
 function validateRequest(RequestConfig) {
-    var key, i, j, ispresent;
+    var key, i, ispresent;
     var errorJson = {};
     errorJson.isError = true;
     errorJson.errorResponseCode = 400;
@@ -40,14 +38,13 @@ function validateRequest(RequestConfig) {
                     print(ispresent);
                     ispresent = true;
                 }
-                print("outside" + ispresent);
                 // check if header is mandatory
                 if (headerValidation.Mandatory) {
-                    print("in mandatory" + key);
                     if (!ispresent) {
                         print("not present" + key);
                         errorJson.errorDescription = "" + key + " header not present in the request";
                         return errorJson;
+
                     }
                 }
 
@@ -216,7 +213,7 @@ function getBodyParameterVal(param) {
     // check for empty payload
     if (context.getVariable("request.content")) {
         var content = JSON.parse(context.getVariable("request.content"));
-        var contextBodyParam = "";
+        //var contextBodyParam = "";
         try {
             var keys = param.split('.');
             var value = content[keys[0]];
@@ -339,3 +336,5 @@ function setKeyVal(keyPath, param) {
 
     temp[keyList[len - 1]] = param;
 }
+
+

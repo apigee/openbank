@@ -19,7 +19,7 @@
  * Entry point for the node application to run.
  */
 var express = require('express');
-var path = require('path');
+//var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
