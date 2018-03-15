@@ -175,7 +175,7 @@ Banking APIs provide developers with the information needed to create innovative
 
 ## Apigee Edge Setup
 
-<img src="../../images/openbankDeploymentarchitecture.png" width="700px" height="300px"/>
+<img src="/images/openbankDeploymentarchitecture.png" width="700px" height="300px"/>
 
 The OpenBank deployment architecture is as mentioned above.
 
