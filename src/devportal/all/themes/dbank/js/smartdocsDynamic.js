@@ -2,19 +2,19 @@
 {
   $(document).ready(function()
 {
-  ORG = "apis-bank";
+  ORG = "demo-eu07";
   ENV = "test";
-  CLIENT_ID_ACCOUNTS = "";
-  CLIENT_SECRET_ACCOUNTS = "";
-  CLIENT_ID_PAYMENTS = "";
-  CLIENT_SECRET_PAYMENTS = "";  
+  CLIENT_ID_ACCOUNTS = "B0oG1lreGOwyRCSyUw4BAGHOTELkuPNH";
+  CLIENT_SECRET_ACCOUNTS = "1tyzWsFPLjZ5dzl2";
+  CLIENT_ID_PAYMENTS = "pXxKFZPebpwCFlNl1rNjp9TdnbbmuRtt";
+  CLIENT_SECRET_PAYMENTS = "AK1HHoBtJSeQnDDZ";  
   ACCOUNTS_SMARTDOC_NAME = "accounts-apis-v1-0";
   ACCOUNTS_OAUTH_NAME = "PSUOAuth2Security";
 
   PAYMENTS_SMARTDOC_NAME = "payments-apis-v1-0";
   PAYMENTS_OAUTH_NAME = "PSUOAuth2Security";
 
-  BASE_URL = "https://apis-bank-test.apigee.net";
+  BASE_URL = "https://demo-eu07-test.apigee.net";
 
   BASIC_HEADER_ACCOUNTS = Base64.encode(CLIENT_ID_ACCOUNTS + ":" + CLIENT_SECRET_ACCOUNTS);
   BASIC_HEADER_PAYMENTS = Base64.encode(CLIENT_ID_PAYMENTS + ":" + CLIENT_SECRET_PAYMENTS);

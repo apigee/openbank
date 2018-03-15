@@ -90,7 +90,7 @@ The changes are already there in /var/html/www, which will automatically reflect
 ## **4. Further Configurations**
 Please log in to the portal with the admin credentials.
 Once you have logged in with admin credentials, you will find the **admin menu** for making portal customizations.
-<img src="../../readme-images/devportal/adminmenu.png">
+<img src="../../images/devportal/adminmenu.png">
 
 ### **4.1 Apply HBR template for the smartdocs**
 
@@ -123,7 +123,7 @@ To enable openbank swagger or any other module, go to admin -> modules and enabl
  - Select **smartdocs_auth** module from the list, enable it.
  - Save the configuration.
  
- <img src="../../readme-images/devportal/modules1.png">
+ <img src="../../images/devportal/modules1.png">
     
 **4.4.2 Create models and import all openbank API’s swagger files**
 Import of all openbank API’s swagger files need to be done for creation of the respective smartdocs. In order to do so, 
@@ -142,16 +142,16 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
 
  - Select Content > SmartDocs.
  - For **accountapis** and **userinfoapis** API models, select **settings** from Operations drop-down.
- <img src="../../readme-images/devportal/security.png" width="700px" height="350px"/> 
+ <img src="../../images/devportal/security.png" width="700px" height="350px"/> 
  - Select "**security settings**" hyperlink from the Template authentication schemes section.
- <img src="../../readme-images/devportal/smartdocsecuritysettings.png" width="700px" height="350px"/> 
+ <img src="../../images/devportal/smartdocsecuritysettings.png" width="700px" height="350px"/> 
  
  - Select Edit for **aisp_auth** security scheme.
  - Select **Authorisation code** for Grant type.
-<img src="../../readme-images/devportal/smartdocsgranttype.png" width="700px" height="350px"/>
+<img src="../../images/devportal/smartdocsgranttype.png" width="700px" height="350px"/>
 
  - In Advanced Settings section set Authorization Request Method to **Header**.
- <img src="../../readme-images/devportal/smartdocsadvancedsettings.png" width="700px" height="350px"/>
+ <img src="../../images/devportal/smartdocsadvancedsettings.png" width="700px" height="350px"/>
  
  - Select Submit.
 
@@ -160,7 +160,7 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
  - Select Content > SmartDocs.
  - For the **accountsapis** API models, select **Settings** from Operations drop-down.
  - In Template authentication schemes, set **Client Id & Client Secret** to the Client Id & Client Secret of '**AISP_App**' app, which was created during deployment. (https://enterprise.apigee.com/platform/{org}/apps)
- <img src="../../readme-images/devportal/templateauth.png" width="700px" height="350px"/>
+ <img src="../../images/devportal/templateauth.png" width="700px" height="350px"/>
  - Click the "Save template authentication schemes" button.
  
  - For the **userinfoapis** API models, select **Settings** from Operations drop-down.
@@ -185,15 +185,15 @@ This section is applicable to accounts and userinfo openbank resources only i.e.
  - Goto admin menu -> structure -> context.
  - Select Edit for "**custom_home**".
  - Select "**Blocks**" from the Reactions section.
- <img src="../../readme-images/devportal/contextBlocks.png" width="700px" height="350px"/>
+ <img src="../../images/devportal/contextBlocks.png" width="700px" height="350px"/>
  
  - Select block drop down, and select **Home Page blocks, API CATALOGUE desc and Reference Apps**.
- <img src="../../readme-images/devportal/contextBlocksblock.png" width="700px" height="350px"/>
+ <img src="../../images/devportal/contextBlocksblock.png" width="700px" height="350px"/>
  - Select **+Add** tab for contet section and select "**show row weights**".
- <img src="../../readme-images/devportal/contextBlocksadd.png" width="700px" height="350px"/>
+ <img src="../../images/devportal/contextBlocksadd.png" width="700px" height="350px"/>
  
  - Assign row weights to the blocks.
-  <img src="../../readme-images/devportal/contextBlocksrow.png" width="700px" height="350px"/>
+  <img src="../../images/devportal/contextBlocksrow.png" width="700px" height="350px"/>
   
  - Click on save.
 

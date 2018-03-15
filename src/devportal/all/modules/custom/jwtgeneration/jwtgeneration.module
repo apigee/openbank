@@ -62,7 +62,7 @@ function generateJWT($algo, $header,  $payload,  $privateKeyFile){
  
     //$privateKeyResource = openssl_pkey_get_private($privateKey);
 
-    $privateKeyResource = "{{ PrivateKey }}";
+    $privateKeyResource = "PrivateKey";
  
     $result = openssl_sign($dataEncoded, $signature, $privateKeyResource, $algo);
  

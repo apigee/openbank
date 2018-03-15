@@ -75,7 +75,7 @@ function getClient_credentialAccessToken()
 {
   localStorage.ccScope = $('select[name=scopeSelector]').find(":selected").text();
 
-  var oauthURL = BASE_URL+"/apis/v1.0/oauth/token";
+  var oauthURL = BASE_URL+"/apis/v1.0.1/oauth/token";
   
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST", oauthURL, true);
@@ -155,12 +155,12 @@ function createRequest()
     var postRequestURL = "";
     if(localStorage.ccScope == "accounts")
     {
-      postRequestURL = BASE_URL+"/ais/open-banking/v1.0/account-requests";
+      postRequestURL = BASE_URL+"/ais/open-banking/v1.0.1/account-requests";
     }
 
     else
     {
-      postRequestURL = BASE_URL+"/pis/open-banking/v1.0/payments";
+      postRequestURL = BASE_URL+"/pis/open-banking/v1.0.1/payments";
 
     }
 
@@ -266,12 +266,12 @@ function OpenAuthURL(event)
     var authUrl = "";
     if(localStorage.ccScope == "accounts")
      {
-      authUrl = BASE_URL+"/apis/v1.0/oauth/authorize?response_type=code&client_id="+CLIENT_ID_ACCOUNTS+"&state=abcd1234&scope=openid accounts&redirect_uri="+TEMPLATE_CALLBACK_ACCOUNTS;
+      authUrl = BASE_URL+"/apis/v1.0.1/oauth/authorize?response_type=code&client_id="+CLIENT_ID_ACCOUNTS+"&state=abcd1234&scope=openid accounts&redirect_uri="+TEMPLATE_CALLBACK_ACCOUNTS;
      }
 
      else
      {
-      authUrl = BASE_URL+"/apis/v1.0/oauth/authorize?response_type=code&client_id="+CLIENT_ID_PAYMENTS+"&state=abcd1234&scope=openid payments&redirect_uri="+TEMPLATE_CALLBACK_PAYMENTS;
+      authUrl = BASE_URL+"/apis/v1.0.1/oauth/authorize?response_type=code&client_id="+CLIENT_ID_PAYMENTS+"&state=abcd1234&scope=openid payments&redirect_uri="+TEMPLATE_CALLBACK_PAYMENTS;
 
      }
       authUrl+="&request="+ $('#authoriseInput input[name=requestInput]').val();

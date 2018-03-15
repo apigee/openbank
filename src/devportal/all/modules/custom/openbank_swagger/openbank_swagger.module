@@ -4,9 +4,9 @@ require_once DRUPAL_ROOT . '/profiles/apigee/modules/custom/devconnect/lib/Crypt
 
 //define('SMARTDOCS_SAMPLE_PETSTORE_MODEL', 'petstore example');
 //define('SMARTDOCS_SAMPLE_WEATHER_MODEL', 'weather example');
-define('SMARTDOCS_OAUTH_MODEL', 'oauth-apis-v1-0');
-define('SMARTDOCS_ACCOUNTS_MODEL', 'accounts-apis-v1-0');
-define('SMARTDOCS_PAYMENT_MODEL', 'payments-apis-v1-0');
+define('SMARTDOCS_OAUTH_MODEL', 'oauth-apis-v1-0-1');
+define('SMARTDOCS_ACCOUNTS_MODEL', 'accounts-apis-v1-0-1');
+define('SMARTDOCS_PAYMENT_MODEL', 'payments-apis-v1-0-1');
 
 /*define('SMARTDOCS_OPENDATA_MODEL', 'open-dataapis');
 define('SMARTDOCS_USERINFO_MODEL', 'userinfoapis');
