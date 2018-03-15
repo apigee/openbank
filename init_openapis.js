@@ -32,7 +32,7 @@ var request         = require('request');
     node install_tmp.js
 */
 
-var files_list = ['src/devportal/all/modules/custom/jwtgeneration/jwtgeneration.module.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/oauthv1-0.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/accountv1-0.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/paymentv1-0.json.template','src/devportal/all/themes/dbank/js/smartdocsDynamic.js.template'];
+var files_list = ['src/devportal/all/modules/custom/jwtgeneration/jwtgeneration.module.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/oauthv1-0.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/accountv1-0-1.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/paymentv1-0-1.json.template','src/devportal/all/themes/dbank/js/smartdocsDynamic.js.template'];
 
 var inject_object = {}
 
@@ -63,7 +63,6 @@ prompt_lib.get(switch_opdk, function(err, results) {
         required_values.push({name: 'env', description: 'Enter the environment', type: 'string'});
         required_values.push({name: 'username', description: 'Enter the username for the org', type: 'string'});
         required_values.push({name: 'password', description: 'Enter the password', type: 'string', hidden: true});
-        required_values.push({name: 'tppPrivateKey', description: 'Enter the Tpp private key', type: 'string'})
 
         prompt_lib.start();
 
@@ -103,10 +102,13 @@ function post_prompt(err, results) {
     {
     inject_object.env = results['env'];
     }
-    if(results['tppPrivateKey'])
+    var keyData = fs.readFileSync(path.join(__dirname, "test/testtpp_jwt.pem"), 'utf8');
+    if(keyData && keyData != "")
     {
-       inject_object.PrivateKey =  results['tppPrivateKey'];
+      inject_object.PrivateKey = keyData ;  
     }
+      
+    
     var org = results['org']
     var username = results['username'];
     var password = results['password'];
@@ -140,12 +142,12 @@ function post_prompt(err, results) {
 
 
 
-    get_app_details('AISP_App', edge_host, org, username, password, function (aisp_details) {
+    get_app_details('AISP_Appv101', edge_host, org, username, password, function (aisp_details) {
         secret_aisp = aisp_details.credentials[0].consumerSecret;
         client_id_aisp = aisp_details.credentials[0].consumerKey;
         redirect_uri_aisp = aisp_details.callbackUrl;
 
-        get_app_details('PISP_App', edge_host, org, username, password, function (pisp_details) {
+        get_app_details('PISP_Appv101', edge_host, org, username, password, function (pisp_details) {
             secret_pisp = pisp_details.credentials[0].consumerSecret;
             client_id_pisp = pisp_details.credentials[0].consumerKey;
             redirect_uri_pisp = pisp_details.callbackUrl;

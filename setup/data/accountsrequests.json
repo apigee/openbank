@@ -1,6 +1,7 @@
 [
   {
     "name": "1000",
+    "CreationDateTime": 1520503570000,
     "Data": {
       "TransactionToDateTime": "2017-05-08T00:00:00-00:00",
       "ExpirationDateTime": "2017-05-02T00:00:00-00:00",
