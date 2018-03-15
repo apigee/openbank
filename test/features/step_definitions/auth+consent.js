@@ -31,7 +31,7 @@ var config = require("../../config.json");
 function createClientAssertion(clientId) {
     var jwtToken = jwt.sign({
         "iss": clientId
-    }, cert, {algorithm: "RS256", "expiresIn": "1h"});
+    }, cert, {algorithm: "RS256", "expiresIn": "3h"});
     return jwtToken;
 }
 function createRequestObjectJWT(clientId, redirectUri, state, nonce, scope, responseType, urns) {
@@ -121,7 +121,7 @@ module.exports = function () {
         this.apickli.setRequestHeader('x-apikey', config.internalAppKey);
         this.apickli.setRequestHeader('Content-Type', 'application/json');
         var othis = this;
-        this.apickli.post('/apis/v1.0/oauth/authorized', function (error, response) {
+        this.apickli.post('/apis/v1.0.1/oauth/authorized', function (error, response) {
             if (!error && response.statusCode == 200) {
                 var code = JSON.parse(response.body).application_tx_response.split('&')[1];
                 code = code.split('=')[1];
@@ -147,7 +147,7 @@ module.exports = function () {
         this.driver = new seleniumWebdriver.Builder()
             .forBrowser('chrome')
             .build();
-        return this.driver.get('https://' + config.edgeBasePath + '/apis/v1.0/oauth/authorize' + qs);
+        return this.driver.get('https://' + config.edgeBasePath + '/apis/v1.0.1/oauth/authorize' + qs);
     });
 
 

@@ -53,7 +53,7 @@ module.exports = function () {
         this.apickli.setRequestBody('grant_type=client_credentials&scope=payments&client_assertion=' + createJWT({"iss": this.apickli.getGlobalVariable("TPPAppClientIdPayment")}));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
-        this.apickli.post('/apis/v1.0/oauth/token', function (error, response) {
+        this.apickli.post('/apis/v1.0.1/oauth/token', function (error, response) {
             if (!error && response.statusCode == 200) {
                 var accesstoken = JSON.parse(response.body).access_token;
                 othis.apickli.storeValueInScenarioScope('accesstoken_cc', accesstoken);
@@ -112,7 +112,7 @@ module.exports = function () {
         this.apickli.setRequestBody('grant_type=authorization_code&redirect_uri=http://localhost/&code=' + this.apickli.replaceVariables("`code`") + '&client_assertion=' + createJWT({"iss": this.apickli.getGlobalVariable("TPPAppClientIdPayment")}));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
-        this.apickli.post('/apis/v1.0/oauth/token', function (error, response) {
+        this.apickli.post('/apis/v1.0.1/oauth/token', function (error, response) {
             if (!error && response.statusCode == 200) {
                 var accesstoken = JSON.parse(response.body).access_token;
                 othis.apickli.storeValueInScenarioScope('accesstoken', accesstoken);
