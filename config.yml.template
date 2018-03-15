@@ -43,22 +43,22 @@ resources:
       type: kvm
       items:
       - name: GoogleServiceAccountKVM
-        payload: '{ "name" : "GoogleServiceAccountKVM", "entry" : [ { "name" : "privateKey", "value" : "privateKey" } ] , "encrypted": "true"}'
+        payload: '{ "name" : "GoogleServiceAccountKVM", "entry" : [ { "name" : "privateKey", "value" : "{{ serviceaccount_Private_Key }}" } ] , "encrypted": "true"}'
       - name: BankKVM
-        payload: '{ "name" : "BankKVM", "entry" : [ { "name" : "privateKey", "value" : "-----BEGIN RSA PRIVATE KEY-----PRIVATE KEY HERE-----END RSA PRIVATE KEY-----" } ] , "encrypted": "true"}' 
+        payload: '{ "name" : "BankKVM", "entry" : [ { "name" : "privateKey", "value" : "{{ bankPrivateKeySingleLine }}" } ] , "encrypted": "true"}' 
     
     - name: replaceGoogleProject
       type: configSubstitutions
       items: 
       - name: datastoreProject
         filePaths: ['src/gateway/datastore-connector/target/apiproxy/targets/default.xml','src/gateway/datastore-connector/target/apiproxy/policies/Service-Callout-Get-Entity.xml']
-        value: 'projectIdHere'
+        value: '{{ datastoreProject }}'
       - name: client_email
         filePaths: ['src/gateway/datastore-connector/target/apiproxy/policies/Generate-JWT-Datastore.xml']
-        value: 'clientmailhere'
+        value: '{{ client_email }}'
       - name: token_uri
         filePaths: ['src/gateway/datastore-connector/target/apiproxy/policies/Generate-JWT-Datastore.xml','src/gateway/datastore-connector/target/apiproxy/policies/Service-Callout-Get-Access-Token.xml']
-        value: 'http://tokenUriHere'
+        value: '{{ token_uri }}'
 
     - name: datastore-connector api
       type: proxy
@@ -92,13 +92,13 @@ resources:
       items:
       - name: edgeBasePath
         filePaths: ['src/gateway/payments-connector/target/apiproxy/resources/node/package.json','src/gateway/consent-management/target/apiproxy/targets/default.xml','src/gateway/user-management/target/apiproxy/targets/default.xml','src/gateway/customer-management/target/apiproxy/targets/default.xml','src/gateway/accounts-connector/target/apiproxy/policies/Assign-Target-URL.xml','src/gateway/locations-connector/target/apiproxy/targets/default.xml','src/gateway/products-connector/target/apiproxy/targets/default.xml']
-        value: 'https://{{org}}-{{env}}.apigee.net'
+        value: 'https://{{=<% %>=}}{{org}}<%={{ }}=%>-{{=<% %>=}}{{env}}<%={{ }}=%>.apigee.net{{ sbconnector}}'
       - name: DsApikey
         filePaths: ['src/gateway/accounts-connector/target/apiproxy/policies/Assign-Target-URL.xml','src/gateway/user-management/target/apiproxy/policies/Assign-Message.xml','src/gateway/products-connector/target/apiproxy/policies/Assign-Message.xml','src/gateway/locations-connector/target/apiproxy/policies/Assign-Variables.xml','src/gateway/customer-management/target/apiproxy/policies/Assign-Apikey.xml','src/gateway/consent-management/target/apiproxy/policies/Assign-Apikey.xml','src/gateway/payments-connector/target/apiproxy/resources/node/package.json']
-        value: '{{apiKey_DS}}'
+        value: '{{=<% %>=}}{{apiKey_DS}}<%={{ }}=%>'
       - name: sms_endpoint
         filePaths: ['src/gateway/sms-token/target/apiproxy/targets/confirmation.xml','src/gateway/sms-token/target/apiproxy/targets/default.xml']
-        value: '{{sms_endpoint}}'
+        value: '{{=<% %>=}}{{sms_endpoint}}<%={{ }}=%>'
       
     - name: bank_apis
       type: proxy
@@ -140,19 +140,22 @@ resources:
       items:
       - name: internalAppKey
         filePaths: ['src/gateway/login-app/target/apiproxy/resources/node/config.json','src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/accounts/target/apiproxy/policies/Assign-APIKey-Header.xml','src/gateway/accounts/target/apiproxy/policies/Fetch-Account-Consent.xml','src/gateway/accounts/target/apiproxy/policies/Get-Acc-Req-Data.xml','src/gateway/accounts/target/apiproxy/policies/Update-Access-Count.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Payment-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Payment-Request.xml','src/gateway/payments/target/apiproxy/policies/Assign-APIKey-Header.xml','src/gateway/payments/target/apiproxy/policies/Service-Callout-Validate-Payment-Request-Status.xml','src/gateway/payments/target/apiproxy/policies/Service-Callout-Fetch-and-Validate-Consent.xml']
-        value: '{{apiKey_IA}}'
+        value: '{{=<% %>=}}{{apiKey_IA}}<%={{ }}=%>'
       - name: edgeBasePath
-        filePaths: ['src/gateway/oauth/target/apiproxy/policies/Service-Callout-Create-ID-token.xml','src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/accounts/target/apiproxy/policies/Fetch-Account-Consent.xml','src/gateway/accounts/target/apiproxy/policies/Get-Acc-Req-Data.xml','src/gateway/accounts/target/apiproxy/policies/Update-Access-Count.xml','src/gateway/accounts/target/apiproxy/targets/default.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Payment-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Payment-Request.xml','src/gateway/oauth/target/apiproxy/targets/default.xml','src/gateway/payments/target/apiproxy/policies/Service-Callout-Validate-Payment-Request-Status.xml','src/gateway/payments/target/apiproxy/policies/Service-Callout-Fetch-and-Validate-Consent.xml','src/gateway/payments/target/apiproxy/targets/default.xml']
-        value: 'https://{{ org }}-{{ env }}.apigee.net'
+        filePaths: ['src/gateway/locations/target/apiproxy/targets/default.xml','src/gateway/products/target/apiproxy/targets/default.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Create-ID-token.xml','src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/accounts/target/apiproxy/policies/Fetch-Account-Consent.xml','src/gateway/accounts/target/apiproxy/policies/Get-Acc-Req-Data.xml','src/gateway/accounts/target/apiproxy/policies/Update-Access-Count.xml','src/gateway/accounts/target/apiproxy/targets/default.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Payment-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Account-Request.xml','src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Payment-Request.xml','src/gateway/oauth/target/apiproxy/targets/default.xml','src/gateway/payments/target/apiproxy/policies/Service-Callout-Validate-Payment-Request-Status.xml','src/gateway/payments/target/apiproxy/policies/Service-Callout-Fetch-and-Validate-Consent.xml','src/gateway/payments/target/apiproxy/targets/default.xml']
+        value: 'https://{{=<% %>=}}{{ org }}<%={{ }}=%>-{{=<% %>=}}{{ env }}<%={{ }}=%>.apigee.net{{ sbconnector}}'
       - name: consentSessionKey
         filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json']
-        value: '{{ consentSessionKey }}'
+        value: '{{=<% %>=}}{{ consentSessionKey }}<%={{ }}=%>'
       - name: DsApikey
         filePaths: ['src/gateway/oauth/target/apiproxy/policies/Service-Callout-Create-ID-token.xml']
-        value: '{{apiKey_DS}}'
+        value: '{{=<% %>=}}{{apiKey_DS}}<%={{ }}=%>'
       - name: jwtSignKey
         filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/login-app/target/apiproxy/resources/node/config.json']
-        value: '{{ jwtSignKey }}'
+        value: '{{=<% %>=}}{{ jwtSignKey }}<%={{ }}=%>'
+      - name: edgeBasePathFixed
+        filePaths: ['src/gateway/consent-app/target/apiproxy/resources/node/config.json','src/gateway/oauth/target/apiproxy/targets/default.xml']
+        value: 'https://{{ org }}-{{ env }}.apigee.net'
     - name: deploy_remaining_apis
       type: proxy
       items:
@@ -181,7 +184,7 @@ resources:
       type: app
       items:
       - name: AISP_Appv101
-        payload: '{"name":"AISP_Appv101","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"-----BEGIN PUBLIC KEY-----PUBLIC KEY HERE-----END PUBLIC KEY-----"}],"callback":"http://localhost/,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/accounts-apis-v1-0-1/templateauths/PSUOAuth2Security/callback","email":"openbank@apigee.net","apiProducts":"account_apisv1.0.1"}'
+        payload: '{"name":"AISP_Appv101","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"{{ tppPublicKeySingleLine }}"}],"callback":"http://localhost/,https://api.enterprise.apigee.com/v1/o/{{=<% %>=}}{{ org }}<%={{ }}=%>/apimodels/accounts-apis-v1-0-1/templateauths/PSUOAuth2Security/callback","email":"openbank@apigee.net","apiProducts":"account_apisv1.0.1"}'
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey_AISP
@@ -190,7 +193,7 @@ resources:
         - from: appId
           to: appId_AISP
       - name: PISP_Appv101
-        payload: '{"name":"PISP_Appv101","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"-----BEGIN PUBLIC KEY-----PUBLIC KEY HERE-----END PUBLIC KEY-----"}],"callback":"http://localhost/,https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/payments-apis-v1-0-1/templateauths/PSUOAuth2Security/callback","email":"openbank@apigee.net","apiProducts":"payment_apisv1.0.1"}'
+        payload: '{"name":"PISP_Appv101","attributes":[{"name":"tppId","value":"12345"},{"name":"publicKey","value":"{{ tppPublicKeySingleLine }}"}],"callback":"http://localhost/,https://api.enterprise.apigee.com/v1/o/{{=<% %>=}}{{ org }}<%={{ }}=%>/apimodels/payments-apis-v1-0-1/templateauths/PSUOAuth2Security/callback","email":"openbank@apigee.net","apiProducts":"payment_apisv1.0.1"}'
         assignResponse:
         - from: credentials.0.consumerKey
           to: apiKey_PISP
@@ -210,14 +213,14 @@ resources:
       items:
       - name: keyAISP
         filePaths: ['test/config.json']
-        value: '{{ apiKey_AISP }}'
+        value: '{{=<% %>=}}{{ apiKey_AISP }}<%={{ }}=%>'
       - name: keyPISP
         filePaths: ['test/config.json']
-        value: '{{ apiKey_PISP }}'
+        value: '{{=<% %>=}}{{ apiKey_PISP }}<%={{ }}=%>'
       - name: edgeBasePath
         filePaths: ['test/config.json']
-        value: '{{ org }}-{{ env }}.apigee.net'
+        value: '{{=<% %>=}}{{ org }}<%={{ }}=%>-{{=<% %>=}}{{ env }}<%={{ }}=%>.apigee.net'
       - name: internalAppKey
         filePaths: ['test/config.json']
-        value: '{{ apiKey_IA }}'
+        value: '{{=<% %>=}}{{ apiKey_IA }}<%={{ }}=%>'
     

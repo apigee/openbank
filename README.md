@@ -1,4 +1,4 @@
-# [![apigee.com](http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png)](http://apigee.com) Open bank
+# [![apigee.com](http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png)](http://apigee.com) OpenBank
 
 The Apigee Open Banking APIx solution simplifies and accelerates the process of delivering open banking by providing secure, ready-to-use APIs along with the computing infrastructure to support internal and external innovation.
 
@@ -50,7 +50,7 @@ The OpenBank solution is built on Apigee Edge API Management Platform, and featu
 **Open Data APIs**
   - ATMs
   - Branches
-  - Products
+  - Bank Products
   
 **Security APIs**
   - OAuth
@@ -175,14 +175,28 @@ Banking APIs provide developers with the information needed to create innovative
 
 ## Apigee Edge Setup
 
+<img src="../../images/openbankDeploymentarchitecture.png" width="700px" height="300px"/>
+
+The OpenBank deployment architecture is as mentioned above.
+
 ### Getting Started
 
-+   Create an [Apigee API Management Developer Account](https://enterprise.apigee.com)
-+   Create an [Apigee BaaS Account](https://apibaas.apigee.com)
++   Create an [Apigee API Management Developer Account](https://enterprise.apigee.com) 
 +   Request For [Apigee Developer Portal](https://pages.apigee.com/contact-sales-reg.html), if you want to use portal
+
+
+The OpenBank Solution is using Google Cloud Datastore as backend. To setup the openbank solution , there are two options available:
++ Using one's own Google Cloud Datastore instance
++ Using [Apigee Openbank's](https://openbank.apigee.com) Google Cloud Datastore instance
+
+
+If one wants to setup the openbank solution on own Google Cloud Datastore instance,[create a Google Cloud project and enable Datatsore](https://console.cloud.google.com/)  
 
 To Learn more on the basic concepts of Apigee Edge, please refer to : 
 http://docs.apigee.com/api-services/content/what-apigee-edge
+
+To Learn more on Google Cloud Datastore, please refer to :
+https://cloud.google.com/datastore/docs/concepts/overview
 
 
 To deploy the APIs and its dependencies on your own org please run the following
@@ -193,7 +207,7 @@ script from the root folder of the cloned repo.
 #### Pre-requisites
 + node.js 
 + npm
-+ 2 pair of RSA256 keys, one for the bank and other for the tpp
++ Two pair of RSA256 keys, one for the Bank and other for the Tpp
 ```
 #to generate bank's keys
 ssh-keygen -t rsa -b 4096 -f bank.key
@@ -222,49 +236,41 @@ npm install
 
 Run the deploy command
 ```
-gulp deploy 
+gulp deployopenbank --env <env>
 ```
 
-This will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
+This will ask you if you have your own datastore instance, or want to use the Apigee Openbank's datastore.
+If you choose to use your own datastore instance, the script will prompt you for 
++ Google Cloud Project Id
++ Service account private key for datastore
++ Token uri associated of the service account
++ Client email of the service account
+
+Once above inputs are provided, the script will interactively prompt you for following details, and will then create / deploy all relevants bundles and artifacts and will provision the **OpenBank Sandbox** on your own Org.
 
 + Edge Org name
 + Edge Username
-+ Edge Password
-+ Edge Env for deployment
-+ BaaS Org Name
-+ BaaS App Name
-+ BaaS Org Client Id
-+ BaaS Org Client Secret 
++ Edge Password 
 + Consent Session Key for signing the Session Cookie
 + Login App Key for signing the user details 
-+ Bank private key (Please make sure to add this key without any newline characters)
-+ TPP public key (Please make sure to add this key without any newline characters)
++ Bank private key file path (please enter full path)
++ Bank public key file path (please enter full path)
++ TPP private key file path (please enter full path)
++ TPP public key file path (please enter full path)
 
 
 ### Test
 
 Once the deploy script is complete, run the following command to do a basic sanity test that the APIs are working
 
-change to test folder
-```
-cd test
-```
-
-install node modules
-```
-npm install
-```
-Make sure you add the following in test folder
-- The private key of the bank in `testbank_jwt.pem`.
-- The public key of the bank in `testbank_jwt_pub.pem`.
-- The private key of the TPP in `testtpp_jwt.pem`.
-- The public key of the TPP in `testtpp_jwt_pub.pem`.
-
 run tests
 ```
 gulp test
 ```
-
+### Moving to own Cloud Datastore instance
+There are 2 options available
++ Re-deploy the solution using the above script again with datastore credentials.
++ Manually make changes to all the northbound proxies, update the service account key in the KVM and make changes to the datastore-connector proxy so that the northbound proxies invoke the proper southbounds, and the datastore-connector works well.  
 
 ## Developer Portal
 Every API provider must be able to educate developers and successfully expose their APIs. A developer portal is the face of your API program, providing everything that internal, partner, and third party developers need. 
@@ -281,7 +287,7 @@ The below picture depicts how a dev portal looks like
 The detailed instructions for developer portal setup for openbank solution can be found [Here](./src/devportal/README.md).
 
 ## Data
-The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Baas 2.0](http://apibaas.apigee.com/) in your org.  You can find the dummy data under `./setup/data` folder
+The dummy Backend system is created by the deploy script for this OpenBank solution and is hosted on [Google Cloud Datastore](https://cloud.google.com/datastore/docs/concepts/overview) in your org.  You can find the dummy data under `./setup/data` folder
 
 ## Additional Notes
 
@@ -289,17 +295,20 @@ Additional notes for implementors.
 
 ### Client App Developers
 
-- The APIs use Public/Private Key pair for doing JWS signing of the Payload. The Public Key of the sample bank and Private Key for the sample TPP (Client App) are present in `./test` folder.
+- The APIs use Public/Private Key pair for doing JWS signing of the Payload.
 
 ### API Deployment
 
-- You can find two sets of Public/Private Key Pair under `./test` folder(these should be the same keys used while deployment of the proxies); you could use it for configuring the APIs to use them for signing/verifying the responses/requests.
 - Private key for the bank has to be provided during deployment. It is recommended to define a Prompt in config.yml and use it as value for the private key.
 - For Production access, a Mutual TSL connectivity needs to be configured as defined [here](http://docs.apigee.com/api-services/content/creating-virtual-host).
-- While running `gulp deploy` please do make sure there are no custom APIs defined with the same names; otherwise those APIs will be overwritten with a new revision.   
+- While running `gulp deployopenbank` please do make sure there are no custom APIs defined with the same names; otherwise those APIs will be overwritten with a new revision.   
 
 
 ## Changelog
+
+#### 2018/03/16
+* APIs / API Spec
+    * Openbank shifted from Baas 2.0 . Hosted on Google Cloud datastore 
 
 #### 2017/09/13
 * APIs / API Spec

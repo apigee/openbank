@@ -1,8 +1,6 @@
 [{
   "name": "Anderstown Branch",
-  "Access": {
-    "wheelchair": true
-  },
+    "Wheelchair": true,
   "Address": {
     "StreetName": "Anderstown Road",
     "BuildingNumberOrName": "789",
@@ -42,10 +40,8 @@
       "BIC": "BOFIGB2B"
     }
   },
-  "resources": {
     "Branch": false,
-    "Atm": true
-  },
+    "Atm": true,
   "SiteName": "Andersonstown",
   "Status": "Offline",
   "StatusMessage": "out-of-money",
@@ -57,9 +53,8 @@
 {
 
   "name": "Templars Square",
-  "Access": {
-    "wheelchair": true
-  },
+  "Wheelchair": true,
+  
   "Address": {
     "StreetName": "Anderstown Road",
     "BuildingNumberOrName": "202",
@@ -97,10 +92,9 @@
       "BIC": "BOFIGB2B"
     }
   },
-  "resources": {
-    "Branch": false,
-    "Atm": true
-  },
+  
+  "Branch": false,
+  "Atm": true,
   "SiteName": "Andersonstown",
   "Status": "Online",
   "SupportedLanguages": [
@@ -110,9 +104,7 @@
 {
 
   "name": "Cornmarket 1",
-  "Access": {
-    "wheelchair": false
-  },
+  "Wheelchair": false,
   "Address": {
     "StreetName": "Anderstown Road",
     "BuildingNumberOrName": "202",
@@ -233,10 +225,8 @@
     },
     "BIC": "BOFIGB2B"
   },
-  "resources": {
-    "Branch": true,
-    "ATM": false
-  },
+  "Branch": true,
+  "ATM": false,
   "SiteName": "BankAU",
   "Status": "Offline",
   "StatusMessage": "out-of-money",
@@ -249,9 +239,7 @@
 
 {
   "name": "High Street 1",
-  "Access": {
-    "wheelchair": true
-  },
+  "Wheelchair": true,
   "Address": {
     "StreetName": "Anderstown Road",
     "BuildingNumberOrName": "202",
@@ -374,10 +362,8 @@
     },
     "Bic": "BOFIGB2B"
   },
-  "resources": {
-    "Branch": true,
-    "ATM": true
-  },
+  "Branch": true,
+  "ATM": true,
   "SiteName": "Andersonstown",
   "Status": "Offline",
   "StatusMessage": "out-of-money",
