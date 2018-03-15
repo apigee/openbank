@@ -27,7 +27,8 @@
         <Response/>
     </PostFlow>
     <Flows/>
-    <LocalTargetConnection>
-        <Path>/internal/connector/v2/products</Path>
-    </LocalTargetConnection>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>{{ edgeBasePath }}/internal/connector/v2.0.1/products</URL>
+    </HTTPTargetConnection>
 </TargetEndpoint>

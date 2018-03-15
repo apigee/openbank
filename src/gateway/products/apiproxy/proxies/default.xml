@@ -44,7 +44,7 @@
         </Flow>
     </Flows>
     <HTTPProxyConnection>
-        <BasePath>/apis/v2/products</BasePath>
+        <BasePath>/apis/v2.0.1/products</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
