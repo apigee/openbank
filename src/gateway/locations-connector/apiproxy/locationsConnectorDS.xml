@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="5" name="locationsConnectorDS">
+    <Basepaths>/locationsconnectords</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1520216480679</CreatedAt>
+    <CreatedBy>rairupam@google.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>locationsConnectorDS</DisplayName>
+    <LastModifiedAt>1520585252811</LastModifiedAt>
+    <LastModifiedBy>rairupam@google.com</LastModifiedBy>
+    <ManifestVersion>6914f3ba297a73fb5673925c289af3d175abdab900ccd34e6d653e7df9c1b893282c641f933217378da86c0f766d871756abb4aacb20257b9a0a491fbc4ec443</ManifestVersion>
+    <Policies>
+        <Policy>Assign-Query-Params-Branches</Policy>
+        <Policy>Assign-Response-ATM</Policy>
+        <Policy>Assign-Response-Branches</Policy>
+        <Policy>Extract-Request-Variables-Branches</Policy>
+        <Policy>Extract-Request-Variables</Policy>
+        <Policy>Raise-Fault-Invalid-Query-Params</Policy>
+        <Policy>Raise-Fault-Invalid-flow</Policy>
+        <Policy>Validate-Query-Params-Branches</Policy>
+        <Policy>ValidateQueryParams</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://AssignResponseATM.js</Resource>
+        <Resource>jsc://AssignResponseBranches.js</Resource>
+        <Resource>jsc://validateQueryParamsATMs.js</Resource>
+        <Resource>jsc://validateQueryParamsBranches.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

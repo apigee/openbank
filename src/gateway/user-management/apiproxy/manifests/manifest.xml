@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+    <Policies>
+        <VersionInfo resourceName="Assign-Message" version="53a2f3fabfe553d265a876b9eff5a6d6eaa8ce254dd0721b25239631d4e0e467cac9b7a953b0c251b5cb0249ed9e39ad4b341422a6691da129375f29182cd057"/>
+        <VersionInfo resourceName="Assign-Response" version="bffd5ddc80d37d4c995cd78b48cd64c43a2e5c9b5b145c3f2008ed2f2bd4db55c32a711c2802fbc7600205e5c2d3520c8eb8bf13eec8786604d21fc04b9bd161"/>
+        <VersionInfo resourceName="Assign-Verb" version="b42f060cd8d513c4217189b6995c3e45fbd562aa35bf1bbd004c0ccc1d1c6df39e08c94895f3bff92800935e3d2de204b45d321f678f8ea735fb822e38150905"/>
+        <VersionInfo resourceName="Extract-Request-Variables" version="1194782a16368542fffca70ba607ab61415928815d754166acf7d33756a5cffc75f03695056ce63dadfcccffc0fafcd6959f32bf01c44488670e68480e801d5d"/>
+        <VersionInfo resourceName="Extract-Response" version="5ab5f57b41702470a5b0dd85a8b0b893683dc23b9aec0f37d86254ce10c38b69ee08d015ed2eba7932a2427a8130024f2973aa8c23399c04ae22e9d5fa2cc390"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-Query-Params" version="e2c92cc005216bd065639420bbd02ae2bf58c743cb945b2ece07ad53afbdea3535083669b94ecba25d382d1444e58da13010b958d00840bd323020f1d6a9c305"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-flow" version="fa41a05e9f63ed7468c88c9560f38189058fc9be343066120c8c9639ac5028e728d49ce592785375cd8e2ffe885736065890d40f0586168e81cd2a3d9f62ce5c"/>
+        <VersionInfo resourceName="ValidateQueryParams" version="61a0a0cf43c63ca3c32bb3be6b1c30263faf9da40baeb62b8e78970885a9b4dcebb9beb42e0c97b96a32d63f1e1621d388d4495da5ac15651c385a76cad0c6cf"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="06e2703daa9b3c3d4723f56cf423fea5ea279f3dc520e673e5a9ca128f81e25acf8a233935a495ddc06e9886b76fd91941353ebca2e732765f5ee48a672d4dbf"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://assignVerb.js" version="4685ff1fe674f53166ec33e92dca565115704f22310fcd36569ebed3e30e68425e0b2d3282275ffc39d9c017bcf88d22c645da04d55badf3c1c6c2f1fb777b36"/>
+        <VersionInfo resourceName="jsc://validateQueryParams.js" version="80793a1ef2b18afe7f441396e67ac1fb6a5104f726119810eb614dda08c9392ee4db35456a98459a7079dc5cb1168514c04002922d7a665483779b9fb17af2b6"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="b91e532b1097ffc8089b2c83198166571819274e8186bd5b24c4578c394e67fb37307f888088efaac0c7af1ade6776716d5f58e960dbaf524d7b102afc4d7baf"/>
+    </TargetEndpoints>
+</Manifest>

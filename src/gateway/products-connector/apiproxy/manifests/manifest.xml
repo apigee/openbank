@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+    <Policies>
+        <VersionInfo resourceName="Assign-Message" version="55e77dfec6ee08252a1d8a97351d6f48639525b48f262816983d7f0b0154bf66a7660559d68d285ea294e8401d68665636b3cd2a63ae0a498619b7a38235413b"/>
+        <VersionInfo resourceName="Create-Response-Products" version="83b93f17dbae3a3e570d247997f43d619fd08eec7d6d171182f0aed9d7471c0eb09b871319648624af7e0d07703ad2666929c043a302eddbe2dc3fec29eef680"/>
+        <VersionInfo resourceName="Extract-Request-Variables" version="a5c6a866b9829659f44962b7f8226652fd2d19173c64ba4d7d174d2ad8cc5541d79adf4432beaee5e02a09abc27a05b276bfbde4b42c919d3ee69d738f789418"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-Query-Params" version="e27973c58bad839f5c8e068b92e771ecd90370febc9406929f26b49412dfc23a5bd763b1abb42443c9bb384c1b3bf8d9dffa630fa9554e51a4421648c7e2a67b"/>
+        <VersionInfo resourceName="Validate-Query-Params" version="2605e0bd3d871e38ebd371ea59686248e0649ac5865fafad7b3fc4ab7302fb8a55785083dd9c9ba985a7c3185374709184c282d72bbb3d1f695aa6ecd2064f28"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="0a48dc4db6b6b0b8d5fef39bdde732b2a3e730fe8d1714b8097bd80d423df3d1fd03cd169604e5eda1d0bad94a8a26d4670ec948ce443e25f344155b3b3479f8"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://createResponseProducts.js" version="17e42f4498dff37bea2dc6de53e1250649f0811433cbd265a850e012900436b4315d892299144e9ff976afc31092ffe1127de4008744317723b27a020a629ce5"/>
+        <VersionInfo resourceName="jsc://validateQueryParams.js" version="fb20f76fb5b8a5aec901427644047b629cf55ce4535cc987f56d2981c717c89b1feb3b549493d181a2b296df37c4973f59f58ede863e7b6782c0eba686a9226c"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="f191d68774edb375f734e812cde3293e155bd548a7c0c933be56d484a311b92825b048d62e4f57674a6c5767e9aed3f708dd6394b4fe76d3a29c0bff95599c89"/>
+    </TargetEndpoints>
+</Manifest>

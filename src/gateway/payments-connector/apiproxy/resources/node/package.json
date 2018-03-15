@@ -1,17 +1,14 @@
 {
   "name": "payments-connector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
-  "baasURI": "{{ baasURI }}",
-  "baasOrg": "{{ baasOrg }}",
-  "baasApp": "{{ baasApp }}",
-  "clientId": "{{ baasClientId}}",
-  "clientSecret": "{{ baasClientSecret }}",
-  "author": "Rohan Mahalank",
+  "targetURL": "{{ edgeBasePath }}/apis/internal/v1.0.1/datastore",
+  "apikey": "{{ DsApikey }}",
+  "author": "Rupam Rai",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+    <Policies>
+        <VersionInfo resourceName="Assign-Org-Header" version="d57b130dacb00b88a1fea337e0e55e039827ffdea868b4daf493983d80bdc341126a73020e15fd029c70184c87a74dc96ec997422408f2992dd9e97cb538a9e5"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="c0b88f82fa04e2e101698ee37d7bb111aee535ba3afc08c6e6963cb8d9c1534ad9441eceb76561c34a60387c941b8f24670eb0423b160eda34de044b4ea87e41"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://assignOrgHeader.js" version="9fd978a01df4d93a719658c5e11ff54bfa9bd7e6ac50375a394f5fdbfe1a0990e25546bad85694bff1ab22f37d41cbfa80867b1e0d19e159c836514252c41d84"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="a9add670b515ceb9370574b0dd45a6755194acf268681fe1112d1bb09ed6650ae1d52ca6caaa255c9990564410a4f8b45b2e0dd797749354892fda57f60331fb"/>
+    </TargetEndpoints>
+</Manifest>
