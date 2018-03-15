@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+    <Policies>
+        <VersionInfo resourceName="Assign-Apikey" version="e8bfa578f0599a7d980d88a31683bc98a4c41aad94abddd9a391a6f61e28b72c6a70ec814b8b9102a43c56a9207f5ab787b2b549766d0267264007108c96a1b7"/>
+        <VersionInfo resourceName="Extract-Request-Variables" version="6c2a1b0597b18a5551c5a5d3ba033145a3884549901e19ecc444ebe50e091ec98f8e4c9aaf6cb21d7e6e8efcb0da4ac0107ba971f1b5646ed516353ff78b122b"/>
+        <VersionInfo resourceName="Extract-Response" version="a008b1a24f9e0c49af0e6a5cda0a8e6983660b954fd360ad8dd47002d714751128232eb4173f216107ae1fdb2eeacda838fa4701fb67065d6921f6dbe17a4fb5"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-Query-Params" version="e27973c58bad839f5c8e068b92e771ecd90370febc9406929f26b49412dfc23a5bd763b1abb42443c9bb384c1b3bf8d9dffa630fa9554e51a4421648c7e2a67b"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-flow" version="a032fa2450b911b325fd571461903d52de9af69c2e9872bf237a00f5575a870a16acae48fab55b760ff113e1e53a0a1287272c1adf5d30053e89776bb22723f0"/>
+        <VersionInfo resourceName="ValidateQueryParams" version="35a9bbd1b21a4723901248b423e670fdf9e177fbd49fd394e0e457f640104a2c3dc7e1cd4929be8d4cd8a26eb93ccf166ebc5068001ad3deb1f7fde9ce32dbc0"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="6a571259b076fc593a4ce021bac1c22ceb9d3c29b55209a6355b14e4e20a6b13e791879d398d07aa538bd75d60f9f034cfd852c6b86f2d7fa17485ca3ff21c99"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://ValidateQueryParams.js" version="db168da9cc8ebc5321da50e64b41cf85a48d79aa27597b1158f7e924839fe9d05f2868c7f82bf85893a15535e9ae8365a51e8accf0ae7b19db9483ddea54a550"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="833f05f5afd3ac2783ded26c2895945c023d8a8e771141a627182e3474324399d4ac4f8fd28e631d4904c981e8f0cdedaead4f9cc22ff772a1d62997b5e9c260"/>
+    </TargetEndpoints>
+</Manifest>

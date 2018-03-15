@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="8" name="consentManagementDS">
+    <Basepaths>/consentmanagementds</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1519818446069</CreatedAt>
+    <CreatedBy>rairupam@google.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>consentManagementDS</DisplayName>
+    <LastModifiedAt>1520584409007</LastModifiedAt>
+    <LastModifiedBy>rairupam@google.com</LastModifiedBy>
+    <ManifestVersion>38b04b2e7de6804e8e1d066323b1ffdccbcb89e0cdc69b159c68ef99fff8ff257c423066b64e067b85706619473192d0acb6a45aae9d453cbdc69ada22e68fe2</ManifestVersion>
+    <Policies>
+        <Policy>Assign-Apikey</Policy>
+        <Policy>Extract-Request-Variables</Policy>
+        <Policy>Extract-Response</Policy>
+        <Policy>Raise-Fault-Invalid-Query-Params</Policy>
+        <Policy>Raise-Fault-Invalid-flow</Policy>
+        <Policy>ValidateQueryParams</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://ValidateQueryParams.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

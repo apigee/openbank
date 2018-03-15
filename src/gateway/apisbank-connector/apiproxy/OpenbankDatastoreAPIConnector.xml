@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="2" name="apisbankConnector">
+    <Basepaths>/obds</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1520680497042</CreatedAt>
+    <CreatedBy>rairupam@google.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>OpenbankDatastoreAPIConnector</DisplayName>
+    <LastModifiedAt>1521021249526</LastModifiedAt>
+    <LastModifiedBy>rairupam@google.com</LastModifiedBy>
+    <ManifestVersion>b042b8a1186d676b9b8b9f939f6b30a60cc51966657fc264b698be6e21996bac64f5823f461797d699d744783ede3e5936287652d6f478dd1700100c9c5eaf89</ManifestVersion>
+    <Policies>
+        <Policy>Assign-Org-Header</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://assignOrgHeader.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

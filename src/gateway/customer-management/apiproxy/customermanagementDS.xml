@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="6" name="customermanagementDS">
+    <Basepaths>/customermanagementds</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1519884360877</CreatedAt>
+    <CreatedBy>rairupam@google.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>customermanagementDS</DisplayName>
+    <LastModifiedAt>1520585237806</LastModifiedAt>
+    <LastModifiedBy>rairupam@google.com</LastModifiedBy>
+    <ManifestVersion>a2691a10a2e70c5082ef8d7b37c78ad158d7f074957a50f78ed0336f6cff975374986a9632100c4cc24edd557092741cdfe51effa773e8c48f11883aae7c0a9c</ManifestVersion>
+    <Policies>
+        <Policy>Assign-Apikey</Policy>
+        <Policy>Assign-Customer-Info-Response</Policy>
+        <Policy>Extract-Customer-Response</Policy>
+        <Policy>Extract-Request-Variables</Policy>
+        <Policy>Extract-ustomer-Response</Policy>
+        <Policy>Raise-Fault-Invalid-Query-Params</Policy>
+        <Policy>Raise-Fault-Invalid-flow</Policy>
+        <Policy>ValidateQueryParams</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://validateQueryParams.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

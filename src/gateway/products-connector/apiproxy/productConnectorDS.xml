@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="3" name="productConnectorDS">
+    <Basepaths>/productconnectords</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1520398780440</CreatedAt>
+    <CreatedBy>rairupam@google.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>productConnectorDS</DisplayName>
+    <LastModifiedAt>1520585164742</LastModifiedAt>
+    <LastModifiedBy>rairupam@google.com</LastModifiedBy>
+    <ManifestVersion>f117330faa847cbfeabfeae6bf80a9f063c1a70ba341c678d709d1e253f0e41c29b04dacda0639d3e497d30304f09804f14346fcc4af9b0e9a81dc8f6ba447ca</ManifestVersion>
+    <Policies>
+        <Policy>Assign-Message</Policy>
+        <Policy>Create-Response-Products</Policy>
+        <Policy>Extract-Request-Variables</Policy>
+        <Policy>Raise-Fault-Invalid-Query-Params</Policy>
+        <Policy>Validate-Query-Params</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://createResponseProducts.js</Resource>
+        <Resource>jsc://validateQueryParams.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

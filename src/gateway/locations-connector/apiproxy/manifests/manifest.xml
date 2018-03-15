@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+    <Policies>
+        <VersionInfo resourceName="Assign-Query-Params-Branches" version="d4e34358eac17cfc8ddcd57a0f5f3976a5aab1aaf7f62953d9b593104dd61257b62b35366bc0485b4c19b4aeefefe89b03eceaf64a01e10832e041c5353547a8"/>
+        <VersionInfo resourceName="Assign-Response-ATM" version="69b848573758dde42eed2d337bd22bae248dccdc88e13c001eeb84fe7b1f3a58507c4c9f7bcf1987c19987e9271e87a6ab527623ff5f7d8d89dc6310dedead60"/>
+        <VersionInfo resourceName="Assign-Response-Branches" version="9a0923a1176621d7288424072ab4b5b18ac3861e637e42f5f1fd225414798bfd7464f4d22449af1ac55da9316b6415ba6c9a95f578d224ea4c0becd634d078c0"/>
+        <VersionInfo resourceName="Extract-Request-Variables" version="e6efb9324eafd18452f8576eab62d60ca83bad0cb69563756c2058f8468a8832ef3c483fc927fd01fb4f7a7078e49ca1ae84cb5858595cc00331c323917a98e7"/>
+        <VersionInfo resourceName="Extract-Request-Variables-Branches" version="3d6d81aaed2c8bb30155aa158cf24fa1a2b2d0164d33bd61a02be24990a770dff799b28f38689d18f2fd212c6488e375b796de4fc9e4bb1f45c354e986d90802"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-Query-Params" version="e27973c58bad839f5c8e068b92e771ecd90370febc9406929f26b49412dfc23a5bd763b1abb42443c9bb384c1b3bf8d9dffa630fa9554e51a4421648c7e2a67b"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-flow" version="a032fa2450b911b325fd571461903d52de9af69c2e9872bf237a00f5575a870a16acae48fab55b760ff113e1e53a0a1287272c1adf5d30053e89776bb22723f0"/>
+        <VersionInfo resourceName="Validate-Query-Params-Branches" version="a21b19da7f9bff87775ef570cc28cb3675b0db4f043f81ae7686c439a24be93435f5b9788132e813e362e9a9da4c9dbf293a247129c184dba87247347ecdec41"/>
+        <VersionInfo resourceName="ValidateQueryParams" version="40818df30ec6ecd95547e511964a2fbb02c5009b335a0526460a57072ccf4efe4d44793956732f07fb89eff8198e2160f04e194d6262439df9700464d14e1edf"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="3b22790e67152b50b04599671635e69ca78b5719e9382a543fbc1685bb4a4f2a640cd8adddfee79631034de9168b64f983431e7b981079218b2d151d74fb00c4"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://AssignResponseATM.js" version="8b1f445c6544f33143a56adc1868f9bbc213389712d6dab3e4760403936b5afc69a3808af260eec267de93741f12478c2c76e6c3f63027fd023e29b48d08147b"/>
+        <VersionInfo resourceName="jsc://AssignResponseBranches.js" version="3d7aada469b6d795d037f52bed87c8aefa61cf4453f1f592a91c034b9b3f304b799c63db2daf06819b646f29280c71bad3f8cb930461d5288be522997a0c8e89"/>
+        <VersionInfo resourceName="jsc://validateQueryParamsATMs.js" version="b13eec0d2923b3c28e06be9f460a102d4e1c3c775d55172759c3d26e98c640b4479d6ce5f229824419960fafcc3b706984cdac81164381687034adfbeab6376d"/>
+        <VersionInfo resourceName="jsc://validateQueryParamsBranches.js" version="add65ab2d7250adcafd2f5436d06fc0a8234692031c1db1320ad2e0f098efd8a681cd19f63779908eeb0ff1f6ba59763ecb806459d609c7449304d0e9f4f7e80"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="88e967b8b9e16a95152666239aae556046a7b46fbff56f5d5fb6d4d92087088b1c9cc2011dcb24a86181bd00f7eb976bbb2887e1cc6ec1d3e0b4b8701aba98d7"/>
+    </TargetEndpoints>
+</Manifest>

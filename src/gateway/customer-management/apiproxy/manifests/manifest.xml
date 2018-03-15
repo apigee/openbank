@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+    <Policies>
+        <VersionInfo resourceName="Assign-Apikey" version="e8bfa578f0599a7d980d88a31683bc98a4c41aad94abddd9a391a6f61e28b72c6a70ec814b8b9102a43c56a9207f5ab787b2b549766d0267264007108c96a1b7"/>
+        <VersionInfo resourceName="Assign-Customer-Info-Response" version="2505b2cf4c17b64747f6af42df85629fa811bdfc799ead06e4beb60d9bd718699ec515ea25bd74e0e882aef8f0999f4a23d04fecdd97a894f36ce35b03267076"/>
+        <VersionInfo resourceName="Extract-Customer-Response" version="595e2956e805f6f6fe6b30b035918c29a92a2b3d537a61a703621f2372965aa00ec4e33c2c13b9734997d01dc61d3ef274b496e65c819548cbce31db2a7e8f58"/>
+        <VersionInfo resourceName="Extract-Request-Variables" version="c3fd8838d6284b3bd4171e16cfb11e3a18b3fe1cf99a848673077a50f05fabf46d41ea08806e45f3ce6cb4cf8902cbf494492987c5050dde2e7ef9e397ef56fd"/>
+        <VersionInfo resourceName="Extract-ustomer-Response" version="2212a69d76f113ea344509547e986eb9084cb4c0fa60a37a69a3f09aff2bcab8303aa9f117ccfd0dc7203e155791433400bd9d70256735e5ac314c62cf6cb3e2"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-Query-Params" version="e27973c58bad839f5c8e068b92e771ecd90370febc9406929f26b49412dfc23a5bd763b1abb42443c9bb384c1b3bf8d9dffa630fa9554e51a4421648c7e2a67b"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-flow" version="a032fa2450b911b325fd571461903d52de9af69c2e9872bf237a00f5575a870a16acae48fab55b760ff113e1e53a0a1287272c1adf5d30053e89776bb22723f0"/>
+        <VersionInfo resourceName="ValidateQueryParams" version="3c8f2b7b11dcd227684bd3849032fda7c1e0078ed4a95e330edea895db492e75d91243a1883caa5083d7403569f612a540cd4658ddca069e0b91fe06fc702ba6"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="9d3051475cbbd73925cf177ebded426afd65b46d6615d37c784518855787f9183c04bd0578f0d11861752c1dd29613bdedeec6c260da044fed033a2cc72f50ec"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://validateQueryParams.js" version="452aef8ab5ccf191f8c497b76c2ab6934bed97032402821376e98faffbb959deee2778f48205c3bdaa0bde9fc59320b2a1377c3568e8f15adaac693e67a96caa"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="eececc59422b40a61edb27fc532bdfe620db92455d5bb3b736e6b41bff223b0fd531c82e5322f25a2f543fb7c29caf6bf0822006e35e81c490a363812e3d83c6"/>
+    </TargetEndpoints>
+</Manifest>
