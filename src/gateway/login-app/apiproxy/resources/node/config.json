@@ -1,6 +1,6 @@
 {
-  "base_path": "/apis/internal/v1.0/loginapp",
-  "logo_uri": "/apis/internal/v1.0/loginapp/images/logo.png",
+  "base_path": "/apis/internal/v1.0.1/loginapp",
+  "logo_uri": "/apis/internal/v1.0.1/loginapp/images/logo.png",
     "jwtSignKey": "{{jwtSignKey}}",
   "authCookieName": "OB_AUTHSESSION",
   "authExpiryInSeconds":3600,
@@ -8,7 +8,7 @@
     "header_background_color": "#FFF"
   },
   "authenticationTransaction": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0/user/authenticate",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0.1/user/authenticate",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
