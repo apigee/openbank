@@ -13,15 +13,17 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+
 /**
  * @file
  * ValidateRequest.js
- * Generic function which validates the paramerters according to the config provided
+ * Generic Script is for validation of request based on config provided
  */
+//var error = validateRequest();
 
 validPayload = {}
 function validateRequest(RequestConfig) {
-    var key, i, ispresent;
+    var key, i, j, ispresent;
     var errorJson = {};
     errorJson.isError = true;
     errorJson.errorResponseCode = 400;
@@ -213,7 +215,7 @@ function getBodyParameterVal(param) {
     // check for empty payload
     if (context.getVariable("request.content")) {
         var content = JSON.parse(context.getVariable("request.content"));
-        //var contextBodyParam = "";
+        var contextBodyParam = "";
         try {
             var keys = param.split('.');
             var value = content[keys[0]];

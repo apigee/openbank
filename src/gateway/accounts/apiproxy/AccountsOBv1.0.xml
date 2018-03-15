@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!--
- Copyright 2017 Google Inc.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- https://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
--->
-<APIProxy revision="2" name="AccountsOBv1.0">
-    <Basepaths>/ais/open-banking/v1.0</Basepaths>
+<APIProxy revision="9" name="AccountsOBv1.0">
+    <Basepaths>/ais/open-banking/v1.0.1</Basepaths>
+    <Basepaths>/ais/open-banking/v1.0.1</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1504674844156</CreatedAt>
-    <CreatedBy>rmahalank@apigee.com</CreatedBy>
+    <CreatedAt>1520838437377</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
     <Description></Description>
-    <DisplayName>AccountsOBv1.0</DisplayName>
-    <LastModifiedAt>1503319864063</LastModifiedAt>
-    <LastModifiedBy>rairupam@google.com</LastModifiedBy>
+    <DisplayName>AccountsOBv1.0.1</DisplayName>
+    <LastModifiedAt>1520838437377</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
     <Policies>
         <Policy>Access-App-Attributes</Policy>
         <Policy>Add-CORS</Policy>
@@ -37,6 +23,7 @@
         <Policy>Create-Accounts-Response</Policy>
         <Policy>Create-Balance-Response</Policy>
         <Policy>Create-Beneficiaries-Response</Policy>
+        <Policy>Create-Detached-JWS</Policy>
         <Policy>Create-DirectDebits-Response</Policy>
         <Policy>Create-JWS-Header</Policy>
         <Policy>Create-Products-Response</Policy>
@@ -47,6 +34,7 @@
         <Policy>Extract-Private-Config</Policy>
         <Policy>ExtractRequestParams</Policy>
         <Policy>Fetch-Account-Consent</Policy>
+        <Policy>Generate-JWT</Policy>
         <Policy>Get-Acc-Req-Data</Policy>
         <Policy>GetTokenAttributes</Policy>
         <Policy>Path-Verification</Policy>
@@ -73,6 +61,7 @@
         <Policy>Validate-Req-with-Acc-Req-data</Policy>
         <Policy>ValidateReqWithConsentData</Policy>
         <Policy>Verify-Access-Token</Policy>
+        <Policy>Verify-JWT</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
@@ -94,16 +83,15 @@
         <Resource>jsc://GetConsentData.js</Resource>
         <Resource>jsc://PathVerification.js</Resource>
         <Resource>jsc://PostAccountRequestConfig.js</Resource>
+        <Resource>jsc://PreValuesForJWTValidation.js</Resource>
         <Resource>jsc://ValidateAccReqPerm.js</Resource>
         <Resource>jsc://ValidateJWS.js</Resource>
         <Resource>jsc://ValidateRequest.js</Resource>
-        <Resource>jsc://jsrsasign-all-min.js</Resource>
-        <Resource>jsc://jws-initialization.js</Resource>
+        <Resource>jsc://createDetachedJWS.js</Resource>
     </Resources>
     <Spec></Spec>
     <TargetServers/>
     <TargetEndpoints>
         <TargetEndpoint>default</TargetEndpoint>
     </TargetEndpoints>
-    <validate>false</validate>
 </APIProxy>

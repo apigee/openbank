@@ -29,7 +29,7 @@ if (responseStatus == 200) {
 
 
 function assignResponse(response) {
-    //var proxyPathSuffix = context.getVariable('proxy.pathsuffix');
+    var proxyPathSuffix = context.getVariable('proxy.pathsuffix');
     var readDetailData = context.getVariable('readDetailData');
     var readCredits = context.getVariable('readCredits');
     var readDebits = context.getVariable('readDebits');

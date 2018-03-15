@@ -19,9 +19,8 @@
  * Validate Request JWT in request
  */
 
-var jws = new KJUR.jws.JWS();
 
-var isValid = false;
+var isValid = true;
 var alg = ['RS256']; // algorithm to sign - if unsecured jwt then use 'none'
 
 var jwt = context.getVariable("request.queryparam.request");
@@ -43,19 +42,7 @@ var tppId = context.getVariable("verifyapikey.Authorize-Client-Application.tppId
 
 var key = applicationPublicKey;
 
-jws.parseJWS(jwt);
 //key = rstrtohex(key);
-isValid = KJUR.jws.JWS.verifyJWT(jwt, key, {
-    alg: alg,
-    response_type: responseType,
-    client_id: clientId,
-    state: state,
-    scope: scope,
-    nonce: nonce,
-    //aud: ['http://foo.com'], // aud: 'http://foo.com' is fine too.
-    //jti: 'id123456',
-    gracePeriod: 1 * 60 * 60  // accept 1 hour slow or fast
-});
 var errorJson = {};
 errorJson.isError = true;
 errorJson.errorResponseCode = 400;
@@ -64,7 +51,8 @@ if (!validateScopes(scopesXML, scope)) {
     isValid = false;
     errorJson.errorDescription = "Application doesnt have access to requested scope";
 }
-var payload = JSON.parse(jws.parsedJWS.payloadS);
+var jwsPayload = context.getVariable("jwt.Verify-Request-JWT.payload-json");
+var payload = JSON.parse(jwsPayload);
 if (payload.redirect_uri != redirectUri || applicationRedirectionUris.indexOf(redirectUri) === -1) {
     isValid = false;
     errorJson.errorDescription = "RedirectUri queryparam doesnt match Request Token";

@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!--
- Copyright 2017 Google Inc.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- https://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limit
--->
-<APIProxy revision="14" name="OauthOBv1.0">
-    <Basepaths>/apis/v1.0/oauth</Basepaths>
+<APIProxy revision="6" name="oauth">
+    <Basepaths>/apis/v1.0.1/oauth</Basepaths>
+    <Basepaths>/apis/v1.0.1/oauth</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1503481677175</CreatedAt>
-    <CreatedBy>rmahalank@apigee.com</CreatedBy>
+    <CreatedAt>1520853770892</CreatedAt>
+    <CreatedBy>rairupam@google.com</CreatedBy>
     <Description></Description>
-    <DisplayName>OauthOBv1.0</DisplayName>
-    <LastModifiedAt>1503481677175</LastModifiedAt>
-    <LastModifiedBy>rmahalank@apigee.com</LastModifiedBy>
+    <DisplayName>OauthOBv1.0.1</DisplayName>
+    <LastModifiedAt>1520956698398</LastModifiedAt>
+    <LastModifiedBy>rairupam@google.com</LastModifiedBy>
+    <ManifestVersion>95509d35d98385a3334d6a9d4a8a47534ad592c9e56584cb270c203b690457360cc2bc8ccbf73200885e94fd9e0c5854539fb4ad7b853f7e7f9beadef21a2886</ManifestVersion>
     <Policies>
+        <Policy>Add-CORS</Policy>
         <Policy>Assign-Auth-Basic-Header</Policy>
         <Policy>Assign-Consent-Application-TX-Response</Policy>
         <Policy>Assign-Replay-Attach-Error</Policy>
@@ -31,6 +19,7 @@
         <Policy>Assign-Token-Response-CC</Policy>
         <Policy>Assign-Token-Response</Policy>
         <Policy>Authorize-Client-Application</Policy>
+        <Policy>Claims-For-Generate-Id-Token</Policy>
         <Policy>ConsentAppAPIKey</Policy>
         <Policy>Construct-Redirect-Application-URI</Policy>
         <Policy>Create-Application-Session-Consent</Policy>
@@ -57,6 +46,8 @@
         <Policy>Validate-Client-Assertion</Policy>
         <Policy>Validate-Request-JWT</Policy>
         <Policy>Validate-Request</Policy>
+        <Policy>Verify-JWT</Policy>
+        <Policy>Verify-Request-JWT</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
@@ -67,6 +58,7 @@
         <Resource>jsc://ExtractBodyJWT.js</Resource>
         <Resource>jsc://GenerateIdToken.js</Resource>
         <Resource>jsc://ValdiateAccountPaymentRequest.js</Resource>
+        <Resource>jsc://ValdiateAccountRequest.js</Resource>
         <Resource>jsc://ValidateClientAssertion.js</Resource>
         <Resource>jsc://ValidateRequest.js</Resource>
         <Resource>jsc://ValidateRequestJWT.js</Resource>

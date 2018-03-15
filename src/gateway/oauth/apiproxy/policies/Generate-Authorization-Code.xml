@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
  Copyright 2017 Google Inc.
-
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
-
  https://www.apache.org/licenses/LICENSE-2.0
-
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
- limit
+ limitations under the License.
 -->
 <OAuthV2 async="false" continueOnError="false" enabled="true" name="Generate-Authorization-Code">
     <DisplayName>Security: Generate Authorization Code</DisplayName>
+    <FaultRules/>
     <Properties/>
-    <Attributes/>
+    <AppEndUser>CustomerId</AppEndUser>
+    <ClientId>ClientId</ClientId>
+    <Attributes>
+        <Attribute display="false" name="ClientId" ref="ClientId"></Attribute>
+        <Attribute display="false" name="ResponseType" ref="ResponseType"></Attribute>
+        <Attribute display="false" name="Type" ref="Type"></Attribute>
+        <Attribute display="false" name="auth_time" ref="system.timestamp"></Attribute>
+        <Attribute display="false" name="Scope" ref="Scope"></Attribute>
+        <Attribute display="false" name="RedirectUri" ref="RedirectUri"></Attribute>
+        <Attribute display="false" name="RequestId" ref="RequestId"></Attribute>
+        <Attribute display="false" name="RequestState" ref="RequestState"></Attribute>
+        <Attribute display="false" name="AppName" ref="ApplicationName"></Attribute>
+        <Attribute display="false" name="AppId" ref="ApplicationId"></Attribute>
+        <Attribute display="false" name="TppId" ref="TppId"></Attribute>
+        <Attribute display="false" name="CustomerId" ref="CustomerId"></Attribute>
+        <Attribute display="false" name="Nonce" ref="Nonce"></Attribute>
+    </Attributes>
+    <GenerateErrorResponse enabled="true">
+        <Format>FORM_PARAM</Format>
+    </GenerateErrorResponse>
+    <ExpiresIn ref="token_timeout">2592000000</ExpiresIn>
     <ExternalAuthorization>false</ExternalAuthorization>
     <Operation>GenerateAuthorizationCode</Operation>
-    <Scope>Type</Scope>
-    <ClientId>ClientId</ClientId>
-    <ResponseType>code</ResponseType>
-    <ExpiresIn ref="token_timeout">2592000000</ExpiresIn>
     <RedirectUri>RedirectUri</RedirectUri>
+    <ResponseType>code</ResponseType>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <Scope>Type</Scope>
     <SupportedGrantTypes/>
-    <Attributes>
-        <Attribute name="ClientId" ref="ClientId" display="false"/>
-        <Attribute name="ResponseType" ref="ResponseType" display="false"/>
-        <Attribute name="Type" ref="Type" display="false"/>
-        <Attribute name="auth_time" ref="system.timestamp" display="false"/>
-        <Attribute name="Scope" ref="Scope" display="false"/>
-        <Attribute name="RedirectUri" ref="RedirectUri" display="false"/>
-        <Attribute name="RequestId" ref="RequestId" display="false"/>
-        <Attribute name="RequestState" ref="RequestState" display="false"/>
-        <Attribute name="AppName" ref="ApplicationName" display="false"/>
-        <Attribute name="AppId" ref="ApplicationId" display="false"/>
-        <Attribute name="TppId" ref="TppId" display="false"/>
-        <Attribute name="CustomerId" ref="CustomerId" display="false"/>
-        <Attribute name="Nonce" ref="Nonce" display="false"/>
-    </Attributes>
-    <GenerateErrorResponse enabled="true"/>
-    <AppEndUser>CustomerId</AppEndUser>
-    <UserName>CustomerId</UserName>
     <Tokens/>
+    <UserName>CustomerId</UserName>
 </OAuthV2>

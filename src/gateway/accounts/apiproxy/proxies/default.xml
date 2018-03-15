@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
  Copyright 2017 Google Inc.
-
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
-
  https://www.apache.org/licenses/LICENSE-2.0
-
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,141 +14,23 @@
 <ProxyEndpoint name="default">
     <Description/>
     <FaultRules/>
-    <PreFlow name="PreFlow">
-        <Request>
-            <Step>
-                <Condition>request.verb = "OPTIONS"</Condition>
-                <Name>Raise-Fault-OPTIONS</Name>
-            </Step>
-            <Step>
-                <Name>Verify-Access-Token</Name>
-            </Step>
-            <Step>
-                <Condition>oauthV2.Verify-Access-Token.failed = true</Condition>
-                <Name>RaiseFaultInvalidAccessToken</Name>
-            </Step>
-            <Step>
-                <Name>Extract-Access-Token</Name>
-            </Step>
-            <Step>
-                <Name>GetTokenAttributes</Name>
-            </Step>
-            <Step>
-                <Name>Quota-Client-Id</Name>
-            </Step>
-            <Step>
-                <Condition>ratelimit.Quota-Client-Id.failed = true</Condition>
-                <Name>Raise-Fault-Quota-Exceeded</Name>
-            </Step>
-            <Step>
-                <Name>Access-App-Attributes</Name>
-            </Step>
-            <Step>
-                <Name>Extract-App-Attributes</Name>
-            </Step>
-            <Step>
-                <Condition>(request.header.Accept!=null) and !(request.header.Accept = "application/json" or request.header.Accept = "*/*")</Condition>
-                <Name>Raise-Fault-Invalid-Accept-Header</Name>
-            </Step>
-            <Step>
-                <Name>Path-Verification</Name>
-            </Step>
-            <Step>
-                <!--<Condition>doValidation = true</Condition>-->
-                <Name>Assign-Token-Details</Name>
-            </Step>
-            <Step>
-                <Condition>((doValidation = true and (tokenType != "accounts")) or (doValidation = false and ( tokenScope != "accounts")))</Condition>
-                <Name>Raise-Fault-Invalid-Scope</Name>
-            </Step>
-            <Step>
-                <Condition>doValidation = true and requestId = null</Condition>
-                <Name>Raise-Fault-Account-Request-Id-Missing</Name>
-            </Step>
-            <Step>
-                <Name>ExtractRequestParams</Name>
-            </Step>
-        </Request>
-        <Response/>
-    </PreFlow>
-    <PostFlow name="PostFlow">
-        <Request>
-            <Step>
-                <Condition>doValidation = true</Condition>
-                <Name>Fetch-Account-Consent</Name>
-            </Step>
-            <Step>
-                <Condition>doValidation = true</Condition>
-                <Name>ValidateReqWithConsentData</Name>
-            </Step>
-            <Step>
-                <Condition>doValidation = true and isError = true</Condition>
-                <Name>RaiseFaultInvalidAccess</Name>
-            </Step>
-            <Step>
-                <Condition>doValidation = true</Condition>
-                <Name>Get-Acc-Req-Data</Name>
-            </Step>
-            <Step>
-                <Condition>doValidation = true</Condition>
-                <Name>Validate-Req-with-Acc-Req-data</Name>
-            </Step>
-            <Step>
-                <Condition>doValidation = true and isError = true</Condition>
-                <Name>Raise-Fault-Invalid-Permissions</Name>
-            </Step>
-            <Step>
-                <Condition>doValidation = true</Condition>
-                <Name>Assign-Other-Params</Name>
-            </Step>
-            <Step>
-                <Name>Assign-APIKey-Header</Name>
-            </Step>
-        </Request>
-        <Response>
-            <Step>
-                <Condition>doValidation = true and updateAccessCountPayload != null</Condition>
-                <Name>Update-Access-Count</Name>
-            </Step>
-            <Step>
-                <Condition>doValidation = true</Condition>
-                <Name>Assign-Response-Headers</Name>
-            </Step>
-            <Step>
-                <Condition>fapiInteractionId != null</Condition>
-                <Name>Add-Interaction-Id-header</Name>
-            </Step>
-            <Step>
-                <Condition>request.verb = "GET" or request.verb = "POST"</Condition>
-                <Name>Extract-Private-Config</Name>
-            </Step>
-            <Step>
-                <Condition>request.verb = "GET" or request.verb = "POST"</Condition>
-                <Name>Create-JWS-Header</Name>
-            </Step>
-            <Step>
-                <Condition>request.verb = "GET" or request.verb = "POST"</Condition>
-                <Name>Add-JWS-Header</Name>
-            </Step>
-             <Step>
-                <Name>Add-CORS</Name>
-            </Step>
-        </Response>
-    </PostFlow>
     <Flows>
         <Flow name="GetAccountBalances">
             <Description/>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Get-Account-resource</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>Create-Balance-Response</Name>
                 </Step>
             </Response>
@@ -161,15 +40,18 @@
             <Description/>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Get-Transactions-Request</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>Create-Transactions-Response</Name>
                 </Step>
             </Response>
@@ -179,15 +61,18 @@
             <Description/>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Get-Account-resource</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>Create-Beneficiaries-Response</Name>
                 </Step>
             </Response>
@@ -197,15 +82,18 @@
             <Description/>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Get-Account-resource</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>Create-DirectDebits-Response</Name>
                 </Step>
             </Response>
@@ -215,15 +103,18 @@
             <Description/>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Get-Account-resource</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>Create-StandingOrders-Response</Name>
                 </Step>
             </Response>
@@ -233,15 +124,18 @@
             <Description/>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Get-Account-resource</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>Create-Products-Response</Name>
                 </Step>
             </Response>
@@ -252,16 +146,20 @@
             <Request>
                 <Step>
                     <Condition>(accountRequestId = null) or (accountRequestId = "") </Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Missing-Request-Id</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Get-Account-resource</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>Assign-Acc-Req-Params</Name>
                 </Step>
             </Request>
@@ -273,13 +171,16 @@
             <Request>
                 <Step>
                     <Condition>(accountRequestId = null) or (accountRequestId = "")</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Missing-Request-Id</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Get-Account-resource</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
             </Request>
@@ -290,27 +191,37 @@
             <Description/>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Acc-Req-Perm</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Perm-Array</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Post-Acc-Req</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-JWS</Name>
                 </Step>
                 <Step>
-                    <Condition>isError = true</Condition>
+                    <Condition>(isJWSError = true)</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Signature</Name>
                 </Step>
                 <Step>
+                    <Name>Verify-JWT</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
                     <Name>Assign-Valid-Acc-Req-Payload</Name>
                 </Step>
             </Request>
@@ -321,15 +232,18 @@
             <Description/>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>Validate-Get-Account-resource</Name>
                 </Step>
                 <Step>
                     <Condition>isError = true</Condition>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>Create-Accounts-Response</Name>
                 </Step>
             </Response>
@@ -339,14 +253,171 @@
             <Description/>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>Raise-Fault-Invalid-Operation</Name>
                 </Step>
             </Request>
             <Response/>
         </Flow>
     </Flows>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Condition>doValidation = true</Condition>
+                <FaultRules/>
+                <Name>Fetch-Account-Consent</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true</Condition>
+                <FaultRules/>
+                <Name>ValidateReqWithConsentData</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true and isError = true</Condition>
+                <FaultRules/>
+                <Name>RaiseFaultInvalidAccess</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true</Condition>
+                <FaultRules/>
+                <Name>Get-Acc-Req-Data</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true</Condition>
+                <FaultRules/>
+                <Name>Validate-Req-with-Acc-Req-data</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true and isError = true</Condition>
+                <FaultRules/>
+                <Name>Raise-Fault-Invalid-Permissions</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true</Condition>
+                <FaultRules/>
+                <Name>Assign-Other-Params</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>Assign-APIKey-Header</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Condition>doValidation = true and updateAccessCountPayload != null</Condition>
+                <FaultRules/>
+                <Name>Update-Access-Count</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true</Condition>
+                <FaultRules/>
+                <Name>Assign-Response-Headers</Name>
+            </Step>
+            <Step>
+                <Condition>fapiInteractionId != null</Condition>
+                <FaultRules/>
+                <Name>Add-Interaction-Id-header</Name>
+            </Step>
+            <Step>
+                <Condition>request.verb = "GET" or request.verb = "POST"</Condition>
+                <FaultRules/>
+                <Name>Extract-Private-Config</Name>
+            </Step>
+            <Step>
+                <Condition>request.verb = "GET" or request.verb = "POST"</Condition>
+                <FaultRules/>
+                <Name>Create-JWS-Header</Name>
+            </Step>
+            <Step>
+                <Name>Generate-JWT</Name>
+            </Step>
+            <Step>
+                <Name>Create-Detached-JWS</Name>
+            </Step>
+            <Step>
+                <Condition>request.verb = "GET" or request.verb = "POST"</Condition>
+                <FaultRules/>
+                <Name>Add-JWS-Header</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>Add-CORS</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Condition>request.verb = "OPTIONS"</Condition>
+                <FaultRules/>
+                <Name>Raise-Fault-OPTIONS</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>Verify-Access-Token</Name>
+            </Step>
+            <Step>
+                <Condition>oauthV2.Verify-Access-Token.failed = true</Condition>
+                <FaultRules/>
+                <Name>RaiseFaultInvalidAccessToken</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>Extract-Access-Token</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>GetTokenAttributes</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>Quota-Client-Id</Name>
+            </Step>
+            <Step>
+                <Condition>ratelimit.Quota-Client-Id.failed = true</Condition>
+                <FaultRules/>
+                <Name>Raise-Fault-Quota-Exceeded</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>Access-App-Attributes</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>Extract-App-Attributes</Name>
+            </Step>
+            <Step>
+                <Condition>(request.header.Accept!=null) and !(request.header.Accept = "application/json" or request.header.Accept = "*/*")</Condition>
+                <FaultRules/>
+                <Name>Raise-Fault-Invalid-Accept-Header</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>Path-Verification</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>Assign-Token-Details</Name>
+            </Step>
+            <Step>
+                <Condition>((doValidation = true and (tokenType != "accounts")) or (doValidation = false and ( tokenScope != "accounts")))</Condition>
+                <FaultRules/>
+                <Name>Raise-Fault-Invalid-Scope</Name>
+            </Step>
+            <Step>
+                <Condition>doValidation = true and requestId = null</Condition>
+                <FaultRules/>
+                <Name>Raise-Fault-Account-Request-Id-Missing</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>ExtractRequestParams</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
     <HTTPProxyConnection>
-        <BasePath>/ais/open-banking/v1.0</BasePath>
+        <BasePath>/ais/open-banking/v1.0.1</BasePath>
         <Properties/>
         <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>
