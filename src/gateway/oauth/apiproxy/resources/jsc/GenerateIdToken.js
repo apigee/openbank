@@ -89,14 +89,56 @@ var idTokenClaim = {
 };
 
 
+context.setVariable("jwt-iss","")
+context.setVariable("jwt-sub","")
+context.setVariable("jwt-aud","")
+context.setVariable("jwt-exp","")
+context.setVariable("jwt-iat","")
+context.setVariable("jwt-nonce","")
+context.setVariable("jwt-s_hash","")
+context.setVariable("jwt-c_hash","")
+    
 //var ResponseTypeToken = context.getVariable("ResponseTypeToken");
 //var ResponseTypeCode = context.getVariable("ResponseTypeCode");
 var ResponseTypeIdToken = context.getVariable("ResponseTypeIdToken");
 
 if (ResponseTypeIdToken == "true") {
+    if(idTokenClaim.iss)
+    {
+        context.setVariable("jwt-iss",idTokenClaim.iss)
+    }
+    if(idTokenClaim.sub)
+    {
+        context.setVariable("jwt-sub",idTokenClaim.sub)
+    }
+    if(idTokenClaim.aud)
+    {
+        context.setVariable("jwt-aud",idTokenClaim.aud)
+    }
+    if(idTokenClaim.exp)
+    {
+        context.setVariable("jwt-exp",idTokenClaim.exp)
+    }
+    if(idTokenClaim.iat)
+    {
+        context.setVariable("jwt-iat",idTokenClaim.iat)
+    }
+    if(idTokenClaim.nonce)
+    {
+        context.setVariable("jwt-nonce",idTokenClaim.nonce)
+    }
+    if(idTokenClaim.s_hash)
+    {
+        context.setVariable("jwt-s_hash",idTokenClaim.s_hash)
+    }
+    if(idTokenClaim.c_hash)
+    {
+        context.setVariable("jwt-c_hash",idTokenClaim.c_hash)
+    }
+    
     header = JSON.stringify(header);
     claims = JSON.stringify(idTokenClaim);
-    jwt = KJUR.jws.JWS.sign(alg, header, claims, key);
+    //jwt = KJUR.jws.JWS.sign(alg, header, claims, key);
     context.setVariable("idTokenClaim", JSON.stringify(idTokenClaim));
-    context.setVariable("id_token", jwt);
+    //context.setVariable("id_token", jwt);
 }

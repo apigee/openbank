@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+    <Policies>
+        <VersionInfo resourceName="Add-CORS" version="61efa41980758b28286f14d6189cbf7a91c56ed7388e67be0a797e1bbbf56b2d6660dbc79d3af4a35621e26f5afd883707d4d6e24732a399738c76a7e5122f44"/>
+        <VersionInfo resourceName="Assign-Auth-Basic-Header" version="087123983c0af47d69670b0ba364862ef0eb3e3f2465e26e01f0666a25de3654400e323ac4f3ec8cd3dc9e6fb8189c87cb516fd3eda8a6a354fa7565e3584a92"/>
+        <VersionInfo resourceName="Assign-Consent-Application-TX-Response" version="e7d093c0bc96f167be657b826df02b7780da047e70bb223f6fd850283d17b839b5cbab252d36cf74dda9c138e2a8aa2598de5b110bac4894eea652d2477badc6"/>
+        <VersionInfo resourceName="Assign-Replay-Attach-Error" version="067ab6ad730dd25bd3f1ff7cdcb54da2a875f9bbdd7d0ad2aeba10ce0dcc910bd9aa23e2a5e1c3e8caaa4d31167dec24269d7031233393e5496266125c36d82a"/>
+        <VersionInfo resourceName="Assign-Response-Type" version="c6834d9d32fe7d73a5fda8d739521754ff8fe48b8596115f0d5d041cb4b3325980131e78701066e8064470487e465552971a1e0fdaa5ef86533a601522184ee7"/>
+        <VersionInfo resourceName="Assign-Token-Response" version="3ab5d217700edef1fc30e03bca17393a7ed1a55a03b74711c3ff010741e3e36be9640718dbaf0f71512ec7c58188f283c6dd0ce9c05fa2e9b8392085e97a2b70"/>
+        <VersionInfo resourceName="Assign-Token-Response-CC" version="f733ba2ffb3940bfc612c7c874da7575ff72cb2e173105fc56c9335ac0c23497de5c15078397c2546db9a87260f24bd41d8e297b64643a46362a4636ee1b9b07"/>
+        <VersionInfo resourceName="Authorize-Client-Application" version="9925e1b2672a345711ae2aa6f8da192f71c10618f2e15251c467fc4d0bfcd0d104d72240596dbef88379bd35c4548930f47b0b24d494d330defd5b1b5b4132db"/>
+        <VersionInfo resourceName="Claims-For-Generate-Id-Token" version="af4e9c99179d3514491c9e23d519c9969bef9c51c0db575495f1e4ac92017072706589f0a963fe974a0a3854b207b6e660ba9eee770ffcfc4f0d850e20a8e6f2"/>
+        <VersionInfo resourceName="ConsentAppAPIKey" version="c06aa015493eb769bb9c0fe17d3168cfa66332b2f0af4383ffefc3e57c612ced214f039e830d901b3e9cb2054603b9772b515a2b6f4515fed5b07b80b359929c"/>
+        <VersionInfo resourceName="Construct-Redirect-Application-URI" version="a6963ddbf499e1de9affdf91d9137bb6d825e8d727531c3aac4277e4f3ea45ce5877a47ec89c70d737079991cd4506d752e88d2ed44be30fa691524713ae8f8d"/>
+        <VersionInfo resourceName="Create-Application-Session-Consent" version="eb2668225a34bafea38bf7c3bbf3c503cfb9aa4da4b96841501e3e48668b3b33dfe41b839ae1963862d0b3a4a29b4570151ad585808fe3f24b71c3f8e8d42cb1"/>
+        <VersionInfo resourceName="Extract-Body-Attributes" version="1486d41d3458b6384d055c678bbda26c336014faba8df0199849e3f5a543e3736639629bd4bb635d12eb35b7af7352c9bdd5a73ddd04b7c584fb92085f2aa7bf"/>
+        <VersionInfo resourceName="Extract-JWT-Body" version="c55423cf2d57c644958638252b0449c158e44d6b3d69b7e2c3171c9ddfbd02a5cb81837c175b63735d390381d6389d05eba9d8a31a4792c4e05e211981b82fb6"/>
+        <VersionInfo resourceName="Extract-Private-Key" version="006aa2a31dbc650b8fd0da1ae4cd005178a7cf64060852b20cacb1a44e4a9d865f706ddd6000938d64dd3a09871df416a4befa651ecc2518ed4138e50cba6179"/>
+        <VersionInfo resourceName="Extract-Token-Response" version="332336cd99c488c2da2cc36d9d1828ec11cd293311d87421094c0c0c3f970212e60976763443015dd9003ea077d626ae32e7ba92b0404d9eda37449c8ad60ce5"/>
+        <VersionInfo resourceName="Generate-Authorization-Code" version="ddaf9620c544973477db220b197672e5b290dc72ee28126c0011d2b16e85cca88cc086b1712d513decd8c769e486d714f65b62c6434331f6ad3b94b0e6cf37ca"/>
+        <VersionInfo resourceName="Generate-Id-Token" version="e01f31443459bbbf998fa2ae5660349a039c9b2975a9e6f309d5f1201654298a4ae749f91196f9e23d8ec6a8bebf9f2b7ba9cabc164e6f9cf4e651babd62280e"/>
+        <VersionInfo resourceName="Get-API-Product-Scopes" version="003b5c869284508f0b441579f3e85c73001553cb9006299884afe82a884bf6ac520c24cb96152424a6f0cb478bfef48b7c20aaec4f2c0869e3eccf4f2debaa89"/>
+        <VersionInfo resourceName="Invalid-Authorization-Request" version="7a3f834accfd33800d96ca3fa08e36ab67bcc0b14adb1134f04f19b236cec8effb4f42a29bb96745f543a98edaa4e77f20f9e054cda60bf2be860477fa8516d7"/>
+        <VersionInfo resourceName="Nonce-Replay-Attack-Validation" version="ad9528712956a2970d6124cb1a9e03060070a4725d90628f5140e3abb9a622f371d969c1156521fe0236d60043aeaa1f83bb1bbf7b29aa3d625ee0392a799acf"/>
+        <VersionInfo resourceName="Populate-Nonce-Information" version="9a94a5fa1ea29cf8470eaf9f67994fb9615ec1ebd431ef80f92d26360c80c27838ea1d8fda68422827a1da6017abe6e6b46979203303d940ef3a7407d5ec7b50"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-Request" version="e6a55bf1ab7e41b0183a1729e5cb9755d3e8b0b59e7cb51ef057cd889c2801c9e97ab8320001ad0b4f4e06203cf583d51bf8fa089d2b1cc45860282bc7971929"/>
+        <VersionInfo resourceName="Security-Generate-Access-Token" version="6c86cad8599c8eff85544be9f7803783dca056150aad577251417f87d86e10aeaae4795e439e88cf6850c16a3141c083f3cf325f4efc6ebfaa3f023cb8914590"/>
+        <VersionInfo resourceName="Security-Generate-Access-Token-Implicit" version="6b494c1d7acc846b475d2a8c122c3f0974e317a76dd1431e72ee0e5bbf8745cbb7c3792dcadd39d643ec192aaeb3fff5d13973eb28c61dc6f2bae9f25f8f1060"/>
+        <VersionInfo resourceName="Security-Refresh-Access-Token" version="ac95f745105ceaa2bbed7347ff4f9d22524f8e341084b27f3fd91a18b2f43cfee3f6174e61f38432fe22f4c373631e4178750ae2aae0bb517f96cf5ae73202db"/>
+        <VersionInfo resourceName="Service-Callout-Create-ID-token" version="d5f92b0da9e3a1f3329b9b819b3cf9f9437b4589c1a2275bdaf04496356da2f3e2469aee5b584cb360bc891ebbb28cfb7e156e7f5e4f1e93da4a4d191c8b20f6"/>
+        <VersionInfo resourceName="Service-Callout-Update-Account-Request" version="92b414afd021715077f48c384000d88503894a417ff7f82943692e3188965d1f420104504972bc80d046454465643541012a802503a3bfe3e9bbd57ef94e76a5"/>
+        <VersionInfo resourceName="Service-Callout-Update-Payment-Request" version="a1466cd4391ac08441ced961887a90b6706e577ba8a273db95979123c3d2f114bc57e14e40ba30c4c44c8a535533802bc0a59e900d7ce8e1cf95edaf6b3a4372"/>
+        <VersionInfo resourceName="Service-Callout-Validate-Account-Request" version="ea4cb113840534f55735a68cf5f58fc3ba68951a20e61ecf20379dd6ab1b61c6a2be2f4b2d1f60ce5183d3af6dae789ed816bd3f52b3c0fbf934d882db9110dd"/>
+        <VersionInfo resourceName="Service-Callout-Validate-Payment-Request" version="b311bbe9e7ae9251ed913d998a8dda33181967e429a178bbb3f8fc797cbc1ba3e290d1b326e1dd587526c50224459378cb48cd8b5264a20dc240f5f06cb543ea"/>
+        <VersionInfo resourceName="Validate-Account-Request" version="028dfa459d41a4ceed9dbcf763bbd4b802b844de88d091f3d4d9f846ad5e781101d69a77b8a0cb777f1b8b9cce334fc077f8e28005c281648d21df38fc106d7c"/>
+        <VersionInfo resourceName="Validate-Client-Assertion" version="ca13450bbacfce0bfdb0000be91525cf89f9130418b85d8514b167b066e111bf062a1b3c63c47137aa03ca89dbfbc425baaaa1c621279be024053e25c3013137"/>
+        <VersionInfo resourceName="Validate-Request" version="4f33a1123d438c8da691fde2779c56929d6b242b49e52dc496104fe505df895826776262c24cb8c1a84a538317ae860f7cae06edf016513bae421c2b5dbae393"/>
+        <VersionInfo resourceName="Validate-Request-JWT" version="0816b9a267b7207e28d4e0d4b0fe091bed690482fa48ed28f567a6fb3c28540eb0f18c86ce96733adbd0839e0c5ee46d47de0f91b134d739e71b811ffc46ee0d"/>
+        <VersionInfo resourceName="Verify-JWT" version="ba78e6659627a16ed3d90d2be0554dcf4d9ccf70556be5d231dc3aafecf76197795cfb7b8aac319b657b1c4488eff0d49f879b05d248b6caac58866432fa3441"/>
+        <VersionInfo resourceName="Verify-Request-JWT" version="0dc392558fd14568a0cef4b992b0d988b4a230ca096b9d7116c8879331ff05d560fec68b65b1f6376635156075127544034bfaba7a1a7159865787e357853982"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="d87d630ead8c53674de32f3e9393b13202895ea4efe1c080e83a53ed7dd1e9a19365878ea5eec3624ae389e4dc7bebc275e10b8fdbf7de01526b2cb54b00795e"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://Base64EncodeDecode.js" version="52deff4d04c222aa479134d6021e4a5ab83e73b0717f831e0c4f1087f06bdce3632117f82256880ac95c6c2c76078f4efd6bd2aa85c76eef00c8fa359e3a49cd"/>
+        <VersionInfo resourceName="jsc://ConstructRedirectApplicationURI.js" version="28a7b78e9d9bd14246aaa2413797b5ad628c45102f66139ce4a5ba00e8ca347d502a81fed2827b28f0b8eed1417ec05978e10d38161a90419ada060689cb43e2"/>
+        <VersionInfo resourceName="jsc://ExtractBodyJWT.js" version="728cfd7d7a274706a6bfa6a97400c5c35efba1046c3d7c60d54f6b6c79d457a435167315d6ac860b92a99068a3e96e609a9f7ead98e9d33acdd64404fd29663c"/>
+        <VersionInfo resourceName="jsc://GenerateIdToken.js" version="bea37b5035680ca44036b2a743ee759a302c2e66a01c6b970412e712e884b32e640274a2712ed1e7efa7de658b11c53eab157c5976a79ad5de5d629eaaf8cd0a"/>
+        <VersionInfo resourceName="jsc://ValdiateAccountPaymentRequest.js" version="d464b736225f045549f51dd4c55d8b77a2c41e9d3725353914f5bca3fe7f92c5ed2231b1964893541334001a31808262b7ca17b4213bf6381ac41fe548d98ced"/>
+        <VersionInfo resourceName="jsc://ValdiateAccountRequest.js" version="d5e1faf6a4b3b3cbcdf76d94bdf98d6d728a6069e4e6a74ee776ea02669ba79611de80e6db53c2abd7a056ce46b203eb909e2947097b0f689bf9171cdc70d532"/>
+        <VersionInfo resourceName="jsc://ValidateClientAssertion.js" version="4a10ba084fe097df871caeb6a956140b61ad725ffa1cc17b890315b2afc2e6780e884eab8b7d0197c12f8a8b0a41231aad5d5504a219d163b97bfc5183d26781"/>
+        <VersionInfo resourceName="jsc://ValidateRequest.js" version="fa7813fb2f640fb0c4bc36faf000254c43ce78167ce12145b25b62dde07de1a592c87d17c60b0f2e7f3dff2e660afbbf4e5faacda18092bc0eaeefb6d2f3eb22"/>
+        <VersionInfo resourceName="jsc://ValidateRequestJWT.js" version="c5a4d1a30910247c3aab73163bfd21bd40b76e134f00d839148163f6efee387040ab15a3c2aeed56a6307aa6a09e8603b1dfe76f5a8d05111a545c1af7dfcb0c"/>
+        <VersionInfo resourceName="jsc://ValidateRequestResource.js" version="ac075fe8ba786ee1c3ad2294b82cb30531d4392b021833f6da4622508cdbe051ba876de34dfa6cce0cfb38416bde2edcb1342003ab577a5d6c4d5e4e1d90ec87"/>
+        <VersionInfo resourceName="jsc://jsrsasign-all-min.js" version="61685f24ce1400ddd2f71e61acf2bb4e467e941298b4821bb3164e8a199baa02245dfc7ec4a60b8283f6e7a17c26c0cd43db658a31c5128ce876c1f410c4b0b2"/>
+        <VersionInfo resourceName="jsc://jws-initialization.js" version="b92b354069e082168a0d6f407d61e22fe141fd3e45dfb14e3ce0534a47b82f61e196fd25fe8bb9fa84bbc6eb58c66f6be9f9252ee4b006d2172771aa91b1291d"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="1ba5091ef93285efc9a18644d45df827d2aeec4b3e4529896623033b8a09741557a0c13ad4220859118e6e4c10d508b91c51b3ad938dcb6d4108bdc10c59db14"/>
+    </TargetEndpoints>
+</Manifest>
