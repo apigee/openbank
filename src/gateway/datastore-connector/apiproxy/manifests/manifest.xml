@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+    <Policies>
+        <VersionInfo resourceName="Assign-Authorization-Header" version="b0ef87158061128da433a9d95266e1f6a133ddfcb815233ae7743bb6b600048ce7ec714fdd2a03a9f493edad4915347daf7f3b5207473023fcd65f3197669c1a"/>
+        <VersionInfo resourceName="Assign-Get-Entity-Response" version="ac143a465b7c52fa6a16a8ae33b610caa3984f117dc87640a3c719920d1f528dd64da20033afc86068bc44478b5889fb71fca4cd13c14208d9a07d722be93ac9"/>
+        <VersionInfo resourceName="Assign-Original-Request-Verb" version="140a49633434bd5339b78b7db41bd0594a3cf9ad275b95676f75c80095f473b7279819a0d8047d2b3348f6d4492dc132c41ba24b866b953fabbba240b7dc8ebd"/>
+        <VersionInfo resourceName="Assign-POST-PUT-Response" version="798dde4053b5904c5d641d1179b2dcc4353515cf7f68b5016e90b9903178b9b0ebfcb5ed8badb9e78b02e0e4c17302f45bb6ab0728e659c756a2527589cbd716"/>
+        <VersionInfo resourceName="Create New Request For Update" version="8fe0e98c65e75cb7c63149a383639a5471590fb59b870c679ec5bbb62a9d1b0f6025544df027ebcbf48f8c891697253fa9c7bafd075390d15eef47fb92f9fbc1"/>
+        <VersionInfo resourceName="Create-Delete-Entity-Request" version="9baa37027bcba41d3fdb269cccd7eb099aaea49068fa33cf6bdef7005d55b57cf4afee336f40c52aa7998a79b2447d96561730bc8dfc8bb54726795fe4b9cb84"/>
+        <VersionInfo resourceName="Create-Insert-Entity-Request" version="8bceaf9fd5f280093e41eeacb24a261c4c9c13bc07c83a8f4cbe517ae0ad8d61c89c687e03fb3804ef4cf0d082c08f34849fd9b15f9050e50ea817db1c781e9a"/>
+        <VersionInfo resourceName="Create-Read-Entity-Request" version="081cf73f98aa41a6e0dbc8e1c2f9538259d26f0c7043c2e9a280d2f337d0c88c92eab984cebfc92c49521739e78c6a63ce85be6b7b5c84a32db1f4de5f5020ac"/>
+        <VersionInfo resourceName="CreateUpdateEntityRequest" version="b8bf0169c5253e6ef2802bad1fedd01bbc1d64e917b0be09d478d92395c325495479902ba28e46decb758c70fe3334656f5064fbfb8bc12c21fc9419df958d5b"/>
+        <VersionInfo resourceName="Extract-Private-Config" version="a1659f8bdcc74e9c66263da2a19a068eb3ac1f00e1946606fab2663e788d8a4df40ceb4694289bb0aed05783a7cb56e68c82431a861fbecc53d50e7acb55ac1a"/>
+        <VersionInfo resourceName="Extract-Variables" version="6b2f09e48247d258a65a7cf79533e82c3904abe7bbd6d1b8bd6c4a3615066d4be8076caa6481db11b7283caf2d588c509a3fb66d80e29fb88873de1417db8b72"/>
+        <VersionInfo resourceName="Generate-JWT-Datastore" version="c06647be12b1aa4c470b45cda44452ff7564d32516716a36dc57947efa6bd360de4aa4122360fe82698d139de8d6224742b141387b3129113ad94131b70c6811"/>
+        <VersionInfo resourceName="JavaScript-assignFlow" version="377acf2806fd352a3d29fd895106b07c7f8bf171d4249b2931610a92d4f2f160e53ba35b929d71acf55e4a876f7306a03bed21a5cc52416d7c87c193088b1bb4"/>
+        <VersionInfo resourceName="Lookup-Cache-Access-Token" version="9d08454966830bbf9fea7a061a52de1cb391ec35a1518eaae78d65908bb64ce02fc8f971db839d3ff562c0518a5d5d9067a418def6731a959a0fdff995c85025"/>
+        <VersionInfo resourceName="Populate-Cache-Access-Token" version="0c94e5094b0c3e1c146d74ef42dd690ae2a365de69945195408a540a1689d0386f5e4594e2b7f68853907fa738fc0294325742ea80dd55e49beccd45c0b523de"/>
+        <VersionInfo resourceName="Raise-Fault-Id-Missing" version="4e5ea5f8bc71ca37d30cf2c10081c10bb09d0ad7c42e6098350afc59ded0e16bc567fb193413e4d2a0926917110863ca893dbcf32797595c6477f736c306c0fa"/>
+        <VersionInfo resourceName="Raise-Fault-Invalid-Path" version="d0ce39da73c188c9caed1bffdb631b143a2cc4bf3d24df78cbb425511ad8760b963f694dda374e2cb0b0894820143cde65613ffc42def308786b1151d8a1f471"/>
+        <VersionInfo resourceName="Service-Callout-Get-Access-Token" version="0754ca2cc673a2d783551ec6b5f3b3df7f37b1cf16283afd53f8400aca0f93d2ef8be763f9dce7bd14ba6ddd3e91cd8be24db95ad8a95879df6b2b3881fe8ef5"/>
+        <VersionInfo resourceName="Service-Callout-Get-Entity" version="a3864c725ccc047ae1b7ac845b671e05956ff5c5676275abc11d95b18841a0c24075c113ce7aac211605b332b02f6007caae816019d7345fdfd0435130795c87"/>
+        <VersionInfo resourceName="Verify-API-Key" version="f276f3bafab3b0cdc153164dbac794bea246710e9f3bdc36e1bfb39aa88116d2db0ee8cad659f880b3316202dc53539ecd8a7dd9e29b6c7d118be35c1d1c83ee"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="7706b8e2eae1f2b1b7f7a3b9aac49050d94c4d4f2f6cf2c6e1eee94710f779348860b94b62010a486b0ecc34d4d7ff4addfd91fcd5f94c1b9ecd125d804e0c17"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://assignGetResponse.js" version="c75f258b4709cbed59112a779c712dc0063c8c913826c55cdcbc1262625193b735649291667a661e229799342ef3975408c2a19c535cd675ec225c8b548ab4f4"/>
+        <VersionInfo resourceName="jsc://assignTarget.js" version="2fb56bc1e9324babe5347ad258ec04161f35a5f59a9052e0738b668c400c0a56524a30096c6bdb34610f56d334a819ba822707e5713dfd782569e8c152334261"/>
+        <VersionInfo resourceName="jsc://createDeleteEntityRequest.js" version="0fc0e0cc424f003d81c49ac947f96ad411a4e3944c608fa0df5aadc9bcedd7234689ddaa82fe2d7bde1ae5aa82be4ebc1063388315145a349e52c0ce9aaa84bc"/>
+        <VersionInfo resourceName="jsc://createGetEntityRequest.js" version="5d82f1dab48180dc435d9a3dda9e26412d5162d9114b9ac485f46d93d5b878c479768e985baa9f1528d51ebfb73d4198f132a23b029fb6bd08eb21f6f644fa3c"/>
+        <VersionInfo resourceName="jsc://createInsertEntityRequest.js" version="20046f47a67810054dbde130ac0fca9145c99ab748af20d5448cfe83daa9989d38d14dac7ae2b71f0f79909be3912e571e9ca721926a4d5a2e885825202fbb30"/>
+        <VersionInfo resourceName="jsc://createNewDataForUpdate.js" version="315335a759c1dc2f6b14b0a76af88168892b3ee34f09eac98b65d386d8e1adcba59b5b197e5637305530a23f59bc0c0114ca655aa029808543e637f8ad12be7e"/>
+        <VersionInfo resourceName="jsc://createUpdateEntityRequest.js" version="89d570c90260f57f7dfe160d176b0b820d626a2c214c830a324541d23635ccd51cb34e267c05eaf66770205d66dde091d6dbd444a3d81fae8c1868e846ff058b"/>
+        <VersionInfo resourceName="jsc://encodeDecodeDatastore.js" version="7a6bc218ecc816044147bf23ca9d165643a89f040900fa874794f3cd9ecfd3a779882af194bb43d3cc3c185a1cc984c556b7f8603b42e13ecc7af301dda8f02d"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="df6baedc4b02650769da7d7d2ae09f7a5d692b9a7d5eff02428bcea6593b39d304551c876bc04e9b108dc913309eff101b26c6638a4e6fa35bba8c9cb0f0aa2a"/>
+    </TargetEndpoints>
+</Manifest>

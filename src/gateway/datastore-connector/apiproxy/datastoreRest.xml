@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="2" name="datastoreRest">
+    <Basepaths>/datastorerest</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1520855785278</CreatedAt>
+    <CreatedBy>rairupam@google.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>datastoreRest</DisplayName>
+    <LastModifiedAt>1520959454089</LastModifiedAt>
+    <LastModifiedBy>rairupam@google.com</LastModifiedBy>
+    <ManifestVersion>ea45c3662ab26722782956bba0e9fe9ba9bd4cc3af5dfe2c02c9a0eafca62fb850e1ce7233b7b7070829c32d813472ddb5d04fed58adce4977fb5ef36cb3c789</ManifestVersion>
+    <Policies>
+        <Policy>Assign-Authorization-Header</Policy>
+        <Policy>Assign-Get-Entity-Response</Policy>
+        <Policy>Assign-Original-Request-Verb</Policy>
+        <Policy>Assign-POST-PUT-Response</Policy>
+        <Policy>Create New Request For Update</Policy>
+        <Policy>Create-Delete-Entity-Request</Policy>
+        <Policy>Create-Insert-Entity-Request</Policy>
+        <Policy>Create-Read-Entity-Request</Policy>
+        <Policy>CreateUpdateEntityRequest</Policy>
+        <Policy>Extract-Private-Config</Policy>
+        <Policy>Extract-Variables</Policy>
+        <Policy>Generate-JWT-Datastore</Policy>
+        <Policy>JavaScript-assignFlow</Policy>
+        <Policy>Lookup-Cache-Access-Token</Policy>
+        <Policy>Populate-Cache-Access-Token</Policy>
+        <Policy>Raise-Fault-Id-Missing</Policy>
+        <Policy>Raise-Fault-Invalid-Path</Policy>
+        <Policy>Service-Callout-Get-Access-Token</Policy>
+        <Policy>Service-Callout-Get-Entity</Policy>
+        <Policy>Verify-API-Key</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://assignGetResponse.js</Resource>
+        <Resource>jsc://assignTarget.js</Resource>
+        <Resource>jsc://createDeleteEntityRequest.js</Resource>
+        <Resource>jsc://createGetEntityRequest.js</Resource>
+        <Resource>jsc://createInsertEntityRequest.js</Resource>
+        <Resource>jsc://createNewDataForUpdate.js</Resource>
+        <Resource>jsc://createUpdateEntityRequest.js</Resource>
+        <Resource>jsc://encodeDecodeDatastore.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

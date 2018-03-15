@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright 2017 Google Inc.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ https://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<TargetEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JavaScript-assignFlow</Name>
+            </Step>
+            <Step>
+                <Condition>isError = true</Condition>
+                <Name>Raise-Fault-Invalid-Path</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>Assign-Original-Request-Verb</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="Create Entity">
+            <Description>create entity on cloud datastore</Description>
+            <Request>
+                <Step>
+                    <Name>Create-Insert-Entity-Request</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Invalid-Path</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Assign-POST-PUT-Response</Name>
+                </Step>
+            </Response>
+            <Condition>create = true</Condition>
+        </Flow>
+        <Flow name="Get Entity">
+            <Description>get entities from cloud datastore</Description>
+            <Request>
+                <Step>
+                    <Name>Create-Read-Entity-Request</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Assign-Get-Entity-Response</Name>
+                </Step>
+            </Response>
+            <Condition>read = true</Condition>
+        </Flow>
+        <Flow name="Update Entity">
+            <Description>update single entity in cloud datastore</Description>
+            <Request>
+                <Step>
+                    <Name>CreateUpdateEntityRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Id-Missing</Name>
+                </Step>
+                <Step>
+                    <Name>Service-Callout-Get-Entity</Name>
+                </Step>
+                <Step>
+                    <Name>Create New Request For Update</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Assign-POST-PUT-Response</Name>
+                </Step>
+            </Response>
+            <Condition>update = true</Condition>
+        </Flow>
+        <Flow name="Delete Entity">
+            <Description>delete entity from cloud datastore</Description>
+            <Request>
+                <Step>
+                    <Name>Create-Delete-Entity-Request</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <Name>Raise-Fault-Id-Missing</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>delete = true</Condition>
+        </Flow>
+    </Flows>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://datastore.googleapis.com/v1/projects/{{ datastoreProject }}{pathSuffix}</URL>
+    </HTTPTargetConnection>
+</TargetEndpoint>
