@@ -1,7 +1,8 @@
 {
-  "edgeBasePath": "{{ edgeBasePath }}",
-  "TPPAppClientId": "{{ keyAISP }}",
-  "internalAppKey": "{{ internalAppKey }}"
+  "edgeBasePath": "insurance-test.apigee.net",
+  "TPPAppClientId": "mJQv3adAzWqophMIPyI0ZYrWmsN3ruPt",
+  "TPPAppClientIdPayment": "6CNAg2DTJ2YqL3A4BlYCWtZusOYBDu4Z",
+  "internalAppKey": "Cwk37Z79vgLQzv20AhecKgFsigLvvySt"
 }
 
 

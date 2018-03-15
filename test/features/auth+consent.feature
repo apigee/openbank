@@ -13,7 +13,7 @@ Feature:
       | client_assertion_type | urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer |
       | client_assertion      | <jwtCredentials>                                                 |
     And Tpp sets Content-Type header to application/x-www-form-urlencoded
-    When the TPP makes the POST /apis/v1.0/oauth/token
+    When the TPP makes the POST /apis/v1.0.1/oauth/token
     Then response code should be <responseCode>
 
     Examples:
@@ -25,6 +25,86 @@ Feature:
       | client_credentials | accounts payments | invalidCredentials | 401          |
       | wrongGrantType     | accounts payments | `clientAssertion`  | 400          |
       | client_credentials | other             | `clientAssertion`  | 200          |
+
+#TPP creates the requests
+Scenario: Tpp obtains an access token and stores in global scope
+    Given Tpp obtains client credential accesstoken for accounts claim and store in scenario scope
+    #create account request
+    And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
+    And TPP creates x-jws-signature for accounts with default headers for the body {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
+    And TPP sets the request headers
+      | name                | value                               |
+      | Content-Type        | application/json                    |
+      | Authorization       | Bearer `accounts_accesstoken_cc`             |
+      | Accept              | application/json                    |
+      | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
+      | x-fapi-financial-id | OB/2017/001                         |
+      | x-jws-signature     | `accounts-x-jws-signature`                   |
+    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    And response code should be 201
+    And TPP stores the value of body path $.Data.AccountRequestId as GlobalAccountRequestId1 in global scope
+    
+    Given Tpp obtains client credential accesstoken for accounts claim and store in scenario scope
+    #create account request
+    And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
+    And TPP creates x-jws-signature for accounts with default headers for the body {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
+    And TPP sets the request headers
+      | name                | value                               |
+      | Content-Type        | application/json                    |
+      | Authorization       | Bearer `accounts_accesstoken_cc`             |
+      | Accept              | application/json                    |
+      | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
+      | x-fapi-financial-id | OB/2017/001                         |
+      | x-jws-signature     | `accounts-x-jws-signature`                   |
+    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    And response code should be 201
+    And TPP stores the value of body path $.Data.AccountRequestId as GlobalAccountRequestId5 in global scope
+    Given Tpp obtains client credential accesstoken for accounts claim and store in scenario scope
+    #create account request
+    And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
+    And TPP creates x-jws-signature for accounts with default headers for the body {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
+    And TPP sets the request headers
+      | name                | value                               |
+      | Content-Type        | application/json                    |
+      | Authorization       | Bearer `accounts_accesstoken_cc`             |
+      | Accept              | application/json                    |
+      | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
+      | x-fapi-financial-id | OB/2017/001                         |
+      | x-jws-signature     | `accounts-x-jws-signature`                   |
+    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    And response code should be 201
+    And TPP stores the value of body path $.Data.AccountRequestId as GlobalAccountRequestId6 in global scope
+    Given Tpp obtains client credential accesstoken for accounts claim and store in scenario scope
+    #create account request
+    And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
+    And TPP creates x-jws-signature for accounts with default headers for the body {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
+    And TPP sets the request headers
+      | name                | value                               |
+      | Content-Type        | application/json                    |
+      | Authorization       | Bearer `accounts_accesstoken_cc`             |
+      | Accept              | application/json                    |
+      | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
+      | x-fapi-financial-id | OB/2017/001                         |
+      | x-jws-signature     | `accounts-x-jws-signature`                   |
+    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    And response code should be 201
+    And TPP stores the value of body path $.Data.AccountRequestId as GlobalAccountRequestId7 in global scope
+
+    Given Tpp obtains client credential accesstoken for payments claim and store in scenario scope
+    #create payment request
+    And TPP set body to {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}}
+    And TPP creates x-jws-signature with default headers for the body {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}}
+    And TPP sets the request headers
+      | name                | value                               |
+      | Content-Type        | application/json                    |
+      | Authorization       | Bearer `accesstoken_cc`             |
+      | Accept              | application/json                    |
+      | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a4 |
+      | x-fapi-financial-id | OB/2017/001                         |
+      | x-jws-signature     | `x-jws-signature`                   |
+    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
+    And response code should be 201
+    And TPP stores the value of body path $.Data.PaymentId as paymentRequestId in global scope
 
 
 #TPP redirects the /authorize call to the user
@@ -38,36 +118,26 @@ Feature:
       | response_type | <responseType> |
       | urns          | <urns>         |
       | nonce         | <nonce>        |
-    When the TPP makes the GET /apis/v1.0/oauth/authorize
+    When the TPP makes the GET /apis/v1.0.1/oauth/authorize
     Then response code should be <responseCode>
 
     Examples:
       | clientId         | redirectUri                          | state    | nonce | scope                    | responseType  | description                         | responseCode | urns                                                                |
 
-      | invalidClientId  | http://localhost/                    | abcd1234 | 1     | openid accounts payments | code id_token |                                     | 401          | urn:openbank:intent:accounts:1000                                   |
-      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 2     | openid invalidScope      | code id_token | urn:openbank:intent:accounts:1000   | 400          | urn:openbank:intent:accounts:1000                                   |
-      | `TPPAppClientId` | http://localhost/notValidRedirectUri | abcd1234 | 3     | openid accounts          | code id_token | urn:openbank:intent:accounts:1000   | 400          | urn:openbank:intent:accounts:1000                                   |
+      | invalidClientId  | http://localhost/                    | abcd1234 | 1     | openid accounts payments | code id_token |                                     | 401          | urn:openbank:intent:accounts:1001                                   |
+      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 2     | openid invalidScope      | code id_token | urn:openbank:intent:accounts:1001   | 400          | urn:openbank:intent:accounts:1001                                   |
+      | `TPPAppClientId` | http://localhost/notValidRedirectUri | abcd1234 | 3     | openid accounts          | code id_token | urn:openbank:intent:accounts:1001   | 400          | urn:openbank:intent:accounts:1001                                   |
       | `TPPAppClientId` | http://localhost/                    | abcd1234 | 4     | openid accounts          | code id_token | invalidURN                          | 400          | invalidURN                                                          |
-      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 5     | openid accounts          | code id_token | urn:openbank:intent:accounts:1000   | 302          | urn:openbank:intent:accounts:1000                                   |
-#nonce error returned with 302
-      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 5     | openid accounts          | code id_token | urn:openbank:intent:accounts:1000   | 302          | urn:openbank:intent:accounts:1000                                   |
 
       #| `validClientId` | http://localhost/                    | abcd1234 | 6 | openid accounts          | code id_token | onlyPaymentClaimURN                 | 400          |                                                                     |
-      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 7     | openid payments          | code id_token | onlyAccountClaimURN                 | 400          | urn:openbank:intent:accounts:1000                                   |
-      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 8     | openid accounts          | code id_token | onlyAccountClaimURN                 | 302          | urn:openbank:intent:accounts:1000                                   |
-      #| `validClientId` | http://localhost/                    | abcd1234 | 9 | openid payments          | code id_token | onlyPaymentClaimURN                 | 302          | |
+      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 7     | openid payments          | code id_token | onlyAccountClaimURN                 | 400          | urn:openbank:intent:accounts:1001                                   |
+      
       #| `validClientId` | http://localhost/                    | abcd1234 | 10 | openid accounts          | code id_token | multipleClaimWithoutAccountClaimURN | 400          | |
-      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 12    | openid payments          | code id_token | multipleClaimWithoutPaymentClaimURN | 400          | urn:openbank:intent:accounts:1000,urn:openbank:intent:accounts:1001 |
-      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 13    | openid accounts          | code id_token | multipleClaimWithAccountClaimURN    | 302          | urn:openbank:intent:accounts:1000,urn:openbank:intent:accounts:1001 |
-      #| `validClientId` | http://localhost/                    | abcd1234 | 14 | openid payments          | code id_token | multipleClaimWithPaymentClaimURN    | 302          | |
-      #| `validClientId` | http://localhost/                    | abcd1234 | 15 | openid accounts payments | code id_token | multipleClaimURN                    | 302          | |
-      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 16    | openid                   | code id_token | onlyAccountClaimURN                 | 302          | urn:openbank:intent:accounts:1000                                   |
-      #| `validClientId` | http://localhost/                    | abcd1234 | 17 | openid                   | code id_token | onlyPaymentClaimURN                 | 302          | |
+      | `TPPAppClientId` | http://localhost/                    | abcd1234 | 12    | openid payments          | code id_token | multipleClaimWithoutPaymentClaimURN | 400          | urn:openbank:intent:accounts:1001,urn:openbank:intent:accounts:1001 |
+      
       | `TPPAppClientId` | http://localhost/                    | abcd1234 | 18    | openid accounts payments | code id_token | noClaimURN                          | 400          |                                                                     |
-#need to add scenarios for different responseTypes
 
-#UI FLOWS
-  Scenario Outline: When the user is redirect to login page
+  Scenario: Redirect to log in page 1 accountclaim urn
     Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
       | parameter     | value             |
       | client_id     | `TPPAppClientId`  |
@@ -75,50 +145,7 @@ Feature:
       | state         | abcd1234          |
       | scope         | openid accounts   |
       | response_type | code id_token     |
-      | urns          | <urn>             |
-      | nonce         | <nonce>           |
-    When User enters <username> and <password> and submits the form
-    Given Login Succeeds
-    When User selects the <accounts> on consent page and submits the form
-    Given Consent Succeeds
-    When User enter the otp <otp> on sms verification page and submits the form
-    Then OTP verification Succeeds and User is redirected with auth code with <status>
-
-    Examples:
-      | username | password  | otp  | accounts                      | nonce | status  | urn                               |
-      | rohan    | Qwerty123 | 4567 | 111111111                     | 12    | success | urn:openbank:intent:accounts:1005 |
-      | rohan    | Qwerty123 | 4567 | 111111111,123459876           | 122   | success | urn:openbank:intent:accounts:1006 |
-      | rohan    | Qwerty123 | 4567 | 111111111,123459876,987654321 | 321   | success | urn:openbank:intent:accounts:1007 |
-    #need to handle negative test cases
-      #| wrongusernameorpass | wrongusernameorpass | 4567 | 111111111                     |   412    | failure |
-      #| rohan               | Qwerty123           | 4567 |                              | | success |
-
-  Scenario: TPP create a auth code
-    Given TPP create a auth code and stores in the global variable
-#TPP fetching the access token with the authcode
-  Scenario Outline: TPP Fetching access token from authcode
-    Given TPP sets the request formBody
-      | parameter             | value                                                            |
-      | grant_type            | <type>                                                           |
-      | code                  | <authCode>                                                       |
-      | redirect_uri          | <redirectUri>                                                    |
-      | client_assertion_type | urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer |
-      | client_assertion      | <jwtCredentials>                                                 |
-    When the TPP makes the POST /apis/v1.0/oauth/token
-    Then response code should be <responseCode>
-
-    Examples:
-      | authCode   | type               | redirectUri                          | clientIdSecret64 | responseCode | jwtCredentials         |
-
-      | `authCode` | authorization_code | http://localhost/                    | validCredentials | 200          | `clientAssertion`      |
-     #| authorization_code | authorization_code | http://localhost/                    | validCredentials | 200          | `clientAssertion`      |
-      | wrongType  | authorization_code | http://localhost/                    | validCredentials | 400          | `clientAssertion`      |
-      | `authCode` | authorization_code | http://localhost/                    | validCredentials | 400          | `clientAssertion`      |
-      | `authCode` | authorization_code | http://localhost/notValidRedirectUri | validCredentials | 400          | `clientAssertion`      |
-      | `authCode` | authorization_code | http://localhost/                    | validCredentials | 401          | invalidClientAssertion |
-
-
-
-		
-		
-	
+      | urns          | urn:openbank:intent:accounts:`GlobalAccountRequestId1`             |
+      | nonce         | n1           |
+    When the TPP makes the GET /apis/v1.0.1/oauth/authorize
+    Then response code should be 302

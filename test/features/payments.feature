@@ -13,14 +13,12 @@ Feature:
       | Content-Type        | application/json                    |
       | Authorization       | Bearer `accesstoken_cc`             |
       | Accept              | application/json                    |
-      | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
+      | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184jq |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `x-jws-signature`                   |
-    When the TPP makes the POST /pis/open-banking/v1.0/payments
+    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
     And response code should be 201
-    And response body should be valid according to openapi description PaymentResponse in file ../openapi/paymentv1-0.json
     And TPP stores the value of body path $.Data.PaymentId as paymentRequestId in scenario scope
-    Then TPP verifies the body with the x-jws-signature in the header
 
     #Get payment request
     Given TPP sets the request headers
@@ -29,7 +27,8 @@ Feature:
       | Authorization       | Bearer `accesstoken_cc` |
       | Accept              | application/json        |
       | x-fapi-financial-id | OB/2017/001             |
-    When the TPP makes the GET /pis/open-banking/v1.0/payments/`paymentRequestId`
+    And TPP set body to {}
+    When the TPP makes the GET /pis/open-banking/v1.0.1/payments/`paymentRequestId`
     And response code should be 200
     Then response body path $.Data.Status should be Pending
 
@@ -42,7 +41,7 @@ Feature:
       | scope         | openid payments                                 |
       | response_type | code id_token                                   |
       | urns          | urn:openbank:intent:payments:`paymentRequestId` |
-      | nonce         | nonce123                                        |
+      | nonce         | nonce31q                                        |
     When User enters rohan and Qwerty123 and submits the form
     Given Login Succeeds
     And User selects the 111111111 from the dropdown on consent page and submits
@@ -58,7 +57,8 @@ Feature:
       | Authorization       | Bearer `accesstoken_cc` |
       | Accept              | application/json        |
       | x-fapi-financial-id | OB/2017/001             |
-    When the TPP makes the GET /pis/open-banking/v1.0/payments/`paymentRequestId`
+    And TPP set body to {}
+    When the TPP makes the GET /pis/open-banking/v1.0.1/payments/`paymentRequestId`
     And response code should be 200
     Then response body path $.Data.Status should be AcceptedTechnicalValidation
 
@@ -70,14 +70,12 @@ Feature:
       | Content-Type        | application/json                    |
       | Authorization       | Bearer `accesstoken`                |
       | Accept              | application/json                    |
-      | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184b0 |
+      | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184b03 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `x-jws-signature`                   |
-    When the TPP makes the POST /pis/open-banking/v1.0/payment-submissions
+    When the TPP makes the POST /pis/open-banking/v1.0.1/payment-submissions
     And response code should be 201
-    And response body should be valid according to openapi description PaymentSubmissionResponse in file ../openapi/paymentv1-0.json
     And TPP stores the value of body path $.Data.PaymentSubmissionId as paymentSubmissionId in scenario scope
-    Then TPP verifies the body with the x-jws-signature in the header
 
     #get payment submission
     Given TPP sets the request headers
@@ -86,7 +84,8 @@ Feature:
       | Authorization       | Bearer `accesstoken_cc` |
       | Accept              | application/json        |
       | x-fapi-financial-id | OB/2017/001             |
-    When the TPP makes the GET /pis/open-banking/v1.0/payment-submissions/`paymentSubmissionId`
+    And TPP set body to {}
+    When the TPP makes the GET /pis/open-banking/v1.0.1/payment-submissions/`paymentSubmissionId`
     And response code should be 200
     Then response body path $.Data.Status should be AcceptedSettlementInProcess
 
@@ -103,7 +102,7 @@ Feature:
       | x-idempotency-key   | <idempotencyKey>  |
       | x-fapi-financial-id | <financialId>     |
       | x-jws-signature     | `x-jws-signature` |
-    When the TPP makes the POST /pis/open-banking/v1.0/payments
+    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
     And response code should be <statusCode>
 
     Examples:
@@ -114,11 +113,11 @@ Feature:
       # wrong access token
       | application/json | Bearer wrongbearertoken | application/json | 93bac547-d2de-4546-b106-880a50182d1 | OB/2017/001 | {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}} | 401        |
       # wrong content type
-      | application/xml  | Bearer `accesstoken_cc` | application/json | 93bac547-d2de-4546-b106-880a50182e2 | OB/2017/001 | {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}} | 400        |
+      | application/xml  | Bearer `accesstoken_cc` | application/json | 93bac547-d2de-4546-b106-880a50182e2 | OB/2017/001 | {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}} | 401        |
       # wrong accept type
       | application/json | Bearer `accesstoken_cc` | application/xml  | 93bac547-d2de-4546-b106-880a50182f3 | OB/2017/001 | {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}} | 406        |
       # invalid idempotency
-      | application/json | Bearer `accesstoken_cc` | application/json |                                     | OB/2017/001 | {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}} | 400        |
+      | application/json | Bearer `accesstoken_cc` | application/json |                                     | OB/2017/001 | {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}} | 401        |
       # invalid jws signature
       | application/json | Bearer `accesstoken_cc` | application/json | 93bac547-d2de-4546-b106-880a50182g4 | OB/2017/001 | {"json":"wrongBody"}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 400        |
 
@@ -135,9 +134,8 @@ Feature:
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184h7 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `x-jws-signature`                   |
-    When the TPP makes the POST /pis/open-banking/v1.0/payments
+    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
     And response code should be 201
-    And response body should be valid according to openapi description PaymentResponse in file ../openapi/paymentv1-0.json
     And TPP stores the value of body path $.Data.PaymentId as paymentRequestId in scenario scope
     #second request with same idempotency key
     Given TPP set body to {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}}
@@ -150,8 +148,7 @@ Feature:
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184h7 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `x-jws-signature`                   |
-    When the TPP makes the POST /pis/open-banking/v1.0/payments
-    And response body should be valid according to openapi description PaymentResponse in file ../openapi/paymentv1-0.json
+    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
     And response code should be 201
     Then TPP asserts the value of body path $.Data.PaymentId with scenario variable paymentRequestId
 
@@ -170,11 +167,9 @@ Feature:
       | x-idempotency-key   | 9<idempotencyKey>       |
       | x-fapi-financial-id | OB/2017/001             |
       | x-jws-signature     | `x-jws-signature`       |
-    When the TPP makes the POST /pis/open-banking/v1.0/payments
+    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
     And response code should be 201
-    And response body should be valid according to openapi description PaymentResponse in file ../openapi/paymentv1-0.json
     And TPP stores the value of body path $.Data.PaymentId as paymentRequestId in scenario scope
-    Then TPP verifies the body with the x-jws-signature in the header
 
     #authorise with the payment request Id
     Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
@@ -205,7 +200,7 @@ Feature:
       | x-idempotency-key   | <idempotencyKey>  |
       | x-fapi-financial-id | <financialId>     |
       | x-jws-signature     | `x-jws-signature` |
-    When the TPP makes the POST /pis/open-banking/v1.0/payment-submissions
+    When the TPP makes the POST /pis/open-banking/v1.0.1/payment-submissions
     And response code should be <statusCode>
 
     Examples:
