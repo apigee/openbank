@@ -1,0 +1,255 @@
+{
+  "swagger": "2.0",
+  "host": "{{ host }}",
+  "schemes": [
+    "https"
+  ],
+  "info": {
+    "description": "Locations API",
+    "title": "List of Branch and ATM Locations",
+    "version": "2.0.1",
+    "termsOfService": "http://example.com/about/terms",
+    "contact": {
+      "name": "API Docs",
+      "url": "http://example.com/contact",
+      "email": "solution-ninjas@google.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://example.com"
+    }
+  },
+  "basePath": "/apis/v2.0.1/locations",
+  "paths": {
+    "/atms": {
+      "get": {
+        "description": "<p>Returns a list of ATMs with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters.</p>",
+        "summary": "List of atms",
+        "operationId": "atms",
+        "tags": [
+          "opendata"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AtmsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "wheelchair",
+            "description": "This is check (in boolean) to see if the ATM is accessible by wheelchair",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "isWithdrawalCharged",
+            "description": "This is to check whether withdrawal of money from this ATM will be charged.",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "currency",
+            "description": "The currency required",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "description": "This is to check if the ATM is currently available for withdrawing money.",
+            "type": "string",
+            "required": false
+          }
+        ]
+      }
+    },
+    "/branches": {
+      "get": {
+        "description": "<p>Returns a list of Branches with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitude and radius of search.</p>",
+        "summary": "List of Branches",
+        "operationId": "branches",
+        "tags": [
+          "opendata"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BranchesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "wheelchair",
+            "description": "This is check (in boolean) to see if the Branch is accessible by wheelchair.",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "openingDay",
+            "description": "This is the day of the week on which the Branch needs to be checked if open",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "openAt",
+            "description": "This is the time (in minute format) at which the Branch needs to be checked if open on a particular week day",
+            "type": "string",
+            "required": false
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AtmsResponse": {
+      "description": "List of ATM Locations",
+      "type": "object",
+      "properties": {
+        "AtmId": {
+          "type": "string",
+          "description": "Unique ATM Id "
+        },
+        "AtmServices": {
+          "type": "string",
+          "description": "Types of service atm provide"
+        },
+        "Address": {
+          "type": "object",
+          "description": "Address of the ATM"
+        },
+        "Currency": {
+          "type": "string",
+          "description": "Currency of notes that is disposed by the ATM."
+        },
+        "Location": {
+          "type": "object",
+          "description": "Latitude + Longitude of the ATM."
+        },
+        "LocationCategory": {
+          "type": "string",
+          "description": "Location category"
+        },
+        "MinimumValueDispensed": {
+          "type": "string",
+          "description": "Minimum amount dispensed"
+        },
+        "Organisation": {
+          "type": "object",
+          "description": "Organization to which the ATM belongs"
+        },
+        "SiteName": {
+          "type": "string",
+          "description": "Site of ATM"
+        },
+        "SupportedLanguages": {
+          "type": "array",
+          "items" : {
+            "type":"string"
+          },
+          "description": "Languages supported"
+        }
+      },
+      "xml": {
+        "name": "AtmsResponse"
+      }
+    },
+    "BranchesResponse": {
+      "description": "List of Branch Locations",
+      "type": "object",
+      "properties": {
+        "BranchIdentification": {
+          "type": "string",
+          "description": "Unique Identification of the Branch."
+        },
+        "Address": {
+          "type": "string",
+          "description": "Address of the Branch."
+        },
+        "Access": {
+          "type": "object",
+          "description": "Available accessibility features of the Branch."
+        },
+        "Location": {
+          "type": "object",
+          "description": "Latitude + Longitude of the Branch."
+        },
+        "AtmAtBranch": {
+          "type": "string",
+          "description": "Determines if ATM is available at the branch"
+        },
+        "BranchName": {
+          "type": "string",
+          "description": "Name of branch"
+        },
+        "BranchMediatedServiceName": {
+          "type": "string",
+          "description": "name of branch service mediator"
+        },
+        "BranchPhoto": {
+          "type": "string",
+          "description": "link for branch photo"
+        },
+        "BranchType": {
+          "type": "string",
+          "description": "type of branch"
+        },
+        "CustomerSegment": {
+          "type": "array",
+          "items" : 
+          {
+            "type" : "string"
+            },
+          "description": "category of customers which the branch addresses"
+        },
+        "FaxNumber": {
+          "type": "string",
+          "description": "fax number of branch"
+        },
+        "OpeningTimes": {
+          "type": "array",
+          "items" : 
+          {
+            "type" : "string"
+            },
+          "description": "opening times of the branch"
+        },
+        "Organisation": {
+          "type": "object",
+          "description": "Organisation details of branch"
+        },
+        "TelephoneNumber": {
+          "type": "object",
+          "description": "Contact number of the branch"
+        }
+      },
+      "xml": {
+        "name": "BranchesResponse"
+      }
+    }
+  }
+}

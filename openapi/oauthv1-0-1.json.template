@@ -1,15 +1,15 @@
 {
   "swagger": "2.0",
-  "host": "testdemorrai-test.apigee.net",
+  "host": "{{ host }}",
   "schemes": [
     "https"
   ],
   "info": {
     "description": "OAuth Access Token generation",
     "title": "Generate Access Token",
-    "version": "0.0.1"
+    "version": "1.0.1"
   },
-  "basePath": "/apis/v1.0/oauth",
+  "basePath": "/apis/v1.0.1/oauth",
   "paths": {
     "/authorize": {
       "get": {
@@ -33,7 +33,7 @@
             "name": "client_id",
             "description": "TPPs MUST provide this value and set it to the client id issued to them.",
             "type": "string",
-            "default": "zPq1BGV4OlLV7hJR1DsbfTI1t3orbDmD",
+            "default": "{{ client_id_aisp }}",
             "required": true
           },
           {
@@ -120,7 +120,7 @@
             "name": "client_id",
             "description": "Client ID of the registered App - for non-authenticated requests and Optional for client-assertion requests",
             "type": "string",
-            "default": "zPq1BGV4OlLV7hJR1DsbfTI1t3orbDmD",
+            "default": "{{ client_id_aisp }}",
             "required": false
           },
           {

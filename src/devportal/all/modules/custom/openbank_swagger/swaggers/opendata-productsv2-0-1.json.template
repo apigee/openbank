@@ -1,0 +1,142 @@
+{
+      "swagger": "2.0",
+          "host": "{{ host }}",
+          "schemes": [
+                    "https"
+                        
+          ],
+          "info": {
+                    "description": "Products API",
+                            "title": "List of Bank Products",
+                                    "version": "2.0.1",
+                                    "contact": {
+                                                  "name": "API Docs",
+                                                              "email": "api-solutions@google.com"
+                                                                      
+                                    },
+                                    "license": {
+                                                  "name": "Apache 2.0"
+                                                          
+                                    }
+                                        
+          },
+              "basePath": "/apis/v2.0.1",
+              "paths": {
+                "/products": {
+                  "get": {
+                                    "description": "<p>Returns a list of Products that this bank offers.</p>",
+                                                    "summary": "List of products",
+                                                    "tags": [
+                                                                          "opendata",
+                                                                                              "products"
+                                                                                                              
+                                                    ],
+                                                    "produces": [
+                                                                          "application/json; charset=utf-8"
+                                                                                          
+                                                    ],
+                                                    "responses": {
+                                                      "200": {
+                                                                                "description": "OK",
+                                                                                "schema": {
+                                                                                                              "type": "array",
+                                                                                                              "items": {
+                                                                                                                                                "$ref": "#/definitions/ProductsResponse"
+                                                                                                                                                                            
+                                                                                                              }
+                                                                                                                                      
+                                                                                }
+                                                                                                    
+                                                      },
+                                                      "400": {
+                                                                                "description": "Bad Request",
+                                                                                "schema": {
+                                                                                                              "$ref": "#/definitions/Error"
+                                                                                                                                      
+                                                                                }
+                                                                                                    
+                                                      }
+                                                                      
+                                                    }
+                                                                
+                  }
+                          
+                }
+                    
+              },
+              "definitions": {
+                "ProductsResponse": {
+                              "description": "List of available products",
+                                          "type": "array",
+                                          "items": {
+                                                            "$ref": "#/definitions/Product"
+                                                                        
+                                          },
+                                          "xml": {
+                                                            "name": "ProductsResponse"
+                                                                        
+                                          }
+                                                  
+                },
+                "Product": {
+                              "description": "Single Product Item",
+                                          "type": "object",
+                                          "properties": {
+                                            "Id": {
+                                                                  "type": "string",
+                                                                                      "description": "Unique identifier for this product"
+                                                                                                      
+                                            },
+                                            "Name": {
+                                                                  "type": "string",
+                                                                                      "description": "Name of the product offered"
+                                                                                                      
+                                            },
+                                            "Category": {
+                                                                  "type": "string",
+                                                                                      "description": "Classification of the product offering"
+                                                                                                      
+                                            },
+                                            "Sub-category": {
+                                                                  "type": "object",
+                                                                                      "description": "Sub-category of classification of this product"
+                                                                                                      
+                                            },
+                                            "Landing-page": {
+                                                                  "type": "string",
+                                                                                      "description": "Landing page for this product"
+                                                                                                      
+                                            },
+                                            "More-info": {
+                                                                  "type": "object",
+                                                                                      "description": "Additional information about the product"
+                                                                                                      
+                                            }
+                                                        
+                                          }
+                                                  
+                },
+                "Error": {
+                              "type": "object",
+                              "properties": {
+                                "Code": {
+                                                      "type": "integer",
+                                                                          "format": "int32"
+                                                                                          
+                                },
+                                "Message": {
+                                                      "type": "string"
+                                                                      
+                                },
+                                "Fields": {
+                                                      "type": "string"
+                                                                      
+                                }
+                                            
+                              }
+                                      
+                }
+                    
+              }
+
+}
