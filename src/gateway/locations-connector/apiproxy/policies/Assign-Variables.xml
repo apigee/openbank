@@ -30,6 +30,7 @@
     <Set>
         <QueryParams>
             <QueryParam name="x-apikey">{{ DsApikey }}</QueryParam>
+            <QueryParam name="ql">{qlquery}</QueryParam>
         </QueryParams>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

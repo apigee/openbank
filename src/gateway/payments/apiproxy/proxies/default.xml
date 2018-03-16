@@ -42,6 +42,7 @@
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>Verify-JWT</Name>
                 </Step>
             </Request>
@@ -104,6 +105,7 @@
                     <Name>Raise-Fault-Invalid-Request</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>Verify-JWT</Name>
                 </Step>
                 <Step>
@@ -205,8 +207,9 @@
                 <Name>ExtractRequestParams</Name>
             </Step>
             <Step>
-                <Condition>request.verb = "POST"</Condition>
-                <FaultRules/>
+                <Name>Create-Idempotency-Key</Name>
+            </Step>
+            <Step>
                 <Name>Response-Cache-Idempotency-Hit</Name>
             </Step>
         </Request>
@@ -224,12 +227,15 @@
                 <Name>Extract-Private-Config</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>Create-JWS-Header</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>Generate-JWT</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>Create-Detached-JWS</Name>
             </Step>
             <Step>
