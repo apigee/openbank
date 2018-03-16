@@ -1,0 +1,1 @@
+The apis-bank connector is used to connect from any apigee organization to apigee openbank datatsore instance. It provides the replacement for southbound proxies when users do not have google cloud datastore instance available for deploying openbank solution.
