@@ -43,6 +43,22 @@ function all_component_features_quicktabs_default_quicktabs() {
       'weight' => '-98',
       'type' => 'view',
     ),
+    3 => array(
+      'vid' => 'opendata-locationsv2-0-1',
+      'display' => 'frontpage',
+      'args' => '',
+      'title' => 'Atms and Branch Locations',
+      'weight' => '-97',
+      'type' => 'view',
+    ),
+    4 => array(
+      'vid' => 'opendata-productsv2-0-1',
+      'display' => 'frontpage',
+      'args' => '',
+      'title' => 'Bank Products',
+      'weight' => '-96',
+      'type' => 'view',
+    )
   );
   $quicktabs->renderer = 'accordion';
   $quicktabs->style = 'default';

@@ -32,7 +32,7 @@ var request         = require('request');
     node install_tmp.js
 */
 
-var files_list = ['src/devportal/all/modules/custom/jwtgeneration/jwtgeneration.module.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/oauthv1-0.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/accountv1-0-1.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/paymentv1-0-1.json.template','src/devportal/all/themes/dbank/js/smartdocsDynamic.js.template'];
+var files_list = ['src/devportal/all/modules/custom/jwtgeneration/jwtgeneration.module.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/opendata-productsv2-0-1.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/opendata-locationsv2-0-1.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/oauthv1-0-1.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/accountv1-0-1.json.template','src/devportal/all/modules/custom/openbank_swagger/swaggers/paymentv1-0-1.json.template','src/devportal/all/themes/dbank/js/smartdocsDynamic.js.template'];
 
 var inject_object = {}
 

@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "testdemorrai-test.apigee.net",
+  "host": "{{ host }}",
   "info": {
     "title": "Account Information APIs",
     "description": "Swagger specification for Account Information APIs",
@@ -13,9 +13,9 @@
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.0.0"
+    "version": "v1.0.1"
   },
-  "basePath": "/ais/open-banking/v1.0",
+  "basePath": "/ais/open-banking/v1.0.1",
   "schemes": [
     "https"
   ],
@@ -1494,8 +1494,8 @@
     "PSUOAuth2Security": {
       "type": "oauth2",
       "flow": "accessCode",
-      "tokenUrl": "https://testdemorrai-test.apigee.net/apis/v1.0/oauth/token",
-      "authorizationUrl": "https://testdemorrai-test.apigee.net/apis/v1.0/oauth/authorize?response_type=code&client_id=zPq1BGV4OlLV7hJR1DsbfTI1t3orbDmD&state=abcd1234&scope=openid accounts&redirect_uri=https://api.enterprise.apigee.com/v1/o/testdemorrai/apimodels/accounts-apis-v1-0/templateauths/PSUOAuth2Security/callback",
+      "tokenUrl": "{{ host_withprotocol }}/apis/v1.0.1/oauth/token",
+      "authorizationUrl": "{{ host_withprotocol }}/apis/v1.0.1/oauth/authorize?response_type=code&client_id={{ client_id_aisp }}&state=abcd1234&scope=openid accounts&redirect_uri=https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/accounts-apis-v1-0-1/templateauths/PSUOAuth2Security/callback",
       "scopes": {
         "accounts": "Ability to read Accounts information",
         "openid" : "openId"

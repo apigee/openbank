@@ -1,13 +1,13 @@
 {
   "swagger": "2.0",
-  "host": "testdemorrai-test.apigee.net",
+  "host": "{{ host }}",
   "schemes": [
     "https"
   ],
   "info": {
     "description": "Locations API",
     "title": "List of Branch and ATM Locations",
-    "version": "0.0.1",
+    "version": "2.0.1",
     "termsOfService": "http://example.com/about/terms",
     "contact": {
       "name": "API Docs",
@@ -19,11 +19,11 @@
       "url": "http://example.com"
     }
   },
-  "basePath": "/apis/v2/locations",
+  "basePath": "/apis/v2.0.1/locations",
   "paths": {
     "/atms": {
       "get": {
-        "description": "<p>Returns a list of ATMs with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters, latitude, longitude and radius of search.</p>",
+        "description": "<p>Returns a list of ATMs with Address, Latitude and Longitude.</p><p>&nbsp;</p><p>Optional parameters include search filters.</p>",
         "summary": "List of atms",
         "operationId": "atms",
         "tags": [
@@ -45,27 +45,6 @@
         },
         "security": [],
         "parameters": [
-          {
-            "in": "query",
-            "name": "latitude",
-            "description": "Latitude of the place around which you want to find ATMs. If latitude is provided, longitude must also be provided.",
-            "type": "string",
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "longitude",
-            "description": "Longitude of the place around which you want to find ATMs. If longitude is provided, latitude must also be provided.",
-            "type": "string",
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "radius",
-            "description": "This is the radius (in meters) from the search point. If radius is provided, then latitude and longitude has to also be provided",
-            "type": "integer",
-            "required": false
-          },
           {
             "in": "query",
             "name": "wheelchair",
@@ -121,27 +100,6 @@
         },
         "security": [],
         "parameters": [
-          {
-            "in": "query",
-            "name": "latitude",
-            "description": "Latitude of the place around which you want to find Branches. If latitude is provided, longitude must also be provided.",
-            "type": "string",
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "longitude",
-            "description": "Longitude of the place around which you want to find Branches. If longitude is provided, latitude must also be provided.",
-            "type": "string",
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "radius",
-            "description": "This is the radius (in meters) from the search point. If radius is provided, then latitude and longitude has to also be provided",
-            "type": "integer",
-            "required": false
-          },
           {
             "in": "query",
             "name": "wheelchair",
@@ -295,4 +253,3 @@
     }
   }
 }
- 

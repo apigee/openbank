@@ -8,10 +8,10 @@
   CLIENT_SECRET_ACCOUNTS = "{{ secret_aisp }}";
   CLIENT_ID_PAYMENTS = "{{ client_id_pisp }}";
   CLIENT_SECRET_PAYMENTS = "{{ secret_pisp }}";  
-  ACCOUNTS_SMARTDOC_NAME = "accounts-apis-v1-0";
+  ACCOUNTS_SMARTDOC_NAME = "accounts-apis-v1-0-1";
   ACCOUNTS_OAUTH_NAME = "PSUOAuth2Security";
 
-  PAYMENTS_SMARTDOC_NAME = "payments-apis-v1-0";
+  PAYMENTS_SMARTDOC_NAME = "payments-apis-v1-0-1";
   PAYMENTS_OAUTH_NAME = "PSUOAuth2Security";
 
   BASE_URL = "{{ host_withprotocol }}";

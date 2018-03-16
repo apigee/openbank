@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "testdemorrai-test.apigee.net",
+  "host": "{{ host }}",
   "info": {
     "title": "Payment Initiation API Specification",
     "description": "Swagger for Payment Initiation API Specification",
@@ -13,9 +13,9 @@
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.1.0"
+    "version": "v1.0.1"
   },
-  "basePath": "/pis/open-banking/v1.0",
+  "basePath": "/pis/open-banking/v1.0.1",
   "schemes": [
     "https"
   ],
@@ -519,8 +519,8 @@
     "PSUOAuth2Security": {
       "type": "oauth2",
       "flow": "accessCode",
-      "tokenUrl": "https://testdemorrai-test.apigee.net/apis/v1.0/oauth/token",
-      "authorizationUrl": "https://testdemorrai-test.apigee.net/apis/v1.0/oauth/authorize?response_type=code&client_id=WN6WqzK7iMrexdi7wGMGMx77eRVbYWKG&state=abcd1234&scope=openid payments&redirect_uri=https://api.enterprise.apigee.com/v1/o/testdemorrai/apimodels/payments-apis-v1-0/templateauths/PSUOAuth2Security/callback",
+      "tokenUrl": "{{ host_withprotocol }}/apis/v1.0.1/oauth/token",
+      "authorizationUrl": "{{ host_withprotocol }}/apis/v1.0.1/oauth/authorize?response_type=code&client_id={{ client_id_pisp }}&state=abcd1234&scope=openid payments&redirect_uri=https://api.enterprise.apigee.com/v1/o/{{ org }}/apimodels/payments-apis-v1-0-1/templateauths/PSUOAuth2Security/callback",
       "scopes": {
         "payments": "Generic payment scope",
         "openid" : "openId"
