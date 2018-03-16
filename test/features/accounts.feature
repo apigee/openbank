@@ -26,7 +26,7 @@ Feature:
       | response_type | code id_token                                   |
       | urns          | urn:openbank:intent:accounts:`GlobalAccountRequestId` |
       | nonce         | nonce90901                                        |
-    When User enters rohan and Qwerty123 and submits the form
+    When User enters user123 and Qwerty123 and submits the form
     Given Login Succeeds
     And User selects the 987654321 on consent page and submits the form
     Given Consent Succeeds
@@ -60,7 +60,7 @@ Feature:
       | response_type | code id_token                                   |
       | urns          | urn:openbank:intent:accounts:`AccountRequestId` |
       | nonce         | nonce90911                                         |
-    When User enters rohan and Qwerty123 and submits the form
+    When User enters user123 and Qwerty123 and submits the form
     Given Login Succeeds
     And User selects the 111111111 on consent page and submits the form
     Given Consent Succeeds
@@ -93,7 +93,7 @@ Feature:
       | response_type | code id_token                                   |
       | urns          | urn:openbank:intent:accounts:`AccountRequestId` |
       | nonce         | nonce90921                                        |
-    When User enters rohan and Qwerty123 and submits the form
+    When User enters user123 and Qwerty123 and submits the form
     Given Login Succeeds
     And User selects the 987654321 on consent page and submits the form
     Given Consent Succeeds
@@ -126,7 +126,7 @@ Feature:
       | response_type | code id_token                                   |
       | urns          | urn:openbank:intent:accounts:`AccountRequestId` |
       | nonce         | nonce90931                                        |
-    When User enters rohan and Qwerty123 and submits the form
+    When User enters user123 and Qwerty123 and submits the form
     Given Login Succeeds
     And User selects the 987654321 on consent page and submits the form
     Given Consent Succeeds

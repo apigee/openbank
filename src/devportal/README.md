@@ -2,7 +2,7 @@ Since you have landed here, we assume you already have or requested for [Apigee 
 
 ## **1. Introduction**
 
-The intent of this document is to create a customized openbank developer portal from default Apigee developer Portal. 
+The intent of this document is to create a customized openbank developer portal from default Apigee developer Portal(v1.0.1). 
 
 To know more about Apigee developer portal, refer http://apigee.com/docs/developer-services/content/what-developer-portal.
 
@@ -13,7 +13,10 @@ On successful deployment of customized developer portal, you will be able to acc
  - OpenBank Sandbox for trying out openbank APIs
  - App Gallery to promote App ecosystem of your API program.
  
-Your portal after the openbank customization will look like [openbank.apigee.com](https://openbank.apigee.com) 
+Your portal after the openbank customization will look like [openbank.apigee.com](https://openbank.apigee.com). 
+
+Once you are done with openbank customization following the steps below, you can do **further customization** to the devportal using the [document here](https://docs.google.com/document/d/11h0_8GItURW2DjymAL3Cj46EaYFz-mEKE0q73zvhKpU/edit?usp=sharing).
+
 
 ## **2. Pre-Requisites**
 
