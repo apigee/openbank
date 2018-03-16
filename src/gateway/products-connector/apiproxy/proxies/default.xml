@@ -23,6 +23,7 @@
                 <Name>Validate-Query-Params</Name>
             </Step>
             <Step>
+                <Condition> isError = true </Condition>
                 <Name>Raise-Fault-Invalid-Query-Params</Name>
             </Step>
         </Request>

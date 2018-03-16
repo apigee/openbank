@@ -9,7 +9,15 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.*/
-var detachedJws = context.getVariable("detachedJws");
-detachedJws = detachedJws.split(".");
-detachedJws = detachedJws[0] + ".."+ detachedJws[2];
-context.setVariable("detachedJws",detachedJws);
+var idempotencyKey = context.getVariable("idempotencyKey");
+var pathSuffix = context.getVariable("proxy.pathsuffix").split("/");
+if(idempotencyKey && (pathSuffix.indexOf("payment-submissions")>=0))
+{
+    idempotencyKey = "paymentSubmissions" + idempotencyKey;
+    context.setVariable("idempotencyKey",idempotencyKey);
+}
+else if(idempotencyKey && (pathSuffix.indexOf("payments")>=0))
+{
+    idempotencyKey = "payments" + idempotencyKey;
+    context.setVariable("idempotencyKey",idempotencyKey);
+}
