@@ -25,8 +25,6 @@ var path            = require('path');
 var fs              = require('fs-extra');
 var request         = require('request');
 const Datastore = require('@google-cloud/datastore');
-var co = require('co');
-var prompt = require('prompt-promise');
 
 
 
@@ -53,12 +51,12 @@ gulp.task('startdeploy', function( cb) {
             var required_values = [];
             required_values.push({name: 'datastoreProject', description: 'Enter the cloud datastore project name', type: 'string', required: true});
             required_values.push({name: 'serviceaccount_Private_Key', description: 'Enter the service account private key', type: 'string', required: true});
-            required_values.push({name: 'token_uri', description: 'Enter the token uri for the service account', type: 'string', required: true});
-            required_values.push({name: 'client_email', description: 'Enter the client email uri for the service account', type: 'string', required: true});
-            required_values.push({name: 'bankPrivateKey', description: 'Enter the path for banks private key', type: 'string', required: true});
-            required_values.push({name: 'bankPublicKey', description: 'Enter the path for banks public key', type: 'string', required: true});
-            required_values.push({name: 'tppPrivateKey', description: 'Enter the path for tpp private key', type: 'string', required: true});
-            required_values.push({name: 'tppPublicKey', description: 'Enter the path for tpp public key', type: 'string', required: true});
+            required_values.push({name: 'token_uri', description: 'Enter the token uri of the service account', type: 'string', required: true});
+            required_values.push({name: 'client_email', description: 'Enter the client email of the service account', type: 'string', required: true});
+            required_values.push({name: 'bankPrivateKey', description: 'Enter the complete path of banks private key', type: 'string', required: true});
+            required_values.push({name: 'bankPublicKey', description: 'Enter the complete path of banks public key', type: 'string', required: true});
+            required_values.push({name: 'tppPrivateKey', description: 'Enter the complete path of tpp private key', type: 'string', required: true});
+            required_values.push({name: 'tppPublicKey', description: 'Enter the complete path of tpp public key', type: 'string', required: true});
             
             prompt_lib.start();
 
@@ -81,10 +79,10 @@ gulp.task('startdeploy', function( cb) {
                 var required_values = [];
                 
 
-                required_values.push({name: 'bankPrivateKey', description: 'Enter the path for banks private key', type: 'string', required: true});
-                required_values.push({name: 'bankPublicKey', description: 'Enter the path for banks public key', type: 'string', required: true});
-                required_values.push({name: 'tppPrivateKey', description: 'Enter the path for tpp private key', type: 'string', required: true});
-                required_values.push({name: 'tppPublicKey', description: 'Enter the path for tpp public key', type: 'string', required: true});
+                required_values.push({name: 'bankPrivateKey', description: 'Enter the complete path of banks private key', type: 'string', required: true});
+                required_values.push({name: 'bankPublicKey', description: 'Enter the complete path of banks public key', type: 'string', required: true});
+                required_values.push({name: 'tppPrivateKey', description: 'Enter the complete path of tpp private key', type: 'string', required: true});
+                required_values.push({name: 'tppPublicKey', description: 'Enter the complete path of tpp public key', type: 'string', required: true});
 
                 prompt_lib.start();
 

@@ -1,0 +1,52 @@
+{
+    "configurations": [
+        {
+            "name": "dev",
+            "policies": [
+                {
+                    "name": "Assign.TargetURL.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable/Value",
+                            "value": "https://apibaas-trial.apigee.net/__APPORG__/__APPAPP__"
+                        }
+                    ]
+                }
+            ],
+            "proxies": [],
+            "targets": []
+        },
+        {
+            "name": "test",
+            "policies": [
+                {
+                    "name": "Assign.TargetURL.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable/Value",
+                            "value": "https://apibaas-trial.apigee.net/__APPORG__/__APPAPP__"
+                        }
+                    ]
+                }
+            ],
+            "proxies": [],
+            "targets": []
+        },
+        {
+            "name": "prod",
+            "policies": [
+                {
+                    "name": "Assign.TargetURL.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable/Value",
+                            "value": "https://apibaas-trial.apigee.net/__APPORG__/__APPAPP__"
+                        }
+                    ]
+                }
+            ],
+            "proxies": [],
+            "targets": []
+        }
+    ]
+}

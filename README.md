@@ -12,7 +12,7 @@ This document is organized into the following sections
 - [Security](#security)
 - [APIs](#functional-apis)  
 
-3.[Setup](#setup)
+3.[Setup](#openbank-setup)
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Test](#Test)
@@ -173,11 +173,11 @@ Banking APIs provide developers with the information needed to create innovative
  - Recommendation of products and deals based on monthly statements.
 
 
-## Apigee Edge Setup
+## OpenBank Setup
 
 <img src="/images/openbankDeploymentarchitecture.png" width="700px" height="300px"/>
 
-The OpenBank deployment architecture is as mentioned above.
+The OpenBank deployment architecture is as shown above.
 
 ### Getting Started
 
@@ -185,12 +185,17 @@ The OpenBank deployment architecture is as mentioned above.
 +   Request For [Apigee Developer Portal](https://pages.apigee.com/contact-sales-reg.html), if you want to use portal
 
 
-The OpenBank Solution is using Google Cloud Datastore as backend. To setup the openbank solution , there are two options available:
+The OpenBank Solution is using Google Cloud Datastore as backend. To setup the OpenBank solution , there are two options available:
 + Using one's own Google Cloud Datastore instance
-+ Using [Apigee Openbank's](https://openbank.apigee.com) Google Cloud Datastore instance
++ Using [Apigee OpenBank's](https://openbank.apigee.com) Datastore instance
+
+To shift from Apigee's OpenBank Datastore instance to own Datastore instance, follow the steps [here](#moving-to-own-cloud-datastore-instance)
 
 
-If one wants to setup the openbank solution on own Google Cloud Datastore instance,[create a Google Cloud project and enable Datatsore](https://console.cloud.google.com/)  
+Note: you can also setup OpenBank solution on Apigee BaaS following the steps [here](#openbank-setup-on-baas)
+
+
+If one wants to setup the OpenBank solution on own Google Cloud Datastore instance, [create a Google Cloud project](https://console.cloud.google.com/), enable Datatsore and create a [service account](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and download the service account as .json .
 
 To Learn more on the basic concepts of Apigee Edge, please refer to : 
 http://docs.apigee.com/api-services/content/what-apigee-edge
@@ -239,10 +244,10 @@ Run the deploy command
 gulp deployopenbank --env <env>
 ```
 
-This will ask you if you have your own datastore instance, or want to use the Apigee Openbank's datastore.
-If you choose to use your own datastore instance, the script will prompt you for 
+This will ask you if you have your own Datastore instance, or want to use the Apigee OpenBank's Datastore instance.
+If you choose to use your own Datastore instance, the script will prompt you for 
 + Google Cloud Project Id
-+ Service account private key for datastore
++ Service account private key for Datastore
 + Token uri associated of the service account
 + Client email of the service account
 
@@ -268,9 +273,88 @@ run tests
 gulp test
 ```
 ### Moving to own Cloud Datastore instance
-There are 2 options available
-+ Re-deploy the solution using the above script again with datastore credentials.
-+ Manually make changes to all the northbound proxies, update the service account key in the KVM and make changes to the datastore-connector proxy so that the northbound proxies invoke the proper southbounds, and the datastore-connector works well.  
+There are 2 options available for migrating from Apigee's OpenBank Datastore to own Datastore Instance:
++ Re-deploy the solution using the above script with Datastore credentials(This option will redeploy the proxies and all new changes made to the northbound proxies will go away).
++ Manually make changes required:
+  + Manually make changes to all the northbound proxies
+    + src/gateway/login-app/target/apiproxy/resources/node/config.json
+    + src/gateway/locations/target/apiproxy/targets/default.xml
+    + src/gateway/products/target/apiproxy/targets/default.xml
+    + src/gateway/oauth/target/apiproxy/policies/Service-Callout-Create-ID-token.xml
+    + src/gateway/consent-app/target/apiproxy/resources/node/config.json
+    + src/gateway/accounts/target/apiproxy/policies/Fetch-Account-Consent.xml
+    + src/gateway/accounts/target/apiproxy/policies/Get-Acc-Req-Data.xml
+    + src/gateway/accounts/target/apiproxy/policies/Update-Access-Count.xml
+    + src/gateway/accounts/target/apiproxy/targets/default.xml
+    + src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Account-Request.xml
+    + src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Payment-Request.xml
+    + src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Account-Request.xml
+    + src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Payment-Request.xml
+    + src/gateway/oauth/target/apiproxy/targets/default.xml
+    + src/gateway/payments/target/apiproxy/policies/Service-Callout-Validate-Payment-Request-Status.xml
+    + src/gateway/payments/target/apiproxy/policies/Service-Callout-Fetch-and-Validate-Consent.xml
+    + src/gateway/payments/target/apiproxy/targets/default.xml
+  + Update the service account key value for 'privateKey' key in the KVM GoogleServiceAccountKVM   
+  + Replace the variable {{ datastoreProject }} with your Google Cloud project-Id in: 
+    + src/gateway/datastore-connector/target/apiproxy/targets/default.xml
+    + src/gateway/datastore-connector/target/apiproxy/policies/Service-Callout-Get-Entity.xml
+  + Replace the variable {{ client_email }} with your project service account client email in:
+    + src/gateway/datastore-connector/target/apiproxy/policies/Generate-JWT-Datastore.xml
+  + Replace the variable {{ token_uri }} with your Google Cloud project service account token uri  in:
+    + src/gateway/datastore-connector/target/apiproxy/policies/Generate-JWT-Datastore.xml
+    + src/gateway/datastore-connector/target/apiproxy/policies/Service-Callout-Get-Access-Token.xml  
+
+### OpenBank setup on BaaS
+If you want to setup the OpenBank solution on BaaS, southbound proxies are available in path /src/gateway with 'baas' suffix. You can setup OpenBank on BaaS by following the steps bellow:
++ Create an [Apigee BaaS](https://apibaas.apigee.com) account
++ Create BaaS collections corresponding to the .json file name in /setup/data and upload the data to the collections from respective .json files
++ Additionally create empty collections :
+  + payments
+  + payment-submissions
+  + id-tokens 
++ Replace the variable {{ baasBasePath }} with value of {baasBasePath}/{baasOrg}/{bassApp} in the BaaS southbound proxies in path /src/gateway:
+  + /src/gateway/accounts-connector-baas/apiproxy/policies/Assign-Target-URL.xml 
+  + /src/gateway/consent-management-baas/apiproxy/resources/node/package.json
+  + /src/gateway/customer-management-baas/apiproxy/targets/default.xml
+  + /src/gateway/locations-connector-baas/apiproxy/policies/Assign-Target-URL.xml
+  + /src/gateway/products-connector-baas/apiproxy/policies/Assign-Target-URL.xml
+  + /src/gateway/user-management-baas/apiproxy/targets/default.xml
+  + /src/gateway/payments-connector-baas/apiproxy/resources/node/package.json
+
++ Replace the variable {{ baasClientId }} with clientId for the BaaS Org  in the BaaS southbound proxies:
+  + /src/gateway/accounts-connector-baas/apiproxy/resources/node/package.json
+  + /src/gateway/consent-management-baas/apiproxy/resources/node/package.json
+  + /src/gateway/customer-management-baas/apiproxy/policies/Assign-clientIdSecret.xml
+  + /src/gateway/locations-connector-baas/apiproxy/resources/node/package.json
+  + /src/gateway/payments-connector-baas/apiproxy/resources/node/package.json
+  + /src/gateway/products-connector-baas/apiproxy/resources/node/package.json
+  
++ Replace the variable {{ baasClientSecret }} with clientId for the BaaS Org  in the BaaS southbound proxies:
+  + /src/gateway/accounts-connector-baas/apiproxy/resources/node/package.json
+  + /src/gateway/consent-management-baas/apiproxy/resources/node/package.json
+  + /src/gateway/customer-management-baas/apiproxy/policies/Assign-clientIdSecret.xml
+  + /src/gateway/locations-connector-baas/apiproxy/resources/node/package.json
+  + /src/gateway/payments-connector-baas/apiproxy/resources/node/package.json
+  + /src/gateway/products-connector-baas/apiproxy/resources/node/package.json
++ Upload the proxy bundles to your Edge Org
++ Make changes to northbound proxies to change the Target Endpoints and ServiceCallout Endpoints to the BaaS southbound proxies: 
+  + src/gateway/login-app/target/apiproxy/resources/node/config.json
+  + src/gateway/locations/target/apiproxy/targets/default.xml
+  + src/gateway/products/target/apiproxy/targets/default.xml
+  + src/gateway/oauth/target/apiproxy/policies/Service-Callout-Create-ID-token.xml
+  + src/gateway/consent-app/target/apiproxy/resources/node/config.json
+  + src/gateway/accounts/target/apiproxy/policies/Fetch-Account-Consent.xml
+  + src/gateway/accounts/target/apiproxy/policies/Get-Acc-Req-Data.xml
+  + src/gateway/accounts/target/apiproxy/policies/Update-Access-Count.xml
+  + src/gateway/accounts/target/apiproxy/targets/default.xml
+  + src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Account-Request.xml
+  + src/gateway/oauth/target/apiproxy/policies/Service-Callout-Update-Payment-Request.xml
+  + src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Account-Request.xml
+  + src/gateway/oauth/target/apiproxy/policies/Service-Callout-Validate-Payment-Request.xml
+  + src/gateway/oauth/target/apiproxy/targets/default.xml
+  + src/gateway/payments/target/apiproxy/policies/Service-Callout-Validate-Payment-Request-Status.xml
+  + src/gateway/payments/target/apiproxy/policies/Service-Callout-Fetch-and-Validate-Consent.xml
+  + src/gateway/payments/target/apiproxy/targets/default.xml
 
 ## Developer Portal
 Every API provider must be able to educate developers and successfully expose their APIs. A developer portal is the face of your API program, providing everything that internal, partner, and third party developers need. 
@@ -308,7 +392,7 @@ Additional notes for implementors.
 
 #### 2018/03/16
 * APIs / API Spec
-    * Openbank shifted from Baas 2.0 . Hosted on Google Cloud datastore 
+    * OpenBank shifted from BaaS 2.0 . Hosted on Google Cloud Datastore 
 
 #### 2017/09/13
 * APIs / API Spec
