@@ -1,0 +1,19 @@
+{
+  "name": "bankaccounts",
+  "version": "0.0.1",
+  "description": "Banking Accounts Info",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "clientId": "{{ baasClientId}}",
+  "clientSecret": "{{ baasClientSecret }}",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apigee-access": "^1.3.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.13.4",
+    "request": "2.81.0"
+  }
+}
