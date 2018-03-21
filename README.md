@@ -187,10 +187,9 @@ The OpenBank deployment architecture is as shown above.
 
 The OpenBank Solution is using Google Cloud Datastore as backend. To setup the OpenBank solution , there are two options available:
 + Using one's own Google Cloud Datastore instance
-+ Using [Apigee OpenBank's](https://openbank.apigee.com) Datastore instance
++ If you do not have Goole Cloud Platform access then OpenBank solution can still be  deployed and run with public south-bound endpoint for Datastore hosted by Apigee 
 
-To shift from Apigee's OpenBank Datastore instance to own Datastore instance, follow the steps [here](#moving-to-own-cloud-datastore-instance)
-
+To shift from Apigee's public south-bound endpoint to own Datastore instance, follow the steps [here](#moving-to-own-cloud-datastore-instance)
 
 Note: you can also setup OpenBank solution on Apigee BaaS following the steps [here](#openbank-setup-on-baas)
 
@@ -244,8 +243,9 @@ Run the deploy command
 gulp deployopenbank --env <env>
 ```
 
-This will ask you if you have your own Datastore instance, or want to use the Apigee OpenBank's Datastore instance.
-If you choose to use your own Datastore instance, the script will prompt you for 
+
+This will ask you if you have your own Datastore instance, or want to use the Apigee's public south-bound endpoint for Goole Cloud Datastore.
+If you choose to use your own Datastore instance, the script will additionally prompt you for 
 + Google Cloud Project Id
 + Service account private key for Datastore
 + Token uri associated of the service account
@@ -273,7 +273,8 @@ run tests
 gulp test
 ```
 ### Moving to own Cloud Datastore instance
-There are 2 options available for migrating from Apigee's OpenBank Datastore to own Datastore Instance:
+
+There are 2 options available for migrating from Apigee's public south-bound endpoint for Datastore to own Datastore Instance:
 + Re-deploy the solution using the above script with Datastore credentials(This option will redeploy the proxies and all new changes made to the northbound proxies will go away).
 + Manually make changes required:
   + Manually make changes to all the northbound proxies

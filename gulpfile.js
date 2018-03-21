@@ -18,7 +18,6 @@ var gulp = require('gulp');
 var cucumber = require('gulp-cucumber');
 var eslint = require('gulp-eslint');
 var prompt_lib      = require('prompt');
-require('edge-launchpad')(gulp);
 var gulpSequence = require('gulp-sequence')
 var mustache        = require('mustache');
 var path            = require('path');
@@ -67,6 +66,9 @@ gulp.task('startdeploy', function( cb) {
                     results.hasdatastore = true;
                     post_prompt(err, results, function( callback)
                     {
+
+                        require('edge-launchpad')(gulp);
+
                         cb();
                     });
 
@@ -95,6 +97,8 @@ gulp.task('startdeploy', function( cb) {
                     results["client_email"] = "clientmailhere";
                     post_prompt(err, results, function( callback)
                     {
+                        require('edge-launchpad')(gulp);
+
                         cb();
                     });
 
