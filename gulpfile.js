@@ -68,6 +68,7 @@ gulp.task('startdeploy', function( cb) {
                     {
 
                         require('edge-launchpad')(gulp);
+
                         cb();
                     });
 
@@ -96,8 +97,8 @@ gulp.task('startdeploy', function( cb) {
                     results["client_email"] = "clientmailhere";
                     post_prompt(err, results, function( callback)
                     {
-
                         require('edge-launchpad')(gulp);
+
                         cb();
                     });
 
