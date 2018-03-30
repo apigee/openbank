@@ -145,6 +145,8 @@ Account Information APIs provide account information for accounts held by the co
  - Standing Orders
  - Products
 
+<img src="/images/openbankingaccounts.png" width="669px" height="724px"/>
+
 An API end point is provided for each type of information.
 These Account Information APIs are secured with **oAuth 2.0**  and need a **valid Access token** for making API calls. 
 
@@ -153,6 +155,8 @@ These Account Information APIs are secured with **oAuth 2.0**  and need a **vali
 Payment Initiation APIs provide a simple one time payment functionality. It has two sets of APIs:
  - Payment request  - (CREATE, GET and DELETE) to request for a one time payment  
  - Payment submission  - (CREATE, GET) to submit payment request for actual payment.
+ 
+<img src="/images/openbankingpayments.png" width="669px" height="724px"/>
 
 The Payment Initiation APIs are also secured with **oAuth 2.0** and need a **valid Access token**. 
 
@@ -240,7 +244,7 @@ npm install
 
 Run the deploy command
 ```
-gulp deployopenbank --env <env>
+gulp openbankdeploy --env <env>
 ```
 
 
@@ -386,7 +390,7 @@ Additional notes for implementors.
 
 - Private key for the bank has to be provided during deployment. It is recommended to define a Prompt in config.yml and use it as value for the private key.
 - For Production access, a Mutual TSL connectivity needs to be configured as defined [here](http://docs.apigee.com/api-services/content/creating-virtual-host).
-- While running `gulp deployopenbank` please do make sure there are no custom APIs defined with the same names; otherwise those APIs will be overwritten with a new revision.   
+- While running `gulp openbankdeploy --env <env>` please do make sure there are no custom APIs defined with the same names; otherwise those APIs will be overwritten with a new revision.   
 
 
 ## Changelog
