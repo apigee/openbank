@@ -21,7 +21,10 @@
     <GenerateResponse enabled="true">
         <Format>FORM_PARAM</Format>
     </GenerateResponse>
-    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <ExpiresIn>1800000</ExpiresIn>
+    <!-- 30 minutes -->
+    <RefreshTokenExpiresIn>28800000</RefreshTokenExpiresIn>
+    <ReuseRefreshToken>true</ReuseRefreshToken>
     <SupportedGrantTypes/>
     <Tokens/>
 </OAuthV2>
