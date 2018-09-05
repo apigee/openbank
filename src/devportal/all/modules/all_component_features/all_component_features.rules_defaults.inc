@@ -37,10 +37,10 @@ function all_component_features_default_rules_configuration() {
       "ON" : { "feedback_insert" : [] },
       "DO" : [
         { "mail" : {
-            "to" : "api-solutions@apigee.com",
+            "to" : "youremailid@yourcompany.com",
             "subject" : "New Feedback received on path - [feedback:url] ",
             "message" : "New Feedback received on path - [feedback:url] \\r\\n\\r\\nMessage: \\r\\n[feedback:message]\\r\\n\\r\\n\\r\\nView feedback - [site:url]\\/admin\\/reports\\/feedback\\/[feedback:fid]\\r\\n\\r\\nThanks,\\r\\n[site:name] team",
-            "from" : "noreply@apigee.com",
+            "from" : "noreplyyouremailid@yourcompany.com",
             "language" : [ "" ]
           }
         }
