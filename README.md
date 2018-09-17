@@ -59,7 +59,7 @@ The OpenBank solution is built on Apigee Edge API Management Platform, and featu
 ![enter image description
 here](http://openbank.apigee.com/sites/default/files/openbank_architecture.png)
 
-The Account Access APIs follow the Open Banking [Account and Transaction API Specification - v1.0.0](https://www.openbanking.org.uk/read-write-apis/account-transaction-api/v1-0-0/) and Payment Initiation APIs follow [Payment Initiation API Specification - v1.0.0](https://www.openbanking.org.uk/read-write-apis/payment-initiation-api/v1-0-0/)
+The Account Access APIs follow the Open Banking [Account and Transaction API Specification - v3.0](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/641992418/Read+Write+Data+API+Specification+-+v3.0) and Payment Initiation APIs follow [Payment Initiation API Specification - v1.0.0](https://www.openbanking.org.uk/read-write-apis/payment-initiation-api/v1-0-0/)
 
 It also provides an implementation of [Open Banking Security Profile v1.0.0](https://www.openbanking.org.uk/read-write-apis/security-profile/id1-0-1/). It is  **OpenID** and **oAuth** based authentication, having **consent** and **two-factor authentication** using phone number and PIN based authentication using external SMS API.
 
