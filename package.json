@@ -6,21 +6,21 @@
     "start": "npm install && gulp deploy"
   },
   "dependencies": {
+    "@google-cloud/datastore": "^1.4.2",
+    "apickli": "latest",
     "async": "*",
+    "chromedriver": "^2.31.0",
     "edge-launchpad": "^2.0.2",
-    "gulp-eslint": "^4.0.0",
     "eslint": "^4.9.0",
     "eslint-config-google": "^0.9.1",
-    "apickli": "latest",
-    "chromedriver": "^2.31.0",
     "fs": "latest",
     "gulp": "^3.9.1",
-    "gulp-cucumber": "0.0.22",
+    "gulp-cucumber": "0.0.23",
+    "gulp-eslint": "^4.0.0",
+    "gulp-sequence": "*",
     "jsonwebtoken": "latest",
-    "selenium-webdriver": "^3.5.0",
-    "readline" : "*",
-    "gulp-sequence" : "*",
-    "@google-cloud/datastore": "1.3.3"
+    "readline": "*",
+    "selenium-webdriver": "^3.5.0"
   },
   "license": "Apache-2.0"
 }
