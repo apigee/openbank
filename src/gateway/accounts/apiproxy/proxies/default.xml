@@ -164,7 +164,7 @@
                 </Step>
             </Request>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/account-requests/{AccountRequestId}") and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/account-access-consents/{AccountRequestId}") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="DeleteAccountRequest">
             <Description/>
@@ -185,7 +185,7 @@
                 </Step>
             </Request>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/account-requests/{AccountRequestId}") and (request.verb = "DELETE")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/account-access-consents/{AccountRequestId}") and (request.verb = "DELETE")</Condition>
         </Flow>
         <Flow name="CreateAccountRequest">
             <Description/>
@@ -226,7 +226,7 @@
                 </Step>
             </Request>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/account-requests") and (request.verb = "POST")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/account-access-consents") and (request.verb = "POST")</Condition>
         </Flow>
         <Flow name="GetAccountDetails">
             <Description/>
@@ -417,7 +417,7 @@
         <Response/>
     </PreFlow>
     <HTTPProxyConnection>
-        <BasePath>/ais/open-banking/v1.0.1</BasePath>
+        <BasePath>/apis/open-banking/v3.0/aisp</BasePath>
         <Properties/>
         <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>

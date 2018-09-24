@@ -245,7 +245,7 @@
         </Response>
     </PreFlow>
     <HTTPProxyConnection>
-        <BasePath>/pis/open-banking/v1.0.1</BasePath>
+        <BasePath>/apis/open-banking/v3.0/pisp</BasePath>
         <Properties/>
         <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>
