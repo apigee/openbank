@@ -21,10 +21,15 @@
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
         
             {
-            "ErrorResponseCode" : "400",
-            "ErrorDescription" : "Invalid Operation"
+                "Code": "400 Bad Request",
+                "Message": "Invalid Operation",
+                "Errors": [
+                    {
+                        "ErrorCode": "UK.OBIE.Field.Invalid",
+                        "Message": "Invalid Operation",
+                    }
+                ]
             }
-        
     </Payload>
             <StatusCode>400</StatusCode>
             <ReasonPhrase>Bad Request</ReasonPhrase>

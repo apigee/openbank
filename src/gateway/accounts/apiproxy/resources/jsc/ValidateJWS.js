@@ -36,6 +36,7 @@ requestPayload = JSON.stringify(requestPayload);
 var validAlgorithms = ["RS256"];
 var isError = false;
 var errorDescription = "";
+var obieCode = "";
 //split the jws header in 2 parts. header and payload
 var jwsParts = xJwsSignature.split("..");
 
@@ -48,6 +49,7 @@ if (jwsParts.length == 2) {
 }
 else {
     isError = true;
+    obieCode = "UK.OBIE.Signature.Malformed";
     errorDescription = "malformed jws signature";
 }
 

@@ -20,11 +20,36 @@
  * Script is used to validate account request permissions
  */
 
-var validPermissionEnum = ["ReadAccountsBasic", "ReadAccountsDetail", "ReadBalances", "ReadBeneficiariesBasic", "ReadBeneficiariesDetail", "ReadDirectDebits", "ReadProducts", "ReadStandingOrdersBasic", "ReadStandingOrdersDetail", "ReadTransactionsBasic", "ReadTransactionsCredits", "ReadTransactionsDebits", "ReadTransactionsDetail"];
+
+
+
+var validPermissionEnum = ["ReadAccountsBasic",
+                            "ReadAccountsDetail",
+                            "ReadBalances",
+                            "ReadBeneficiariesBasic",
+                            "ReadBeneficiariesDetail",
+                            "ReadDirectDebits",
+                            "ReadOffers",
+                            "ReadPAN",
+                            "ReadParty",
+                            "ReadPartyPSU",
+                            "ReadProducts",
+                            "ReadScheduledPaymentsBasic",
+                            "ReadScheduledPaymentsDetail",
+                            "ReadStandingOrdersBasic",
+                            "ReadStandingOrdersDetail",
+                            "ReadStatementsBasic",
+                            "ReadStatementsDetail",
+                            "ReadTransactionsBasic",
+                            "ReadTransactionsCredits",
+                            "ReadTransactionsDebits",
+                            "ReadTransactionsDetail"];
+
 var content = "";
 var permissions = null;
 var invalidReq = false;
 var errorDescription = "";
+var obieCode = "";
 if (isProperJson(context.getVariable("request.content"))) {
     content = JSON.parse(context.getVariable("request.content"));
     if (content && content.Data && content.Data.Permissions) {
@@ -36,6 +61,7 @@ if (isProperJson(context.getVariable("request.content"))) {
             for (var i = 0; i < permissions.length; i++) {
                 if (validPermissionEnum.indexOf(permissions[i]) <= -1) {
                     invalidReq = true;
+                    obieCode = "UK.OBIE.Field.Invalid";
                     errorDescription = "Invalid Permission code";
                     break;
                 }
@@ -45,16 +71,19 @@ if (isProperJson(context.getVariable("request.content"))) {
                 // validate for following invalid conditions
                 if (((permissions.indexOf("ReadTransactionsBasic") > -1) || (permissions.indexOf("ReadTransactionsDetail") > -1)) && !((permissions.indexOf("ReadTransactionsCredits") > -1) || (permissions.indexOf("ReadTransactionsDebits") > -1))) {
                     invalidReq = true;
+                    obieCode = "UK.OBIE.Field.Expected";
                     errorDescription = "Missing one of ReadTransactionCredits , ReadTransactionDebits Permissions";
                 }
 
                 else if (((permissions.indexOf("ReadTransactionsCredits") > -1) || (permissions.indexOf("ReadTransactionsDebits") > -1)) && !((permissions.indexOf("ReadTransactionsBasic") > -1) || (permissions.indexOf("ReadTransactionsDetail") > -1))) {
                     invalidReq = true;
+                    obieCode = "UK.OBIE.Field.Expected";
                     errorDescription = "Missing one of ReadTransactionBasic , ReadTransactionDetail Permissions";
 
                 }
                 if (content.Data.ExpirationDateTime && !isNaN(Date.parse(content.Data.ExpirationDateTime)) && Date.parse(content.Data.ExpirationDateTime) < new Date()) {
                     invalidReq = true;
+                    obieCode = "UK.OBIE.Field.InvalidDate";
                     errorDescription = "ExpirationDateTime is Old";
 
                 }
@@ -82,6 +111,7 @@ else {
 
 context.setVariable("isError", invalidReq);
 context.setVariable("errorResponseCode", 400);
+context.setVariable("obieCode",obieCode);
 context.setVariable("errorDescription", errorDescription);
 
 

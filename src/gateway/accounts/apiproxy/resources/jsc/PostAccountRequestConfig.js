@@ -40,6 +40,7 @@ var PostAccountRequestConfig =
 var error = validateRequest(PostAccountRequestConfig);
 if (error.isError) {
     context.setVariable("isError", error.isError);
+    context.setVariable("obieCode",error.obieCode);
     context.setVariable("errorResponseCode", error.errorResponseCode);
     context.setVariable("errorDescription", error.errorDescription);
 }

@@ -21,10 +21,16 @@
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
         
             {
-            "ErrorResponseCode" : "406",
-            "ErrorDescription" : "Invalid Accept Header"
+                "Code": "406 Not Acceptable",
+                "Message": "Invalid Accept Header",
+                "Errors": [
+                    {
+                        "ErrorCode": "UK.OBIE.Header.NotAcceptable",
+                        "Message": "Invalid Accept Header",
+                    }
+                ]
             }
-        
+
     </Payload>
             <StatusCode>406</StatusCode>
             <ReasonPhrase>Not Acceptable</ReasonPhrase>

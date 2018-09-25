@@ -21,8 +21,14 @@
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
         
             {
-            "ErrorResponseCode" : "@errorResponseCode#",
-            "ErrorDescription" : "@errorDescription#"
+                "Code": "400 Bad Request",
+                "Message": "Bad Request",
+                "Errors": [
+                    {
+                        "ErrorCode": "@obieCode#",
+                        "Message": "@errorDescription#",
+                    }
+                ]
             }
         
     </Payload>
