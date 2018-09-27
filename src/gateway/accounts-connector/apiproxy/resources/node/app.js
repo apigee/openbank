@@ -43,10 +43,10 @@ app.get('/accounts/:accountNumber/transactions', accounts.getAccountTransaction)
 app.get('/accounts/:accountNumber/product', accounts.getAccountProducts);
 
 
-app.get('/account-requests/:requestId', accounts.getAccountRequest);
-app.put('/account-requests/:requestId', accounts.updateAccountRequest);
-app.delete('/account-requests/:requestId', accounts.deleteAccountRequest);
-app.post('/account-requests', accounts.createAccountRequest);
+app.get('/account-access-consents/:requestId', accounts.getAccountRequest);
+app.put('/account-access-consents/:requestId', accounts.updateAccountRequest);
+app.delete('/account-access-consents/:requestId', accounts.deleteAccountRequest);
+app.post('/account-access-consents', accounts.createAccountRequest);
 
 
 app.listen(3000, function () {

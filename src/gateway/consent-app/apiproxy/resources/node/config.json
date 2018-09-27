@@ -58,7 +58,7 @@
     }
   },
   "getAccountRequest": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0.1/ais/account-requests/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0.1/ais/account-access-consents/",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"

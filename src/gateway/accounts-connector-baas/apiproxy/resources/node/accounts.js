@@ -758,7 +758,7 @@ exports.createAccountRequest = function (req, res) {
             }
             accRequest.Risk = body.entities[0].Risk;
             accRequest.Links = {};
-            accRequest.Links.self = "/account-requests/" + accRequest.Data.AccountRequestId;
+            accRequest.Links.self = "/account-access-consents/" + accRequest.Data.AccountRequestId;
             accRequest.Meta = {};
 
             res.status(201).json(accRequest);
@@ -820,7 +820,7 @@ exports.getAccountRequest = function (req, res) {
                     }
                     accRequest.Risk = body.entities[0].Risk;
                     accRequest.Links = {};
-                    accRequest.Links.self = "/account-requests/" + accRequest.Data.AccountRequestId;
+                    accRequest.Links.self = "/account-access-consents/" + accRequest.Data.AccountRequestId;
                     accRequest.Meta = {};
 
 
@@ -883,7 +883,7 @@ exports.updateAccountRequest = function (req, res) {
             }
             accRequest.Risk = body.entities[0].Risk;
             accRequest.Links = {};
-            accRequest.Links.self = "/account-requests/" + accRequest.Data.AccountRequestId;
+            accRequest.Links.self = "/account-access-consents/" + accRequest.Data.AccountRequestId;
             accRequest.Meta = {};
 
             res.json(accRequest);
