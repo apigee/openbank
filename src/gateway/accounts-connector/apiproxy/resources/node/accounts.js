@@ -44,6 +44,8 @@ exports.getAccountInfo = function (req, res) {
             accountDetails.AccountId = body.entities[0].AccountId;
             accountDetails.Currency = body.entities[0].Currency;
             accountDetails.Nickname = body.entities[0].Nickname;
+            accountDetails.AccountType = body.entities[0].AccountType;
+            accountDetails.AccountSubType = body.entities[0].AccountSubType;
             accountDetails.Account = body.entities[0].Account;
             accountDetails.Servicer = body.entities[0].Servicer;
 
@@ -92,6 +94,8 @@ exports.getAccountsOfCustomer = function (req, res) {
                 accountDetails.AccountId = body.entities[i].AccountId;
                 accountDetails.Currency = body.entities[i].Currency;
                 accountDetails.Nickname = body.entities[i].Nickname;
+                accountDetails.AccountType = body.entities[i].AccountType;
+                accountDetails.AccountSubType = body.entities[i].AccountSubType;
                 accountDetails.Account = body.entities[i].Account;
                 accountDetails.Servicer = body.entities[i].Servicer;
 
@@ -153,6 +157,8 @@ exports.getAccountsOfCustomer = function (req, res) {
                     accountDetails.AccountId = body.entities[i].AccountId;
                     accountDetails.Currency = body.entities[i].Currency;
                     accountDetails.Nickname = body.entities[i].Nickname;
+                    accountDetails.AccountType = body.entities[i].AccountType;
+                    accountDetails.AccountSubType = body.entities[i].AccountSubType;
                     accountDetails.Account = body.entities[i].Account;
                     accountDetails.Servicer = body.entities[i].Servicer;
     
@@ -826,7 +832,7 @@ exports.createAccountRequest = function (req, res) {
     var apikey = apigee.getVariable(req, 'apikey');
     var requestPayload = apigee.getVariable(req, 'request.content');
     requestPayload = JSON.parse(requestPayload);
-    requestPayload.Status = "AwaitingAuthentication";
+    requestPayload.Status = "AwaitingAuthorisation";
     requestPayload.TppId = req.query.tppId;
     requestPayload.CreationDateTime = Date.parse(new Date());
     var options = {
