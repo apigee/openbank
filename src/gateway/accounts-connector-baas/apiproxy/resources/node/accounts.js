@@ -723,7 +723,7 @@ exports.createAccountRequest = function (req, res) {
     var basePath = apigee.getVariable(req, 'appBasePath');
     var requestPayload = apigee.getVariable(req, 'request.content');
     requestPayload = JSON.parse(requestPayload);
-    requestPayload.Status = "AwaitingAuthentication";
+    requestPayload.Status = "AwaitingAuthorisation";
     requestPayload.name = generateUUID();
     requestPayload.TppId = req.query.tppId;
 
