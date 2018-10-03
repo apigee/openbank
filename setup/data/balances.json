@@ -1,0 +1,62 @@
+[
+    {
+      "name": "123459876",
+      "AccountId": "123459876",
+      "Amount": {
+        "Amount": 5600,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Debit",
+      "CreditLine": {
+        "Type": "Pre-Agreed",
+        "Amount": {
+          "Amount": 1300,
+          "Currency": "GBP"
+        },
+        "Included": true
+      },
+      "CustomerId": "10203040",
+      "DateTime": 1501200000000,
+      "Type": "ClosingAvailable"
+    },
+    {
+      "name": "987654321",
+      "AccountId": "987654321",
+      "Amount": {
+        "Amount": 1500,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Debit",
+      "CreditLine": {
+        "Type": "Temporary",
+        "Amount": {
+          "Amount": 200,
+          "Currency": "GBP"
+        },
+        "Included": true
+      },
+      "CustomerId": "10203040",
+      "DateTime": 1501632000000,
+      "Type": "ClosingAvailable"
+    },
+    {
+      "name": "111111111",
+      "AccountId": "111111111",
+      "Amount": {
+        "Amount": 45000,
+        "Currency": "GBP"
+      },
+      "CreditDebitIndicator": "Debit",
+      "CreditLine": {
+        "Type": "Pre-Agreed",
+        "Amount": {
+          "Amount": 1300,
+          "Currency": "GBP"
+        },
+        "Included": true
+      },
+      "CustomerId": "10203040",
+      "DateTime": 1501200000000,
+      "Type": "ClosingAvailable"
+    }
+  ]
