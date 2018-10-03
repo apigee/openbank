@@ -18,7 +18,7 @@
       ],
       "TransactionFromDateTime": "2017-05-03T00:00:00-00:00"
     },
-    "Status": "AwaitingAuthentication",
+    "Status": "AwaitingAuthorisation",
     "Risk": {},
     "TppId": "12345"
   },
@@ -40,7 +40,7 @@
       ],
       "TransactionFromDateTime": "2017-05-03T00:00:00-00:00"
     },
-    "Status": "AwaitingAuthentication",
+    "Status": "AwaitingAuthorisation",
     "Risk": {},
     "TppId": "12345"
   },
@@ -62,7 +62,7 @@
       ],
       "TransactionFromDateTime": "2017-05-03T00:00:00-00:00"
     },
-    "Status": "AwaitingAuthentication",
+    "Status": "AwaitingAuthorisation",
     "Risk": {},
     "TppId": "12345"
   },
@@ -76,7 +76,7 @@
       ],
       "TransactionFromDateTime": "2017-05-03T00:00:00-00:00"
     },
-    "Status": "AwaitingAuthentication",
+    "Status": "AwaitingAuthorisation",
     "Risk": {},
     "TppId": "12345"
   },
@@ -90,7 +90,7 @@
       ],
       "TransactionFromDateTime": "2017-05-03T00:00:00-00:00"
     },
-    "Status": "AwaitingAuthentication",
+    "Status": "AwaitingAuthorisation",
     "Risk": {},
     "TppId": "12345"
   },
@@ -112,7 +112,7 @@
       ],
       "TransactionFromDateTime": "2017-05-03T00:00:00-00:00"
     },
-    "Status": "AwaitingAuthentication",
+    "Status": "AwaitingAuthorisation",
     "Risk": {},
     "TppId": "12345"
   },
@@ -134,7 +134,7 @@
       ],
       "TransactionFromDateTime": "2017-05-03T00:00:00-00:00"
     },
-    "Status": "AwaitingAuthentication",
+    "Status": "AwaitingAuthorisation",
     "Risk": {},
     "TppId": "12345"
   },
@@ -156,7 +156,7 @@
       ],
       "TransactionFromDateTime": "2017-05-03T00:00:00-00:00"
     },
-    "Status": "AwaitingAuthentication",
+    "Status": "AwaitingAuthorisation",
     "Risk": {},
     "TppId": "12345"
   },
@@ -178,7 +178,7 @@
       ],
       "TransactionFromDateTime": "2017-05-03T00:00:00-00:00"
     },
-    "Status": "AwaitingAuthentication",
+    "Status": "AwaitingAuthorisation",
     "Risk": {},
     "TppId": "12345"
   },
@@ -200,7 +200,7 @@
       ],
       "TransactionFromDateTime": "2017-05-03T00:00:00-00:00"
     },
-    "Status": "AwaitingAuthentication",
+    "Status": "AwaitingAuthorisation",
     "Risk": {},
     "TppId": "12345"
   }

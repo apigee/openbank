@@ -169,7 +169,7 @@ exports.getAccountBalance = function (req, res) {
     var accountNumber = req.params.accountNumber;
     var basePath = apigee.getVariable(req, 'appBasePath');
     var options = {
-        url: basePath + "/accounts/" + accountNumber,
+        url: basePath + "/balances/" + accountNumber,
         json: true,
         qs : {
                 client_id : packagejson.clientId,
@@ -211,7 +211,7 @@ exports.getAccountBalance = function (req, res) {
 
 // get balance info of selected accounts of customer
 exports.getAccountsBalanceOfCustomer = function (req, res) {
-    var options = getOptionsJsonForCustomer("accounts", req, res);
+    var options = getOptionsJsonForCustomer("balances", req, res);
     request(options, function (error, response, body) {
         var balances = {};
         if (!error && response.statusCode == 200) {

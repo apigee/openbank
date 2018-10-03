@@ -193,7 +193,7 @@ exports.getAccountBalance = function (req, res) {
     var basePath = apigee.getVariable(req, 'appBasePath');
     var apikey = apigee.getVariable(req, 'apikey');
     var options = {
-        url: basePath + "/accounts?ql= where AccountId='" + accountNumber + "'",
+        url: basePath + "/balances?ql= where AccountId='" + accountNumber + "'",
         qs:{
             "x-apikey": apikey
         },
@@ -234,7 +234,7 @@ exports.getAccountBalance = function (req, res) {
 
 // get balance info of selected accounts of customer
 exports.getAccountsBalanceOfCustomer = function (req, res) {
-    getDataForAllAccounts("accounts", req, res, function(body){
+    getDataForAllAccounts("balances", req, res, function(body){
         var balances = {};
         if (body.entities) 
         {
