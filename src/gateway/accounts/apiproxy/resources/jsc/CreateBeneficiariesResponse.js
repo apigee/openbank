@@ -48,7 +48,7 @@ function assignResponse(response) {
             entity.Reference = responsearray[i].Reference;
 
             if (readDetailData) {
-                entity.Servicer = responsearray[i].Servicer;
+                entity.CreditorAgent = responsearray[i].CreditorAgent;
                 entity.CreditorAccount = responsearray[i].CreditorAccount;
             }
 

@@ -22,7 +22,7 @@
       "Name": "Mr Akash"
     },
     "Reference": "Green Park LandLord",
-    "Servicer": {
+    "CreditorAgent": {
       "Identification": "SC802001",
       "SchemeName": "UKSortCode"
     }
@@ -36,7 +36,7 @@
       "Name": "Mrs Juniper"
     },
     "Reference": "Towbar Club",
-    "Servicer": {
+    "CreditorAgent": {
       "Identification": "SC802001",
       "SchemeName": "UKSortCode"
     }

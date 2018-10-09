@@ -514,7 +514,7 @@ exports.getAccountBeneficiaries = function (req, res) {
                 beneficiary.AccountId = body.entities[i].AccountId;
                 beneficiary.BeneficiaryId = body.entities[i].uuid;
                 beneficiary.Reference = body.entities[i].Reference;
-                beneficiary.Servicer = body.entities[i].Servicer;
+                beneficiary.CreditorAgent = body.entities[i].CreditorAgent;
                 beneficiary.CreditorAccount = body.entities[i].CreditorAccount;
 
                 beneficiaries.push(beneficiary);
@@ -553,7 +553,7 @@ exports.getAccountsBeneficiariesOfCustomer = function (req, res) {
             beneficiary.AccountId = body.entities[i].AccountId;
             beneficiary.BeneficiaryId = body.entities[i].uuid;
             beneficiary.Reference = body.entities[i].Reference;
-            beneficiary.Servicer = body.entities[i].Servicer;
+            beneficiary.CreditorAgent = body.entities[i].CreditorAgent;
             beneficiary.CreditorAccount = body.entities[i].CreditorAccount;
 
             beneficiaries.push(beneficiary);
