@@ -44,13 +44,24 @@ function assignResponse(response) {
             entity = {};
 
             entity.AccountId = responsearray[i].AccountId;
-            entity.ProductIdentifier = responsearray[i].ProductIdentifier;
+            entity.ProductId = responsearray[i].ProductId;
             entity.ProductType = responsearray[i].ProductType;
             entity.ProductName = responsearray[i].ProductName;
-            entity.SecondaryProductIdentifier = responsearray[i].SecondaryProductIdentifier;
+            entity.SecondaryProductId = responsearray[i].SecondaryProductId;
             if (readDetailData) {
 
             }
+            if (responsearray[i].BCA) {
+                entity.BCA = responsearray[i].BCA
+            }
+            if (responsearray[i].PCA) {
+                entity.PCA = responsearray[i].PCA
+            }
+            if (responsearray[i].MarketingStateId) {
+                entity.MarketingStateId = responsearray[i].MarketingStateId;
+            }
+            
+            
 
             newResponseArray.push(entity);
         }

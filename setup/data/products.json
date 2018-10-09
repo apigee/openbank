@@ -1,11 +1,23 @@
 [
   {
     "name": "CC1",
-    "AccountId": [
-      "987654321"
-    ],
+    "AccountId":"987654321",
     "ProductName": "Bank CC1 product",
     "ProductType": "Current Account",
     "SecondaryProductIdentifier": "BankCC1"
+  },
+  {
+    "name": "CurrentAccount",
+    "AccountId": "22391",
+    "ProductType": "BusinessCurrentAccount",
+    "ProductName": "Business Current Account",
+    "BCA": {
+      "ProductDetails": {
+        "Segment": "General",
+        "FeeFreeLength": "18",
+        "FeeFreeLengthPeriod": "Month",
+        "Notes": "The customer is no longer in the fee free period."
+      }
+    }
   }
 ]

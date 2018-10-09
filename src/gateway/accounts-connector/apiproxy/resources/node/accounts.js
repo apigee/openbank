@@ -809,7 +809,8 @@ exports.getAccountProducts = function (req, res) {
                 product.ProductType = body.entities[i].ProductType;
                 product.ProductName = body.entities[i].ProductName;
                 product.SecondaryProductIdentifier = body.entities[i].SecondaryProductIdentifier;
-
+                product.BCA = body.entities[i].BCA;
+                product.PCA = body.entities[i].PCA;
                 products.push(product);
             }
             var prd = {};
