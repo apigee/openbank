@@ -55,9 +55,10 @@ function assignResponse(response) {
             entity.NextPaymentAmount = responsearray[i].NextPaymentAmount;
             entity.FinalPaymentDateTime = responsearray[i].FinalPaymentDateTime;
             entity.FinalPaymentAmount = responsearray[i].FinalPaymentAmount;
+            entity.StandingOrderStatusCode = responsearray[i].StandingOrderStatusCode;
 
             if (readDetailData) {
-                entity.Servicer = responsearray[i].Servicer;
+                entity.CreditorAgent = responsearray[i].CreditorAgent;
                 entity.CreditorAccount = responsearray[i].CreditorAccount;
             }
 

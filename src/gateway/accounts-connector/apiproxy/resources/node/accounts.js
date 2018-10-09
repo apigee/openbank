@@ -608,10 +608,13 @@ exports.getStandingOrdersOfCustomer = function (req, res) {
                 if (body.entities[i].FinalPaymentDateTime) {
                     so.FinalPaymentDateTime = new Date(body.entities[i].FinalPaymentDateTime).toISOString();
                 }
+                if (body.entities[i].StandingOrderStatusCode) {
+                    so.StandingOrderStatusCode = body.entities[i].StandingOrderStatusCode;
+                }
                 so.FirstPaymentAmount = body.entities[i].FirstPaymentAmount;
                 so.NextPaymentAmount = body.entities[i].NextPaymentAmount;
                 so.FinalPaymentAmount = body.entities[i].FinalPaymentAmount;
-                so.Servicer = body.entities[i].Servicer;
+                so.CreditorAgent = body.entities[i].CreditorAgent;
                 so.CreditorAccount = body.entities[i].CreditorAccount;
 
                 standingorders.push(so);
@@ -662,11 +665,14 @@ exports.getAccountStandingOrders = function (req, res) {
                 if (body.entities[i].FinalPaymentDateTime) {
                     so.FinalPaymentDateTime = new Date(body.entities[i].FinalPaymentDateTime).toISOString();
                 }
+                if (body.entities[i].StandingOrderStatusCode) {
+                    so.StandingOrderStatusCode = body.entities[i].StandingOrderStatusCode;
+                }
                 so.FirstPaymentAmount = body.entities[i].FirstPaymentAmount;
                 so.NextPaymentAmount = body.entities[i].NextPaymentAmount;
                 so.FinalPaymentDateTime = new Date(body.entities[i].FinalPaymentDateTime).toISOString();
                 so.FinalPaymentAmount = body.entities[i].FinalPaymentAmount;
-                so.Servicer = body.entities[i].Servicer;
+                so.CreditorAgent = body.entities[i].CreditorAgent;
                 so.CreditorAccount = body.entities[i].CreditorAccount;
 
                 standingorders.push(so);

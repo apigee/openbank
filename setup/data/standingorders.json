@@ -15,6 +15,7 @@
       "Amount": 23,
       "Currency": "GBP"
     },
+    "StandingOrderStatusCode":"Active",
     "FirstPaymentDateTime": 1497225600000,
     "Frequency": "WkinMnthDay(2)",
     "NextPaymentAmount": {
@@ -23,7 +24,7 @@
     },
     "NextPaymentDateTime": 1499817600000,
     "Reference": "Golf - We Love Golf",
-    "Servicer": {
+    "CreditorAgent": {
       "Identification": "SC236054",
       "SchemeName": "UKSortCode"
     }
@@ -35,6 +36,7 @@
       "SchemeName": "BBAN",
       "Name": "Mrs Juniper"
     },
+    "StandingOrderStatusCode":"Active",
     "FinalPaymentAmount": {
       "Amount": 10,
       "Currency": "GBP"
@@ -52,7 +54,7 @@
     },
     "NextPaymentDateTime": 1502582400000,
     "Reference": "Towbar Club 2 - We Love Towbars",
-    "Servicer": {
+    "CreditorAgent": {
       "Identification": "SC802001",
       "SchemeName": "UKSortCode"
     }
