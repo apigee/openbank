@@ -43,6 +43,9 @@ app.get('/accounts/:accountNumber/transactions', accounts.getAccountTransaction)
 app.get('/accounts/:accountNumber/product', accounts.getAccountProducts);
 app.get('/accounts/:accountNumber/offers', accounts.getAccountOffers);
 app.get('/accounts/:accountNumber/party', accounts.getAccountParty);
+app.get('/accounts/:accountNumber/scheduled-payments', accounts.getAccountScheduledPayments);
+
+
 
 app.get('/account-access-consents/:requestId', accounts.getAccountRequest);
 app.put('/account-access-consents/:requestId', accounts.updateAccountRequest);

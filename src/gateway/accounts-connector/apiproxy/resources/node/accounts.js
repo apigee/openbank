@@ -859,7 +859,7 @@ exports.getAccountOffers = function (req, res) {
             }
             var ofr = {};
             ofr.Data = {};
-            ofr.Data["Offer"] = products;
+            ofr.Data["Offer"] = offers;
             ofr.Meta = {};
             ofr.Links = {};
             if (body.cursor) {
@@ -876,6 +876,48 @@ exports.getAccountOffers = function (req, res) {
         }
     });
 };
+
+
+// get scheduled payments of an account of a customer
+exports.getAccountScheduledPayments = function (req, res) {
+    var accountNumber = req.params.accountNumber;
+    var options = getOptionsJsonForAccount("scheduledpayments", req);
+    options.qs.ql = "where AccountId contains '" + accountNumber + "'";
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var payments = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var payment = {};
+                payment.AccountId = "" + accountNumber;
+                payment.ScheduledPaymentId = body.entities[i].ScheduledPaymentId;
+                payment.ScheduledPaymentDateTime = body.entities[i].ScheduledPaymentDateTime;
+                payment.ScheduledType = body.entities[i].ScheduledType;
+                payment.InstructedAmount = body.entities[i].InstructedAmount;
+                payment.CreditorAgent = body.entities[i].CreditorAgent;
+                payment.CreditorAccount = body.entities[i].CreditorAccount;
+                payment.Reference = body.entities[i].Reference;
+                payments.push(payment);
+            }
+            var pmnt = {};
+            pmnt.Data = {};
+            pmnt.Data["ScheduledPayment"] = payments;
+            pmnt.Meta = {};
+            pmnt.Links = {};
+            if (body.cursor) {
+                pmnt.Links.next = "/accounts/" + accountNumber + "/scheduled-payments?pageHint=" + body.cursor;
+            }
+            res.json(pmnt);
+
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
 
 // get Party of an account of a customer
 exports.getAccountParty = function (req, res) {

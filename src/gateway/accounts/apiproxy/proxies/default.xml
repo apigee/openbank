@@ -196,6 +196,28 @@
             </Response>
             <Condition>((proxy.pathsuffix MatchesPath "/accounts/{AccountId}/party")) and (request.verb = "GET")</Condition>
         </Flow>
+
+         <Flow name="GetAccountScheduledPayment">
+            <Description/>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>Validate-Get-Account-resource</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <FaultRules/>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>Create-ScheduledPayment-Response</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/accounts/{AccountId}/scheduled-payments")) and (request.verb = "GET")</Condition>
+        </Flow>
         
         <Flow name="GetAccountRequest">
             <Description/>

@@ -123,6 +123,11 @@ function hasValidPermissions() {
         return getDataReadPermission(accPermissions, "ReadParty", null);
     }
 
+     // scheduled-payments
+     else if (proxyPathSuffix.indexOf("scheulded-payments") >= 0) {
+        return getDataReadPermission(accPermissions, "ReadScheduledPaymentsBasic", "ReadScheduledPaymentsDetail");
+    }
+
     // accounts info
     else if (proxyPathSuffix.indexOf("accounts") >= 0) {
         return getDataReadPermission(accPermissions, "ReadAccountsBasic", "ReadAccountsDetail");

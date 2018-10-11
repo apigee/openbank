@@ -1,0 +1,34 @@
+[
+    {
+      "AccountId": "22289",
+      "name": "SP03",
+      "ScheduledPaymentId": "SP03",
+      "ScheduledPaymentDateTime": "2017-05-05T00:00:00+00:00",
+      "ScheduledType": "Execution",
+      "InstructedAmount": {
+        "Amount": "10.00",
+        "Currency": "GBP"
+      },
+      "CreditorAccount": {
+        "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+        "Identification": "23605490179017",
+        "Name": "Mr Tee"
+      }
+    },
+    {
+      "AccountId": "39570",
+      "name":"SP77",
+      "ScheduledPaymentId": "SP77",
+      "ScheduledPaymentDateTime": "2017-04-05T00:00:00+00:00",
+      "ScheduledType": "Execution",
+      "InstructedAmount": {
+        "Amount": "12.00",
+        "Currency": "GBP"
+      },
+      "CreditorAccount": {
+        "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+        "Identification": "23605490179017",
+        "Name": "Mr Tee"
+      }
+    }
+  ]
