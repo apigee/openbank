@@ -1,5 +1,5 @@
 /*
- Copyright 2017 Google Inc.
+ Copyright 2018 Google Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 /**
  * @file
- * CreateProductsResponse.js
+ * CreateOffersResponse.js
  * Script is used to form client response based on the permissions and scope in account request
  */
 var responseStatus = context.getVariable("response.status.code");
@@ -29,41 +29,60 @@ if (responseStatus == 200) {
 
 function assignResponse(response) {
     var readDetailData = context.getVariable('readDetailData');
-  
+    
     var responsearray = [];
     var newResponseArray = [];
     var entity = {};
     var i = 0;
     if (response.Data) {
-        responsearray = response.Data.Product;
+        responsearray = response.Data.Offers;
         newResponseArray = [];
         for (i = 0; i < responsearray.length; i++) {
             entity = {};
 
             entity.AccountId = responsearray[i].AccountId;
-            entity.ProductId = responsearray[i].ProductId;
-            entity.ProductType = responsearray[i].ProductType;
-            entity.ProductName = responsearray[i].ProductName;
-            entity.SecondaryProductId = responsearray[i].SecondaryProductId;
-            if (readDetailData) {
+            entity.OfferId = responsearray[i].OfferId;
+            entity.OfferType = responsearray[i].OfferType;
+            if (responsearray[i].Description) {
+                entity.Description = responsearray[i].Description;
+            }
 
+            if (responsearray[i].StartDateTime) {
+                entity.StartDateTime = responsearray[i].StartDateTime;
             }
-            if (responsearray[i].BCA) {
-                entity.BCA = responsearray[i].BCA
-            }
-            if (responsearray[i].PCA) {
-                entity.PCA = responsearray[i].PCA
-            }
-            if (responsearray[i].MarketingStateId) {
-                entity.MarketingStateId = responsearray[i].MarketingStateId;
+
+            if (responsearray[i].EndDateTime) {
+                entity.EndDateTime = responsearray[i].EndDateTime;
             }
             
+            if (responsearray[i].Rate) {
+                entity.Rate = responsearray[i].Rate;
+            }
             
+            if (responsearray[i].Value) {
+                entity.Value = responsearray[i].Value;
+            }
+            
+            if (responsearray[i].Term) {
+                entity.Term = responsearray[i].Term;
+            }
+            
+            if (responsearray[i].URL) {
+                entity.URL = responsearray[i].URL;
+            }
+            
+            if (responsearray[i].Amount) {
+                entity.Amount = responsearray[i].Amount;
+            }
+            
+            if (responsearray[i].Fee) {
+                entity.Fee = responsearray[i].Fee;
+            }
 
             newResponseArray.push(entity);
         }
 
-        response.Data.Product = newResponseArray;
+        response.Data.Offers = newResponseArray;
         context.setVariable("response.content", JSON.stringify(response));
 
     }

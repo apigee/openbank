@@ -702,7 +702,7 @@ exports.getAccountProducts = function (req, res) {
 
 
                 product.AccountId = "" + accountNumber;
-                product.ProductIdentifier = body.entities[i].name;
+                product.ProductId = body.entities[i].name;
                 product.ProductType = body.entities[i].ProductType;
                 product.ProductName = body.entities[i].ProductName;
                 product.SecondaryProductIdentifier = body.entities[i].SecondaryProductIdentifier;
@@ -716,7 +716,7 @@ exports.getAccountProducts = function (req, res) {
             prd.Meta = {};
             prd.Links = {};
             if (body.cursor) {
-                prd.Links.next = "/accounts/" + accountNumber + "/products?PageHint=" + body.cursor;
+                prd.Links.next = "/accounts/" + accountNumber + "/product?PageHint=" + body.cursor;
             }
             res.json(prd);
 
@@ -729,6 +729,51 @@ exports.getAccountProducts = function (req, res) {
         }
     });
 };
+
+// get offers of an account of a customer
+exports.getAccountOffers = function (req, res) {
+    var accountNumber = req.params.accountNumber;
+    var options = getOptionsJsonForAccount("offers", req);
+    options.qs.ql = "where AccountId contains '" + accountNumber + "'";
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var offers = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var offer = {};
+                offer.AccountId = "" + accountNumber;
+                offer.OfferId = body.entities[i].name;
+                offer.OfferType = body.entities[i].OfferType;
+                offer.Description = body.entities[i].Description;
+                offer.StartDateTime = body.entities[i].StartDateTime;
+                offer.EndDateTime = body.entities[i].EndDateTime;
+                offer.Rate = body.entities[i].Rate;
+                offer.Value = body.entities[i].Value;
+                offer.Term = body.entities[i].Term;
+                offer.URL = body.entities[i].URL;
+                offer.Amount = body.entities[i].Amount;
+                offer.Fee = body.entities[i].Fee;
+                offers.push(offer);
+            }
+            var ofr = {};
+            ofr.Data = {};
+            ofr.Data["Offer"] = products;
+            ofr.Meta = {};
+            ofr.Links = {};
+            if (body.cursor) {
+                prd.Links.next = "/accounts/" + accountNumber + "/offers?pageHint=" + body.cursor;
+            }
+            res.json(prd);
+
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
 
 
 exports.createAccountRequest = function (req, res) {

@@ -41,7 +41,7 @@ app.get('/accounts/:accountNumber/standing-orders', accounts.getAccountStandingO
 app.get('/accounts/:accountNumber/direct-debits', accounts.getAccountDirectDebits);
 app.get('/accounts/:accountNumber/transactions', accounts.getAccountTransaction);
 app.get('/accounts/:accountNumber/product', accounts.getAccountProducts);
-
+app.get('/accounts/:accountNumber/offers', accounts.getAccountOffers);
 
 app.get('/account-access-consents/:requestId', accounts.getAccountRequest);
 app.put('/account-access-consents/:requestId', accounts.updateAccountRequest);

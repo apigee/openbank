@@ -23,7 +23,7 @@
         <Pattern ignoreCase="true">/accounts/{accountId}/direct-debits</Pattern>
         <Pattern ignoreCase="true">/accounts/{accountId}/standing-orders</Pattern>
         <Pattern ignoreCase="true">/accounts/{accountId}/product</Pattern>
-        <Pattern ignoreCase="true">/account-requests/{accountRequestId}</Pattern>
+        <Pattern ignoreCase="true">/account-access-consents/{accountRequestId}</Pattern>
     </URIPath>
     <Header name="x-fapi-financial-id">
         <Pattern ignoreCase="true">{fapiFinancialId}</Pattern>

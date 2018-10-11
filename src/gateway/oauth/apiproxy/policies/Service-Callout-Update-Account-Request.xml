@@ -28,6 +28,6 @@
     <Response>requestIdResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/internal/connector/v1.0.1/ais/account-requests/{RequestId}</URL>
+        <URL>{{ edgeBasePath }}/internal/connector/v1.0.1/ais/account-access-consents/{RequestId}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

@@ -113,6 +113,11 @@ function hasValidPermissions() {
         return getDataReadPermission(accPermissions, "ReadProducts", null);
     }
 
+    // offers
+    else if (proxyPathSuffix.indexOf("offers") >= 0) {
+        return getDataReadPermission(accPermissions, "ReadOffers", null);
+    }
+
     // accounts info
     else if (proxyPathSuffix.indexOf("accounts") >= 0) {
         return getDataReadPermission(accPermissions, "ReadAccountsBasic", "ReadAccountsDetail");
