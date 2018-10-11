@@ -1,5 +1,5 @@
 /*
- Copyright 2017 Google Inc.
+ Copyright 2018 Google Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,6 +42,7 @@ app.get('/accounts/:accountNumber/direct-debits', accounts.getAccountDirectDebit
 app.get('/accounts/:accountNumber/transactions', accounts.getAccountTransaction);
 app.get('/accounts/:accountNumber/product', accounts.getAccountProducts);
 app.get('/accounts/:accountNumber/offers', accounts.getAccountOffers);
+app.get('/accounts/:accountNumber/party', accounts.getAccountParty);
 
 app.get('/account-access-consents/:requestId', accounts.getAccountRequest);
 app.put('/account-access-consents/:requestId', accounts.updateAccountRequest);

@@ -1,5 +1,5 @@
 /*
- Copyright 2017 Google Inc.
+ Copyright 2018 Google Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -863,9 +863,51 @@ exports.getAccountOffers = function (req, res) {
             ofr.Meta = {};
             ofr.Links = {};
             if (body.cursor) {
-                prd.Links.next = "/accounts/" + accountNumber + "/offers?pageHint=" + body.cursor;
+                ofr.Links.next = "/accounts/" + accountNumber + "/offers?pageHint=" + body.cursor;
             }
-            res.json(prd);
+            res.json(ofr);
+
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
+// get Party of an account of a customer
+exports.getAccountParty = function (req, res) {
+    var accountNumber = req.params.accountNumber;
+    var options = getOptionsJsonForAccount("party", req);
+    options.qs.ql = "where AccountId contains '" + accountNumber + "'";
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            
+            var parties = [];
+            var party;
+            for (var i = 0; i < body.entities.length; i++) {
+                 party = {};
+                party.AccountId = "" + accountNumber;
+                party.PartyId = body.entities[i].name;
+                party.PartyType = body.entities[i].PartyType;
+                party.PartyName = body.entities[i].PartyName;
+                party.EmailAddress = body.entities[i].EmailAddress;
+                party.Phone = body.entities[i].Phone;
+                party.Mobile = body.entities[i].Mobile;
+                party.Address = body.entities[i].Address;
+                parties.push(party);
+            }
+            var prt = {};
+            prt.Data = {};
+            prt.Data["Party"] = party;
+            prt.Meta = {};
+            prt.Links = {};
+            if (body.cursor) {
+                prt.Links.next = "/accounts/" + accountNumber + "/party?pageHint=" + body.cursor;
+            }
+            res.json(prt);
 
         }
         else {

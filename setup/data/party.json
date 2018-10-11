@@ -1,0 +1,16 @@
+[{
+    "AccountId":"22380",
+    "name":"PABC123",
+    "PartyId": "PABC123",
+    "PartyType": "Sole",
+    "PartyName": "Semiotec",
+    "Email": "contact@semiotec.co.jp",
+    "Address": {
+      "AddressType": "Business",
+      "StreetName": "Street",
+      "BuildingNumber": "15",
+      "PostCode": "NW1 1AB",
+      "TownName": "London",
+      "Country": "GB"
+    }
+  }]
