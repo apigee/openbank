@@ -1,6 +1,7 @@
 [
   {
     "AccountId": "987654321",
+    "StatementId": "8sfhke-sifhkeuf-97813",
     "Amount": {
       "Amount": 100,
       "Currency": "GBP"
@@ -30,6 +31,7 @@
   },
   {
     "AccountId": "987654321",
+    "StatementId": "8sfhke-sifhkeuf-97813",
     "Amount": {
       "Amount": 100,
       "Currency": "GBP"
@@ -59,6 +61,7 @@
   },
   {
     "AccountId": "987654321",
+    "StatementId": "34hj24u-324h33-31i3p4",
     "Amount": {
       "Amount": 100,
       "Currency": "GBP"
@@ -88,6 +91,7 @@
   },
   {
     "AccountId": "123459876",
+    "StatementId": "9034ee-4ewa4e-342er6",
     "Amount": {
       "Amount": 100,
       "Currency": "GBP"

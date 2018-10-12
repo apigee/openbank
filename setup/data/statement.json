@@ -1,0 +1,88 @@
+[
+    {
+      "AccountId": "987654321",
+      "name" : "8sfhke-sifhkeuf-97813",
+      "StatementId": "8sfhke-sifhkeuf-97813",
+      "StatementReference": "002",
+      "Type": "RegularPeriodic",
+      "StartDateTime": "2017-08-01T00:00:00+00:00",
+      "EndDateTime": "2017-08-31T23:59:59+00:00",
+      "CreationDateTime": "2017-09-01T00:00:00+00:00",
+      "StatementDescription": ["August 2017 Statement", "One Free Uber Ride"],
+      "StatementAmount": [
+      {
+        "Amount": {
+          "Amount": "400.00",
+          "Currency": "GBP"
+        },
+        "CreditDebitIndicator": "Credit",       
+        "Type": "ClosingBalance"       
+      },
+      {
+        "Amount": {
+          "Amount": "600.00",
+          "Currency": "GBP"
+        },
+        "CreditDebitIndicator": "Credit",
+        "Type": "PreviousClosingBalance"
+      }
+      ]
+    },
+    {
+      "AccountId": "987654321",
+      "StatementId": "34hj24u-324h33-31i3p4",
+      "name": "34hj24u-324h33-31i3p4",
+      "StatementReference": "003",
+      "Type": "RegularPeriodic",
+      "StartDateTime": "2017-09-01T00:00:00+00:00",
+      "EndDateTime": "2017-09-30T23:59:59+00:00",
+      "CreationDateTime": "2017-10-01T00:00:00+00:00",
+      "StatementDescription": ["September 2017 Statement"],
+      "StatementAmount": [
+      {
+        "Amount": {
+          "Amount": "200.00",
+          "Currency": "GBP"
+        },
+        "CreditDebitIndicator": "Credit",       
+        "Type": "ClosingBalance"       
+      },
+      {
+        "Amount": {
+          "Amount": "400.00",
+          "Currency": "GBP"
+        },
+        "CreditDebitIndicator": "Credit",
+        "Type": "PreviousClosingBalance"
+      }
+      ]
+    },
+    {
+      "AccountId": "123459876",
+      "StatementId": "9034ee-4ewa4e-342er6",
+      "name": "9034ee-4ewa4e-342er6",
+      "StatementReference": "002",
+      "Type": "RegularPeriodic",
+      "StartDateTime": "2017-09-01T00:00:00+00:00",
+      "EndDateTime": "2017-09-30T23:59:59+00:00",
+      "CreationDateTime": "2017-10-01T00:00:00+00:00",
+      "StatementAmount": [
+      {
+        "Amount": {
+          "Amount": "2700.00",
+          "Currency": "GBP"
+        },
+        "CreditDebitIndicator": "Credit",       
+        "Type": "ClosingBalance"       
+      },
+      {
+        "Amount": {
+          "Amount": "4060.00",
+          "Currency": "GBP"
+        },
+        "CreditDebitIndicator": "Credit",
+        "Type": "PreviousClosingBalance"
+      }
+      ]
+    }
+    ]
