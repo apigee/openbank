@@ -45,6 +45,9 @@ app.get('/accounts/:accountNumber/offers', accounts.getAccountOffers);
 app.get('/accounts/:accountNumber/party', accounts.getAccountParty);
 app.get('/accounts/:accountNumber/scheduled-payments', accounts.getAccountScheduledPayments);
 
+app.get('/accounts/:accountNumber/statements', accounts.getAccountStatements);
+app.get('/accounts/:accountNumber/statements/:statementId', accounts.getAccountStatement);
+app.get('/accounts/:accountNumber/statements/:statementId/transactions', accounts.getAccountStatementTransaction);
 
 
 app.get('/account-access-consents/:requestId', accounts.getAccountRequest);

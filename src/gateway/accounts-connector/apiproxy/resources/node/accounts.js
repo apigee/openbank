@@ -500,6 +500,187 @@ exports.getAccountTransaction = function (req, res) {
     });
 };
 
+
+// get list of statements of a single account of customer
+exports.getAccountStatements = function (req, res) {
+
+    var accountNumber = req.params.accountNumber;
+    var options = getOptionsJsonForAccount("statement", req);
+    if (req.query && req.query.fromStatementDateTime && !isNaN(Date.parse(req.query.fromStatementDateTime))) {
+        options.qs.ql += " and StartDateTime >= " + Date.parse(req.query.fromStatementDateTime);
+    }
+    if (req.query && req.query.toStatementDateTime && !isNaN(Date.parse(req.query.toStatementDateTime))) {
+        options.qs.ql += " and StartDateTime <= " + Date.parse(req.query.toStatementDateTime);
+    }
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var statements = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var statement = {};
+                statement.AccountId = body.entities[i].AccountId;
+                statement.StatementId = body.entities[i].StatementId;
+                if (body.entities[i].StartDateTime) {
+                    statement.StartDateTime = new Date(body.entities[i].StartDateTime).toISOString();
+                }
+                if (body.entities[i].EndDateTime) {
+                    statement.EndDateTime = new Date(body.entities[i].EndDateTime).toISOString();
+                }
+                if (body.entities[i].CreationDateTime) {
+                    statement.CreationDateTime = new Date(body.entities[i].CreationDateTime).toISOString();
+                }
+                statement.StatementReference = body.entities[i].StatementReference;
+                statement.Type = body.entities[i].StatementType;
+                statement.StatementDescription = body.entities[i].StatementDescription;
+                statement.StatementBenefit = body.entities[i].StatementBenefit;
+                statement.StatementFee = body.entities[i].StatementFee;
+                statement.StatementInterest = body.entities[i].StatementInterest;
+                statement.StatementAmount = body.entities[i].StatementAmount;
+                statement.StatementDateTime = body.entities[i].StatementDateTime;
+                statement.StatementRate = body.entities[i].StatementRate;
+                statement.StatementValue = body.entities[i].StatementValue;
+                statements.push(statement);
+            }
+            var sr = {};
+            sr.Data = {};
+            sr.Data["Statement"] = statements;
+            sr.Meta = {};
+            sr.Links = {};
+            if (body.cursor) {
+                sr.Links.next = "/accounts/" + accountNumber + "/statements?pageHint=" + body.cursor;
+            }
+            res.json(sr);
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
+
+// get account statement for a given statementid 
+exports.getAccountStatement = function (req, res) {
+    var accountNumber = req.params.accountNumber;
+    var statementId = req.params.statementId;
+    var basePath = apigee.getVariable(req, 'appBasePath');
+    var apikey = apigee.getVariable(req, 'apikey');
+    var options = {
+        url: basePath + "/statement?ql= where StatementId='" + statementId + "' and AccountId='"+accountNumber+"'",
+        qs:{
+            "x-apikey": apikey
+        },
+        json: true
+    };
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            
+            var statement = {};
+            statement.AccountId = body.entities[i].AccountId;
+            statement.StatementId = body.entities[i].StatementId;
+            if (body.entities[i].StartDateTime) {
+                statement.StartDateTime = new Date(body.entities[i].StartDateTime).toISOString();
+            }
+            if (body.entities[i].EndDateTime) {
+                statement.EndDateTime = new Date(body.entities[i].EndDateTime).toISOString();
+            }
+            if (body.entities[i].CreationDateTime) {
+                statement.CreationDateTime = new Date(body.entities[i].CreationDateTime).toISOString();
+            }
+            statement.StatementReference = body.entities[i].StatementReference;
+            statement.Type = body.entities[i].StatementType;
+            statement.StatementDescription = body.entities[i].StatementDescription;
+            statement.StatementBenefit = body.entities[i].StatementBenefit;
+            statement.StatementFee = body.entities[i].StatementFee;
+            statement.StatementInterest = body.entities[i].StatementInterest;
+            statement.StatementAmount = body.entities[i].StatementAmount;
+            statement.StatementDateTime = body.entities[i].StatementDateTime;
+            statement.StatementRate = body.entities[i].StatementRate;
+            statement.StatementValue = body.entities[i].StatementValue;
+            var accStatement = {};
+            accStatement.Data = {};
+            accStatement.Data.Statement = [];
+            accStatement.Data.Statement.push(statement);
+            accStatement.Meta = {};
+            accStatement.Links = {};
+            accStatement.Links.self = "/accounts/" + accountNumber + "/statements/"+statementId;
+            res.json(accStatement);
+
+
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
+// get list of transactions of a account statement of customer
+exports.getAccountStatementTransaction = function (req, res) {
+
+    var accountNumber = req.params.accountNumber;
+    var statementId = req.params.statementId;
+    var options = getOptionsJsonForAccount("transactions", req);
+
+    options.qs.ql += " and StatementId='"+statementId+"'";
+
+    if (req.query && req.query.fromBookingDateTime && !isNaN(Date.parse(req.query.fromBookingDateTime))) {
+        options.qs.ql += " and BookingDateTime >= " + Date.parse(req.query.fromBookingDateTime);
+    }
+    if (req.query && req.query.toBookingDateTime && !isNaN(Date.parse(req.query.toBookingDateTime))) {
+        options.qs.ql += " and BookingDateTime <= " + Date.parse(req.query.toBookingDateTime);
+    }
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200 && body.entities) {
+            var transactions = [];
+            for (var i = 0; i < body.entities.length; i++) {
+                var transaction = {};
+
+                transaction.AccountId = body.entities[i].AccountId;
+                transaction.TransactionReference = body.entities[i].TransactionReference;
+                transaction.TransactionId = body.entities[i].uuid;
+                transaction.Amount = body.entities[i].Amount;
+                transaction.CreditDebitIndicator = body.entities[i].CreditDebitIndicator;
+                transaction.Status = body.entities[i].Status;
+                if (body.entities[i].BookingDateTime) {
+                    transaction.BookingDateTime = new Date(body.entities[i].BookingDateTime).toISOString();
+                }
+                if (body.entities[i].ValueDateTime) {
+                    transaction.ValueDateTime = new Date(body.entities[i].ValueDateTime).toISOString();
+                }
+                transaction.TransactionInformation = body.entities[i].TransactionInformation;
+                transaction.AddressLine = body.entities[i].AddressLine;
+                transaction.BankTransactionCode = body.entities[i].BankTransactionCode;
+                transaction.ProprietaryBankTransactionCode = body.entities[i].ProprietaryBankTransactionCode;
+                transaction.Balance = body.entities[i].Balance;
+                transaction.MerchantDetails = body.entities[i].MerchantDetails;
+
+                transactions.push(transaction);
+            }
+            var tr = {};
+            tr.Data = {};
+            tr.Data["Transaction"] = transactions;
+            tr.Meta = {};
+            tr.Links = {};
+            if (body.cursor) {
+                tr.Links.next = "/accounts/" + accountNumber + "/transactions?pageHint=" + body.cursor;
+            }
+            res.json(tr);
+        }
+        else {
+            var errJson = {};
+            errJson.ErrorResponseCode = 400;
+            errJson.ErrorDescription = "Bad Request";
+            res.status(400).json(errJson);
+        }
+    });
+};
+
+
 // get list of account beneficiaries for a single account
 exports.getAccountBeneficiaries = function (req, res) {
     var accountNumber = req.params.accountNumber;
