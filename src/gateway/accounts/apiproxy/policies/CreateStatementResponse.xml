@@ -11,9 +11,9 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<Javascript timeLimit="200" async="false" continueOnError="false" enabled="true" name="Create-Party-Response">
-    <DisplayName>Create Party Response</DisplayName>
+<Javascript timeLimit="200" async="false" continueOnError="false" enabled="true" name="Create-Statement-Response">
+    <DisplayName>Create Statement Response</DisplayName>
     <FaultRules/>
     <Properties/>
-    <ResourceURL>jsc://CreatePartyResponse.js</ResourceURL>
+    <ResourceURL>jsc://CreateStatementResponse.js</ResourceURL>
 </Javascript>

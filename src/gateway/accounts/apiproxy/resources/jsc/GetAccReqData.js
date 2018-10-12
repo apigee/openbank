@@ -91,6 +91,18 @@ function hasValidPermissions() {
 
     }
 
+    //statements
+    else if (proxyPathSuffix.indexOf("statements") >= 0) {
+        if (accPermissions.indexOf("ReadTransactionsCredits") > -1)
+            context.setVariable("readCredits", true);
+
+        if (accPermissions.indexOf("ReadTransactionsDebits") > -1)
+            context.setVariable("readDebits", true);
+
+        return getDataReadPermission(accPermissions, "ReadStatementsBasic", "ReadStatementsDetail");
+
+    }
+
 
     //beneficiaries
     else if (proxyPathSuffix.indexOf("beneficiaries") >= 0) {
