@@ -21,7 +21,7 @@
 
 validPayload = {}
 function validateRequest(RequestConfig) {
-    var key, i, j, ispresent;
+    var key, i, ispresent;
     var errorJson = {};
     errorJson.isError = true;
     errorJson.errorResponseCode = 400;
@@ -44,18 +44,13 @@ function validateRequest(RequestConfig) {
                         print("not present" + key);
                         errorJson.errorDescription = "" + key + " header not present in the request";
                         return errorJson;
-
-                    }
+                   }
                 }
-
-
-                //validate type of header value
+                // validate type of header value
                 if (isValidParamType(headerVal, headerValidation, ispresent) === false) {
                     errorJson.errorDescription = "" + key + " header type is invalid";
                     return errorJson;
-
                 }
-
                 // validate max length of header value
                 if (isInvalidMaxLength(headerVal, headerValidation, ispresent)) {
                     errorJson.errorDescription = "" + key + " header value length exceeds the maximum length limit";
@@ -73,13 +68,8 @@ function validateRequest(RequestConfig) {
                     errorJson.errorDescription = "" + key + " header value is invalid";
                     return errorJson;
                 }
-
-
             }
-
-
         }
-
     }
 
     // query parameters validation
@@ -135,27 +125,28 @@ function validateRequest(RequestConfig) {
     if (reqVerb == "POST") {
         if (RequestConfig.Body) {
 
+            var requestContent = context.getVariable("request.content");
+
             for (i = 0; i < RequestConfig.Body.length; i++) {
                 for (key in RequestConfig.Body[i]) {
 
 
                     ispresent = false;
-                    var bodyParam = getBodyParameterVal(key);
+                    parentKey = getParentKey(key);
+                    var bodyParam = getBodyParameterVal(key, requestContent);
                     //context.setVariable("bodyparam", bodyParam);
                     var bodyValidation = RequestConfig.Body[i][key];
 
-                    if (bodyParam != "invalid") {
+                    if (bodyParam) {
                         ispresent = true;
                     }
 
                     // check if the body parameter is mandatory and if not present in the request, return error
-                    if (bodyValidation.Mandatory) {
-
-                        if (bodyParam == "invalid") {
+                    if (bodyValidation.Mandatory && (parentKey && getBodyParameterVal(parentKey))) {
+                        if (!bodyParam) {
                             errorJson.errorDescription = "" + key + " is not present";
                             return errorJson;
                         }
-
                     }
                     var typeCastedBodyParam = null;
                     //validate the type of the body parameter value
@@ -164,12 +155,10 @@ function validateRequest(RequestConfig) {
 
                         errorJson.errorDescription = "" + key + " type is invalid";
                         return errorJson;
-                    }
-                    else {
+                    } else {
                         if (isBodyParamValid.length == 1) {
                             typeCastedBodyParam = isBodyParamValid[0];
                         }
-
                     }
 
 
@@ -208,12 +197,18 @@ function validateRequest(RequestConfig) {
     return errorJson;
 }
 
+//get parent key name
+function getParentKey(key) {
+    if (!key) return null;
+    var pos = key.lastIndexOf('.');
+    if (pos <= 0) return null;
+    var parentKey = key.substr(0, pos);
+    return parentKey;
+}
 
-function getBodyParameterVal(param) {
+function getBodyParameterVal(param, content) {
     // check for empty payload
-    if (context.getVariable("request.content")) {
-        var content = JSON.parse(context.getVariable("request.content"));
-        var contextBodyParam = "";
+    if (content) {
         try {
             var keys = param.split('.');
             var value = content[keys[0]];
@@ -222,25 +217,21 @@ function getBodyParameterVal(param) {
             }
             if (value) {
                 return value;
+            } else {
+                return null;
             }
-            else {
-                return "invalid";
-            }
+        } catch (err) {
+            return null;
         }
-        catch (err) {
-            return "invalid";
-        }
-    }
-    else return "invalid";
+    } else return null;
 }
 
 
 function isInvalidMaxLength(param, configparam, ispresent) {
     if (configparam.MaxText && ispresent) {
-        if (param.length > configparam.MaxText)
+        if (param.length > configparam.MaxText) {
             return true;
-
-        else return false;
+        } else return false;
     }
     return false;
 }
