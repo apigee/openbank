@@ -1047,6 +1047,8 @@ exports.createAccountRequest = function (req, res) {
     requestPayload.Status = "AwaitingAuthorisation";
     requestPayload.name = generateUUID();
     requestPayload.TppId = req.query.tppId;
+    requestPayload.StatusUpdateDateTime = Date.parse(new Date());
+    requestPayload.CreationDateTime = Date.parse(new Date());
 
     var options = {
         url: basePath + "/accountsrequests",
@@ -1064,9 +1066,10 @@ exports.createAccountRequest = function (req, res) {
         if (!err && (resp.statusCode == 200 ) && body.entities) {
             var accRequest = {};
             accRequest.Data = {};
-            accRequest.Data.AccountRequestId = body.entities[0].name;
+            accRequest.Data.ConsentId = body.entities[0].name;
             accRequest.Data.Status = body.entities[0].Status;
-            accRequest.Data.CreationDateTime = new Date(body.entities[0].created).toISOString();
+            accRequest.Data.CreationDateTime = new Date(body.entities[0].CreationDateTime).toISOString();
+            accRequest.Data.StatusUpdateDateTime = new Date(body.entities[0].StatusUpdateDateTime).toISOString();
             accRequest.Data.Permissions = body.entities[0].Data.Permissions;
             if (body.entities[0].Data.ExpirationDateTime) {
                 accRequest.Data.ExpirationDateTime = new Date(body.entities[0].Data.ExpirationDateTime).toISOString();
@@ -1079,7 +1082,7 @@ exports.createAccountRequest = function (req, res) {
             }
             accRequest.Risk = body.entities[0].Risk;
             accRequest.Links = {};
-            accRequest.Links.self = "/account-access-consents/" + accRequest.Data.AccountRequestId;
+            accRequest.Links.self = "/account-access-consents/" + accRequest.Data.ConsentId;
             accRequest.Meta = {};
 
             res.status(201).json(accRequest);
@@ -1126,9 +1129,10 @@ exports.getAccountRequest = function (req, res) {
                 else {
                     var accRequest = {};
                     accRequest.Data = {};
-                    accRequest.Data.AccountRequestId = body.entities[0].name;
+                    accRequest.Data.ConsentId = body.entities[0].name;
                     accRequest.Data.Status = body.entities[0].Status;
-                    accRequest.Data.CreationDateTime = new Date(body.entities[0].created).toISOString();
+                    accRequest.Data.CreationDateTime = new Date(body.entities[0].CreationDateTime).toISOString();
+                    accRequest.Data.StatusUpdateDateTime = new Date(body.entities[0].StatusUpdateDateTime).toISOString();
                     accRequest.Data.Permissions = body.entities[0].Data.Permissions;
                     if (body.entities[0].Data.ExpirationDateTime) {
                         accRequest.Data.ExpirationDateTime = new Date(body.entities[0].Data.ExpirationDateTime).toISOString();
@@ -1141,7 +1145,7 @@ exports.getAccountRequest = function (req, res) {
                     }
                     accRequest.Risk = body.entities[0].Risk;
                     accRequest.Links = {};
-                    accRequest.Links.self = "/account-access-consents/" + accRequest.Data.AccountRequestId;
+                    accRequest.Links.self = "/account-access-consents/" + accRequest.Data.ConsentId;
                     accRequest.Meta = {};
 
 
@@ -1171,6 +1175,7 @@ exports.updateAccountRequest = function (req, res) {
     var requestId = req.params.requestId;
     var requestPayload = apigee.getVariable(req, 'request.content');
     requestPayload = JSON.parse(requestPayload);
+    requestPayload.StatusUpdateDateTime = Date.parse(new Date());
 
     var options = {
         url: basePath + "/accountsrequests",
@@ -1189,9 +1194,10 @@ exports.updateAccountRequest = function (req, res) {
         if (!err && (resp.statusCode == 200 ) && body.entities) {
             var accRequest = {};
             accRequest.Data = {};
-            accRequest.Data.AccountRequestId = body.entities[0].name;
+            accRequest.Data.ConsentId = body.entities[0].name;
             accRequest.Data.Status = body.entities[0].Status;
-            accRequest.Data.CreationDateTime = new Date(body.entities[0].created).toISOString();
+            accRequest.Data.CreationDateTime = new Date(body.entities[0].CreationDateTime).toISOString();
+            accRequest.Data.StatusUpdateDateTime = new Date(body.entities[0].StatusUpdateDateTime).toISOString();
             accRequest.Data.Permissions = body.entities[0].Data.Permissions;
             if (body.entities[0].Data.ExpirationDateTime) {
                 accRequest.Data.ExpirationDateTime = new Date(body.entities[0].Data.ExpirationDateTime).toISOString();
@@ -1204,7 +1210,7 @@ exports.updateAccountRequest = function (req, res) {
             }
             accRequest.Risk = body.entities[0].Risk;
             accRequest.Links = {};
-            accRequest.Links.self = "/account-access-consents/" + accRequest.Data.AccountRequestId;
+            accRequest.Links.self = "/account-access-consents/" + accRequest.Data.ConsentId;
             accRequest.Meta = {};
 
             res.json(accRequest);

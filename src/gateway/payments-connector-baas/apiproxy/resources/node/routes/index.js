@@ -20,22 +20,20 @@
  * Consent Route.
  * This file contains the code for all the Consent operations.
  */
-var express = require('express');
-var router = express.Router();
 
 var request = require('request');
 
 var packagejson = require('../package');
 
 /* GET home page. */
-router.get('/payments/:paymentId', function (req, res, next) {
+exports.getPaymentRequestConsent = function(req, res, next) {
     //get payment request
     query = {};
     query.client_id = packagejson.clientId;
     query.client_secret = packagejson.clientSecret;
     var paymentId = req.params.paymentId;
     options = {
-        url: packagejson.baasBasePath + "/payments/" + paymentId,
+        url: packagejson.baasBasePath + "/domestic-payment-consents/" + paymentId,
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -43,18 +41,19 @@ router.get('/payments/:paymentId', function (req, res, next) {
         },
         qs: query
     };
-    request(options, function (err, response, resbody) {
+    request(options, function(err, response, resbody) {
         if (!err && response.statusCode === 200) {
             try {
                 resbody = parseIfNotObject(resbody);
                 var body = {};
                 body.Data = resbody.entities[0].Data;
                 body.Risk = resbody.entities[0].Risk;
-                body.Links = {"Self": resbody.entities[0].metadata.path};
+                body.Links = {"self": "/domestic-payment-consents/" + resbody.entities[0].uuid};
                 body.Meta = {};
-                body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
-                body.Data.PaymentId = resbody.entities[0].uuid;
+                body.Data.CreationDateTime = new Date(resbody.entities[0].CreationDateTime).toISOString();
+                body.Data.ConsentId = resbody.entities[0].uuid;
                 body.Data.Status = resbody.entities[0].Status;
+                body.Data.StatusUpdateDateTime = new Date(resbody.StatusUpdateDateTime).toISOString();
                 res.send(body);
             }
             catch (e) {
@@ -69,14 +68,15 @@ router.get('/payments/:paymentId', function (req, res, next) {
             next(err);
         }
     });
-});
+};
 
-router.put('/payments/:paymentId', function (req, res, next) {
+exports.updatePaymentRequestConsent = function (req, res, next) {
     //get payment request
     query = {};
     query.client_id = packagejson.clientId;
     query.client_secret = packagejson.clientSecret;
     var paymentId = req.params.paymentId;
+    res.body.StatusUpdateDateTime = Date.parse(new Date());
     options = {
         url: packagejson.baasBasePath + "/payments/" + paymentId,
         method: 'PUT',
@@ -93,13 +93,14 @@ router.put('/payments/:paymentId', function (req, res, next) {
             try {
                 resbody = parseIfNotObject(resbody);
                 var body = {};
-                body.Data = resbody.entities[0].Data;
-                body.Risk = resbody.entities[0].Risk;
-                body.Links = {"Self": resbody.entities[0].metadata.path};
+                body.Data = resbody.Data;
+                body.Risk = resbody.Risk;
+                body.Links = {"self": "/domestic-payment-consents/" + resbody.uuid};
                 body.Meta = {};
-                body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
-                body.Data.PaymentId = resbody.entities[0].uuid;
-                body.Data.Status = resbody.entities[0].Status;
+                body.Data.CreationDateTime = new Date(resbody.CreationDateTime).toISOString();
+                body.Data.ConsentId = resbody.uuid;
+                body.Data.Status = resbody.Status;
+                body.Data.StatusUpdateDateTime = new Date(resbody.StatusUpdateDateTime).toISOString();
                 res.send(body);
             }
             catch (e) {
@@ -114,16 +115,16 @@ router.put('/payments/:paymentId', function (req, res, next) {
             next(err);
         }
     });
-});
+};
 
-router.get('/payment-submissions/:paymentSubmissionsId', function (req, res, next) {
+exports.getPaymentOrder = function (req, res, next) {
     //get payment submission
     query = {};
     query.client_id = packagejson.clientId;
     query.client_secret = packagejson.clientSecret;
     var paymentSubmissionsId = req.params.paymentSubmissionsId;
     options = {
-        url: packagejson.baasBasePath + "/payment-submissions/" + paymentSubmissionsId,
+        url: packagejson.baasBasePath + "/domestic-payments/" + paymentSubmissionsId,
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -136,13 +137,13 @@ router.get('/payment-submissions/:paymentSubmissionsId', function (req, res, nex
             try {
                 resbody = parseIfNotObject(resbody);
                 var body = {};
-                body.Data = {};
-                body.Links = {"Self": resbody.entities[0].metadata.path};
+                body.Data = resbody.entities[0].Data;
+                body.Links = {"self": "/domestic-payments/" + resbody.entities[0].uuid};
                 body.Meta = {};
-                body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
-                body.Data.PaymentId = resbody.entities[0].Data.PaymentId;
+                body.Data.CreationDateTime = new Date(resbody.entities[0].CreationDateTime).toISOString();
+                body.Data.StatusUpdateDateTime = new Date(resbody.entities[0].StatusUpdateDateTime).toISOString();
                 body.Data.Status = resbody.entities[0].Status;
-                body.Data.PaymentSubmissionId = resbody.entities[0].uuid;
+                body.Data.DomesticPaymentId = resbody.entities[0].uuid;
                 res.send(body);
             }
             catch (e) {
@@ -157,9 +158,10 @@ router.get('/payment-submissions/:paymentSubmissionsId', function (req, res, nex
             next(err);
         }
     });
-});
+};
 
-router.post('/payments', function (req, res, next) {
+/* Create  Payment Request Consent */
+exports.createPaymentRequestConsent = function(req,res,next) {
     //create payment request
     query = {};
     query.client_id = packagejson.clientId;
@@ -167,6 +169,8 @@ router.post('/payments', function (req, res, next) {
     //var customerId = req.body.customerId;
     //var consentId = req.body.consentId;
     req.body.Status = "Pending";
+    req.body.CreationDateTime = Date.parse(new Date());
+    res.body.StatusUpdateDateTime = Date.parse(new Date());
     options = {
         url: packagejson.baasBasePath + "/payments",
         method: 'POST',
@@ -183,13 +187,14 @@ router.post('/payments', function (req, res, next) {
             try {
                 res.status(201);
                 var body = {};
-                body.Data = resbody.entities[0].Data;
-                body.Risk = resbody.entities[0].Risk;
-                body.Links = {"Self": resbody.entities[0].metadata.path};
+                body.Data = resbody.Data;
+                body.Risk = resbody.Risk;
+                body.Links = {"self": "/domestic-payment-consents/" + resbody.uuid};
                 body.Meta = {};
-                body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
-                body.Data.PaymentId = resbody.entities[0].uuid;
-                body.Data.Status = resbody.entities[0].Status;
+                body.Data.CreationDateTime = new Date(resbody.CreationDateTime).toISOString();
+                body.Data.ConsentId = resbody.uuid;
+                body.Data.Status = resbody.Status;
+                body.Data.StatusUpdateDateTime = new Date(resbody.StatusUpdateDateTime).toISOString();
                 res.send(body);
             }
             catch (e) {
@@ -203,12 +208,12 @@ router.post('/payments', function (req, res, next) {
             err.status = 400;
             next(err);
         }
-
-
     });
-});
+};
 
-router.post('/payment-submissions', function (req, res, next) {
+/* Create Payment Order */
+
+exports.createPaymentOrder = function(req,res,next) {
     //create payment submission
     query = {};
     query.client_id = packagejson.clientId;
@@ -216,8 +221,11 @@ router.post('/payment-submissions', function (req, res, next) {
     //var customerId = req.body.customerId;
     //var consentId = req.body.consentId;
     req.body.Status = "AcceptedSettlementInProcess";
+    req.body.CreationDateTime = Date.parse(new Date());
+    req.body.StatusUpdateDateTime = Date.parse(new Date());
+
     options = {
-        url: packagejson.baasBasePath + "/payment-submissions",
+        url: packagejson.baasBasePath + "/domestic-payments",
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -232,13 +240,12 @@ router.post('/payment-submissions', function (req, res, next) {
             try {
                 res.status(201);
                 var body = {};
-                body.Data = {};
-                body.Links = {"Self": resbody.entities[0].metadata.path};
+                body.Data = resbody.Data;
+                body.Links = {"self": "/domestic-payments/" + resbody.uuid};
                 body.Meta = {};
-                body.Data.CreationDateTime = new Date(resbody.entities[0].created).toISOString();
-                body.Data.PaymentId = resbody.entities[0].Data.PaymentId;
-                body.Data.Status = resbody.entities[0].Status;
-                body.Data.PaymentSubmissionId = resbody.entities[0].uuid;
+                body.Data.CreationDateTime = new Date(resbody.CreationDateTime).toISOString();
+                body.Data.StatusUpdateDateTime = new Date(resbody.StatusUpdateDateTime).toISOString();
+                body.Data.DomesticPaymentId = resbody.uuid;
                 res.send(body);
             }
             catch (e) {
@@ -255,7 +262,7 @@ router.post('/payment-submissions', function (req, res, next) {
 
 
     });
-});
+};
 
 function parseIfNotObject(obj) {
     if (typeof obj === "object") {

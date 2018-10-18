@@ -15,13 +15,13 @@
  limit
 -->
 
-<APIProxy revision="1" name="AccountsOBv1.0Connector">
-    <Basepaths>/internal/connector/v1.0/ais</Basepaths>
+<APIProxy revision="1" name="AccountsOBv3.0Connector">
+    <Basepaths>/internal/connector/v3.0/ais</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1503038784394</CreatedAt>
     <CreatedBy>rairupam@google.com</CreatedBy>
     <Description></Description>
-    <DisplayName>AccountsOBv1.0Connector</DisplayName>
+    <DisplayName>AccountsOBv3.0Connector</DisplayName>
     <LastModifiedAt>1503319879133</LastModifiedAt>
     <LastModifiedBy>rairupam@google.com</LastModifiedBy>
     <Policies>

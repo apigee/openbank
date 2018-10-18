@@ -15,7 +15,7 @@
     <Description/>
     <FaultRules/>
     <Flows>
-        <Flow name="CreateSingleImmediatePaymentRequest">
+        <Flow name="CreateDomesticPaymentRequestConsent">
             <Description>Create a single immediate payment</Description>
             <Request>
                 <Step>
@@ -47,9 +47,9 @@
                 </Step>
             </Request>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/payments") and (request.verb = "POST")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/domestic-payment-consents") and (request.verb = "POST")</Condition>
         </Flow>
-        <Flow name="GetSingleImmediatePaymentRequest">
+        <Flow name="GetDomesticPaymentRequestConsent">
             <Description>Get a single immediate payment</Description>
             <Request>
                 <Step>
@@ -63,9 +63,9 @@
                 </Step>
             </Request>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/payments/*") and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/domestic-payment-consents/*") and (request.verb = "GET")</Condition>
         </Flow>
-        <Flow name="CreatePaymentSubmission">
+        <Flow name="CreateDomesticPayment">
             <Description>Create a payment submission</Description>
             <Request>
                 <Step>
@@ -127,9 +127,9 @@
                 </Step>
             </Request>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/payment-submissions") and (request.verb = "POST")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/domestic-payments") and (request.verb = "POST")</Condition>
         </Flow>
-        <Flow name="GetPaymentSubmission">
+        <Flow name="GetDomesticPayment">
             <Description>Get a payment submission</Description>
             <Request>
                 <Step>
@@ -143,7 +143,7 @@
                 </Step>
             </Request>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/payment-submissions/*") and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/domestic-payments/*") and (request.verb = "GET")</Condition>
         </Flow>
     </Flows>
     <PostFlow name="PostFlow">

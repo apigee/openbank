@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="9" name="AccountsOBv1.0">
-    <Basepaths>/ais/open-banking/v1.0.1</Basepaths>
-    <Basepaths>/ais/open-banking/v1.0.1</Basepaths>
+    <Basepaths>/apis/open-banking/v3.0/aisp</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1520838437377</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description></Description>
-    <DisplayName>AccountsOBv1.0.1</DisplayName>
+    <DisplayName>AccountsOBv3.0.0</DisplayName>
     <LastModifiedAt>1520838437377</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
     <Policies>

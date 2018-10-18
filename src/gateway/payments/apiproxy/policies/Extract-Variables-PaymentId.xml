@@ -18,7 +18,7 @@
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <JSONPayload>
         <Variable name="paymentId">
-            <JSONPath>$.Data.PaymentId</JSONPath>
+            <JSONPath>$.Data.ConsentId</JSONPath>
         </Variable>
     </JSONPayload>
     <Source clearPayload="false">request</Source>

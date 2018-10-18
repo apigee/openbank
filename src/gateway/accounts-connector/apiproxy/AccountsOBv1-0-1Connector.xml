@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="1" name="AccountsOBv1-0-1Connector">
-    <Basepaths>/internal/connector/v1.0/ais</Basepaths>
-    <Basepaths>/internal/connector/v1.0/ais</Basepaths>
+<APIProxy revision="1" name="AccountsOBv3-0-0Connector">
+    <Basepaths>/internal/connector/v3.0/ais</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1520839034706</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description></Description>
-    <DisplayName>AccountsOBv1.0Connector</DisplayName>
+    <DisplayName>AccountsOBv3.0Connector</DisplayName>
     <LastModifiedAt>1520839034706</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
     <Policies>

@@ -48,7 +48,11 @@ app.use(function (req, res, next) {
 });
 
 // Define the routes
-app.use('/', payments);
+app.get('/domestic-payment-consents/:paymentId', payments.getPaymentRequestConsent);
+app.put('/domestic-payment-consents/:paymentId', payments.updatePaymentRequestConsent);
+app.post('/domestic-payment-consents', payments.createPaymentRequestConsent);
+app.post('/domestic-payments', payments.createPaymentOrder);
+app.get('/domestic-payments/:paymentSubmissionsId', payments.getPaymentOrder);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
