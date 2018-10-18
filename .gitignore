@@ -53,6 +53,8 @@ src/portal/
 build/
 setup/config.sh
 test/config.js
-
+/src/gateway
+service.json
+service_account.json
 
 *.DS_Store
