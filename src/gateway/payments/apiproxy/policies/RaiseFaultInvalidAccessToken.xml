@@ -21,8 +21,14 @@
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
         
             {
-            "ErrorResponseCode" : "401",
-            "ErrorDescription" : "Missing/Invalid Access Token"
+                "Code": "401",
+                "Message": "Invalid Access Token",
+                "Errors": [
+                    {
+                        "ErrorCode": "UK.OBIE.Authorisation.InvalidToken",
+                        "Message": "Invalid Access Token",
+                    }
+                ]
             }
         
     </Payload>

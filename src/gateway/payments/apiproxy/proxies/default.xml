@@ -13,7 +13,19 @@
 -->
 <ProxyEndpoint name="default">
     <Description/>
-    <FaultRules/>
+    <FaultRules>
+        <FaultRule name="JWTErrors">
+            <Step>
+                <Name>Customise-JWT-Errors</Name>
+            
+            </Step>
+            <Step>
+                <Name>Assign-JWT-Error-Response</Name>
+                
+            </Step>
+            <Condition>jwt.Verify-JWT.failed=true</Condition>
+        </FaultRule>    
+    </FaultRules>
     <Flows>
         <Flow name="CreateDomesticPaymentRequestConsent">
             <Description>Create a single immediate payment</Description>

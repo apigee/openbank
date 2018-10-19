@@ -20,11 +20,18 @@
             <Headers/>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
         
-            {
-            "ErrorResponseCode" : "400",
-            "ErrorDescription" : "Invalid Payment Id"
+             {
+                "Code": "400",
+                "Message": "Invalid Payment Id",
+                "Errors": [
+                    {
+                        "ErrorCode": "UK.OBIE.Field.Invalid",
+                        "Message": "Invalid Payment Id",
+                    }
+                ]
             }
-        
+
+            
             </Payload>
             <StatusCode>400</StatusCode>
             <ReasonPhrase>Bad Request</ReasonPhrase>

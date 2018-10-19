@@ -21,10 +21,16 @@
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
         
             {
-            "ErrorResponseCode" : "429",
-            "ErrorDescription" : "Quota Limit exceeded"
+                "Code": "429",
+                "Message": "Quota Limit exceeded",
+                "Errors": [
+                    {
+                        "ErrorCode": "UK.OBIE.Authorisation.TooManyRequest",
+                        "Message": "Quota Limit exceeded",
+                    }
+                ]
             }
-        
+         
     </Payload>
             <StatusCode>429</StatusCode>
             <ReasonPhrase>Too Many Requests</ReasonPhrase>

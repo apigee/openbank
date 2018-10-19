@@ -21,10 +21,16 @@
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
         
             {
-            "ErrorResponseCode" : "403",
-            "ErrorDescription" : "Invalid Scope"
+                "Code": "403",
+                "Message": "Invalid Scope",
+                "Errors": [
+                    {
+                        "ErrorCode": "UK.OBIE.Authorisation.InvalidScope",
+                        "Message": "Invalid Scope",
+                    }
+                ]
             }
-        
+
     </Payload>
             <StatusCode>403</StatusCode>
             <ReasonPhrase>Forbidden</ReasonPhrase>

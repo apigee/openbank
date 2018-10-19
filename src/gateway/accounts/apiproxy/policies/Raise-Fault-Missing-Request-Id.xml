@@ -21,8 +21,14 @@
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
         
             {
-            "ErrorResponseCode" : "400",
-            "ErrorDescription" : "Missing Account Request Id"
+                "Code": "400",
+                "Message": "Missing Account Request Id",
+                "Errors": [
+                    {
+                        "ErrorCode": "UK.OBIE.Field.Missing",
+                        "Message": "Missing Account Request Id",
+                    }
+                ]
             }
         
     </Payload>
