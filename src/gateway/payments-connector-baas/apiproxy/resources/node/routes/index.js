@@ -259,8 +259,6 @@ exports.createPaymentOrder = function(req,res,next) {
             err.status = 400;
             next(err);
         }
-
-
     });
 };
 

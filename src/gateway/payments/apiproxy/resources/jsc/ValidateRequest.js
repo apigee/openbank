@@ -42,29 +42,37 @@ function validateRequest(RequestConfig) {
                 if (headerValidation.Mandatory) {
                     if (!ispresent) {
                         print("not present" + key);
+                        errorJson.obieCode = "UK.OBIE.Header.Missing";
                         errorJson.errorDescription = "" + key + " header not present in the request";
                         return errorJson;
-                   }
+                    }
                 }
-                // validate type of header value
+
+
+                //validate type of header value
                 if (isValidParamType(headerVal, headerValidation, ispresent) === false) {
+                    errorJson.obieCode = "UK.OBIE.Header.Invalid";
                     errorJson.errorDescription = "" + key + " header type is invalid";
                     return errorJson;
                 }
+
                 // validate max length of header value
                 if (isInvalidMaxLength(headerVal, headerValidation, ispresent)) {
+                    errorJson.obieCode = "UK.OBIE.Header.Invalid";
                     errorJson.errorDescription = "" + key + " header value length exceeds the maximum length limit";
                     return errorJson;
                 }
 
                 // validate min length of header value
                 if (isInvalidMinLength(headerVal, headerValidation, ispresent)) {
+                    errorJson.obieCode = "UK.OBIE.Header.Invalid";
                     errorJson.errorDescription = "" + key + " header value length less than minimum length limit";
                     return errorJson;
                 }
 
                 // validate against list of allowed values for the header
                 if (isInvalidParamValue(headerVal, headerValidation, ispresent)) {
+                    errorJson.obieCode = "UK.OBIE.Header.Invalid";
                     errorJson.errorDescription = "" + key + " header value is invalid";
                     return errorJson;
                 }
@@ -83,9 +91,10 @@ function validateRequest(RequestConfig) {
                 if (queryParamVal) {
                     ispresent = true;
                 }
-                // check if query param is mandatory
-                if (queryParamValidation.Mandatory) {
+                 // check if query param is mandatory
+                 if (queryParamValidation.Mandatory) {
                     if (!ispresent) {
+                        errorJson.obieCode = "UK.OBIE.Field.Missing";
                         errorJson.errorDescription = "" + key + " query parameter not present in the request";
                         return errorJson;
 
@@ -94,25 +103,28 @@ function validateRequest(RequestConfig) {
                 }
                 //validate the type of query parameter
                 if (isValidParamType(queryParamVal, queryParamValidation, ispresent) === false) {
+                    errorJson.obieCode = "UK.OBIE.Field.Invalid";
                     errorJson.errorDescription = "" + key + " query parameter type is invalid";
                     return errorJson;
                 }
 
                 // validate max length allowed for the query parameter
                 if (isInvalidMaxLength(queryParamVal, queryParamValidation, ispresent)) {
+                    errorJson.obieCode = "UK.OBIE.Field.Invalid";
                     errorJson.errorDescription = "" + key + " query parameter value length exceeds the maximum length limit";
                     return errorJson;
                 }
 
                 // validae min length allowed for the query parameter
                 if (isInvalidMinLength(queryParamVal, queryParamValidation, ispresent)) {
+                    errorJson.obieCode = "UK.OBIE.Field.Invalid";
                     errorJson.errorDescription = "" + key + " query parameter value length less than minimum length limit";
                     return errorJson;
                 }
 
                 // validate against the list of possible values allowed for the query parameter
                 if (isInvalidParamValue(queryParamVal, queryParamValidation, ispresent)) {
-
+                    errorJson.obieCode = "UK.OBIE.Field.Invalid";
                     errorJson.errorDescription = "" + key + " query parameter value is invalid";
                     return errorJson;
                 }
@@ -144,6 +156,7 @@ function validateRequest(RequestConfig) {
                     // check if the body parameter is mandatory and if not present in the request, return error
                     if (bodyValidation.Mandatory && (parentKey && getBodyParameterVal(parentKey))) {
                         if (!bodyParam) {
+                            errorJson.obieCode = "UK.OBIE.Field.Missing";
                             errorJson.errorDescription = "" + key + " is not present";
                             return errorJson;
                         }
@@ -152,7 +165,7 @@ function validateRequest(RequestConfig) {
                     //validate the type of the body parameter value
                     var isBodyParamValid = isValidParamType(bodyParam, bodyValidation, ispresent);
                     if (isBodyParamValid === false) {
-
+                        errorJson.obieCode = "UK.OBIE.Field.Invalid";
                         errorJson.errorDescription = "" + key + " type is invalid";
                         return errorJson;
                     } else {
@@ -164,12 +177,14 @@ function validateRequest(RequestConfig) {
 
                     // validate maximum length of the body parameter
                     if (isInvalidMaxLength(bodyParam, bodyValidation, ispresent)) {
+                        errorJson.obieCode = "UK.OBIE.Field.Invalid";
                         errorJson.errorDescription = "" + key + " length exceeds the maximum limit";
                         return errorJson;
                     }
 
                     //validate minimum length of the body parameter
                     if (isInvalidMinLength(bodyParam, bodyValidation, ispresent)) {
+                        errorJson.obieCode = "UK.OBIE.Field.Invalid";
                         errorJson.errorDescription = "" + key + " value length less than minimum length limit";
                         return errorJson;
 
@@ -177,6 +192,7 @@ function validateRequest(RequestConfig) {
 
                     // validate if the body parameter value is one in the list of allowed values for it
                     if (isInvalidParamValue(bodyParam, bodyValidation, ispresent)) {
+                        errorJson.obieCode = "UK.OBIE.Field.Invalid";
                         errorJson.errorDescription = "" + key + " value is invalid";
                         return errorJson;
                     }

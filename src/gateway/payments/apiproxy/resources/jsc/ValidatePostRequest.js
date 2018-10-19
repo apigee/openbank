@@ -91,6 +91,7 @@ var PostResourceConfig =
 var error = validateRequest(PostResourceConfig);
 if (error.isError) {
     context.setVariable('isError', error.isError);
+    context.setVariable('obieCode',error.obieCode);
     context.setVariable('errorResponseCode', error.errorResponseCode);
     context.setVariable('errorDescription', error.errorDescription);
 } else {
