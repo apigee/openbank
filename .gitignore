@@ -56,5 +56,5 @@ test/config.js
 /src/gateway
 service.json
 service_account.json
-
+randomtest.js
 *.DS_Store

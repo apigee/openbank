@@ -236,11 +236,36 @@ function populateDatastore(datastore,data,kind,cb)
       entities.push(obj);
    }
 
-  datastore.upsert(entities).then(() => {
-    // entities inserted successfully.
-    cb();
+   var query = datastore.createQuery(kind).select("uuid");
+    datastore.runQuery(query, (err,entities) => {
+        var keys = [];
+        if (entities.length > 0) {
+            console.log(kind + " has " + entities.length + " entries");
+            entities.forEach(entity => {
+                var key = datastore.key([kind,entity["uuid"]]);
+                keys.push(key);
+            });
+        }
+        
+        if (keys.length > 0) {
+            datastore.delete(keys).then(() => 
+            {
+                console.log(kind + " entities deleted successfully");
+            }).catch(err=> { console.log("Error in deleting entities for "+kind +" : " + err);});
+        }
+
+        
+        datastore.upsert(entities).then(() => {
+            // entities inserted successfully.
+            cb();
+          }).catch(function(rej) {
+            console.log(rej);
+            cb(rej);
+          });
+
+    });
   
-  });
+   
 }
 
 function UploadDataDatastore(results,cb)
@@ -271,10 +296,14 @@ function UploadDataDatastore(results,cb)
                 var j = index;
                 var filepath = dsDataFilesPath + "/" +datafilelist[j];
                 var data = fs.readFileSync(filepath, 'utf8');
-                populateDatastore(datastore, data,datafilelist[j].split(".")[0], function()
+                populateDatastore(datastore, data,datafilelist[j].split(".")[0], function(err)
                 {
+                    if (err) {
+                        console.log("Error in creating " + datafilelist[j].split(".")[0] + " " + err);
+                    } else {
+                        console.log(datafilelist[j].split(".")[0] + " created successfully.");
+                    }
                     index++;
-                    console.log(datafilelist[j].split(".")[0] + " created successfully.");
                     if(index == datafilelist.length)
                     {
                         cb(null);
