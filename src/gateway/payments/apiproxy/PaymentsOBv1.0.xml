@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="5" name="PaymentsOBv1.0">
-    <Basepaths>pis/open-banking/v1.0.1</Basepaths>
-    <Basepaths>/pis/open-banking/v1.0.1</Basepaths>
+    <Basepaths>/apis/open-banking/v3.0/pisp</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1520838344311</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Specification for Payment Initiation</Description>
-    <DisplayName>payments</DisplayName>
+    <DisplayName>Paymentsv3.0</DisplayName>
     <LastModifiedAt>1520838344311</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
     <Policies>
