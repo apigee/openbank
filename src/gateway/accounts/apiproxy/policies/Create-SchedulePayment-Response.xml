@@ -15,5 +15,5 @@
     <DisplayName>Create ScheduledPayment Response</DisplayName>
     <FaultRules/>
     <Properties/>
-    <ResourceURL>jsc://CreateScheduledPaymentResponse.js</ResourceURL>
+    <ResourceURL>jsc://CreateScheduledPaymentsResponse.js</ResourceURL>
 </Javascript>
