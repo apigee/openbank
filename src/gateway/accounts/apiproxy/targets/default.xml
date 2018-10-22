@@ -25,6 +25,6 @@
     </PreFlow>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/internal/connector/v1.0.1/ais</URL>
+        <URL>{{ edgeBasePath }}/internal/connector/v3.0/ais</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>
