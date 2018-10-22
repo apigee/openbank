@@ -270,4 +270,3 @@ function parseIfNotObject(obj) {
 }
 
 
-module.exports = router;
