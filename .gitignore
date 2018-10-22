@@ -57,4 +57,5 @@ test/config.js
 service.json
 service_account.json
 randomtest.js
+**/config.json
 *.DS_Store

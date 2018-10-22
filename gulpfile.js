@@ -237,12 +237,12 @@ function populateDatastore(datastore,data,kind,cb)
    }
 
    var query = datastore.createQuery(kind).select("uuid");
-    datastore.runQuery(query, (err,entities) => {
+    datastore.runQuery(query, (err,items) => {
         var keys = [];
-        if (entities.length > 0) {
-            console.log(kind + " has " + entities.length + " entries");
-            entities.forEach(entity => {
-                var key = datastore.key([kind,entity["uuid"]]);
+        if (items.length > 0) {
+            console.log(kind + " has " + items.length + " entries");
+            items.forEach(item => {
+                var key = datastore.key([kind,item["uuid"]]);
                 keys.push(key);
             });
         }
@@ -251,21 +251,18 @@ function populateDatastore(datastore,data,kind,cb)
             datastore.delete(keys).then(() => 
             {
                 console.log(kind + " entities deleted successfully");
+                datastore.upsert(entities).then(() => {
+                    // entities inserted successfully.
+                    cb();
+                  }).catch(function(rej) {
+                    console.log(rej);
+                    cb(rej);
+                  });
+        
+                });
             }).catch(err=> { console.log("Error in deleting entities for "+kind +" : " + err);});
         }
-
-        
-        datastore.upsert(entities).then(() => {
-            // entities inserted successfully.
-            cb();
-          }).catch(function(rej) {
-            console.log(rej);
-            cb(rej);
-          });
-
-    });
   
-   
 }
 
 function UploadDataDatastore(results,cb)
