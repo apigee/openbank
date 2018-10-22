@@ -77,15 +77,15 @@ var PostResourceConfig =
                                                         'Other',
                                                         'PartyToParty'
                                                        ]}},
-            {'Risk.MerchantCategoryCode': {'MinText':3, 'MaxText': 4},
-            {'Risk.MerchantCustomerIdentification': {'MaxText': 70},
-            {'Risk.DeliveryAddress.AddressLine': {'ValueType': 'Array'},
-            {'Risk.DeliveryAddress.StreetName': {'MaxText': 70},
-            {'Risk.DeliveryAddress.BuildingNumber': {'MaxText': 16  },
-            {'Risk.DeliveryAddress.PostCode': {'MaxText': 16},
-            {'Risk.DeliveryAddress.TownName': {'Mandatory':true, 'MaxText': 35},  
-            {'Risk.DeliveryAddress.CountrySubDivision': {'MaxText': 35},  
-            {'Risk.DeliveryAddress.Country': {'Mandatory':true, 'MaxText': 2, 'MinText':2},                                                       
+            {'Risk.MerchantCategoryCode': {'MinText':3, 'MaxText': 4}},
+            {'Risk.MerchantCustomerIdentification': {'MaxText': 70}},
+            {'Risk.DeliveryAddress.AddressLine': {'ValueType': 'Array'}},
+            {'Risk.DeliveryAddress.StreetName': {'MaxText': 70}},
+            {'Risk.DeliveryAddress.BuildingNumber': {'MaxText': 16  }},
+            {'Risk.DeliveryAddress.PostCode': {'MaxText': 16}},
+            {'Risk.DeliveryAddress.TownName': {'Mandatory':true, 'MaxText': 35}},  
+            {'Risk.DeliveryAddress.CountrySubDivision': {'MaxText': 35}},  
+            {'Risk.DeliveryAddress.Country': {'Mandatory':true, 'MaxText': 2, 'MinText':2}}
         ]
     };
 var error = validateRequest(PostResourceConfig);
