@@ -40,8 +40,6 @@ gulp.task('lint', function() {
 
 gulp.task('startdeploy', function( cb) {
 
-
-
     var switch_opdk = [];
     switch_opdk.push({name: 'hasdatastore', description: 'Do you have cloud datastore instance? Enter - true/false' ,type: 'boolean', required: true});
 
@@ -60,9 +58,7 @@ gulp.task('startdeploy', function( cb) {
             prompt_lib.start();
 
             prompt_lib.get(required_values, function(err, results) {
-
                 UploadDataDatastore(results, function(){
-
                     results.hasdatastore = true;
                     post_prompt(err, results, function( callback)
                     {
@@ -102,12 +98,7 @@ gulp.task('startdeploy', function( cb) {
                         cb();
                     });
 
-                
-
-                
             });
-                
-            
         }
     });
     
@@ -175,11 +166,7 @@ function post_prompt(err, results, cb) {
         {
             cb(err,results);
         });
-            
-       
 }
-
-
 
 function replace_variables(paths, inject_object, cb) {
     mustache.escape = function (value) {
@@ -221,7 +208,8 @@ function replace_variables(paths, inject_object, cb) {
 
 function populateDatastore(datastore,data,kind,cb)
 {
-  //var requestPayload = apigee.getVariable(req, 'request.content');
+  
+    //var requestPayload = apigee.getVariable(req, 'request.content');
    var requestPayload = data;
    var tasks = JSON.parse(requestPayload);
    var kind = kind;
@@ -239,17 +227,18 @@ function populateDatastore(datastore,data,kind,cb)
    var query = datastore.createQuery(kind).select("uuid");
     datastore.runQuery(query, (err,items) => {
         var keys = [];
+        if (err) {
+            console.log("runquery error: " + err);
+        }
         if (items.length > 0) {
             console.log(kind + " has " + items.length + " entries");
-            items.forEach(item => {
+            items.forEach((item) =>{
                 var key = datastore.key([kind,item["uuid"]]);
                 keys.push(key);
             });
         }
-        
         if (keys.length > 0) {
-            datastore.delete(keys).then(() => 
-            {
+            datastore.delete(keys).then(() => {
                 console.log(kind + " entities deleted successfully");
                 datastore.upsert(entities).then(() => {
                     // entities inserted successfully.
@@ -258,10 +247,20 @@ function populateDatastore(datastore,data,kind,cb)
                     console.log(rej);
                     cb(rej);
                   });
-        
-                });
-            }).catch(err=> { console.log("Error in deleting entities for "+kind +" : " + err);});
+            }).catch((err) => {
+                console.log("Error in deleting entities for "+kind +" : " + err);
+            });
+        } else {
+            datastore.upsert(entities).then(() => {
+                // entities inserted successfully.
+                cb();
+              }).catch(function(rej) {
+                console.log(rej);
+                cb(rej);
+              });
         }
+        
+    });
   
 }
 
