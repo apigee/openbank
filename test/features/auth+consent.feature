@@ -40,7 +40,7 @@ Scenario: Tpp obtains an access token and stores in global scope
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `accounts-x-jws-signature`                   |
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     And response code should be 201
     And TPP stores the value of body path $.Data.ConsentId as GlobalAccountRequestId1 in global scope
     
@@ -56,7 +56,7 @@ Scenario: Tpp obtains an access token and stores in global scope
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `accounts-x-jws-signature`                   |
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     And response code should be 201
     And TPP stores the value of body path $.Data.ConsentId as GlobalAccountRequestId5 in global scope
     Given Tpp obtains client credential accesstoken for accounts claim and store in scenario scope
@@ -71,7 +71,7 @@ Scenario: Tpp obtains an access token and stores in global scope
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `accounts-x-jws-signature`                   |
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     And response code should be 201
     And TPP stores the value of body path $.Data.ConsentId as GlobalAccountRequestId6 in global scope
     Given Tpp obtains client credential accesstoken for accounts claim and store in scenario scope
@@ -86,7 +86,7 @@ Scenario: Tpp obtains an access token and stores in global scope
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `accounts-x-jws-signature`                   |
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     And response code should be 201
     And TPP stores the value of body path $.Data.ConsentId as GlobalAccountRequestId7 in global scope
 
@@ -102,7 +102,7 @@ Scenario: Tpp obtains an access token and stores in global scope
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a4 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `x-jws-signature`                   |
-    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
+    When the TPP makes the POST /apis/open-banking/v3.0/pisp/domestic-payment-consents
     And response code should be 201
     And TPP stores the value of body path $.Data.ConsentId as paymentRequestId in global scope
 

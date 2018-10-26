@@ -16,7 +16,7 @@ Feature:
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184jq |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `x-jws-signature`                   |
-    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
+    When the TPP makes the POST /apis/open-banking/v3.0/pisp/domestic-payment-consents
     And response code should be 201
     And TPP stores the value of body path $.Data.ConsentId as paymentRequestId in scenario scope
 
@@ -28,7 +28,7 @@ Feature:
       | Accept              | application/json        |
       | x-fapi-financial-id | OB/2017/001             |
     And TPP set body to {}
-    When the TPP makes the GET /pis/open-banking/v1.0.1/payments/`paymentRequestId`
+    When the TPP makes the GET /apis/open-banking/v3.0/pisp/domestic-payment-consents/`paymentRequestId`
     And response code should be 200
     Then response body path $.Data.Status should be Pending
 
@@ -58,7 +58,7 @@ Feature:
       | Accept              | application/json        |
       | x-fapi-financial-id | OB/2017/001             |
     And TPP set body to {}
-    When the TPP makes the GET /pis/open-banking/v1.0.1/payments/`paymentRequestId`
+    When the TPP makes the GET /apis/open-banking/v3.0/pisp/domestic-payment-consents/`paymentRequestId`
     And response code should be 200
     Then response body path $.Data.Status should be AcceptedTechnicalValidation
 
@@ -73,7 +73,7 @@ Feature:
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184b03 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `x-jws-signature`                   |
-    When the TPP makes the POST /pis/open-banking/v1.0.1/payment-submissions
+    When the TPP makes the POST /apis/open-banking/v3.0/pisp/domestic-payments
     And response code should be 201
     And TPP stores the value of body path $.Data.PaymentSubmissionId as paymentSubmissionId in scenario scope
 
@@ -85,7 +85,7 @@ Feature:
       | Accept              | application/json        |
       | x-fapi-financial-id | OB/2017/001             |
     And TPP set body to {}
-    When the TPP makes the GET /pis/open-banking/v1.0.1/payment-submissions/`paymentSubmissionId`
+    When the TPP makes the GET /apis/open-banking/v3.0/pisp/domestic-payments/`paymentSubmissionId`
     And response code should be 200
     Then response body path $.Data.Status should be AcceptedSettlementInProcess
 
@@ -102,7 +102,7 @@ Feature:
       | x-idempotency-key   | <idempotencyKey>  |
       | x-fapi-financial-id | <financialId>     |
       | x-jws-signature     | `x-jws-signature` |
-    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
+    When the TPP makes the POST /apis/open-banking/v3.0/pisp/domestic-payment-consents
     And response code should be <statusCode>
 
     Examples:
@@ -134,7 +134,7 @@ Feature:
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184h7 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `x-jws-signature`                   |
-    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
+    When the TPP makes the POST /apis/open-banking/v3.0/pisp/domestic-payment-consents
     And response code should be 201
     And TPP stores the value of body path $.Data.ConsentId as paymentRequestId in scenario scope
     #second request with same idempotency key
@@ -148,7 +148,7 @@ Feature:
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184h7 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `x-jws-signature`                   |
-    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
+    When the TPP makes the POST /apis/open-banking/v3.0/pisp/domestic-payment-consents
     And response code should be 201
     Then TPP asserts the value of body path $.Data.ConsentId with scenario variable paymentRequestId
 
@@ -167,7 +167,7 @@ Feature:
       | x-idempotency-key   | 9<idempotencyKey>       |
       | x-fapi-financial-id | OB/2017/001             |
       | x-jws-signature     | `x-jws-signature`       |
-    When the TPP makes the POST /pis/open-banking/v1.0.1/payments
+    When the TPP makes the POST /apis/open-banking/v3.0/pisp/domestic-payment-consents
     And response code should be 201
     And TPP stores the value of body path $.Data.ConsentId as paymentRequestId in scenario scope
 
@@ -200,7 +200,7 @@ Feature:
       | x-idempotency-key   | <idempotencyKey>  |
       | x-fapi-financial-id | <financialId>     |
       | x-jws-signature     | `x-jws-signature` |
-    When the TPP makes the POST /pis/open-banking/v1.0.1/payment-submissions
+    When the TPP makes the POST /apis/open-banking/v3.0/pisp/domestic-payments
     And response code should be <statusCode>
 
     Examples:
