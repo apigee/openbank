@@ -18,7 +18,7 @@ Feature:
       | x-jws-signature     | `x-jws-signature`                   |
     When the TPP makes the POST /pis/open-banking/v1.0.1/payments
     And response code should be 201
-    And TPP stores the value of body path $.Data.PaymentId as paymentRequestId in scenario scope
+    And TPP stores the value of body path $.Data.ConsentId as paymentRequestId in scenario scope
 
     #Get payment request
     Given TPP sets the request headers
@@ -136,7 +136,7 @@ Feature:
       | x-jws-signature     | `x-jws-signature`                   |
     When the TPP makes the POST /pis/open-banking/v1.0.1/payments
     And response code should be 201
-    And TPP stores the value of body path $.Data.PaymentId as paymentRequestId in scenario scope
+    And TPP stores the value of body path $.Data.ConsentId as paymentRequestId in scenario scope
     #second request with same idempotency key
     Given TPP set body to {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}}
     And TPP creates x-jws-signature with default headers for the body {"Data":{"Initiation":{"InstructionIdentification":"ACME412","EndToEndIdentification":"FRESCO.21302.GFX.20","InstructedAmount":{"Amount":"165.88","Currency":"GBP"},"CreditorAccount":{"SchemeName":"SortCodeAccountNumber","Identification":"08080021325698","Name":"ACMEInc","SecondaryIdentification":"0002"},"RemittanceInformation":{"Reference":"FRESCO-101","Unstructured":"Internalopscode5120101"}}},"Risk":{"PaymentContextCode":"EcommerceGoods","MerchantCategoryCode":"5967","MerchantCustomerIdentification":"053598653254","DeliveryAddress":{"AddressLine":["Flat7","AcaciaLodge"],"StreetName":"AcaciaAvenue","BuildingNumber":"27","PostCode":"GU312ZZ","TownName":"Sparsholt","Country":"UK"}}}
@@ -150,7 +150,7 @@ Feature:
       | x-jws-signature     | `x-jws-signature`                   |
     When the TPP makes the POST /pis/open-banking/v1.0.1/payments
     And response code should be 201
-    Then TPP asserts the value of body path $.Data.PaymentId with scenario variable paymentRequestId
+    Then TPP asserts the value of body path $.Data.ConsentId with scenario variable paymentRequestId
 
 
 ##payment submission request scenarios
@@ -169,7 +169,7 @@ Feature:
       | x-jws-signature     | `x-jws-signature`       |
     When the TPP makes the POST /pis/open-banking/v1.0.1/payments
     And response code should be 201
-    And TPP stores the value of body path $.Data.PaymentId as paymentRequestId in scenario scope
+    And TPP stores the value of body path $.Data.ConsentId as paymentRequestId in scenario scope
 
     #authorise with the payment request Id
     Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login

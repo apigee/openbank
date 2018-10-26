@@ -1,7 +1,7 @@
 {
   "base_path": "/apis/internal/v1.0.1/consentapp",
   "logo_uri": "/apis/internal/v1.0.1/consentapp/images/logo.png",
-  "consentPath": "{{ edgeBasePathFixed }}/apis/internal/v1.0.1/consentapp/consent",
+  "consentPath": "{{ edgeBasePath }}/apis/internal/v1.0.1/consentapp/consent",
   "cookieName":"OB_SESSION",
   "sessionImpl":"./cookie_session_impl",
   "cookieKey" : "{{ consentSessionKey }}",
@@ -10,7 +10,7 @@
     "header_background_color": "#FFF"
   },
   "loginApplication": {
-    "transactionEndpoint": "{{ edgeBasePathFixed }}/apis/internal/v1.0.1/loginapp"
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v1.0.1/loginapp"
   },
   "scaApplication": {
     "transactionEndpoint": "/apis/internal/v1.0.1/consentapp/otp"
@@ -30,21 +30,21 @@
     }
   },
   "accessTokenTransaction": {
-    "transactionEndpoint": "{{ edgeBasePathFixed }}/apis/v1.0.1/oauth/authorized",
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/v1.0.1/oauth/authorized",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "generateOtp": {
-    "transactionEndpoint": "{{ edgeBasePathFixed }}/internal/apis/v1.0/sms/otp/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1.0/sms/otp/",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "validateOtp": {
-    "transactionEndpoint": "{{ edgeBasePathFixed }}/internal/apis/v1.0/sms/otp/",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/apis/v1.0/sms/otp/",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"

@@ -42,7 +42,7 @@ Scenario: Tpp obtains an access token and stores in global scope
       | x-jws-signature     | `accounts-x-jws-signature`                   |
     When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
     And response code should be 201
-    And TPP stores the value of body path $.Data.AccountRequestId as GlobalAccountRequestId1 in global scope
+    And TPP stores the value of body path $.Data.ConsentId as GlobalAccountRequestId1 in global scope
     
     Given Tpp obtains client credential accesstoken for accounts claim and store in scenario scope
     #create account request
@@ -58,7 +58,7 @@ Scenario: Tpp obtains an access token and stores in global scope
       | x-jws-signature     | `accounts-x-jws-signature`                   |
     When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
     And response code should be 201
-    And TPP stores the value of body path $.Data.AccountRequestId as GlobalAccountRequestId5 in global scope
+    And TPP stores the value of body path $.Data.ConsentId as GlobalAccountRequestId5 in global scope
     Given Tpp obtains client credential accesstoken for accounts claim and store in scenario scope
     #create account request
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
@@ -73,7 +73,7 @@ Scenario: Tpp obtains an access token and stores in global scope
       | x-jws-signature     | `accounts-x-jws-signature`                   |
     When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
     And response code should be 201
-    And TPP stores the value of body path $.Data.AccountRequestId as GlobalAccountRequestId6 in global scope
+    And TPP stores the value of body path $.Data.ConsentId as GlobalAccountRequestId6 in global scope
     Given Tpp obtains client credential accesstoken for accounts claim and store in scenario scope
     #create account request
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
@@ -88,7 +88,7 @@ Scenario: Tpp obtains an access token and stores in global scope
       | x-jws-signature     | `accounts-x-jws-signature`                   |
     When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
     And response code should be 201
-    And TPP stores the value of body path $.Data.AccountRequestId as GlobalAccountRequestId7 in global scope
+    And TPP stores the value of body path $.Data.ConsentId as GlobalAccountRequestId7 in global scope
 
     Given Tpp obtains client credential accesstoken for payments claim and store in scenario scope
     #create payment request
@@ -104,7 +104,7 @@ Scenario: Tpp obtains an access token and stores in global scope
       | x-jws-signature     | `x-jws-signature`                   |
     When the TPP makes the POST /pis/open-banking/v1.0.1/payments
     And response code should be 201
-    And TPP stores the value of body path $.Data.PaymentId as paymentRequestId in global scope
+    And TPP stores the value of body path $.Data.ConsentId as paymentRequestId in global scope
 
 
 #TPP redirects the /authorize call to the user

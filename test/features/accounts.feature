@@ -14,9 +14,9 @@ Feature:
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `accounts-x-jws-signature`                   |
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     And response code should be 201
-    And TPP stores the value of body path $.Data.AccountRequestId as GlobalAccountRequestId in global scope
+    And TPP stores the value of body path $.Data.ConsentId as GlobalAccountRequestId in global scope
     Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
       | parameter     | value                                           |
       | client_id     | `TPPAppClientId`                         |
@@ -48,9 +48,9 @@ Feature:
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `accounts-x-jws-signature`                   |
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     And response code should be 201
-    And TPP stores the value of body path $.Data.AccountRequestId as AccountRequestId in scenario scope
+    And TPP stores the value of body path $.Data.ConsentId as AccountRequestId in scenario scope
     Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
       | parameter     | value                                           |
       | client_id     | `TPPAppClientId`                         |
@@ -81,9 +81,9 @@ Feature:
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `accounts-x-jws-signature`                   |
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     And response code should be 201
-    And TPP stores the value of body path $.Data.AccountRequestId as AccountRequestId in scenario scope
+    And TPP stores the value of body path $.Data.ConsentId as AccountRequestId in scenario scope
     Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
       | parameter     | value                                           |
       | client_id     | `TPPAppClientId`                         |
@@ -114,9 +114,9 @@ Feature:
       | x-idempotency-key   | 93bac547-d2de-4546-b106-880a50184a0 |
       | x-fapi-financial-id | OB/2017/001                         |
       | x-jws-signature     | `accounts-x-jws-signature`                   |
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     And response code should be 201
-    And TPP stores the value of body path $.Data.AccountRequestId as AccountRequestId in scenario scope
+    And TPP stores the value of body path $.Data.ConsentId as AccountRequestId in scenario scope
     Given TPP sets the request queryParams and creates the request Object And User makes authorize call and redirected to login
       | parameter     | value                                           |
       | client_id     | `TPPAppClientId`                         |
@@ -155,19 +155,19 @@ Feature:
     Examples:
 
       | api                                             |
-      | /ais/open-banking/v1.0.1/accounts                           |
-      | /ais/open-banking/v1.0.1/balances                           |
-      | /ais/open-banking/v1.0.1/transactions                       |
-      | /ais/open-banking/v1.0.1/beneficiaries                      |
-      | /ais/open-banking/v1.0.1/standing-orders                    |
-      | /ais/open-banking/v1.0.1/direct-debits                      |
-      | /ais/open-banking/v1.0.1/accounts/987654321                 |
-      | /ais/open-banking/v1.0.1/accounts/987654321/balances        |
-      | /ais/open-banking/v1.0.1/accounts/987654321/transactions    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/beneficiaries   |
-      | /ais/open-banking/v1.0.1/accounts/987654321/standing-orders |
-      | /ais/open-banking/v1.0.1/accounts/987654321/direct-debits   |
-      | /ais/open-banking/v1.0.1/accounts/987654321/product         |
+      | /apis/open-banking/v3.0/aisp/accounts                           |
+      | /apis/open-banking/v3.0/aisp/balances                           |
+      | /apis/open-banking/v3.0/aisp/transactions                       |
+      | /apis/open-banking/v3.0/aisp/beneficiaries                      |
+      | /apis/open-banking/v3.0/aisp/standing-orders                    |
+      | /apis/open-banking/v3.0/aisp/direct-debits                      |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321                 |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/balances        |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/transactions    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/beneficiaries   |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/standing-orders |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/direct-debits   |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/product         |
 
 
   Scenario Outline: TPP makes GET Accounts API call with invalid access token
@@ -182,19 +182,19 @@ Feature:
     Examples:
 
       | api                                             |
-      | /ais/open-banking/v1.0.1/accounts                           |
-      | /ais/open-banking/v1.0.1/balances                           |
-      | /ais/open-banking/v1.0.1/transactions                       |
-      | /ais/open-banking/v1.0.1/beneficiaries                      |
-      | /ais/open-banking/v1.0.1/standing-orders                    |
-      | /ais/open-banking/v1.0.1/direct-debits                      |
-      | /ais/open-banking/v1.0.1/accounts/987654321/                |
-      | /ais/open-banking/v1.0.1/accounts/987654321/balances        |
-      | /ais/open-banking/v1.0.1/accounts/987654321/transactions    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/beneficiaries   |
-      | /ais/open-banking/v1.0.1/accounts/987654321/standing-orders |
-      | /ais/open-banking/v1.0.1/accounts/987654321/direct-debits   |
-      | /ais/open-banking/v1.0.1/accounts/987654321/product         |
+      | /apis/open-banking/v3.0/aisp/accounts                           |
+      | /apis/open-banking/v3.0/aisp/balances                           |
+      | /apis/open-banking/v3.0/aisp/transactions                       |
+      | /apis/open-banking/v3.0/aisp/beneficiaries                      |
+      | /apis/open-banking/v3.0/aisp/standing-orders                    |
+      | /apis/open-banking/v3.0/aisp/direct-debits                      |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/                |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/balances        |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/transactions    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/beneficiaries   |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/standing-orders |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/direct-debits   |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/product         |
 
   Scenario Outline: TPP makes GET Accounts API call with missing x-fapi-financial-id header
     Given TPP sets the request headers
@@ -207,19 +207,19 @@ Feature:
     Examples:
 
       | api                                             |
-      | /ais/open-banking/v1.0.1/accounts                           |
-      | /ais/open-banking/v1.0.1/balances                           |
-      | /ais/open-banking/v1.0.1/transactions                       |
-      | /ais/open-banking/v1.0.1/beneficiaries                      |
-      | /ais/open-banking/v1.0.1/standing-orders                    |
-      | /ais/open-banking/v1.0.1/direct-debits                      |
-      | /ais/open-banking/v1.0.1/accounts/987654321/                |
-      | /ais/open-banking/v1.0.1/accounts/987654321/balances        |
-      | /ais/open-banking/v1.0.1/accounts/987654321/transactions    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/beneficiaries   |
-      | /ais/open-banking/v1.0.1/accounts/987654321/standing-orders |
-      | /ais/open-banking/v1.0.1/accounts/987654321/direct-debits   |
-      | /ais/open-banking/v1.0.1/accounts/987654321/product         |
+      | /apis/open-banking/v3.0/aisp/accounts                           |
+      | /apis/open-banking/v3.0/aisp/balances                           |
+      | /apis/open-banking/v3.0/aisp/transactions                       |
+      | /apis/open-banking/v3.0/aisp/beneficiaries                      |
+      | /apis/open-banking/v3.0/aisp/standing-orders                    |
+      | /apis/open-banking/v3.0/aisp/direct-debits                      |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/                |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/balances        |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/transactions    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/beneficiaries   |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/standing-orders |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/direct-debits   |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/product         |
 
   Scenario Outline: TPP makes GET Accounts API call with all mandatory headers, the request is successfull
     Given TPP sets the request headers
@@ -238,19 +238,19 @@ Feature:
     Examples:
 
       | api                                             |
-      | /ais/open-banking/v1.0.1/accounts                           |
-      | /ais/open-banking/v1.0.1/balances                           |
-      | /ais/open-banking/v1.0.1/transactions                       |
-      | /ais/open-banking/v1.0.1/beneficiaries                      |
-      | /ais/open-banking/v1.0.1/standing-orders                    |
-      | /ais/open-banking/v1.0.1/direct-debits                      |
-      | /ais/open-banking/v1.0.1/accounts/987654321                 |
-      | /ais/open-banking/v1.0.1/accounts/987654321/balances        |
-      | /ais/open-banking/v1.0.1/accounts/987654321/transactions    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/beneficiaries   |
-      | /ais/open-banking/v1.0.1/accounts/987654321/standing-orders |
-      | /ais/open-banking/v1.0.1/accounts/987654321/direct-debits   |
-      | /ais/open-banking/v1.0.1/accounts/987654321/product         |
+      | /apis/open-banking/v3.0/aisp/accounts                           |
+      | /apis/open-banking/v3.0/aisp/balances                           |
+      | /apis/open-banking/v3.0/aisp/transactions                       |
+      | /apis/open-banking/v3.0/aisp/beneficiaries                      |
+      | /apis/open-banking/v3.0/aisp/standing-orders                    |
+      | /apis/open-banking/v3.0/aisp/direct-debits                      |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321                 |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/balances        |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/transactions    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/beneficiaries   |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/standing-orders |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/direct-debits   |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/product         |
 
   Scenario Outline: TPP makes GET Accounts API call with invalid Accept header
     Given TPP sets the request headers
@@ -265,26 +265,26 @@ Feature:
     Examples:
 
       | api                                             |
-      | /ais/open-banking/v1.0.1/accounts                           |
-      | /ais/open-banking/v1.0.1/balances                           |
-      | /ais/open-banking/v1.0.1/transactions                       |
-      | /ais/open-banking/v1.0.1/beneficiaries                      |
-      | /ais/open-banking/v1.0.1/standing-orders                    |
-      | /ais/open-banking/v1.0.1/direct-debits                      |
-      | /ais/open-banking/v1.0.1/accounts/987654321                 |
-      | /ais/open-banking/v1.0.1/accounts/987654321/balances        |
-      | /ais/open-banking/v1.0.1/accounts/987654321/transactions    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/beneficiaries   |
-      | /ais/open-banking/v1.0.1/accounts/987654321/standing-orders |
-      | /ais/open-banking/v1.0.1/accounts/987654321/direct-debits   |
-      | /ais/open-banking/v1.0.1/accounts/987654321/product         |
+      | /apis/open-banking/v3.0/aisp/accounts                           |
+      | /apis/open-banking/v3.0/aisp/balances                           |
+      | /apis/open-banking/v3.0/aisp/transactions                       |
+      | /apis/open-banking/v3.0/aisp/beneficiaries                      |
+      | /apis/open-banking/v3.0/aisp/standing-orders                    |
+      | /apis/open-banking/v3.0/aisp/direct-debits                      |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321                 |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/balances        |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/transactions    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/beneficiaries   |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/standing-orders |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/direct-debits   |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/product         |
 
 
-  Scenario Outline: TPP makes GET or DELETE /ais/open-banking/v1.0.1/account-requests call with missing Authorization header
+  Scenario Outline: TPP makes GET or DELETE /apis/open-banking/v3.0/aisp/account-access-consents call with missing Authorization header
     Given TPP sets the request headers
       | name                | value          |
       | x-fapi-financial-id | ABCDSOMEIDABCD |
-    When the TPP makes the <verb> /ais/open-banking/v1.0.1/account-requests/`GlobalAccountRequestId`
+    When the TPP makes the <verb> /apis/open-banking/v3.0/aisp/account-access-consents/`GlobalAccountRequestId`
     Then response code should be 401
 
     Examples:
@@ -292,12 +292,12 @@ Feature:
       | GET    |
       | DELETE |
 
-  Scenario Outline: TPP makes GET or DELETE /ais/open-banking/v1.0.1/account-requests call with invalid access token
+  Scenario Outline: TPP makes GET or DELETE /apis/open-banking/v3.0/aisp/account-access-consents call with invalid access token
     Given TPP sets the request headers
       | name                | value             |
       | Authorization       | Bearer WRONGTOKEN |
       | x-fapi-financial-id | ABCDSOMEIDABCD    |
-    When the TPP makes the <verb> /ais/open-banking/v1.0.1/account-requests/`GlobalAccountRequestId`
+    When the TPP makes the <verb> /apis/open-banking/v3.0/aisp/account-access-consents/`GlobalAccountRequestId`
     Then response code should be 401
 
     Examples:
@@ -305,12 +305,12 @@ Feature:
       | GET    |
       | DELETE |
 
-  Scenario Outline: TPP makes GET or DELETE /ais/open-banking/v1.0.1/account-requests call with access token having invalid scope
+  Scenario Outline: TPP makes GET or DELETE /apis/open-banking/v3.0/aisp/account-access-consents call with access token having invalid scope
     Given TPP sets the request headers
       | name                | value                           |
       | Authorization       | Bearer `accesstoken_cc_invalid` |
       | x-fapi-financial-id | ABCDSOMEIDABCD                  |
-    When the TPP makes the <verb> /ais/open-banking/v1.0.1/account-requests/`GlobalAccountRequestId`
+    When the TPP makes the <verb> /apis/open-banking/v3.0/aisp/account-access-consents/`GlobalAccountRequestId`
     Then response code should be 403
 
     Examples:
@@ -318,11 +318,11 @@ Feature:
       | GET    |
       | DELETE |
 
-  Scenario Outline: TPP makes GET or DELETE /ais/open-banking/v1.0.1/account-requests call with missing x-fapi-financial-id header
+  Scenario Outline: TPP makes GET or DELETE /apis/open-banking/v3.0/aisp/account-access-consents call with missing x-fapi-financial-id header
     Given TPP sets the request headers
       | name          | value                   |
       | Authorization | Bearer `accesstoken_cc` |
-    When the TPP makes the <verb> /ais/open-banking/v1.0.1/account-requests/`GlobalAccountRequestId`
+    When the TPP makes the <verb> /apis/open-banking/v3.0/aisp/account-access-consents/`GlobalAccountRequestId`
     Then response code should be 400
 
     Examples:
@@ -330,12 +330,12 @@ Feature:
       | GET    |
       | DELETE |
 
-  Scenario Outline: TPP makes  GET /ais/open-banking/v1.0.1/account-requests call with all mandatory headers, the request is successfull
+  Scenario Outline: TPP makes  GET /apis/open-banking/v3.0/aisp/account-access-consents call with all mandatory headers, the request is successfull
     Given TPP sets the request headers
       | name                | value                   |
       | Authorization       | Bearer `accesstoken_cc` |
       | x-fapi-financial-id | ABCDSOMEIDABCD          |
-    When the TPP makes the <verb> /ais/open-banking/v1.0.1/account-requests/`GlobalAccountRequestId`
+    When the TPP makes the <verb> /apis/open-banking/v3.0/aisp/account-access-consents/`GlobalAccountRequestId`
     Then response code should be 200
 
     Examples:
@@ -343,13 +343,13 @@ Feature:
       | GET  |
 
 
-  Scenario Outline: TPP makes  GET or DELETE /ais/open-banking/v1.0.1/account-requests call with invalid Accept header
+  Scenario Outline: TPP makes  GET or DELETE /apis/open-banking/v3.0/aisp/account-access-consents call with invalid Accept header
     Given TPP sets the request headers
       | name                | value                   |
       | Authorization       | Bearer `accesstoken_cc` |
       | x-fapi-financial-id | ABCDSOMEIDABCD          |
       | Accept              | application/xml         |
-    When the TPP makes the <verb> /ais/open-banking/v1.0.1/account-requests/`GlobalAccountRequestId`
+    When the TPP makes the <verb> /apis/open-banking/v3.0/aisp/account-access-consents/`GlobalAccountRequestId`
     Then response code should be 406
 
     Examples:
@@ -370,7 +370,7 @@ Feature:
       | x-fapi-financial-id | abcdsomeidabcd          |
       | x-jws-signature     | <signature>             |
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be <responseCode>
 
     Examples:
@@ -393,44 +393,44 @@ Feature:
     Examples:
 
       | interactionId | api                                             |
-      | 123123123     | /ais/open-banking/v1.0.1/accounts                           |
-      |               | /ais/open-banking/v1.0.1/accounts                           |
+      | 123123123     | /apis/open-banking/v3.0/aisp/accounts                           |
+      |               | /apis/open-banking/v3.0/aisp/accounts                           |
 
-      | 123123123     | /ais/open-banking/v1.0.1/accounts/987654321                 |
-      |               | /ais/open-banking/v1.0.1/accounts/987654321                 |
+      | 123123123     | /apis/open-banking/v3.0/aisp/accounts/987654321                 |
+      |               | /apis/open-banking/v3.0/aisp/accounts/987654321                 |
 
-      | 123123123     | /ais/open-banking/v1.0.1/accounts/987654321/balances        |
-      |               | /ais/open-banking/v1.0.1/accounts/987654321/balances        |
+      | 123123123     | /apis/open-banking/v3.0/aisp/accounts/987654321/balances        |
+      |               | /apis/open-banking/v3.0/aisp/accounts/987654321/balances        |
 
-      | 123123123     | /ais/open-banking/v1.0.1/accounts/987654321/transactions    |
-      |               | /ais/open-banking/v1.0.1/accounts/987654321/transactions    |
+      | 123123123     | /apis/open-banking/v3.0/aisp/accounts/987654321/transactions    |
+      |               | /apis/open-banking/v3.0/aisp/accounts/987654321/transactions    |
 
-      | 123123123     | /ais/open-banking/v1.0.1/accounts/987654321/beneficiaries   |
-      |               | /ais/open-banking/v1.0.1/accounts/987654321/beneficiaries   |
+      | 123123123     | /apis/open-banking/v3.0/aisp/accounts/987654321/beneficiaries   |
+      |               | /apis/open-banking/v3.0/aisp/accounts/987654321/beneficiaries   |
 
-      | 123123123     | /ais/open-banking/v1.0.1/accounts/987654321/standing-orders |
-      |               | /ais/open-banking/v1.0.1/accounts/987654321/standing-orders |
+      | 123123123     | /apis/open-banking/v3.0/aisp/accounts/987654321/standing-orders |
+      |               | /apis/open-banking/v3.0/aisp/accounts/987654321/standing-orders |
 
-      | 123123123     | /ais/open-banking/v1.0.1/accounts/987654321/direct-debits   |
-      |               | /ais/open-banking/v1.0.1/accounts/987654321/direct-debits   |
+      | 123123123     | /apis/open-banking/v3.0/aisp/accounts/987654321/direct-debits   |
+      |               | /apis/open-banking/v3.0/aisp/accounts/987654321/direct-debits   |
 
-      | 123123123     | /ais/open-banking/v1.0.1/accounts/987654321/product         |
-      |               | /ais/open-banking/v1.0.1/accounts/987654321/product         |
+      | 123123123     | /apis/open-banking/v3.0/aisp/accounts/987654321/product         |
+      |               | /apis/open-banking/v3.0/aisp/accounts/987654321/product         |
 
-      | 123123123     | /ais/open-banking/v1.0.1/balances                           |
-      |               | /ais/open-banking/v1.0.1/balances                           |
+      | 123123123     | /apis/open-banking/v3.0/aisp/balances                           |
+      |               | /apis/open-banking/v3.0/aisp/balances                           |
 
-      | 123123123     | /ais/open-banking/v1.0.1/transactions                       |
-      |               | /ais/open-banking/v1.0.1/transactions                       |
+      | 123123123     | /apis/open-banking/v3.0/aisp/transactions                       |
+      |               | /apis/open-banking/v3.0/aisp/transactions                       |
 
-      | 123123123     | /ais/open-banking/v1.0.1/beneficiaries                      |
-      |               | /ais/open-banking/v1.0.1/beneficiaries                      |
+      | 123123123     | /apis/open-banking/v3.0/aisp/beneficiaries                      |
+      |               | /apis/open-banking/v3.0/aisp/beneficiaries                      |
 
-      | 123123123     | /ais/open-banking/v1.0.1/standing-orders                    |
-      |               | /ais/open-banking/v1.0.1/standing-orders                    |
+      | 123123123     | /apis/open-banking/v3.0/aisp/standing-orders                    |
+      |               | /apis/open-banking/v3.0/aisp/standing-orders                    |
 
-      | 123123123     | /ais/open-banking/v1.0.1/direct-debits                      |
-      |               | /ais/open-banking/v1.0.1/direct-debits                      |
+      | 123123123     | /apis/open-banking/v3.0/aisp/direct-debits                      |
+      |               | /apis/open-banking/v3.0/aisp/direct-debits                      |
 
 
   Scenario Outline:Signature Check for x-fapi-interaction-id playback For POST account-requests
@@ -443,13 +443,13 @@ Feature:
       | x-fapi-interaction-id | <interactionId>         |
       | x-jws-signature       | `accounts-x-jws-signature`   |
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be 201
     And response header x-fapi-interaction-id should be <interactionId>
     And response header Content-Type should exist
     And response header x-jws-signature should exist
     And response header Content-Type should be application/json
-    And response body path $.Data.AccountRequestId should not be null
+    And response body path $.Data.ConsentId should not be null
     And response body path $.Risk should not be null
     And response body path $.Links should not be null
     And response body path $.Meta should not be null
@@ -467,14 +467,14 @@ Feature:
       | Authorization         | Bearer `accesstoken_cc` |
       | x-fapi-financial-id   | abcdsomeidabcd          |
       | x-fapi-interaction-id | <interactionId>         |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/account-requests/`GlobalAccountRequestId`
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/account-access-consents/`GlobalAccountRequestId`
     Then response header x-fapi-interaction-id should be <interactionId>
     And response header x-jws-signature should exist
     And response code should be 200
     And response header Content-Type should exist
     And response header x-jws-signature should exist
     And response header Content-Type should be application/json
-    And response body path $.Data.AccountRequestId should not be null
+    And response body path $.Data.ConsentId should not be null
     And response body path $.Risk should not be null
     And response body path $.Links should not be null
     And response body path $.Meta should not be null
@@ -486,7 +486,7 @@ Feature:
       |               |
 
 
-  Scenario Outline:TPP makes a POST /ais/open-banking/v1.0.1/account-requests call Case: <description>
+  Scenario Outline:TPP makes a POST /apis/open-banking/v3.0/aisp/account-access-consents call Case: <description>
     Given TPP sets the request headers
       | name                | value                   |
       | Content-Type        | application/json        |
@@ -494,7 +494,7 @@ Feature:
       | x-fapi-financial-id | abcdsomeidabcd          |
       | x-jws-signature     | `account_request_jws`   |
     And TPP set body to {"Data": {"Permissions": <permissionArray>,"ExpirationDateTime": <expDateTime>,"TransactionFromDateTime": <transactionFromDateTime>,"TransactionToDateTime": <transactionToDateTime>},"Risk": {}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be <responseCode>
 
     Examples:
@@ -534,13 +534,13 @@ Feature:
 
     Examples:
       | api                                                  | responseCode |
-      | /ais/open-banking/v1.0.1/accounts/wrongAccountId                 | 400          |
-      | /ais/open-banking/v1.0.1/accounts/wrongAccountId/balances        | 400          |
-      | /ais/open-banking/v1.0.1/accounts/wrongAccountId/transactions    | 400          |
-      | /ais/open-banking/v1.0.1/accounts/wrongAccountId/beneficiaries   | 400          |
-      | /ais/open-banking/v1.0.1/accounts/wrongAccountId/standing-orders | 400          |
-      | /ais/open-banking/v1.0.1/accounts/wrongAccountId/direct-debits   | 400          |
-      | /ais/open-banking/v1.0.1/accounts/wrongAccountId/product         | 400          |
+      | /apis/open-banking/v3.0/aisp/accounts/wrongAccountId                 | 400          |
+      | /apis/open-banking/v3.0/aisp/accounts/wrongAccountId/balances        | 400          |
+      | /apis/open-banking/v3.0/aisp/accounts/wrongAccountId/transactions    | 400          |
+      | /apis/open-banking/v3.0/aisp/accounts/wrongAccountId/beneficiaries   | 400          |
+      | /apis/open-banking/v3.0/aisp/accounts/wrongAccountId/standing-orders | 400          |
+      | /apis/open-banking/v3.0/aisp/accounts/wrongAccountId/direct-debits   | 400          |
+      | /apis/open-banking/v3.0/aisp/accounts/wrongAccountId/product         | 400          |
 
 
   Scenario Outline: No entries found for GET Account APIs <payloadPath>
@@ -555,18 +555,18 @@ Feature:
 
     Examples:
       | api                                             | payloadPath          |
-      | /ais/open-banking/v1.0.1/transactions                       | $.Data.Transaction   |
-      | /ais/open-banking/v1.0.1/beneficiaries                      | $.Data.Beneficiary   |
-      | /ais/open-banking/v1.0.1/standing-orders                    | $.Data.StandingOrder |
-      | /ais/open-banking/v1.0.1/direct-debits                      | $.Data.DirectDebit   |
-      | /ais/open-banking/v1.0.1/accounts/111111111/transactions    | $.Data.Transaction   |
-      | /ais/open-banking/v1.0.1/accounts/111111111/beneficiaries   | $.Data.Beneficiary   |
-      | /ais/open-banking/v1.0.1/accounts/111111111/standing-orders | $.Data.StandingOrder |
-      | /ais/open-banking/v1.0.1/accounts/111111111/direct-debits   | $.Data.DirectDebit   |
-      | /ais/open-banking/v1.0.1/accounts/111111111/product         | $.Data.Product       |
+      | /apis/open-banking/v3.0/aisp/transactions                       | $.Data.Transaction   |
+      | /apis/open-banking/v3.0/aisp/beneficiaries                      | $.Data.Beneficiary   |
+      | /apis/open-banking/v3.0/aisp/standing-orders                    | $.Data.StandingOrder |
+      | /apis/open-banking/v3.0/aisp/direct-debits                      | $.Data.DirectDebit   |
+      | /apis/open-banking/v3.0/aisp/accounts/111111111/transactions    | $.Data.Transaction   |
+      | /apis/open-banking/v3.0/aisp/accounts/111111111/beneficiaries   | $.Data.Beneficiary   |
+      | /apis/open-banking/v3.0/aisp/accounts/111111111/standing-orders | $.Data.StandingOrder |
+      | /apis/open-banking/v3.0/aisp/accounts/111111111/direct-debits   | $.Data.DirectDebit   |
+      | /apis/open-banking/v3.0/aisp/accounts/111111111/product         | $.Data.Product       |
 
 
-  Scenario Outline: TPP makes  /ais/open-banking/v1.0.1/account-requests call with missing Authorization header
+  Scenario Outline: TPP makes  /apis/open-banking/v3.0/aisp/account-access-consents call with missing Authorization header
     Given TPP sets the request headers
       | name                | value            |
       | x-fapi-financial-id | ABCDSOMEIDABCD   |
@@ -576,9 +576,9 @@ Feature:
 
     Examples:
       | verb   | api                                           |
-      | GET    | /ais/open-banking/v1.0.1/account-requests/ACOUNTREQUESTID |
-      | POST   | /ais/open-banking/v1.0.1/account-requests                 |
-      | DELETE | /ais/open-banking/v1.0.1/account-requests/ACOUNTREQUESTID |
+      | GET    | /apis/open-banking/v3.0/aisp/account-access-consents/ACOUNTREQUESTID |
+      | POST   | /apis/open-banking/v3.0/aisp/account-access-consents                 |
+      | DELETE | /apis/open-banking/v3.0/aisp/account-access-consents/ACOUNTREQUESTID |
 
 ### not sure
 # scenarios when invalid permissions for accessing a resource
@@ -593,8 +593,8 @@ Feature:
 
     Examples:
       | api                             |
-      | /ais/open-banking/v1.0.1/accounts           |
-      | /ais/open-banking/v1.0.1/accounts/987654321 |
+      | /apis/open-banking/v3.0/aisp/accounts           |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321 |
 
 
   Scenario Outline: TPP makes GET Account Balance info call with account request having invalid permissions
@@ -608,8 +608,8 @@ Feature:
 
     Examples:
       | api                                      |
-      | /ais/open-banking/v1.0.1/balances                    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/balances |
+      | /apis/open-banking/v3.0/aisp/balances                    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/balances |
 
 
   Scenario Outline: TPP makes GET Account Beneficiaries info call with account request having invalid permissions
@@ -623,8 +623,8 @@ Feature:
 
     Examples:
       | api                                           |
-      | /ais/open-banking/v1.0.1/beneficiaries                    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/beneficiaries |
+      | /apis/open-banking/v3.0/aisp/beneficiaries                    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/beneficiaries |
 
 
   Scenario Outline: TPP makes GET Account Direct debits info call with account request having invalid permissions
@@ -638,8 +638,8 @@ Feature:
 
     Examples:
       | api                                           |
-      | /ais/open-banking/v1.0.1/direct-debits                    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/direct-debits |
+      | /apis/open-banking/v3.0/aisp/direct-debits                    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/direct-debits |
 
   Scenario: TPP makes GET Account Product info call with account request having invalid permissions
     Given TPP sets the request headers
@@ -647,7 +647,7 @@ Feature:
       | Authorization              | Bearer `accesstoken_ReadAccountsDetailPermission` |
       | x-fapi-financial-id        | ABCDSOMEIDABCD                                    |
       | x-fapi-customer-ip-address | CUSTOMERIPADDR                                    |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/accounts/987654321/product
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
     Then response code should be 403
 
 
@@ -662,8 +662,8 @@ Feature:
 
     Examples:
       | api                                             |
-      | /ais/open-banking/v1.0.1/standing-orders                    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/standing-orders |
+      | /apis/open-banking/v3.0/aisp/standing-orders                    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/standing-orders |
 
 
   Scenario Outline: TPP makes GET Account Transactions info call with account request having invalid permissions
@@ -677,8 +677,8 @@ Feature:
 
     Examples:
       | api                                          |
-      | /ais/open-banking/v1.0.1/transactions                    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/transactions |
+      | /apis/open-banking/v3.0/aisp/transactions                    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/transactions |
 
   Scenario: TPP makes GET Account Products info call with account request having invalid permissions
     Given TPP sets the request headers
@@ -686,7 +686,7 @@ Feature:
       | Authorization              | Bearer `accesstoken_ReadAccountsDetailPermission` |
       | x-fapi-financial-id        | ABCDSOMEIDABCD                                    |
       | x-fapi-customer-ip-address | CUSTOMERIPADDR                                    |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/accounts/987654321/product
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
     Then response code should be 403
 
 
@@ -707,8 +707,8 @@ Feature:
 
     Examples:
       | api                             |
-      | /ais/open-banking/v1.0.1/accounts           |
-      | /ais/open-banking/v1.0.1/accounts/987654321 |
+      | /apis/open-banking/v3.0/aisp/accounts           |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321 |
 
 
   Scenario Outline: TPP makes GET Balance info request
@@ -726,8 +726,8 @@ Feature:
 
     Examples:
       | api                                      |
-      | /ais/open-banking/v1.0.1/balances                    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/balances |
+      | /apis/open-banking/v3.0/aisp/balances                    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/balances |
 
 
   Scenario Outline: TPP makes GET Beneficiaries info request
@@ -745,8 +745,8 @@ Feature:
 
     Examples:
       | api                                           |
-      | /ais/open-banking/v1.0.1/beneficiaries                    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/beneficiaries |
+      | /apis/open-banking/v3.0/aisp/beneficiaries                    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/beneficiaries |
 
 
   Scenario Outline: TPP makes GET Direct debits info request
@@ -764,8 +764,8 @@ Feature:
 
     Examples:
       | api                                           |
-      | /ais/open-banking/v1.0.1/direct-debits                    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/direct-debits |
+      | /apis/open-banking/v3.0/aisp/direct-debits                    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/direct-debits |
 
 
   Scenario Outline: TPP makes GET Standing Orders info request
@@ -783,8 +783,8 @@ Feature:
 
     Examples:
       | api                                             |
-      | /ais/open-banking/v1.0.1/standing-orders                    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/standing-orders |
+      | /apis/open-banking/v3.0/aisp/standing-orders                    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/standing-orders |
 
 
   Scenario Outline: TPP makes GET Transactions info request
@@ -802,8 +802,8 @@ Feature:
 
     Examples:
       | api                                          |
-      | /ais/open-banking/v1.0.1/transactions                    |
-      | /ais/open-banking/v1.0.1/accounts/987654321/transactions |
+      | /apis/open-banking/v3.0/aisp/transactions                    |
+      | /apis/open-banking/v3.0/aisp/accounts/987654321/transactions |
 
   Scenario: TPP makes GET Product info request
     Given TPP sets the request headers
@@ -811,7 +811,7 @@ Feature:
       | Authorization              | Bearer `accesstoken` |
       | x-fapi-financial-id        | ABCDSOMEIDABCD       |
       | x-fapi-customer-ip-address | CUSTOMERIPADDR       |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/accounts/987654321/product
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
     Then response code should be 200
     And response header x-jws-signature should exist
     And response body path $.Data.Product should not be null
@@ -819,18 +819,18 @@ Feature:
     And response body path $.Links should not be null
 
 
-  Scenario: TPP makes POST /ais/open-banking/v1.0.1/account-requests call with missing Authorization header
+  Scenario: TPP makes POST /apis/open-banking/v3.0/aisp/account-access-consents call with missing Authorization header
     Given TPP sets the request headers
       | name                | value                 |
       | x-fapi-financial-id | ABCDSOMEIDABCD        |
       | Content-Type        | application/json      |
       | x-jws-signature     | `account_request_jws` |
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be 401
 
 
-  Scenario: TPP makes POST /ais/open-banking/v1.0.1/account-requests call with invalid access token
+  Scenario: TPP makes POST /apis/open-banking/v3.0/aisp/account-access-consents call with invalid access token
     Given TPP sets the request headers
       | name                | value                 |
       | Authorization       | Bearer WRONGTOKEN     |
@@ -838,10 +838,10 @@ Feature:
       | Content-Type        | application/json      |
       | x-jws-signature     | `account_request_jws` |
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be 401
 
-  Scenario: TPP makes POST /ais/open-banking/v1.0.1/account-requests call with access token having invalid scope
+  Scenario: TPP makes POST /apis/open-banking/v3.0/aisp/account-access-consents call with access token having invalid scope
     Given TPP sets the request headers
       | name                | value                           |
       | Authorization       | Bearer `accesstoken_cc_invalid` |
@@ -849,31 +849,31 @@ Feature:
       | Content-Type        | application/json                |
       | x-jws-signature     | `account_request_jws`           |
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be 403
 
 
-  Scenario: TPP makes POST /ais/open-banking/v1.0.1/account-requests call with missing x-fapi-financial-id header
+  Scenario: TPP makes POST /apis/open-banking/v3.0/aisp/account-access-consents call with missing x-fapi-financial-id header
     Given TPP sets the request headers
       | name            | value                   |
       | Authorization   | Bearer `accesstoken_cc` |
       | Content-Type    | application/json        |
       | x-jws-signature | `account_request_jws`   |
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be 400
 
-  Scenario: TPP makes POST /ais/open-banking/v1.0.1/account-requests call with missing Content-Type header
+  Scenario: TPP makes POST /apis/open-banking/v3.0/aisp/account-access-consents call with missing Content-Type header
     Given TPP sets the request headers
       | name                | value                   |
       | Authorization       | Bearer `accesstoken_cc` |
       | x-fapi-financial-id | ABCDSOMEIDABCD          |
       | x-jws-signature     | `account_request_jws`   |
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be 400
 
-  Scenario: TPP makes POST /ais/open-banking/v1.0.1/account-requests call with invalid Content-Type header
+  Scenario: TPP makes POST /apis/open-banking/v3.0/aisp/account-access-consents call with invalid Content-Type header
     Given TPP sets the request headers
       | name                | value                   |
       | Authorization       | Bearer `accesstoken_cc` |
@@ -881,11 +881,11 @@ Feature:
       | Content-Type        | application/xml         |
       | x-jws-signature     | `account_request_jws`   |
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be 400
 
 
-  Scenario: TPP makes  POST /ais/open-banking/v1.0.1/account-requests call with invalid Accept header
+  Scenario: TPP makes  POST /apis/open-banking/v3.0/aisp/account-access-consents call with invalid Accept header
     Given TPP sets the request headers
       | name                | value                   |
       | Authorization       | Bearer `accesstoken_cc` |
@@ -894,10 +894,10 @@ Feature:
       | Accept              | application/xml         |
       | x-jws-signature     | `account_request_jws`   |
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be 406
 
-  Scenario: TPP makes  POST /ais/open-banking/v1.0.1/account-requests call with all mandatory headers, the request is successfull
+  Scenario: TPP makes  POST /apis/open-banking/v3.0/aisp/account-access-consents call with all mandatory headers, the request is successfull
     Given TPP creates x-jws-signature for accounts with default headers for the body {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
     And TPP sets the request headers
       | name                | value                   |
@@ -906,7 +906,7 @@ Feature:
       | Content-Type        | application/json        |
       | x-jws-signature     | `accounts-x-jws-signature`   |
     And TPP set body to {"Data":{"Permissions":["ReadAccountsDetail","ReadBalances","ReadBeneficiariesDetail","ReadDirectDebits","ReadProducts","ReadStandingOrdersDetail","ReadTransactionsCredits","ReadTransactionsDebits","ReadTransactionsDetail"],"ExpirationDateTime":"2025-08-02T00:00:00-00:00","TransactionFromDateTime":"2012-05-03T00:00:00-00:00","TransactionToDateTime":"2025-05-08T00:00:00-00:00"},"Risk":{}}
-    When the TPP makes the POST /ais/open-banking/v1.0.1/account-requests
+    When the TPP makes the POST /apis/open-banking/v3.0/aisp/account-access-consents
     Then response code should be 201
 
 
@@ -915,13 +915,13 @@ Feature:
       | name                | value                   |
       | Authorization       | Bearer `accesstoken_cc` |
       | x-fapi-financial-id | ABCDSOMEIDABCD          |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/account-requests/InValidRequestId
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/account-access-consents/InValidRequestId
     Then response code should be 400
 
 
 
 # customer absence check
-  Scenario:Check for 4 time access token use with customer presence GET /ais/open-banking/v1.0.1/balances
+  Scenario:Check for 4 time access token use with customer presence GET /apis/open-banking/v3.0/aisp/balances
     Given TPP sets the request headers
       | name                       | value                |
       | Content-Type               | application/json     |
@@ -929,29 +929,29 @@ Feature:
       | x-fapi-financial-id        | abcdsomeidabcd       |
       | x-fapi-interaction-id      | INTERACTIONID        |
       | x-fapi-customer-ip-address | 1234567              |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/balances
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/balances
     Then response code should be 200
 
-  Scenario:Check for 4 time access token use without customer presence GET /ais/open-banking/v1.0.1/balances
+  Scenario:Check for 4 time access token use without customer presence GET /apis/open-banking/v3.0/aisp/balances
     Given TPP sets the request headers
       | name                  | value                |
       | Content-Type          | application/json     |
       | Authorization         | Bearer `accesstoken` |
       | x-fapi-financial-id   | abcdsomeidabcd       |
       | x-fapi-interaction-id | INTERACTIONID        |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/balances
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/balances
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/balances
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/balances
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/balances
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/balances
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/balances
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/balances
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/balances
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/balances
     Then response code should be 403
 
 
-  Scenario:Check for 4 time access token use with customer presence GET /ais/open-banking/v1.0.1/transactions
+  Scenario:Check for 4 time access token use with customer presence GET /apis/open-banking/v3.0/aisp/transactions
     Given TPP sets the request headers
       | name                       | value                |
       | Content-Type               | application/json     |
@@ -959,28 +959,28 @@ Feature:
       | x-fapi-financial-id        | abcdsomeidabcd       |
       | x-fapi-interaction-id      | INTERACTIONID        |
       | x-fapi-customer-ip-address | 1234567              |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/transactions
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/transactions
     Then response code should be 200
 
-  Scenario:Check for 4 time access token use without customer presence GET /ais/open-banking/v1.0.1/transactions
+  Scenario:Check for 4 time access token use without customer presence GET /apis/open-banking/v3.0/aisp/transactions
     Given TPP sets the request headers
       | name                  | value                |
       | Content-Type          | application/json     |
       | Authorization         | Bearer `accesstoken` |
       | x-fapi-financial-id   | abcdsomeidabcd       |
       | x-fapi-interaction-id | INTERACTIONID        |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/transactions
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/transactions
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/transactions
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/transactions
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/transactions
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/transactions
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/transactions
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/transactions
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/transactions
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/transactions
     Then response code should be 403
 
-  Scenario:Check for 4 time access token use with customer presence GET /ais/open-banking/v1.0.1/beneficiaries
+  Scenario:Check for 4 time access token use with customer presence GET /apis/open-banking/v3.0/aisp/beneficiaries
     Given TPP sets the request headers
       | name                       | value                |
       | Content-Type               | application/json     |
@@ -988,28 +988,28 @@ Feature:
       | x-fapi-financial-id        | abcdsomeidabcd       |
       | x-fapi-interaction-id      | INTERACTIONID        |
       | x-fapi-customer-ip-address | 1234567              |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/beneficiaries
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/beneficiaries
     Then response code should be 200
 
-  Scenario:Check for 4 time access token use without customer presence GET /ais/open-banking/v1.0.1/beneficiaries
+  Scenario:Check for 4 time access token use without customer presence GET /apis/open-banking/v3.0/aisp/beneficiaries
     Given TPP sets the request headers
       | name                  | value                |
       | Content-Type          | application/json     |
       | Authorization         | Bearer `accesstoken` |
       | x-fapi-financial-id   | abcdsomeidabcd       |
       | x-fapi-interaction-id | INTERACTIONID        |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/beneficiaries
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/beneficiaries
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/beneficiaries
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/beneficiaries
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/beneficiaries
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/beneficiaries
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/beneficiaries
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/beneficiaries
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/beneficiaries
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/beneficiaries
     Then response code should be 403
 
-  Scenario:Check for 4 time access token use with customer presence GET /ais/open-banking/v1.0.1/standing-orders
+  Scenario:Check for 4 time access token use with customer presence GET /apis/open-banking/v3.0/aisp/standing-orders
     Given TPP sets the request headers
       | name                       | value                |
       | Content-Type               | application/json     |
@@ -1017,59 +1017,29 @@ Feature:
       | x-fapi-financial-id        | abcdsomeidabcd       |
       | x-fapi-interaction-id      | INTERACTIONID        |
       | x-fapi-customer-ip-address | 1234567              |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/standing-orders
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/standing-orders
     Then response code should be 200
 
-  Scenario:Check for 4 time access token use without customer presence /ais/open-banking/v1.0.1/standing-orders
+  Scenario:Check for 4 time access token use without customer presence /apis/open-banking/v3.0/aisp/standing-orders
     Given TPP sets the request headers
       | name                  | value                |
       | Content-Type          | application/json     |
       | Authorization         | Bearer `accesstoken` |
       | x-fapi-financial-id   | abcdsomeidabcd       |
       | x-fapi-interaction-id | INTERACTIONID        |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/standing-orders
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/standing-orders
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/standing-orders
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/standing-orders
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/standing-orders
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/standing-orders
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/standing-orders
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/standing-orders
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/standing-orders
-    Then response code should be 403
-
-
-  Scenario:Check for 4 time access token use with customer presence /ais/open-banking/v1.0.1/direct-debits
-    Given TPP sets the request headers
-      | name                       | value                |
-      | Content-Type               | application/json     |
-      | Authorization              | Bearer `accesstoken` |
-      | x-fapi-financial-id        | abcdsomeidabcd       |
-      | x-fapi-interaction-id      | INTERACTIONID        |
-      | x-fapi-customer-ip-address | 1234567              |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/direct-debits
-    Then response code should be 200
-
-  Scenario:Check for 4 time access token use without customer presence /ais/open-banking/v1.0.1/direct-debits
-    Given TPP sets the request headers
-      | name                  | value                |
-      | Content-Type          | application/json     |
-      | Authorization         | Bearer `accesstoken` |
-      | x-fapi-financial-id   | abcdsomeidabcd       |
-      | x-fapi-interaction-id | INTERACTIONID        |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/direct-debits
-    Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/direct-debits
-    Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/direct-debits
-    Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/direct-debits
-    Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/direct-debits
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/standing-orders
     Then response code should be 403
 
 
-  Scenario:Check for 4 time access token use with customer presence GET /ais/open-banking/v1.0.1/accounts/987654321/product
+  Scenario:Check for 4 time access token use with customer presence /apis/open-banking/v3.0/aisp/direct-debits
     Given TPP sets the request headers
       | name                       | value                |
       | Content-Type               | application/json     |
@@ -1077,25 +1047,55 @@ Feature:
       | x-fapi-financial-id        | abcdsomeidabcd       |
       | x-fapi-interaction-id      | INTERACTIONID        |
       | x-fapi-customer-ip-address | 1234567              |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/accounts/987654321/product
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/direct-debits
     Then response code should be 200
 
-  Scenario:Check for 4 time access token use without customer presence GET /ais/open-banking/v1.0.1/accounts/987654321/product
+  Scenario:Check for 4 time access token use without customer presence /apis/open-banking/v3.0/aisp/direct-debits
     Given TPP sets the request headers
       | name                  | value                |
       | Content-Type          | application/json     |
       | Authorization         | Bearer `accesstoken` |
       | x-fapi-financial-id   | abcdsomeidabcd       |
       | x-fapi-interaction-id | INTERACTIONID        |
-    When the TPP makes the GET /ais/open-banking/v1.0.1/accounts/987654321/product
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/direct-debits
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/accounts/987654321/product
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/direct-debits
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/accounts/987654321/product
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/direct-debits
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/accounts/987654321/product
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/direct-debits
     Then response code should be 200
-    When the TPP makes the GET /ais/open-banking/v1.0.1/accounts/987654321/product
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/direct-debits
+    Then response code should be 403
+
+
+  Scenario:Check for 4 time access token use with customer presence GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
+    Given TPP sets the request headers
+      | name                       | value                |
+      | Content-Type               | application/json     |
+      | Authorization              | Bearer `accesstoken` |
+      | x-fapi-financial-id        | abcdsomeidabcd       |
+      | x-fapi-interaction-id      | INTERACTIONID        |
+      | x-fapi-customer-ip-address | 1234567              |
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
+    Then response code should be 200
+
+  Scenario:Check for 4 time access token use without customer presence GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
+    Given TPP sets the request headers
+      | name                  | value                |
+      | Content-Type          | application/json     |
+      | Authorization         | Bearer `accesstoken` |
+      | x-fapi-financial-id   | abcdsomeidabcd       |
+      | x-fapi-interaction-id | INTERACTIONID        |
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
+    Then response code should be 200
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
+    Then response code should be 200
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
+    Then response code should be 200
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
+    Then response code should be 200
+    When the TPP makes the GET /apis/open-banking/v3.0/aisp/accounts/987654321/product
     Then response code should be 403
 
 
