@@ -20,12 +20,17 @@ var apickli = require('apickli');
 var jwt = require('jsonwebtoken');
 var fs = require('fs-extra');
 var seleniumWebdriver = require('selenium-webdriver');
-var tppPrivateCert = fs.readFileSync(process.cwd() + '/test/testtpp_jwt.pem');
+var tppPrivateCert = fs.readFileSync(process.cwd() + '/test/tpp.key');
 function getClientAssertion(clientId) {
-    var token_accounts = jwt.sign({
-        "iss": clientId
-    }, tppPrivateCert, {algorithm: "RS256", "expiresIn": "1h"});
-
+    var token_accounts = null;
+    try {
+         token_accounts = jwt.sign({
+            "iss": clientId
+        }, tppPrivateCert, {algorithm: "RS256"});
+        
+    } catch (e) {
+        console.log("Error: " + e);
+    }
     return token_accounts;
 }
 
@@ -34,7 +39,7 @@ function createJWT(body, header) {
     if (typeof body !== "object") {
         body = JSON.parse(body);
     }
-    var token_payment = jwt.sign(body, tppPrivateCert, {algorithm: "RS256", expiresIn: "1h", header: header});
+    var token_payment = jwt.sign(body, tppPrivateCert, {algorithm: "RS256", header: header});
     return token_payment;
 }
 
@@ -46,12 +51,16 @@ function createJWTwithoutExpiry(body, header) {
     var token_payment = jwt.sign(body, tppPrivateCert, {algorithm: "RS256", header: header, noTimestamp: true});
     return token_payment;
 }
+
+
 module.exports = function () {
 
     
 
 
     this.Given(/^Tpp obtains accesstoken for accounts claim from authcode and stores in global scope$/, function (callback) {
+
+        console.log("++ClientAssertion: " + + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
 
         this.apickli.setRequestBody('grant_type=authorization_code&redirect_uri=http://localhost/&code=' + this.apickli.replaceVariables("`code`") + '&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -93,6 +102,8 @@ module.exports = function () {
     });
 
     this.Given(/^TPP obtains the oauth accesstoken\-client credentials with accounts scope and store in global scope$/, function (callback) {
+        console.log("++++ClientAssertion: " + + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
+        
         this.apickli.setRequestBody('grant_type=client_credentials&scope=accounts&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
@@ -109,6 +120,7 @@ module.exports = function () {
     });
 
     this.Given(/^TPP obtains the oauth accesstoken\-client credentials with invalid scope and store in global scope$/, function (callback) {
+        console.log("++++++ClientAssertion: " + + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestBody('grant_type=client_credentials&scope=openid&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
@@ -146,7 +158,7 @@ module.exports = function () {
 
 
     this.Given(/^Tpp obtains accesstoken for accounts claim with no associated data and stores in global scope$/, function (callback) {
-
+        console.log("+++++++++ClientAssertion: "+ + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestBody('grant_type=authorization_code&redirect_uri=http://localhost/&code=' + this.apickli.replaceVariables("`code`") + '&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
@@ -175,7 +187,7 @@ module.exports = function () {
 
 
     this.Given(/^Tpp obtains accesstoken for accounts claim with permissions ReadAccountsDetail and stores in global scope$/, function (callback) {
-
+        console.log("--ClientAssertion: "+ + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestBody('grant_type=authorization_code&redirect_uri=http://localhost/&code=' + this.apickli.replaceVariables("`code`") + '&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
@@ -196,7 +208,7 @@ module.exports = function () {
 
 
     this.Given(/^Tpp obtains accesstoken for accounts claim with permissions ReadBalances and store in global scope$/, function (callback) {
-
+        console.log("----ClientAssertion: " + + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestBody('grant_type=authorization_code&redirect_uri=http://localhost/&code=' + this.apickli.replaceVariables("`code`") + '&client_assertion=' + getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId")));
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;
@@ -264,6 +276,7 @@ module.exports = function () {
 
     this.Given(/^Tpp obtains client credential accesstoken for accounts claim and store in scenario scope$/, function (callback) {
         var jw = getClientAssertion(this.apickli.getGlobalVariable("TPPAppClientId"));
+        console.log("##ClientAssertion: " + jw);
         this.apickli.setRequestBody('grant_type=client_credentials&scope=accounts&client_assertion=' + jw );
         this.apickli.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         var othis = this;

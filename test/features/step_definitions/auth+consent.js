@@ -23,7 +23,7 @@ var seleniumWebdriver = require('selenium-webdriver');
 
 var jwt = require('jsonwebtoken');
 var fs = require('fs-extra');
-var cert = fs.readFileSync(process.cwd() + '/test/testtpp_jwt.pem');
+var cert = fs.readFileSync(process.cwd() + '/test/tpp.key');
 
 // Configuration
 var config = require("../../config.json");
@@ -31,7 +31,7 @@ var config = require("../../config.json");
 function createClientAssertion(clientId) {
     var jwtToken = jwt.sign({
         "iss": clientId
-    }, cert, {algorithm: "RS256", "expiresIn": "3h"});
+    }, cert, {algorithm: "RS256"});
     return jwtToken;
 }
 function createRequestObjectJWT(clientId, redirectUri, state, nonce, scope, responseType, urns) {
@@ -76,7 +76,7 @@ function createRequestObjectJWT(clientId, redirectUri, state, nonce, scope, resp
         }
     };
 
-    var jwtToken = jwt.sign(requestJWT, cert, {algorithm: "RS256", "expiresIn": "1h"});
+    var jwtToken = jwt.sign(requestJWT, cert, {algorithm: "RS256"});
 
     return jwtToken;
 }

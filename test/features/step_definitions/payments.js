@@ -22,8 +22,8 @@
 var apickli = require('apickli');
 var jwt = require('jsonwebtoken');
 var fs = require('fs-extra');
-var tppPrivateCert = fs.readFileSync(process.cwd() + '/test/testtpp_jwt.pem');
-var bankPublicCert = fs.readFileSync(process.cwd() + '/test/testbank_jwt_pub.pem');
+var tppPrivateCert = fs.readFileSync(process.cwd() + '/test/tpp.key');
+var bankPublicCert = fs.readFileSync(process.cwd() + '/test/bank.key.pub');
 var seleniumWebdriver = require('selenium-webdriver');
 
 //create a token with the tppPrivateCert imported
@@ -32,7 +32,7 @@ function createJWT(body, header) {
     if (typeof body !== "object") {
         body = JSON.parse(body);
     }
-    var token_payment = jwt.sign(body, tppPrivateCert, {algorithm: "RS256", expiresIn: "1h", header: header});
+    var token_payment = jwt.sign(body, tppPrivateCert, {algorithm: "RS256", header: header});
     return token_payment;
 }
 
