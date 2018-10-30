@@ -19,13 +19,13 @@
         <Claim name="c_hash" ref="jwt-c_hash"/>
     </AdditionalClaims>
     <Subject>
-        <Value ref="jwt-sub"/>
+        {{jwt-sub}}
     </Subject>
     <Issuer>
-        <Value ref="jwt-iss"/>
+        {{jwt-iss}}
     </Issuer>
     <Audience>
-        <Value ref="jwt-aud"/>
+        {{jwt-aud}}
     </Audience>
     <Algorithm>RS256</Algorithm>
     <Id/>

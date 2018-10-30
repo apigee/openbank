@@ -230,7 +230,7 @@ function populateDatastore(datastore,data,kind,cb)
         if (err) {
             console.log("runquery error: " + err);
         }
-        if (items.length > 0) {
+        if (items && items.length > 0) {
             console.log(kind + " has " + items.length + " entries");
             items.forEach((item) =>{
                 var key = datastore.key([kind,item["uuid"]]);
