@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="3" name="user-management">
     <Basepaths>/usermanagamentds</Basepaths>
-    <Basepaths>/internal/connector/v1.0.1/user/authenticate</Basepaths>
+    <Basepaths>/internal/connector/v3.0/user/authenticate</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1520853624247</CreatedAt>
     <CreatedBy>rairupam@google.com</CreatedBy>

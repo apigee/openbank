@@ -30,6 +30,6 @@
     </Flows>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/apis/internal/v1.0.1/datastore/locations</URL>
+        <URL>{{ edgeBasePath }}/apis/internal/v3.0/datastore/locations</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

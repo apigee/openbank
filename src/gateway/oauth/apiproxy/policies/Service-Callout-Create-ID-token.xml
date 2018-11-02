@@ -28,6 +28,6 @@
     <Response>calloutResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/apis/internal/v1.0.1/datastore/id-tokens</URL>
+        <URL>{{ edgeBasePath }}/apis/internal/v3.0/datastore/id-tokens</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

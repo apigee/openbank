@@ -1,7 +1,7 @@
 {
-  "base_path": "/apis/internal/v1.0.1/consentapp",
-  "logo_uri": "/apis/internal/v1.0.1/consentapp/images/logo.png",
-  "consentPath": "{{ edgeBasePath }}/apis/internal/v1.0.1/consentapp/consent",
+  "base_path": "/apis/internal/v3.0/consentapp",
+  "logo_uri": "/apis/internal/v3.0/consentapp/images/logo.png",
+  "consentPath": "{{ edgeBasePath }}/apis/internal/v3.0/consentapp/consent",
   "cookieName":"OB_SESSION",
   "sessionImpl":"./cookie_session_impl",
   "cookieKey" : "{{ consentSessionKey }}",
@@ -10,27 +10,27 @@
     "header_background_color": "#FFF"
   },
   "loginApplication": {
-    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v1.0.1/loginapp"
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v3.0/loginapp"
   },
   "scaApplication": {
-    "transactionEndpoint": "/apis/internal/v1.0.1/consentapp/otp"
+    "transactionEndpoint": "/apis/internal/v3.0/consentapp/otp"
   },
   "authenticationTransaction": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0.1/authenticate",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v3.0/authenticate",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "customerTransaction": {
-    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v1.0.1/customers",
+    "transactionEndpoint": "{{ edgeBasePath }}/internal/connector/v3.0/customers",
     "method": "GET",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
     }
   },
   "accessTokenTransaction": {
-    "transactionEndpoint": "{{ edgeBasePath }}/apis/v1.0.1/oauth/authorized",
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/v3.0/oauth/authorized",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"
@@ -72,7 +72,7 @@
     }
   },
   "createConsent": {
-    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v1.0.1/consent/",
+    "transactionEndpoint": "{{ edgeBasePath }}/apis/internal/v3.0/consent/",
     "method": "POST",
     "headers": {
       "x-apikey": "{{internalAppKey}}"

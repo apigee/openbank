@@ -245,7 +245,7 @@
         <Response/>
     </PreFlow>
     <HTTPProxyConnection>
-        <BasePath>/apis/v1.0.1/oauth</BasePath>
+        <BasePath>/apis/v3.0/oauth</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
         <VirtualHost>default</VirtualHost>

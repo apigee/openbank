@@ -1164,7 +1164,7 @@ exports.createAccountRequest = function (req, res) {
             }
     };
 
-    request(options, function (err, resp, body) {
+    request(options, function(err, resp, body) {
         if (!err && (resp.statusCode == 200 || resp.statusCode == 201 ) && body) {
             var accRequest = {};
             accRequest.Data = {};

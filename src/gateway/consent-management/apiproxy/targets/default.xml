@@ -29,6 +29,6 @@
     <Flows/>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/apis/internal/v1.0.1/datastore/consent</URL>
+        <URL>{{ edgeBasePath }}/apis/internal/v3.0/datastore/consent</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

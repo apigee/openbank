@@ -31,6 +31,6 @@
     <Response>consentResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/apis/internal/v1.0.1/consent</URL>
+        <URL>{{ edgeBasePath }}/apis/internal/v3.0/consent</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

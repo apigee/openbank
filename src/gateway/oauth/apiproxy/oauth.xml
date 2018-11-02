@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="6" name="oauth">
-    <Basepaths>/apis/v1.0.1/oauth</Basepaths>
-    <Basepaths>/apis/v1.0.1/oauth</Basepaths>
+    <Basepaths>/apis/v3.0/oauth</Basepaths>
+    <Basepaths>/apis/v3.0/oauth</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1520853770892</CreatedAt>
     <CreatedBy>rairupam@google.com</CreatedBy>

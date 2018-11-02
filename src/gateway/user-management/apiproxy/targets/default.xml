@@ -34,6 +34,6 @@
     </PreFlow>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/apis/internal/v1.0.1/datastore/users</URL>
+        <URL>{{ edgeBasePath }}/apis/internal/v3.0/datastore/users</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

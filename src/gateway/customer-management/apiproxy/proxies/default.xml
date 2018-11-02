@@ -96,7 +96,7 @@
         </Flow>
     </Flows>
     <HTTPProxyConnection>
-        <BasePath>/internal/connector/v1.0.1/customers</BasePath>
+        <BasePath>/internal/connector/v3.0/customers</BasePath>
         <Properties/>
         <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>

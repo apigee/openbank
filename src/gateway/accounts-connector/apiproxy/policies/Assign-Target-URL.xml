@@ -17,7 +17,7 @@
     <Properties/>
     <AssignVariable>
         <Name>appBasePath</Name>
-        <Value>{{ edgeBasePath }}/apis/internal/v1.0.1/datastore</Value>
+        <Value>{{ edgeBasePath }}/apis/internal/v3.0/datastore</Value>
     </AssignVariable>
     <AssignVariable>
         <Name>apikey</Name>

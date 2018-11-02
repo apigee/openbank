@@ -25,6 +25,6 @@
     </PreFlow>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>{{ edgeBasePath }}/apis/internal/v1.0.1/consentapp</URL>
+        <URL>{{ edgeBasePath }}/apis/internal/v3.0/consentapp</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

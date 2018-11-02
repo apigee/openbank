@@ -53,7 +53,7 @@
         <Response/>
     </PostFlow>
     <HTTPProxyConnection>
-        <BasePath>/apis/internal/v1.0.1/datastore</BasePath>
+        <BasePath>/apis/internal/v3.0/datastore</BasePath>
         <Properties/>
         <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>

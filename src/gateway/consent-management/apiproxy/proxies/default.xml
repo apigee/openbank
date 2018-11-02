@@ -93,7 +93,7 @@
         <Response/>
     </PreFlow>
     <HTTPProxyConnection>
-        <BasePath>/apis/internal/v1.0.1/consent/</BasePath>
+        <BasePath>/apis/internal/v3.0/consent/</BasePath>
         <Properties/>
         <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>
