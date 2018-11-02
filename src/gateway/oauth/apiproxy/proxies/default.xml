@@ -99,6 +99,14 @@
             <Description/>
             <Request>
                 <Step>
+                    <Name>Validate-Grant-Type</Name>
+                </Step>
+                <Step>
+                    <Condition>isError = true</Condition>
+                    <FaultRules/>
+                    <Name>Raise-Fault-Invalid-Request</Name>
+                </Step>
+                <Step>
                     <Condition>(request.formparam.client_assertion != null) and (request.formparam.client_assertion != "")</Condition>
                     <FaultRules/>
                     <Name>Extract-JWT-Body</Name>
