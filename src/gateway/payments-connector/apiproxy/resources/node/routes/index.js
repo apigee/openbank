@@ -22,7 +22,7 @@
  */
 var request = require('request');
 
-var packagejson = require('../package');
+var packagejson = require('../package.json');
 
 /* GET Payment Request Consent */
 exports.getPaymentRequestConsent = function(req,res,next) {
@@ -55,15 +55,15 @@ exports.getPaymentRequestConsent = function(req,res,next) {
                 res.send(body);
             }
             catch (e) {
-                var err = new Error('Bad Request');
-                err.status = 400;
-                next(err);
+                var err2 = new Error('Bad Request');
+                err2.status = 400;
+                next(err2);
             }
         }
         else {
-            var err = new Error('Bad Request');
-            err.status = 400;
-            next(err);
+            var err2 = new Error('Bad Request');
+            err2.status = 400;
+            next(err2);
         }
     });
 
@@ -77,7 +77,7 @@ exports.updatePaymentRequestConsent = function (req,res,next) {
     query["x-apikey"] = packagejson.apikey;
     var paymentId = req.params.paymentId;
 
-    res.body.StatusUpdateDateTime = Date.parse(new Date());
+    req.body.StatusUpdateDateTime = Date.parse(new Date());
 
     options = {
         url: packagejson.targetURL + "/domestic-payment-consents/" + paymentId,
@@ -106,15 +106,15 @@ exports.updatePaymentRequestConsent = function (req,res,next) {
                 res.send(body);
             }
             catch (e) {
-                var err = new Error('Bad Request');
-                err.status = 400;
-                next(err);
+                var err2 = new Error('Bad Request');
+                err2.status = 400;
+                next(err2);
             }
         }
         else {
-            var err = new Error('Bad Request');
-            err.status = 400;
-            next(err);
+            var err2 = new Error('Bad Request');
+            err2.status = 400;
+            next(err2);
         }
     });
 
@@ -150,15 +150,15 @@ exports.getPaymentOrder = function(req,res,next) {
                 res.send(body);
             }
             catch (e) {
-                var err = new Error('Bad Request');
-                err.status = 400;
-                next(err);
+                var err2 = new Error('Bad Request');
+                err2.status = 400;
+                next(err2);
             }
         }
         else {
-            var err = new Error('Bad Request');
-            err.status = 400;
-            next(err);
+            var err2 = new Error('Bad Request');
+            err2.status = 400;
+            next(err2);
         }
     });
 }
@@ -172,8 +172,8 @@ exports.createPaymentRequestConsent = function(req,res,next) {
     //var consentId = req.body.consentId;
     req.body.Status = "Pending";
     req.body.CreationDateTime = Date.parse(new Date());
-    res.body.StatusUpdateDateTime = Date.parse(new Date());
-    options = {
+    req.body.StatusUpdateDateTime = Date.parse(new Date());
+    var options = {
         url: packagejson.targetURL + "/domestic-payment-consents",
         method: 'POST',
         headers: {
@@ -184,12 +184,13 @@ exports.createPaymentRequestConsent = function(req,res,next) {
         json: true,
         qs: query
     };
+
     request(options, function (err, response, resbody) 
     {
         console.log("response.statusCode"+response.statusCode);
         console.log("error"+JSON.stringify(err));
         console.log("resbody"+JSON.stringify(resbody));
-        if (!err && response.statusCode === 200 || response.statusCode === 201) {
+        if (!err && ( response.statusCode === 200 || response.statusCode === 201)) {
             try {
                 res.status(201);
                 var body = {};
@@ -204,16 +205,16 @@ exports.createPaymentRequestConsent = function(req,res,next) {
                 res.send(body);
             }
             catch (e) {
-                var err = new Error(e);
-                err.status = 400;
-                next(err);
+                var err2 = new Error(e);
+                err2.status = 400;
+                next(err2);
             }
         }
         else {
             console.log("err"+err);
-            var err = new Error('Bad Request');
-            err.status = 400;
-            next(err);
+            var err2 = new Error('Bad Request');
+            err2.status = 400;
+            next(err2);
         }
     });
 };
@@ -241,7 +242,7 @@ exports.createPaymentOrder = function(req,res,next) {
       qs: query
   };
   request(options, function (err, response, resbody) {
-      if (!err && response.statusCode === 200 || response.statusCode === 201) {
+      if (!err && (response.statusCode === 200 || response.statusCode === 201)) {
           try {
               res.status(201);
               var body = {};
@@ -254,15 +255,15 @@ exports.createPaymentOrder = function(req,res,next) {
               res.send(body);
           }
           catch (e) {
-              var err = new Error('Bad Request');
-              err.status = 400;
-              next(err);
+              var err2 = new Error('Bad Request');
+              err2.status = 400;
+              next(err2);
           }
       }
       else {
-          var err = new Error('Bad Request');
-          err.status = 400;
-          next(err);
+          var err2 = new Error('Bad Request');
+          err2.status = 400;
+          next(err2);
       }
   });
 }  
