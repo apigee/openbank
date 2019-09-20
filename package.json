@@ -1,28 +1,25 @@
 {
-  "name": "apigee-openbank",
-  "version": "1.0.1",
-  "description": "openbanking solution in Apigee",
+  "name": "apigee-banking",
+  "version": "1.0.0",
+  "description": "Apigee Banking Reference Implementation",
   "scripts": {
-    "start": "npm install && gulp deploy"
+    "deployAll": "npm run deploySharedFlows && npm run deployProxies",
+    "deployProxies": "for DIR in $(ls apiproxies); do cd apiproxies/$DIR && npm run deploy && cd ../.. ; done",
+    "deploySharedFlows": "for DIR in $(ls sharedflows); do cd sharedflows/$DIR && npm run deploy && cd ../.. ; done",
+    "generateDocs": "plantuml ./docs-src/auth.flow && claat export ./docs-src/docs.md",
+    "serveDocs": "http-server docs/",
+    "test": "npx cucumber-js test"
   },
-  "dependencies": {
-    "@google-cloud/datastore": "^1.4.2",
-    "apickli": "latest",
-    "async": "*",
-    "chromedriver": "^2.31.0",
-    "cucumber": "^5.0.1",
-    "edge-launchpad": "^2.0.2",
-    "eslint": "^4.9.0",
-    "eslint-config-google": "^0.9.1",
-    "fs": "latest",
-    "fs-extra": "^7.0.0",
-    "gulp": "^3.9.1",
-    "gulp-cucumber": "0.0.23",
-    "gulp-eslint": "^4.0.0",
-    "gulp-sequence": "*",
-    "jsonwebtoken": "latest",
-    "readline": "*",
-    "selenium-webdriver": "^3.5.0"
-  },
-  "license": "Apache-2.0"
+  "keywords": [
+    "apigee",
+    "banking"
+  ],
+  "author": "LaughingBiscuit",
+  "license": "NONE",
+  "devDependencies": {
+    "apickli": "^2.3.1",
+    "cucumber": "^5.1.0",
+    "http-server": "^0.11.1",
+    "puppeteer": "^1.16.0"
+  }
 }

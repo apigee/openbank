@@ -1,9 +1,0 @@
-/* Avoid scroll bar issues when the slider is next to the edge of the page */
-.flexslider .flex-direction-nav a,
-.flexslider .flex-direction-nav a {
-  display: none;
-}
-.flexslider:hover .flex-direction-nav a,
-.flexslider:hover .flex-direction-nav a {
-  display: block;
-}

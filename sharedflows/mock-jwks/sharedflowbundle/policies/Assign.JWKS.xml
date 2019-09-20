@@ -1,0 +1,27 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign.JWKS">
+    <DisplayName>Assign.JWKS</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json">
+{"keys":[{"e":"AQAB","n":"vMThmxgTfEjyjAOMzN1avb_wiYQ-zJg1NCccQnEV3JSQkWi6Y5VzWF3bBrDHDF_8az7UF4hxXuLguJOrUfIZPWpO7-bUdEREzN9H118Wg0mhJL0_81Vz29XmSD63CA5NDKY2srS3oYH19TK_O6E56B-4Cq5HJAwat7CNMEcr4-DGX1HWAdJIVEkq2dBqrDMpzUoVt3UNLqZvs5FPIprYcQsQKBwhM91MljiUc_Lw_uFXFOUF4bbevlOh5I0x9rZGqdfh4rzybOt1GgXHvV4flLl7dtFqAxZRk6JazEyermS02UYUe1FyjmR6pfFVkmHRNJAKq7iHQYm_LPbX6pvQGw","kty":"RSA","kid":"QgG_5-ALorr1x6eIsc3h3O97E0P-bIxd7Zq1JtBQJ1Y","alg":"RS256","use":"sig"}]}
+    </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</AssignMessage>

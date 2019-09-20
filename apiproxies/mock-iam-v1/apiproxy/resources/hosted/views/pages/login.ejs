@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<html lang="en">
+<% include ../partials/head %>
+
+<body>
+  <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+    <% include ../partials/header %>
+    <div class="demo-ribbon"></div>
+    <main class="demo-main mdl-layout__content">
+      <div class="demo-container mdl-grid">
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <!-- Simple Textfield -->
+          <form id="loginForm" autocomplete="off" action="/interaction/<%= details.uuid %>/login" method="post">
+            <input type="hidden" name="uuid" value="<%= details.uuid %>" />
+            <div class="mdl-textfield mdl-js-textfield">
+              <input required class="mdl-textfield__input" type="text" name="login" id="login" <% if (!details.params.login_hint) { %>autofocus="on" <% } else { %> value="<%= details.params.login_hint %>" <% } %>>
+              <label class="mdl-textfield__label" for="login">Username</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input required class="mdl-textfield__input" type="password" name="password" id="password" placeholder="and password" <% if (details.params.login_hint) { %>autofocus="on" <% } %>>
+              <label class="mdl-textfield__label" for="password">Password</label>
+            </div>
+              <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" id="submit">Sign-in</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+  <% include ../partials/foot %>
+</body>
+
+</html>

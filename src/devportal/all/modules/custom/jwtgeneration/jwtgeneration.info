@@ -1,3 +1,0 @@
-name = JWT generation Module
-description = This module is used for generation of JWT 
-core = 7.x

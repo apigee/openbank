@@ -1,0 +1,27 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="Spike-Arrest-1" version="SHA-512:497eeacadd70ea67ba6463f4d2d1c335f2c4556a7941180eb6cce0db6744bbcc34c5f2e5ed1f0825915d2f036613b34b64081218e20a7d715a1336b5746d4688"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:876a6d36abfd27e14d6f803a86ee86e2eb356ac9cd328fa9531ce033d03c621db4523739f95561081e5ba86f29eaa43e8ad29e8f1e4fb2a0ccc7b7b6bd1bb30c"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

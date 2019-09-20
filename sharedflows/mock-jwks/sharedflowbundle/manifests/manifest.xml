@@ -1,0 +1,27 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="Assign.JWKS" version="SHA-512:ff9fe0df86508b0709398c884a9fbd323a2d4bb17a2104fa1068c81891593287279492408368f685d716be0551d76cede01decf539d6fc4c0153ce514638eae2"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:02bf6ae35ccf54f4e884846de8eb745bbb0f39fa69c252f3535e501c9acc268c686f6d1d175f5d05d4b6a3bbf1606045e79f063029d73c62c29640e2b9967de3"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

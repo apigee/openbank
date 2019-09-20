@@ -1,0 +1,31 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="Assign.Response" version="SHA-512:76a26460a38efe90054405bce3907d41135e974be757e7be1d4230793748fbc795aa1c37818d9fe8aa165e57a2c7b83e07bca563b8e9d74ae2363baff1c365bf"/>
+        <VersionInfo resourceName="Callout.CreateCompany" version="SHA-512:718319229699b645c88ba8bb80e27df009b2d57e599e34f29c5afc47b074228e7a025eea5196905ccf78a85fd725fcd1394998f74f81f33b838098e7a387255f"/>
+        <VersionInfo resourceName="Callout.CreateCompanyApp" version="SHA-512:27c53e91fdcf94b2d3e8eccbf08905e320e1906233d1d4d7cfdcf8c48b915ab42c3d967637ca719e5116fd21053e5dce7bff4956d84d4f6f4a6ea84dd7b91e9f"/>
+        <VersionInfo resourceName="Callout.RegisterAppExternal" version="SHA-512:8bb11499eb22949fd896ae5dab371980583ffd89a6410f6d71710e1d86aef191e1645261db2e686b6a9dd8ff28513d9045b01f371f1bfb7bd27a8f55d678e302"/>
+        <VersionInfo resourceName="Extract.RegisterApp" version="SHA-512:cd4256e8f598037ec2d14cc864afc1fc6557942b935d551f09c4bbc8e6e6a4dc28c9655eb56b1c16226e5d6920de1f670d4eee6f40c1b80153306d593eb548ef"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:14a86586397ccae8fcc37bfaa1cec2fbe0a370b4136482db47d3ce0d365e69232e7ad399829f0146144f9e39780326c638c61a76d82d02dc62eaeb5565dbeee8"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

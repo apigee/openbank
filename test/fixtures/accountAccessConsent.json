@@ -1,0 +1,11 @@
+{
+ "Data": {
+   "Permissions": [
+     "ReadAccountsBasic"
+   ],
+   "ExpirationDateTime": "2019-05-20T14:41:23.436Z",
+   "TransactionFromDateTime": "2019-05-20T14:41:23.436Z",
+   "TransactionToDateTime": "2019-05-20T14:41:23.436Z"
+ },
+ "Risk": {}
+}

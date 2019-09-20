@@ -1,0 +1,42 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="Callout.CreateCompanyApp">
+    <DisplayName>Callout.CreateCompanyApp</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request clearPayload="false" variable="servicecallout.request">
+        <Set>
+            <Headers>
+                <Header name="Authorization">{private.mgmtCredentials}</Header>
+            </Headers>
+            <Payload contentType="application/json" variablePrefix="£" variableSuffix="$">
+{
+  "apiProducts": [ "all"],
+  "name" : "£custom.clientName$",
+  "callbackUrl" : "£custom.redirectUri$"
+}
+</Payload>
+            <Verb>POST</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>createCompanyAppResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://api.enterprise.apigee.net/v1/o/{organization.name}/companies/{client.received.start.timestamp}/apps</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

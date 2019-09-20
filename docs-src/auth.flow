@@ -1,0 +1,68 @@
+@startuml
+
+participant User as u
+participant App as b
+participant "Identity Proxy" as id
+participant IdP as idp
+participant "Consent Store" as cs
+participant "Accounts Service" as as
+participant "Data Proxy" as d
+
+note over u,d: Stage consent
+u -> b: Link account
+b -> id: POST /token (client credentials)
+id -> b: access_token
+b -> d: POST /account-access-consents (access_token)
+d -> cs: create consent record
+cs -> d: ConsentID
+d -> b: ConsentID
+note over u,d: Initiate Auth Sequence
+b -> b: generate request JWT
+
+b -> id: GET /authorize\n(tpp_client_id, state1, redirect_uri, response_type=code, request)
+id -> id: validate client_id,\nredirect_uri
+id -> id: retrieve apigee client\ncredentials from KVM
+id -> id: generate state2
+id -> b: 302 -> /authorize\n(apigee_client_id, state2,\napigee_callback, response_type=code)
+note over u,d: User Auth
+b -> idp: GET /authorize\n(apigee_client_id, state2,\napigee_callback, response_type=code)
+idp -> b: login form
+u -> idp: credentials (u, p, otp)
+idp -> b: 302 -> /apigee_callback\n(code, state2)
+note over u,d: Token Issuance
+b -> id: GET /apigee_callback\n(code, state2)
+id -> id: extract params from state2
+id -> id: retrieve apigee client\ncredentials from KVM
+id -> idp: POST /oauth/token (code, client credentials)
+idp -> id: access_token, refresh_token,\nid_token, expires_in
+id -> id: extract user ID from id_token
+id -> as: fetch accounts by user ID
+as -> id: list of all appropriate accounts
+id -> id: extract intent_id from request jwt (from state2)
+id -> cs: lookup intent_id
+cs -> id: requested permissions
+id -> cs: add user ID and all state2 values\n(e.g. redirect_uri, state1) to consent record
+id -> id: extract TPP app name etc. with policy
+id -> id: generate signed-JWT\ncontaining intent_id
+id -> id: generate consent page html\n(including hidden field for JWT)
+id -> b: consent page
+u -> b: approve consent
+b -> id: POST /consent/submission
+id -> id: verify JWT
+id -> id: extract intent_id from JWT
+id -> cs: update consent to approved and add selected account(s)
+cs -> id: redirect_uri, state1
+id -> id: generate authorization code\n(add all data/variables as attributes)
+id -> b: 302 /redirect_uri\n(code, state1)
+b -> id: POST /token\n(code, client credentials)
+id -> id: validate client credentials
+id -> id: exchange code for tokens
+id -> b: 200 access_token, refresh_token, expires_in, state1
+
+note over u,d: Request for data with token
+u -> b: do something
+b -> d: request data (access token)
+d -> d: validate access token
+d -> b: requested data
+
+@enduml

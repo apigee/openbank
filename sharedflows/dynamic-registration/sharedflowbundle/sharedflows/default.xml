@@ -1,0 +1,54 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<SharedFlow name="default">
+    <Step>
+        <FaultRules/>
+        <Name>KVM.GetMgmtCredentials</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>Extract.RegisterApp</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>Callout.CreateCompany</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>Callout.RegisterAppExternal</Name>
+    </Step>
+    <Step>
+        <Name>Extract.ExternalCredentials</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>Callout.CreateCompanyApp</Name>
+    </Step>
+    <Step>
+        <Name>JS.ExtractProducts</Name>
+    </Step>
+    <Step>
+        <Name>Callout.CreateCredentialPair</Name>
+    </Step>
+    <Step>
+        <Name>Callout.AssociateCredentials</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>Assign.Response</Name>
+    </Step>
+</SharedFlow>

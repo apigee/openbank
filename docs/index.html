@@ -1,0 +1,296 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Open Banking with Apigee</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-145683737-2"
+                  id="docs"
+                  title="Open Banking with Apigee"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Open Banking APIs" duration="0">
+        <p>Find the source on <a href="https://github.com/apigee/reference-bank-uk" target="_blank">GitHub</a>.</p>
+<p>TLDR? Here is a great summary from David Andrzejek (Head of Financial Services, Apigee).</p>
+<iframe class="youtube-video" src="https://www.youtube.com/embed/sZRDsRtqtRw?rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 is-upgraded>Evolution of Banking</h2>
+<ul>
+<li><em>1658</em> Thomas Smith Opens the UKs first provincial bank branch in Nottingham</li>
+<li><em>1983</em> Bank of Scotland set up the <em>Homelink</em> home online banking system</li>
+<li><em>1984</em> Girobank introduces a dedicated Telephone banking service</li>
+<li><em>1999</em> PayBox launch Mobile Banking</li>
+<li><em>2019</em> UK Banks launch Open Banking APIs</li>
+<li><em>20XX</em> Smart Cars that pay for their own petrol?</li>
+<li><em>20XX</em> Smart Houses that pay for their own utilities?</li>
+</ul>
+<p><strong>In future, banks will no longer own the customer experience. Third Party App Developers will.</strong></p>
+<h2 is-upgraded>What is an API?</h2>
+<p>An <a href="https://docs.apigee.com/api-platform/get-started/basic-concepts" target="_blank">‘application programming interface&#39;</a> is an interface that makes it easy for one application to ‘consume&#39; capabilities or data from another application.</p>
+<iframe class="youtube-video" src="https://www.youtube.com/embed/TbVtliFXOOY?rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 is-upgraded>API Management</h2>
+<p><a href="https://apigee.com/about/cp/what-api-management" target="_blank">API Management</a> is the set of processes that enables a business to have control over and visibility into the APIs that connect applications and data across the enterprise and across clouds.</p>
+<p>Key aspects include:</p>
+<ul>
+<li>Analytics</li>
+<li>Traffic Management</li>
+<li>Developer Engagment</li>
+<li>Monetization</li>
+<li>Security</li>
+<li>Orchestration</li>
+<li>Mediation</li>
+</ul>
+<h2 is-upgraded>What is a good developer experience?</h2>
+<p>A developer has an idea for an app. They open the banks developer portal.</p>
+<ul>
+<li>In 5 seconds, the developer should know what an API does</li>
+<li>In 5 minutes, the developer should have make a successful request</li>
+<li>In 5 days, the developer should have taken their app to production</li>
+</ul>
+<p>If they cannot use your APIs, they will look elsewhere.</p>
+<h2 is-upgraded>Relevant Legislation</h2>
+<ul>
+<li>In the UK, it is typical to stay with one or two banks for your entire life. In general you will select a bank as a child and may only consider switching when buying a house or other major life event. This is in contrast to mobile phone contracts, where roughly every 18 months you have a trigger to look for a better deal.</li>
+<li>Additionally, there are limited options in the UK. When Metro Bank obtained their banking license in 2010, it was the first high-street banking license issued in over 150 years.</li>
+</ul>
+<h3 is-upgraded>CMA</h3>
+<p>Competitions and Markets Authority investigated the following three questions:</p>
+<ul>
+<li>Is there a weak customer response due to lack of engagement or barrier to<br>switch and search?</li>
+<li>Are there barriers to entry and expansion for banks?</li>
+<li>Is the level of concentration of banks having an adverse effect?</li>
+</ul>
+<p>The following remedies were proposed:</p>
+<ul>
+<li>Nine Largest Retail Banks in the UK to adopt an Open Banking Standard</li>
+<li>Customer prompts to encourage consideration of switching providers</li>
+<li>&#34;Customers who are satisfied about privacy and security safeguards, and are willing to give consent, will be able to share their own transaction data with trusted intermediaries, which can then offer advice tailored to the individual customer&#34; (section 168)</li>
+<li>&#34;Open APIs are central to our package of remedies&#34; (section 169)</li>
+</ul>
+<h3 is-upgraded>PSD2</h3>
+<ul>
+<li>Second Revision of the Payment Services Directive in the EU.</li>
+<li>Aimed to &#34;increase competition in an already competitive payments industry, bring into scope new types of payment services, enhance customer protection and security&#34;</li>
+<li>All EU Member States must implement the directive by 13 January 2018 (ish..?!)</li>
+</ul>
+<p>Looks to better support two new types of payment service that have entered the market:</p>
+<ul>
+<li>Payment Initiation Services</li>
+<li>Account Information Services The directive requires that Account/Payment Service Providers expose certain data through Open APIs to be consumed by AISPs and PISPs In order to establish trust between all parties, a central registry may be created with all AISPs, PISPs and PSPs registered.</li>
+</ul>
+<h3 is-upgraded>Worldwide</h3>
+<p>We are now seeing a growth in Open Banking regulation around the world. Examples of Open Banking APIs can be found in USA, Jordan, Mongolia, India and Australia.</p>
+<h2 is-upgraded>Standards</h2>
+<p>The two most popular standards within Europe are:</p>
+<ul>
+<li>Open Banking Implementation Entity<br><br><ul>
+<li>Initially funded by the 9 biggest banks in the UK</li>
+<li>More opinionated specifications</li>
+<li>Redirect-based authentication only</li>
+</ul>
+</li>
+<li>Berlin Group<br><br><ul>
+<li>Formed of ~40 Banks across the Single Euro Payments Area</li>
+<li>Greater flexibility in payload structure</li>
+<li>Redirect, decoupled and embedded authentication supported</li>
+</ul>
+</li>
+</ul>
+<h2 is-upgraded>Use Cases</h2>
+<ul>
+<li>Current Account Comparison Services</li>
+<li>Personal Finance Management</li>
+<li>Affordability Check</li>
+<li>Online Accounting</li>
+<li>Fraud Detection</li>
+<li>Switch Service Demo</li>
+</ul>
+<h2 is-upgraded>Beyond Compliance</h2>
+<p>Whilst initially, banks have been rushing to meet compliance deadlines, many see APIs as a new channel. Three common questions are:</p>
+<ul>
+<li>How do we attract developers?</li>
+<li>How can we monetize our API program?</li>
+<li>Can we leverage other banks APIs to provide a better customer experience?</li>
+<li>How can we stand out with innovative APIs?</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Apigee and Open Banking" duration="0">
+        <h2 is-upgraded>Apigee&#39;s History with Open Banking</h2>
+<ul>
+<li><em>Oct 2015</em> EU Publishes PSD2</li>
+<li><em>Feb 2016</em> UK CMA publishes Retail Banking Market Investigation Report</li>
+<li><em>Aug 2016</em> Apigee builds &#34;Confirmation of Payee&#34; pilot for CMA, paving the way for the OBIE and UK implementation of PSD2</li>
+<li><em>Aug 2016</em> CMA issues ruling for CMA9 compliance by Jan 2018</li>
+<li><em>Dec 2016</em> ABN AMRO launch the first Open Banking service with Apigee</li>
+<li><em>Sep 2017</em> Apigee Open Banking Accelerator Launched</li>
+<li><em>Jan 2018</em> First of the CMA9 are compliant with UK Open Banking, include Apigee Customers</li>
+<li><em>March 2018</em> OBIE v2.1 Published, OBIE V3.1 Published, adding eIDAS and additional payments requirements</li>
+<li><em>Jan 2019</em> Updated Apigee Accelerator published supporting OBIE v3.1 standards</li>
+<li><em>Sep 2019</em> PSD2 compliance deadline acrosss Europe</li>
+</ul>
+<h2 is-upgraded>Customers</h2>
+<h3 is-upgraded>Nationwide Building Society</h3>
+<p>Nationwide Building Society CTO Simon Hamilton on how PSD2, the European Commission&#39;s directive on payment services, will provide the U.K. retail bank with new opportunities to build trust with customers, add new services, and collaborate with other innovative firms.</p>
+<iframe class="youtube-video" src="https://www.youtube.com/embed/lSY8WGcY5lA?rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h3 is-upgraded>Metro Bank</h3>
+<p>Read about the Metro Bank <a href="https://www.metrobankonline.co.uk/about-us/press-releases/news/metro-bank-welcomes-open-banking-revolution-with-launch-of-developer-portal/" target="_blank">launch</a> of their <a href="https://developer.metrobankonline.co.uk/" target="_blank">Developer Portal</a> with Apigee.</p>
+<h3 is-upgraded>ABN AMRO</h3>
+<p>Koen Adolfs, API banking product owner at ABN AMRO explains how API management helps the Amsterdam-based bank build new customer experiences, simplify innovation and interactions with fintechs, and transform the company&#39;s business model.</p>
+<iframe class="youtube-video" src="https://www.youtube.com/embed/OPCFEypX_Uc?rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h3 is-upgraded>Yorkshire Building Society</h3>
+<p>Read about how Yorkshire Building Society Group are <a href="https://cloud.google.com/blog/products/api-management/yorkshire-building-society-group-embracing-open-banking-with-apigee" target="_blank">Embracing Open Banking with Apigee</a>.</p>
+<h3 is-upgraded>Macquarie Group</h3>
+<p>Rajay Rai, head of digital engineering and applied innovation at Macquarie&#39;s Banking and Financial Services Group, explains the importance of API management in co-creating value with the Australian bank&#39;s customers and partners.</p>
+<iframe class="youtube-video" src="https://www.youtube.com/embed/4lqZgpuv1-o?rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Getting Started" duration="0">
+        <h2 is-upgraded>Reference Implementation</h2>
+<p>A great way to kickstart your API Journey is to deploy an example Apigee Banking Reference Implementation. This will give you a real life example against mock backends to learn the different API flows. You can then make informed decisions about your architecture and implementation.</p>
+<h2 is-upgraded>Deployment</h2>
+<h3 is-upgraded>Prerequisites</h3>
+<ul>
+<li>Install Git, Node JS and curl (or your favourite REST client)</li>
+<li>If you would like to try a Drupal 8 portal, please install Docker</li>
+<li>Obtain an Apigee Free Evaluation Org <a href="https://login.apigee.com/sign__up" target="_blank">here</a></li>
+<li>Set the following Environment Variables:<pre><code>export APIGEE_USER=someone@example.com
+export APIGEE_PASS=password
+export APIGEE_ORG=orgname
+export APIGEE_ENV=test
+</code></pre>
+</li>
+</ul>
+<h3 is-upgraded>Environment</h3>
+<ul>
+<li>Create an Encrypted Key Value Map with Mgmt API Credentials. This will be used for Dynamic App registration.</li>
+</ul>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Map Name</p>
+</td><td colspan="1" rowspan="1"><p>apigee-reference-bank</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Key</p>
+</td><td colspan="1" rowspan="1"><p>mgmtCredentials</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Value</p>
+</td><td colspan="1" rowspan="1"><p>Basic (base64 encoded username and password)</p>
+</td></tr>
+</table>
+<p>This KVM can be created with the following:</p>
+<pre><code>curl https://api.enterprise.apigee.com/v1/o/$APIGEE_ORG/e/$APIGEE_ENV/keyvaluemaps -u $APIGEE_USER:$APIGEE_PASS -H &#34;Content-Type: application/json&#34; -d &#34;{ \&#34;name\&#34;: \&#34;apigee-reference-bank\&#34;, \&#34;encrypted\&#34;: \&#34;true\&#34;, \&#34;entry\&#34;: [{ \&#34;name\&#34;: \&#34;mgmtCredentials\&#34;, \&#34;value\&#34;: \&#34;Basic $(echo -n $APIGEE_USER:$APIGEE_PASS | base64)\&#34; }] }&#34;
+</code></pre>
+<ul>
+<li>Create Products for Open Data, Account Information and Payment Initiation APIs.</li>
+</ul>
+<h3 is-upgraded>Obtain the Reference Implementation and deploy it</h3>
+<pre><code>git clone https://github.com/apigee/reference-bank-uk.git
+cd reference-bank-uk
+npm install
+npm run deployAll
+</code></pre>
+<h2 is-upgraded>Testing</h2>
+<pre><code>npm test
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Try it out" duration="0">
+        <p>Obtaining some Public Data:</p>
+<pre><code>curl https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/atm-sandbox/open-banking/v2.2/atms -v
+</code></pre>
+<p>Dynamically Registering an API:</p>
+<pre><code>curl -H &#34;Content-Type: application/json&#34; -H &#34;SSL-CLIENT-CERT: $(cat ./test/fixtures/eidasCert.txt)&#34; -d &#34;@./test/fixtures/dynamicRegistration.json&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/connect/register -v
+</code></pre>
+<p>Make a note of the client id and secret!</p>
+<pre><code>export CLIENT_ID=xxx
+export CLIENT_SECRET=xxx
+</code></pre>
+<p>Obtain a client credentials Access Token:</p>
+<pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -F &#34;grant_type=client_credentials&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
+</code></pre>
+<p>Make a note of the token:</p>
+<pre><code>export CLIENT_TOKEN=xxx
+</code></pre>
+<p>Create Account Access Consent:</p>
+<pre><code>curl -H &#34;x-fapi-financial-id: 123&#34; -H &#34;Authorization: Bearer $CLIENT_TOKEN&#34; -d &#34;@./test/fixtures/accountAccessConsent.json&#34; -H &#34;Content-Type: application/json&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.0/aisp/account-access-consents -v
+</code></pre>
+<p>User Authorization:<br>Open your browser to <code>https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/auth?client_id=$CLIENT_ID&amp;redirect_uri=https://httpbin.org/get&amp;response_type=code&amp;scope=openid&amp;state=123</code></p>
+<p>Follow the steps and make a note of the auth code:</p>
+<pre><code>export AUTH_CODE=xxx
+</code></pre>
+<p>Obtain a User Access Token:</p>
+<pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -F &#34;client_id=$CLIENT_ID&#34; -F &#34;grant_type=authorization_code&#34; -F &#34;code=$AUTH_CODE&#34; -F &#34;redirect_uri=https://httpbin.org/get&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
+</code></pre>
+<p>Make a note of the token:</p>
+<pre><code>export USER_TOKEN=xxx
+</code></pre>
+<p>Access some Account information:</p>
+<pre><code>curl -H &#34;Authorization: Bearer $USER_TOKEN&#34; -H &#34;x-fapi-financial-id: 123&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.0/aisp/accounts -v
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Understanding the Flows" duration="0">
+        <p>Open Banking specifications are a combination of <a href="https://tools.ietf.org/html/rfc6749" target="_blank">OAuth 2.0</a>, <a href="https://openid.net/connect/" target="_blank">Open ID Connect</a>, <a href="https://openid.net/wg/fapi/" target="_blank">FAPI</a>, <a href="https://en.wikipedia.org/wiki/EIDAS" target="_blank">eIDAS</a> and specific Open Banking API interfaces. Full documentation for these API Flows can be found in the Open Banking <a href="https://www.openbanking.org.uk/providers/standards/" target="_blank">Specifications</a>.</p>
+<p><img alt="Auth Flow" src="img/a3e199e178b20649.png">]</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Developer Portal" duration="0">
+        <p>A great way to quickly evaluate a Drupal 8 Developer Portal is to use the <a href="https://www.drupal.org/project/apigee_devportal_kickstart" target="_blank">Apigee Kickstart</a> module.</p>
+<p>Firstly, get the Docker Kickstart Project:</p>
+<pre><code>git clone https://github.com/apigee/docker-apigee-drupal-kickstart
+</code></pre>
+<p>Next, you can build the docker image and start a container:</p>
+<pre><code>(cd docker-apigee-drupal-kickstart &amp;&amp; ./start.sh)
+</code></pre>
+<p>Navigate to <code>localhost:8080</code> and follow the installation wizard. For demo purposes, SQLite should be selected to remove the need to connect to an external database.</p>
+<p>Once installed, you can install the specifications in the <code>portal</code> directory. Remember to change the <code>host</code> value to your Apigee Host URL + Base path. Please refer to the setup instructions <a href="https://docs.apigee.com/api-platform/publish/drupal/open-source-drupal-8" target="_blank">here</a>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Beyond Banking" duration="0">
+        <p>Now that you have met regulatory requirements, it is time to innovate beyond the standards required by regulations.</p>
+<p>As a starting point, you can understand the Digital Maturity of your organization using the <a href="http://compass.apigee.com" target="_blank">Apigee Compass</a> tool. The recommendations provided by this short questionnaire will help you focus your efforts.</p>
+<iframe class="youtube-video" src="https://www.youtube.com/embed/iAzH_2pwCxk?rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>With the sandboxes you have built, you may also choose to run a hackathon. <a href="https://community.apigee.com/articles/39527/hermes-hackathon-at-leeds-beckett-university-uk.html" target="_blank">Hackathons</a> with internal staff, students from a local university or external third parties will give you useful feedback on the quality of your solution and how others will invite with your APIs.</p>
+<p>Keep us informed on your journey in the future!</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

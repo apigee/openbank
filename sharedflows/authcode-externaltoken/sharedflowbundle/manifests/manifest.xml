@@ -1,0 +1,32 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AttachExternalToken" version="SHA-512:e63d28389ea47e311a864a8273510942f621a468b4889c2a751510c084afb8c6962d11f6586f999d56c10785d867eca2d7cbec83742d24da8e44f3f2cec258da"/>
+        <VersionInfo resourceName="DecodeBasicAuth" version="SHA-512:453e2747135590ffbd342fa7bd04ba88eab9d8ec78a8401f8a9821ed2454c24fa4b83138f750f5cb65a2ccf41d18dc1d133b2c93b711250c50755fcceb157918"/>
+        <VersionInfo resourceName="ExtractExternalToken" version="SHA-512:c01815e16f40618fa3bfc1ab9b31d2bd61ae9883696f263ea95b6f193b6569ec80d532f5a9b81272af1ad8f27d6dfd208dd9769c1a6562a444b7460390a070fb"/>
+        <VersionInfo resourceName="GenerateToken" version="SHA-512:9d219a512ebad72498e0541c7c43a4c1935dfefaf62fa2b255774cffb23a32961e47e2f2b1b73fc2c7f2b24e627df01e2cb1bd3a79b4a2e351ba067d931d4ac8"/>
+        <VersionInfo resourceName="SetOAuthVariables" version="SHA-512:e9abc815058fbb95914704bed2710e8fefba20c7944b119eef6d65d352c778a4f812b6c8e43cdd84532236d425487e1207df9241531aa6701bbfdf338597b386"/>
+        <VersionInfo resourceName="ValidateClient" version="SHA-512:cf9b56bd092d241593a40057fcb35b9e6346e9b999d877a9a1237d86df999e34aaf90cb3e789ac7e6d60ed15d6242063a9419ff5ff7798f51e9ee12e1564fb63"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:5caf17852e37d3729aa89865784064c8c07e1da449c65171e5f0f38ace16691e450949c2c0b8eea1e5e4173b3936f3745b102dd79f640098abc26953d2e98d2c"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

@@ -1,0 +1,18 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2019-09-20T11:11:50+01:00",
+  "id": "docs",
+  "duration": 0,
+  "title": "Open Banking with Apigee",
+  "summary": "",
+  "source": "./docs-src/docs.md",
+  "theme": "",
+  "status": null,
+  "category": null,
+  "tags": [],
+  "ga": "UA-145683737-2",
+  "url": "docs"
+}

@@ -1,0 +1,29 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="JavaCallout.EiDAS-CertificateParse" version="SHA-512:c01510d154a12f545137e1ccde0fa004d3000ed9af6de130730abb76e920efb9f09f9675d082301a0087c3d30815ddfb7ca18efd6b6aef34908ef7d7fa9febc2"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources>
+        <VersionInfo resourceName="java://eidas-certificate-parser-1.0.0.jar" version="SHA-512:a25ec7d0607d09d2ca39b5fa06a6585f0c9a618e1a33ca8ec8a617a801633c819c2a48c28142c9e183aba9fe66cd65c87a8a2a7b4072e6d657d2be292bbd982f"/>
+    </Resources>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:b2bcbda5abb3c9677ac2060eae230edcff21c806ac4eaba6be28d185db6bc1bc41d084c17ff797a17fe37212fc77ff2127cfa6699ff738f97179513ff6f84d9b"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

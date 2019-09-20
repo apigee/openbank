@@ -1,0 +1,27 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="GenerateToken" version="SHA-512:6b5e7efc3eec0b6a9d9d7f4356291d2e8b46dd95485fc2091bff308cd3f7dd1591cc922197d2d66c21764d96caabfe644271f4aa81704889f916e92dc8b7afff"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:0bf6c4cf7f2f05b7c1bfe1b24cf421a597502f48a994a4c4782624cf8d2b2a007f7d1f50acc80305bf26fa6a896d2bd735206abf876283dcbd3484105efbbc49"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

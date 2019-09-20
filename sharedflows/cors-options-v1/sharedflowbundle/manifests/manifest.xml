@@ -1,0 +1,27 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="RaiseCORSHeaders" version="SHA-512:f6b1cb86e0eff3e146db35046d47287ac75938a4b9fb408843fab84033f1b6cbd6f5ca0fcf5385f9c0195f7bc35de1cb340a0408579d9c29e59cb42957968f4a"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:d5b1fa2c0fb28cfd30accb7f46c2dcb3905b39340fd7a2b3d8661e2035960bbc943cb8432284928ea7cfc1cd26cfd912ff9599afe783cc03412cb9b7937137ee"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

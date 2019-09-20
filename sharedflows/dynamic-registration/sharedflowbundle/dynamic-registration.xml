@@ -1,0 +1,39 @@
+<!--                                                                            
+Copyright 2019 Google LLC                                                       
+                                                                                
+Licensed under the Apache License, Version 2.0 (the "License");                 
+you may not use this file except in compliance with the License.                
+You may obtain a copy of the License at                                         
+                                                                                
+    https://www.apache.org/licenses/LICENSE-2.0                                 
+                                                                                
+Unless required by applicable law or agreed to in writing, software             
+distributed under the License is distributed on an "AS IS" BASIS,               
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        
+See the License for the specific language governing permissions and             
+limitations under the License.                                                  
+                                                                                
+-->
+<SharedFlowBundle revision="5" name="dynamic-registration">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1557483860202</CreatedAt>
+    <CreatedBy>davissean@google.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>Shared-Flow</DisplayName>
+    <LastModifiedAt>1557483860202</LastModifiedAt>
+    <LastModifiedBy>davissean@google.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:e3e7a74413c43bd263ce3c56a01b5598a8e7f815471946fe57d1fcdb6524ba6f9354b0058f1836b00d7e8677c63605b96dd566f7268746adb454557606a101c7:eu-west-1</ManifestVersion>
+    <Policies>
+        <Policy>Assign.Response</Policy>
+        <Policy>Callout.CreateCompany</Policy>
+        <Policy>Callout.CreateCompanyApp</Policy>
+        <Policy>Callout.RegisterAppExternal</Policy>
+        <Policy>Extract.RegisterApp</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

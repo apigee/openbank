@@ -1,0 +1,70 @@
+{
+  "Data": {
+    "Initiation": {
+      "InstructionIdentification": "string",
+      "EndToEndIdentification": "string",
+      "LocalInstrument": "UK.OBIE.BACS",
+      "InstructedAmount": {
+        "Amount": "5.00",
+        "Currency": "GBP"
+      },
+      "DebtorAccount": {
+        "SchemeName": "UK.OBIE.BBAN",
+        "Identification": "string",
+        "Name": "string",
+        "SecondaryIdentification": "string"
+      },
+      "CreditorAccount": {
+        "SchemeName": "UK.OBIE.BBAN",
+        "Identification": "string",
+        "Name": "string",
+        "SecondaryIdentification": "string"
+      },
+      "CreditorPostalAddress": {
+        "AddressType": "Business",
+        "Department": "string",
+        "SubDepartment": "string",
+        "StreetName": "string",
+        "BuildingNumber": "string",
+        "PostCode": "string",
+        "TownName": "string",
+        "CountrySubDivision": "string",
+        "Country": "GB",
+        "AddressLine": [
+          "string"
+        ]
+      },
+      "RemittanceInformation": {
+        "Unstructured": "string",
+        "Reference": "string"
+      },
+      "SupplementaryData": {
+      }
+    },
+    "Authorisation": {
+      "AuthorisationType": "Any",
+      "CompletionDateTime": "2019-06-26T17:58:44.331Z"
+    },
+    "SCASupportData": {
+      "RequestedSCAExemptionType": "BillPayment",
+      "AppliedAuthenticationApproach": "CA",
+      "ReferencePaymentOrderId": "string"
+    }
+  },
+  "Risk": {
+    "PaymentContextCode": "BillPayment",
+    "MerchantCategoryCode": "CAT",
+    "MerchantCustomerIdentification": "string",
+    "DeliveryAddress": {
+      "AddressLine": [
+        "string"
+      ],
+      "StreetName": "string",
+      "BuildingNumber": "string",
+      "PostCode": "string",
+      "TownName": "string",
+      "CountrySubDivision": ["string"],
+      "Country": "GB"
+    }
+  }
+}
