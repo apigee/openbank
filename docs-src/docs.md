@@ -5,7 +5,7 @@ Analytics Account: UA-145683737-2
 
 ## Open Banking APIs
 
-Find the source on [GitHub](https://github.com/apigee/reference-bank-uk).
+Find the source on [GitHub](https://github.com/apigee/openbank).
 
 TLDR? Here is a great summary from David Andrzejek (Head of Financial Services, Apigee).
 
@@ -201,8 +201,8 @@ curl https://api.enterprise.apigee.com/v1/o/$APIGEE_ORG/e/$APIGEE_ENV/keyvaluema
 #### Obtain the Reference Implementation and deploy it
 
 ```
-git clone https://github.com/apigee/reference-bank-uk.git
-cd reference-bank-uk
+git clone https://github.com/apigee/openbank.git
+cd openbank
 npm install
 npm run deployAll
 ```
