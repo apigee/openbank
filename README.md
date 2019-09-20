@@ -2,9 +2,9 @@
 
 ## User Guide
 
-[![Docs](./docs-src/docs.png)](https://apigee.github.io/reference-bank-uk)
+[![Docs](./docs-src/docs.png)](https://apigee.github.io/openbank)
 
-__[Read the User Guide](https://apigee.github.io/reference-bank-uk)__
+__[Read the User Guide](https://apigee.github.io/openbank)__
 
 ## Previous Versions
 
