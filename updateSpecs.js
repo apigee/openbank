@@ -18,6 +18,7 @@ const fs = require('fs')
 
 fs.readdir('./third_party/openbanking.org.uk/', (err, files) => {
   files.forEach(file => {
+    if(file.indexOf('LICENSE') > -1) return
     const dir = file.replace('.json', '')
     fs.copyFile('./third_party/openbanking.org.uk/' + file,
       './apiproxies/' + dir + '/apiproxy/resources/hosted/swagger.json', e => {
