@@ -229,7 +229,7 @@ npm run deployAll
 export CLIENT_SECRET=xxx
 </code></pre>
 <p>Obtain a client credentials Access Token:</p>
-<pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -F &#34;grant_type=client_credentials&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
+<pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -d &#34;grant_type=client_credentials&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
 </code></pre>
 <p>Make a note of the token:</p>
 <pre><code>export CLIENT_TOKEN=xxx
@@ -242,7 +242,7 @@ export CLIENT_SECRET=xxx
 <pre><code>export AUTH_CODE=xxx
 </code></pre>
 <p>Obtain a User Access Token:</p>
-<pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -F &#34;client_id=$CLIENT_ID&#34; -F &#34;grant_type=authorization_code&#34; -F &#34;code=$AUTH_CODE&#34; -F &#34;redirect_uri=https://httpbin.org/get&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
+<pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -d &#34;client_id=$CLIENT_ID&amp;grant_type=authorization_code&amp;code=$AUTH_CODE&amp;redirect_uri=https://httpbin.org/get&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
 </code></pre>
 <p>Make a note of the token:</p>
 <pre><code>export USER_TOKEN=xxx
