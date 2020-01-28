@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 runtime: node
-runtimeVersion: 8
+runtimeVersion: 12
 application: sandbox
 env:
   - name: NODE_ENV

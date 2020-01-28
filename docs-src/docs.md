@@ -217,7 +217,7 @@ npm test
 
 Obtaining some Public Data:
 ```
-curl https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/atm-sandbox/open-banking/v2.2/atms -v
+curl https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/atm-sandbox/open-banking/v2.3/atms -v
 ```
 
 Dynamically Registering an API:
@@ -233,7 +233,7 @@ export CLIENT_SECRET=xxx
 
 Obtain a client credentials Access Token:
 ```
-curl -u $CLIENT_ID:$CLIENT_SECRET -F "grant_type=client_credentials" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
+curl -u $CLIENT_ID:$CLIENT_SECRET -d "grant_type=client_credentials" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
 ```
 
 Make a note of the token:
@@ -243,11 +243,11 @@ export CLIENT_TOKEN=xxx
 
 Create Account Access Consent:
 ```
-curl -H "x-fapi-financial-id: 123" -H "Authorization: Bearer $CLIENT_TOKEN" -d "@./test/fixtures/accountAccessConsent.json" -H "Content-Type: application/json" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.0/aisp/account-access-consents -v
+curl -H "x-fapi-financial-id: 123" -H "Authorization: Bearer $CLIENT_TOKEN" -d "@./test/fixtures/accountAccessConsent.json" -H "Content-Type: application/json" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.1/aisp/account-access-consents -v
 ```
 
 User Authorization:
-Open your browser to `https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/auth?client_id=$CLIENT_ID&redirect_uri=https://httpbin.org/get&response_type=code&scope=openid&state=123`
+Open your browser to `https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/mock-idp/auth?client_id=$CLIENT_ID&redirect_uri=https://httpbin.org/get&response_type=code&scope=openid&state=123`
 
 Follow the steps and make a note of the auth code:
 ```

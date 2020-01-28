@@ -24,12 +24,12 @@ const body = urlencoded({
 module.exports = (app, provider) => {
 
   //check that the application is up
-  app.get('/ping', (req, res) => {
+  app.get('/mock-idp/ping', (req, res) => {
     res.render('pages/ping')
   })
 
   //get login page
-  app.get('/interaction/:grant', async (req, res, next) => {
+  app.get('/mock-idp/interaction/:grant', async (req, res, next) => {
     try {
       const details = await provider.interactionDetails(req)
 
@@ -47,7 +47,7 @@ module.exports = (app, provider) => {
 
 
   //submit login
-  app.post('/interaction/:grant/login', body, async (req, res, next) => {
+  app.post('/mock-idp/interaction/:grant/login', body, async (req, res, next) => {
     res.set('Pragma', 'no-cache')
     res.set('Cache-Control', 'no-cache, no-store')
     try {
@@ -57,7 +57,7 @@ module.exports = (app, provider) => {
       }
       await provider.setProviderSession(req, res, result)
       res.status(302).set({
-        Location: '/interaction/' + req.params.grant + '/consent'
+        Location: '/mock-idp/interaction/' + req.params.grant + '/consent'
       }).send()
     } catch (err) {
       next(err)
@@ -65,7 +65,7 @@ module.exports = (app, provider) => {
   })
 
   //get consent
-  app.get('/interaction/:grant/consent', body, async (req, res, next) => {
+  app.get('/mock-idp/interaction/:grant/consent', body, async (req, res, next) => {
     try {
       const details = await provider.interactionDetails(req)
       return res.render('pages/consent', {
@@ -77,7 +77,7 @@ module.exports = (app, provider) => {
   })
 
   //submit consent
-  app.post('/interaction/:grant/consent', body, async (req, res, next) => {
+  app.post('/mock-idp/interaction/:grant/consent', body, async (req, res, next) => {
     res.set('Pragma', 'no-cache')
     res.set('Cache-Control', 'no-cache, no-store')
     try {
@@ -101,5 +101,4 @@ module.exports = (app, provider) => {
       next(err)
     }
   })
-
 }

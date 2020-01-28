@@ -28,8 +28,8 @@ Before(function() {
   this.apickli = new apickli.Apickli('https',
     org + '-' + env + '.apigee.net')
   this.apickli.fixturesDirectory = './test/fixtures'
-  this.apickli.scenarioVariables.clientId = 'OR252nJ5TGGAbtML5p4BwT3RzIExko0C'
-  this.apickli.scenarioVariables.clientSecret = 'saSJYUVL4WTfThNo'
+  this.apickli.scenarioVariables.clientId = 'e05d0e1a-cd9d-4724-a5a2-448d74faee3c'
+  this.apickli.scenarioVariables.clientSecret = 'WqMUPysCvhzZyCSX7lI0gjRQdCV4LD50KR62SrG3450od4ozFBOteeVuXYYr8lK7'
 })
 
 Given('I provide a valid eidas cert', function(cb) {

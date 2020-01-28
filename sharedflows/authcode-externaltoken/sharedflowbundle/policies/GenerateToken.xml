@@ -35,6 +35,6 @@ limitations under the License.
     <Response>calloutResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://{organization.name}-{environment.name}.apigee.net/token</URL>
+        <URL>https://{organization.name}-{environment.name}.apigee.net/mock-idp/token</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

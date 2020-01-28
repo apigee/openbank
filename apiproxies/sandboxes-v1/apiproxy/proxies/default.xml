@@ -27,17 +27,8 @@ limitations under the License.
               <Name>Shared.RaiseCORS</Name>
               <Condition>request.verb = "OPTIONS"</Condition>
             </Step>
-            <Step>
-              <Name>ResponseCache.URLKey</Name>
-              <Condition>request.verb = "GET"</Condition>
-            </Step>
         </Request>
-        <Response>
-            <Step>
-              <Name>ResponseCache.URLKey</Name>
-              <Condition>request.verb = "GET"</Condition>
-            </Step>
-        </Response>
+        <Response/>
     </PreFlow>
     <PostFlow>
       <Response>
@@ -47,7 +38,7 @@ limitations under the License.
       </Response>
     </PostFlow>
     <HTTPProxyConnection>
-        <BasePath>/atm-sandbox</BasePath>
+        <BasePath>/</BasePath>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="sandbox">
