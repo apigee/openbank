@@ -10,6 +10,8 @@ Feature:
     When I POST to /identity/v1/connect/register
     Then response code should be 200
     And response body path $.client_id should be (.*)
+    And I store the value of body path $.client_id as clientId in global scope
+    And I store the value of body path $.client_secret as clientSecret in global scope
 
   Scenario: Client Credentials Access Token
     Given I have basic authentication credentials `clientId` and `clientSecret`
