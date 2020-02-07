@@ -175,14 +175,14 @@ A great way to kickstart your API Journey is to deploy an example Apigee Banking
 
 ```
 export APIGEE_USER=someone@example.com
-export APIGEE_PASS=password
+export APIGEE_PASS="password"
 export APIGEE_ORG=orgname
 export APIGEE_ENV=test
 ```
 
 #### Environment
 
-- Create an Encrypted Key Value Map with Mgmt API Credentials. This will be used for Dynamic App registration.
+- Create an Encrypted Key Value Map with Mgmt API Credentials. This will be used for Dynamic App registration. For development purposes, you can use your own credentials, but in production please create a specific Apigee account for this.
 
 |   |  |
 |---|---|
@@ -196,7 +196,6 @@ This KVM can be created with the following:
 curl https://api.enterprise.apigee.com/v1/o/$APIGEE_ORG/e/$APIGEE_ENV/keyvaluemaps -u $APIGEE_USER:$APIGEE_PASS -H "Content-Type: application/json" -d "{ \"name\": \"apigee-reference-bank\", \"encrypted\": \"true\", \"entry\": [{ \"name\": \"mgmtCredentials\", \"value\": \"Basic $(echo -n $APIGEE_USER:$APIGEE_PASS | base64)\" }] }"
 ```
 
-- Create Products for Open Data, Account Information and Payment Initiation APIs.
 
 #### Obtain the Reference Implementation and deploy it
 
@@ -206,6 +205,16 @@ cd openbank
 npm install
 npm run deployAll
 ```
+
+#### Create an Open Banking API Product
+
+Create an API Product with 
+| | |
+|---|---|
+| Name | openbanking
+| Proxies | identity-v1 sandboxes-v1 mock-tpp-v1 |
+| Envs | test |
+| Paths | / /** |
 
 ### Testing
 
