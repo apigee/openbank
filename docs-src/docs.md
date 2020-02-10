@@ -209,12 +209,13 @@ npm run deployAll
 #### Create an Open Banking API Product
 
 Create an API Product with 
+
 | | |
 |---|---|
 | Name | openbanking |
-| Proxies | identity-v1 sandboxes-v1 mock-tpp-v1 |
 | Envs | test |
-| Paths | / /** |
+| Proxies | identity-v1 sandboxes-v1 mock-tpp-v1 |
+| Paths | / /\*\* |
 
 #### Create an Open Banking Developer
 
