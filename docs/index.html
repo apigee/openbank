@@ -208,7 +208,7 @@ npm install
 npm run deployAll
 </code></pre>
 <h3 is-upgraded>Create an Open Banking API Product</h3>
-<p>Create an API Product with<br>| | |<br>|—|—|<br>| Name | openbanking<br>| Proxies | identity-v1 sandboxes-v1 mock-tpp-v1 |<br>| Envs | test |<br>| Paths | / /** |</p>
+<p>Create an API Product with<br>| | |<br>|—|—|<br>| Name | openbanking |<br>| Proxies | identity-v1 sandboxes-v1 mock-tpp-v1 |<br>| Envs | test |<br>| Paths | / /** |</p>
 <h3 is-upgraded>Create an Open Banking Developer</h3>
 <p>Create a Developer that corresponds to <code>./test/fixtures/dynamicRegistration.json</code></p>
 <table>
@@ -269,13 +269,13 @@ export CLIENT_SECRET=xxx
 <pre><code>export AUTH_CODE=xxx
 </code></pre>
 <p>Obtain a User Access Token:</p>
-<pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -F &#34;client_id=$CLIENT_ID&#34; -F &#34;grant_type=authorization_code&#34; -F &#34;code=$AUTH_CODE&#34; -F &#34;redirect_uri=https://httpbin.org/get&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
+<pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -d &#34;grant_type=authorization_code&#34; -d &#34;code=$AUTH_CODE&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
 </code></pre>
 <p>Make a note of the token:</p>
 <pre><code>export USER_TOKEN=xxx
 </code></pre>
 <p>Access some Account information:</p>
-<pre><code>curl -H &#34;Authorization: Bearer $USER_TOKEN&#34; -H &#34;x-fapi-financial-id: 123&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.0/aisp/accounts -v
+<pre><code>curl -H &#34;Authorization: Bearer $USER_TOKEN&#34; -H &#34;x-fapi-financial-id: 123&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.1/aisp/accounts -v
 </code></pre>
 
 
