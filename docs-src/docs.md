@@ -211,7 +211,7 @@ npm run deployAll
 Create an API Product with 
 | | |
 |---|---|
-| Name | openbanking
+| Name | openbanking |
 | Proxies | identity-v1 sandboxes-v1 mock-tpp-v1 |
 | Envs | test |
 | Paths | / /** |
@@ -290,7 +290,7 @@ export AUTH_CODE=xxx
 
 Obtain a User Access Token:
 ```
-curl -u $CLIENT_ID:$CLIENT_SECRET -F "client_id=$CLIENT_ID" -F "grant_type=authorization_code" -F "code=$AUTH_CODE" -F "redirect_uri=https://httpbin.org/get" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
+curl -u $CLIENT_ID:$CLIENT_SECRET -d "grant_type=authorization_code" -d "code=$AUTH_CODE" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
 ```
 
 Make a note of the token:
@@ -300,7 +300,7 @@ export USER_TOKEN=xxx
 
 Access some Account information:
 ```
-curl -H "Authorization: Bearer $USER_TOKEN" -H "x-fapi-financial-id: 123" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.0/aisp/accounts -v
+curl -H "Authorization: Bearer $USER_TOKEN" -H "x-fapi-financial-id: 123" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.1/aisp/accounts -v
 ```
 
 ## Understanding the Flows
