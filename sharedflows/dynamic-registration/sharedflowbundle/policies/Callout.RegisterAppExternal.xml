@@ -35,6 +35,6 @@ limitations under the License.
     <Response>registrationResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://{organization.name}-{environment.name}.apigee.net/reg</URL>
+        <URL>https://{organization.name}-{environment.name}.apigee.net/mock-idp/reg</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

@@ -1,7 +1,9 @@
 {
   "client_name": "My Android App",
   "jwks_uri": "https://(org)-(env).apigee.net/tpp/v1/my_public_keys.jwks",
-  "contacts": ["someone@example.com"],
+  "contacts": ["developer@example.com"],
   "redirect_uris": ["https://httpbin.org/get"],
-  "grant_types": ["authorization_code", "implicit", "client_credentials"]
+  "grant_types": ["authorization_code", "implicit", "client_credentials"],
+  "token_endpoint_auth_method": "client_secret_basic"
+
 }

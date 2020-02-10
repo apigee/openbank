@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Apigee Banking Reference Implementation",
   "scripts": {
-    "deployAll": "npm run updateSpecs && npm run deploySharedFlows && npm run deployProxies",
+    "deployAll": "npm run deploySharedFlows && npm run deployProxies",
     "deployProxies": "for DIR in $(ls apiproxies); do cd apiproxies/$DIR && npm run deploy && cd ../.. ; done",
     "deploySharedFlows": "for DIR in $(ls sharedflows); do cd sharedflows/$DIR && npm run deploy && cd ../.. ; done",
     "generateDocs": "plantuml ./docs-src/auth.flow && claat export ./docs-src/docs.md",
-    "updateSpecs": "node ./updateSpecs.js",
     "serveDocs": "http-server docs/",
     "test": "npx cucumber-js test"
   },

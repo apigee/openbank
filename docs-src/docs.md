@@ -175,14 +175,14 @@ A great way to kickstart your API Journey is to deploy an example Apigee Banking
 
 ```
 export APIGEE_USER=someone@example.com
-export APIGEE_PASS=password
+export APIGEE_PASS="password"
 export APIGEE_ORG=orgname
 export APIGEE_ENV=test
 ```
 
 #### Environment
 
-- Create an Encrypted Key Value Map with Mgmt API Credentials. This will be used for Dynamic App registration.
+- Create an Encrypted Key Value Map with Mgmt API Credentials. This will be used for Dynamic App registration. For development purposes, you can use your own credentials, but in production please create a specific Apigee account for this.
 
 |   |  |
 |---|---|
@@ -196,7 +196,6 @@ This KVM can be created with the following:
 curl https://api.enterprise.apigee.com/v1/o/$APIGEE_ORG/e/$APIGEE_ENV/keyvaluemaps -u $APIGEE_USER:$APIGEE_PASS -H "Content-Type: application/json" -d "{ \"name\": \"apigee-reference-bank\", \"encrypted\": \"true\", \"entry\": [{ \"name\": \"mgmtCredentials\", \"value\": \"Basic $(echo -n $APIGEE_USER:$APIGEE_PASS | base64)\" }] }"
 ```
 
-- Create Products for Open Data, Account Information and Payment Initiation APIs.
 
 #### Obtain the Reference Implementation and deploy it
 
@@ -206,6 +205,41 @@ cd openbank
 npm install
 npm run deployAll
 ```
+
+#### Create an Open Banking API Product
+
+Create an API Product with 
+| | |
+|---|---|
+| Name | openbanking
+| Proxies | identity-v1 sandboxes-v1 mock-tpp-v1 |
+| Envs | test |
+| Paths | / /** |
+
+#### Create an Open Banking Developer
+
+Create a Developer that corresponds to `./test/fixtures/dynamicRegistration.json`
+
+| | |
+|---|---|
+| Email | developer@example.com |
+
+#### Create an Open Banking Developer App
+
+Create a Developer App with the following
+
+| | |
+|---|---|
+| Name | Open Banking Test App |
+| Callback URL | https://httpbin.org/get |
+| Developer | developer@example.com |
+| Product | openbanking |
+
+#### Update the Test App Credentials
+
+Take the `Client ID` and `Client Secret` from the newly created app and add it to `./apiproxies/sandboxes-v1/apiproxy/resources/hosted/support/clients` and `./test/step_definitions/init.js`
+
+This will replace the `foo` client.
 
 ### Testing
 
@@ -217,7 +251,7 @@ npm test
 
 Obtaining some Public Data:
 ```
-curl https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/atm-sandbox/open-banking/v2.2/atms -v
+curl https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/atm-sandbox/open-banking/v2.3/atms -v
 ```
 
 Dynamically Registering an API:
@@ -233,7 +267,7 @@ export CLIENT_SECRET=xxx
 
 Obtain a client credentials Access Token:
 ```
-curl -u $CLIENT_ID:$CLIENT_SECRET -F "grant_type=client_credentials" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
+curl -u $CLIENT_ID:$CLIENT_SECRET -d "grant_type=client_credentials" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
 ```
 
 Make a note of the token:
@@ -243,11 +277,11 @@ export CLIENT_TOKEN=xxx
 
 Create Account Access Consent:
 ```
-curl -H "x-fapi-financial-id: 123" -H "Authorization: Bearer $CLIENT_TOKEN" -d "@./test/fixtures/accountAccessConsent.json" -H "Content-Type: application/json" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.0/aisp/account-access-consents -v
+curl -H "x-fapi-financial-id: 123" -H "Authorization: Bearer $CLIENT_TOKEN" -d "@./test/fixtures/accountAccessConsent.json" -H "Content-Type: application/json" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.1/aisp/account-access-consents -v
 ```
 
 User Authorization:
-Open your browser to `https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/auth?client_id=$CLIENT_ID&redirect_uri=https://httpbin.org/get&response_type=code&scope=openid&state=123`
+Open your browser to `https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/mock-idp/auth?client_id=$CLIENT_ID&redirect_uri=https://httpbin.org/get&response_type=code&scope=openid&state=123`
 
 Follow the steps and make a note of the auth code:
 ```

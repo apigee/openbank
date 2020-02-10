@@ -25,7 +25,7 @@ limitations under the License.
             </Headers>
             <Payload contentType="application/json" variablePrefix="£" variableSuffix="$">
 {
-  "apiProducts": [ "all"],
+  "apiProducts": [ "openbanking"],
   "name" : "£custom.clientName$",
   "callbackUrl" : "£custom.redirectUri$"
 }

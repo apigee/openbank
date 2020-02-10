@@ -176,7 +176,7 @@
 <li>If you would like to try a Drupal 8 portal, please install Docker</li>
 <li>Obtain an Apigee Free Evaluation Org <a href="https://login.apigee.com/sign__up" target="_blank">here</a></li>
 <li>Set the following Environment Variables:<pre><code>export APIGEE_USER=someone@example.com
-export APIGEE_PASS=password
+export APIGEE_PASS=&#34;password&#34;
 export APIGEE_ORG=orgname
 export APIGEE_ENV=test
 </code></pre>
@@ -184,7 +184,7 @@ export APIGEE_ENV=test
 </ul>
 <h3 is-upgraded>Environment</h3>
 <ul>
-<li>Create an Encrypted Key Value Map with Mgmt API Credentials. This will be used for Dynamic App registration.</li>
+<li>Create an Encrypted Key Value Map with Mgmt API Credentials. This will be used for Dynamic App registration. For development purposes, you can use your own credentials, but in production please create a specific Apigee account for this.</li>
 </ul>
 <table>
 <tr></tr>
@@ -201,15 +201,42 @@ export APIGEE_ENV=test
 <p>This KVM can be created with the following:</p>
 <pre><code>curl https://api.enterprise.apigee.com/v1/o/$APIGEE_ORG/e/$APIGEE_ENV/keyvaluemaps -u $APIGEE_USER:$APIGEE_PASS -H &#34;Content-Type: application/json&#34; -d &#34;{ \&#34;name\&#34;: \&#34;apigee-reference-bank\&#34;, \&#34;encrypted\&#34;: \&#34;true\&#34;, \&#34;entry\&#34;: [{ \&#34;name\&#34;: \&#34;mgmtCredentials\&#34;, \&#34;value\&#34;: \&#34;Basic $(echo -n $APIGEE_USER:$APIGEE_PASS | base64)\&#34; }] }&#34;
 </code></pre>
-<ul>
-<li>Create Products for Open Data, Account Information and Payment Initiation APIs.</li>
-</ul>
 <h3 is-upgraded>Obtain the Reference Implementation and deploy it</h3>
 <pre><code>git clone https://github.com/apigee/openbank.git
 cd openbank
 npm install
 npm run deployAll
 </code></pre>
+<h3 is-upgraded>Create an Open Banking API Product</h3>
+<p>Create an API Product with<br>| | |<br>|—|—|<br>| Name | openbanking<br>| Proxies | identity-v1 sandboxes-v1 mock-tpp-v1 |<br>| Envs | test |<br>| Paths | / /** |</p>
+<h3 is-upgraded>Create an Open Banking Developer</h3>
+<p>Create a Developer that corresponds to <code>./test/fixtures/dynamicRegistration.json</code></p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Email</p>
+</td><td colspan="1" rowspan="1"><p>developer@example.com</p>
+</td></tr>
+</table>
+<h3 is-upgraded>Create an Open Banking Developer App</h3>
+<p>Create a Developer App with the following</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Name</p>
+</td><td colspan="1" rowspan="1"><p>Open Banking Test App</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Callback URL</p>
+</td><td colspan="1" rowspan="1"><p>https://httpbin.org/get</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Developer</p>
+</td><td colspan="1" rowspan="1"><p>developer@example.com</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Product</p>
+</td><td colspan="1" rowspan="1"><p>openbanking</p>
+</td></tr>
+</table>
+<h3 is-upgraded>Update the Test App Credentials</h3>
+<p>Take the <code>Client ID</code> and <code>Client Secret</code> from the newly created app and add it to <code>./apiproxies/sandboxes-v1/apiproxy/resources/hosted/support/clients</code> and <code>./test/step_definitions/init.js</code></p>
+<p>This will replace the <code>foo</code> client.</p>
 <h2 is-upgraded>Testing</h2>
 <pre><code>npm test
 </code></pre>
@@ -219,7 +246,7 @@ npm run deployAll
     
       <google-codelab-step label="Try it out" duration="0">
         <p>Obtaining some Public Data:</p>
-<pre><code>curl https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/atm-sandbox/open-banking/v2.2/atms -v
+<pre><code>curl https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/atm-sandbox/open-banking/v2.3/atms -v
 </code></pre>
 <p>Dynamically Registering an API:</p>
 <pre><code>curl -H &#34;Content-Type: application/json&#34; -H &#34;SSL-CLIENT-CERT: $(cat ./test/fixtures/eidasCert.txt)&#34; -d &#34;@./test/fixtures/dynamicRegistration.json&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/connect/register -v
@@ -229,15 +256,15 @@ npm run deployAll
 export CLIENT_SECRET=xxx
 </code></pre>
 <p>Obtain a client credentials Access Token:</p>
-<pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -F &#34;grant_type=client_credentials&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
+<pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -d &#34;grant_type=client_credentials&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
 </code></pre>
 <p>Make a note of the token:</p>
 <pre><code>export CLIENT_TOKEN=xxx
 </code></pre>
 <p>Create Account Access Consent:</p>
-<pre><code>curl -H &#34;x-fapi-financial-id: 123&#34; -H &#34;Authorization: Bearer $CLIENT_TOKEN&#34; -d &#34;@./test/fixtures/accountAccessConsent.json&#34; -H &#34;Content-Type: application/json&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.0/aisp/account-access-consents -v
+<pre><code>curl -H &#34;x-fapi-financial-id: 123&#34; -H &#34;Authorization: Bearer $CLIENT_TOKEN&#34; -d &#34;@./test/fixtures/accountAccessConsent.json&#34; -H &#34;Content-Type: application/json&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/ais-sandbox/open-banking/v3.1/aisp/account-access-consents -v
 </code></pre>
-<p>User Authorization:<br>Open your browser to <code>https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/auth?client_id=$CLIENT_ID&amp;redirect_uri=https://httpbin.org/get&amp;response_type=code&amp;scope=openid&amp;state=123</code></p>
+<p>User Authorization:<br>Open your browser to <code>https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/mock-idp/auth?client_id=$CLIENT_ID&amp;redirect_uri=https://httpbin.org/get&amp;response_type=code&amp;scope=openid&amp;state=123</code></p>
 <p>Follow the steps and make a note of the auth code:</p>
 <pre><code>export AUTH_CODE=xxx
 </code></pre>
@@ -256,7 +283,7 @@ export CLIENT_SECRET=xxx
     
       <google-codelab-step label="Understanding the Flows" duration="0">
         <p>Open Banking specifications are a combination of <a href="https://tools.ietf.org/html/rfc6749" target="_blank">OAuth 2.0</a>, <a href="https://openid.net/connect/" target="_blank">Open ID Connect</a>, <a href="https://openid.net/wg/fapi/" target="_blank">FAPI</a>, <a href="https://en.wikipedia.org/wiki/EIDAS" target="_blank">eIDAS</a> and specific Open Banking API interfaces. Full documentation for these API Flows can be found in the Open Banking <a href="https://www.openbanking.org.uk/providers/standards/" target="_blank">Specifications</a>.</p>
-<p><img alt="Auth Flow" src="img/a3e199e178b20649.png">]</p>
+<p><img alt="Auth Flow" src="img/886c4504f41c6448.png">]</p>
 
 
       </google-codelab-step>

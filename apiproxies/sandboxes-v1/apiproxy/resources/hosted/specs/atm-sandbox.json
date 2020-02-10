@@ -1,0 +1,916 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v2.3",
+    "title": "Open Data API",
+    "description": "Latest Swagger specification for OpenData ATM Locator"
+  },
+  "host": "developer.openbanking.org.uk",
+  "basePath": "/open-banking/v2.3",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/prs.openbanking.opendata.v2.3+json"
+  ],
+  "tags": [
+    {
+      "name": "ATM",
+      "description": "Endpoint for getting ATM data"
+    }
+  ],
+  "paths": {
+    "/atms": {
+      "get": {
+        "tags": [
+          "ATM"
+        ],
+        "description": "Gets a list of all `ATM` objects.",
+        "parameters": [
+          {
+            "name": "If-Modified-Since",
+            "type": "string",
+            "description": "Used for conditional request, to retrieve data only if modified since a given date",
+            "in": "header",
+            "required": false
+          },
+          {
+            "name": "If-None-Match",
+            "type": "string",
+            "description": "Used for conditional request, to retrieve data only if the given Etag value does not match",
+            "in": "header",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a list of `ATM` data",
+            "headers": {
+              "Strict-Transport-Security": {
+                "type": "string",
+                "description": "HTTPS strict transport security header",
+                "default": "max-age=31536000"
+              },
+              "Etag": {
+                "type": "string",
+                "description": "A unique ID identifying whether this resource has changed"
+              },
+              "Cache-Control": {
+                "type": "string",
+                "description": "Describes how long this response can be cached",
+                "default": "max-age=28800"
+              },
+              "X-Frame-Options": {
+                "type": "string",
+                "description": "Prevent this request from being loaded in any iframes",
+                "default": "DENY"
+              },
+              "X-Content-Type-Options": {
+                "type": "string",
+                "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                "default": "nosniff"
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "title": "Meta data",
+                  "type": "object",
+                  "properties": {
+                    "LastUpdated": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "TotalResults": {
+                      "type": "integer"
+                    },
+                    "Agreement": {
+                      "type": "string",
+                      "enum": [
+                        "Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions"
+                      ]
+                    },
+                    "License": {
+                      "description": "Open Banking License",
+                      "type": "string",
+                      "format": "uri",
+                      "enum": [
+                        "https://www.openbanking.org.uk/open-licence"
+                      ]
+                    },
+                    "TermsOfUse": {
+                      "description": "Open Banking Terms of Use",
+                      "type": "string",
+                      "format": "uri",
+                      "enum": [
+                        "https://www.openbanking.org.uk/terms"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "LastUpdated",
+                    "TotalResults",
+                    "Agreement",
+                    "License",
+                    "TermsOfUse"
+                  ],
+                  "additionalProperties": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "Brand": {
+                        "description": "Brand of the Acquirer of transactions captured by the ATM",
+                        "type": "array",
+                        "title": "Brand",
+                        "items": {
+                          "description": "Brand of the Acquirer of transactions captured by the ATM",
+                          "type": "object",
+                          "properties": {
+                            "BrandName": {
+                              "description": "Brand Name that an organisation uses to market its products or services to a consumer",
+                              "title": "BrandName",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 140
+                            },
+                            "ATM": {
+                              "description": "ATM information.",
+                              "type": "array",
+                              "title": "ATM",
+                              "items": {
+                                "description": "ATM information.",
+                                "type": "object",
+                                "properties": {
+                                  "Identification": {
+                                    "description": "ATM terminal device identification for the acquirer and the issuer.",
+                                    "title": "Identification",
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 35
+                                  },
+                                  "SupportedLanguages": {
+                                    "description": "Identification of the language name according to the ISO 639-1 codes. The type is validated by the list of values coded with two alphabetic characters, defined in the standard.",
+                                    "title": "SupportedLanguages",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "Identification of the language name according to the ISO 639-1 codes. The type is validated by the list of values coded with two alphabetic characters, defined in the standard.",
+                                      "type": "string",
+                                      "pattern": "[a-z]{2}"
+                                    }
+                                  },
+                                  "ATMServices": {
+                                    "description": "Describes the type of transaction available for a customer on an ATM.",
+                                    "title": "ATMServices",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "Describes the type of transaction available for a customer on an ATM.",
+                                      "type": "string",
+                                      "enum": [
+                                        "Balance",
+                                        "BillPayments",
+                                        "CashDeposits",
+                                        "CharityDonation",
+                                        "ChequeDeposits",
+                                        "CashWithdrawal",
+                                        "EnvelopeDeposit",
+                                        "FastCash",
+                                        "MobileBankingRegistration",
+                                        "MobilePaymentRegistration",
+                                        "MobilePhoneTopUp",
+                                        "OrderStatement",
+                                        "Other",
+                                        "PINActivation",
+                                        "PINChange",
+                                        "PINUnblock",
+                                        "MiniStatement"
+                                      ]
+                                    }
+                                  },
+                                  "Accessibility": {
+                                    "description": "Indicates Types of Accessibility",
+                                    "title": "Accessibility",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "Indicates Types of Accessibility",
+                                      "type": "string",
+                                      "enum": [
+                                        "AudioCashMachine",
+                                        "AutomaticDoors",
+                                        "ExternalRamp",
+                                        "InductionLoop",
+                                        "InternalRamp",
+                                        "LevelAccess",
+                                        "LowerLevelCounter",
+                                        "Other",
+                                        "WheelchairAccess"
+                                      ]
+                                    }
+                                  },
+                                  "Access24HoursIndicator": {
+                                    "description": "Indicates that the ATM is available for use by customers 24 hours per day",
+                                    "title": "Access24HoursIndicator",
+                                    "type": "boolean"
+                                  },
+                                  "SupportedCurrencies": {
+                                    "description": "All ISO 4217 defined currency  supported by the ATM.",
+                                    "title": "SupportedCurrencies",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "ISO 4217 defined currency",
+                                      "type": "string",
+                                      "pattern": "[A-Z]{3}"
+                                    },
+                                    "minItems": 1
+                                  },
+                                  "MinimumPossibleAmount": {
+                                    "description": "Minimum amount allowed for a transaction in the service.",
+                                    "title": "MinimumPossibleAmount",
+                                    "type": "string",
+                                    "pattern": "^-?\\d{1,10}\\.?\\d{0,2}$"
+                                  },
+                                  "Note": {
+                                    "description": "Summary description of the ATM.",
+                                    "title": "Note",
+                                    "type": "array",
+                                    "items": {
+                                      "description": "maxLength 2000 text",
+                                      "type": "string",
+                                      "minLength": 1,
+                                      "maxLength": 2000
+                                    }
+                                  },
+                                  "OtherAccessibility": {
+                                    "description": "Enter a new code , name and description for any other ATM accessibility options",
+                                    "type": "array",
+                                    "title": "OtherAccessibility",
+                                    "items": {
+                                      "description": "Enter a new code , name and description for any other ATM accessibility options",
+                                      "type": "object",
+                                      "properties": {
+                                        "Code": {
+                                          "description": "The four letter Mnemonic used within an XML file to identify a code",
+                                          "title": "Code",
+                                          "type": "string",
+                                          "pattern": "^\\w{0,4}$",
+                                          "minLength": 0,
+                                          "maxLength": 4
+                                        },
+                                        "Name": {
+                                          "description": "Long name associated with the code",
+                                          "title": "Name",
+                                          "type": "string",
+                                          "minLength": 1,
+                                          "maxLength": 70
+                                        },
+                                        "Description": {
+                                          "description": "Description to describe the purpose of the code",
+                                          "title": "Description",
+                                          "type": "string",
+                                          "minLength": 1,
+                                          "maxLength": 350
+                                        }
+                                      },
+                                      "required": [
+                                        "Name",
+                                        "Description"
+                                      ]
+                                    },
+                                    "additionalProperties": false
+                                  },
+                                  "OtherATMServices": {
+                                    "description": "Enter a new code , name and description for any other ATM Service",
+                                    "type": "array",
+                                    "title": "OtherATMServices",
+                                    "items": {
+                                      "description": "Enter a new code , name and description for any other ATM Service",
+                                      "type": "object",
+                                      "properties": {
+                                        "Code": {
+                                          "description": "The four letter Mnemonic used within an XML file to identify a code",
+                                          "title": "Code",
+                                          "type": "string",
+                                          "pattern": "^\\w{0,4}$",
+                                          "minLength": 0,
+                                          "maxLength": 4
+                                        },
+                                        "Name": {
+                                          "description": "Long name associated with the code",
+                                          "title": "Name",
+                                          "type": "string",
+                                          "minLength": 1,
+                                          "maxLength": 70
+                                        },
+                                        "Description": {
+                                          "description": "Description to describe the purpose of the code",
+                                          "title": "Description",
+                                          "type": "string",
+                                          "minLength": 1,
+                                          "maxLength": 350
+                                        }
+                                      },
+                                      "required": [
+                                        "Name",
+                                        "Description"
+                                      ]
+                                    },
+                                    "additionalProperties": false
+                                  },
+                                  "Branch": {
+                                    "description": "Information that locates and identifies a specific branch of a financial institution.",
+                                    "type": "object",
+                                    "title": "Branch",
+                                    "properties": {
+                                      "Identification": {
+                                        "description": "Unique and unambiguous identification of a branch of a financial institution.",
+                                        "title": "Identification",
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 35
+                                      }
+                                    },
+                                    "additionalProperties": false
+                                  },
+                                  "Location": {
+                                    "description": "Location of the ATM.",
+                                    "type": "object",
+                                    "title": "Location",
+                                    "properties": {
+                                      "LocationCategory": {
+                                        "description": "Indicates the environment of the ATM.",
+                                        "title": "LocationCategory",
+                                        "type": "array",
+                                        "items": {
+                                          "description": "Indicates the environment of the ATM.",
+                                          "type": "string",
+                                          "enum": [
+                                            "BranchExternal",
+                                            "BranchInternal",
+                                            "BranchLobby",
+                                            "Other",
+                                            "RetailerOutlet",
+                                            "RemoteUnit"
+                                          ]
+                                        }
+                                      },
+                                      "OtherLocationCategory": {
+                                        "description": "Enter a new code , name and description for any other location category",
+                                        "type": "array",
+                                        "title": "OtherLocationCategory",
+                                        "items": {
+                                          "description": "Enter a new code , name and description for any other location category",
+                                          "type": "object",
+                                          "properties": {
+                                            "Code": {
+                                              "description": "The four letter Mnemonic used within an XML file to identify a code",
+                                              "title": "Code",
+                                              "type": "string",
+                                              "pattern": "^\\w{0,4}$",
+                                              "minLength": 0,
+                                              "maxLength": 4
+                                            },
+                                            "Name": {
+                                              "description": "Long name associated with the code",
+                                              "title": "Name",
+                                              "type": "string",
+                                              "minLength": 1,
+                                              "maxLength": 70
+                                            },
+                                            "Description": {
+                                              "description": "Description to describe the purpose of the code",
+                                              "title": "Description",
+                                              "type": "string",
+                                              "minLength": 1,
+                                              "maxLength": 350
+                                            }
+                                          },
+                                          "required": [
+                                            "Name",
+                                            "Description"
+                                          ]
+                                        },
+                                        "additionalProperties": false
+                                      },
+                                      "Site": {
+                                        "description": "Used by a Financial Institution internally to identify the location of an ATM.",
+                                        "type": "object",
+                                        "title": "Site",
+                                        "properties": {
+                                          "Identification": {
+                                            "description": "ATM site identification for the Financial Institution.",
+                                            "title": "Identification",
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 35
+                                          },
+                                          "Name": {
+                                            "description": "ATM site name as used by Financial Institution.",
+                                            "title": "Name",
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 140
+                                          }
+                                        },
+                                        "additionalProperties": false
+                                      },
+                                      "PostalAddress": {
+                                        "description": "Information that locates and identifies a specific address, as defined by postal services or in free format text.",
+                                        "type": "object",
+                                        "title": "PostalAddress",
+                                        "properties": {
+                                          "AddressLine": {
+                                            "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                                            "title": "AddressLine",
+                                            "type": "array",
+                                            "items": {
+                                              "description": "maxLength 70 text",
+                                              "type": "string",
+                                              "minLength": 1,
+                                              "maxLength": 70
+                                            },
+                                            "minItems": 0,
+                                            "maxItems": 7
+                                          },
+                                          "BuildingNumber": {
+                                            "description": "Name or Number that identifies the position of a building on a street.",
+                                            "title": "BuildingNumber",
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 350
+                                          },
+                                          "StreetName": {
+                                            "description": "Name of a street or thoroughfare.",
+                                            "title": "StreetName",
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 70
+                                          },
+                                          "TownName": {
+                                            "description": "Name of a built-up area, with defined boundaries, and a local government.",
+                                            "title": "TownName",
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 35
+                                          },
+                                          "CountrySubDivision": {
+                                            "description": "Identifies a subdivision of a country, for instance state, region, county.",
+                                            "title": "CountrySubDivision",
+                                            "type": "array",
+                                            "items": {
+                                              "description": "maxLength 35 text",
+                                              "type": "string",
+                                              "minLength": 1,
+                                              "maxLength": 35
+                                            },
+                                            "minItems": 0,
+                                            "maxItems": 2
+                                          },
+                                          "Country": {
+                                            "description": "Nation with its own government, occupying a particular territory.",
+                                            "title": "Country",
+                                            "type": "string",
+                                            "pattern": "[A-Z]{2}"
+                                          },
+                                          "PostCode": {
+                                            "description": "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.",
+                                            "title": "PostCode",
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 16
+                                          },
+                                          "GeoLocation": {
+                                            "description": "Geographic location of the ATM specified by geographic coordinates or UTM coordinates.",
+                                            "type": "object",
+                                            "title": "GeoLocation",
+                                            "properties": {
+                                              "GeographicCoordinates": {
+                                                "description": "Location on the earth specified by two numbers representing vertical and horizontal position.",
+                                                "type": "object",
+                                                "title": "GeographicCoordinates",
+                                                "properties": {
+                                                  "Latitude": {
+                                                    "description": "Latitude measured in decimal degrees.",
+                                                    "title": "Latitude",
+                                                    "type": "string",
+                                                    "pattern": "^-?\\d{1,3}\\.\\d{1,8}$"
+                                                  },
+                                                  "Longitude": {
+                                                    "description": "Angular measurement of the distance of a location on the earth east or west of the Greenwich observatory.\nThe longitude is measured in decimal degrees.",
+                                                    "title": "Longitude",
+                                                    "type": "string",
+                                                    "pattern": "^-?\\d{1,3}\\.\\d{1,8}$"
+                                                  }
+                                                },
+                                                "additionalProperties": false,
+                                                "required": [
+                                                  "Latitude",
+                                                  "Longitude"
+                                                ]
+                                              }
+                                            },
+                                            "additionalProperties": false,
+                                            "required": [
+                                              "GeographicCoordinates"
+                                            ]
+                                          }
+                                        },
+                                        "additionalProperties": false
+                                      }
+                                    },
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "PostalAddress"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "Identification",
+                                  "SupportedCurrencies",
+                                  "Location"
+                                ]
+                              },
+                              "additionalProperties": false,
+                              "minItems": 1
+                            }
+                          },
+                          "required": [
+                            "BrandName",
+                            "ATM"
+                          ]
+                        },
+                        "additionalProperties": false,
+                        "minItems": 1
+                      }
+                    },
+                    "required": [
+                      "Brand"
+                    ],
+                    "description": "Environment of the ATM.",
+                    "type": "object"
+                  }
+                }
+              },
+              "required": [
+                "meta",
+                "data"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "400": {
+            "description": "You have sent a request which could not be understood.",
+            "headers": {
+              "Strict-Transport-Security": {
+                "type": "string",
+                "description": "HTTPS strict transport security header"
+              },
+              "X-Frame-Options": {
+                "type": "string",
+                "description": "Prevent this request from being loaded in any iframes",
+                "default": "DENY"
+              },
+              "X-Content-Type-Options": {
+                "type": "string",
+                "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                "default": "nosniff"
+              },
+              "Status Code": {
+                "type": "integer",
+                "description": "The HTTP status code defining the error",
+                "default": 400
+              }
+            },
+            "schema": {
+              "title": "400 Error object",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "400"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Bad request"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "You have sent a request which could not be understood."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "408": {
+            "description": "Your client has failed to submit a request, and a timeout has occurred.",
+            "headers": {
+              "Strict-Transport-Security": {
+                "type": "string",
+                "description": "HTTPS strict transport security header"
+              },
+              "X-Frame-Options": {
+                "type": "string",
+                "description": "Prevent this request from being loaded in any iframes",
+                "default": "DENY"
+              },
+              "X-Content-Type-Options": {
+                "type": "string",
+                "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                "default": "nosniff"
+              },
+              "Status Code": {
+                "type": "integer",
+                "description": "The HTTP status code defining the error",
+                "default": 400
+              }
+            },
+            "schema": {
+              "title": "408 Error object",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "408"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Client timeout"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "Your client has failed to submit a request, and a timeout has occurred."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "429": {
+            "description": "You have requested this resource too often. Slow down.",
+            "headers": {
+              "Strict-Transport-Security": {
+                "type": "string",
+                "description": "HTTPS strict transport security header"
+              },
+              "X-Frame-Options": {
+                "type": "string",
+                "description": "Prevent this request from being loaded in any iframes",
+                "default": "DENY"
+              },
+              "X-Content-Type-Options": {
+                "type": "string",
+                "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                "default": "nosniff"
+              },
+              "Status Code": {
+                "type": "integer",
+                "description": "The HTTP status code defining the error",
+                "default": 400
+              }
+            },
+            "schema": {
+              "title": "429 Error object",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "429"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Too many requests"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "You have requested this resource too often. Slow down."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "500": {
+            "description": "An error occurred on the server. No further information is available.",
+            "headers": {
+              "Strict-Transport-Security": {
+                "type": "string",
+                "description": "HTTPS strict transport security header"
+              },
+              "X-Frame-Options": {
+                "type": "string",
+                "description": "Prevent this request from being loaded in any iframes",
+                "default": "DENY"
+              },
+              "X-Content-Type-Options": {
+                "type": "string",
+                "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                "default": "nosniff"
+              },
+              "Status Code": {
+                "type": "integer",
+                "description": "The HTTP status code defining the error",
+                "default": 400
+              }
+            },
+            "schema": {
+              "title": "500 Error object",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Internal server error"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "An error occurred on the server. No further information is available."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "503": {
+            "description": "The service is temporarily unavailable.",
+            "headers": {
+              "Strict-Transport-Security": {
+                "type": "string",
+                "description": "HTTPS strict transport security header"
+              },
+              "X-Frame-Options": {
+                "type": "string",
+                "description": "Prevent this request from being loaded in any iframes",
+                "default": "DENY"
+              },
+              "X-Content-Type-Options": {
+                "type": "string",
+                "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                "default": "nosniff"
+              },
+              "Status Code": {
+                "type": "integer",
+                "description": "The HTTP status code defining the error",
+                "default": 400
+              }
+            },
+            "schema": {
+              "title": "503 Error object",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "503"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Service temporarily unavailable"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The service is temporarily unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "default": {
+            "description": "A standard error response.",
+            "headers": {
+              "Strict-Transport-Security": {
+                "type": "string",
+                "description": "HTTPS strict transport security header"
+              },
+              "X-Frame-Options": {
+                "type": "string",
+                "description": "Prevent this request from being loaded in any iframes",
+                "default": "DENY"
+              },
+              "X-Content-Type-Options": {
+                "type": "string",
+                "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                "default": "nosniff"
+              },
+              "Status Code": {
+                "type": "integer",
+                "description": "The HTTP status code defining the error",
+                "default": 400
+              }
+            },
+            "schema": {
+              "title": "Error object",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "description": "This corresponds to the HTTP status code",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "A short title of the type of error",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "Further details describing the error",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "ATM"
+        ],
+        "description": "Gets header information on the current set of `ATM` data",
+        "parameters": [
+          {
+            "name": "If-Modified-Since",
+            "type": "string",
+            "description": "Used for conditional request, to retrieve data only if modified since a given date",
+            "in": "header",
+            "required": false
+          },
+          {
+            "name": "If-None-Match",
+            "type": "string",
+            "description": "Used for conditional request, to retrieve data only if the given Etag value does not match",
+            "in": "header",
+            "required": false
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "No response",
+            "schema": {
+              "title": "No response",
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

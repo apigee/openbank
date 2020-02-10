@@ -1,0 +1,5 @@
+[{
+  "client_id": "foo",
+  "client_secret": "bar",
+  "redirect_uris": ["https://httpbin.org/get"]
+}]
