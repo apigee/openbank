@@ -28,7 +28,7 @@ Given('I navigate to the authorize page', async function() {
   this.browser = await puppeteer.launch()
   this.page = await this.browser.newPage()
   return await this.page.goto('https://' + org + '-' + env + 
-    '.apigee.net/mock-idp/auth?client_id=' + this.apickli.globalVariables.clientId
+    '.apigee.net/mock-idp/auth?client_id=' + this.apickli.scenarioVariables.clientId
     + '&redirect_uri=https://httpbin.org/get&response_type=code&scope=openid&state=123')
 })
 

@@ -10,7 +10,7 @@ Feature:
     When I POST to /identity/v1/connect/register
     Then response code should be 200
     And response body path $.client_id should be (.*)
-@Debug
+
   Scenario: Client Credentials Access Token
     Given I have basic authentication credentials `clientId` and `clientSecret`
     And I set form parameters to 
@@ -19,7 +19,7 @@ Feature:
     When I POST to /identity/v1/token
     Then response code should be 200
     And I store the value of body path $.access_token as clientToken in global scope
-@Debug
+
   Scenario: Create Domestic Payment Consent
     Given I set x-fapi-financial-id header to 123
     And I set x-idempotency-key header to 123
@@ -42,10 +42,8 @@ Feature:
     Given I have basic authentication credentials `clientId` and `clientSecret`
     And I set form parameters to 
       | parameter   | value                   |
-      | client_id   | `clientId`              |
       | grant_type  | authorization_code      |
       | code        | `authCode`              |
-      | redirect_uri| https://httpbin.org/get |
     When I POST to /identity/v1/token
     Then response code should be 200
     And I store the value of body path $.access_token as userToken in global scope

@@ -216,6 +216,31 @@ Create an API Product with
 | Envs | test |
 | Paths | / /** |
 
+#### Create an Open Banking Developer
+
+Create a Developer that corresponds to `./test/fixtures/dynamicRegistration.json`
+
+| | |
+|---|---|
+| Email | developer@example.com |
+
+#### Create an Open Banking Developer App
+
+Create a Developer App with the following
+
+| | |
+|---|---|
+| Name | Open Banking Test App |
+| Callback URL | https://httpbin.org/get |
+| Developer | developer@example.com |
+| Product | openbanking |
+
+#### Update the Test App Credentials
+
+Take the `Client ID` and `Client Secret` from the newly created app and add it to `./apiproxies/sandboxes-v1/apiproxy/resources/hosted/support/clients` and `./test/step_definitions/init.js`
+
+This will replace the `foo` client.
+
 ### Testing
 
 ```

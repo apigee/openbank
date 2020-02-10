@@ -2,7 +2,8 @@ Feature:
   As a TPP
   I want to access Account Information APIs
   So that I can view accounts, transactions and balances
-  
+
+@Debug  
   Scenario: Dynamic Registration
     Given I set Content-Type header to application/json
     And I pipe contents of file dynamicRegistration.json to body
@@ -10,8 +11,6 @@ Feature:
     When I POST to /identity/v1/connect/register
     Then response code should be 200
     And response body path $.client_id should be (.*)
-    And I store the value of body path $.client_id as clientId in global scope
-    And I store the value of body path $.client_secret as clientSecret in global scope
 
   Scenario: Client Credentials Access Token
     Given I have basic authentication credentials `clientId` and `clientSecret`
@@ -42,10 +41,8 @@ Feature:
     Given I have basic authentication credentials `clientId` and `clientSecret`
     And I set form parameters to 
       | parameter   | value                   |
-      | client_id   | `clientId`              |
       | grant_type  | authorization_code      |
       | code        | `authCode`              |
-      | redirect_uri| https://httpbin.org/get |
     When I POST to /identity/v1/token
     Then response code should be 200
     And I store the value of body path $.access_token as userToken in global scope

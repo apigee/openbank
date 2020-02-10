@@ -2,8 +2,4 @@
   "client_id": "foo",
   "client_secret": "bar",
   "redirect_uris": ["https://httpbin.org/get"]
-},{
-  "client_id": "e05d0e1a-cd9d-4724-a5a2-448d74faee3c",
-  "client_secret": "WqMUPysCvhzZyCSX7lI0gjRQdCV4LD50KR62SrG3450od4ozFBOteeVuXYYr8lK7",
-  "redirect_uris": ["https://httpbin.org/get"]
 }]
