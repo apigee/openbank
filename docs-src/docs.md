@@ -197,14 +197,6 @@ curl https://api.enterprise.apigee.com/v1/o/$APIGEE_ORG/e/$APIGEE_ENV/keyvaluema
 ```
 
 
-#### Obtain the Reference Implementation and deploy it
-
-```
-git clone https://github.com/apigee/openbank.git
-cd openbank
-npm install
-npm run deployAll
-```
 
 #### Create an Open Banking API Product
 
@@ -238,9 +230,18 @@ Create a Developer App with the following
 
 #### Update the Test App Credentials
 
-Take the `Client ID` and `Client Secret` from the newly created app and add it to `./apiproxies/sandboxes-v1/apiproxy/resources/hosted/support/clients` and `./test/step_definitions/init.js`
+Take the `Client ID` and `Client Secret` from the newly created app and add it to `./apiproxies/sandboxes-v1/apiproxy/resources/hosted/support/clients.js` and `./test/step_definitions/init.js`
 
 This will replace the `foo` client.
+
+#### Obtain the Reference Implementation and deploy it
+
+```
+git clone https://github.com/apigee/openbank.git
+cd openbank
+npm install
+npm run deployAll
+```
 
 ### Testing
 
@@ -255,16 +256,17 @@ Obtaining some Public Data:
 curl https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/atm-sandbox/open-banking/v2.3/atms -v
 ```
 
-Dynamically Registering an API:
-```
-curl -H "Content-Type: application/json" -H "SSL-CLIENT-CERT: $(cat ./test/fixtures/eidasCert.txt)" -d "@./test/fixtures/dynamicRegistration.json" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/connect/register -v
-```
-
-Make a note of the client id and secret!
+Set the Client ID and Client Secret of our *Open Banking Test App*
 ```
 export CLIENT_ID=xxx
 export CLIENT_SECRET=xxx
 ```
+
+Dynamically Registering with an eIDAS Certificate:
+```
+curl -H "Content-Type: application/json" -H "SSL-CLIENT-CERT: $(cat ./test/fixtures/eidasCert.txt)" -d "@./test/fixtures/dynamicRegistration.json" https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/connect/register -v
+```
+> note - in this demo, the client is only held in memory for a short time. Please use the permanent *Open Banking Test App* for testing.
 
 Obtain a client credentials Access Token:
 ```

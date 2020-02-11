@@ -8,7 +8,7 @@
     "deploySharedFlows": "for DIR in $(ls sharedflows); do cd sharedflows/$DIR && npm run deploy && cd ../.. ; done",
     "generateDocs": "plantuml ./docs-src/auth.flow && claat export ./docs-src/docs.md",
     "serveDocs": "http-server docs/",
-    "test": "npx cucumber-js test"
+    "test": "npx cucumber-js test --tags '@OpenData or @AccountInfo or @PaymentInit'"
   },
   "keywords": [
     "apigee",
