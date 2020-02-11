@@ -1,16 +1,9 @@
+@PaymentInit
 Feature:
   As a TPP
   I want to access Payment Initiation APIs
   So that I can process payments
   
-  Scenario: Dynamic Registration
-    Given I set Content-Type header to application/json
-    And I pipe contents of file dynamicRegistration.json to body
-    And I provide a valid eidas cert
-    When I POST to /identity/v1/connect/register
-    Then response code should be 200
-    And response body path $.client_id should be (.*)
-
   Scenario: Client Credentials Access Token
     Given I have basic authentication credentials `clientId` and `clientSecret`
     And I set form parameters to 

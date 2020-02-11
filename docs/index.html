@@ -201,12 +201,6 @@ export APIGEE_ENV=test
 <p>This KVM can be created with the following:</p>
 <pre><code>curl https://api.enterprise.apigee.com/v1/o/$APIGEE_ORG/e/$APIGEE_ENV/keyvaluemaps -u $APIGEE_USER:$APIGEE_PASS -H &#34;Content-Type: application/json&#34; -d &#34;{ \&#34;name\&#34;: \&#34;apigee-reference-bank\&#34;, \&#34;encrypted\&#34;: \&#34;true\&#34;, \&#34;entry\&#34;: [{ \&#34;name\&#34;: \&#34;mgmtCredentials\&#34;, \&#34;value\&#34;: \&#34;Basic $(echo -n $APIGEE_USER:$APIGEE_PASS | base64)\&#34; }] }&#34;
 </code></pre>
-<h3 is-upgraded>Obtain the Reference Implementation and deploy it</h3>
-<pre><code>git clone https://github.com/apigee/openbank.git
-cd openbank
-npm install
-npm run deployAll
-</code></pre>
 <h3 is-upgraded>Create an Open Banking API Product</h3>
 <p>Create an API Product with</p>
 <table>
@@ -250,8 +244,14 @@ npm run deployAll
 </td></tr>
 </table>
 <h3 is-upgraded>Update the Test App Credentials</h3>
-<p>Take the <code>Client ID</code> and <code>Client Secret</code> from the newly created app and add it to <code>./apiproxies/sandboxes-v1/apiproxy/resources/hosted/support/clients</code> and <code>./test/step_definitions/init.js</code></p>
+<p>Take the <code>Client ID</code> and <code>Client Secret</code> from the newly created app and add it to <code>./apiproxies/sandboxes-v1/apiproxy/resources/hosted/support/clients.js</code> and <code>./test/step_definitions/init.js</code></p>
 <p>This will replace the <code>foo</code> client.</p>
+<h3 is-upgraded>Obtain the Reference Implementation and deploy it</h3>
+<pre><code>git clone https://github.com/apigee/openbank.git
+cd openbank
+npm install
+npm run deployAll
+</code></pre>
 <h2 is-upgraded>Testing</h2>
 <pre><code>npm test
 </code></pre>
@@ -263,13 +263,14 @@ npm run deployAll
         <p>Obtaining some Public Data:</p>
 <pre><code>curl https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/atm-sandbox/open-banking/v2.3/atms -v
 </code></pre>
-<p>Dynamically Registering an API:</p>
-<pre><code>curl -H &#34;Content-Type: application/json&#34; -H &#34;SSL-CLIENT-CERT: $(cat ./test/fixtures/eidasCert.txt)&#34; -d &#34;@./test/fixtures/dynamicRegistration.json&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/connect/register -v
-</code></pre>
-<p>Make a note of the client id and secret!</p>
+<p>Set the Client ID and Client Secret of our <em>Open Banking Test App</em></p>
 <pre><code>export CLIENT_ID=xxx
 export CLIENT_SECRET=xxx
 </code></pre>
+<p>Dynamically Registering with an eIDAS Certificate:</p>
+<pre><code>curl -H &#34;Content-Type: application/json&#34; -H &#34;SSL-CLIENT-CERT: $(cat ./test/fixtures/eidasCert.txt)&#34; -d &#34;@./test/fixtures/dynamicRegistration.json&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/connect/register -v
+</code></pre>
+<p>note - in this demo, the client is only held in memory for a short time. Please use the permanent <em>Open Banking Test App</em> for testing.</p>
 <p>Obtain a client credentials Access Token:</p>
 <pre><code>curl -u $CLIENT_ID:$CLIENT_SECRET -d &#34;grant_type=client_credentials&#34; https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/identity/v1/token -v
 </code></pre>

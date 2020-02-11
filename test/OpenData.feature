@@ -1,3 +1,4 @@
+@OpenData
 Feature: 
   As a TPP
   I want to access Open Data
