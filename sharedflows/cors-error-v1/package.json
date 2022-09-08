@@ -8,6 +8,6 @@
   "author": "LaughingBiscuit",
   "license": "NONE",
   "dependencies": {
-    "apigeetool": "^0.10.0"
+    "apigeetool": "^0.16.1"
   }
 }
