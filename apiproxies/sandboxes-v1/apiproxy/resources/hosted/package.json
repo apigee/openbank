@@ -12,7 +12,7 @@
   "dependencies": {
     "async": "^3.1.0",
     "express": "^4.17.1",
-    "oidc-provider": "^5.5.3",
+    "oidc-provider": "^9.4.0",
     "swagger-tools": "^0.10.4"
   }
 }
